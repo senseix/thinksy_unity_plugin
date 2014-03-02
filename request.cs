@@ -23,7 +23,7 @@ using UnityEngine;
 			var post = new WWWForm();
 			
 			container message = new container ();
-			
+			string deviceID = SystemInfo.deviceUniqueIdentifier;
 			
 			switch(type)
 			{
@@ -168,13 +168,22 @@ using UnityEngine;
 				message.addFieldDeli ();
 				message.append ("access_token=");
 				message.append (dictionary["access_token"]);
-
+					
+				message.addFieldDeli ();
+				message.append ("device");
+				message.addKeyDeli ();
+				message.append ("udid");
+				message.addValueDeli ();
+				message.append (deviceID);
+				
 				message.addFieldDeli ();
 				message.append ("player");
 				message.addKeyDeli ();
 				message.append ("name");
 				message.addValueDeli ();
 				message.append (dictionary["name"]);
+				
+				
 				
 				break;
 			case messageType.MESSAGETYPE_PLAYER_INDEX:
