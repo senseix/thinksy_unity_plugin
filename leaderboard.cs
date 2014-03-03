@@ -31,9 +31,9 @@ using System;
 			playOldScore = playNewScore;
 
 			//SEND REQUEST
-			senseix.pushMyInfo ();
-			playNewRank = senseix.getMyScore();
-			playNewScore = senseix.getMyRank();
+			//senseix.pushMyInfo ();
+			//playNewRank = senseix.getMyScore();
+			//playNewScore = senseix.getMyRank();
 			/*
 			respond result = request.sendRequest (null,messageType.MESSAGETYPE_LEADERBOARD_PULL);
 			if ((int)result.DataField ["error"] == 0)

@@ -64,9 +64,11 @@ using System.Text;
 		private static string name = null;
 		private static string email = null;
 		private static string deviceId = null;
+		private static Queue playerQ = new Queue();
 		private static leaderboard gameLeaderboard = new leaderboard();
 		private static heavyUser me = new heavyUser();
 		private static string utf8hdr = "utf8=%E2%9C%93";
+		
 		public senseix ()
 		{
 		}
@@ -206,14 +208,14 @@ using System.Text;
 			print(request.sendRequest(command,messageType.MESSAGETYPE_PLAYER_CREATE));
 			return 0;
 		}
-		public static int getPlayer ()
+		public static Queue getPlayer ()
 		{
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
 			container decoder = new container();
 			if(senseix.getGameToken() == null)
-				return -1;
+				return null;
 			else 
 				currentToken = senseix.getGameToken();
 			command.Add("access_token",currentToken);
@@ -224,12 +226,21 @@ using System.Text;
 			decoder.formBinary();
 			result = decoder.formObjectDictionary();
 			Queue first = (Queue)result["objects"];
+			if(playerQ == null)
+				playerQ = new Queue();
+			else
+				playerQ.Clear();
 			while(first.Count != 0)
 			{
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
-				print(tester["name"]);
+				playerQ.Enqueue(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
+				//print(tester[""]);
 			}
-			return 0;
+			heavyUser peekuser = (heavyUser)playerQ.Dequeue();
+			peekuser = (heavyUser)playerQ.Dequeue();
+			print(peekuser.name);
+			
+			return playerQ;
 		}
 		public static int developerLogin (string login,string password,string game = null)
 		{
@@ -292,6 +303,7 @@ using System.Text;
 			return 0;
 
 		}
+		/*
 		public static int getMyScore()
 		{
 			return me.getUsrScore ();
@@ -304,22 +316,35 @@ using System.Text;
 		{
 			me.pullUsrInfo ();
 		}
-
-		public static void pushMyInfo()
+		*/
+		public static int pullProblemQ(int player_id,int count,string category,int level)
 		{
-			me.pushUsrInfo ();
-		}
-		private static bool isGameTokenValid(string gameToken)
-		{
-			//What is rule to determine valid?
-
-			//send REQUEST
-			return true;
-		}
-
-		public static void pullProblemQ(int problem_id)
-		{
-
+			string currentToken = null;
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			if(senseix.getGameToken() == null)
+				return -1;
+			else 
+				currentToken = senseix.getGameToken();
+			command.Add("access_token",currentToken);
+			command.Add("auth_token",senseix.authToken);
+			command.Add("player_id",player_id.ToString());
+			command.Add("count",count.ToString());
+			command.Add("level",level.ToString());
+			command.Add("category",category);
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PROBLEM_PULL);
+			decoder.append(tmp);
+			print(tmp);
+			decoder.formBinary();
+			result = decoder.formObjectDictionary();
+			Queue first = (Queue)result["objects"];
+			while(first.Count != 0)
+			{
+				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
+				//print(tester[""]);
+			}
+			return 0;
 		}
 
 		public static void pushProblemA(int problem_id,string answer,string duration,bool correctness)
@@ -327,7 +352,6 @@ using System.Text;
 
 		}
 	}
-	
 	//some old code
 	//ORIGIN BEG
 	/*

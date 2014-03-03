@@ -204,12 +204,70 @@ using UnityEngine;
 				
 				break;
 			case messageType.MESSAGETYPE_PROBLEM_PULL:
-				//data.Add ("url", url);
+				url = messageType.MESSAGETYPE_PROBLEM_PULL_URL;
+				
+				postget = 2;
+				message.append(messageType.MESSAGETYPE_PROBLEM_PULL_URL);
+				message.append("?");
+				message.init ();
+				
+				message.addFieldDeli ();
+				message.append ("auth_token=");
+				message.append (dictionary["auth_token"]);
+				
+				message.addFieldDeli ();
+				message.append ("access_token=");
+				message.append (dictionary["access_token"]);
+
+				message.addFieldDeli ();
+				message.append ("player_id=");
+				message.append (dictionary["player_id"]);
+				
+				message.addFieldDeli ();
+				message.append ("problem_set");
+				message.addKeyDeli ();
+				message.append ("count");
+				message.addValueDeli ();
+				message.append (dictionary["count"]);
+				
+				message.addFieldDeli ();
+				message.append ("problem_set");
+				message.addKeyDeli ();
+				message.append ("category");
+				message.addValueDeli ();
+				message.append (dictionary["category"]);
+					
+				message.addFieldDeli ();
+				message.append ("problem_set");
+				message.addKeyDeli ();
+				message.append ("level");
+				message.addValueDeli ();
+				message.append (dictionary["level"]);
+				/*
+				message.addFieldDeli ();
+				message.append ("device");
+				message.addKeyDeli ();
+				message.append ("udid");
+				message.addValueDeli ();
+				message.append (deviceID);
+				*/	
 				break;
 			case messageType.MESSAGETYPE_LEADERBOARD_PULL:
 				url = messageType.MESSAGETYPE_LEADERBOARD_PULL_URL;
-				//data.Add ("url", url);
-				data.Add ("page",dictionary["page"]);
+				postget = 2;
+				message.append(messageType.MESSAGETYPE_PROBLEM_PULL_URL);
+				message.append("?");
+				message.init ();
+				
+				message.addFieldDeli ();
+				message.append ("auth_token=");
+				message.append (dictionary["auth_token"]);
+				
+				message.addFieldDeli ();
+				message.append ("access_token=");
+				message.append (dictionary["access_token"]);
+				
+				
 				break;
 			}
 			if(postget == 0)

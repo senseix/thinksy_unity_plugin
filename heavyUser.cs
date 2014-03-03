@@ -4,50 +4,43 @@ using System.Collections.Generic;
 
 	public class heavyUser: user
 	{
-		private string usrHash = "N/A";
-		private string moreInfoOne = "N/A";
-		private string moreInfoTWO = "N/A";
-		private int moreInfoTHR = 0;
-		private int moreInfoFOR = 0;
-		private bool moreInfoFIV = false;
-
-		public heavyUser ()
+		public int id = -1;
+		public string email = "null";
+		public string name = "null";
+		public int age = -1;
+		public int coach_id = -1;
+		public string created_at = "null";
+		public string updated_at = "null";
+		public int team_id = -1;
+		public string deleted = "null";
+		//FIXME: problem while input is string and output is integer and 
+		public heavyUser()
 		{
-			//Just keep the default value
+		
 		}
-
-		public heavyUser (string id,string name,int rank,int score, string arg1, string arg2, int arg3, int arg4, bool arg5)
+		public heavyUser (string ida,string emaila,string namea,string agea,string coach_ida,string created_ata,string updated_ata,string team_ida,string deleteda)
 		{
-			usrID = id;
-			usrNAME = name;
-			usrRank = rank;
-			usrScore = score;
-
-			moreInfoOne = arg1;
-			moreInfoTWO = arg2;
-			moreInfoTHR = arg3;
-			moreInfoFOR = arg4;
-			moreInfoFIV = arg5;
-		}
-		public virtual string getmoreInfoOne()
-		{
-			return moreInfoOne;
-		}
-		public virtual string getmoreInfoTWO()
-		{
-			return moreInfoTWO;
-		}
-		public virtual int getmoreInfoTHR()
-		{
-			return moreInfoTHR;
-		}
-		public virtual int getmoreInfoFOR()
-		{
-			return moreInfoFOR;
-		}
-		public virtual bool getmoreInfoFIV()
-		{
-			return moreInfoFIV;
+			if(ida.Equals("null"))
+				id = -1;
+			else
+				id = Convert.ToInt32(ida);
+			email = emaila;
+			name=namea;
+			if(agea.Equals("null"))
+				age = -1;
+			else
+				age = Convert.ToInt32(agea);
+			if(coach_ida.Equals("null"))
+				coach_id = -1;
+			else	
+				coach_id = Convert.ToInt32(coach_ida);
+			created_at=created_ata;
+			updated_at=updated_ata;
+			if(team_ida.Equals("null"))
+				team_id = -1;
+			else
+				team_id = Convert.ToInt32(team_ida);
+			deleted=deleteda;
 		}
 	}
 

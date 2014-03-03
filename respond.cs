@@ -45,10 +45,6 @@ using UnityEngine;
 			testUsers [11] = new lightUser ("ISAAC","00032",12,554);
 
 		}
-		public static string testGetUserID(lightUser user)
-		{
-			return user.getUsrID ();
-		}
 		public static lightUser[] testTopUser(int num)
 		{
 			lightUser[] result = new lightUser[num];
@@ -57,15 +53,6 @@ using UnityEngine;
 				result [i] = testUsers [i];
 			}
 			return result;
-		}
-		public static int testSearch(string ID)
-		{
-			for(int i=0;i<12;i++)
-			{
-				if (testGetUserID (testUsers [i]) == ID)
-					return i;
-			}
-			return -1;
 		}
 
 		public static respond tester(int type,Dictionary<string,object> message)
