@@ -65,6 +65,7 @@ using System.Text;
 		private static string email = null;
 		private static string deviceId = null;
 		private static Queue playerQ = new Queue();
+		private static Queue problemQ = new Queue();
 		private static leaderboard gameLeaderboard = new leaderboard();
 		private static heavyUser me = new heavyUser();
 		private static string utf8hdr = "utf8=%E2%9C%93";
@@ -236,10 +237,7 @@ using System.Text;
 				playerQ.Enqueue(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
 				//print(tester[""]);
 			}
-			heavyUser peekuser = (heavyUser)playerQ.Dequeue();
-			peekuser = (heavyUser)playerQ.Dequeue();
-			print(peekuser.name);
-			
+		
 			return playerQ;
 		}
 		public static int developerLogin (string login,string password,string game = null)
@@ -317,14 +315,14 @@ using System.Text;
 			me.pullUsrInfo ();
 		}
 		*/
-		public static int pullProblemQ(int player_id,int count,string category,int level)
+		public static Queue pullProblemQ(int player_id,int count,string category,int level)
 		{
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
 			container decoder = new container();
 			if(senseix.getGameToken() == null)
-				return -1;
+				return null;
 			else 
 				currentToken = senseix.getGameToken();
 			command.Add("access_token",currentToken);
@@ -334,17 +332,25 @@ using System.Text;
 			command.Add("level",level.ToString());
 			command.Add("category",category);
 			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PROBLEM_PULL);
-			decoder.append(tmp);
-			print(tmp);
+			StringBuilder tmpBuilder = new StringBuilder();
+			tmpBuilder.Append("{\"problems\":\"");
+			tmpBuilder.Append(tmp);
+			tmpBuilder.Append("\"}");
+			decoder.append(tmpBuilder.ToString());
+			print(tmpBuilder.ToString());
 			decoder.formBinary();
 			result = decoder.formObjectDictionary();
 			Queue first = (Queue)result["objects"];
+			if(problemQ == null)
+				problemQ = new Queue();
+			else
+				problemQ.Clear();
 			while(first.Count != 0)
 			{
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
-				//print(tester[""]);
-			}
-			return 0;
+				problemQ.Enqueue(new problem(tester["content"],tester["category"],tester["level"]));
+			}		
+			return problemQ;			
 		}
 
 		public static void pushProblemA(int problem_id,string answer,string duration,bool correctness)

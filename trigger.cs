@@ -137,7 +137,9 @@ public class trigger : MonoBehaviour {
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+65,120,30), "Pull a Problem"))
 			{	
-				senseix.pullProblemQ(40,1,"Mathematics",1);
+				Queue newproblemQ = senseix.pullProblemQ(40,1,"Mathematics",1);
+				problem newproblem = (problem)newproblemQ.Dequeue();
+				tmp = newproblem.content;
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+100,120,30), "Logout"))
 			{	
@@ -185,7 +187,7 @@ public class trigger : MonoBehaviour {
 			senseix.createPlayer ("cheng five");
 		}
 		if (Input.GetKey("h")){
-			senseix.pullProblemQ(40,4,"Mathematics",1);
+			senseix.pullProblemQ(40,3,"Mathematics",1);
         }
     }
 }
