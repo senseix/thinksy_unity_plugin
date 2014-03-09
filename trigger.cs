@@ -19,12 +19,51 @@ public class trigger : MonoBehaviour {
 	public trigger()
 	{
 		senseix.initSenseix("63c4512541f5d27dd4dd12a8e5b8c0ea7d8c2f6be8e15e7718920b399bc9846f");
+		if (senseix.inSession) 
+		{
+			mainWindow = false;
+			coachLogin = false;
+			coachSessionBeg = true;
+		}
 	}
     public void showLoading()
 	{
 		GUI.Box(new Rect(Screen.width/2-Screen.width/4, Screen.height/2-Screen.height/8, Screen.width/2, Screen.height/4), "Loading");
 	}
 	void OnGUI() {
+		/*
+		 * implemented in senseix as private
+		if (GUI.Button(new Rect(Screen.width-90, 0,80,30), "Save"))
+		{	
+			if(senseix.getAuthToken() != null)
+			{
+				print("Data Saved: " + senseix.getAuthToken());
+				PlayerPrefs.SetString("data00",senseix.getAuthToken());
+			}
+			else
+			{
+				print("You have not signed in.");
+
+			}
+
+		}
+		if (GUI.Button(new Rect(Screen.width-90, 40,80,30), "Load"))
+		{	
+			if(PlayerPrefs.HasKey("data00"))
+			{
+				string authToken = PlayerPrefs.GetString("data00","null");
+				senseix.setAuthToken(authToken);
+				mainWindow = false;
+				coachLogin = false;
+				coachSessionBeg = true;
+				print("Loaded token: " + senseix.getAuthToken());
+			}
+			else
+			{
+				print ("No save found, or save data invalid.");
+			}
+		}
+		*/
 		if(mainWindow)
 		{
         	if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2-15,80,30), "Login"))
@@ -49,11 +88,17 @@ public class trigger : MonoBehaviour {
 			passwordText = GUI.PasswordField(new Rect(Screen.width/2-75, Screen.height/2+30,80,30), passwordText, "*"[0], 25);
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+65,80,30), "Login"))
 			{	
-				senseix.coachLogin(emailText,passwordText);
-				coachLogin = false;
-				coachSessionBeg = true;
-				emailText="email";
-				passwordText="";
+				if(senseix.coachLogin(emailText,passwordText) == 0)
+				{
+					coachLogin = false;
+					coachSessionBeg = true;
+					emailText="email";
+					passwordText="";
+				}
+				else
+				{
+					print ("Login failed");
+				}
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+100,80,30), "Register"))
 			{	
@@ -74,11 +119,15 @@ public class trigger : MonoBehaviour {
 			passwordText = GUI.PasswordField(new Rect(Screen.width/2-75, Screen.height/2+65,80,30), passwordText, "*"[0], 25);
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+100,80,30), "Summit"))
 			{	
-				senseix.coachSignUp(emailText,name,passwordText);
-				coachSignup = false;
-				coachSessionBeg = true;
-				emailText="email";
-				passwordText="";
+				if(senseix.coachSignUp(emailText,name,passwordText) == 0)
+				{
+					coachSignup = false;
+					coachSessionBeg = true;
+					emailText="email";
+					passwordText="";
+				}
+				else
+					print ("Sign up failed");
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+135,80,30), "Cancel"))
 			{	
@@ -95,10 +144,16 @@ public class trigger : MonoBehaviour {
 			passwordText = GUI.PasswordField(new Rect(Screen.width/2-75, Screen.height/2+30,80,30), passwordText, "*"[0], 25);
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+100,80,30), "Login"))
 			{	
-				senseix.developerLogin(emailText,passwordText);
-				developerLogin = false;
-				emailText="email";
-				passwordText="";
+				if(senseix.developerLogin(emailText,passwordText) == 0)
+				{
+					developerLogin = false;
+					emailText="email";
+					passwordText="";
+				}
+				else
+				{
+					print ("Login failed");
+				}
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+65,80,30), "Cancel"))
 			{	
@@ -113,33 +168,51 @@ public class trigger : MonoBehaviour {
 			//tmp = GUI.TextField(new Rect(Screen.width/2-75, Screen.height/2-40,120,30), tmp, 25);
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2-5,120,30), "create player"))
 			{	
-				senseix.createPlayer (tmp);
-				tmp="";
+				if(senseix.createPlayer (tmp) == 0)
+					tmp="";
+				else
+				{
+					print ("Failed to create player");
+				}
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+30,120,30), "Player Index"))
 			{	
 				Queue players = senseix.getPlayer();
 				heavyUser player = null;
 				StringBuilder result = new StringBuilder();
-				while(players.Count != 0)
+				if(players != null)
 				{
-					player = (heavyUser)players.Dequeue();
-					if(player != null)
+					while(players.Count != 0)
 					{
-						result.Append("ID: ");
-						result.Append(player.id);
-						result.Append("  Name: ");
-						result.Append(player.name);
-						result.Append("\n");
+						player = (heavyUser)players.Dequeue();
+						if(player != null)
+						{
+							result.Append("ID: ");
+							result.Append(player.id);
+							result.Append("  Name: ");
+							result.Append(player.name);
+							result.Append("\n");
+						}
 					}
+					tmp=result.ToString();
 				}
-				tmp=result.ToString();
+				else
+				{
+					print ("Failed to get players");
+				}
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+65,120,30), "Pull a Problem"))
 			{	
 				Queue newproblemQ = senseix.pullProblemQ(40,1,"Mathematics",1);
-				problem newproblem = (problem)newproblemQ.Dequeue();
-				tmp = newproblem.content;
+				if(newproblemQ != null)
+				{
+					problem newproblem = (problem)newproblemQ.Dequeue();
+					tmp = newproblem.content;
+				}
+				else
+				{
+					print("Failed to pull problems");
+				}
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+100,120,30), "Logout"))
 			{	

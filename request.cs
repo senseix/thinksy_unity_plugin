@@ -282,7 +282,7 @@ using UnityEngine;
 					//display some waiting sign
 				}
 				if (!string.IsNullOrEmpty (recvResult.error))
-					tmp = recvResult.error;
+					tmp = "error";
 				else
 					tmp = recvResult.text;
 				//return (tmp+ " "+message.buffer.ToString());
@@ -297,7 +297,7 @@ using UnityEngine;
 					//display some waiting sign
 				}
 				if (!string.IsNullOrEmpty (recvResult.error))
-					tmp = recvResult.error;
+					tmp = "error";
 				else
 					tmp = recvResult.text;
 				return tmp;
