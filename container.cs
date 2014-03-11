@@ -82,6 +82,10 @@ public class container
 	{
 		this.append ("%5D=");
 	}
+	public void addPushQDeli()
+	{
+		this.append ("&answer_set%5B%5D%5B");
+	}
 	public int formBinary(string result)
 	{
 		binary = new byte[result.Length];

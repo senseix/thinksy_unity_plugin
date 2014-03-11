@@ -252,6 +252,58 @@ using UnityEngine;
 				message.append (deviceID);
 				*/	
 				break;
+			case messageType.MESSAGETYPE_PROBLEM_PUSH:
+				url = messageType.MESSAGETYPE_PROBLEM_PUSH_URL;
+				postget = 1;
+				
+				message.init ();
+				message.append("&_method=PUT");
+				message.addFieldDeli ();
+				message.append ("auth_token=");
+				message.append (dictionary["auth_token"]);
+				
+				message.addFieldDeli ();
+				message.append ("access_token=");
+				message.append (dictionary["access_token"]);
+				
+				message.addFieldDeli ();
+				message.append ("player_id=");
+				message.append (dictionary["player_id"]);
+				
+				message.addPushQDeli();
+				message.append("problem_id");
+				message.addValueDeli();
+				message.append(dictionary["problem_id"]);
+				
+				message.addPushQDeli();
+				message.append("duration");
+				message.addValueDeli();
+				message.append(dictionary["duration"]);
+
+				message.addPushQDeli();
+				message.append("correct");
+				message.addValueDeli();
+				message.append(dictionary["correct"]);
+
+				message.addPushQDeli();
+				message.append("tries");
+				message.addValueDeli();
+				message.append(dictionary["tries"]);
+
+				message.addPushQDeli();
+				message.append("game_difficulty");
+				message.addValueDeli();
+				message.append(dictionary["game_difficulty"]);
+
+
+				
+				message.addPushQDeli();
+				message.append("answer");
+				message.addValueDeli();
+				message.append(dictionary["answer"]);
+			//message.append("&player_id=40&answer_set%5B%5D%5Bproblem_id%5D=13&answer_set%5B%5D%5Bduration%5D=2&answer_set%5B%5D%5Bcorrect%5D=false&answer_set%5B%5D%5Btries%5D=1&answer_set%5B%5D%5Bgame_difficulty%5D=2&answer_set%5B%5D%5Banswer%5D=5");
+				
+				break;
 			case messageType.MESSAGETYPE_LEADERBOARD_PULL:
 				url = messageType.MESSAGETYPE_LEADERBOARD_PULL_URL;
 				postget = 2;
@@ -274,6 +326,7 @@ using UnityEngine;
 				return "ERROR: POST or GET not specified";
 			if(postget == 1)
 			{
+				//print("[DEBUG] Raw message sent out:" + message.buffer);
 				message.formBinary();
 				string tmp = null;
 				WWW recvResult =new WWW (url,message.binary);
@@ -282,7 +335,7 @@ using UnityEngine;
 					//display some waiting sign
 				}
 				if (!string.IsNullOrEmpty (recvResult.error))
-					tmp = "error";
+					tmp = recvResult.error + message.buffer.ToString();
 				else
 					tmp = recvResult.text;
 				//return (tmp+ " "+message.buffer.ToString());

@@ -61,7 +61,8 @@ using System.Text;
 		public static int rankNum = 10;
 		private static string authToken = null;
 		private static string gameToken = null;
-		private static string name = null;
+		public static int id = 0;
+		public static string name = null;
 		private static string email = null;
 		private static string deviceId = null;
 		private static Queue playerQ = new Queue();
@@ -448,9 +449,28 @@ using System.Text;
 			return problemQ;			
 		}
 
-		public static void pushProblemA(int problem_id,string answer,string duration,bool correctness)
+	public static void pushProblemA(int player_id,int problem_id,int duration,bool correctness,int tries,int game_difficulty,string answer)
 		{
-
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			command.Add("access_token",senseix.getGameToken());
+			command.Add("auth_token",senseix.authToken);
+			command.Add("player_id",player_id.ToString());
+			command.Add("answer",answer);
+			command.Add("problem_id",problem_id.ToString());
+			command.Add("correct",correctness.ToString());
+			command.Add ("game_difficulty",game_difficulty.ToString());
+			command.Add ("tries",tries.ToString());
+			command.Add ("duration",duration.ToString());
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PROBLEM_PUSH);
+			if (tmp.Equals ("error")) 
+			{
+				print("[DEBUG] Found error in request, return -1");
+				//return null;
+			}
+			//DEBUG
+			print ("[DEBUG] result: "+tmp);
 		}
 		private static void saveAuthToken()
 		{
