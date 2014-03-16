@@ -5,7 +5,6 @@ using System.Text;
 using System.Net;
 using System;
 public class trigger : MonoBehaviour {
-    int times = 0;
 	private bool mainWindow = true;
 	private bool coachLogin = false;
 	private bool developerLogin = false;
@@ -212,11 +211,12 @@ public class trigger : MonoBehaviour {
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+65,120,30), "Pull a Problem"))
 			{	
-				Queue newproblemQ = senseix.pullProblemQ(senseix.id,1,"Mathematics",1);
+				Queue newproblemQ = senseix.pullProblemQ(1,"Mathematics",1);
 				if(newproblemQ != null)
 				{
 					problem newproblem = (problem)newproblemQ.Dequeue();
 					tmp = newproblem.content;
+					newQid = newproblem.problemID;
 				}
 				else
 				{
@@ -297,10 +297,20 @@ public class trigger : MonoBehaviour {
 			senseix.createPlayer ("cheng five");
 		}
 		if (Input.GetKey("h")){
-			senseix.pullProblemQ(40,4,"Mathematics",1);
+			senseix.pullProblemQ(4,"Mathematics",1);
         }
 		if (Input.GetKey("i")){
-			senseix.pushProblemA(senseix.id,15,1,true,2,1,"10");
+			print(newQid);
+			senseix.pushProblemA(newQid,1,true,2,1,"10");
+		}
+		if (Input.GetKey("j")){
+			//public problem (string content,string category,string level,int ID,string anwser = null)
+			problem Q = new problem("10+93-10+108=?","math","1",20,"null");
+			print (senseix.checkAnswer((201),Q));
+			print (senseix.checkAnswer(("201"),Q));
+			print (senseix.checkAnswer((22),Q));
+			print (senseix.checkAnswer(("22"),Q));
+			print (senseix.checkAnswer((0),Q));
 		}
     }
 }

@@ -8,7 +8,10 @@ using System.Text;
  * User Info: how can user get the info of himself? at the time when user session start?
  * SignIn: coaches sign in need access_token
 */
-
+	public class problemType
+	{
+		public const int MATH = 0;
+	}
 	public class messageType
 	{
 		//CLASS: messageType
@@ -397,8 +400,9 @@ using System.Text;
 			me.pullUsrInfo ();
 		}
 		*/
-		public static Queue pullProblemQ(int player_id,int count,string category,int level)
+		public static Queue pullProblemQ(int count,string category,int level)
 		{
+			int player_id = senseix.id;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
@@ -444,16 +448,18 @@ using System.Text;
 			while(first.Count != 0)
 			{
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
-				problemQ.Enqueue(new problem(tester["content"],tester["category"],tester["level"]));
+				problemQ.Enqueue(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"])));
 			}		
+
 			return problemQ;			
 		}
 
-	public static void pushProblemA(int player_id,int problem_id,int duration,bool correctness,int tries,int game_difficulty,string answer)
+		public static void pushProblemA(int problem_id,int duration,bool correctness,int tries,int game_difficulty,string answer)
 		{
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
 			container decoder = new container();
+			int player_id = senseix.id;
 			command.Add("access_token",senseix.getGameToken());
 			command.Add("auth_token",senseix.authToken);
 			command.Add("player_id",player_id.ToString());
@@ -471,6 +477,19 @@ using System.Text;
 			}
 			//DEBUG
 			print ("[DEBUG] result: "+tmp);
+		}
+		public static bool checkAnswer(string answerStr,problem p)
+		{
+			int answerInt = Convert.ToInt32 (answerStr);
+			if (answerInt == p.mathResult ())
+				return true;
+			return false;
+		}
+		public static bool checkAnswer(int answerInt,problem p)
+		{
+			if (answerInt == p.mathResult ())
+				return true;
+			return false;
 		}
 		private static void saveAuthToken()
 		{
