@@ -27,12 +27,14 @@ Queue pullProblemQ(int count,string category,int level)
 void pushProblemA(int problem_id,int duration,bool correctness,int tries,int game_difficulty,string answer)
 	Push answer and information about the answer given by player to server. "problem_id" is the ID for pushed question. "duration" is time consumed by player. "correctness" is a boolean value about whether answer is correct. "tries" is number of times that player tried. "game_difficulty" is difficulty of the game. "answer" is the content of the answer given by player.
 	return: void
+	example: line 308 in trigger.cs
 	
 bool checkAnswer(string answerStr,problem p)
 bool checkAnswer(int answerInt,problem p)
 	Locally check whether a answer is write.
 	return: false if answer is wrong, true if answer is correct.
-
+	example: line 308 in trigger.cs
+	
 int coachSignUp (string email,string name,string password)
 	This function can be used to sign up a new coach/parent account. "email" is the account ID of new user. "name" is name of parent/coach. "password" is password for this account. After an account gets created by this way, a session will be started. Profile informationi will be cached in player's device.
 	return: negative if failed, 0 for success.
@@ -48,3 +50,4 @@ int createPlayer (string playerName)
 Queue getPlayer ()
 	Get the list of players belonging to current coach/parent account and put the into a Queue.
 	return: null if fail, Queue object for success
+	example: line 235 in trigger.cs to generate a list of botton that represent available players for current coach/parent account.

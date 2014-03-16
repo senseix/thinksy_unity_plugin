@@ -19,6 +19,7 @@ public class trigger : MonoBehaviour {
 	public bool selectProfile = false;
 	public Queue players = null;
 	public int newQid = 0;
+	public problem demoProblem = null;
 	public trigger()
 	{
 		senseix.initSenseix("63c4512541f5d27dd4dd12a8e5b8c0ea7d8c2f6be8e15e7718920b399bc9846f");
@@ -214,9 +215,9 @@ public class trigger : MonoBehaviour {
 				Queue newproblemQ = senseix.pullProblemQ(1,"Mathematics",1);
 				if(newproblemQ != null)
 				{
-					problem newproblem = (problem)newproblemQ.Dequeue();
-					tmp = newproblem.content;
-					newQid = newproblem.problemID;
+					demoProblem = (problem)newproblemQ.Dequeue();
+					tmp = demoProblem.content;
+					newQid = demoProblem.problemID;
 				}
 				else
 				{
@@ -249,7 +250,7 @@ public class trigger : MonoBehaviour {
 					result.Append(player.name);
 					result.Append("\n");
 					players.Enqueue(player);
-					if (GUI.Button(new Rect(Screen.width/2-75,i*38,120,35), result.ToString()))
+					if (GUI.Button(new Rect(Screen.width/2-75,i*38,200,35), result.ToString()))
 					{
 						senseix.name=player.name;
 						senseix.id=Convert.ToInt32(player.id);
@@ -303,14 +304,10 @@ public class trigger : MonoBehaviour {
 			print(newQid);
 			senseix.pushProblemA(newQid,1,true,2,1,"10");
 		}
-		if (Input.GetKey("j")){
-			//public problem (string content,string category,string level,int ID,string anwser = null)
-			problem Q = new problem("10+93-10+108=?","math","1",20,"null");
-			print (senseix.checkAnswer((201),Q));
-			print (senseix.checkAnswer(("201"),Q));
-			print (senseix.checkAnswer((22),Q));
-			print (senseix.checkAnswer(("22"),Q));
-			print (senseix.checkAnswer((0),Q));
+		if (Input.GetKey("space")){
+			bool correct = senseix.checkAnswer(tmp,demoProblem);
+			senseix.pushProblemA(newQid,1,correct,2,1,tmp);
+			print(correct.ToString());
 		}
     }
 }
