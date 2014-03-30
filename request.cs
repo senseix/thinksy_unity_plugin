@@ -307,7 +307,7 @@ using UnityEngine;
 			case messageType.MESSAGETYPE_LEADERBOARD_PULL:
 				url = messageType.MESSAGETYPE_LEADERBOARD_PULL_URL;
 				postget = 2;
-				message.append(messageType.MESSAGETYPE_PROBLEM_PULL_URL);
+				message.append(messageType.MESSAGETYPE_LEADERBOARD_PULL_URL);
 				message.append("?");
 				message.init ();
 				
@@ -319,9 +319,80 @@ using UnityEngine;
 				message.append ("access_token=");
 				message.append (dictionary["access_token"]);
 				
-				
+				message.addFieldDeli ();
+				message.append ("page=");
+				message.append (dictionary["page"]);
+				/*
+				message.addFieldDeli ();
+				message.append ("id=");
+				message.append (dictionary["id"]);
+				*/
 				break;
+				case messageType.MESSAGETYPE_MECHANIC_POST:
+				url = messageType.MESSAGETYPE_MECHANIC_POST_URL;
+				postget = 1;
+				
+				message.init ();
+				
+				message.addFieldDeli ();
+				message.append ("access_token=");
+				message.append (dictionary["access_token"]);
+
+				message.addFieldDeli ();
+				message.append ("auth_token=");
+				message.append (dictionary["auth_token"]);
+				
+				message.addFieldDeli ();
+				message.append ("player_id");
+				message.addKeyDeli();
+				message.addValueDeli();
+				message.append (dictionary["player_id"]);
+				
+				message.addFieldDeli ();
+				message.append ("data=");
+				
+				message.append(dictionary["data"]);
+
+				break;
+			case messageType.MESSAGETYPE_MECHANIC_GET:
+				url = messageType.MESSAGETYPE_MECHANIC_GET_URL;
+				postget = 2;
+				message.append(url);
+				message.append("?");
+				message.init ();
+				
+				message.addFieldDeli ();
+				message.append ("auth_token=");
+				message.append (dictionary["auth_token"]);
+				
+				message.addFieldDeli ();
+				message.append ("access_token=");
+				message.append (dictionary["access_token"]);
+				
+				message.addFieldDeli ();
+				message.append ("player_id=");
+				message.append (dictionary["player_id"]);
+
+				break;	
+			case messageType.MESSAGETYPE_FRIEND_PULL:
+				url = messageType.MESSAGETYPE_FRIEND_PULL_URL;
+				postget = 2;
+				message.append(url);
+				message.append("?");
+				message.init ();
+				
+				message.addFieldDeli ();
+				message.append ("auth_token=");
+				message.append (dictionary["auth_token"]);
+				
+				message.addFieldDeli ();
+				message.append ("access_token=");
+				message.append (dictionary["access_token"]);
+				
+			break;
 			}
+			
+
 			if(postget == 0)
 				return "ERROR: POST or GET not specified";
 			if(postget == 1)
@@ -341,10 +412,11 @@ using UnityEngine;
 				//return (tmp+ " "+message.buffer.ToString());
 				return tmp;
 			}
-			else
+			else if(postget == 2)
 			{
 				string tmp = null;
 				WWW recvResult =new WWW (message.buffer.ToString());
+				MonoBehaviour.print(message.buffer.ToString());
 				while(!recvResult.isDone && string.IsNullOrEmpty(recvResult.error))
 				{
 					//display some waiting sign

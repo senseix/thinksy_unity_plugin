@@ -20,6 +20,13 @@ public class trigger : MonoBehaviour {
 	public Queue players = null;
 	public int newQid = 0;
 	public problem demoProblem = null;
+	public senseixMenuManager MManager=null;
+	void Start()
+	{
+		print ("senseix started");
+		//MManager = GameObject.Find("test").GetComponent<senseixMenuManager>();
+		senseixMenuManager.SenseixMenu ();
+	}
 	public trigger()
 	{
 		senseix.initSenseix("63c4512541f5d27dd4dd12a8e5b8c0ea7d8c2f6be8e15e7718920b399bc9846f");
@@ -304,10 +311,31 @@ public class trigger : MonoBehaviour {
 			print(newQid);
 			senseix.pushProblemA(newQid,1,true,2,1,"10");
 		}
+		if (Input.GetKey("j")){
+			senseix.pullLeaderboard(1);
+		}
 		if (Input.GetKey("space")){
 			bool correct = senseix.checkAnswer(tmp,demoProblem);
 			senseix.pushProblemA(newQid,1,correct,2,1,tmp);
 			print(correct.ToString());
 		}
-    }
+		if(Input.GetKey("k"))
+		{
+			bool correct = senseix.postMessage(40,"thisistestingdata");
+			print(correct.ToString());
+		}
+		if(Input.GetKey("l"))
+		{
+			bool correct = senseix.getMessage();
+			print(correct.ToString());
+		}
+		if(Input.GetKey("m"))
+		{
+			senseix.friendsPull();
+		}
+		if(Input.GetKey("n"))
+		{
+			senseix.getMessage();
+		}
+	}
 }

@@ -29,10 +29,17 @@ using System.Text;
 		public const int MESSAGETYPE_PLAYER_INDEX = 7;
 		
 		public const int MESSAGETYPE_LEADERBOARD_PULL = 21;
-		public const int MESSAGETYPE_LEADERBOARD_PUSH_SCORE = 22;
 
 		public const int MESSAGETYPE_PROBLEM_PULL = 31;
-		public const int MESSAGETYPE_PROBLEM_PUSH = 32; 
+		public const int MESSAGETYPE_PROBLEM_PUSH = 32;
+
+		public const int MESSAGETYPE_MECHANIC_GET = 41; 
+		public const int MESSAGETYPE_MECHANIC_POST = 42; 
+
+		public const int MESSAGETYPE_FRIEND_PULL = 51; 
+		public const int MESSAGETYPE_FRIEND_CREATE = 52; 
+		public const int MESSAGETYPE_FRIEND_DELETE = 53;
+		
 
 
 		//API URLS
@@ -46,12 +53,17 @@ using System.Text;
 		public const string MESSAGETYPE_PLAYER_CREATE_URL = "http://senseix.herokuapp.com/v1/players/create";
 		public const string MESSAGETYPE_PLAYER_INDEX_URL = "http://senseix.herokuapp.com/v1/players/index";
 		
-		public const string MESSAGETYPE_LEADERBOARD_PULL_URL = "http://senseix.herokuapp.com /v1/applications/leaderboard/:id";
-		public const string MESSAGETYPE_LEADERBOARD_PUSH_SCORE_URL = "http://senseix.herokuapp.com/v1/coaches/sign_in";
+		public const string MESSAGETYPE_LEADERBOARD_PULL_URL = "http://senseix.herokuapp.com/v1/applications/leaderboard/:id";
 
 		public const string MESSAGETYPE_PROBLEM_PULL_URL = "http://senseix.herokuapp.com/v1/problems";
 		public const string MESSAGETYPE_PROBLEM_PUSH_URL = "http://senseix.herokuapp.com/v1/problems/update";
-
+		
+		public const string MESSAGETYPE_MECHANIC_POST_URL = "http://senseix.herokuapp.com/v1/applications/mechanic";
+		public const string MESSAGETYPE_MECHANIC_GET_URL = "http://senseix.herokuapp.com/v1/applications/mechanic";
+		public const string MESSAGETYPE_FRIEND_PULL_URL = "http://senseix.herokuapp.com/v1/players/friends";
+		public const string MESSAGETYPE_FRIEND_CREATE_URL = "http://senseix.herokuapp.com/v1/players/friends/create";
+		public const string MESSAGETYPE_FRIEND_DELETE_URL = "http://senseix.herokuapp.com/v1/players/friends/delete";
+			
 	}
 	public class senseix: MonoBehaviour
 	{
@@ -478,6 +490,99 @@ using System.Text;
 			//DEBUG
 			print ("[DEBUG] result: "+tmp);
 		}
+		public static bool pullLeaderboard(int page)
+		{
+			int player_id = senseix.id;
+			string currentToken = null;
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			if(senseix.getGameToken() == null)
+				return false;
+			else 
+				currentToken = senseix.getGameToken();
+			command.Add("access_token",currentToken);
+			command.Add("auth_token",senseix.authToken);
+			command.Add("page",page.ToString());
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_LEADERBOARD_PULL);
+			if (tmp.Equals ("error")) 
+			{
+				print("[DEBUG] Found error in request, return -1");
+				return false;
+			}
+			//DEBUG
+			print ("[DEBUG] result: "+tmp);
+			
+			StringBuilder tmpBuilder = new StringBuilder();
+			return true;
+
+		}
+		public static bool postMessage(int player_id,string data)
+		{
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			command.Add("access_token",senseix.getGameToken());
+			command.Add("auth_token",senseix.authToken);
+			command.Add("player_id",player_id.ToString());
+			command.Add ("data",data);
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_MECHANIC_POST);
+			if (tmp.Equals ("error")) 
+			{
+				print("[DEBUG] Found error in request, return -1");
+				return false;
+			}
+			//DEBUG
+			print ("[DEBUG] result: "+tmp);
+			return true;
+		}
+		public static bool getMessage()
+		{
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			int player_id = senseix.id;
+			command.Add("access_token",senseix.getGameToken());
+			command.Add("auth_token",senseix.authToken);
+			command.Add("player_id",player_id.ToString());
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_MECHANIC_GET);
+			if (tmp.Equals ("error")) 
+			{
+				print("[DEBUG] Found error in request, return -1");
+				return false;
+			}
+			//DEBUG
+			print ("[DEBUG] result: "+tmp);
+			return true;	
+		}
+		public static Queue friendsPull()
+		{
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			int player_id = senseix.id;
+			command.Add("access_token",senseix.getGameToken());
+			command.Add("auth_token",senseix.authToken);
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_FRIEND_PULL);
+			if (tmp.Equals ("error")) 
+			{
+				print("[DEBUG] Found error in request, return -1");
+				return null;
+			}
+			//DEBUG
+			print ("[DEBUG] result: "+tmp);
+			return null;	
+		}
+	/*
+		public static bool friendsCreate(int friend_id)
+		{
+			return true;
+		}	
+		public static bool friendsCreate(int friend_id)
+		{
+			return true;
+		}
+		*/
 		public static bool checkAnswer(string answerStr,problem p)
 		{
 			int answerInt = Convert.ToInt32 (answerStr);
