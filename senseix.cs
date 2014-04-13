@@ -98,6 +98,14 @@ using System.Text;
 		{
 			return senseix.gameToken;
 		}
+		public static int getProfileID()
+		{
+			return id;
+		}
+		public static void setProfileID(int newID)
+		{
+			id = newID;
+		}
 		public static void setAuthToken(string result)
 		{
 			senseix.authToken = new string(result.ToCharArray());
@@ -205,7 +213,10 @@ using System.Text;
 				
 			}
 			else
+			{	
 				print("Can't find key from result");
+				return -1;
+			}
 			print(senseix.authToken);
 			saveAuthToken ();
 			inSession = true;
@@ -311,10 +322,13 @@ using System.Text;
 			{
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
 				playerQ.Enqueue(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
-				//print(tester[""]);
 			}
 		
 			return playerQ;
+		}
+		public static Queue getCachedPlayer ()
+		{
+			return senseix.playerQ;
 		}
 		public static int developerLogin (string login,string password,string game = null)
 		{
@@ -391,8 +405,11 @@ using System.Text;
 			senseix.gameToken = gameToken;
 			senseix.rankNum = rankNum;
 			
-			if (tryLoadAuthToken () == 0)
+			if (tryLoadAuthToken () == 0) 
+			{	
 				inSession = true;
+				loadProfileID();
+			}
 			else
 				inSession = false;
 			return 0;
@@ -517,6 +534,10 @@ using System.Text;
 			return true;
 
 		}
+		public static Queue getCachedProblemQ()
+		{
+			return problemQ;
+		}
 		public static bool postMessage(int player_id,string data)
 		{
 			Dictionary<string,string> command = new Dictionary<string, string>();
@@ -595,6 +616,37 @@ using System.Text;
 			if (answerInt == p.mathResult ())
 				return true;
 			return false;
+		}
+		public static void saveProfileID()
+		{
+			if (id != 0) 
+			{
+				print ("Profile ID saved: " + id.ToString ());
+				PlayerPrefs.SetInt ("data01", id);
+			} 
+			else
+				print ("Failed to save profile id: local id is 0 now");
+		}
+		public static int loadProfileID()
+		{
+			if (PlayerPrefs.HasKey ("data01")) 
+			{
+				int cachedID = PlayerPrefs.GetInt ("data01", 0);
+				if (cachedID == 0) {
+						print ("Loading profile id failed: saved profile id is 0");
+						return -1;
+				} 
+				else
+				{	
+					senseix.setProfileID (cachedID);
+					return 0;
+				}
+			}
+			else 
+			{
+				print ("There is not profile id data saved");
+				return -1;
+			}
 		}
 		private static void saveAuthToken()
 		{

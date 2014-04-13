@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-	public class request
+	public class request:MonoBehaviour
 	{
 		//Should be const string that stand for our server
 		//private static identity localUsr = new identity();
@@ -419,7 +419,7 @@ using UnityEngine;
 				MonoBehaviour.print(message.buffer.ToString());
 				while(!recvResult.isDone && string.IsNullOrEmpty(recvResult.error))
 				{
-					//display some waiting sign
+				//display some waiting sign
 				}
 				if (!string.IsNullOrEmpty (recvResult.error))
 					tmp = "error";

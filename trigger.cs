@@ -25,7 +25,7 @@ public class trigger : MonoBehaviour {
 	{
 		print ("senseix started");
 		//MManager = GameObject.Find("test").GetComponent<senseixMenuManager>();
-		senseixMenuManager.SenseixMenu ();
+		//senseixMenuManager.SenseixMenu ();
 	}
 	public trigger()
 	{
