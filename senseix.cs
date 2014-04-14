@@ -454,7 +454,7 @@ using System.Text;
 			}
 			//DEBUG
 			print ("[DEBUG] result: "+tmp);
-
+			
 			StringBuilder tmpBuilder = new StringBuilder();
 			tmpBuilder.Append("{\"problems\":\"");
 			tmpBuilder.Append(tmp);
@@ -498,6 +498,7 @@ using System.Text;
 			command.Add ("game_difficulty",game_difficulty.ToString());
 			command.Add ("tries",tries.ToString());
 			command.Add ("duration",duration.ToString());
+			print ("??????????????Why not work");
 			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PROBLEM_PUSH);
 			if (tmp.Equals ("error")) 
 			{
@@ -691,6 +692,85 @@ using System.Text;
 		private static void cleanData()
 		{
 			PlayerPrefs.DeleteAll ();
+		}
+
+		//Multi-Threading
+		public static container pullProblemQMT(int count,string category,int level)
+		{
+			int player_id = senseix.id;
+			string currentToken = null;
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			if(senseix.getGameToken() == null)
+				return null;
+			else 
+				currentToken = senseix.getGameToken();
+			command.Add("access_token",currentToken);
+			command.Add("auth_token",senseix.authToken);
+			command.Add("player_id",player_id.ToString());
+			command.Add("count",count.ToString());
+			command.Add("level",level.ToString());
+			command.Add("category",category);
+			return request.prepareRequest(command,messageType.MESSAGETYPE_PROBLEM_PULL);
+		}
+		public static Queue decodeProblemQMT(string recv)
+		{
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			StringBuilder tmpBuilder = new StringBuilder();
+			tmpBuilder.Append("{\"problems\":\"");
+			tmpBuilder.Append(recv);
+			tmpBuilder.Append("\"}");
+			decoder.append(tmpBuilder.ToString());
+			print(tmpBuilder.ToString());
+			decoder.formBinary();
+			result = decoder.formObjectDictionary();
+			if (result == null)
+				return null;
+			if (!result.ContainsKey ("objects"))
+				return null;
+			Queue first = (Queue)result["objects"];
+			if (first.Count == 0)
+				return null;
+			if(problemQ == null)
+				problemQ = new Queue();
+			else
+				problemQ.Clear();
+			while(first.Count != 0)
+			{
+				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
+				problemQ.Enqueue(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"])));
+			}		
+			
+			return problemQ;	
+		}
+		public static container pushProblemAMT(int problem_id,int duration,bool correctness,int tries,int game_difficulty,string answer)
+		{
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			int player_id = senseix.id;
+			command.Add("access_token",senseix.getGameToken());
+			command.Add("auth_token",senseix.authToken);
+			command.Add("player_id",player_id.ToString());
+			command.Add("answer",answer);
+			command.Add("problem_id",problem_id.ToString());
+			command.Add("correct",correctness.ToString());
+			command.Add ("game_difficulty",game_difficulty.ToString());
+			command.Add ("tries",tries.ToString());
+			command.Add ("duration",duration.ToString());
+			print ("??????????????Why not work");
+			return request.prepareRequest(command,messageType.MESSAGETYPE_PROBLEM_PUSH);
+		}
+		public static void decodePushProblemAMT(string recv)
+		{
+			
+		}
+		private static void sendMessage(container message)
+		{
+			
 		}
 	}
 

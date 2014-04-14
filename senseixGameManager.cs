@@ -9,7 +9,6 @@ using System;
 //Then developers can use API to get problem one by one
 public class senseixGameManager:MonoBehaviour
 {
-		
 	public static Queue problemQ = new Queue();
 	private static string current_category = null;
 	private static int current_level = 1;
@@ -19,21 +18,24 @@ public class senseixGameManager:MonoBehaviour
 	private static bool prepareFinish = false;
 
 	private static bool prepareRequest = false;
-
+	private static messageLine line = new messageLine();
 	public senseixGameManager ()
 	{
 	}
 	void Update()
 	{
+		line.scanMessages ();
+		/*
 		if (prepareFinish)
 		{
 			prepareFinish = false;
 		}
 		if (prepareRequest) 
-		{
+		{MT
 			prepareProblem(4,current_category,current_level);
 			prepareRequest = false;
 		}
+		*/
 	}
 	public static int prepareProblem(int count,string category,int level)
 	{
@@ -55,27 +57,29 @@ public class senseixGameManager:MonoBehaviour
 			return -1;
 		}
 	}
-	public static void problemThread()
+	public static container prepareProblemMT(int count,string category,int level)
 	{
-		/*while (pmutex != 0) 
-		{
-			Thread.Sleep(1);
-			print ("Block by mutex");
-		}
-		pmutex = 1;
-		print ("Going to prepare problem");
-		prepareProblem(4,current_category,current_level);
-		pmutex = 0;
-		*/
-		//print (senseixMenuManager.debug_menu_state);
+		container message = senseix.pullProblemQMT(count,category,level);
+		return message;
 	}
 	public static problem getProblem ()
 	{
+		print ("getProblem in GameManager was called " + problemQ.Count);
 		if (problemQ.Count < 5) 
 		{
-			prepareRequest = true;
-			print ("Going to start new thread " + problemQ.Count);
+			print ("=============Going to start new thread " + problemQ.Count);
+			container message = prepareProblemMT(4,current_category,current_level);
+			print (message.url);
+			WWW recvResult =new WWW (message.buffer.ToString());
+			print ("added message to line");
+			line.addMessage(new pagePack(messageType.MESSAGETYPE_PROBLEM_PULL,recvResult));
 		}
 		return (problem)problemQ.Dequeue();
+	}
+	public static void enqueProblem(problem p)
+	{
+		if (problemQ == null)
+			problemQ = new Queue ();
+		problemQ.Enqueue (p);
 	}
 }

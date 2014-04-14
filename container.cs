@@ -9,6 +9,8 @@ public class container
 	public StringBuilder buffer = new StringBuilder();
 	public int length = 0;
 	public int ready = 0;
+	public int postget = 0;
+	public string url = null;
 	public container ()
 	{
 	}

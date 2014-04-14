@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System;
+using System.Threading;
 public class senseixMenuConst{
 	public const int MENU_0_MAIN = 0;
 	public const int MENU_1_LOGIN = 1;
@@ -29,22 +30,31 @@ public class senseixMenuManager : MonoBehaviour {
 	private string emailText = "Your E-mail";
 	private string passwordText = "Your password";
 	private string nameText = "Your name";
-
 	public static Queue players = null;
 
 	public static problem currentProblem = null;
 	private static bool answerProvided = true;
+
+	private static messageLine line = new messageLine();
+	//current answer result beg
+	public static string currentAnswer = null;
+	public static bool currentCorrectness = false;
+
+	//current answer result beg
 	public static void SenseixMenu(string access_token = null)
 	{
 		if (access_token != null && menuState == senseixMenuConst.MENU_0_MAIN) 
 		{
 			senseix.initSenseix (access_token);
+			players = senseix.getCachedPlayer ();
+
+			//channelThread.Start();
 			if (senseix.inSession)
 			{
 				senseixMenuManager.menuState = senseixMenuConst.MENU_3_RUNNING;
 				return;
 			}
-			players = senseix.getCachedPlayer ();
+
 			popSenseixMenu = true;
 		}
 		else if(access_token != null && menuState != senseixMenuConst.MENU_0_MAIN)
@@ -58,6 +68,11 @@ public class senseixMenuManager : MonoBehaviour {
 			//menu out. we just need to set popSenseixMenu to true
 			popSenseixMenu = true;
 		}
+	}
+	public static void pushQAnswer()
+	{
+		print ("[DEBUG][Threading] pushing Answer");
+		senseix.pushProblemA(currentProblem.problemID,0,currentCorrectness,1,1,currentAnswer);
 	}
 	public static void debug_menu_state()
 	{
@@ -74,6 +89,7 @@ public class senseixMenuManager : MonoBehaviour {
 	void Update()
 	{
 		//print ("this is menue Manager2");
+		line.scanMessages ();
 	}
 	void OnGUI()
 	{
@@ -257,34 +273,15 @@ public class senseixMenuManager : MonoBehaviour {
 	{
 		blurLayer = new Rect(0,0,Screen.width,Screen.height);
 		blurLayer = GUILayout.Window(0, blurLayer, null,"");
-
 	}
-	/*
-	public static string getQuestion()
-	{
-		if(answerProvided)
-		{
-			Queue problems = senseix.getCachedProblemQ();
-			if (problems.Count == 0) 
-			{
-				problems = senseix.pullProblemQ (4, "Mathematics", 1);
-			} 
-			else 
-			{
-				currentProblem=(problem)problems.Dequeue();
-			}
-			answerProvided = false;
-		}
-		return currentProblem.content;
-	}
-	*/
 	public static string getProblem()
 	{
 		if(answerProvided)
 		{
+			print ("getProblem set to false");
+			answerProvided = false;
 			print ("Problem debug: current Problem setup");
 			currentProblem = senseixGameManager.getProblem();
-			answerProvided = false;
 		}
 		return currentProblem.content;
 	}
@@ -292,8 +289,17 @@ public class senseixMenuManager : MonoBehaviour {
 	{
 		//FIXME:
 		bool correct = true; //senseix.checkAnswer(tmp,demoProblem);
-		senseix.pushProblemA(currentProblem.problemID,0,correct,1,1,answer);
+		currentAnswer = answer;
+		currentCorrectness = correct;
 		answerProvided = true;
+		// 
+		print (currentProblem.problemID + "++++++++++++++++++");
+		container message = senseix.pushProblemAMT(currentProblem.problemID,1,true,1,1,"10");
+		message.formBinary();
+		print (message.url);
+		WWW recvResult =new WWW (message.url,message.binary);
+		//print ("added message to line");
+		line.addMessage(new pagePack(messageType.MESSAGETYPE_PROBLEM_PUSH,recvResult));
 		return true;
 	}
 
