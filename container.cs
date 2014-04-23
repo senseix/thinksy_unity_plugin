@@ -114,6 +114,7 @@ public class container
 		string key = null;
 		string value = null;
 		int bracklet = 0;
+		int in_array = 0;
 		for(int i=0;i<length;i++)
 		{
 			if(binary[i]==(byte)'{')
@@ -146,7 +147,11 @@ public class container
 			else if(befColon ==1 && located ==1)
 			{
 				//MonoBehaviour.print((char)binary[i]);
-				if(binary[i]==(byte)','||bracklet == 0)
+				if(binary[i]==(byte)'[')
+					in_array = 1;
+				if(binary[i]==(byte)']')
+					in_array = 0;
+				if((binary[i]==(byte)',' && in_array == 0)||bracklet == 0)
 				{			
 					located = 0;
 					mao2 = i-1;
@@ -165,7 +170,7 @@ public class container
 					if(value.Length < 1)
 						value = "null";
 //					MonoBehaviour.print("========test decoder========");
-					MonoBehaviour.print(key+" | "+value);
+					//MonoBehaviour.print(key+" | "+value);
 					while(dictionary.ContainsKey(key))
 						key = key + "a";
 					dictionary.Add(key,value);
@@ -176,6 +181,7 @@ public class container
 	}
 	public Dictionary<string,object> formObjectDictionary()
 	{	
+		//MonoBehaviour.print ("Trying to form obj dict");
 		Dictionary<string,object> dictionary = new Dictionary<string,object>();
 		Dictionary<string,string> objDictionary = null;
 		Queue objQ = new Queue();
@@ -185,8 +191,10 @@ public class container
 		string key = null;
 		string value = null;
 		int bracklet = 0;
+
 		for(int i=0;i<length;i++)
 		{
+			//MonoBehaviour.print ((char)binary[i]);
 			if(binary[i]==(byte)'{')
 			{
 				bracklet++;
@@ -207,7 +215,10 @@ public class container
 						for(int j=i+3;j<length-1;j++)
 						{
 							if(binary[j] != (byte)'\\')
+							{
 								objBuilder.Append((char)binary[j]);
+								//MonoBehaviour.print("append "+(char)binary[j]);
+							}
 							if(binary[j] == '}')
 							{
 								container decoder = new container();
@@ -221,6 +232,7 @@ public class container
 								if(binary[j] == ']')
 								{
 									dictionary.Add("objects",objQ);
+									//MonoBehaviour.print("return dict "+ i +" "+j);
 									return dictionary;
 								}
 							}

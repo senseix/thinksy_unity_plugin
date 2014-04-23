@@ -272,6 +272,13 @@ using UnityEngine;
 				message.append ("category");
 				message.addValueDeli ();
 				message.append (dictionary["category"]);
+
+				message.addFieldDeli ();
+				message.append ("problem_set");
+				message.addKeyDeli ();
+				message.append ("subcategory");
+				message.addValueDeli ();
+				message.append ("Addition");
 				
 				message.addFieldDeli ();
 				message.append ("problem_set");
@@ -655,7 +662,14 @@ using UnityEngine;
 				message.append ("category");
 				message.addValueDeli ();
 				message.append (dictionary["category"]);
-					
+
+				message.addFieldDeli ();
+				message.append ("problem_set");
+				message.addKeyDeli ();
+				message.append ("subcategory");
+				message.addValueDeli ();
+				message.append ("Addition");
+				
 				message.addFieldDeli ();
 				message.append ("problem_set");
 				message.addKeyDeli ();
@@ -835,7 +849,7 @@ using UnityEngine;
 			{
 				string tmp = null;
 				WWW recvResult =new WWW (message.buffer.ToString());
-				MonoBehaviour.print(message.buffer.ToString());
+				//MonoBehaviour.print(message.buffer.ToString());
 				while(!recvResult.isDone && string.IsNullOrEmpty(recvResult.error))
 				{
 				//display some waiting sign

@@ -22,7 +22,10 @@ public class senseixMenuConst{
 
 }
 public class senseixMenuManager : MonoBehaviour {
-	private static bool popSenseixMenu = false;
+	public static bool popSenseixMenu = false;
+	public static bool specifyNumber = true;
+	public static bool gameStarted = false;
+	public static int skipCount = 1;
 	public static int menuState = 0;
 	private static Rect windowRect = new Rect(1,1,1,1);
 	private static Rect blurLayer = new Rect(1,1,1,1);
@@ -71,12 +74,12 @@ public class senseixMenuManager : MonoBehaviour {
 	}
 	public static void pushQAnswer()
 	{
-		print ("[DEBUG][Threading] pushing Answer");
+		//print ("[DEBUG][Threading] pushing Answer");
 		senseix.pushProblemA(currentProblem.problemID,0,currentCorrectness,1,1,currentAnswer);
 	}
 	public static void debug_menu_state()
 	{
-		print (senseixMenuManager.menuState);
+		//print (senseixMenuManager.menuState);
 	}
 	public static void SenseixStopMenu()
 	{
@@ -130,7 +133,10 @@ public class senseixMenuManager : MonoBehaviour {
 				break;
 				case senseixMenuConst.MENU_4_PROFILE:
 					//print ("This is profile");
-					windowRect = new Rect(Screen.width/2-60, Screen.height/2-100-players.Count*10, 120, 100);
+					if(players != null)
+						windowRect = new Rect(Screen.width/2-60, Screen.height/2-100-players.Count*10, 120, 100);
+					else
+						windowRect = new Rect(Screen.width/2-60, Screen.height/2-100,120,20);
 					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawProfile, "Profiles");
 					blurBackground();
 					GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
@@ -211,7 +217,7 @@ public class senseixMenuManager : MonoBehaviour {
 			}
 			else
 			{
-				print ("Sign up failed");
+				//print ("Sign up failed");
 				menuState = senseixMenuConst.MENU_1_LOGIN;
 			}
 		}
@@ -249,7 +255,7 @@ public class senseixMenuManager : MonoBehaviour {
 					senseix.name=player.name;
 					senseix.id=Convert.ToInt32(player.id);
 					senseix.saveProfileID();
-					print (senseix.name + " " + senseix.id.ToString());
+					//print (senseix.name + " " + senseix.id.ToString());
 					menuState = senseixMenuConst.MENU_3_RUNNING;
 					popSenseixMenu = false;
 				}
@@ -276,31 +282,41 @@ public class senseixMenuManager : MonoBehaviour {
 	}
 	public static string getProblem()
 	{
+		if(!gameStarted)
+			gameStarted = true;
 		if(answerProvided)
 		{
-			print ("getProblem set to false");
+			//print ("getProblem set to false");
 			answerProvided = false;
-			print ("Problem debug: current Problem setup");
+			//print ("Problem debug: current Problem setup");
 			currentProblem = senseixGameManager.getProblem();
 		}
+		//print ("===Answer is " + currentProblem.answer);
 		return currentProblem.content;
+	}
+	public static string getAnswer()
+	{
+		getProblem();
+		//specifyNumber = false;
+		return currentProblem.answer;
 	}
 	public static bool gotAnswer(string answer)
 	{
 		//FIXME:
-		bool correct = true; //senseix.checkAnswer(tmp,demoProblem);
+		bool correct = (Convert.ToInt32(answer) == Convert.ToInt32(currentProblem.answer)); //senseix.checkAnswer(tmp,demoProblem);
 		currentAnswer = answer;
 		currentCorrectness = correct;
 		answerProvided = true;
-		// 
-		print (currentProblem.problemID + "++++++++++++++++++");
-		container message = senseix.pushProblemAMT(currentProblem.problemID,1,true,1,1,"10");
+		specifyNumber = true;
+		skipCount = UnityEngine.Random.Range (0,3);
+		print ("Got new skipCount "+skipCount);
+		container message = senseix.pushProblemAMT(currentProblem.problemID,1,correct,1,1,answer);
 		message.formBinary();
-		print (message.url);
+		//print (message.url);
 		WWW recvResult =new WWW (message.url,message.binary);
-		//print ("added message to line");
+		//print ("Answer:" + correct.ToString() );
 		line.addMessage(new pagePack(messageType.MESSAGETYPE_PROBLEM_PUSH,recvResult));
-		return true;
+		return correct;
 	}
 
 }

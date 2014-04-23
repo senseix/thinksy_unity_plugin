@@ -21,16 +21,16 @@ public class messageLine
 	}
 	public void addMessage(pagePack pack)
 	{
-		MonoBehaviour.print("Added pack to list");
+		//MonoBehaviour.print("Added pack to list");
 		packList.Add (pack);
-		MonoBehaviour.print("after adding count is "+packList.Count);
+		//MonoBehaviour.print("after adding count is "+packList.Count);
 	}
 	public void scanMessages()
 	{
 		int count = packList.Count;
 		if (count == 0) 
 		{
-			MonoBehaviour.print("messageLine count " + count);
+			//MonoBehaviour.print("messageLine count " + count);
 			return;
 		}
 		pagePack tmpPack = null;
@@ -39,23 +39,23 @@ public class messageLine
 			tmpPack = (pagePack)packList[i];
 			if(!tmpPack.wwwPage.isDone && string.IsNullOrEmpty(tmpPack.wwwPage.error))
 			{
-				MonoBehaviour.print("Not ready");
+				//MonoBehaviour.print("Not ready");
 				continue;
 			}
 			else
 			{
-				MonoBehaviour.print("ready and checking");
+				//MonoBehaviour.print("ready and checking");
 				string tmp = null;
 				if (!string.IsNullOrEmpty (tmpPack.wwwPage.error))
 				{
-					MonoBehaviour.print(tmpPack.wwwPage.error);
-					MonoBehaviour.print("Found error");
+					//MonoBehaviour.print(tmpPack.wwwPage.error);
+					//MonoBehaviour.print("Found error");
 					packList.Remove(tmpPack);
 					continue;
 				}
 				else
 				{
-					MonoBehaviour.print("Everything is good");
+					//MonoBehaviour.print("Everything is good");
 					switch(tmpPack.messageType)
 					{
 					case messageType.MESSAGETYPE_PROBLEM_PULL:
@@ -90,13 +90,13 @@ public class messageLine
 						while(first.Count != 0)
 						{
 							Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
-							senseixGameManager.enqueProblem(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"])));
+							senseixGameManager.enqueProblem(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"]),tester["answer"]));
 						}
 						packList.Remove(tmpPack);
 						break;
 					case messageType.MESSAGETYPE_PROBLEM_PUSH:
 						tmp = tmpPack.wwwPage.text;
-						MonoBehaviour.print(tmp);
+						//MonoBehaviour.print(tmp);
 						packList.Remove(tmpPack);
 						break;
 					default:

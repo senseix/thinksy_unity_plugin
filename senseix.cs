@@ -405,10 +405,9 @@ using System.Text;
 			senseix.gameToken = gameToken;
 			senseix.rankNum = rankNum;
 			
-			if (tryLoadAuthToken () == 0) 
+			if (tryLoadAuthToken () == 0 && loadProfileID() == 0) 
 			{	
 				inSession = true;
-				loadProfileID();
 			}
 			else
 				inSession = false;
@@ -477,7 +476,7 @@ using System.Text;
 			while(first.Count != 0)
 			{
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
-				problemQ.Enqueue(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"])));
+				problemQ.Enqueue(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"]),tester["answer"]));
 			}		
 
 			return problemQ;			
@@ -529,7 +528,7 @@ using System.Text;
 				return false;
 			}
 			//DEBUG
-			print ("[DEBUG] result: "+tmp);
+			//print ("[DEBUG] result: "+tmp);
 			
 			StringBuilder tmpBuilder = new StringBuilder();
 			return true;
@@ -570,11 +569,11 @@ using System.Text;
 			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_MECHANIC_GET);
 			if (tmp.Equals ("error")) 
 			{
-				print("[DEBUG] Found error in request, return -1");
+				//print("[DEBUG] Found error in request, return -1");
 				return false;
 			}
 			//DEBUG
-			print ("[DEBUG] result: "+tmp);
+			//print ("[DEBUG] result: "+tmp);
 			return true;	
 		}
 		public static Queue friendsPull()
@@ -588,11 +587,11 @@ using System.Text;
 			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_FRIEND_PULL);
 			if (tmp.Equals ("error")) 
 			{
-				print("[DEBUG] Found error in request, return -1");
+				//print("[DEBUG] Found error in request, return -1");
 				return null;
 			}
 			//DEBUG
-			print ("[DEBUG] result: "+tmp);
+			//print ("[DEBUG] result: "+tmp);
 			return null;	
 		}
 	/*
@@ -724,7 +723,7 @@ using System.Text;
 			tmpBuilder.Append(recv);
 			tmpBuilder.Append("\"}");
 			decoder.append(tmpBuilder.ToString());
-			print(tmpBuilder.ToString());
+			//print(tmpBuilder.ToString());
 			decoder.formBinary();
 			result = decoder.formObjectDictionary();
 			if (result == null)
@@ -741,7 +740,8 @@ using System.Text;
 			while(first.Count != 0)
 			{
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
-				problemQ.Enqueue(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"])));
+			print ("Enqueue " + tester["answer"]);
+			problemQ.Enqueue(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"]),tester["answer"]));
 			}		
 			
 			return problemQ;	
@@ -761,7 +761,6 @@ using System.Text;
 			command.Add ("game_difficulty",game_difficulty.ToString());
 			command.Add ("tries",tries.ToString());
 			command.Add ("duration",duration.ToString());
-			print ("??????????????Why not work");
 			return request.prepareRequest(command,messageType.MESSAGETYPE_PROBLEM_PUSH);
 		}
 		public static void decodePushProblemAMT(string recv)

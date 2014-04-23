@@ -40,20 +40,21 @@ public class senseixGameManager:MonoBehaviour
 	public static int prepareProblem(int count,string category,int level)
 	{
 		Queue newproblemQ = senseix.pullProblemQ(count,category,level);
-		print ("Problem debug: problem prepared to tmp q" + newproblemQ.Count);
+		current_category = category;
+		//print ("Problem debug: problem prepared to tmp q" + newproblemQ.Count);
 		if(newproblemQ != null)
 		{
 			while(newproblemQ.Count > 0)
 			{
 				problemQ.Enqueue(newproblemQ.Dequeue());
 			}
-			print ("Problem debug: problem prepared to problemQ" + problemQ.Count);
+			//print ("Problem debug: problem prepared to problemQ" + problemQ.Count);
 			prepareFinish = true;
 			return 0;
 		}
 		else
 		{
-			print("Failed to pull problems");
+			//print("Failed to pull problems");
 			return -1;
 		}
 	}
@@ -64,14 +65,14 @@ public class senseixGameManager:MonoBehaviour
 	}
 	public static problem getProblem ()
 	{
-		print ("getProblem in GameManager was called " + problemQ.Count);
+		//print ("getProblem in GameManager was called " + problemQ.Count);
 		if (problemQ.Count < 5) 
 		{
-			print ("=============Going to start new thread " + problemQ.Count);
+			//print ("=============Going to start new thread " + problemQ.Count);
 			container message = prepareProblemMT(4,current_category,current_level);
-			print (message.url);
+			//print (message.url);
 			WWW recvResult =new WWW (message.buffer.ToString());
-			print ("added message to line");
+			//print ("added message to line");
 			line.addMessage(new pagePack(messageType.MESSAGETYPE_PROBLEM_PULL,recvResult));
 		}
 		return (problem)problemQ.Dequeue();
