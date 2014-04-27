@@ -105,8 +105,8 @@ public class senseixMenuManager : MonoBehaviour {
 					//So developers can have their own buttons in game, which can trigger this menu
 					windowRect = new Rect(Screen.width/2-90, Screen.height/2-80, 180, 100);
 					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawRunning, "SenseiX");
-					blurBackground();
-					GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
+					//blurBackground();
+					//GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
 					break;
 				case senseixMenuConst.MENU_0_MAIN:
 					windowRect = new Rect(Screen.width/2-90, Screen.height/2-80, 180, 100);
@@ -266,6 +266,7 @@ public class senseixMenuManager : MonoBehaviour {
 	{
 		if (GUILayout.Button("Resume"))
 		{	
+			senseix.pullLeaderboard(1);
 			popSenseixMenu = false;
 		}
 		if (GUILayout.Button("Sign out"))
@@ -278,7 +279,7 @@ public class senseixMenuManager : MonoBehaviour {
 	private static void blurBackground()
 	{
 		blurLayer = new Rect(0,0,Screen.width,Screen.height);
-		blurLayer = GUILayout.Window(0, blurLayer, null,"");
+		blurLayer = GUILayout.Window(6677, blurLayer, null,"");
 	}
 	public static string getProblem()
 	{

@@ -174,9 +174,12 @@ public class container
 					while(dictionary.ContainsKey(key))
 						key = key + "a";
 					dictionary.Add(key,value);
+					//MonoBehaviour.print("Key " + key + " value "+dictionary[key]);
 				}
 			}
 		}
+		//if(dictionary.ContainsKey("member"))
+		//MonoBehaviour.print ("Going to return dict "+"member "+dictionary["member"] + dictionary["rank"] + " " + dictionary["score"]);
 		return dictionary;
 	}
 	public Dictionary<string,object> formObjectDictionary()
@@ -213,7 +216,7 @@ public class container
 						string objTmp = null;
 						int objStart = i+1, objEnd = i+1;
 						for(int j=i+3;j<length-1;j++)
-						{
+							{
 							if(binary[j] != (byte)'\\')
 							{
 								objBuilder.Append((char)binary[j]);
@@ -224,11 +227,16 @@ public class container
 								container decoder = new container();
 								objBuilder.Append('}');	
 								decoder.append(objBuilder.ToString());
+								//MonoBehaviour.print("Going to get obj with " + decoder.buffer.ToString());
 								decoder.formBinary();
 								objDictionary = decoder.formDictionary();
 								objQ.Enqueue(objDictionary);
 								objBuilder.Remove(0,objBuilder.Length);
 								j++;
+								while(binary[j] != ',' && binary[j] != ']')
+								{
+									j++;
+								}
 								if(binary[j] == ']')
 								{
 									dictionary.Add("objects",objQ);

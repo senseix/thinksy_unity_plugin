@@ -53,7 +53,7 @@ using System.Text;
 		public const string MESSAGETYPE_PLAYER_CREATE_URL = "http://senseix.herokuapp.com/v1/players/create";
 		public const string MESSAGETYPE_PLAYER_INDEX_URL = "http://senseix.herokuapp.com/v1/players/index";
 		
-		public const string MESSAGETYPE_LEADERBOARD_PULL_URL = "http://senseix.herokuapp.com/v1/applications/leaderboard/:id";
+		public const string MESSAGETYPE_LEADERBOARD_PULL_URL = "http://senseix.herokuapp.com/v1/applications/leaderboard/show";
 
 		public const string MESSAGETYPE_PROBLEM_PULL_URL = "http://senseix.herokuapp.com/v1/problems";
 		public const string MESSAGETYPE_PROBLEM_PUSH_URL = "http://senseix.herokuapp.com/v1/problems/update";
@@ -528,9 +528,24 @@ using System.Text;
 				return false;
 			}
 			//DEBUG
-			//print ("[DEBUG] result: "+tmp);
+			print ("[DEBUG] result: "+tmp);
 			
 			StringBuilder tmpBuilder = new StringBuilder();
+			tmpBuilder.Append("{\"leaders\":\"");
+			tmpBuilder.Append(tmp);
+			tmpBuilder.Append("\"}");
+			decoder.append(tmpBuilder.ToString());
+			print(tmpBuilder.ToString());
+			decoder.formBinary();
+			result = decoder.formObjectDictionary();
+			Queue first = (Queue)result["objects"];
+			leaderboard.clearEntry ();
+			while(first.Count != 0)
+			{
+				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
+			print (tester["rank"]);
+				//leaderboard.addEntry(tester["member"],tester["rank"],tester["score"],tester["member_data"]);
+			}	
 			return true;
 
 		}
