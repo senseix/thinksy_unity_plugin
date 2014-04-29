@@ -1,0 +1,512 @@
+diff --git a/Assets/CrusherBalloons/Scripts/BallonManager.cs b/Assets/CrusherBalloons/Scripts/BallonManager.cs
+index 936edd1..651a36e 100644
+--- a/Assets/CrusherBalloons/Scripts/BallonManager.cs
++++ b/Assets/CrusherBalloons/Scripts/BallonManager.cs
+@@ -34,12 +34,14 @@ public class BallonManager : MonoBehaviour {
+         menuScript = Camera.mainCamera.GetComponent<MenuManipulator>();
+         timerEnd = 6;
+         //We instanciate some balloons
++		print ("start count " + ballonList.Count);
+         for (int i=0;i<ballonList.Count;i++)
+         {
+-            if (i == 0)
++			print (i);
++			if (i == 0)
+             {
+                 GameObject blue = (GameObject)GameObject.Instantiate(ballonList[0]);
+-                blueBalloons.Add(blue);
++				blueBalloons.Add(blue);
+                 allBalloons.Add(blue);
+             }
+             if (i == 1)
+@@ -299,71 +301,82 @@ public class BallonManager : MonoBehaviour {
+                 //Here are our balloons
+                 if (random == 0)
+                 {
+-                    GameObject blue = (GameObject)GameObject.Instantiate(ballonList[0]);
++					//print ("Update blue");
++					GameObject blue = (GameObject)GameObject.Instantiate(ballonList[0]);
+                     blue.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     blueBalloons.Add(blue);//we introduce it into the right list (if we have the ray balloon, we use the DestroyBlue Method)
+                     allBalloons.Add(blue);//and in the "allBalloonsList" (if we have to destroy every balloon in scene)
+                 }
+                 if (random == 1)
+                 {
+-                    GameObject green = (GameObject)GameObject.Instantiate(ballonList[1]);
++					//print ("Update blue");
++					GameObject green = (GameObject)GameObject.Instantiate(ballonList[1]);
+                     green.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     greenBalloons.Add(green);
+                     allBalloons.Add(green);
+                 }
+                 if (random == 2)
+                 {
+-                    GameObject red = (GameObject)GameObject.Instantiate(ballonList[2]);
++					//print ("Update red");
++					GameObject red = (GameObject)GameObject.Instantiate(ballonList[2]);
+                     red.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     redBalloons.Add(red);
+                     allBalloons.Add(red);
+                 }
+                 if (random == 3)
+                 {
+-                    GameObject yellow = (GameObject)GameObject.Instantiate(ballonList[3]);
++					//print ("Update yellow");
++					GameObject yellow = (GameObject)GameObject.Instantiate(ballonList[3]);
+                     yellow.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     yellowBalloons.Add(yellow);
+                     allBalloons.Add(yellow);
+                 }
+                 if (random == 4)
+                 {
+-                    GameObject balck = (GameObject)GameObject.Instantiate(ballonList[4]);
++					//print ("Update black");
++					GameObject balck = (GameObject)GameObject.Instantiate(ballonList[4]);
+                     balck.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     allBalloons.Add(balck);
+                 }
+                 if (random == 5)
+                 {
+-                    GameObject orange = (GameObject)GameObject.Instantiate(ballonList[5]);
++					//print ("Update orange");
++					GameObject orange = (GameObject)GameObject.Instantiate(ballonList[5]);
+                     orange.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     allBalloons.Add(orange);
+                 }
+                 if (random == 6)
+                 {
+-                    GameObject eater = (GameObject)GameObject.Instantiate(ballonList[6]);
++					//print ("Update eater");
++					GameObject eater = (GameObject)GameObject.Instantiate(ballonList[6]);
+                     eater.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     allBalloons.Add(eater);
+                 }
+                 if (random == 7)
+                 {
+-                    GameObject joker = (GameObject)GameObject.Instantiate(ballonList[7]);
++					//print ("Update joker");
++					GameObject joker = (GameObject)GameObject.Instantiate(ballonList[7]);
+                     joker.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     allBalloons.Add(joker);
+                 }
+                 if (random == 8)
+                 {
+-                    GameObject incognit = (GameObject)GameObject.Instantiate(ballonList[8]);
++					//print ("Update incognit");
++					GameObject incognit = (GameObject)GameObject.Instantiate(ballonList[8]);
+                     incognit.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     allBalloons.Add(incognit);
+                 }
+                 if (random == 9)
+                 {
+-                    GameObject bullet = (GameObject)GameObject.Instantiate(ballonList[9]);
++					//print ("Update bullet");
++					GameObject bullet = (GameObject)GameObject.Instantiate(ballonList[9]);
+                     bullet.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     allBalloons.Add(bullet);
+                 }
+                 if (random == 10)
+                 {
+-                    GameObject ray = (GameObject)GameObject.Instantiate(ballonList[10]);
++					//print ("Update ray");
++					GameObject ray = (GameObject)GameObject.Instantiate(ballonList[10]);
+                     ray.transform.position = new Vector3(Random.Range(this.transform.position.x - 10, this.transform.position.x + 10), Random.Range(this.transform.position.y - 0.1f, this.transform.position.y + 0.1f), 0);
+                     allBalloons.Add(ray);
+                 }
+diff --git a/Assets/CrusherBalloons/Scripts/Drag.cs b/Assets/CrusherBalloons/Scripts/Drag.cs
+index 9addb16..b3c6afa 100644
+--- a/Assets/CrusherBalloons/Scripts/Drag.cs
++++ b/Assets/CrusherBalloons/Scripts/Drag.cs
+@@ -38,7 +38,8 @@ public class Drag : MonoBehaviour
+                 {
+                     if (hit.collider.gameObject.layer == 8)
+                     {
+-                        objectGo = hit.collider.gameObject;
++						//print ("Layer 8");
++						objectGo = hit.collider.gameObject;
+                         onDrag = true;
+                     }
+                 }
+@@ -56,7 +57,7 @@ public class Drag : MonoBehaviour
+                     }
+                     if (faceManager != null)
+                     {
+-                        faceManager.gameObject.renderer.material.mainTexture = faceManager.facesList[1];
++                        //faceManager.gameObject.renderer.material.mainTexture = faceManager.facesList[1];
+                     }
+                     objectGo.transform.position = posMouse;
+                 }
+@@ -76,10 +77,10 @@ public class Drag : MonoBehaviour
+                     ballonScript.aceleration = -1;
+                     if (ballonScript.Idballoon == "red" || ballonScript.Idballoon == "green" || ballonScript.Idballoon == "blue" || ballonScript.Idballoon == "yellow")
+                     {
+-                        randomFace = Random.Range(0, 11);
+-                        faceManager.gameObject.renderer.material.mainTexture = faceManager.facesList[randomFace];
++                        //randomFace = Random.Range(0, 11);
++                        //faceManager.gameObject.renderer.material.mainTexture = faceManager.facesList[randomFace];
+                     }
+-                    objectGo = null;
++                    //objectGo = null;
+                 }
+             }
+             //
+diff --git a/Assets/CrusherBalloons/Scripts/FaceManager.cs b/Assets/CrusherBalloons/Scripts/FaceManager.cs
+index 0d40235..f1f6a2a 100644
+--- a/Assets/CrusherBalloons/Scripts/FaceManager.cs
++++ b/Assets/CrusherBalloons/Scripts/FaceManager.cs
+@@ -1,6 +1,7 @@
+ using UnityEngine;
+ using System.Collections;
+ using System.Collections.Generic;
++using System;
+ 
+ public class FaceManager : MonoBehaviour {
+ 
+@@ -12,7 +13,26 @@ public class FaceManager : MonoBehaviour {
+ 	// Use this for initialization
+ 	void Start ()
+     {
+-        i = Random.Range(0, 15);
++		print ("Start: specifynumber "+senseixMenuManager.specifyNumber + "|skip "+senseixMenuManager.skipCount);
++		if (senseixMenuManager.specifyNumber && senseixMenuManager.skipCount == 0 && senseixMenuManager.gameStarted) 
++		{
++			print(senseixMenuManager.getAnswer ());
++			i = Convert.ToInt32 (senseixMenuManager.getAnswer ());
++			if(i == 0)
++				i = 9;
++			else
++				i--;
++			senseixMenuManager.skipCount = UnityEngine.Random.Range(2,3);
++			//senseixMenuManager.specifyNumber = false;
++			print ("Got new answer on baloon " + i);
++		}
++		else if (senseixMenuManager.specifyNumber && senseixMenuManager.skipCount != 0 && senseixMenuManager.gameStarted) 
++		{
++			i = UnityEngine.Random.Range(0, 15);
++			senseixMenuManager.skipCount--;
++		}
++		else
++			i = UnityEngine.Random.Range(0, 15);
+         this.renderer.material.mainTexture = facesList[i];
+ 	}
+ 	
+diff --git a/Assets/CrusherBalloons/Scripts/Hud.cs b/Assets/CrusherBalloons/Scripts/Hud.cs
+index c266c97..6965dba 100644
+--- a/Assets/CrusherBalloons/Scripts/Hud.cs
++++ b/Assets/CrusherBalloons/Scripts/Hud.cs
+@@ -16,6 +16,7 @@ public class Hud : MonoBehaviour {
+     public int scores;
+     int objectiveScore;
+     public GameObject balloonsManager;
++	public GUIStyle questionStyle;
+  
+ 
+ 	void Start () 
+@@ -23,6 +24,9 @@ public class Hud : MonoBehaviour {
+         bManager = balloonsManager.GetComponent<BallonManager>();
+         menuScript = Camera.mainCamera.GetComponent<MenuManipulator>();
+         scoreScript = score.GetComponent<ScoreManipulator>();
++		print ("going to init senseix");
++		senseixMenuManager.SenseixMenu ("548fd3fa49998c39f9b28778be23fc197571902a17a911b9edfdb97f565452d4");
++		senseixGameManager.prepareProblem (3, "Mathematics", 1);
+ 	}
+ 
+     void Update()
+@@ -36,6 +40,10 @@ public class Hud : MonoBehaviour {
+     void OnGUI()
+     {
+         //if we are playing survivor show the statistics
++		//print ("current ID" + senseixMenuManager.currentProblem.problemID);
++		//print ("Queue size: " + senseixGameManager.problemQ.Count);
++		//print ("Problem is: " + senseixMenuManager.getProblem() + " " + senseixMenuManager.getAnswer());
++		senseixMenuManager.getProblem ();
+         if (menuScript.survivorMode)
+         {
+             if (!scoreScript.disableHud)
+@@ -68,7 +76,16 @@ public class Hud : MonoBehaviour {
+             }
+         }
+         //
+-
++		//CHENG
++		if (!menuScript.gameStarted) 
++		{
++			//senseixMenuManager.debug_menu_state();
++			if (GUI.Button(new Rect(Screen.width-110, Screen.height-45,80,30), "SenseiX"))
++			{	
++				senseixMenuManager.SenseixMenu();
++			}
++		}
++		//CHENG
+         //or if we are playing level mode
+         if (menuScript.gameStarted)
+         {
+@@ -79,6 +96,7 @@ public class Hud : MonoBehaviour {
+                     GUI.Label(new Rect(0, 28, 200, 150), "  Higher: " + menuScript.highScore, blackFont.label);
+                     GUI.Label(new Rect(0, 26, 200, 150), "  Higher: " + menuScript.highScore, blueFont.label);
+                 }
++				GUI.Label(new Rect(Screen.width - 350, 4, 200, 150), "Q: " + senseixMenuManager.currentProblem.content,questionStyle);
+                 GUI.Label(new Rect(0, 2, 200, 150), "   Score: " + scores, blackFont.label);
+                 GUI.Label(new Rect(0, 0, 200, 150), "   Score: " + scores, blueFont.label);
+                 GUI.Label(new Rect(Screen.width - 70, 2, 200, 100), "" + objectiveScore, blackFont.label);
+diff --git a/Assets/CrusherBalloons/Scripts/MenuManipulator.cs b/Assets/CrusherBalloons/Scripts/MenuManipulator.cs
+index bcb60fa..914364b 100644
+--- a/Assets/CrusherBalloons/Scripts/MenuManipulator.cs
++++ b/Assets/CrusherBalloons/Scripts/MenuManipulator.cs
+@@ -33,6 +33,7 @@ public class MenuManipulator : MonoBehaviour
+     GameObject particleGreen2;
+     //
+     //Boll&&Ints&&Floats&&Strings
++	public bool correctness;
+     public bool inStorm;
+     public bool loading;
+     public bool gameStarted;
+@@ -45,7 +46,8 @@ public class MenuManipulator : MonoBehaviour
+     bool onceSound;
+     bool soundOnOff;
+ 
+-    public int multiply;
++	public int passedTime;
++	public int multiply;
+     public int objectiveScore;
+     public int balloonsCuantity;
+     public int level;
+@@ -114,7 +116,10 @@ public class MenuManipulator : MonoBehaviour
+ 	
+ 	void Update () 
+     {
+-        //BulletTimer Settings
++        //Pluggin: Block game input
++		if (senseixMenuManager.popSenseixMenu)
++			return;
++		//BulletTimer Settings
+         if (bulletTime)
+         {
+             if (bulletTimer < 3)
+@@ -690,6 +695,7 @@ public class MenuManipulator : MonoBehaviour
+         {
+             if (Input.GetMouseButtonDown(0))
+             {
++				//print("mount 0 clicked");
+                 Ray ray = Camera.mainCamera.ScreenPointToRay(Input.mousePosition);
+                 if (Physics.Raycast(ray, out hit))
+                 {
+@@ -826,6 +832,7 @@ public class MenuManipulator : MonoBehaviour
+                     if (hit.collider.gameObject.layer == 10)
+                     {
+                         hitObject = hit.collider.gameObject.GetComponent<Balloon>();
++						print (hitObject.Idballoon);
+                         if (hitObject.Idballoon == "orange")
+                         {
+                             Destroy(hit.collider.gameObject.transform.root.gameObject);
+@@ -904,7 +911,8 @@ public class MenuManipulator : MonoBehaviour
+                     if (hit.collider.gameObject.layer == 9)
+                     {
+                         hitObject = hit.collider.gameObject.GetComponent<Balloon>();
+-                        GameObject particleProv = (GameObject)GameObject.Instantiate(particle);
++						print (hitObject.Idballoon);
++						GameObject particleProv = (GameObject)GameObject.Instantiate(particle);
+                         particleProv.transform.position = hitObject.transform.position;
+                         if (gameStarted||survivorMode)
+                         {
+@@ -931,7 +939,8 @@ public class MenuManipulator : MonoBehaviour
+ 
+                         if (hitObject.Idballoon == "joker")
+                         {
+-                            if (provisorio == "red" || provisorio == "blue" || provisorio == "yellow" || provisorio == "green" || provisorio != null)
++							print ("joker");
++							if (provisorio == "red" || provisorio == "blue" || provisorio == "yellow" || provisorio == "green" || provisorio != null)
+                             {
+                                 hitObject.Idballoon = provisorio;
+                             }
+@@ -950,7 +959,8 @@ public class MenuManipulator : MonoBehaviour
+                         }
+                         if (hitObject.Idballoon == "incognit")
+                         {
+-                            if (gameStarted || survivorMode)
++							print("incognit");
++							if (gameStarted || survivorMode)
+                             {
+                                 randomIncognit = Random.Range(0, 3);
+                                 if (randomIncognit == 0)
+@@ -1019,27 +1029,117 @@ public class MenuManipulator : MonoBehaviour
+                         }
+                         if (hitObject.Idballoon == "red" || hitObject.Idballoon == "blue" || hitObject.Idballoon == "green" || hitObject.Idballoon == "yellow")
+                         {
+-                            if (gameStarted || survivorMode)
++							//if it is non-face(numberic balloon) directly check whether it is correct, if yes then increase multiple
++							//if it is face, just check color
++							//senseixMenuManager.gotAnswer("1");
++							//print("Problem TEST: " + senseixMenuManager.getProblem());
++							print ("answer " + hitObject.getValue() + "|color " + hitObject.Idballoon + "|last correct "+correctness + "|multi "+ multiply);
++							if (gameStarted || survivorMode)
+                             {
++								/*
+ 								if (hitObject.getValue() + 1 == 4)
+ 								{
+ 									Debug.Log("Hit bulloon with value of " + 4);
+ 								}
+-
+-                                if (provisorio == "")
++								*/
++								int answer = hitObject.getValue();
++								if(answer <= 9 && answer >= 0)
++								{
++									if(answer == 9)
++										answer = 0;
++									else
++										answer++;
++									print("clicked " + answer);
++									correctness = senseixMenuManager.gotAnswer((answer).ToString());
++									if(correctness)
++									{
++										multiply++;
++										provisorio = hitObject.Idballoon;
++										GameObject scoreFeedbackProv = (GameObject)GameObject.Instantiate(scoreFeedback);
++										scoreFeedbackProv.transform.position = hit.collider.gameObject.transform.position;
++										scoreFeedbackProv.animation.Play("@xScore");
++										if (multiply == 2)
++										{
++											
++											scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[1];
++										}
++										if (multiply == 3)
++										{
++											soundScript.PlaySound(22, false, 1);
++											GameObject feedBack = (GameObject)GameObject.Instantiate(feedback[0]);
++											feedBack.transform.position = feedbackPos.transform.position;
++											this.animation.Play("@CameraShakeLight");
++											scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[2];
++										}
++										if (multiply == 4)
++										{
++											this.animation.Play("@CameraShakeLight");
++											scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[3];
++										}
++										if (multiply == 5)
++										{
++											soundScript.PlaySound(23, false, 1);
++											GameObject great = (GameObject)GameObject.Instantiate(feedback[1]);
++											great.transform.position = feedbackPos.transform.position;
++											this.animation.CrossFade("@CameraShakingLight");
++											scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[4];
++										}
++										if (multiply == 6)
++										{
++											this.animation.CrossFadeQueued("@CameraShakingLight");
++											scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[5];
++										}
++										if (multiply == 7)
++										{
++											soundScript.PlaySound(28, false, 1);
++											GameObject awesome = (GameObject)GameObject.Instantiate(feedback[2]);
++											awesome.transform.position = feedbackPos.transform.position;
++											this.animation.CrossFade("@CameraShakingHeavy");
++											scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[6];
++										}
++										if (multiply == 8)
++										{
++											this.animation.CrossFade("@CameraShakingHeavy");
++											scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[7];
++										}
++										if (multiply == 9)
++										{
++											this.animation.CrossFade("@CameraShakingHeavy");
++											scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[8];
++										}
++										if (multiply >= 10)
++										{
++											soundScript.PlaySound(29, false, 1);
++											GameObject perfect = (GameObject)GameObject.Instantiate(feedback[3]);
++											perfect.transform.position = feedbackPos.transform.position;
++											this.animation.CrossFade("@CameraShakingSuperHeavy");
++											multiply = 10;
++											scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[9];
++										}
++										scoreScript.PlusScore(10, multiply);
++									}
++									else
++									{
++										multiply = 0;
++										provisorio = "";
++									}
++								}
++								else if (provisorio == "")
+                                 {
+-
+-                                    GameObject scoreFeedbackProv = (GameObject)GameObject.Instantiate(scoreFeedback);
+-                                    scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[0];
+-                                    scoreFeedbackProv.transform.position = hit.collider.gameObject.transform.position;
+-                                    scoreFeedbackProv.animation.Play("@ScoreFeedback");
+-                                    multiply = 1;
+-                                    provisorio = hitObject.Idballoon;
+-                                    scoreScript.PlusScore(10, multiply);
++									//print ("provisorio null");
++									//print("Problem TEST: " + senseixMenuManager.getProblem());
++									//GameObject scoreFeedbackProv = (GameObject)GameObject.Instantiate(scoreFeedback);
++                                    //scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[0];
++                                    //scoreFeedbackProv.transform.position = hit.collider.gameObject.transform.position;
++                                    //scoreFeedbackProv.animation.Play("@ScoreFeedback");
++                                    //multiply = 1;
++                                    //provisorio = hitObject.Idballoon;
++                                    //scoreScript.PlusScore(10, multiply);
+                                 }
+-                                else
++								else if(correctness)
+                                 {
+-                                    if (provisorio == hitObject.Idballoon)
++									//print ("provisorio " + provisorio);
++									if (provisorio == hitObject.Idballoon)
+                                     {
+                                         GameObject scoreFeedbackProv = (GameObject)GameObject.Instantiate(scoreFeedback);
+                                         scoreFeedbackProv.transform.position = hit.collider.gameObject.transform.position;
+@@ -1113,12 +1213,13 @@ public class MenuManipulator : MonoBehaviour
+                                             provisorio = hitObject.Idballoon;
+ 
+                                             this.animation.CrossFade("@CameraIdle");
+-                                            GameObject scoreFeedbackProv = (GameObject)GameObject.Instantiate(scoreFeedback);
+-                                            scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[0];
+-                                            scoreFeedbackProv.transform.position = hit.collider.gameObject.transform.position;
+-                                            scoreFeedbackProv.animation.Play("@ScoreFeedback");
+-                                            multiply = 1;
+-                                            scoreScript.PlusScore(10, multiply);
++                                            //GameObject scoreFeedbackProv = (GameObject)GameObject.Instantiate(scoreFeedback);
++                                            //scoreFeedbackProv.renderer.material.mainTexture = scoreFeedbackTextures[0];
++                                            //scoreFeedbackProv.transform.position = hit.collider.gameObject.transform.position;
++                                            //scoreFeedbackProv.animation.Play("@ScoreFeedback");
++                                            multiply = 0;
++											correctness = false;
++                                            //scoreScript.PlusScore(10, multiply);
+                                         }
+                                     }
+                                 }
+diff --git a/Assets/CrusherBalloons/Scripts/ScoreManipulator.cs b/Assets/CrusherBalloons/Scripts/ScoreManipulator.cs
+index d3b75b8..33285db 100644
+--- a/Assets/CrusherBalloons/Scripts/ScoreManipulator.cs
++++ b/Assets/CrusherBalloons/Scripts/ScoreManipulator.cs
+@@ -82,7 +82,8 @@ public class ScoreManipulator : MonoBehaviour {
+ 	void Update ()
+     {
+         //This part is just to make the effect that the score is counting
+-        if (count)
++        
++		if (count)
+         {
+             Camera.mainCamera.animation.CrossFade("@CameraIdle");
+ 
+@@ -98,6 +99,7 @@ public class ScoreManipulator : MonoBehaviour {
+                 count = false;
+             }
+         } 
++        
+         //
+ 
+         //When the level Mode finish, i show if the level is cleared or failed
+@@ -221,6 +223,7 @@ public class ScoreManipulator : MonoBehaviour {
+     public void PlusScore(int plus,int multiply)
+     {
+         plusMul += plus * multiply;
++		print("Score " + plusMul);
+     }
+ 
+     //When the level Mode finished?

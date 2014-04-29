@@ -8,7 +8,7 @@ public class Entry
 	public int memberID = -1;
 	public int rank = -1;
 	public double score = 0;
-	string name = "";
+	public string name = "";
 	public Entry(int id, int r,double s,string n)
 	{
 		memberID = id;
@@ -23,6 +23,12 @@ public class leaderboard:MonoBehaviour
 	public static ArrayList entries = new ArrayList();
 	public static Entry localPlayer = null;
 	public leaderboard(){}
+	public static bool ready()
+	{
+		if (entries.Count > 0)
+			return true;
+		return false;
+	}
 	public static void clearEntry()
 	{
 		entries.Clear ();
@@ -41,5 +47,13 @@ public class leaderboard:MonoBehaviour
 		}
 		print (builder.ToString());
 		return builder.ToString();
+	}
+	public static void debugPrint()
+	{
+		print ("capacity " + entries.Capacity);
+		for (int i=0; i<entries.Count; i++) 
+		{
+			print(i+" " + ((Entry)entries[i]).memberID + " rank " + ((Entry)entries[i]).rank + " name " + ((Entry)entries[i]).name + " score " + ((Entry)entries[i]).score);
+		}
 	}
 }

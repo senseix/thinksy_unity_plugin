@@ -544,7 +544,7 @@ using System.Text;
 			{
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
 			print (tester["rank"]);
-				//leaderboard.addEntry(tester["member"],tester["rank"],tester["score"],tester["member_data"]);
+				leaderboard.addEntry(tester["member"],tester["rank"],tester["score"],tester["member_data"]);
 			}	
 			return true;
 

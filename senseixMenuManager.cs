@@ -16,6 +16,7 @@ public class senseixMenuConst{
 
 	public const int MENU_4_PROFILE = 5;
 	public const int MENU_4_CREATE_PROFILE = 6;
+	public const int MENU_5_LEADERBOARD_SHOW = 7;
 
 	public const int MENU_WIN_NUM = 9876;
 	//public const int MAINMENUE_2_
@@ -42,6 +43,8 @@ public class senseixMenuManager : MonoBehaviour {
 	//current answer result beg
 	public static string currentAnswer = null;
 	public static bool currentCorrectness = false;
+
+	public static int currentLeaderboardPage = 0;
 
 	//current answer result beg
 	public static void SenseixMenu(string access_token = null)
@@ -147,6 +150,10 @@ public class senseixMenuManager : MonoBehaviour {
 					blurBackground();
 					GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
 				break;
+				case senseixMenuConst.MENU_5_LEADERBOARD_SHOW:
+					windowRect = new Rect(Screen.width/2-90, Screen.height/2-80, 180,200);
+					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawLeaderboard, "SenseiX");
+				break;
 				default:
 				break;
 			}
@@ -229,6 +236,33 @@ public class senseixMenuManager : MonoBehaviour {
 			menuState = senseixMenuConst.MENU_0_MAIN;
 		}
 	}
+	void drawLeaderboard(int windowID)
+	{
+		if (leaderboard.ready ())
+		{
+			StringBuilder result = new StringBuilder();
+			for(int i=currentLeaderboardPage*5;i<leaderboard.entries.Count && i<(1+currentLeaderboardPage)*5;i++)
+			{
+				result.Append(((Entry)leaderboard.entries[i]).rank+". Name: "+((Entry)leaderboard.entries[i]).name);
+				GUILayout.Label(result.ToString());
+				result.Remove(0,result.Length);
+			}
+		}
+		if (GUILayout.Button("Next Page"))
+		{	
+			if(currentLeaderboardPage<(leaderboard.entries.Count-1)/5)
+				currentLeaderboardPage++;
+		}
+		if (GUILayout.Button("Prev Page"))
+		{	
+			if(currentLeaderboardPage>0)
+				currentLeaderboardPage--;
+		}
+		if (GUILayout.Button("Return"))
+		{	
+			menuState = senseixMenuConst.MENU_3_RUNNING;
+		}
+	}
 	void drawProfile(int windowID)
 	{
 		heavyUser player = null;
@@ -266,8 +300,14 @@ public class senseixMenuManager : MonoBehaviour {
 	{
 		if (GUILayout.Button("Resume"))
 		{	
-			senseix.pullLeaderboard(1);
 			popSenseixMenu = false;
+		}
+		if (GUILayout.Button("Show Leaderboard"))
+		{	
+			senseix.pullLeaderboard(1);
+			leaderboard.debugPrint();
+			menuState = senseixMenuConst.MENU_5_LEADERBOARD_SHOW;
+			currentLeaderboardPage = 0;
 		}
 		if (GUILayout.Button("Sign out"))
 		{	

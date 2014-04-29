@@ -354,11 +354,11 @@ using UnityEngine;
 				message.append(messageType.MESSAGETYPE_LEADERBOARD_PULL_URL);
 				message.append("?");
 				message.init ();
-				
+				/*
 				message.addFieldDeli ();
 				message.append ("auth_token=");
 				message.append (dictionary["auth_token"]);
-				
+				*/
 				message.addFieldDeli ();
 				message.append ("access_token=");
 				message.append (dictionary["access_token"]);
