@@ -34,8 +34,11 @@ public class senseixMenuManager : MonoBehaviour {
 	private string emailText = "Your E-mail";
 	private string passwordText = "Your password";
 	private string nameText = "Your name";
+	private string profileNameText = "Profile Name";
 	public static Queue players = null;
 
+	public static SenseixStyle mainStyle = new SenseixStyle();
+	public static GUIStyle buttonStyle = null;
 	public static problem currentProblem = null;
 	private static bool answerProvided = true;
 
@@ -55,13 +58,22 @@ public class senseixMenuManager : MonoBehaviour {
 			players = senseix.getCachedPlayer ();
 
 			//channelThread.Start();
+			buttonStyle = new GUIStyle();
+			buttonStyle.fontSize = Screen.width/70;
+			buttonStyle.normal.textColor= Color.white;
+			buttonStyle.alignment = TextAnchor.MiddleCenter;
+			buttonStyle.richText = true;
+			buttonStyle.fontStyle = FontStyle.Bold;
+			popSenseixMenu = true;
 			if (senseix.inSession)
 			{
 				senseixMenuManager.menuState = senseixMenuConst.MENU_3_RUNNING;
+				senseixGameManager.prepareProblem (3, "Mathematics", 1);
+				getProblem();
 				return;
 			}
+			//mainStyle.initButton();
 
-			popSenseixMenu = true;
 		}
 		else if(access_token != null && menuState != senseixMenuConst.MENU_0_MAIN)
 		{
@@ -106,28 +118,28 @@ public class senseixMenuManager : MonoBehaviour {
 				case senseixMenuConst.MENU_3_RUNNING:
 					//This should be the menu that poped during game.
 					//So developers can have their own buttons in game, which can trigger this menu
-					windowRect = new Rect(Screen.width/2-90, Screen.height/2-80, 180, 100);
+					windowRect = new Rect(Screen.width/2-Screen.width/8, Screen.height/2-80, Screen.width/5, 100);
 					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawRunning, "SenseiX");
 					//blurBackground();
 					//GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
 					break;
 				case senseixMenuConst.MENU_0_MAIN:
-					windowRect = new Rect(Screen.width/2-90, Screen.height/2-80, 180, 100);
+				windowRect = new Rect(Screen.width/2-Screen.width/10, Screen.height/2-80, Screen.width/5, 100);
 					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawMain, "SenseiX");
-					blurBackground();
-					GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
+					//blurBackground();
+					//GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
 				break;
 				case senseixMenuConst.MENU_1_LOGIN:
-					windowRect = new Rect(Screen.width/2-60, Screen.height/2-100, 120, 100);
+				windowRect = new Rect(Screen.width/2-Screen.width/10, Screen.height/2-100, Screen.width/5, 100);
 					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawLogin, "Login");
-					blurBackground();
-					GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
+					//blurBackground();
+					//GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
 				break;
 				case senseixMenuConst.MENU_1_SIGNUP:
-					windowRect = new Rect(Screen.width/2-60, Screen.height/2-100, 120, 100);
+				windowRect = new Rect(Screen.width/2-Screen.width/10, Screen.height/2-100, Screen.width/5, 100);
 					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawSignup, "Signup");
-					blurBackground();
-					GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
+					//blurBackground();
+					//GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
 				break;
 				case senseixMenuConst.MENU_2_FINISH:
 					//popSenseixMenu = false;
@@ -137,21 +149,21 @@ public class senseixMenuManager : MonoBehaviour {
 				case senseixMenuConst.MENU_4_PROFILE:
 					//print ("This is profile");
 					if(players != null)
-						windowRect = new Rect(Screen.width/2-60, Screen.height/2-100-players.Count*10, 120, 100);
+					windowRect = new Rect(Screen.width/2-Screen.width/10, Screen.height/2-100-players.Count*10, Screen.width/5, 100);
 					else
-						windowRect = new Rect(Screen.width/2-60, Screen.height/2-100,120,20);
+					windowRect = new Rect(Screen.width/2-Screen.width/10, Screen.height/2-100,Screen.width/5,20);
 					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawProfile, "Profiles");
-					blurBackground();
-					GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
+					//blurBackground();
+					//GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
 				break;
 				case senseixMenuConst.MENU_4_CREATE_PROFILE:
-					windowRect = new Rect(Screen.width/2-60, Screen.height/2-100, 120, 100);
-					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawSignup, "Create Profile");
-					blurBackground();
-					GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
+				windowRect = new Rect(Screen.width/2-Screen.width/10, Screen.height/2-100, Screen.width/5, 100);
+					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawCreateProfile, "Create Profile");
+					//blurBackground();
+					//GUI.BringWindowToFront (senseixMenuConst.MENU_WIN_NUM);
 				break;
 				case senseixMenuConst.MENU_5_LEADERBOARD_SHOW:
-					windowRect = new Rect(Screen.width/2-90, Screen.height/2-80, 180,200);
+				windowRect = new Rect(Screen.width/2-Screen.width/10, Screen.height/2-80, Screen.width/5,200);
 					windowRect = GUILayout.Window(senseixMenuConst.MENU_WIN_NUM, windowRect, drawLeaderboard, "SenseiX");
 				break;
 				default:
@@ -161,26 +173,26 @@ public class senseixMenuManager : MonoBehaviour {
 	}
 	void drawMain(int windowID)
 	{
-		if (GUILayout.Button("Login"))
+		if (GUILayout.Button("Login",buttonStyle,GUILayout.Height(50)))
 		{	
 			emailText="80640000@qq.com";
 			passwordText="password.com";
 			menuState = senseixMenuConst.MENU_1_LOGIN;
 		}
-		if (GUILayout.Button("Signup"))
+		if (GUILayout.Button("Signup",buttonStyle,GUILayout.Height(50)))
 		{	
 			menuState = senseixMenuConst.MENU_1_SIGNUP;
 		}
-		if (GUILayout.Button("Skip"))
-		{	
-			menuState = senseixMenuConst.MENU_2_FINISH;
-		}
+		//if (GUILayout.Button("Skip"))
+		//{	
+		//	menuState = senseixMenuConst.MENU_2_FINISH;
+		//}
 	}
 	void drawLogin(int windowID)
 	{
 		emailText = GUILayout.TextField(emailText);
 		passwordText = GUILayout.PasswordField(passwordText,"*"[0]);
-		if (GUILayout.Button("Login"))
+		if (GUILayout.Button("Login",buttonStyle,GUILayout.Height(50)))
 		{	
 			if(senseix.coachLogin(emailText,passwordText) == 0)
 			{
@@ -200,7 +212,7 @@ public class senseixMenuManager : MonoBehaviour {
 				menuState = senseixMenuConst.MENU_1_LOGIN;
 			}
 		}
-		if (GUILayout.Button("Cancel"))
+		if (GUILayout.Button("Cancel",buttonStyle,GUILayout.Height(50)))
 		{	
 			emailText="Your E-mail";
 			passwordText="Your password";
@@ -213,7 +225,7 @@ public class senseixMenuManager : MonoBehaviour {
 		emailText = GUILayout.TextField(emailText);
 		passwordText = GUILayout.PasswordField(passwordText,"*"[0]);
 		nameText = GUILayout.TextField (nameText);
-		if (GUILayout.Button("Summit"))
+		if (GUILayout.Button("Summit",buttonStyle,GUILayout.Height(Screen.height/8)))
 		{	
 			if(senseix.coachSignUp(emailText,name,passwordText) == 0)
 			{
@@ -228,7 +240,7 @@ public class senseixMenuManager : MonoBehaviour {
 				menuState = senseixMenuConst.MENU_1_LOGIN;
 			}
 		}
-		if (GUILayout.Button("Cancel"))
+		if (GUILayout.Button("Cancel",buttonStyle,GUILayout.Height(Screen.height/8)))
 		{	
 			emailText="Your E-mail";
 			passwordText="Your password";
@@ -248,17 +260,17 @@ public class senseixMenuManager : MonoBehaviour {
 				result.Remove(0,result.Length);
 			}
 		}
-		if (GUILayout.Button("Next Page"))
+		if (GUILayout.Button("Next Page",buttonStyle,GUILayout.Height(Screen.height/16)))
 		{	
 			if(currentLeaderboardPage<(leaderboard.entries.Count-1)/5)
 				currentLeaderboardPage++;
 		}
-		if (GUILayout.Button("Prev Page"))
+		if (GUILayout.Button("Prev Page",buttonStyle,GUILayout.Height(Screen.height/16)))
 		{	
 			if(currentLeaderboardPage>0)
 				currentLeaderboardPage--;
 		}
-		if (GUILayout.Button("Return"))
+		if (GUILayout.Button("Return",buttonStyle,GUILayout.Height(Screen.height/16)))
 		{	
 			menuState = senseixMenuConst.MENU_3_RUNNING;
 		}
@@ -267,9 +279,9 @@ public class senseixMenuManager : MonoBehaviour {
 	{
 		heavyUser player = null;
 		StringBuilder result = new StringBuilder();
-		if (GUILayout.Button("create player"))
+		if (GUILayout.Button("create player",buttonStyle,GUILayout.Height(Screen.height/10)))
 		{	
-
+			menuState = senseixMenuConst.MENU_4_CREATE_PROFILE;
 		}
 		if(players != null)
 		for(int i=0;i<players.Count;i++)
@@ -284,37 +296,58 @@ public class senseixMenuManager : MonoBehaviour {
 				else
 					result.Append(player.name);
 				players.Enqueue(player);
-				if (GUILayout.Button(result.ToString()))
+				if (GUILayout.Button(result.ToString(),buttonStyle,GUILayout.Height(Screen.height/10)))
 				{
 					senseix.name=player.name;
 					senseix.id=Convert.ToInt32(player.id);
 					senseix.saveProfileID();
 					//print (senseix.name + " " + senseix.id.ToString());
 					menuState = senseixMenuConst.MENU_3_RUNNING;
+					senseixGameManager.prepareProblem (3, "Mathematics", 1);
+					getProblem();
 					popSenseixMenu = false;
 				}
 			}	
 		}
 	}
+	void drawCreateProfile(int windowID)
+	{
+		profileNameText = GUILayout.TextField(profileNameText);
+		if (GUILayout.Button("Summit",buttonStyle,GUILayout.Height(Screen.height/14)))
+		{	
+			if(senseix.createPlayer(profileNameText) == 0)
+			{
+				profileNameText = "Profile Name";
+				players = senseix.getPlayer();
+				menuState = senseixMenuConst.MENU_4_PROFILE;
+			}
+		}
+		if (GUILayout.Button("Cancel",buttonStyle,GUILayout.Height(Screen.height/14)))
+		{	
+			profileNameText = "Profile name";
+			menuState = senseixMenuConst.MENU_4_PROFILE;
+		}
+	}
 	void drawRunning(int windowID)
 	{
-		if (GUILayout.Button("Resume"))
+		if (GUILayout.Button("Resume",buttonStyle,GUILayout.Height(Screen.height/10)))
 		{	
 			popSenseixMenu = false;
 		}
-		if (GUILayout.Button("Show Leaderboard"))
+		if (GUILayout.Button("Show Leaderboard",buttonStyle,GUILayout.Height(Screen.height/10)))
 		{	
 			senseix.pullLeaderboard(1);
 			leaderboard.debugPrint();
 			menuState = senseixMenuConst.MENU_5_LEADERBOARD_SHOW;
 			currentLeaderboardPage = 0;
 		}
-		if (GUILayout.Button("Sign out"))
+		if (GUILayout.Button("Sign out",buttonStyle,GUILayout.Height(Screen.height/10)))
 		{	
 			senseix.coachLogout();
 			menuState = senseixMenuConst.MENU_0_MAIN;
-			popSenseixMenu = false;
+			//popSenseixMenu = true;
 		}
+		senseix.str1 = GUILayout.TextField (senseix.str1);
 	}
 	private static void blurBackground()
 	{
@@ -329,11 +362,16 @@ public class senseixMenuManager : MonoBehaviour {
 		{
 			//print ("getProblem set to false");
 			answerProvided = false;
-			//print ("Problem debug: current Problem setup");
+			print ("Problem debug: current Problem setup");
 			currentProblem = senseixGameManager.getProblem();
 		}
+		else
+			print ("Problem debug: current Problem not setup");
 		//print ("===Answer is " + currentProblem.answer);
-		return currentProblem.content;
+		if(currentProblem != null)
+			return currentProblem.content;
+		else
+			return "Please login SenseiX";
 	}
 	public static string getAnswer()
 	{

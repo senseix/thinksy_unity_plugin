@@ -86,7 +86,9 @@ using System.Text;
 		private static heavyUser me = new heavyUser();
 		private static string utf8hdr = "utf8=%E2%9C%93";
 		public static bool inSession = false;
-		
+		public static string str1="";
+		public static string str2="";
+		public static string str3="";
 		public senseix ()
 		{
 		}
@@ -638,6 +640,7 @@ using System.Text;
 			{
 				print ("Profile ID saved: " + id.ToString ());
 				PlayerPrefs.SetInt ("data01", id);
+				PlayerPrefs.Save();
 			} 
 			else
 				print ("Failed to save profile id: local id is 0 now");
@@ -648,11 +651,13 @@ using System.Text;
 			{
 				int cachedID = PlayerPrefs.GetInt ("data01", 0);
 				if (cachedID == 0) {
+						str1="Loading profile id failed: saved profile id is 0";
 						print ("Loading profile id failed: saved profile id is 0");
 						return -1;
 				} 
 				else
 				{	
+					str1="Loading profile failed";
 					senseix.setProfileID (cachedID);
 					return 0;
 				}
@@ -669,6 +674,7 @@ using System.Text;
 			{
 				print("Data Saved: " + senseix.getAuthToken());
 				PlayerPrefs.SetString("data00",senseix.getAuthToken());
+				PlayerPrefs.Save();
 			}
 			else
 			{
