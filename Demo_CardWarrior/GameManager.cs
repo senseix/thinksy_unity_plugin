@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 	private int[] numberOnCard;
 	private int currentAnwser = 0;
 	private string currentQuestion = "1 - 1 = ?";
+	private bool inInit = true;
 
 	private int[] cardOffseth;
 	private int[] cardOffsetv;
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     // Quiz Condition
     bool quizOn = true;
+	bool playing = false;
 	//ssx
 	void initSsxPanelPos()
 	{
@@ -72,6 +74,13 @@ public class GameManager : MonoBehaviour
 	public void Login()
 	{
 		print ("login");
+	}
+	void showMainmenuPanel()
+	{
+		Vector3 pos = new Vector3(mainmenuPanelPos.x,mainmenuPanelPos.y,mainmenuPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(buttonPanel.transform, 1f, parms);
 	}
 	void hideMainmenuPanel()
 	{
@@ -119,11 +128,18 @@ public class GameManager : MonoBehaviour
         pos = shieldPos;
         shieldGroup.localPosition = new Vector3(pos.x, 0f, pos.z);
     }
-
-    // Start game & draw next quiz
+	void showAvatar()
+	{
+		Vector3 pos = mmfriendPos;
+		mmfriendAnimator.transform.localPosition = new Vector3(pos.x,pos.y, pos.z);
+		pos = mmenemyPos;
+		mmenemyAnimator.transform.localPosition = new Vector3(pos.x, pos.y, pos.z);
+	}
+	// Start game & draw next quiz
     void StartGame()
     {
         IntroGame();
+		playing = true;
         DrawQuiz();
     }
 
@@ -182,7 +198,8 @@ public class GameManager : MonoBehaviour
     // Init Quiz Game
     void InitGame()
     {
-        friendHpMan.InitHp();
+		inInit = true;
+		friendHpMan.InitHp();
         enemyHpMan.InitHp();
         questionTf = GameObject.Find("Question").transform;
         questionLabel = questionTf.GetComponentInChildren<UILabel>();
@@ -231,6 +248,9 @@ public class GameManager : MonoBehaviour
         friendAnimator.CrossFade("Walk", 0.2f);
         enemyAnimator.CrossFade("Walk", 0.2f);
 
+		friendHpMan.InitHp();
+		enemyHpMan.InitHp();
+		playing = true;
 		Vector3 pos = new Vector3(mmfriendPos.x-400,mmfriendPos.y+45,mmfriendPos.z-700);
 		mmfriendAnimator.transform.localPosition = new Vector3 ();
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
@@ -269,9 +289,21 @@ public class GameManager : MonoBehaviour
         enemyHpGroup.localPosition = new Vector3(pos.x * 3f, pos.y, pos.z);
         parms = new TweenParms().Prop("localPosition", pos).Delay(0.5f);
         HOTween.To(enemyHpGroup, 1f, parms);
-    }
-
-    // Stop Friend Actor Animation.
+		/*
+		if (inInit) 
+		{
+			int i = 0;
+			foreach (Transform tf in GameObject.Find("Answers").transform) 
+			{
+				origParms [i] = new TweenParms ().Prop ("localPosition", new Vector3 (tf.localPosition.x, tf.localPosition.y, tf.localPosition.z));
+				i++;
+			}
+			inInit = false;
+		}
+		*/
+	}
+	
+	// Stop Friend Actor Animation.
     void OnFriendStop()
     {
         friendAnimator.CrossFade("Idle", 0.2f);
@@ -326,18 +358,21 @@ public class GameManager : MonoBehaviour
     // Show Quiz Display Motion
     void ShowQuiz()
     {
-        TweenParms parms = new TweenParms().Prop("localScale", new Vector3(1f, 1f, 1f));
-        HOTween.To(questionTf, 0.5f, parms);
-        int i = 1;
-        foreach (Transform tf in answerTfs)
-        {
-			parms = new TweenParms().Prop("localPosition", new Vector3(cardOffseth[i-1],tf.localPosition.y+cardOffsetv[i-1], tf.localPosition.z)).Delay(0.3f * i++);
-            HOTween.To(tf, 1.5f, parms);
-        }
-        quizOn = true;
-        quizLength = 0;
-        parms = new TweenParms().Prop("quizLength", currentQuestion.Length).Ease(EaseType.Linear).OnUpdate(TypeQuiz);
-        HOTween.To(this, 1f, parms);
+		if(playing)
+		{
+			TweenParms parms = new TweenParms().Prop("localScale", new Vector3(1f, 1f, 1f));
+	        HOTween.To(questionTf, 0.5f, parms);
+	        int i = 1;
+	        foreach (Transform tf in answerTfs)
+	        {
+				parms = new TweenParms().Prop("localPosition", new Vector3(cardOffseth[i-1],tf.localPosition.y+cardOffsetv[i-1], tf.localPosition.z)).Delay(0.3f * i++);
+	            HOTween.To(tf, 1.5f, parms);
+	        }
+	        quizOn = true;
+	        quizLength = 0;
+	        parms = new TweenParms().Prop("quizLength", currentQuestion.Length).Ease(EaseType.Linear).OnUpdate(TypeQuiz);
+	        HOTween.To(this, 1f, parms);
+		}
     }
 
     // Make String Max Length
@@ -405,6 +440,8 @@ public class GameManager : MonoBehaviour
             // Display Actor's motion
             friendAnimator.CrossFade("Good", 0.2f);
             enemyAnimator.CrossFade("Bad", 0.2f);
+			if(enemyHpMan.getHP()<=0)
+				winGame();
         }
         else
         {
@@ -417,11 +454,13 @@ public class GameManager : MonoBehaviour
             StartCoroutine(DelayActoin(0.6f, () =>
             {
                 go = Instantiate(happyEffect, new Vector3(0.7f, 1f, 0f), Quaternion.identity) as GameObject;
-                friendHpMan.DoDamageHp(10);
+                friendHpMan.DoDamageHp(50);
             }));
             // Display Actor's motion
             friendAnimator.CrossFade("Bad", 0.2f);
             enemyAnimator.CrossFade("Good", 0.2f);
+			if(friendHpMan.getHP()<=0)
+				lostGame();
         }
 
         StartCoroutine(DelayActoin(3f, () =>
@@ -429,7 +468,22 @@ public class GameManager : MonoBehaviour
             DrawQuiz();
         }));
     }
-
+	void winGame()
+	{
+		quizOn = false;
+		playing = false;
+		HideGame ();
+		showMainmenuPanel ();
+		showAvatar ();
+	}
+	void lostGame()
+	{
+		quizOn = false;
+		playing = false;
+		HideGame ();
+		showMainmenuPanel ();
+		showAvatar ();
+	}
     public void OnClickAnswer1()
     {
         ClickAnswer(0);
