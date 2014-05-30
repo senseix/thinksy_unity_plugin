@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System;
-public class Entry
+public class lbEntry
 {
 	public int memberID = -1;
 	public int rank = -1;
 	public double score = 0;
 	public string name = "";
-	public Entry(int id, int r,double s,string n)
+	public lbEntry(int id, int r,double s,string n)
 	{
 		memberID = id;
 		rank = r;
@@ -17,11 +17,11 @@ public class Entry
 		name = n;
 	}
 }
-public class leaderboard:MonoBehaviour
+public class leaderboard
 {
 	public const int LISTMAX = 20;
 	public static ArrayList entries = new ArrayList();
-	public static Entry localPlayer = null;
+	public static lbEntry localPlayer = null;
 	public leaderboard(){}
 	public static bool ready()
 	{
@@ -35,7 +35,7 @@ public class leaderboard:MonoBehaviour
 	}
 	public static void addEntry(string memberID, string rank, string score,string member_data)
 	{
-		entries.Add (new Entry(Convert.ToInt32(memberID),Convert.ToInt32(rank),Convert.ToDouble(score),getPlayerName(member_data)));
+		entries.Add (new lbEntry(Convert.ToInt32(memberID),Convert.ToInt32(rank),Convert.ToDouble(score),getPlayerName(member_data)));
 	}
 	public static string getPlayerName(string data)
 	{
@@ -45,15 +45,15 @@ public class leaderboard:MonoBehaviour
 		{
 			builder.Append(data[j]);
 		}
-		print (builder.ToString());
+		//print (builder.ToString());
 		return builder.ToString();
 	}
 	public static void debugPrint()
 	{
-		print ("capacity " + entries.Capacity);
+		//print ("capacity " + entries.Capacity);
 		for (int i=0; i<entries.Count; i++) 
 		{
-			print(i+" " + ((Entry)entries[i]).memberID + " rank " + ((Entry)entries[i]).rank + " name " + ((Entry)entries[i]).name + " score " + ((Entry)entries[i]).score);
+			//print(i+" " + ((lbEntry)entries[i]).memberID + " rank " + ((lbEntry)entries[i]).rank + " name " + ((lbEntry)entries[i]).name + " score " + ((lbEntry)entries[i]).score);
 		}
 	}
 }

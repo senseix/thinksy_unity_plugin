@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using Holoville.HOTween;
 using Holoville.HOTween.Plugins;
 
+//When app opened, first send out a UID ack
+//*if respond say it is tmp user, then automaticly use that tmp profile
+//then use main menu: sign up, login, start
+//*if respond say it is regular user, then show the list of profile and allow user to select one profile
+//then use in game menu: logout, check profile, start game
+
+
 /// <summary>
 /// Game Manager Main Class.
 /// </summary>
@@ -23,9 +30,18 @@ public class GameManager : MonoBehaviour
 	public UIPanel buttonPanel;
 	public UIPanel signupPanel;
 	public UIPanel loginPanel;
+	public UIPanel profileSelectPanel;
 
+	public UIInput signupEmail;
+	public UIInput signupPassword;
+	public UIInput signupName;
+
+	public UIInput loginEmail;
+	public UIInput loginPassword;
+
+	public static ArrayList players = null;
     // Save Start Position
-	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos;
+	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos;
     Transform friendHpGroup, enemyHpGroup, shieldGroup;
 
     // Save Question & Answer Display Position
@@ -54,12 +70,19 @@ public class GameManager : MonoBehaviour
     // Quiz Condition
     bool quizOn = true;
 	bool playing = false;
+	bool InGameMenu = false;
 	//ssx
+	int checkConnectivity()
+	{
+
+		return 0;
+	}
 	void initSsxPanelPos()
 	{
 		mainmenuPanelPos = buttonPanel.transform.localPosition;
-		//signupPanelPos = signupPanel.transform.localPosition;
-		//loginPanelPos = loginPanel.transform.localPosition;
+		signupPanelPos = signupPanel.transform.localPosition;
+		loginPanelPos = loginPanel.transform.localPosition;
+		profileSelectPanelPos = profileSelectPanel.transform.localPosition;
 	}
 	void Load()
 	{
@@ -67,15 +90,105 @@ public class GameManager : MonoBehaviour
 		loadingLable.text = "";
 		print ("loading");
 	}
-	public void signup()
+	public void showSelectProfileMenu()
 	{
+	
+	}
+	public void hideSelectProfileMenu()
+	{
+		
+	}
+	public void showSignupPanel()
+	{
+		hideMainmenuPanel ();
+		Vector3 pos = new Vector3(signupPanelPos.x,signupPanelPos.y+Screen.height,signupPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(signupPanel.transform, 1f, parms);
+	}
+	public void hideSignupPanel()
+	{
+		Vector3 pos = new Vector3(signupPanelPos.x,signupPanelPos.y,signupPanelPos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(signupPanel.transform, 1f, parms);
+		showMainmenuPanel ();
 		print ("signup");
 	}
-	public void Login()
+	public void showLoginPanel()
 	{
-		print ("login");
+		hideMainmenuPanel ();
+		Vector3 pos = new Vector3(loginPanelPos.x,loginPanelPos.y+Screen.height,loginPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(loginPanel.transform, 1f, parms);
 	}
-	void showMainmenuPanel()
+	public void hideLoginPanel()
+	{
+		Vector3 pos = new Vector3(loginPanelPos.x,loginPanelPos.y,loginPanelPos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(loginPanel.transform, 1f, parms);
+		showMainmenuPanel ();
+		print ("signup");
+	}
+	public void showProfile()
+	{
+		
+	}
+	public void showProfileList()
+	{
+		hideLoginPanel ();
+		Vector3 pos = new Vector3(profileSelectPanelPos.x,profileSelectPanelPos.y+Screen.height,profileSelectPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(profileSelectPanel.transform, 1f, parms);
+	}
+	public void hideProfileList()
+	{
+		showMainmenuPanel ();
+	}
+	public void sendSignup()
+	{
+
+		string emailText = signupEmail.value;
+		string name = signupName.value;
+		string passwordText = signupPassword.value;
+		if (senseix.coachSignUp (emailText, name, passwordText) == 0) 
+		{
+			print("senseix sign up successful");
+			hideSignupPanel();
+			showMainmenuPanel();
+		}
+		else
+		{
+			print("senseix sign up failed");
+		}
+	}
+	public void sendLogin()
+	{
+		senseix.cleanData ();
+		string emailText = loginEmail.value;
+		string passwordText = loginPassword.value;
+		if(senseix.coachLogin(emailText,passwordText) == 0)
+		{
+			print("senseix sign in successful");
+			hideLoginPanel();
+			showProfileList();
+			//showMainmenuPanel();
+		}
+		else
+		{
+			print("senseix  sign in failed");
+		}
+	}
+	public void showInGameMenu()
+	{
+	
+	}
+	public void hideInGameMenu()
+	{
+		
+	}
+	public void showMainmenuPanel()
 	{
 		Vector3 pos = new Vector3(mainmenuPanelPos.x,mainmenuPanelPos.y,mainmenuPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
@@ -205,6 +318,7 @@ public class GameManager : MonoBehaviour
         questionLabel = questionTf.GetComponentInChildren<UILabel>();
         answerLabels = new UILabel[4];
         answerTfs = new Transform[4];
+		initSsxPanelPos ();
         int i = 0;
 		origParms = new TweenParms[4];
 		cardOffseth = new int[4];
@@ -220,8 +334,21 @@ public class GameManager : MonoBehaviour
 		cardOffsetv [3] = 10;
 
 		numberOnCard = new int[4];
+		/*
+		senseix.initSenseix ("5dc215f2d2906b0dd81f82a0a959d80aa3aba0b665c292a5da7ff6431b9ee484");
+		players = senseix.getCachedPlayerA ();
+		if (senseix.inSession) 
+		{
+			senseixGameManager.prepareProblem (3, "Mathematics", 1);
+			//getProblem();
+			InGameMenu = true;
+		}
+		else
+			senseix.coachUidPush();
+		*/
+		senseixManager.initSenseixManager ("5dc215f2d2906b0dd81f82a0a959d80aa3aba0b665c292a5da7ff6431b9ee484");
 
-        foreach (Transform tf in GameObject.Find("Answers").transform)
+		foreach (Transform tf in GameObject.Find("Answers").transform)
         {
             answerTfs[i] = tf;
 			origParms[i] = new TweenParms().Prop("localPosition", new Vector3(tf.localPosition.x,tf.localPosition.y, tf.localPosition.z));
@@ -229,7 +356,6 @@ public class GameManager : MonoBehaviour
             i++;
         }
         QuizInit();
-
         shieldGroup = GameObject.Find("ShieldGroup").transform;
         shieldPos = shieldGroup.localPosition;
         friendPos = friendAnimator.transform.localPosition;

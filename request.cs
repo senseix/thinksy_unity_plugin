@@ -73,6 +73,7 @@ using UnityEngine;
 					data.Add ("udid",message["udid"]);
 					break;
 				*/
+
 			case messageType.MESSAGETYPE_COACH_SIGN_UP:
 				url = messageType.MESSAGETYPE_COACH_SIGN_UP_URL;
 				postget = 1;
@@ -133,6 +134,13 @@ using UnityEngine;
 				message.append ("password");
 				message.addValueDeli ();
 				message.append (dictionary["password"]);
+
+				message.addFieldDeli ();
+				message.append ("device");
+				message.addKeyDeli ();
+				message.append ("udid");
+				message.addValueDeli ();
+				message.append (dictionary["udid"]);
 				
 				
 				break;
@@ -463,6 +471,26 @@ using UnityEngine;
 				data.Add ("udid",message["udid"]);
 				break;
 			*/
+			case messageType.MESSAGETYPE_COACH_PUSH_UID:
+				url = messageType.MESSAGETYPE_COACH_SIGN_IN_URL;
+				postget = 1;
+				message.init ();
+				
+				message.addFieldDeli ();
+				message.append ("access_token=");
+				message.append (dictionary["access_token"]);
+				
+			//	message.addFieldDeli ();
+			//	message.append ("coach");
+				
+				message.addFieldDeli ();
+				message.append ("device");
+				message.addKeyDeli ();
+				message.append ("udid");
+				message.addValueDeli ();
+				message.append (dictionary["udid"]);
+				
+				break;
 			case messageType.MESSAGETYPE_COACH_SIGN_UP:
 				url = messageType.MESSAGETYPE_COACH_SIGN_UP_URL;
 				postget = 1;
@@ -523,6 +551,13 @@ using UnityEngine;
 				message.append ("password");
 				message.addValueDeli ();
 				message.append (dictionary["password"]);
+
+				message.addFieldDeli ();
+				message.append ("device");
+				message.addKeyDeli ();
+				message.append ("udid");
+				message.addValueDeli ();
+				message.append (dictionary["udid"]);
 				
 
 				break;

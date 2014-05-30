@@ -21,14 +21,15 @@ using System.Text;
 		public const int MESSAGETYPE_COACH_SIGN_UP = 1;
 		public const int MESSAGETYPE_COACH_SIGN_IN = 2;
 		public const int MESSAGETYPE_COACH_SIGN_OUT = 3;	//info of profile
+		public const int MESSAGETYPE_COACH_PUSH_UID = 4;	//info of profile
 		
-		public const int MESSAGETYPE_DEVEL_SIGN_IN = 4;
-		public const int MESSAGETYPE_DEVEL_SIGN_OUT = 5;
+		public const int MESSAGETYPE_DEVEL_SIGN_IN = 11;
+		public const int MESSAGETYPE_DEVEL_SIGN_OUT = 12;
 
-		public const int MESSAGETYPE_PLAYER_CREATE = 6;
-		public const int MESSAGETYPE_PLAYER_INDEX = 7;
+		public const int MESSAGETYPE_PLAYER_CREATE = 21;
+		public const int MESSAGETYPE_PLAYER_INDEX = 22;
 		
-		public const int MESSAGETYPE_LEADERBOARD_PULL = 21;
+		public const int MESSAGETYPE_LEADERBOARD_PULL = 61;
 
 		public const int MESSAGETYPE_PROBLEM_PULL = 31;
 		public const int MESSAGETYPE_PROBLEM_PUSH = 32;
@@ -81,7 +82,9 @@ using System.Text;
 		private static string email = null;
 		private static string deviceId = null;
 		private static Queue playerQ = new Queue();
+		public static ArrayList playerA = new ArrayList();
 		private static Queue problemQ = new Queue();
+		private static ArrayList problemA = new ArrayList();
 		private static leaderboard gameLeaderboard = new leaderboard();
 		private static heavyUser me = new heavyUser();
 		private static string utf8hdr = "utf8=%E2%9C%93";
@@ -124,13 +127,52 @@ using System.Text;
 		{
 			senseix.deviceId = new string(result.ToCharArray());
 		}
+		public static int coachUidPush()
+		{
+			string currentToken = null;
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,string> result = null;
+			container decoder = new container();
+			//string deviceID = SystemInfo.deviceUniqueIdentifier;
+			string deviceID = "weruh878gb";
+			command.Add("access_token",getGameToken());
+			command.Add("udid",deviceID);
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_COACH_PUSH_UID);
+			
+			decoder.append(tmp);
+			print(decoder.buffer);
+			decoder.formBinary();
+			result = decoder.formDictionary();
+			if (result.ContainsKey ("sucess")) 
+			{
+				if(result["sucess"].Equals("false"))
+					return -1;
+			}
+			if(result.ContainsKey("auth_token"))
+			{
+				setAuthToken(result["auth_token"]);
+				//setName(name);
+				//setEmail(email);
+				//setDeviceID(deviceID);
+			}
+			else
+			{	
+				print("Can't find key from result");
+				return -2;
+			}
+			print(senseix.authToken);
+			saveAuthToken ();
+			inSession = true;
+			return 0;
+		}
 		public static int coachSignUp (string email,string name,string password,string game=null)
 		{
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
 			container decoder = new container();
-			string deviceID = SystemInfo.deviceUniqueIdentifier;
+			//string deviceID = SystemInfo.deviceUniqueIdentifier;
+		string deviceID = "weruh878gb";
 			if (game == null) {
 				if (getGameToken () == null) {
 					return -1;
@@ -181,7 +223,7 @@ using System.Text;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
 			container decoder =new container();
-			
+			string deviceID = "weruh878gb";
 			if (game == null) {
 				if (getGameToken () == null) {
 					return -1;
@@ -195,6 +237,7 @@ using System.Text;
 			print(currentToken+" "+login+" "+password);
 			command.Add("login",login);
 			command.Add("password",password);
+			command.Add("udid",deviceID);
 			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_COACH_SIGN_IN);
 			
 			//DEBUG
@@ -320,17 +363,79 @@ using System.Text;
 				playerQ = new Queue();
 			else
 				playerQ.Clear();
+			if (playerA == null)
+				playerA = new ArrayList ();
+			else
+				playerA.Clear();	
+
 			while(first.Count != 0)
 			{
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
 				playerQ.Enqueue(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
+				playerA.Add(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
 			}
 		
 			return playerQ;
 		}
-		public static Queue getCachedPlayer ()
+		public static ArrayList getPlayerA ()
+		{
+			string currentToken = null;
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			if(senseix.getGameToken() == null)
+				return null;
+			else 
+				currentToken = senseix.getGameToken();
+			command.Add("access_token",currentToken);
+			command.Add("auth_token",senseix.authToken);
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PLAYER_INDEX);
+			
+			if (tmp.Equals ("error")) 
+			{
+				print("[DEBUG] Found error in request, return -1");
+				return null;
+			}
+			//DEBUG
+			print ("[DEBUG] result: "+tmp);
+			
+			decoder.append(tmp);
+			print(tmp);
+			decoder.formBinary();
+			result = decoder.formObjectDictionary();
+			if (result == null)
+				return null;
+			if (!result.ContainsKey ("objects"))
+				return null;
+			Queue first = (Queue)result["objects"];
+			if (first.Count == 0)
+				return null;
+			if(playerQ == null)
+				playerQ = new Queue();
+			else
+				playerQ.Clear();
+			if (playerA == null)
+				playerA = new ArrayList ();
+			else
+				playerA.Clear();	
+			
+			while(first.Count != 0)
+			{
+				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
+			print ("============senseix debug "+tester["id"]);
+				playerQ.Enqueue(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
+				playerA.Add(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
+			}
+			
+			return playerA;
+		}
+		public static Queue getCachedPlayerQ ()
 		{
 			return senseix.playerQ;
+		}
+		public static ArrayList getCachedPlayerA ()
+		{
+			return senseix.playerA;
 		}
 		public static int developerLogin (string login,string password,string game = null)
 		{
@@ -396,7 +501,7 @@ using System.Text;
 		
 		}
 		//integer returned to know error number
-		public static int initSenseix(string gameToken,int rankNum = 10)
+		public static int initSenseixLM(string gameToken,int rankNum = 10)//legacy mode
 		{
 			int ret = 0;
 			if (senseix.gameToken != null)
@@ -414,7 +519,30 @@ using System.Text;
 			else
 				inSession = false;
 			return 0;
-
+			
+		}
+		//should read cached uid instead of using cached auth token
+		public static int initSenseix(string gameToken,int rankNum = 10)
+		{
+			
+			int ret = 0;
+			if (senseix.gameToken != null)
+			{
+				//print("exit token exist");
+				return -1;
+			}
+			senseix.gameToken = gameToken;
+			senseix.rankNum = rankNum;
+			/*
+			if (tryLoadAuthToken () == 0 && loadProfileID() == 0) 
+			{	
+				inSession = true;
+			}
+			else
+				inSession = false;
+				*/
+			return 0;
+			
 		}
 		/*
 		public static int getMyScore()
@@ -480,10 +608,79 @@ using System.Text;
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
 				problemQ.Enqueue(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"]),tester["answer"]));
 			}		
-
 			return problemQ;			
 		}
-
+		public static int readProblemFromStr()
+		{
+			int player_id = senseix.id;
+			string currentToken = null;
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			if (!PlayerPrefs.HasKey ("problem00"))
+				return -1;
+			string tmp = PlayerPrefs.GetString ("problem00");
+			if (tmp.Equals ("error")) 
+			{
+				print("[DEBUG] Found error in request, return -1");
+				return -2;
+			}
+			print ("[DEBUG] result: "+tmp);
+			StringBuilder tmpBuilder = new StringBuilder();
+			tmpBuilder.Append("{\"problems\":\"");
+			tmpBuilder.Append(tmp);
+			tmpBuilder.Append("\"}");
+			decoder.append(tmpBuilder.ToString());
+			print(tmpBuilder.ToString());
+			decoder.formBinary();
+			result = decoder.formObjectDictionary();
+			if (result == null)
+				return -3;
+			if (!result.ContainsKey ("objects"))
+				return -4;
+			Queue first = (Queue)result["objects"];
+			if (first.Count == 0)
+				return -5;
+			if(problemQ == null)
+				problemQ = new Queue();
+			else
+				problemQ.Clear();
+			while(first.Count != 0)
+			{
+				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
+				problemQ.Enqueue(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"]),tester["answer"]));
+			print("id "+tester["id"]+"content "+tester["content"]+"answer "+tester["answer"]+"category "+tester["category"]+"level "+tester["level"]);
+			}		
+			return 0;	
+		}
+		public static string pullProblemQStr(int count,string category,int level)
+		{
+			int player_id = senseix.id;
+			string currentToken = null;
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			container decoder = new container();
+			if(senseix.getGameToken() == null)
+				return null;
+			else 
+				currentToken = senseix.getGameToken();
+			command.Add("access_token",currentToken);
+			command.Add("auth_token",senseix.authToken);
+			command.Add("player_id",player_id.ToString());
+			command.Add("count",count.ToString());
+			command.Add("level",level.ToString());
+			command.Add("category",category);
+			print ("============debug: player_id "+player_id);
+			print ("============debug:  "+player_id);
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PROBLEM_PULL);
+			if (tmp.Equals ("error")) 
+			{
+				print("[DEBUG] Found error in request, return -1");
+				return null;
+			}
+			//DEBUG
+			return tmp;			
+		}
 		public static void pushProblemA(int problem_id,int duration,bool correctness,int tries,int game_difficulty,string answer)
 		{
 			Dictionary<string,string> command = new Dictionary<string, string>();
@@ -499,7 +696,6 @@ using System.Text;
 			command.Add ("game_difficulty",game_difficulty.ToString());
 			command.Add ("tries",tries.ToString());
 			command.Add ("duration",duration.ToString());
-			print ("??????????????Why not work");
 			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PROBLEM_PUSH);
 			if (tmp.Equals ("error")) 
 			{
@@ -709,8 +905,9 @@ using System.Text;
 			else 
 				return -2;
 		}
-		private static void cleanData()
+		public static void cleanData()
 		{
+			print ("cleaned data");
 			PlayerPrefs.DeleteAll ();
 		}
 

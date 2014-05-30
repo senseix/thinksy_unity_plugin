@@ -35,7 +35,8 @@ public class senseixMenuManager : MonoBehaviour {
 	private string passwordText = "Your password";
 	private string nameText = "Your name";
 	private string profileNameText = "Profile Name";
-	public static Queue players = null;
+	//public static Queue players = null;
+	public static ArrayList players = new ArrayList();
 
 	public static SenseixStyle mainStyle = new SenseixStyle();
 	public static GUIStyle buttonStyle = null;
@@ -55,7 +56,7 @@ public class senseixMenuManager : MonoBehaviour {
 		if (access_token != null && menuState == senseixMenuConst.MENU_0_MAIN) 
 		{
 			senseix.initSenseix (access_token);
-			players = senseix.getCachedPlayer ();
+			players = senseix.getCachedPlayerA();
 
 			//channelThread.Start();
 			buttonStyle = new GUIStyle();
@@ -203,7 +204,7 @@ public class senseixMenuManager : MonoBehaviour {
 				emailText="80640000@qq.com";
 				passwordText="password.com";
 				print ("Login sucessful");
-				players = senseix.getPlayer();
+				players = senseix.getPlayerA();
 				menuState = senseixMenuConst.MENU_2_FINISH;
 			}
 			else
@@ -255,7 +256,7 @@ public class senseixMenuManager : MonoBehaviour {
 			StringBuilder result = new StringBuilder();
 			for(int i=currentLeaderboardPage*5;i<leaderboard.entries.Count && i<(1+currentLeaderboardPage)*5;i++)
 			{
-				result.Append(((Entry)leaderboard.entries[i]).rank+". Name: "+((Entry)leaderboard.entries[i]).name);
+				result.Append(((lbEntry)leaderboard.entries[i]).rank+". Name: "+((lbEntry)leaderboard.entries[i]).name);
 				GUILayout.Label(result.ToString());
 				result.Remove(0,result.Length);
 			}
@@ -287,6 +288,8 @@ public class senseixMenuManager : MonoBehaviour {
 		for(int i=0;i<players.Count;i++)
 		{
 
+			//queue to array
+			/*
 			player = (heavyUser)players.Dequeue();
 			if(player != null)
 			{
@@ -308,6 +311,7 @@ public class senseixMenuManager : MonoBehaviour {
 					popSenseixMenu = false;
 				}
 			}	
+			*/
 		}
 	}
 	void drawCreateProfile(int windowID)
@@ -318,7 +322,7 @@ public class senseixMenuManager : MonoBehaviour {
 			if(senseix.createPlayer(profileNameText) == 0)
 			{
 				profileNameText = "Profile Name";
-				players = senseix.getPlayer();
+				players = senseix.getPlayerA();
 				menuState = senseixMenuConst.MENU_4_PROFILE;
 			}
 		}
@@ -397,5 +401,12 @@ public class senseixMenuManager : MonoBehaviour {
 		line.addMessage(new pagePack(messageType.MESSAGETYPE_PROBLEM_PUSH,recvResult));
 		return correct;
 	}
-
+	//FIXME: how about case that pulling problems fail
+	static public void storeProblems()
+	{
+		string problemStr =senseix.pullProblemQStr (20,"Mathematics",senseixManager.levelDecider());
+		print ("stored problems: " + problemStr);
+		PlayerPrefs.SetString ("problem00",problemStr);
+		PlayerPrefs.Save();	
+	}
 }
