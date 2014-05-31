@@ -25,8 +25,10 @@ public class GameManager : MonoBehaviour
     // Actor HP Manager Component
     public HpManager friendHpMan, enemyHpMan;
 
-	public UILabel loadingLable;
+	public List<UILabel> profileLables;
 
+	public UILabel loadingLable;
+	//public int idid;
 	public UIPanel buttonPanel;
 	public UIPanel signupPanel;
 	public UIPanel loginPanel;
@@ -83,6 +85,13 @@ public class GameManager : MonoBehaviour
 		signupPanelPos = signupPanel.transform.localPosition;
 		loginPanelPos = loginPanel.transform.localPosition;
 		profileSelectPanelPos = profileSelectPanel.transform.localPosition;
+	}
+	void initSsxProfileLables()
+	{
+		for(int i=0;i<9;i++)
+		{
+			profileLables[i].text="Empty";
+		}
 	}
 	void Load()
 	{
@@ -146,6 +155,13 @@ public class GameManager : MonoBehaviour
 	{
 		showMainmenuPanel ();
 	}
+	public void drawProfileList()
+	{
+		for(int i=0;i<players.Count;i++)
+		{
+			profileLables[i].text=((heavyUser)players[i]).name.Substring(0,15);
+		}
+	}
 	public void sendSignup()
 	{
 
@@ -174,6 +190,8 @@ public class GameManager : MonoBehaviour
 			hideLoginPanel();
 			showProfileList();
 			//showMainmenuPanel();
+			players=senseixManager.getPlayers();
+			drawProfileList();
 		}
 		else
 		{
@@ -319,6 +337,7 @@ public class GameManager : MonoBehaviour
         answerLabels = new UILabel[4];
         answerTfs = new Transform[4];
 		initSsxPanelPos ();
+		initSsxProfileLables ();
         int i = 0;
 		origParms = new TweenParms[4];
 		cardOffseth = new int[4];
