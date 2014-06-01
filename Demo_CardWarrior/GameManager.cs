@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
 		Vector3 pos = new Vector3(loginPanelPos.x,loginPanelPos.y,loginPanelPos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(loginPanel.transform, 1f, parms);
-		showMainmenuPanel ();
+		//showMainmenuPanel ();
 		print ("signup");
 	}
 	public void showProfile()
@@ -153,6 +153,9 @@ public class GameManager : MonoBehaviour
 	}
 	public void hideProfileList()
 	{
+		Vector3 pos = new Vector3(profileSelectPanelPos.x,profileSelectPanelPos.y,profileSelectPanelPos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(profileSelectPanel.transform, 1f, parms);
 		showMainmenuPanel ();
 	}
 	public void drawProfileList()
@@ -198,9 +201,50 @@ public class GameManager : MonoBehaviour
 			print("senseix  sign in failed");
 		}
 	}
+	private void profileSelect(int index)
+	{
+		if (senseixManager.selectProfile (index) == 0)
+			hideProfileList ();
+	}
+	public void profileSelect0()
+	{
+		profileSelect (0);
+	}
+	public void profileSelect1()
+	{
+		profileSelect (1);
+	}
+	public void profileSelect2()
+	{
+		profileSelect (2);
+	}
+	public void profileSelect3()
+	{
+		profileSelect (3);
+	}
+	public void profileSelect4()
+	{
+		profileSelect (4);
+	}
+	public void profileSelect5()
+	{
+		profileSelect (5);
+	}
+	public void profileSelect6()
+	{
+		profileSelect (6);
+	}
+	public void profileSelect7()
+	{
+		profileSelect (7);
+	}
+	public void profileSelect8()
+	{
+		profileSelect (8);
+	}
 	public void showInGameMenu()
 	{
-	
+		
 	}
 	public void hideInGameMenu()
 	{

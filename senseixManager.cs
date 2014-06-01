@@ -21,6 +21,9 @@ public class senseixManager:MonoBehaviour
 {
 	private static int insession = 0;
 	public static ArrayList playerA = null;
+	public static string name;
+	public static int id;
+	public static string email;
 	public senseixManager ()
 	{
 	}
@@ -65,7 +68,17 @@ public class senseixManager:MonoBehaviour
 			return null;
 		return playerA;
 	}
-
+	static public int selectProfile(int index)
+	{
+		if (senseix.playerA.Count <= index)
+			return -1;
+		senseix.selectProfile(index);
+		name=senseix.name;
+		id=senseix.id;
+		email=senseix.email;
+		print ("selected: " + name + " "+id+" "+email);
+		return 0;
+	}
 }
 
 

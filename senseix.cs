@@ -79,7 +79,7 @@ using System.Text;
 		private static string gameToken = null;
 		public static int id = 0;
 		public static string name = null;
-		private static string email = null;
+		public static string email = null;
 		private static string deviceId = null;
 		private static Queue playerQ = new Queue();
 		public static ArrayList playerA = new ArrayList();
@@ -126,6 +126,13 @@ using System.Text;
 		private static void setDeviceID(string result)
 		{
 			senseix.deviceId = new string(result.ToCharArray());
+		}
+		public static void selectProfile(int index)
+		{
+			print ("select " + index + " count " + playerA.Count);
+			name = ((heavyUser)playerA [index]).name;
+			email = ((heavyUser)playerA [index]).email;
+			id = ((heavyUser)playerA [index]).id;
 		}
 		public static int coachUidPush()
 		{
