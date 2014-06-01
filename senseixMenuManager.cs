@@ -366,14 +366,17 @@ public class senseixMenuManager : MonoBehaviour {
 		{
 			//print ("getProblem set to false");
 			answerProvided = false;
-			print ("Problem debug: current Problem setup");
+			//print ("Problem debug: current Problem setup");
 			currentProblem = senseixGameManager.getProblem();
 		}
 		else
-			print ("Problem debug: current Problem not setup");
-		//print ("===Answer is " + currentProblem.answer);
-		if(currentProblem != null)
+			//print ("Problem debug: current Problem not setup");
+		print ("===Answer is " + currentProblem.answer);
+		if (currentProblem != null)
+		{
+			//print ("===Got problem: " + currentProblem.content);
 			return currentProblem.content;
+		}
 		else
 			return "Please login SenseiX";
 	}
@@ -402,11 +405,12 @@ public class senseixMenuManager : MonoBehaviour {
 		return correct;
 	}
 	//FIXME: how about case that pulling problems fail
-	static public void storeProblems()
+	static public void storeProblems(int index)
 	{
+		string storeName = "problem0" + index.ToString ();
 		string problemStr =senseix.pullProblemQStr (20,"Mathematics",senseixManager.levelDecider());
 		print ("stored problems: " + problemStr);
-		PlayerPrefs.SetString ("problem00",problemStr);
+		PlayerPrefs.SetString (storeName,problemStr);
 		PlayerPrefs.Save();	
 	}
 }

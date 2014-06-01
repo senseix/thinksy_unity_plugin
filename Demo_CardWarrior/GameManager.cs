@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Holoville.HOTween;
 using Holoville.HOTween.Plugins;
+using System;
 
 //When app opened, first send out a UID ack
 //*if respond say it is tmp user, then automaticly use that tmp profile
@@ -55,8 +56,8 @@ public class GameManager : MonoBehaviour
 	TweenParms[] origParms;
 
 	private int[] numberOnCard;
-	private int currentAnwser = 0;
-	private string currentQuestion = "1 - 1 = ?";
+	private int currentAnwser;
+	private string currentQuestion;
 	private bool inInit = true;
 
 	private int[] cardOffseth;
@@ -418,6 +419,8 @@ public class GameManager : MonoBehaviour
             answerLabels[i] = tf.GetComponentInChildren<UILabel>();
             i++;
         }
+		currentQuestion = senseixManager.getProblem ();
+		currentAnwser = Convert.ToInt32(senseixManager.getAnwser ());
         QuizInit();
         shieldGroup = GameObject.Find("ShieldGroup").transform;
         shieldPos = shieldGroup.localPosition;
@@ -574,12 +577,14 @@ public class GameManager : MonoBehaviour
     void SetQuiz()
     {
 		bool hasAns = false;
-		quizIndex = Random.Range(0, quizTotal) % quizTotal;
+		quizIndex = UnityEngine.Random.Range(0, quizTotal) % quizTotal;
         QuizData item = quizList[quizIndex];
+		currentQuestion = senseixManager.getProblem ();
+		currentAnwser = Convert.ToInt32(senseixManager.getAnwser ());
 		print ("SetQuiz current answer " + currentAnwser);
 		for(int i=0;i<4;i++)
 		{
-			int got = Random.Range(0,9)%10;
+			int got = UnityEngine.Random.Range(0,9)%10;
 			print ("SetQuiz go random " + got);
 			if(got==currentAnwser)
 			{
@@ -590,7 +595,7 @@ public class GameManager : MonoBehaviour
 		}
 		if (!hasAns) 
 		{
-			int randIndex = Random.Range (0, 3) % 4;
+			int randIndex = UnityEngine.Random.Range (0, 3) % 4;
 			numberOnCard[randIndex] = currentAnwser;
 			answerLabels [randIndex].text = currentAnwser.ToString ();
 		}
@@ -613,6 +618,7 @@ public class GameManager : MonoBehaviour
         QuizData item = quizList[quizIndex];
 		print (numberOnCard[no] + " " + currentAnwser);
         // Is answer collect?
+		senseixManager.gotAnwser (numberOnCard[no].ToString());
         if (numberOnCard[no] == currentAnwser) 
         {
             // Display good Effect

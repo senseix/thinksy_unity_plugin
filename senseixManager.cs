@@ -34,19 +34,20 @@ public class senseixManager:MonoBehaviour
 		ret = senseix.coachUidPush ();
 		if (ret == 0)
 		{
-			senseix.readProblemFromStr();
+			//senseix.readProblemFromStr();
 
 			senseix.inSession = true;
 			playerA = senseix.getPlayerA();
 			//here should be showing profile selecting
-			/*
+			//If there is only one count, then we can directly go to get problems
+			//otherwise, we need to do that after we get user id
 			if(playerA.Count == 1)
 			{
 				senseix.id=((heavyUser)playerA[0]).id;
 				print ("player is" + senseix.id);
+				senseixMenuManager.storeProblems(0);
+				senseixGameManager.prepareProblem (20, "Mathematics", 1);
 			}
-			*/
-			senseixMenuManager.storeProblems();
 		}
 		else
 			senseix.inSession = false;
@@ -76,8 +77,22 @@ public class senseixManager:MonoBehaviour
 		name=senseix.name;
 		id=senseix.id;
 		email=senseix.email;
-		print ("selected: " + name + " "+id+" "+email);
+		//print ("selected: " + name + " "+id+" "+email);
+		senseixMenuManager.storeProblems(0);
+		senseixGameManager.prepareProblem (20, "Mathematics", 1);
 		return 0;
+	}
+	public static string getProblem()
+	{
+		return senseixMenuManager.getProblem ();
+	}
+	public static string getAnwser()
+	{
+		return senseixMenuManager.getAnswer();
+	}
+	public static void gotAnwser(string answer)
+	{
+		senseixMenuManager.gotAnswer (answer);
 	}
 }
 
