@@ -105,7 +105,7 @@ public class senseixMenuManager : MonoBehaviour {
 	{
 		//print ("this is menue Manager1");
 	}
-	void Update()
+	public static void updateScanner()
 	{
 		//print ("this is menue Manager2");
 		line.scanMessages ();
@@ -369,9 +369,9 @@ public class senseixMenuManager : MonoBehaviour {
 			//print ("Problem debug: current Problem setup");
 			currentProblem = senseixGameManager.getProblem();
 		}
-		else
+		//else
 			//print ("Problem debug: current Problem not setup");
-		print ("===Answer is " + currentProblem.answer);
+		//print ("===Answer is " + currentProblem.answer);
 		if (currentProblem != null)
 		{
 			//print ("===Got problem: " + currentProblem.content);
@@ -395,7 +395,7 @@ public class senseixMenuManager : MonoBehaviour {
 		answerProvided = true;
 		specifyNumber = true;
 		skipCount = UnityEngine.Random.Range (0,3);
-		print ("Got new skipCount "+skipCount);
+		//print ("Got new skipCount "+skipCount);
 		container message = senseix.pushProblemAMT(currentProblem.problemID,1,correct,1,1,answer);
 		message.formBinary();
 		//print (message.url);

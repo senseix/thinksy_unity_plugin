@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Holoville.HOTween;
 using Holoville.HOTween.Plugins;
 using System;
+using System.Threading;
 
 //When app opened, first send out a UID ack
 //*if respond say it is tmp user, then automaticly use that tmp profile
@@ -27,24 +28,25 @@ public class GameManager : MonoBehaviour
     public HpManager friendHpMan, enemyHpMan;
 
 	public List<UILabel> profileLables;
-
+	public int[] hpDamage;
+	public int currentLevel = 0;
 	public UILabel loadingLable;
 	//public int idid;
 	public UIPanel buttonPanel;
 	public UIPanel signupPanel;
 	public UIPanel loginPanel;
 	public UIPanel profileSelectPanel;
-
+	public SkinnedMeshRenderer skeleton;
 	public UIInput signupEmail;
 	public UIInput signupPassword;
 	public UIInput signupName;
-
+	public UILabel roundLable;
 	public UIInput loginEmail;
 	public UIInput loginPassword;
 
 	public static ArrayList players = null;
     // Save Start Position
-	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos;
+	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos;
     Transform friendHpGroup, enemyHpGroup, shieldGroup;
 
     // Save Question & Answer Display Position
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour
 		signupPanelPos = signupPanel.transform.localPosition;
 		loginPanelPos = loginPanel.transform.localPosition;
 		profileSelectPanelPos = profileSelectPanel.transform.localPosition;
+		roundLablePos = roundLable.transform.localPosition;
 	}
 	void initSsxProfileLables()
 	{
@@ -123,6 +126,25 @@ public class GameManager : MonoBehaviour
 		HOTween.To(signupPanel.transform, 1f, parms);
 		showMainmenuPanel ();
 		print ("signup");
+	}
+	public void showRound()
+	{
+		roundLable.text = "Round " + currentLevel.ToString();
+		Vector3 pos = new Vector3(roundLablePos.x,roundLablePos.y+Screen.height,roundLablePos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(roundLable.transform, 1f, parms);
+		/*
+		pos = new Vector3(roundLablePos.x,roundLablePos.y+Screen.height+5,roundLablePos.z);
+		parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(roundLable.transform, 0.0000001f, parms);
+		*/
+		hideRound ();
+	}
+	public void hideRound()
+	{
+		Vector3 pos = new Vector3(roundLablePos.x,roundLablePos.y,roundLablePos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(roundLable.transform, 1f, parms);
 	}
 	public void showLoginPanel()
 	{
@@ -315,6 +337,7 @@ public class GameManager : MonoBehaviour
     void StartGame()
     {
         IntroGame();
+		showRound ();
 		playing = true;
         DrawQuiz();
     }
@@ -396,7 +419,13 @@ public class GameManager : MonoBehaviour
 		cardOffsetv [1] = 113;
 		cardOffsetv [2] = -43;
 		cardOffsetv [3] = 10;
-
+		hpDamage = new int[100];
+		for (int j=0; j<100; j++) 
+		{
+			hpDamage[j]=20+j*10;
+			if(hpDamage[j]>=100)
+				hpDamage[j]=100;
+		}
 		numberOnCard = new int[4];
 		/*
 		senseix.initSenseix ("5dc215f2d2906b0dd81f82a0a959d80aa3aba0b665c292a5da7ff6431b9ee484");
@@ -581,11 +610,11 @@ public class GameManager : MonoBehaviour
         QuizData item = quizList[quizIndex];
 		currentQuestion = senseixManager.getProblem ();
 		currentAnwser = Convert.ToInt32(senseixManager.getAnwser ());
-		print ("SetQuiz current answer " + currentAnwser);
+		//print ("SetQuiz current answer " + currentAnwser);
 		for(int i=0;i<4;i++)
 		{
 			int got = UnityEngine.Random.Range(0,9)%10;
-			print ("SetQuiz go random " + got);
+			//print ("SetQuiz go random " + got);
 			if(got==currentAnwser)
 			{
 				hasAns=true;
@@ -649,7 +678,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(DelayActoin(0.6f, () =>
             {
                 go = Instantiate(happyEffect, new Vector3(0.7f, 1f, 0f), Quaternion.identity) as GameObject;
-                friendHpMan.DoDamageHp(50);
+                friendHpMan.DoDamageHp(hpDamage[currentLevel]);
             }));
             // Display Actor's motion
             friendAnimator.CrossFade("Bad", 0.2f);
@@ -667,9 +696,14 @@ public class GameManager : MonoBehaviour
 	{
 		quizOn = false;
 		playing = false;
+		currentLevel++;
+		if (currentLevel >= 100)
+			currentLevel = 99;
 		HideGame ();
 		showMainmenuPanel ();
 		showAvatar ();
+		//StartGame ();
+		ssxStartGame ();
 	}
 	void lostGame()
 	{

@@ -22,7 +22,7 @@ public class senseixGameManager:MonoBehaviour
 	public senseixGameManager ()
 	{
 	}
-	void Update()
+	public static void updateScanner()
 	{
 		line.scanMessages ();
 		/*
@@ -68,13 +68,14 @@ public class senseixGameManager:MonoBehaviour
 		//print ("getProblem in GameManager was called " + problemQ.Count);
 		if (problemQ.Count < 5) 
 		{
-			//print ("=============Going to start new thread " + problemQ.Count);
+			print ("=============Going to start new thread " + problemQ.Count);
 			container message = prepareProblemMT(4,current_category,current_level);
 			//print (message.url);
 			WWW recvResult =new WWW (message.buffer.ToString());
-			//print ("added message to line");
+			print ("added message to line");
 			line.addMessage(new pagePack(messageType.MESSAGETYPE_PROBLEM_PULL,recvResult));
 		}
+		print ("===QUEUE==="+problemQ.Count);
 		return (problem)problemQ.Dequeue();
 	}
 	public static void enqueProblem(problem p)

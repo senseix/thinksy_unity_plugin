@@ -21,7 +21,7 @@ public class messageLine
 	}
 	public void addMessage(pagePack pack)
 	{
-		//MonoBehaviour.print("Added pack to list");
+		MonoBehaviour.print("Added pack to list" + pack.messageType);
 		packList.Add (pack);
 		//MonoBehaviour.print("after adding count is "+packList.Count);
 	}
@@ -30,8 +30,12 @@ public class messageLine
 		int count = packList.Count;
 		if (count == 0) 
 		{
-			//MonoBehaviour.print("messageLine count " + count);
+			MonoBehaviour.print("messageLine count " + count);
 			return;
+		}
+		else
+		{
+			MonoBehaviour.print("messageLine count not empty " + count);
 		}
 		pagePack tmpPack = null;
 		for(int i=0;i<count;i++)
@@ -55,7 +59,7 @@ public class messageLine
 				}
 				else
 				{
-					//MonoBehaviour.print("Everything is good");
+					MonoBehaviour.print("Everything is good");
 					switch(tmpPack.messageType)
 					{
 					case messageType.MESSAGETYPE_PROBLEM_PULL:
@@ -64,7 +68,7 @@ public class messageLine
 						container decoder = new container();
 						StringBuilder tmpBuilder = new StringBuilder();
 						tmp = tmpPack.wwwPage.text;
-
+						MonoBehaviour.print("======got message=====  "+tmp);
 						tmpBuilder.Append("{\"problems\":\"");
 						tmpBuilder.Append(tmp);
 						tmpBuilder.Append("\"}");
@@ -96,7 +100,7 @@ public class messageLine
 						break;
 					case messageType.MESSAGETYPE_PROBLEM_PUSH:
 						tmp = tmpPack.wwwPage.text;
-						//MonoBehaviour.print(tmp);
+						MonoBehaviour.print("===push "+tmp);
 						packList.Remove(tmpPack);
 						break;
 					default:

@@ -46,7 +46,7 @@ public class senseixManager:MonoBehaviour
 				senseix.id=((heavyUser)playerA[0]).id;
 				print ("player is" + senseix.id);
 				senseixMenuManager.storeProblems(0);
-				senseixGameManager.prepareProblem (20, "Mathematics", 1);
+				senseixGameManager.prepareProblem (5, "Mathematics", 1);
 			}
 		}
 		else
@@ -61,6 +61,11 @@ public class senseixManager:MonoBehaviour
 	static public bool networkConnected()
 	{
 		return true;
+	}
+	void Update()
+	{
+		senseixMenuManager.updateScanner ();
+		senseixGameManager.updateScanner ();
 	}
 	static public ArrayList getPlayers()
 	{
