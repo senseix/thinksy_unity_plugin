@@ -22,7 +22,7 @@ public class senseixManager:MonoBehaviour
 	private static int insession = 0;
 	public static ArrayList playerA = null;
 	public static string name;
-	public static int id;
+	public static int id=0;
 	public static string email;
 	public senseixManager ()
 	{
@@ -44,10 +44,15 @@ public class senseixManager:MonoBehaviour
 			if(playerA.Count == 1)
 			{
 				senseix.id=((heavyUser)playerA[0]).id;
-				print ("player is" + senseix.id);
-				senseixMenuManager.storeProblems(0);
-				senseixGameManager.prepareProblem (5, "Mathematics", 1);
+				id=senseix.id;
+				if(senseix.id != 0)
+				{
+					//print ("player is" + senseix.id);
+					senseixMenuManager.storeProblems(0);
+					senseixGameManager.prepareProblem (5, "Mathematics", 1);
+				}
 			}
+			
 		}
 		else
 			senseix.inSession = false;

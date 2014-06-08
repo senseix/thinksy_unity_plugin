@@ -407,7 +407,7 @@ using System.Text;
 			print ("[DEBUG] result: "+tmp);
 			
 			decoder.append(tmp);
-			print(tmp);
+			//print(tmp);
 			decoder.formBinary();
 			result = decoder.formObjectDictionary();
 			if (result == null)
@@ -617,16 +617,19 @@ using System.Text;
 			}		
 			return problemQ;			
 		}
-		public static int readProblemFromStr()
+		public static int readProblemFromStr(int slot)
 		{
+			string slotname = "problem00";
+			if (slot >= 0)
+				slotname = "problem0" + slot.ToString ();
 			int player_id = senseix.id;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
 			container decoder = new container();
-			if (!PlayerPrefs.HasKey ("problem00"))
+			if (!PlayerPrefs.HasKey (slotname))
 				return -1;
-			string tmp = PlayerPrefs.GetString ("problem00");
+			string tmp = PlayerPrefs.GetString (slotname);
 			if (tmp.Equals ("error")) 
 			{
 				print("[DEBUG] Found error in request, return -1");

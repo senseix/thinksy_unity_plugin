@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 	public UIPanel signupPanel;
 	public UIPanel loginPanel;
 	public UIPanel profileSelectPanel;
+	public UIPanel createProfilePanel;
 	public SkinnedMeshRenderer skeleton;
 	public UIInput signupEmail;
 	public UIInput signupPassword;
@@ -43,10 +44,11 @@ public class GameManager : MonoBehaviour
 	public UILabel roundLable;
 	public UIInput loginEmail;
 	public UIInput loginPassword;
+	public UIInput createProfileName;
 
 	public static ArrayList players = null;
     // Save Start Position
-	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos;
+	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos,createProfilePos;
     Transform friendHpGroup, enemyHpGroup, shieldGroup;
 
     // Save Question & Answer Display Position
@@ -89,6 +91,7 @@ public class GameManager : MonoBehaviour
 		loginPanelPos = loginPanel.transform.localPosition;
 		profileSelectPanelPos = profileSelectPanel.transform.localPosition;
 		roundLablePos = roundLable.transform.localPosition;
+		createProfilePos = createProfilePanel.transform.localPosition;
 	}
 	void initSsxProfileLables()
 	{
@@ -111,6 +114,9 @@ public class GameManager : MonoBehaviour
 	{
 		
 	}
+	/*
+	 * This is code that show or hide single menu
+	 */
 	public void showSignupPanel()
 	{
 		hideMainmenuPanel ();
@@ -125,7 +131,23 @@ public class GameManager : MonoBehaviour
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(signupPanel.transform, 1f, parms);
 		showMainmenuPanel ();
-		print ("signup");
+	}
+	public void showCreateProfile()
+	{
+		hideProfileList ();
+		hideMainmenuPanel ();
+		Vector3 pos = new Vector3(createProfilePos.x,createProfilePos.y+Screen.height,createProfilePos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(createProfilePanel.transform, 1f, parms);
+	}
+	public void hideCreateProfile()
+	{
+		Vector3 pos = new Vector3(signupPanelPos.x,signupPanelPos.y,signupPanelPos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(createProfilePanel.transform, 1f, parms);
+		drawProfileList();
+		showProfileList ();
+		players=senseixManager.getPlayers();
 	}
 	public void showRound()
 	{
@@ -148,6 +170,7 @@ public class GameManager : MonoBehaviour
 	}
 	public void showLoginPanel()
 	{
+		senseix.cleanData ();
 		hideMainmenuPanel ();
 		Vector3 pos = new Vector3(loginPanelPos.x,loginPanelPos.y+Screen.height,loginPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
@@ -159,8 +182,8 @@ public class GameManager : MonoBehaviour
 		Vector3 pos = new Vector3(loginPanelPos.x,loginPanelPos.y,loginPanelPos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(loginPanel.transform, 1f, parms);
-		//showMainmenuPanel ();
-		print ("signup");
+//		showMainmenuPanel ();
+		//print ("signup");
 	}
 	public void showProfile()
 	{
@@ -183,11 +206,21 @@ public class GameManager : MonoBehaviour
 	}
 	public void drawProfileList()
 	{
+		string playerName = null;
 		for(int i=0;i<players.Count;i++)
 		{
-			profileLables[i].text=((heavyUser)players[i]).name.Substring(0,15);
+			if(((heavyUser)players[i]).name.Length>15)
+				playerName = profileLables[i].text=((heavyUser)players[i]).name.Substring(0,15);
+			else
+				playerName = profileLables[i].text=((heavyUser)players[i]).name;
 		}
 	}
+	/*
+	 * This part is code that combine different kind of show and hide, hide first, show second
+	 */
+	/*
+	 * This part is code that gonna send out request using lower level of senseix pluggin
+	 */
 	public void sendSignup()
 	{
 
@@ -224,10 +257,29 @@ public class GameManager : MonoBehaviour
 			print("senseix  sign in failed");
 		}
 	}
+	public void sendCreateProfile()
+	{
+		if(senseix.createPlayer(createProfileName.value) == 0)
+		{
+			print("Success");
+			//SUCCESS
+		}
+		else
+		{
+			//ERROR
+		}
+	}
 	private void profileSelect(int index)
 	{
 		if (senseixManager.selectProfile (index) == 0)
+		{	
+			senseixMenuManager.storeProblems(0);
+			senseixGameManager.prepareProblem (5, "Mathematics", 1);
+			currentQuestion = senseixManager.getProblem ();
+			currentAnwser = Convert.ToInt32(senseixManager.getAnwser ());
+			QuizInit();
 			hideProfileList ();
+		}
 	}
 	public void profileSelect0()
 	{
@@ -448,9 +500,13 @@ public class GameManager : MonoBehaviour
             answerLabels[i] = tf.GetComponentInChildren<UILabel>();
             i++;
         }
+		//These code should be after we got id of player
+		/*
 		currentQuestion = senseixManager.getProblem ();
 		currentAnwser = Convert.ToInt32(senseixManager.getAnwser ());
         QuizInit();
+        */
+		//above should be after we got id of player
         shieldGroup = GameObject.Find("ShieldGroup").transform;
         shieldPos = shieldGroup.localPosition;
         friendPos = friendAnimator.transform.localPosition;
