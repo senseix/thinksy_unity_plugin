@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
 	 */
 	public void showSignupPanel()
 	{
-		hideMainmenuPanel ();
+		//hideMainmenuPanel ();
 		Vector3 pos = new Vector3(signupPanelPos.x,signupPanelPos.y+Screen.height,signupPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
@@ -130,12 +130,12 @@ public class GameManager : MonoBehaviour
 		Vector3 pos = new Vector3(signupPanelPos.x,signupPanelPos.y,signupPanelPos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(signupPanel.transform, 1f, parms);
-		showMainmenuPanel ();
+		//showMainmenuPanel ();
 	}
 	public void showCreateProfile()
 	{
-		hideProfileList ();
-		hideMainmenuPanel ();
+		//hideProfileList ();
+		//hideMainmenuPanel ();
 		Vector3 pos = new Vector3(createProfilePos.x,createProfilePos.y+Screen.height,createProfilePos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(createProfilePanel.transform, 1f, parms);
@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(createProfilePanel.transform, 1f, parms);
 		drawProfileList();
-		showProfileList ();
+		//showProfileList ();
 		players=senseixManager.getPlayers();
 	}
 	public void showRound()
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
 	public void showLoginPanel()
 	{
 		senseix.cleanData ();
-		hideMainmenuPanel ();
+		//hideMainmenuPanel ();
 		Vector3 pos = new Vector3(loginPanelPos.x,loginPanelPos.y+Screen.height,loginPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
@@ -215,9 +215,85 @@ public class GameManager : MonoBehaviour
 				playerName = profileLables[i].text=((heavyUser)players[i]).name;
 		}
 	}
+	public void showMainmenuPanel()
+	{
+		Vector3 pos = new Vector3(mainmenuPanelPos.x,mainmenuPanelPos.y,mainmenuPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(buttonPanel.transform, 1f, parms);
+	}
+	void hideMainmenuPanel()
+	{
+		Vector3 pos = new Vector3(mainmenuPanelPos.x,mainmenuPanelPos.y+Screen.height,mainmenuPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(buttonPanel.transform, 1f, parms);
+	}
+	public void showError()
+	{
+
+	}
+	public void hideError()
+	{
+	
+	}
 	/*
 	 * This part is code that combine different kind of show and hide, hide first, show second
 	 */
+	public void hideMain_showLogin()
+	{
+		hideMainmenuPanel ();
+		showLoginPanel ();
+	}
+	public void hideMain_showSignup()
+	{
+		hideMainmenuPanel ();
+		showSignupPanel ();
+	}
+	public void hideMain_showInstruction()
+	{
+		hideMainmenuPanel ();
+
+	}
+	public void hideLogin_showMain()
+	{
+		hideLoginPanel ();
+		showMainmenuPanel ();
+	}
+	public void hideLogin_showProfile()
+	{
+		hideLoginPanel ();
+		showProfile ();
+	}
+	public void hideSignup_showMain()
+	{
+		hideSignupPanel ();
+		showMainmenuPanel ();
+	}
+	public void hideSignup_showProfile()
+	{
+		hideSignupPanel ();
+		showProfileList ();
+	}
+	public void hideSignup_show()
+	{
+		
+	}
+	public void hideProfile_showCreatProfile()
+	{
+		hideProfileList ();
+		showCreateProfile ();
+	}
+	public void hideProfile_showMain()
+	{
+		hideProfileList ();
+		showMainmenuPanel ();
+	}
+	public void hideCreateProfile_showProfile()
+	{
+		hideCreateProfile ();
+		showProfileList ();
+	}
 	/*
 	 * This part is code that gonna send out request using lower level of senseix pluggin
 	 */
@@ -325,20 +401,7 @@ public class GameManager : MonoBehaviour
 	{
 		
 	}
-	public void showMainmenuPanel()
-	{
-		Vector3 pos = new Vector3(mainmenuPanelPos.x,mainmenuPanelPos.y,mainmenuPanelPos.z);
-		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
-		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
-		HOTween.To(buttonPanel.transform, 1f, parms);
-	}
-	void hideMainmenuPanel()
-	{
-		Vector3 pos = new Vector3(mainmenuPanelPos.x,mainmenuPanelPos.y+Screen.height,mainmenuPanelPos.z);
-		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
-		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
-		HOTween.To(buttonPanel.transform, 1f, parms);
-	}
+
 	public void ssxStartGame()
 	{
 		hideMainmenuPanel ();
