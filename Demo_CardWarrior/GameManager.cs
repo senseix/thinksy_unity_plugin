@@ -26,7 +26,11 @@ public class GameManager : MonoBehaviour
 	public Animator friendAnimator, enemyAnimator, mmfriendAnimator,mmenemyAnimator;
     // Actor HP Manager Component
     public HpManager friendHpMan, enemyHpMan;
-
+	public const string errorLogin = "Login Failed";
+	public const string errorSignup = "Signup Failed";
+	public const string errorCreateProfile = "Create profile failed";
+	public const string errorNetFail = "Network Failed";
+	private string errorTitle = "";
 	public List<UILabel> profileLables;
 	public int[] hpDamage;
 	public int currentLevel = 0;
@@ -37,18 +41,20 @@ public class GameManager : MonoBehaviour
 	public UIPanel loginPanel;
 	public UIPanel profileSelectPanel;
 	public UIPanel createProfilePanel;
+	public UIPanel errorPanel;
 	public SkinnedMeshRenderer skeleton;
 	public UIInput signupEmail;
 	public UIInput signupPassword;
 	public UIInput signupName;
 	public UILabel roundLable;
+	public UILabel errorContent;
 	public UIInput loginEmail;
 	public UIInput loginPassword;
 	public UIInput createProfileName;
-
+	private bool inError = false;
 	public static ArrayList players = null;
     // Save Start Position
-	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos,createProfilePos;
+	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos,createProfilePos,errorPos;
     Transform friendHpGroup, enemyHpGroup, shieldGroup;
 
     // Save Question & Answer Display Position
@@ -92,6 +98,7 @@ public class GameManager : MonoBehaviour
 		profileSelectPanelPos = profileSelectPanel.transform.localPosition;
 		roundLablePos = roundLable.transform.localPosition;
 		createProfilePos = createProfilePanel.transform.localPosition;
+		errorPos = errorPanel.transform.localPosition;
 	}
 	void initSsxProfileLables()
 	{
@@ -191,7 +198,10 @@ public class GameManager : MonoBehaviour
 	}
 	public void showProfileList()
 	{
-		hideLoginPanel ();
+		//hideLoginPanel ();
+		players = senseixManager.getCachedPlayers ();
+		if(players != null)
+			drawProfileList ();
 		Vector3 pos = new Vector3(profileSelectPanelPos.x,profileSelectPanelPos.y+Screen.height,profileSelectPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
@@ -202,7 +212,7 @@ public class GameManager : MonoBehaviour
 		Vector3 pos = new Vector3(profileSelectPanelPos.x,profileSelectPanelPos.y,profileSelectPanelPos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(profileSelectPanel.transform, 1f, parms);
-		showMainmenuPanel ();
+		//showMainmenuPanel ();
 	}
 	public void drawProfileList()
 	{
@@ -231,11 +241,17 @@ public class GameManager : MonoBehaviour
 	}
 	public void showError()
 	{
-
+		inError = true;
+		Vector3 pos = new Vector3(errorPos.x,errorPos.y+Screen.height,errorPos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(errorPanel.transform, 1f, parms);
 	}
 	public void hideError()
 	{
-	
+		inError = false;
+		Vector3 pos = new Vector3(errorPos.x,errorPos.y,errorPos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(errorPanel.transform, 1f, parms);
 	}
 	/*
 	 * This part is code that combine different kind of show and hide, hide first, show second
@@ -294,6 +310,11 @@ public class GameManager : MonoBehaviour
 		hideCreateProfile ();
 		showProfileList ();
 	}
+	public void hideMain_showProfile()
+	{
+		hideMainmenuPanel ();
+		showProfileList ();
+	}
 	/*
 	 * This part is code that gonna send out request using lower level of senseix pluggin
 	 */
@@ -306,12 +327,14 @@ public class GameManager : MonoBehaviour
 		if (senseix.coachSignUp (emailText, name, passwordText) == 0) 
 		{
 			print("senseix sign up successful");
-			hideSignupPanel();
-			showMainmenuPanel();
+
+			hideSignup_showMain();
 		}
 		else
 		{
 			print("senseix sign up failed");
+			errorContent.text = errorSignup;
+			showError();
 		}
 	}
 	public void sendLogin()
@@ -330,6 +353,8 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
+			errorContent.text = errorLogin;
+			showError();
 			print("senseix  sign in failed");
 		}
 	}
@@ -342,6 +367,8 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
+			errorContent.text = errorCreateProfile;
+			showError();
 			//ERROR
 		}
 	}
@@ -354,7 +381,7 @@ public class GameManager : MonoBehaviour
 			currentQuestion = senseixManager.getProblem ();
 			currentAnwser = Convert.ToInt32(senseixManager.getAnwser ());
 			QuizInit();
-			hideProfileList ();
+			hideProfile_showMain();
 		}
 	}
 	public void profileSelect0()
@@ -404,9 +431,16 @@ public class GameManager : MonoBehaviour
 
 	public void ssxStartGame()
 	{
-		hideMainmenuPanel ();
-		StartGame ();
-		print ("StartGame");
+		if(senseixManager.id != 0)
+		{
+			hideMainmenuPanel ();
+			StartGame ();
+		}
+		else
+		{
+			hideMain_showProfile();
+		}
+		//print ("StartGame");
 	}
 	//ssx
     void Awake()
@@ -554,7 +588,11 @@ public class GameManager : MonoBehaviour
 		else
 			senseix.coachUidPush();
 		*/
-		senseixManager.initSenseixManager ("5dc215f2d2906b0dd81f82a0a959d80aa3aba0b665c292a5da7ff6431b9ee484");
+		if (senseixManager.initSenseixManager ("5dc215f2d2906b0dd81f82a0a959d80aa3aba0b665c292a5da7ff6431b9ee484") != 0 || !senseix.inSession) 
+		{
+			errorContent.text = errorNetFail;
+			showError();
+		}
 
 		foreach (Transform tf in GameObject.Find("Answers").transform)
         {

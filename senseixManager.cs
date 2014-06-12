@@ -55,8 +55,10 @@ public class senseixManager:MonoBehaviour
 			
 		}
 		else
+		{	
+			ret = -1;
 			senseix.inSession = false;
-
+		}
 		return ret;
 	}
 	static public int levelDecider()
@@ -77,6 +79,10 @@ public class senseixManager:MonoBehaviour
 		playerA = senseix.getPlayerA();
 		if (playerA == null || playerA.Count < 1)
 			return null;
+		return playerA;
+	}
+	static public ArrayList getCachedPlayers()
+	{
 		return playerA;
 	}
 	static public int selectProfile(int index)
