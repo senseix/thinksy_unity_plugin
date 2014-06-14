@@ -179,16 +179,11 @@ using System.Text;
 			Dictionary<string,string> result = null;
 			container decoder = new container();
 			//string deviceID = SystemInfo.deviceUniqueIdentifier;
-		string deviceID = "weruh878gb";
-			if (game == null) {
-				if (getGameToken () == null) {
-					return -1;
-				} else {
-					currentToken = getGameToken();
-				}
-			} else {
-				currentToken = game;
-			}
+			string deviceID = "weruh878gb";
+			if(gameToken != null)
+				currentToken = gameToken;
+			else
+				return -3;
 			command.Add("access_token",currentToken);
 			print(currentToken+" "+email+" "+name+" "+password);
 			command.Add("name",name);
@@ -225,7 +220,6 @@ using System.Text;
 		}
 		public static int coachLogin (string login,string password,string game=null)
 		{
-
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
