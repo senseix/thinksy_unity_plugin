@@ -20,6 +20,7 @@ using System.Collections;
 public class senseixManager:MonoBehaviour
 {
 	private static int insession = 0;
+	private static bool networkAvailable = true;
 	public static ArrayList playerA = null;
 	public static string name;
 	public static int id=0;
@@ -35,7 +36,7 @@ public class senseixManager:MonoBehaviour
 		if (ret == 0)
 		{
 			//senseix.readProblemFromStr();
-
+			networkAvailable = true;
 			senseix.inSession = true;
 			playerA = senseix.getPlayerA();
 			//here should be showing profile selecting
@@ -57,6 +58,7 @@ public class senseixManager:MonoBehaviour
 		else
 		{	
 			ret = -1;
+			networkAvailable = false;
 			senseix.inSession = false;
 		}
 		return ret;
@@ -106,9 +108,9 @@ public class senseixManager:MonoBehaviour
 	{
 		return senseixMenuManager.getAnswer();
 	}
-	public static void gotAnwser(string answer)
+	public static void gotAnwser(string answer,bool sendToServer = true)
 	{
-		senseixMenuManager.gotAnswer (answer);
+		senseixMenuManager.gotAnswer (answer,sendToServer);
 	}
 }
 

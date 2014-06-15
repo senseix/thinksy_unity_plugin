@@ -386,7 +386,7 @@ public class senseixMenuManager : MonoBehaviour {
 		//specifyNumber = false;
 		return currentProblem.answer;
 	}
-	public static bool gotAnswer(string answer)
+	public static bool gotAnswer(string answer,bool sendToServer = true)
 	{
 		//FIXME:
 		bool correct = (Convert.ToInt32(answer) == Convert.ToInt32(currentProblem.answer)); //senseix.checkAnswer(tmp,demoProblem);
@@ -396,12 +396,15 @@ public class senseixMenuManager : MonoBehaviour {
 		specifyNumber = true;
 		skipCount = UnityEngine.Random.Range (0,3);
 		//print ("Got new skipCount "+skipCount);
-		container message = senseix.pushProblemAMT(currentProblem.problemID,1,correct,1,1,answer);
-		message.formBinary();
-		//print (message.url);
-		WWW recvResult =new WWW (message.url,message.binary);
-		//print ("Answer:" + correct.ToString() );
-		line.addMessage(new pagePack(messageType.MESSAGETYPE_PROBLEM_PUSH,recvResult));
+		if(sendToServer)
+		{
+			container message = senseix.pushProblemAMT(currentProblem.problemID,1,correct,1,1,answer);
+			message.formBinary();
+			//print (message.url);
+			WWW recvResult =new WWW (message.url,message.binary);
+			//print ("Answer:" + correct.ToString() );
+			line.addMessage(new pagePack(messageType.MESSAGETYPE_PROBLEM_PUSH,recvResult));
+		}
 		return correct;
 	}
 	//FIXME: how about case that pulling problems fail

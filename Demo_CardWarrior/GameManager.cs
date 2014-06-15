@@ -41,20 +41,26 @@ public class GameManager : MonoBehaviour
 	public UIPanel loginPanel;
 	public UIPanel profileSelectPanel;
 	public UIPanel createProfilePanel;
+	public UIPanel winPanel;
 	public UIPanel errorPanel;
+	public UIPanel enemyTurnPanel;
 	public SkinnedMeshRenderer skeleton;
 	public UIInput signupEmail;
 	public UIInput signupPassword;
 	public UIInput signupName;
 	public UILabel roundLable;
 	public UILabel errorContent;
+	public UILabel enemyChose;
 	public UIInput loginEmail;
 	public UIInput loginPassword;
 	public UIInput createProfileName;
 	private bool inError = false;
 	public static ArrayList players = null;
+	private bool enemyTurn = false;
+	private bool switchPlay = false;
+	private int wait = 0;
     // Save Start Position
-	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos,createProfilePos,errorPos;
+	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos,createProfilePos,errorPos,winPanelPos,enemyTurnPanelPos;
     Transform friendHpGroup, enemyHpGroup, shieldGroup;
 
     // Save Question & Answer Display Position
@@ -87,9 +93,8 @@ public class GameManager : MonoBehaviour
 	//ssx
 	int checkConnectivity()
 	{
-
 		return 0;
-	}
+	}	
 	void initSsxPanelPos()
 	{
 		mainmenuPanelPos = buttonPanel.transform.localPosition;
@@ -99,6 +104,8 @@ public class GameManager : MonoBehaviour
 		roundLablePos = roundLable.transform.localPosition;
 		createProfilePos = createProfilePanel.transform.localPosition;
 		errorPos = errorPanel.transform.localPosition;
+		winPanelPos = winPanel.transform.localPosition;
+		enemyTurnPanelPos = enemyTurnPanel.transform.localPosition;
 	}
 	void initSsxProfileLables()
 	{
@@ -124,6 +131,35 @@ public class GameManager : MonoBehaviour
 	/*
 	 * This is code that show or hide single menu
 	 */
+	public void showEnemyTurnPanel()
+	{
+		Vector3 pos = new Vector3(enemyTurnPanelPos.x,enemyTurnPanelPos.y+Screen.height,enemyTurnPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(enemyTurnPanel.transform, 1f, parms);
+	}
+	public void hideEnemyTurnPanel()
+	{
+		Vector3 pos = new Vector3(enemyTurnPanelPos.x,enemyTurnPanelPos.y,enemyTurnPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(enemyTurnPanel.transform, 1f, parms);
+	}
+	public void showWinPanel()
+	{
+		Vector3 pos = new Vector3(winPanelPos.x,winPanelPos.y+Screen.height,winPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(winPanel.transform, 1f, parms);
+	}
+	public void hideWinPanel()
+	{
+		Vector3 pos = new Vector3(winPanelPos.x,winPanelPos.y,winPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(winPanel.transform, 1f, parms);
+		ssxStartGame();
+	}
 	public void showSignupPanel()
 	{
 		//hideMainmenuPanel ();
@@ -488,6 +524,7 @@ public class GameManager : MonoBehaviour
         IntroGame();
 		showRound ();
 		playing = true;
+		enemyTurn = false;
         DrawQuiz();
     }
 
@@ -795,6 +832,32 @@ public class GameManager : MonoBehaviour
         {
             //DrawQuiz();
         }
+		if(switchPlay)
+		{
+			if(wait < 150)
+			{
+				wait++;
+			}
+			else
+			{
+				switchPlay = false;
+				hideEnemyTurnPanel();
+			}
+		}
+		if(enemyTurn)
+		{
+			if(wait < 500)
+			{
+				wait++;
+			}
+			else
+			{
+				wait=0;
+				int result = UnityEngine.Random.Range(0,3);
+				ClickAnswer(result);
+				enemyChose.text = numberOnCard[result].ToString();
+			}
+		}
 	}
 
     void ClickAnswer(int no)
@@ -802,47 +865,105 @@ public class GameManager : MonoBehaviour
         if (!quizOn) return;
         quizOn = false;
         QuizData item = quizList[quizIndex];
-		print (numberOnCard[no] + " " + currentAnwser);
+//		print (numberOnCard[no] + " " + currentAnwser);
         // Is answer collect?
-		senseixManager.gotAnwser (numberOnCard[no].ToString());
-        if (numberOnCard[no] == currentAnwser) 
-        {
-            // Display good Effect
-            Instantiate(goodEffect);
-            // Display soul trail effect
-            GameObject go = Instantiate(soulEffect) as GameObject;
-            go.GetComponent<SoulEffect>().posX = -1f;
-            // Display Happy Effect
-            StartCoroutine(DelayActoin(0.6f, () =>
-            {
-                go = Instantiate(happyEffect, new Vector3(-0.7f, 1f, 0f), Quaternion.identity) as GameObject;
-                enemyHpMan.DoDamageHp(10);
-            }));
-            // Display Actor's motion
-            friendAnimator.CrossFade("Good", 0.2f);
-            enemyAnimator.CrossFade("Bad", 0.2f);
-			if(enemyHpMan.getHP()<=0)
-				winGame();
+        //send answer to server, only when it is realy player
+		senseixManager.gotAnwser (numberOnCard[no].ToString(),!enemyTurn);
+		if(!enemyTurn)
+		{
+	        if (numberOnCard[no] == currentAnwser) 
+	        {
+	            // Display good Effect
+	            Instantiate(goodEffect);
+	            // Display soul trail effect
+	            GameObject go = Instantiate(soulEffect) as GameObject;
+	            go.GetComponent<SoulEffect>().posX = -1f;
+	            // Display Happy Effect
+	            StartCoroutine(DelayActoin(0.6f, () =>
+	            {
+	                go = Instantiate(happyEffect, new Vector3(-0.7f, 1f, 0f), Quaternion.identity) as GameObject;
+	                enemyHpMan.DoDamageHp(10);
+	            }));
+	            // Display Actor's motion
+	            friendAnimator.CrossFade("Good", 0.2f);
+	            enemyAnimator.CrossFade("Bad", 0.2f);
+				if(enemyHpMan.getHP()<=0)
+					winGame();
+	        }
+	        else
+	        {
+	            // Display Bad Effect
+	            Instantiate(badEffect);
+	            // Display soul trail effect
+	            GameObject go = Instantiate(soulEffect) as GameObject;
+	            go.GetComponent<SoulEffect>().posX = 1f;
+	            // Display Happy Effect
+	            StartCoroutine(DelayActoin(0.6f, () =>
+	            {
+	                go = Instantiate(happyEffect, new Vector3(0.7f, 1f, 0f), Quaternion.identity) as GameObject;
+	                friendHpMan.DoDamageHp(hpDamage[currentLevel]);
+	            }));
+	            // Display Actor's motion
+	            friendAnimator.CrossFade("Bad", 0.2f);
+	            enemyAnimator.CrossFade("Good", 0.2f);
+				if(friendHpMan.getHP()<=0)
+					lostGame();
+				else
+				{
+					enemyTurn = true;
+					wait=0;
+					enemyChose.text = "?";
+					showEnemyTurnPanel();
+				}
+	        }
         }
         else
         {
-            // Display Bad Effect
-            Instantiate(badEffect);
-            // Display soul trail effect
-            GameObject go = Instantiate(soulEffect) as GameObject;
-            go.GetComponent<SoulEffect>().posX = 1f;
-            // Display Happy Effect
-            StartCoroutine(DelayActoin(0.6f, () =>
-            {
-                go = Instantiate(happyEffect, new Vector3(0.7f, 1f, 0f), Quaternion.identity) as GameObject;
-                friendHpMan.DoDamageHp(hpDamage[currentLevel]);
-            }));
-            // Display Actor's motion
-            friendAnimator.CrossFade("Bad", 0.2f);
-            enemyAnimator.CrossFade("Good", 0.2f);
-			if(friendHpMan.getHP()<=0)
-				lostGame();
-        }
+			//when this is AI who is playing
+			wait = 0;
+			if (numberOnCard[no] != currentAnwser) 
+			{
+				// Display good Effect
+				Instantiate(goodEffect);
+				// Display soul trail effect
+				GameObject go = Instantiate(soulEffect) as GameObject;
+				go.GetComponent<SoulEffect>().posX = -1f;
+				// Display Happy Effect
+				StartCoroutine(DelayActoin(0.6f, () =>
+				                           {
+					go = Instantiate(happyEffect, new Vector3(-0.7f, 1f, 0f), Quaternion.identity) as GameObject;
+					enemyHpMan.DoDamageHp(10);
+				}));
+				// Display Actor's motion
+				friendAnimator.CrossFade("Good", 0.2f);
+				enemyAnimator.CrossFade("Bad", 0.2f);
+				enemyTurn = false;
+				wait = 0;
+				switchPlay = true;
+				if(enemyHpMan.getHP()<=0)
+					winGame();
+			}
+			else
+			{
+				// Display Bad Effect
+				Instantiate(badEffect);
+				// Display soul trail effect
+				GameObject go = Instantiate(soulEffect) as GameObject;
+				go.GetComponent<SoulEffect>().posX = 1f;
+				// Display Happy Effect
+				StartCoroutine(DelayActoin(0.6f, () =>
+				                           {
+					go = Instantiate(happyEffect, new Vector3(0.7f, 1f, 0f), Quaternion.identity) as GameObject;
+					friendHpMan.DoDamageHp(hpDamage[currentLevel]);
+				}));
+				// Display Actor's motion
+				friendAnimator.CrossFade("Bad", 0.2f);
+				enemyAnimator.CrossFade("Good", 0.2f);
+				if(friendHpMan.getHP()<=0)
+					lostGame();
+			}
+		}
+
 
         StartCoroutine(DelayActoin(3f, () =>
         {
@@ -857,10 +978,11 @@ public class GameManager : MonoBehaviour
 		if (currentLevel >= 100)
 			currentLevel = 99;
 		HideGame ();
-		showMainmenuPanel ();
-		showAvatar ();
+		showWinPanel();
+		//showMainmenuPanel ();
+		//showAvatar ();
 		//StartGame ();
-		ssxStartGame ();
+		//ssxStartGame ();
 	}
 	void lostGame()
 	{
@@ -886,7 +1008,7 @@ public class GameManager : MonoBehaviour
     {
         ClickAnswer(3);
     }
-
+	
     // time delay action
     public IEnumerator DelayActoin(float dtime, System.Action callback)
     {
