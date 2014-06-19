@@ -63,6 +63,10 @@ public class senseixManager:MonoBehaviour
 		}
 		return ret;
 	}
+	static public bool network()
+	{
+		return networkAvailable;
+	}
 	static public int levelDecider()
 	{
 		return 1;	

@@ -288,6 +288,14 @@ public class GameManager : MonoBehaviour
 		Vector3 pos = new Vector3(errorPos.x,errorPos.y,errorPos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(errorPanel.transform, 1f, parms);
+		if(!senseixManager.network())
+		{
+			if (senseixManager.initSenseixManager ("5dc215f2d2906b0dd81f82a0a959d80aa3aba0b665c292a5da7ff6431b9ee484") != 0 || !senseix.inSession) 
+			{
+				errorContent.text = errorNetFail;
+				showError();
+			}
+		}
 	}
 	/*
 	 * This part is code that combine different kind of show and hide, hide first, show second
