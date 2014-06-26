@@ -227,15 +227,16 @@ public class container
 								container decoder = new container();
 								objBuilder.Append('}');	
 								decoder.append(objBuilder.ToString());
-								//MonoBehaviour.print("Going to get obj with " + decoder.buffer.ToString());
+								MonoBehaviour.print("Going to get obj with " + decoder.buffer.ToString());
 								decoder.formBinary();
 								objDictionary = decoder.formDictionary();
 								objQ.Enqueue(objDictionary);
 								objBuilder.Remove(0,objBuilder.Length);
 								j++;
-								while(binary[j] != ',' && binary[j] != ']')
+								while(binary[j] != ',' && binary[j] != ']' && j<length-1)
 								{
 									j++;
+									MonoBehaviour.print((char)binary[j]);
 								}
 								if(binary[j] == ']')
 								{

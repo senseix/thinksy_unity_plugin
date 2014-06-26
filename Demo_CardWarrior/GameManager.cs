@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 	public const string errorNetFail = "Network Failed";
 	private string errorTitle = "";
 	public List<UILabel> profileLables;
+	public List<UILabel> ldNameLable;
+	public List<UILabel> ldScoreLable;
 	public int[] hpDamage;
 	public int currentLevel = 0;
 	public UILabel loadingLable;
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
 	public UIPanel buttonPanel;
 	public UIPanel signupPanel;
 	public UIPanel loginPanel;
+	public UIPanel leaderboardPanel;
 	public UIPanel profileSelectPanel;
 	public UIPanel createProfilePanel;
 	public UIPanel winPanel;
@@ -60,7 +63,7 @@ public class GameManager : MonoBehaviour
 	private bool switchPlay = false;
 	private int wait = 0;
     // Save Start Position
-	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos,createProfilePos,errorPos,winPanelPos,enemyTurnPanelPos;
+	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos,createProfilePos,errorPos,winPanelPos,enemyTurnPanelPos,leaderboardPanelPos;
     Transform friendHpGroup, enemyHpGroup, shieldGroup;
 
     // Save Question & Answer Display Position
@@ -106,12 +109,21 @@ public class GameManager : MonoBehaviour
 		errorPos = errorPanel.transform.localPosition;
 		winPanelPos = winPanel.transform.localPosition;
 		enemyTurnPanelPos = enemyTurnPanel.transform.localPosition;
+		leaderboardPanelPos = leaderboardPanel.transform.localPosition;
 	}
 	void initSsxProfileLables()
 	{
 		for(int i=0;i<9;i++)
 		{
 			profileLables[i].text="Empty";
+		}
+	}
+	void initSsxLDLables()
+	{
+		for(int i=0;i<15;i++)
+		{
+			ldScoreLable[i].text="Score";
+			ldNameLable[i].text="EMPTY";
 		}
 	}
 	void Load()
@@ -133,7 +145,7 @@ public class GameManager : MonoBehaviour
 	 */
 	public void showEnemyTurnPanel()
 	{
-		Vector3 pos = new Vector3(enemyTurnPanelPos.x,enemyTurnPanelPos.y+Screen.height,enemyTurnPanelPos.z);
+		Vector3 pos = new Vector3(enemyTurnPanelPos.x,enemyTurnPanelPos.y+720,enemyTurnPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(enemyTurnPanel.transform, 1f, parms);
@@ -145,9 +157,27 @@ public class GameManager : MonoBehaviour
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(enemyTurnPanel.transform, 1f, parms);
 	}
+	public void showLeaderboard()
+	{
+		senseix.pullLeaderboard(2);
+		//leaderboard.debugPrint();
+		drawLeaderboardList();
+		Vector3 pos = new Vector3(leaderboardPanelPos.x,leaderboardPanelPos.y+720,leaderboardPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(leaderboardPanel.transform, 1f, parms);
+	}
+	public void hideLeaderboard()
+	{
+		Vector3 pos = new Vector3(leaderboardPanelPos.x,leaderboardPanelPos.y,leaderboardPanelPos.z);
+		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(leaderboardPanel.transform, 1f, parms);
+	}
 	public void showWinPanel()
 	{
-		Vector3 pos = new Vector3(winPanelPos.x,winPanelPos.y+Screen.height,winPanelPos.z);
+		
+		Vector3 pos = new Vector3(winPanelPos.x,winPanelPos.y+720,winPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(winPanel.transform, 1f, parms);
@@ -163,7 +193,7 @@ public class GameManager : MonoBehaviour
 	public void showSignupPanel()
 	{
 		//hideMainmenuPanel ();
-		Vector3 pos = new Vector3(signupPanelPos.x,signupPanelPos.y+Screen.height,signupPanelPos.z);
+		Vector3 pos = new Vector3(signupPanelPos.x,signupPanelPos.y+720,signupPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(signupPanel.transform, 1f, parms);
@@ -179,7 +209,7 @@ public class GameManager : MonoBehaviour
 	{
 		//hideProfileList ();
 		//hideMainmenuPanel ();
-		Vector3 pos = new Vector3(createProfilePos.x,createProfilePos.y+Screen.height,createProfilePos.z);
+		Vector3 pos = new Vector3(createProfilePos.x,createProfilePos.y+720,createProfilePos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(createProfilePanel.transform, 1f, parms);
 	}
@@ -195,7 +225,7 @@ public class GameManager : MonoBehaviour
 	public void showRound()
 	{
 		roundLable.text = "Round " + currentLevel.ToString();
-		Vector3 pos = new Vector3(roundLablePos.x,roundLablePos.y+Screen.height,roundLablePos.z);
+		Vector3 pos = new Vector3(roundLablePos.x,roundLablePos.y+720,roundLablePos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(roundLable.transform, 1f, parms);
 		/*
@@ -215,7 +245,7 @@ public class GameManager : MonoBehaviour
 	{
 		senseix.cleanData ();
 		//hideMainmenuPanel ();
-		Vector3 pos = new Vector3(loginPanelPos.x,loginPanelPos.y+Screen.height,loginPanelPos.z);
+		Vector3 pos = new Vector3(loginPanelPos.x,loginPanelPos.y+720,loginPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(loginPanel.transform, 1f, parms);
@@ -238,7 +268,7 @@ public class GameManager : MonoBehaviour
 		players = senseixManager.getCachedPlayers ();
 		if(players != null)
 			drawProfileList ();
-		Vector3 pos = new Vector3(profileSelectPanelPos.x,profileSelectPanelPos.y+Screen.height,profileSelectPanelPos.z);
+		Vector3 pos = new Vector3(profileSelectPanelPos.x,profileSelectPanelPos.y+720,profileSelectPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(profileSelectPanel.transform, 1f, parms);
@@ -249,6 +279,22 @@ public class GameManager : MonoBehaviour
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(profileSelectPanel.transform, 1f, parms);
 		//showMainmenuPanel ();
+	}
+	public void drawLeaderboardList()
+	{
+		//so far we only support 9 in list
+		if(leaderboard.entries.Count > 0)
+		{
+			for(int i=0;i<leaderboard.entries.Count && i < 15;i++)
+			{
+				print ("Drawing "+ ((lbEntry)leaderboard.entries[i]).name + " " + (leaderboard.entries.Count-1 - i));
+				if(((lbEntry)leaderboard.entries[leaderboard.entries.Count-1 - i]).name.Length>15)
+					ldNameLable[i].text = ((lbEntry)leaderboard.entries[leaderboard.entries.Count-1 - i]).name.Substring(0,15);
+				else
+					ldNameLable[i].text = ((lbEntry)leaderboard.entries[leaderboard.entries.Count-1 - i]).name;
+				ldScoreLable[i].text = ((lbEntry)leaderboard.entries[leaderboard.entries.Count-1 - i]).score.ToString();
+			}
+		}
 	}
 	public void drawProfileList()
 	{
@@ -270,7 +316,7 @@ public class GameManager : MonoBehaviour
 	}
 	void hideMainmenuPanel()
 	{
-		Vector3 pos = new Vector3(mainmenuPanelPos.x,mainmenuPanelPos.y+Screen.height,mainmenuPanelPos.z);
+		Vector3 pos = new Vector3(mainmenuPanelPos.x,mainmenuPanelPos.y+720,mainmenuPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(buttonPanel.transform, 1f, parms);
@@ -278,7 +324,7 @@ public class GameManager : MonoBehaviour
 	public void showError()
 	{
 		inError = true;
-		Vector3 pos = new Vector3(errorPos.x,errorPos.y+Screen.height,errorPos.z);
+		Vector3 pos = new Vector3(errorPos.x,errorPos.y+720,errorPos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(errorPanel.transform, 1f, parms);
 	}
@@ -290,7 +336,7 @@ public class GameManager : MonoBehaviour
 		HOTween.To(errorPanel.transform, 1f, parms);
 		if(!senseixManager.network())
 		{
-			if (senseixManager.initSenseixManager ("5dc215f2d2906b0dd81f82a0a959d80aa3aba0b665c292a5da7ff6431b9ee484") != 0 || !senseix.inSession) 
+			if (senseixManager.initSenseixManager ("844796d3796a4594ab551abdf0d360457d16a8d42ea108e0938de5c60f2c2a1f") != 0 || !senseix.inSession) 
 			{
 				errorContent.text = errorNetFail;
 				showError();
@@ -425,6 +471,9 @@ public class GameManager : MonoBehaviour
 			currentQuestion = senseixManager.getProblem ();
 			currentAnwser = Convert.ToInt32(senseixManager.getAnwser ());
 			QuizInit();
+			//senseix.pullLeaderboard(1);
+			//leaderboard.debugPrint();
+			//drawLeaderboardList();
 			hideProfile_showMain();
 		}
 	}
@@ -490,7 +539,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         // Set mobile display res.
-        Screen.SetResolution(480, 800, false); 
+        //Screen.SetResolution(480, 800, false); 
     }
     void Start()
     {

@@ -53,7 +53,7 @@ public class leaderboard
 		//print ("capacity " + entries.Capacity);
 		for (int i=0; i<entries.Count; i++) 
 		{
-			//print(i+" " + ((lbEntry)entries[i]).memberID + " rank " + ((lbEntry)entries[i]).rank + " name " + ((lbEntry)entries[i]).name + " score " + ((lbEntry)entries[i]).score);
+			MonoBehaviour.print(i+" " + ((lbEntry)entries[i]).memberID + " rank " + ((lbEntry)entries[i]).rank + " name " + ((lbEntry)entries[i]).name + " score " + ((lbEntry)entries[i]).score);
 		}
 	}
 }

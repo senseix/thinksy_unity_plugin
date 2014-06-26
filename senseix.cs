@@ -85,7 +85,7 @@ using System.Text;
 		public static ArrayList playerA = new ArrayList();
 		private static Queue problemQ = new Queue();
 		private static ArrayList problemA = new ArrayList();
-		private static leaderboard gameLeaderboard = new leaderboard();
+		public static leaderboard gameLeaderboard = new leaderboard();
 		private static heavyUser me = new heavyUser();
 		private static string utf8hdr = "utf8=%E2%9C%93";
 		public static bool inSession = false;
@@ -721,6 +721,7 @@ using System.Text;
 			else 
 				currentToken = senseix.getGameToken();
 			command.Add("access_token",currentToken);
+			print ("Critical "+currentToken);
 			command.Add("auth_token",senseix.authToken);
 			command.Add("page",page.ToString());
 			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_LEADERBOARD_PULL);
@@ -740,14 +741,17 @@ using System.Text;
 			print(tmpBuilder.ToString());
 			decoder.formBinary();
 			result = decoder.formObjectDictionary();
-			Queue first = (Queue)result["objects"];
-			leaderboard.clearEntry ();
-			while(first.Count != 0)
+			if(result.ContainsKey("objects"))
 			{
-				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
-			print (tester["rank"]);
-				leaderboard.addEntry(tester["member"],tester["rank"],tester["score"],tester["member_data"]);
-			}	
+				Queue first = (Queue)result["objects"];
+				leaderboard.clearEntry ();
+				while(first.Count != 0)
+				{
+					Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
+				//print (tester["rank"]);
+					leaderboard.addEntry(tester["member"],tester["rank"],tester["score"],tester["member_data"]);
+				}
+			}
 			return true;
 
 		}
