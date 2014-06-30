@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
 	private bool enemyTurn = false;
 	private bool switchPlay = false;
 	private int wait = 0;
+	
+	//public UniWebView webb = null;
     // Save Start Position
 	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos,createProfilePos,errorPos,winPanelPos,enemyTurnPanelPos,leaderboardPanelPos;
     Transform friendHpGroup, enemyHpGroup, shieldGroup;
@@ -243,6 +245,20 @@ public class GameManager : MonoBehaviour
 	}
 	public void showLoginPanel()
 	{
+		//webb = GameObject.FindGameObjectWithTag("web").GetComponent("UniWebView") as UniWebView;
+		//webb.SetShowSpinnerWhenLoading(false);
+		//print(webb.insets.top.ToString());
+		//webb.insets = new UniWebViewEdgeInsets(5,5,5,5);
+		//webb.url = "http://www.baidu.com";
+		//if(webb == null)
+		//	print("errrrrrrrrrrrrrrr");
+		//else
+		//{	
+			//webb.Load ();
+			//webb.Hide();
+		//	webb.Load ();	
+		//}		
+		//print(webb.insets.top.ToString() + " " +webb.insets.bottom.ToString());
 		senseix.cleanData ();
 		//hideMainmenuPanel ();
 		Vector3 pos = new Vector3(loginPanelPos.x,loginPanelPos.y+720,loginPanelPos.z);
@@ -470,7 +486,6 @@ public class GameManager : MonoBehaviour
 			senseixGameManager.prepareProblem (5, "Mathematics", 1);
 			currentQuestion = senseixManager.getProblem ();
 			currentAnwser = Convert.ToInt32(senseixManager.getAnwser ());
-			QuizInit();
 			//senseix.pullLeaderboard(1);
 			//leaderboard.debugPrint();
 			//drawLeaderboardList();
@@ -580,6 +595,7 @@ public class GameManager : MonoBehaviour
     {
         IntroGame();
 		showRound ();
+		QuizInit();
 		playing = true;
 		enemyTurn = false;
         DrawQuiz();
@@ -634,7 +650,7 @@ public class GameManager : MonoBehaviour
             quizList.Add(quiz);
         }
         quizTotal = quizList.Count;
-		//print ("quizTotal " + quizTotal);
+		print ("quizTotal " + quizTotal);
     }
 
     // Init Quiz Game
