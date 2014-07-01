@@ -127,6 +127,14 @@ using System.Text;
 		{
 			senseix.deviceId = new string(result.ToCharArray());
 		}
+		public static string getUID()
+		{
+			return deviceId;
+		}
+		private static void setUID(string newUID)
+		{
+			deviceId = newUID;
+		}
 		public static void selectProfile(int index)
 		{
 			print ("select " + index + " count " + playerA.Count);
@@ -140,8 +148,11 @@ using System.Text;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
 			container decoder = new container();
-			//string deviceID = SystemInfo.deviceUniqueIdentifier;
-			string deviceID = "weruh878gb";
+			string deviceID = SystemInfo.deviceUniqueIdentifier;
+			setUID(deviceID);
+		print (deviceID.Length + " devic "+SystemInfo.deviceUniqueIdentifier);
+		//string deviceID = "d68672153622798d5934d4316b930c";
+		//                 d68672153622798d5934d4316b930c30278d5423
 			command.Add("access_token",getGameToken());
 			command.Add("udid",deviceID);
 			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_COACH_PUSH_UID);
@@ -178,8 +189,8 @@ using System.Text;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
 			container decoder = new container();
-			//string deviceID = SystemInfo.deviceUniqueIdentifier;
-			string deviceID = "weruh878gb";
+			string deviceID = SystemInfo.deviceUniqueIdentifier;
+			//string deviceID = "weruh878gbcc";
 			if(gameToken != null)
 				currentToken = gameToken;
 			else
@@ -224,7 +235,8 @@ using System.Text;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
 			container decoder =new container();
-			string deviceID = "weruh878gb";
+			string deviceID = SystemInfo.deviceUniqueIdentifier;
+			//string deviceID = "weruh878gbc";
 			if (game == null) {
 				if (getGameToken () == null) {
 					return -1;
@@ -398,7 +410,7 @@ using System.Text;
 				return null;
 			}
 			//DEBUG
-			print ("[DEBUG] result: "+tmp);
+			print ("[DEBUG getPlayerA] result: "+tmp);
 			
 			decoder.append(tmp);
 			//print(tmp);
@@ -541,7 +553,7 @@ using System.Text;
 			}
 			else
 				inSession = false;
-				*/
+			*/
 			return 0;
 			
 		}
@@ -704,7 +716,6 @@ using System.Text;
 			if (tmp.Equals ("error")) 
 			{
 				print("[DEBUG] Found error in request, return -1");
-				//return null;
 			}
 			//DEBUG
 			print ("[DEBUG] result: "+tmp);
@@ -748,7 +759,6 @@ using System.Text;
 				while(first.Count != 0)
 				{
 					Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
-				//print (tester["rank"]);
 					leaderboard.addEntry(tester["member"],tester["rank"],tester["score"],tester["member_data"]);
 				}
 			}
@@ -815,7 +825,7 @@ using System.Text;
 			//print ("[DEBUG] result: "+tmp);
 			return null;	
 		}
-	/*
+		/*
 		public static bool friendsCreate(int friend_id)
 		{
 			return true;
@@ -989,63 +999,4 @@ using System.Text;
 			command.Add ("duration",duration.ToString());
 			return request.prepareRequest(command,messageType.MESSAGETYPE_PROBLEM_PUSH);
 		}
-		public static void decodePushProblemAMT(string recv)
-		{
-			
-		}
-		private static void sendMessage(container message)
-		{
-			
-		}
 	}
-
-	//some old code
-	//ORIGIN BEG
-	/*
-	string currentToken = null;
-	container message = new container ();
-
-	if (game == null) {
-		if (getGameToken () == null) {
-			return -1;
-		} else {
-			currentToken = getGameToken();
-		}
-	} else {
-		currentToken = game;
-	}
-	
-
-	message.init ();
-	message.addFieldDeli ();
-	message.append ("auth_token=");
-	message.append (authToken);
-	
-	message.addFieldDeli ();
-	message.append ("access_token=");
-	message.append (currentToken);
-
-	message.addFieldDeli ();
-	message.append ("player");
-	message.addKeyDeli ();
-	message.append ("name");
-	message.addValueDeli ();
-	message.append ("chengthree");
-
-	print(message.formBinary ());
-	print(message.buffer.ToString());
-	string tmp = null;
-	WWWForm form = new WWWForm();
-	WWW recvResult =new WWW ("http://senseix.herokuapp.com/v1/players/create",message.binary);
-	while(!recvResult.isDone && string.IsNullOrEmpty(recvResult.error))
-	{
-		//display some waiting sign
-	}
-	if (!string.IsNullOrEmpty (recvResult.error))
-		tmp = recvResult.error+"error";
-	else
-		tmp = recvResult.text;
-	
-	print(tmp);
-	*/
-	//ORIGIN END
