@@ -28,9 +28,10 @@ public class senseixMenuManager : MonoBehaviour {
 	public static bool gameStarted = false;
 	public static int skipCount = 1;
 	public static int menuState = 0;
+	public static bool offlineProblemLoadedInSenseix = false;
+	public static ArrayList cachedProblemStr = new ArrayList();
 	private static Rect windowRect = new Rect(1,1,1,1);
 	private static Rect blurLayer = new Rect(1,1,1,1);
-
 	private string emailText = "Your E-mail";
 	private string passwordText = "Your password";
 	private string nameText = "Your name";
@@ -49,7 +50,9 @@ public class senseixMenuManager : MonoBehaviour {
 	public static bool currentCorrectness = false;
 
 	public static int currentLeaderboardPage = 0;
-
+	//cachedProblemLevelCeiling means the max level problem cached, if it is 0 then it means no problem cached.
+	public static int cachedProblemLevelCeiling = 0;
+	public static int cachedProblemLevelCurrent = 0;
 	//current answer result beg
 	public static void SenseixMenu(string access_token = null)
 	{
@@ -411,9 +414,38 @@ public class senseixMenuManager : MonoBehaviour {
 	static public void storeProblems(int index)
 	{
 		string storeName = "problem0" + index.ToString ();
-		string problemStr =senseix.pullProblemQStr (20,"Mathematics",senseixManager.levelDecider());
+		string problemStr =senseix.pullProblemQStr (20,"Mathematics",index+1);
 		print ("stored problems: " + problemStr);
 		PlayerPrefs.SetString (storeName,problemStr);
 		PlayerPrefs.Save();	
+	}
+	static public int retrieveProblems()
+	{
+		//cachedProblemStr
+		int ret = 0;
+		for(int i=0;i<10;i++)
+		{
+			string storeName = "problem0" + i.ToString ();
+			if(PlayerPrefs.HasKey(storeName))
+			{
+				cachedProblemStr.Add(PlayerPrefs.GetString(storeName));
+			}
+			else
+			{
+				ret = i;
+				cachedProblemLevelCeiling = ret;
+			}
+		}
+		print ("cache level "+ret);
+		return ret;
+	}
+	static public string retrieveProblemsString()
+	{
+		string ret = (string)cachedProblemStr[cachedProblemLevelCurrent];
+		if(cachedProblemLevelCurrent >= cachedProblemLevelCeiling)
+			cachedProblemLevelCurrent = 1;
+		else
+			cachedProblemLevelCurrent++;
+		return ret;
 	}
 }

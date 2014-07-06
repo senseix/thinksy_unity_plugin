@@ -46,6 +46,57 @@ public class messageLine
 				//MonoBehaviour.print("Not ready");
 				continue;
 			}
+			else if(!senseix.inSession && senseixMenuManager.offlineProblemLoadedInSenseix)
+			{
+				
+				string tmp = null;
+				switch(tmpPack.messageType)
+				{
+				case messageType.MESSAGETYPE_PROBLEM_PULL:
+					Dictionary<string,string> command = new Dictionary<string, string>();
+					Dictionary<string,object> result = null;
+					container decoder = new container();
+					StringBuilder tmpBuilder = new StringBuilder();
+					tmp = (string)senseixMenuManager.cachedProblemStr[0];
+					//MonoBehaviour.print("======got message=====  "+tmp);
+					tmpBuilder.Append("{\"problems\":\"");
+					tmpBuilder.Append(tmp);
+					tmpBuilder.Append("\"}");
+					decoder.append(tmpBuilder.ToString());
+					decoder.formBinary();
+					result = decoder.formObjectDictionary();
+					if (result == null)
+					{
+						packList.Remove(tmpPack);
+						continue;
+					}
+					if (!result.ContainsKey ("objects"))
+					{
+						packList.Remove(tmpPack);
+						continue;
+					}
+					Queue first = (Queue)result["objects"];
+					if (first.Count == 0)
+					{
+						packList.Remove(tmpPack);
+						continue;
+					}
+					while(first.Count != 0)
+					{
+						Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
+						senseixGameManager.enqueProblem(new problem(tester["content"],tester["category"],tester["level"],Convert.ToInt32 (tester["id"]),tester["answer"]));
+					}
+					packList.Remove(tmpPack);
+					break;
+				case messageType.MESSAGETYPE_PROBLEM_PUSH:
+					//tmp = tmpPack.wwwPage.text;
+					//MonoBehaviour.print("===push "+tmp);
+					packList.Remove(tmpPack);
+					break;
+				default:
+					break;
+				}
+			}
 			else
 			{
 				//MonoBehaviour.print("ready and checking");

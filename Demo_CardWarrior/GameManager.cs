@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 	public int currentLevel = 0;
 	public UILabel loadingLable;
 	//public int idid;
+	public UILabel onlineDebug;
+	public UILabel debugText;
 	public UIPanel buttonPanel;
 	public UIPanel signupPanel;
 	public UIPanel loginPanel;
@@ -350,10 +352,11 @@ public class GameManager : MonoBehaviour
 		Vector3 pos = new Vector3(errorPos.x,errorPos.y,errorPos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(errorPanel.transform, 1f, parms);
-		if(!senseixManager.network())
+		if(!senseixManager.network()) // if network is not ready, or we don't have cached problems
 		{
-			if (senseixManager.initSenseixManager ("844796d3796a4594ab551abdf0d360457d16a8d42ea108e0938de5c60f2c2a1f") != 0 || !senseix.inSession) 
+			if ((senseixManager.initSenseixManager ("0af8c34ad030e7088145bcb4667b5b76d3bbc1019fa243330da56e9473f60e77") != 0 || !senseix.inSession)) 
 			{
+				onlineDebug.text = senseix.inSession?"online":"offline";
 				errorContent.text = errorNetFail;
 				showError();
 			}
@@ -539,7 +542,11 @@ public class GameManager : MonoBehaviour
 
 	public void ssxStartGame()
 	{
-		if(senseixManager.id != 0)
+		//when it is if()offline and offline problems are loaded, we should try to connect again before begin game
+		if(senseix.inSession && senseixMenuManager.offlineProblemLoadedInSenseix)
+			senseixManager.initSenseixManager ("0af8c34ad030e7088145bcb4667b5b76d3bbc1019fa243330da56e9473f60e77");
+		onlineDebug.text = senseix.inSession?"online":"offline";
+		if(senseixManager.id != 0 || (!senseix.inSession && senseixMenuManager.offlineProblemLoadedInSenseix))
 		{
 			hideMainmenuPanel ();
 			StartGame ();
@@ -698,11 +705,13 @@ public class GameManager : MonoBehaviour
 		else
 			senseix.coachUidPush();
 		*/
-		if (senseixManager.initSenseixManager ("5dc215f2d2906b0dd81f82a0a959d80aa3aba0b665c292a5da7ff6431b9ee484") != 0 || !senseix.inSession) 
+		if (senseixManager.initSenseixManager ("0af8c34ad030e7088145bcb4667b5b76d3bbc1019fa243330da56e9473f60e77") != 0 || !senseix.inSession) 
 		{
+			onlineDebug.text = senseix.inSession?"online":"offline";
 			errorContent.text = errorNetFail;
 			showError();
 		}
+		debugText.text = PlayerPrefs.GetString("problem00").Length.ToString() + " " +senseixMenuManager.cachedProblemLevelCeiling.ToString();
 
 		foreach (Transform tf in GameObject.Find("Answers").transform)
         {

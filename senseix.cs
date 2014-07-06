@@ -44,26 +44,27 @@ using System.Text;
 
 
 		//API URLS
-		public const string MESSAGETYPE_USER_ADD_URL = "http://senseix.herokuapp.com/v1/coaches";
-		public const string MESSAGETYPE_COACH_SIGN_UP_URL = "http://senseix.herokuapp.com/v1/coaches/";
-		public const string MESSAGETYPE_COACH_SIGN_IN_URL = "http://senseix.herokuapp.com/v1/coaches/sign_in";
-		public const string MESSAGETYPE_COACH_SIGN_OUT_URL = "http://senseix.herokuapp.com/v1/coaches/sign_out";	//info of profile
-		public const string MESSAGETYPE_DEVEL_SIGN_IN_URL = "http://senseix.herokuapp.com/v1/developers/sign_in";
-		public const string MESSAGETYPE_DEVEL_SIGN_OUT_URL = "http://senseix.herokuapp.com/v1/developers/sign_out";
+		//senseix-staging-1958447000.us-east-1.elb.amazonaws.com
+		public const string MESSAGETYPE_USER_ADD_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches";
+		public const string MESSAGETYPE_COACH_SIGN_UP_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches/";
+		public const string MESSAGETYPE_COACH_SIGN_IN_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches/sign_in";
+		public const string MESSAGETYPE_COACH_SIGN_OUT_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches/sign_out";	//info of profile
+		public const string MESSAGETYPE_DEVEL_SIGN_IN_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/developers/sign_in";
+		public const string MESSAGETYPE_DEVEL_SIGN_OUT_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/developers/sign_out";
 		
-		public const string MESSAGETYPE_PLAYER_CREATE_URL = "http://senseix.herokuapp.com/v1/players/create";
-		public const string MESSAGETYPE_PLAYER_INDEX_URL = "http://senseix.herokuapp.com/v1/players/index";
+		public const string MESSAGETYPE_PLAYER_CREATE_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/create";
+		public const string MESSAGETYPE_PLAYER_INDEX_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/index";
 		
-		public const string MESSAGETYPE_LEADERBOARD_PULL_URL = "http://senseix.herokuapp.com/v1/applications/leaderboard/show";
+		public const string MESSAGETYPE_LEADERBOARD_PULL_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/applications/leaderboard/show";
 
-		public const string MESSAGETYPE_PROBLEM_PULL_URL = "http://senseix.herokuapp.com/v1/problems";
-		public const string MESSAGETYPE_PROBLEM_PUSH_URL = "http://senseix.herokuapp.com/v1/problems/update";
+		public const string MESSAGETYPE_PROBLEM_PULL_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/problems";
+		public const string MESSAGETYPE_PROBLEM_PUSH_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/problems/update";
 		
-		public const string MESSAGETYPE_MECHANIC_POST_URL = "http://senseix.herokuapp.com/v1/applications/mechanic";
-		public const string MESSAGETYPE_MECHANIC_GET_URL = "http://senseix.herokuapp.com/v1/applications/mechanic";
-		public const string MESSAGETYPE_FRIEND_PULL_URL = "http://senseix.herokuapp.com/v1/players/friends";
-		public const string MESSAGETYPE_FRIEND_CREATE_URL = "http://senseix.herokuapp.com/v1/players/friends/create";
-		public const string MESSAGETYPE_FRIEND_DELETE_URL = "http://senseix.herokuapp.com/v1/players/friends/delete";
+		public const string MESSAGETYPE_MECHANIC_POST_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/applications/mechanic";
+		public const string MESSAGETYPE_MECHANIC_GET_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/applications/mechanic";
+		public const string MESSAGETYPE_FRIEND_PULL_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/friends";
+		public const string MESSAGETYPE_FRIEND_CREATE_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/friends/create";
+		public const string MESSAGETYPE_FRIEND_DELETE_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/friends/delete";
 			
 	}
 	public class senseix: MonoBehaviour
@@ -148,10 +149,11 @@ using System.Text;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
 			container decoder = new container();
-			string deviceID = SystemInfo.deviceUniqueIdentifier;
+			//string deviceID = SystemInfo.deviceUniqueIdentifier;
+		string deviceID = "d68672153622798d5934d";
 			setUID(deviceID);
 		print (deviceID.Length + " devic "+SystemInfo.deviceUniqueIdentifier);
-		//string deviceID = "d68672153622798d5934d4316b930c";
+		
 		//                 d68672153622798d5934d4316b930c30278d5423
 			command.Add("access_token",getGameToken());
 			command.Add("udid",deviceID);
@@ -189,8 +191,8 @@ using System.Text;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
 			container decoder = new container();
-			string deviceID = SystemInfo.deviceUniqueIdentifier;
-			//string deviceID = "weruh878gbcc";
+			//string deviceID = SystemInfo.deviceUniqueIdentifier;
+		string deviceID = "d68672153622798d5934d";
 			if(gameToken != null)
 				currentToken = gameToken;
 			else
@@ -235,8 +237,9 @@ using System.Text;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
 			container decoder =new container();
-			string deviceID = SystemInfo.deviceUniqueIdentifier;
-			//string deviceID = "weruh878gbc";
+			
+			//string deviceID = SystemInfo.deviceUniqueIdentifier;
+			string deviceID = "d68672153622798d5934d";
 			if (game == null) {
 				if (getGameToken () == null) {
 					return -1;
@@ -574,29 +577,42 @@ using System.Text;
 		public static Queue pullProblemQ(int count,string category,int level)
 		{
 			int player_id = senseix.id;
+			string tmp = null;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
 			container decoder = new container();
-			if(senseix.getGameToken() == null)
-				return null;
-			else 
-				currentToken = senseix.getGameToken();
-			command.Add("access_token",currentToken);
-			command.Add("auth_token",senseix.authToken);
-			command.Add("player_id",player_id.ToString());
-			command.Add("count",count.ToString());
-			command.Add("level",level.ToString());
-			command.Add("category",category);
-			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PROBLEM_PULL);
-			if (tmp.Equals ("error")) 
+			if(senseix.inSession)
 			{
-				print("[DEBUG] Found error in request, return -1");
-				return null;
+				if(senseix.getGameToken() == null)
+					return null;
+				else 
+					currentToken = senseix.getGameToken();
+				command.Add("access_token",currentToken);
+				command.Add("auth_token",senseix.authToken);
+				command.Add("player_id",player_id.ToString());
+				command.Add("count",count.ToString());
+				command.Add("level",level.ToString());
+				command.Add("category",category);
+				tmp = request.sendRequest(command,messageType.MESSAGETYPE_PROBLEM_PULL);
+				if (tmp.Equals ("error")) 
+				{
+					print("[DEBUG] Found error in request, return -1");
+					return null;
+				}
+				//DEBUG
+				print ("[DEBUG] result: "+tmp);
 			}
-			//DEBUG
-			print ("[DEBUG] result: "+tmp);
-			
+			else
+			{
+				//FIXME: this should not just read from certain fixed number of index. should automaticly instead. change in future
+				if(senseixMenuManager.cachedProblemLevelCeiling > 0)
+				{
+					tmp = (string)(senseixMenuManager.cachedProblemStr[0]);
+					senseixMenuManager.offlineProblemLoadedInSenseix = true;
+					print ("[DEBUG CACHE] : "+tmp);
+				}
+			}
 			StringBuilder tmpBuilder = new StringBuilder();
 			tmpBuilder.Append("{\"problems\":\"");
 			tmpBuilder.Append(tmp);
@@ -669,6 +685,7 @@ using System.Text;
 			}		
 			return 0;	
 		}
+		//This function will just get raw string of problem message
 		public static string pullProblemQStr(int count,string category,int level)
 		{
 			int player_id = senseix.id;
