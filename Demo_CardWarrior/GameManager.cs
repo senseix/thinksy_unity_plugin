@@ -542,8 +542,8 @@ public class GameManager : MonoBehaviour
 
 	public void ssxStartGame()
 	{
-		//when it is if()offline and offline problems are loaded, we should try to connect again before begin game
-		if(senseix.inSession && senseixMenuManager.offlineProblemLoadedInSenseix)
+		//when it is offline and offline problems are loaded, we should try to connect again before begin game
+		if(!senseix.inSession && senseixMenuManager.offlineProblemLoadedInSenseix)
 			senseixManager.initSenseixManager ("0af8c34ad030e7088145bcb4667b5b76d3bbc1019fa243330da56e9473f60e77");
 		onlineDebug.text = senseix.inSession?"online":"offline";
 		if(senseixManager.id != 0 || (!senseix.inSession && senseixMenuManager.offlineProblemLoadedInSenseix))

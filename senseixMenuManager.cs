@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using System;
 using System.Threading;
+//FIXME: Everytime when we switch between offline and online mode, we probably should clean up problem queue
 public class senseixMenuConst{
 	public const int MENU_0_MAIN = 0;
 	public const int MENU_1_LOGIN = 1;

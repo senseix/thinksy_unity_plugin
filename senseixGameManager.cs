@@ -12,7 +12,7 @@ public class senseixGameManager:MonoBehaviour
 	public static Queue problemQ = new Queue();
 	private static string current_category = null;
 	private static int current_level = 1;
-
+	private static bool initialized = false;
 	private static int pmutex = 0;
 
 	private static bool prepareFinish = false;
@@ -66,6 +66,14 @@ public class senseixGameManager:MonoBehaviour
 	public static problem getProblem ()
 	{
 		//print ("getProblem in GameManager was called " + problemQ.Count);
+		if(problemQ.Count<4 && initialized)//This means game lost connection while playing
+		{
+			senseix.inSession = false;
+			senseixMenuManager.retrieveProblems();
+			senseixMenuManager.offlineProblemLoadedInSenseix = true;
+		}
+		if(!initialized)
+			initialized = true;
 		if (problemQ.Count < 5) 
 		{
 			print ("=============Going to start new thread " + problemQ.Count);
@@ -75,7 +83,7 @@ public class senseixGameManager:MonoBehaviour
 			print ("added message to line");
 			line.addMessage(new pagePack(messageType.MESSAGETYPE_PROBLEM_PULL,recvResult));
 		}
-		print ("===QUEUE==="+problemQ.Count);
+		print ("===QUEUE==="+problemQ.Count + " "+initialized.ToString());
 		return (problem)problemQ.Dequeue();
 	}
 	public static void enqueProblem(problem p)
