@@ -5,7 +5,7 @@ using Holoville.HOTween;
 using Holoville.HOTween.Plugins;
 using System;
 using System.Threading;
-
+using System.IO;
 //When app opened, first send out a UID ack
 //*if respond say it is tmp user, then automaticly use that tmp profile
 //then use main menu: sign up, login, start
@@ -64,8 +64,7 @@ public class GameManager : MonoBehaviour
 	private bool enemyTurn = false;
 	private bool switchPlay = false;
 	private int wait = 0;
-	
-	//public UniWebView webb = null;
+	public UniWebView webb = null;
     // Save Start Position
 	Vector3 friendPos, enemyPos, friendHpPos, enemyHpPos, shieldPos,mmfriendPos,mmenemyPos,mainmenuPanelPos,loginPanelPos,signupPanelPos,profileSelectPanelPos,roundLablePos,createProfilePos,errorPos,winPanelPos,enemyTurnPanelPos,leaderboardPanelPos;
     Transform friendHpGroup, enemyHpGroup, shieldGroup;
@@ -163,6 +162,8 @@ public class GameManager : MonoBehaviour
 	}
 	public void showLeaderboard()
 	{
+		shakePanel(buttonPanel);
+		/*
 		senseix.pullLeaderboard(2);
 		//leaderboard.debugPrint();
 		drawLeaderboardList();
@@ -170,6 +171,7 @@ public class GameManager : MonoBehaviour
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(leaderboardPanel.transform, 1f, parms);
+		*/
 	}
 	public void hideLeaderboard()
 	{
@@ -197,6 +199,7 @@ public class GameManager : MonoBehaviour
 	public void showSignupPanel()
 	{
 		//hideMainmenuPanel ();
+		senseixVideo.showVideo();
 		Vector3 pos = new Vector3(signupPanelPos.x,signupPanelPos.y+720,signupPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
@@ -245,23 +248,54 @@ public class GameManager : MonoBehaviour
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(roundLable.transform, 1f, parms);
 	}
+	public void debugs(string text)
+	{
+		debugText.text = text;
+	}
 	public void showLoginPanel()
 	{
-		//webb = GameObject.FindGameObjectWithTag("web").GetComponent("UniWebView") as UniWebView;
-		//webb.SetShowSpinnerWhenLoading(false);
-		//print(webb.insets.top.ToString());
-		//webb.insets = new UniWebViewEdgeInsets(5,5,5,5);
-		//webb.url = "http://www.baidu.com";
-		//if(webb == null)
-		//	print("errrrrrrrrrrrrrrr");
-		//else
-		//{	
-			//webb.Load ();
-			//webb.Hide();
-		//	webb.Load ();	
-		//}		
+		
+		/*
+		webb = GameObject.FindGameObjectWithTag("web").GetComponent("UniWebView") as UniWebView;
+		webb.SetShowSpinnerWhenLoading(false);
+		print(webb.insets.top.ToString());
+		webb.insets = new UniWebViewEdgeInsets(5,5,5,5);
+		webb.url = "file:///"+Application.persistentDataPath + "/test.html";
+		if(webb == null)
+		{
+			debugText.text="error: web is null";
+			print("errrrrrrrrrrrrrrr");
+		}
+		else
+		{	
+			debugText.text="web is fun";
+			webb.Load ();
+			webb.Hide();
+			webb.Load ();
+			webb.Show();	
+		}
+		*/
+		senseixVideo.loadVideo("http://katana-staging-426549454.us-east-1.elb.amazonaws.com/p/101/sp/10100/embedIframeJs/uiconf_id/23448275/partner_id/101?autoembed=true&entry_id=0_cpcv4vuo&playerId=kaltura_player_1405117970&cache_st=1405117970&width=400&height=333");
+		/*
+		if(senseixVideo.loadVideo("http://katana-staging-426549454.us-east-1.elb.amazonaws.com/p/101/sp/1s0100/embedIframeJs/uiconf_id/23448275/partner_id/101?autoembed=true&entry_id=0_cpcv4vuo&playerId=kaltura_player_1405117970&cache_st=1405117970&width=400&height=333") != 0)
+		{
+			debugs("failed 1");
+		}
+		else
+		{
+			debugs("made 1");
+		}
+		if(senseixVideo.showVideo() != 0)
+		{
+			debugs("failed 2");
+		}
+		else
+		{
+			debugs("made 2");
+		}
+		*/
 		//print(webb.insets.top.ToString() + " " +webb.insets.bottom.ToString());
-		senseix.cleanData ();
+		//senseix.cleanData ();
 		//hideMainmenuPanel ();
 		Vector3 pos = new Vector3(loginPanelPos.x,loginPanelPos.y+720,loginPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
@@ -297,6 +331,19 @@ public class GameManager : MonoBehaviour
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(profileSelectPanel.transform, 1f, parms);
 		//showMainmenuPanel ();
+	}
+	public void shakePanel(UIPanel toShake)
+	{
+		for(int i=0;i<20;i++)
+		{
+		Vector3 Pos = new Vector3(toShake.transform.localPosition.x,toShake.transform.localPosition.y+20,toShake.transform.localPosition.z);
+		TweenParms parms = new TweenParms ().Prop ("localPosition",Pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(toShake.transform, 1f, parms);
+		Thread.Sleep(2000);
+		Pos = new Vector3(toShake.transform.localPosition.x,toShake.transform.localPosition.y-20,toShake.transform.localPosition.z);
+		parms = new TweenParms ().Prop ("localPosition",Pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
+		HOTween.To(toShake.transform, 1f, parms);
+		}
 	}
 	public void drawLeaderboardList()
 	{
@@ -914,6 +961,17 @@ public class GameManager : MonoBehaviour
         {
             //DrawQuiz();
         }
+        /*
+		using(StreamReader sr = new StreamReader(Application.persistentDataPath + "/test.html"))
+		{
+        	string tmp = null;
+        	tmp = sr.ReadLine();
+        	if(tmp != null)
+        	debugText.text = tmp.Substring(0,15);
+        	else 
+        	debugText.text = "file is not there";
+        }
+        */
 		if(switchPlay)
 		{
 			if(wait < 150)

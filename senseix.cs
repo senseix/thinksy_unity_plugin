@@ -93,6 +93,7 @@ using System.Text;
 		public static string str1="";
 		public static string str2="";
 		public static string str3="";
+		public static bool videoReady = false;
 		public senseix ()
 		{
 		}
@@ -549,6 +550,7 @@ using System.Text;
 			}
 			senseix.gameToken = gameToken;
 			senseix.rankNum = rankNum;
+			videoReady = (senseixVideo.initSSXVidieo("web") == 0);
 			/*
 			if (tryLoadAuthToken () == 0 && loadProfileID() == 0) 
 			{	
