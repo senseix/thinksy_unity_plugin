@@ -198,8 +198,6 @@ public class GameManager : MonoBehaviour
 	}
 	public void showSignupPanel()
 	{
-		//hideMainmenuPanel ();
-		senseixVideo.showVideo();
 		Vector3 pos = new Vector3(signupPanelPos.x,signupPanelPos.y+720,signupPanelPos.z);
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
@@ -210,7 +208,6 @@ public class GameManager : MonoBehaviour
 		Vector3 pos = new Vector3(signupPanelPos.x,signupPanelPos.y,signupPanelPos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(signupPanel.transform, 1f, parms);
-		//showMainmenuPanel ();
 	}
 	public void showCreateProfile()
 	{
@@ -255,6 +252,7 @@ public class GameManager : MonoBehaviour
 	public void showLoginPanel()
 	{
 		
+		//Experimental code for video streaming
 		/*
 		webb = GameObject.FindGameObjectWithTag("web").GetComponent("UniWebView") as UniWebView;
 		webb.SetShowSpinnerWhenLoading(false);
@@ -273,25 +271,6 @@ public class GameManager : MonoBehaviour
 			webb.Hide();
 			webb.Load ();
 			webb.Show();	
-		}
-		*/
-		senseixVideo.loadVideo("http://katana-staging-426549454.us-east-1.elb.amazonaws.com/p/101/sp/10100/embedIframeJs/uiconf_id/23448275/partner_id/101?autoembed=true&entry_id=0_cpcv4vuo&playerId=kaltura_player_1405117970&cache_st=1405117970&width=400&height=333");
-		/*
-		if(senseixVideo.loadVideo("http://katana-staging-426549454.us-east-1.elb.amazonaws.com/p/101/sp/1s0100/embedIframeJs/uiconf_id/23448275/partner_id/101?autoembed=true&entry_id=0_cpcv4vuo&playerId=kaltura_player_1405117970&cache_st=1405117970&width=400&height=333") != 0)
-		{
-			debugs("failed 1");
-		}
-		else
-		{
-			debugs("made 1");
-		}
-		if(senseixVideo.showVideo() != 0)
-		{
-			debugs("failed 2");
-		}
-		else
-		{
-			debugs("made 2");
 		}
 		*/
 		//print(webb.insets.top.ToString() + " " +webb.insets.bottom.ToString());
