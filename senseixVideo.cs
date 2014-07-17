@@ -29,7 +29,7 @@ public class senseixVideo:MonoBehaviour
 		webview = GameObject.FindGameObjectWithTag("web").GetComponent("UniWebView") as UniWebView;
 		webview.SetShowSpinnerWhenLoading(false);
 		//print(webb.insets.top.ToString());
-		webview.insets = new UniWebViewEdgeInsets(5,5,5,5);
+		webview.insets = new UniWebViewEdgeInsets(5,5,500,5);
 
 		return 0;
 	}
@@ -39,11 +39,16 @@ public class senseixVideo:MonoBehaviour
 		mimicHtml(Url);
 		webview.url = "file:///"+Application.persistentDataPath + "/test.html";
 		webview.Load ();
+		webview.EvaluatingJavaScript("document.getElementById('kaltura_player_1405117970_ifp').contentDocument.getElementById('kaltura_player_1405117970').play();");
+		//webview.EvaluatingJavaScript("document.getElementById('kaltura_player_1405117970_ifp').contentDocument.getElementById('kaltura_player_1405117970').pause();");
 		return 0;
 	}
 	public static int showVideo()
 	{
+		
 		webview.Show();	
+		
+		//webview.EvaluatingJavaScript("alert(\"aaaa\");");
 		return 0;
 	}
 	public static int hideVideo()
@@ -54,6 +59,11 @@ public class senseixVideo:MonoBehaviour
 		}
 		webview.Hide();
 		return 0;
+	}
+	public static void js()
+	{
+		
+		//webview.EvaluatingJavaScript("alert(1);");
 	}
 	public static void mimicHtml(string Url)
 	{

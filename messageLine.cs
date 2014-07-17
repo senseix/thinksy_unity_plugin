@@ -57,6 +57,7 @@ public class messageLine
 					Dictionary<string,object> result = null;
 					container decoder = new container();
 					StringBuilder tmpBuilder = new StringBuilder();
+					//FIXME: so far we just get strings with index 0
 					tmp = (string)senseixMenuManager.cachedProblemStr[0];
 					//MonoBehaviour.print("======got message=====  "+tmp);
 					tmpBuilder.Append("{\"problems\":\"");

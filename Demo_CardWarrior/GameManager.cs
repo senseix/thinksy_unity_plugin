@@ -162,8 +162,6 @@ public class GameManager : MonoBehaviour
 	}
 	public void showLeaderboard()
 	{
-		shakePanel(buttonPanel);
-		/*
 		senseix.pullLeaderboard(2);
 		//leaderboard.debugPrint();
 		drawLeaderboardList();
@@ -171,7 +169,6 @@ public class GameManager : MonoBehaviour
 		//buttonPanel.transform.localPosition = new Vector3(pos.x, pos.y+3f, pos.z);
 		TweenParms parms = new TweenParms ().Prop ("localPosition", pos);//.Ease(EaseType.Linear).OnComplete(OnFriendStop);
 		HOTween.To(leaderboardPanel.transform, 1f, parms);
-		*/
 	}
 	public void hideLeaderboard()
 	{
@@ -574,6 +571,7 @@ public class GameManager : MonoBehaviour
 		onlineDebug.text = senseix.inSession?"online":"offline";
 		if(senseixManager.id != 0 || (!senseix.inSession && senseixMenuManager.offlineProblemLoadedInSenseix))
 		{
+			print (senseixManager.id+ " " + senseix.inSession.ToString() + " " + senseixMenuManager.offlineProblemLoadedInSenseix.ToString());
 			hideMainmenuPanel ();
 			StartGame ();
 		}

@@ -150,8 +150,8 @@ using System.Text;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
 			container decoder = new container();
-			//string deviceID = SystemInfo.deviceUniqueIdentifier;
-		string deviceID = "d68672153622798d5934d";
+			string deviceID = SystemInfo.deviceUniqueIdentifier;
+			//string deviceID = "d68672153622798d5934d";
 			setUID(deviceID);
 		print (deviceID.Length + " devic "+SystemInfo.deviceUniqueIdentifier);
 		
@@ -192,8 +192,8 @@ using System.Text;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
 			container decoder = new container();
-			//string deviceID = SystemInfo.deviceUniqueIdentifier;
-		string deviceID = "d68672153622798d5934d";
+			string deviceID = SystemInfo.deviceUniqueIdentifier;
+		//string deviceID = "d68672153622798d5934d";
 			if(gameToken != null)
 				currentToken = gameToken;
 			else
@@ -239,8 +239,8 @@ using System.Text;
 			Dictionary<string,string> result = null;
 			container decoder =new container();
 			
-			//string deviceID = SystemInfo.deviceUniqueIdentifier;
-			string deviceID = "d68672153622798d5934d";
+			string deviceID = SystemInfo.deviceUniqueIdentifier;
+			//string deviceID = "d68672153622798d5934d";
 			if (game == null) {
 				if (getGameToken () == null) {
 					return -1;

@@ -24,6 +24,7 @@ public class senseixMenuConst{
 
 }
 public class senseixMenuManager : MonoBehaviour {
+	public const string backup_problem = "[{\"id\":409,\"content\":\"1 + 5 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"6\",\"subcategory\":\"Addition\"},{\"id\":443,\"content\":\"3 + 2 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"5\",\"subcategory\":\"Addition\"},{\"id\":415,\"content\":\"1 + 8 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"9\",\"subcategory\":\"Addition\"},{\"id\":251,\"content\":\"3 + 6 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"9\",\"subcategory\":\"Addition\"},{\"id\":443,\"content\":\"3 + 2 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"5\",\"subcategory\":\"Addition\"},{\"id\":283,\"content\":\"5 + 2 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"7\",\"subcategory\":\"Addition\"},{\"id\":409,\"content\":\"1 + 5 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"6\",\"subcategory\":\"Addition\"},{\"id\":23,\"content\":\"2 + 2 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"4\",\"subcategory\":\"Addition\"},{\"id\":269,\"content\":\"4 + 5 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"9\",\"subcategory\":\"Addition\"},{\"id\":69,\"content\":\"4 + 5 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"9\",\"subcategory\":\"Addition\"},{\"id\":201,\"content\":\"1 + 1 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"2\",\"subcategory\":\"Addition\"},{\"id\":521,\"content\":\"7 + 1 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"8\",\"subcategory\":\"Addition\"},{\"id\":29,\"content\":\"2 + 5 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"7\",\"subcategory\":\"Addition\"},{\"id\":523,\"content\":\"7 + 2 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"9\",\"subcategory\":\"Addition\"},{\"id\":505,\"content\":\"6 + 3 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"9\",\"subcategory\":\"Addition\"},{\"id\":205,\"content\":\"1 + 3 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"4\",\"subcategory\":\"Addition\"},{\"id\":285,\"content\":\"5 + 3 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"8\",\"subcategory\":\"Addition\"},{\"id\":87,\"content\":\"5 + 4 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"9\",\"subcategory\":\"Addition\"},{\"id\":61,\"content\":\"4 + 1 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"5\",\"subcategory\":\"Addition\"},{\"id\":445,\"content\":\"3 + 3 =\",\"category\":\"Mathematics\",\"level\":[0,1,2],\"answer\":\"6\",\"subcategory\":\"Addition\"}]\"}";
 	public static bool popSenseixMenu = false;
 	public static bool specifyNumber = true;
 	public static bool gameStarted = false;
@@ -411,7 +412,11 @@ public class senseixMenuManager : MonoBehaviour {
 		}
 		return correct;
 	}
+	/*
+	 * precache related code
+	 */
 	//FIXME: how about case that pulling problems fail
+	//Should have been fixed
 	static public void storeProblems(int index)
 	{
 		string storeName = "problem0" + index.ToString ();
@@ -424,12 +429,14 @@ public class senseixMenuManager : MonoBehaviour {
 	{
 		//cachedProblemStr
 		int ret = 0;
+		bool foundPrecache = false;
 		for(int i=0;i<10;i++)
 		{
 			string storeName = "problem0" + i.ToString ();
 			if(PlayerPrefs.HasKey(storeName))
 			{
 				cachedProblemStr.Add(PlayerPrefs.GetString(storeName));
+				foundPrecache = true;
 			}
 			else
 			{
@@ -437,7 +444,13 @@ public class senseixMenuManager : MonoBehaviour {
 				cachedProblemLevelCeiling = ret;
 			}
 		}
-		print ("cache level "+ret);
+		if(!foundPrecache)
+		{
+			cachedProblemLevelCeiling = 1;
+			ret = 1;
+			cachedProblemStr.Add(backup_problem);
+		}
+		//print ("cache level "+ret);
 		return ret;
 	}
 	static public string retrieveProblemsString()

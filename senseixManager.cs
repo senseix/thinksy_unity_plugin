@@ -42,6 +42,8 @@ public class senseixManager:MonoBehaviour
 			//here should be showing profile selecting
 			//If there is only one count, then we can directly go to get problems
 			//otherwise, we need to do that after we get user id
+#if false	
+			//this trick about number of client will not be used now		
 			if(playerA != null && playerA.Count == 1)
 			{
 				senseix.id=((heavyUser)playerA[0]).id;
@@ -53,6 +55,9 @@ public class senseixManager:MonoBehaviour
 					senseixGameManager.prepareProblem (5, "Mathematics", 1);
 				}
 			}
+#else
+
+#endif
 			print("retried problems " + senseixMenuManager.retrieveProblems().ToString());
 		}
 		else if(senseixMenuManager.retrieveProblems() != 0)
