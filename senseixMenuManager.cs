@@ -200,7 +200,7 @@ public class senseixMenuManager : MonoBehaviour {
 		passwordText = GUILayout.PasswordField(passwordText,"*"[0]);
 		if (GUILayout.Button("Login",buttonStyle,GUILayout.Height(50)))
 		{	
-			if(senseix.coachLogin(emailText,passwordText) == 0)
+			if(senseix.parentLogin(emailText,passwordText) == 0)
 			{
 				/*
 				emailText="Your E-mail";
@@ -233,7 +233,7 @@ public class senseixMenuManager : MonoBehaviour {
 		nameText = GUILayout.TextField (nameText);
 		if (GUILayout.Button("Summit",buttonStyle,GUILayout.Height(Screen.height/8)))
 		{	
-			if(senseix.coachSignUp(emailText,name,passwordText) == 0)
+			if(senseix.parentSignUp(emailText,name,passwordText) == 0)
 			{
 				emailText="Your E-mail";
 				passwordText="Your password";
@@ -352,7 +352,7 @@ public class senseixMenuManager : MonoBehaviour {
 		}
 		if (GUILayout.Button("Sign out",buttonStyle,GUILayout.Height(Screen.height/10)))
 		{	
-			senseix.coachLogout();
+			senseix.parentLogout();
 			menuState = senseixMenuConst.MENU_0_MAIN;
 			//popSenseixMenu = true;
 		}

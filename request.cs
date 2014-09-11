@@ -74,8 +74,8 @@ using UnityEngine;
 					break;
 				*/
 
-			case messageType.MESSAGETYPE_COACH_SIGN_UP:
-				url = messageType.MESSAGETYPE_COACH_SIGN_UP_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_UP:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_UP_URL;
 				postget = 1;
 				message.init ();
 				
@@ -84,21 +84,21 @@ using UnityEngine;
 				message.append (dictionary["access_token"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["email"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("name");
 				message.addValueDeli ();
 				message.append (dictionary["name"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -112,8 +112,8 @@ using UnityEngine;
 				message.append (dictionary["udid"]);
 				
 				break;
-			case messageType.MESSAGETYPE_COACH_SIGN_IN:
-				url = messageType.MESSAGETYPE_COACH_SIGN_IN_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_IN:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_IN_URL;
 				postget = 1;
 				message.init ();
 				
@@ -122,14 +122,14 @@ using UnityEngine;
 				message.append (dictionary["access_token"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["login"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -144,8 +144,8 @@ using UnityEngine;
 				
 				
 				break;
-			case messageType.MESSAGETYPE_COACH_SIGN_OUT:
-				url = messageType.MESSAGETYPE_COACH_SIGN_OUT_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_OUT:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_OUT_URL;
 				
 				postget = 1;
 				
@@ -471,8 +471,8 @@ using UnityEngine;
 				data.Add ("udid",message["udid"]);
 				break;
 			*/
-			case messageType.MESSAGETYPE_COACH_PUSH_UID:
-				url = messageType.MESSAGETYPE_COACH_SIGN_IN_URL;
+			case messageType.MESSAGETYPE_PARENT_PUSH_UID:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_IN_URL;
 				postget = 1;
 				message.init ();
 				
@@ -481,7 +481,7 @@ using UnityEngine;
 				message.append (dictionary["access_token"]);
 				
 			//	message.addFieldDeli ();
-			//	message.append ("coach");
+			//	message.append ("parent");
 				
 				message.addFieldDeli ();
 				message.append ("device");
@@ -491,8 +491,8 @@ using UnityEngine;
 				message.append (dictionary["udid"]);
 				
 				break;
-			case messageType.MESSAGETYPE_COACH_SIGN_UP:
-				url = messageType.MESSAGETYPE_COACH_SIGN_UP_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_UP:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_UP_URL;
 				postget = 1;
 				message.init ();
 				
@@ -501,21 +501,21 @@ using UnityEngine;
 				message.append (dictionary["access_token"]);
 
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["email"]);
 
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("name");
 				message.addValueDeli ();
 				message.append (dictionary["name"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -529,8 +529,8 @@ using UnityEngine;
 				message.append (dictionary["udid"]);
 				
 				break;
-			case messageType.MESSAGETYPE_COACH_SIGN_IN:
-				url = messageType.MESSAGETYPE_COACH_SIGN_IN_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_IN:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_IN_URL;
 				postget = 1;
 				message.init ();
 				
@@ -539,14 +539,14 @@ using UnityEngine;
 				message.append (dictionary["access_token"]);
 
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["login"]);
 
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -561,8 +561,8 @@ using UnityEngine;
 				
 
 				break;
-			case messageType.MESSAGETYPE_COACH_SIGN_OUT:
-				url = messageType.MESSAGETYPE_COACH_SIGN_OUT_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_OUT:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_OUT_URL;
 				
 				postget = 1;
 				

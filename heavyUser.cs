@@ -8,7 +8,7 @@ using System.Collections.Generic;
 		public string email = "null";
 		public string name = "null";
 		public int age = -1;
-		public int coach_id = -1;
+		public int parent_id = -1;
 		public string created_at = "null";
 		public string updated_at = "null";
 		public int team_id = -1;
@@ -18,7 +18,7 @@ using System.Collections.Generic;
 		{
 		
 		}
-		public heavyUser (string ida,string emaila,string namea,string agea,string coach_ida,string created_ata,string updated_ata,string team_ida,string deleteda)
+		public heavyUser (string ida,string emaila,string namea,string agea,string parent_ida,string created_ata,string updated_ata,string team_ida,string deleteda)
 		{
 			if(ida.Equals("null"))
 				id = -1;
@@ -30,10 +30,10 @@ using System.Collections.Generic;
 				age = -1;
 			else
 				age = Convert.ToInt32(agea);
-			if(coach_ida.Equals("null"))
-				coach_id = -1;
+			if(parent_ida.Equals("null"))
+				parent_id = -1;
 			else	
-				coach_id = Convert.ToInt32(coach_ida);
+				parent_id = Convert.ToInt32(parent_ida);
 			created_at=created_ata;
 			updated_at=updated_ata;
 			if(team_ida.Equals("null"))

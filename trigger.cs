@@ -6,10 +6,10 @@ using System.Net;
 using System;
 public class trigger : MonoBehaviour {
 	private bool mainWindow = true;
-	private bool coachLogin = false;
+	private bool parentLogin = false;
 	private bool developerLogin = false;
-	private bool coachSignup = false;
-	private bool coachSessionBeg = false;
+	private bool parentSignup = false;
+	private bool parentSessionBeg = false;
 	
 	public string emailText = "email";
 	public string passwordText = "";
@@ -33,8 +33,8 @@ public class trigger : MonoBehaviour {
 		if (senseix.inSession) 
 		{
 			mainWindow = false;
-			coachLogin = false;
-			coachSessionBeg = true;
+			parentLogin = false;
+			parentSessionBeg = true;
 		}
 	}
     public void showLoading()
@@ -65,8 +65,8 @@ public class trigger : MonoBehaviour {
 				string authToken = PlayerPrefs.GetString("data00","null");
 				senseix.setAuthToken(authToken);
 				mainWindow = false;
-				coachLogin = false;
-				coachSessionBeg = true;
+				parentLogin = false;
+				parentSessionBeg = true;
 				print("Loaded token: " + senseix.getAuthToken());
 			}
 			else
@@ -82,27 +82,27 @@ public class trigger : MonoBehaviour {
 				mainWindow = false;
 			}
 		}
-		if(!mainWindow&&!coachLogin&&!developerLogin&&!coachSignup&&!coachSessionBeg&&!selectProfile)
+		if(!mainWindow&&!parentLogin&&!developerLogin&&!parentSignup&&!parentSessionBeg&&!selectProfile)
 		{
-			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2-15,80,30), "Coach"))
+			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2-15,80,30), "Parent"))
 			{	
-				coachLogin = true;
+				parentLogin = true;
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+25,80,30), "Developer"))
 			{	
 				developerLogin = true;
 			}
 		}
-		if(coachLogin&&!selectProfile) //coachSignUp
+		if(parentLogin&&!selectProfile) //parentSignUp
 		{
 			emailText = GUI.TextField(new Rect(Screen.width/2-75, Screen.height/2-5,80,30), emailText, 25);
 			passwordText = GUI.PasswordField(new Rect(Screen.width/2-75, Screen.height/2+30,80,30), passwordText, "*"[0], 25);
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+65,80,30), "Login"))
 			{	
-				if(senseix.coachLogin(emailText,passwordText) == 0)
+				if(senseix.parentLogin(emailText,passwordText) == 0)
 				{
-					coachLogin = false;
-					coachSessionBeg = true;
+					parentLogin = false;
+					parentSessionBeg = true;
 					emailText="email";
 					passwordText="";
 				}
@@ -113,27 +113,27 @@ public class trigger : MonoBehaviour {
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+100,80,30), "Register"))
 			{	
-				coachLogin = false;
-				coachSignup = true;
+				parentLogin = false;
+				parentSignup = true;
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+135,80,30), "Cancel"))
 			{	
-				coachLogin = false;
+				parentLogin = false;
 				emailText="email";
 				passwordText="";
 			}
 		}
-		if(coachSignup&&!selectProfile)
+		if(parentSignup&&!selectProfile)
 		{
 			emailText = GUI.TextField(new Rect(Screen.width/2-75, Screen.height/2-5,80,30), emailText, 25);
 			name = GUI.TextField(new Rect(Screen.width/2-75, Screen.height/2+30,80,30), name, 25);
 			passwordText = GUI.PasswordField(new Rect(Screen.width/2-75, Screen.height/2+65,80,30), passwordText, "*"[0], 25);
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+100,80,30), "Summit"))
 			{	
-				if(senseix.coachSignUp(emailText,name,passwordText) == 0)
+				if(senseix.parentSignUp(emailText,name,passwordText) == 0)
 				{
-					coachSignup = false;
-					coachSessionBeg = true;
+					parentSignup = false;
+					parentSessionBeg = true;
 					emailText="email";
 					passwordText="";
 				}
@@ -142,8 +142,8 @@ public class trigger : MonoBehaviour {
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+135,80,30), "Cancel"))
 			{	
-				coachLogin = true;
-				coachSignup = false;
+				parentLogin = true;
+				parentSignup = false;
 				emailText="email";
 				passwordText="";
 				name="";
@@ -173,7 +173,7 @@ public class trigger : MonoBehaviour {
 				passwordText="";
 			}
 		}
-		if(coachSessionBeg&&!selectProfile)
+		if(parentSessionBeg&&!selectProfile)
 		{
 			tmp = GUI.TextArea(new Rect(10,10,200,600), tmp, 250);
 			//tmp = GUI.TextField(new Rect(Screen.width/2-75, Screen.height/2-40,120,30), tmp, 25);
@@ -233,9 +233,9 @@ public class trigger : MonoBehaviour {
 			}
 			if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2+100,120,30), "Logout"))
 			{	
-				senseix.coachLogout();
-				coachLogin = true;
-				coachSessionBeg = false;
+				senseix.parentLogout();
+				parentLogin = true;
+				parentSessionBeg = false;
 				emailText="email";
 				passwordText="";
 			}
@@ -290,13 +290,13 @@ public class trigger : MonoBehaviour {
 		}
 		if (Input.GetKey("c"))
 		{
-			senseix.coachLogin("80640000@qq.com","password.com");
+			senseix.parentLogin("80640000@qq.com","password.com");
         }
         if (Input.GetKey("d")){
-			senseix.coachLogout();
+			senseix.parentLogout();
 		}
 		if (Input.GetKey("e")){
-			senseix.coachSignUp("90909090@qq.com","chris","password.com");
+			senseix.parentSignUp("90909090@qq.com","chris","password.com");
 		}
 		if (Input.GetKey("f")){
 			senseix.getPlayer ();

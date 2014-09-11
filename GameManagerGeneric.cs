@@ -422,7 +422,7 @@ public class GameManagerGeneric : MonoBehaviour
 		string emailText = signupEmail.value;
 		string name = signupName.value;
 		string passwordText = signupPassword.value;
-		if (senseix.coachSignUp (emailText, name, passwordText) == 0) 
+		if (senseix.parentSignUp (emailText, name, passwordText) == 0) 
 		{
 			print("senseix sign up successful");
 
@@ -440,7 +440,7 @@ public class GameManagerGeneric : MonoBehaviour
 		senseix.cleanData ();
 		string emailText = loginEmail.value;
 		string passwordText = loginPassword.value;
-		if(senseix.coachLogin(emailText,passwordText) == 0)
+		if(senseix.parentLogin(emailText,passwordText) == 0)
 		{
 			print("senseix sign in successful");
 			hideLoginPanel();

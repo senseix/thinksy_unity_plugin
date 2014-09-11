@@ -9,9 +9,9 @@ How to use this plugin
 
 Quick start:
 To use functions in plugin, you need to let it know the game token by senseix.initSenseix(string gameToken,int rankNum). "gameToken" is the token you got from our website for your game. "rankNum" is the size of leaderboard.
-Then you can call senseix.coachLogin (string login,string password,string game) in your login dialog to let coach/parent login. "login" is the email of coach(parent) account. "password" is password for this account.
-After user logins, their information will be cached, you can bundle functions senseix.coachLogout() to a button in your game to clean up user information and end current session. 
-You also can call function senseix.coachSignUp (string email,string name,string password) to let user sign up a new account.
+Then you can call senseix.parentLogin (string login,string password,string game) in your login dialog to let parent/parent login. "login" is the email of parent(parent) account. "password" is password for this account.
+After user logins, their information will be cached, you can bundle functions senseix.parentLogout() to a button in your game to clean up user information and end current session. 
+You also can call function senseix.parentSignUp (string email,string name,string password) to let user sign up a new account.
 
 API:
 int initSenseix(string gameToken)
@@ -35,19 +35,19 @@ bool checkAnswer(int answerInt,problem p)
 	return: false if answer is wrong, true if answer is correct.
 	example: line 308 in trigger.cs
 	
-int coachSignUp (string email,string name,string password)
-	This function can be used to sign up a new coach/parent account. "email" is the account ID of new user. "name" is name of parent/coach. "password" is password for this account. After an account gets created by this way, a session will be started. Profile informationi will be cached in player's device.
+int parentSignUp (string email,string name,string password)
+	This function can be used to sign up a new parent/parent account. "email" is the account ID of new user. "name" is name of parent/parent. "password" is password for this account. After an account gets created by this way, a session will be started. Profile informationi will be cached in player's device.
 	return: negative if failed, 0 for success.
 	
-int coachLogin (string login,string password)
-	Start a new session. "login" is the "email" address used when this account got created. "password" is password for this account. When new session started, user information will be cached, which can be cleaned up by calling function "coachLogout".
+int parentLogin (string login,string password)
+	Start a new session. "login" is the "email" address used when this account got created. "password" is password for this account. When new session started, user information will be cached, which can be cleaned up by calling function "parentLogout".
 	return: negative for fail, 0 for success.
 	
 int createPlayer (string playerName)
-	Create a new player which belongs to current coach account. "playerName" is name for this new player.
+	Create a new player which belongs to current parent account. "playerName" is name for this new player.
 	return: negative for fail, 0 for success.
 	
 Queue getPlayer ()
-	Get the list of players belonging to current coach/parent account and put the into a Queue.
+	Get the list of players belonging to current parent/parent account and put the into a Queue.
 	return: null if fail, Queue object for success
-	example: line 235 in trigger.cs to generate a list of botton that represent available players for current coach/parent account.
+	example: line 235 in trigger.cs to generate a list of botton that represent available players for current parent/parent account.

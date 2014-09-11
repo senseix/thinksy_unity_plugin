@@ -32,7 +32,7 @@ public class senseixManager:MonoBehaviour
 	{
 		int ret = 0;
 		senseix.initSenseix (access_token);
-		ret = senseix.coachUidPush ();
+		ret = senseix.parentUidPush ();
 		if (ret == 0)
 		{
 			//senseix.readProblemFromStr();
