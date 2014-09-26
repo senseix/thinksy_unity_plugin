@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-public class container
+public class Container
 {
 	public byte[] binary = null;
 	public StringBuilder buffer = new StringBuilder();
@@ -11,7 +11,7 @@ public class container
 	public int ready = 0;
 	public int postget = 0;
 	public string url = null;
-	public container ()
+	public Container ()
 	{
 	}
 	public static int count(string input,char target)
@@ -102,7 +102,7 @@ public class container
 	{
 		int slashCount = 0;
 		string tmp = "\"";
-		slashCount = container.count(result,'a');
+		slashCount = Container.count(result,'a');
 		return null;
 	}
 	public Dictionary<string,string> formDictionary()
@@ -165,8 +165,8 @@ public class container
 					builder.Remove(0,builder.Length);
 					mao1 = i+1;
 					mao2 = i+1;
-					key=container.stripStringSign(key);
-					value=container.stripStringSign(value);
+					key=Container.stripStringSign(key);
+					value=Container.stripStringSign(value);
 					if(value.Length < 1)
 						value = "null";
 //					MonoBehaviour.print("========test decoder========");
@@ -224,10 +224,10 @@ public class container
 							}
 							if(binary[j] == '}')
 							{
-								container decoder = new container();
+								Container decoder = new Container();
 								objBuilder.Append('}');	
 								decoder.append(objBuilder.ToString());
-								MonoBehaviour.print("Going to get obj with " + decoder.buffer.ToString());
+//								MonoBehaviour.print("Going to get obj with " + decoder.buffer.ToString());
 								decoder.formBinary();
 								objDictionary = decoder.formDictionary();
 								objQ.Enqueue(objDictionary);
@@ -282,8 +282,8 @@ public class container
 					builder.Remove(0,builder.Length);
 					mao1 = i+1;
 					mao2 = i+1;
-					key=container.stripStringSign(key);
-					value=container.stripStringSign(value);
+					key=Container.stripStringSign(key);
+					value=Container.stripStringSign(value);
 					if(value.Length < 1)
 						value = "null";
 					//MonoBehaviour.print("========test decoder========");
@@ -296,5 +296,9 @@ public class container
 		}
 		return dictionary;
 		
+	}
+	public string ToString()
+	{
+		return buffer.ToString();
 	}
 }

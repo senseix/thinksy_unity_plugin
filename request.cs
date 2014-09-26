@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 	public class request:MonoBehaviour
 	{
@@ -51,14 +52,14 @@ using UnityEngine;
 			return "ERROR: No branch got hit";
 		}
 		*/
-		public static container prepareRequest(Dictionary<string,string> dictionary,int type)
+		public static Container prepareRequest(Dictionary<string,string> dictionary,int type)
 		{
 			string url = null;
 			int postget = 0;	//post is 1 and get is 2
 			Dictionary<string,object> data = new Dictionary<string, object>();
 			var post = new WWWForm();
 			
-			container message = new container ();
+			Container message = new Container ();
 			string deviceID = SystemInfo.deviceUniqueIdentifier;
 			
 			switch(type)
@@ -74,8 +75,8 @@ using UnityEngine;
 					break;
 				*/
 
-			case messageType.MESSAGETYPE_PARENT_SIGN_UP:
-				url = messageType.MESSAGETYPE_PARENT_SIGN_UP_URL;
+			case messageType.MESSAGETYPE_COACH_SIGN_UP:
+				url = messageType.MESSAGETYPE_COACH_SIGN_UP_URL;
 				postget = 1;
 				message.init ();
 				
@@ -84,21 +85,21 @@ using UnityEngine;
 				message.append (dictionary["access_token"]);
 				
 				message.addFieldDeli ();
-				message.append ("parent");
+				message.append ("coach");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["email"]);
 				
 				message.addFieldDeli ();
-				message.append ("parent");
+				message.append ("coach");
 				message.addKeyDeli ();
 				message.append ("name");
 				message.addValueDeli ();
 				message.append (dictionary["name"]);
 				
 				message.addFieldDeli ();
-				message.append ("parent");
+				message.append ("coach");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -112,8 +113,8 @@ using UnityEngine;
 				message.append (dictionary["udid"]);
 				
 				break;
-			case messageType.MESSAGETYPE_PARENT_SIGN_IN:
-				url = messageType.MESSAGETYPE_PARENT_SIGN_IN_URL;
+			case messageType.MESSAGETYPE_COACH_SIGN_IN:
+				url = messageType.MESSAGETYPE_COACH_SIGN_IN_URL;
 				postget = 1;
 				message.init ();
 				
@@ -122,14 +123,14 @@ using UnityEngine;
 				message.append (dictionary["access_token"]);
 				
 				message.addFieldDeli ();
-				message.append ("parent");
+				message.append ("coach");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["login"]);
 				
 				message.addFieldDeli ();
-				message.append ("parent");
+				message.append ("coach");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -144,8 +145,8 @@ using UnityEngine;
 				
 				
 				break;
-			case messageType.MESSAGETYPE_PARENT_SIGN_OUT:
-				url = messageType.MESSAGETYPE_PARENT_SIGN_OUT_URL;
+			case messageType.MESSAGETYPE_COACH_SIGN_OUT:
+				url = messageType.MESSAGETYPE_COACH_SIGN_OUT_URL;
 				
 				postget = 1;
 				
@@ -356,6 +357,27 @@ using UnityEngine;
 				//message.append("&player_id=40&answer_set%5B%5D%5Bproblem_id%5D=13&answer_set%5B%5D%5Bduration%5D=2&answer_set%5B%5D%5Bcorrect%5D=false&answer_set%5B%5D%5Btries%5D=1&answer_set%5B%5D%5Bgame_difficulty%5D=2&answer_set%5B%5D%5Banswer%5D=5");
 				
 				break;
+			case messageType.MESSAGETYPE_PLAYLIST_PULL:
+				url = messageType.MESSAGETYPE_PLAYLIST_PULL_URL;
+				postget = 2;
+				message.append(messageType.MESSAGETYPE_PLAYLIST_PULL_URL);
+				message.append("?");
+				message.init ();
+				
+				message.addFieldDeli ();
+				message.append ("auth_token=");
+				message.append (dictionary["auth_token"]);
+
+				message.addFieldDeli ();
+				message.append ("access_token=");
+				message.append (dictionary["access_token"]);
+				
+				message.addFieldDeli ();
+				message.append ("player_id=");
+				message.append (dictionary["player_id"]);
+			print ("Playlist debug " + "access_token "+dictionary["access_token"] + "auth_token "+ dictionary["auth_token"] + "player_id "+ dictionary["player_id"]);
+				break;
+			
 			case messageType.MESSAGETYPE_LEADERBOARD_PULL:
 				url = messageType.MESSAGETYPE_LEADERBOARD_PULL_URL;
 				postget = 2;
@@ -456,7 +478,7 @@ using UnityEngine;
 			Dictionary<string,object> data = new Dictionary<string, object>();
 			var post = new WWWForm();
 			
-			container message = new container ();
+			Container message = new Container ();
 			string deviceID = SystemInfo.deviceUniqueIdentifier;
 			
 			switch(type)
@@ -471,8 +493,8 @@ using UnityEngine;
 				data.Add ("udid",message["udid"]);
 				break;
 			*/
-			case messageType.MESSAGETYPE_PARENT_PUSH_UID:
-				url = messageType.MESSAGETYPE_PARENT_SIGN_IN_URL;
+			case messageType.MESSAGETYPE_COACH_PUSH_UID:
+				url = messageType.MESSAGETYPE_COACH_SIGN_IN_URL;
 				postget = 1;
 				message.init ();
 				
@@ -481,7 +503,7 @@ using UnityEngine;
 				message.append (dictionary["access_token"]);
 				
 			//	message.addFieldDeli ();
-			//	message.append ("parent");
+			//	message.append ("coach");
 				
 				message.addFieldDeli ();
 				message.append ("device");
@@ -491,8 +513,8 @@ using UnityEngine;
 				message.append (dictionary["udid"]);
 				
 				break;
-			case messageType.MESSAGETYPE_PARENT_SIGN_UP:
-				url = messageType.MESSAGETYPE_PARENT_SIGN_UP_URL;
+			case messageType.MESSAGETYPE_COACH_SIGN_UP:
+				url = messageType.MESSAGETYPE_COACH_SIGN_UP_URL;
 				postget = 1;
 				message.init ();
 				
@@ -501,21 +523,21 @@ using UnityEngine;
 				message.append (dictionary["access_token"]);
 
 				message.addFieldDeli ();
-				message.append ("parent");
+				message.append ("coach");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["email"]);
 
 				message.addFieldDeli ();
-				message.append ("parent");
+				message.append ("coach");
 				message.addKeyDeli ();
 				message.append ("name");
 				message.addValueDeli ();
 				message.append (dictionary["name"]);
 				
 				message.addFieldDeli ();
-				message.append ("parent");
+				message.append ("coach");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -529,8 +551,8 @@ using UnityEngine;
 				message.append (dictionary["udid"]);
 				
 				break;
-			case messageType.MESSAGETYPE_PARENT_SIGN_IN:
-				url = messageType.MESSAGETYPE_PARENT_SIGN_IN_URL;
+			case messageType.MESSAGETYPE_COACH_SIGN_IN:
+				url = messageType.MESSAGETYPE_COACH_SIGN_IN_URL;
 				postget = 1;
 				message.init ();
 				
@@ -539,14 +561,14 @@ using UnityEngine;
 				message.append (dictionary["access_token"]);
 
 				message.addFieldDeli ();
-				message.append ("parent");
+				message.append ("coach");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["login"]);
 
 				message.addFieldDeli ();
-				message.append ("parent");
+				message.append ("coach");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -561,8 +583,8 @@ using UnityEngine;
 				
 
 				break;
-			case messageType.MESSAGETYPE_PARENT_SIGN_OUT:
-				url = messageType.MESSAGETYPE_PARENT_SIGN_OUT_URL;
+			case messageType.MESSAGETYPE_COACH_SIGN_OUT:
+				url = messageType.MESSAGETYPE_COACH_SIGN_OUT_URL;
 				
 				postget = 1;
 				
@@ -874,9 +896,27 @@ using UnityEngine;
 					//display some waiting sign
 				}
 				if (!string.IsNullOrEmpty (recvResult.error))
+				{
+					if(recvResult.error.Equals("401"))
+					{
+						senseix.setPluginStatus(statusType.AUTH_FAILED);
+					}
+					else if(recvResult.error.Equals("422"))
+					{
+						senseix.setPluginStatus(statusType.INTERNAL_ERROR);
+					}
+					else
+					{
+						senseix.setPluginStatus(statusType.OTHER_ERROR);
+					}
 					tmp = recvResult.error + message.buffer.ToString();
+				}
 				else
+				{
+					//If there is not error, then reset all bad status
+					senseix.resetPluginStatus();
 					tmp = recvResult.text;
+				}
 				//return (tmp+ " "+message.buffer.ToString());
 				return tmp;
 			}
@@ -890,9 +930,26 @@ using UnityEngine;
 				//display some waiting sign
 				}
 				if (!string.IsNullOrEmpty (recvResult.error))
-					tmp = "error";
+				{
+					if(recvResult.error.Equals("401"))
+					{
+						senseix.setPluginStatus(statusType.AUTH_FAILED);
+					}
+					else if(recvResult.error.Equals("422"))
+					{
+						senseix.setPluginStatus(statusType.INTERNAL_ERROR);
+					}
+					else
+					{
+						senseix.setPluginStatus(statusType.OTHER_ERROR);
+					}
+					tmp = recvResult.error + message.buffer.ToString();
+				}
 				else
+				{
+					senseix.resetPluginStatus();
 					tmp = recvResult.text;
+				}
 				return tmp;
 			}
 			return "ERROR: No branch got hit";

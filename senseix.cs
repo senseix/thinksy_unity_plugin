@@ -6,11 +6,25 @@ using System.Text;
 /*
  * Score: the score was not calculated on user's device, what we do is pushing user's result of a question back to server, and let server do the left task
  * User Info: how can user get the info of himself? at the time when user session start?
- * SignIn: parentes sign in need access_token
+ * SignIn: coaches sign in need access_token
 */
+
+/*
+ * Error handling: inSession variable marks whether plugin is already online, which can be returned by function isOnline(), which returns
+ *                 a bool value
+ * Plugin Status: getPluginStatus() can return status of plugin, available const value are defined in statusType
+ *                setPluginStatus(int) can be used to set status, if given integer is not 0
+ *                resetPluginStatus() can reset status
+ */
 	public class problemType
 	{
 		public const int MATH = 0;
+	}
+	public class statusType
+	{
+		public const int AUTH_FAILED = 1;
+		public const int INTERNAL_ERROR = 2;
+		public const int OTHER_ERROR = 4;
 	}
 	public class messageType
 	{
@@ -18,10 +32,10 @@ using System.Text;
 		//Each message has its now message type id and api url, url may overlap
 		//MESSSAGES TYPES
 		public const int MESSAGETYPE_USER_ADD = 0;
-		public const int MESSAGETYPE_PARENT_SIGN_UP = 1;
-		public const int MESSAGETYPE_PARENT_SIGN_IN = 2;
-		public const int MESSAGETYPE_PARENT_SIGN_OUT = 3;	//info of profile
-		public const int MESSAGETYPE_PARENT_PUSH_UID = 4;	//info of profile
+		public const int MESSAGETYPE_COACH_SIGN_UP = 1;
+		public const int MESSAGETYPE_COACH_SIGN_IN = 2;
+		public const int MESSAGETYPE_COACH_SIGN_OUT = 3;	//info of profile
+		public const int MESSAGETYPE_COACH_PUSH_UID = 4;	//info of profile
 		
 		public const int MESSAGETYPE_DEVEL_SIGN_IN = 11;
 		public const int MESSAGETYPE_DEVEL_SIGN_OUT = 12;
@@ -41,31 +55,34 @@ using System.Text;
 		public const int MESSAGETYPE_FRIEND_CREATE = 52; 
 		public const int MESSAGETYPE_FRIEND_DELETE = 53;
 		
+		public const int MESSAGETYPE_PLAYLIST_PULL = 71;
+		
 
 
 		//API URLS
-		//api.senseix.com
-		public const string MESSAGETYPE_USER_ADD_URL = "http://api.senseix.com/v1/parentes";
-		public const string MESSAGETYPE_PARENT_SIGN_UP_URL = "http://api.senseix.com/v1/parentes/";
-		public const string MESSAGETYPE_PARENT_SIGN_IN_URL = "http://api.senseix.com/v1/parentes/sign_in";
-		public const string MESSAGETYPE_PARENT_SIGN_OUT_URL = "http://api.senseix.com/v1/parentes/sign_out";	//info of profile
-		public const string MESSAGETYPE_DEVEL_SIGN_IN_URL = "http://api.senseix.com/v1/developers/sign_in";
-		public const string MESSAGETYPE_DEVEL_SIGN_OUT_URL = "http://api.senseix.com/v1/developers/sign_out";
+		//senseix-staging-1958447000.us-east-1.elb.amazonaws.com
+		public const string MESSAGETYPE_USER_ADD_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches";
+		public const string MESSAGETYPE_COACH_SIGN_UP_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches/";
+		public const string MESSAGETYPE_COACH_SIGN_IN_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches/sign_in";
+		public const string MESSAGETYPE_COACH_SIGN_OUT_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches/sign_out";	//info of profile
+		public const string MESSAGETYPE_DEVEL_SIGN_IN_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/developers/sign_in";
+		public const string MESSAGETYPE_DEVEL_SIGN_OUT_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/developers/sign_out";
 		
-		public const string MESSAGETYPE_PLAYER_CREATE_URL = "http://api.senseix.com/v1/players/create";
-		public const string MESSAGETYPE_PLAYER_INDEX_URL = "http://api.senseix.com/v1/players/index";
+		public const string MESSAGETYPE_PLAYER_CREATE_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/create";
+		public const string MESSAGETYPE_PLAYER_INDEX_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/index";
 		
-		public const string MESSAGETYPE_LEADERBOARD_PULL_URL = "http://api.senseix.com/v1/applications/leaderboard/show";
+		public const string MESSAGETYPE_LEADERBOARD_PULL_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/applications/leaderboard/show";
 
-		public const string MESSAGETYPE_PROBLEM_PULL_URL = "http://api.senseix.com/v1/problems";
-		public const string MESSAGETYPE_PROBLEM_PUSH_URL = "http://api.senseix.com/v1/problems/update";
+		public const string MESSAGETYPE_PROBLEM_PULL_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/problems";
+		public const string MESSAGETYPE_PROBLEM_PUSH_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/problems/update";
 		
-		public const string MESSAGETYPE_MECHANIC_POST_URL = "http://api.senseix.com/v1/applications/mechanic";
-		public const string MESSAGETYPE_MECHANIC_GET_URL = "http://api.senseix.com/v1/applications/mechanic";
-		public const string MESSAGETYPE_FRIEND_PULL_URL = "http://api.senseix.com/v1/players/friends";
-		public const string MESSAGETYPE_FRIEND_CREATE_URL = "http://api.senseix.com/v1/players/friends/create";
-		public const string MESSAGETYPE_FRIEND_DELETE_URL = "http://api.senseix.com/v1/players/friends/delete";
-			
+		public const string MESSAGETYPE_MECHANIC_POST_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/applications/mechanic";
+		public const string MESSAGETYPE_MECHANIC_GET_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/applications/mechanic";
+		public const string MESSAGETYPE_FRIEND_PULL_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/friends";
+		public const string MESSAGETYPE_FRIEND_CREATE_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/friends/create";
+		public const string MESSAGETYPE_FRIEND_DELETE_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/friends/delete";
+		
+		public const string MESSAGETYPE_PLAYLIST_PULL_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com//v1/boosts/playlist";
 	}
 	public class senseix: MonoBehaviour
 	{
@@ -94,8 +111,32 @@ using System.Text;
 		public static string str2="";
 		public static string str3="";
 		public static bool videoReady = false;
+		private static int pluginStatus = 0;
+		
+		/*
+		 * Following are function members
+		 */
 		public senseix ()
 		{
+		}
+		public static bool isOnline()
+		{
+			return inSession;
+		}
+		//The function that set one type of error should reset it
+		
+		public static int getPluginStatus()
+		{
+			return pluginStatus;
+		}
+		public static void setPluginStatus(int value)
+		{
+			if(value != 0)
+				pluginStatus = value;
+		}
+		public static void resetPluginStatus()
+		{
+			pluginStatus = 0;
 		}
 		public static string getAuthToken()
 		{
@@ -144,12 +185,12 @@ using System.Text;
 			email = ((heavyUser)playerA [index]).email;
 			id = ((heavyUser)playerA [index]).id;
 		}
-		public static int parentUidPush()
+		public static int coachUidPush()
 		{
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			string deviceID = SystemInfo.deviceUniqueIdentifier;
 			//string deviceID = "d68672153622798d5934d";
 			setUID(deviceID);
@@ -158,7 +199,7 @@ using System.Text;
 		//                 d68672153622798d5934d4316b930c30278d5423
 			command.Add("access_token",getGameToken());
 			command.Add("udid",deviceID);
-			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PARENT_PUSH_UID);
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_COACH_PUSH_UID);
 			
 			decoder.append(tmp);
 			print(decoder.buffer);
@@ -186,12 +227,12 @@ using System.Text;
 			inSession = true;
 			return 0;
 		}
-		public static int parentSignUp (string email,string name,string password,string game=null)
+		public static int coachSignUp (string email,string name,string password,string game=null)
 		{
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			string deviceID = SystemInfo.deviceUniqueIdentifier;
 		//string deviceID = "d68672153622798d5934d";
 			if(gameToken != null)
@@ -204,7 +245,7 @@ using System.Text;
 			command.Add("email",email);
 			command.Add("password",password);
 			command.Add("udid",deviceID);
-			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PARENT_SIGN_UP);
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_COACH_SIGN_UP);
 			
 			decoder.append(tmp);
 			print(decoder.buffer);
@@ -232,12 +273,12 @@ using System.Text;
 			inSession = true;
 			return 0;
 		}
-		public static int parentLogin (string login,string password,string game=null)
+		public static int coachLogin (string login,string password,string game=null)
 		{
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
-			container decoder =new container();
+			Container decoder =new Container();
 			
 			string deviceID = SystemInfo.deviceUniqueIdentifier;
 			//string deviceID = "d68672153622798d5934d";
@@ -255,7 +296,7 @@ using System.Text;
 			command.Add("login",login);
 			command.Add("password",password);
 			command.Add("udid",deviceID);
-			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_PARENT_SIGN_IN);
+			string tmp = request.sendRequest(command,messageType.MESSAGETYPE_COACH_SIGN_IN);
 			
 			//DEBUG
 			print ("[DEBUG] result: "+tmp);
@@ -285,7 +326,7 @@ using System.Text;
 			return 0;
 
 		}
-		public static int parentLogout (string game=null)
+		public static int coachLogout (string game=null)
 		{
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
@@ -303,7 +344,7 @@ using System.Text;
 			command.Add("access_token",currentToken);
 			command.Add("auth_token",senseix.authToken);
 			//DEBUG
-			print(request.sendRequest(command,messageType.MESSAGETYPE_PARENT_SIGN_OUT));
+			print(request.sendRequest(command,messageType.MESSAGETYPE_COACH_SIGN_OUT));
 			cleanData ();
 			inSession = false;
 			return 0;
@@ -314,7 +355,7 @@ using System.Text;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			if(senseix.getGameToken() == null)
 				return -1;
 			else 
@@ -348,7 +389,7 @@ using System.Text;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			if(senseix.getGameToken() == null)
 				return null;
 			else 
@@ -388,8 +429,8 @@ using System.Text;
 			while(first.Count != 0)
 			{
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
-				playerQ.Enqueue(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["parent_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
-				playerA.Add(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["parent_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
+				playerQ.Enqueue(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
+				playerA.Add(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
 			}
 		
 			return playerQ;
@@ -399,7 +440,7 @@ using System.Text;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			if(senseix.getGameToken() == null)
 				return null;
 			else 
@@ -440,8 +481,8 @@ using System.Text;
 			{
 				Dictionary<string,string> tester = (Dictionary<string,string>)first.Dequeue();
 			print ("============senseix debug "+tester["id"]);
-				playerQ.Enqueue(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["parent_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
-				playerA.Add(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["parent_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
+				playerQ.Enqueue(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
+				playerA.Add(new heavyUser(tester["id"],tester["email"],tester["name"],tester["age"],tester["coach_id"],tester["created_at"],tester["updated_at"],tester["team_id"],tester["deleted_at"]));
 			}
 			
 			return playerA;
@@ -459,7 +500,7 @@ using System.Text;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,string> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			if (game == null) {
 				if (getGameToken () == null) {
 					return -1;
@@ -583,7 +624,7 @@ using System.Text;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			if(senseix.inSession)
 			{
 				if(senseix.getGameToken() == null)
@@ -650,7 +691,7 @@ using System.Text;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			if (!PlayerPrefs.HasKey (slotname))
 				return -1;
 			string tmp = PlayerPrefs.GetString (slotname);
@@ -694,7 +735,7 @@ using System.Text;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			if(senseix.getGameToken() == null)
 				return null;
 			else 
@@ -720,7 +761,7 @@ using System.Text;
 		{
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			int player_id = senseix.id;
 			command.Add("access_token",senseix.getGameToken());
 			command.Add("auth_token",senseix.authToken);
@@ -745,7 +786,7 @@ using System.Text;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			if(senseix.getGameToken() == null)
 				return false;
 			else 
@@ -792,7 +833,7 @@ using System.Text;
 		{
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			command.Add("access_token",senseix.getGameToken());
 			command.Add("auth_token",senseix.authToken);
 			command.Add("player_id",player_id.ToString());
@@ -811,7 +852,7 @@ using System.Text;
 		{
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			int player_id = senseix.id;
 			command.Add("access_token",senseix.getGameToken());
 			command.Add("auth_token",senseix.authToken);
@@ -830,7 +871,7 @@ using System.Text;
 		{
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			int player_id = senseix.id;
 			command.Add("access_token",senseix.getGameToken());
 			command.Add("auth_token",senseix.authToken);
@@ -949,13 +990,13 @@ using System.Text;
 		}
 
 		//Multi-Threading
-		public static container pullProblemQMT(int count,string category,int level)
+		public static Container pullProblemQMT(int count,string category,int level)
 		{
 			int player_id = senseix.id;
 			string currentToken = null;
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			if(senseix.getGameToken() == null)
 				return null;
 			else 
@@ -972,7 +1013,7 @@ using System.Text;
 		{
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			StringBuilder tmpBuilder = new StringBuilder();
 			tmpBuilder.Append("{\"problems\":\"");
 			tmpBuilder.Append(recv);
@@ -1001,11 +1042,11 @@ using System.Text;
 			
 			return problemQ;	
 		}
-		public static container pushProblemAMT(int problem_id,int duration,bool correctness,int tries,int game_difficulty,string answer)
+		public static Container pushProblemAMT(int problem_id,int duration,bool correctness,int tries,int game_difficulty,string answer)
 		{
 			Dictionary<string,string> command = new Dictionary<string, string>();
 			Dictionary<string,object> result = null;
-			container decoder = new container();
+			Container decoder = new Container();
 			int player_id = senseix.id;
 			command.Add("access_token",senseix.getGameToken());
 			command.Add("auth_token",senseix.authToken);
@@ -1017,5 +1058,24 @@ using System.Text;
 			command.Add ("tries",tries.ToString());
 			command.Add ("duration",duration.ToString());
 			return request.prepareRequest(command,messageType.MESSAGETYPE_PROBLEM_PUSH);
+		}
+		public static Container pullPlaylistMT()
+		{
+			int player_id = senseix.id;
+			string currentToken = null;
+			Dictionary<string,string> command = new Dictionary<string, string>();
+			Dictionary<string,object> result = null;
+			Container decoder = new Container();
+			if(senseix.getGameToken() == null)
+				return null;
+			else 
+				currentToken = senseix.getGameToken();
+			command.Add("access_token",currentToken);
+			command.Add("auth_token",senseix.authToken);
+			command.Add("player_id",player_id.ToString());
+			print ("Playlist debug " + "access_token "+currentToken + "auth_token "+ senseix.authToken + "player_id "+ senseix.id);
+		Container test = request.prepareRequest(command,messageType.MESSAGETYPE_PLAYLIST_PULL);
+		print ("Testing playlist " + test.ToString());
+			return test;
 		}
 	}
