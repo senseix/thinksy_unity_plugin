@@ -52,14 +52,14 @@ using System.IO;
 			return "ERROR: No branch got hit";
 		}
 		*/
-		public static Container prepareRequest(Dictionary<string,string> dictionary,int type)
+		public static container prepareRequest(Dictionary<string,string> dictionary,int type)
 		{
 			string url = null;
 			int postget = 0;	//post is 1 and get is 2
 			Dictionary<string,object> data = new Dictionary<string, object>();
 			var post = new WWWForm();
 			
-			Container message = new Container ();
+			container message = new container ();
 			string deviceID = SystemInfo.deviceUniqueIdentifier;
 			
 			switch(type)
@@ -75,8 +75,8 @@ using System.IO;
 					break;
 				*/
 
-			case messageType.MESSAGETYPE_COACH_SIGN_UP:
-				url = messageType.MESSAGETYPE_COACH_SIGN_UP_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_UP:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_UP_URL;
 				postget = 1;
 				message.init ();
 				
@@ -85,21 +85,21 @@ using System.IO;
 				message.append (dictionary["access_token"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["email"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("name");
 				message.addValueDeli ();
 				message.append (dictionary["name"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -113,8 +113,8 @@ using System.IO;
 				message.append (dictionary["udid"]);
 				
 				break;
-			case messageType.MESSAGETYPE_COACH_SIGN_IN:
-				url = messageType.MESSAGETYPE_COACH_SIGN_IN_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_IN:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_IN_URL;
 				postget = 1;
 				message.init ();
 				
@@ -123,14 +123,14 @@ using System.IO;
 				message.append (dictionary["access_token"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["login"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -145,8 +145,8 @@ using System.IO;
 				
 				
 				break;
-			case messageType.MESSAGETYPE_COACH_SIGN_OUT:
-				url = messageType.MESSAGETYPE_COACH_SIGN_OUT_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_OUT:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_OUT_URL;
 				
 				postget = 1;
 				
@@ -478,7 +478,7 @@ using System.IO;
 			Dictionary<string,object> data = new Dictionary<string, object>();
 			var post = new WWWForm();
 			
-			Container message = new Container ();
+			container message = new container ();
 			string deviceID = SystemInfo.deviceUniqueIdentifier;
 			
 			switch(type)
@@ -493,8 +493,8 @@ using System.IO;
 				data.Add ("udid",message["udid"]);
 				break;
 			*/
-			case messageType.MESSAGETYPE_COACH_PUSH_UID:
-				url = messageType.MESSAGETYPE_COACH_SIGN_IN_URL;
+			case messageType.MESSAGETYPE_PARENT_PUSH_UID:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_IN_URL;
 				postget = 1;
 				message.init ();
 				
@@ -503,7 +503,7 @@ using System.IO;
 				message.append (dictionary["access_token"]);
 				
 			//	message.addFieldDeli ();
-			//	message.append ("coach");
+			//	message.append ("parent");
 				
 				message.addFieldDeli ();
 				message.append ("device");
@@ -513,8 +513,8 @@ using System.IO;
 				message.append (dictionary["udid"]);
 				
 				break;
-			case messageType.MESSAGETYPE_COACH_SIGN_UP:
-				url = messageType.MESSAGETYPE_COACH_SIGN_UP_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_UP:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_UP_URL;
 				postget = 1;
 				message.init ();
 				
@@ -523,21 +523,21 @@ using System.IO;
 				message.append (dictionary["access_token"]);
 
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["email"]);
 
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("name");
 				message.addValueDeli ();
 				message.append (dictionary["name"]);
 				
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -551,8 +551,8 @@ using System.IO;
 				message.append (dictionary["udid"]);
 				
 				break;
-			case messageType.MESSAGETYPE_COACH_SIGN_IN:
-				url = messageType.MESSAGETYPE_COACH_SIGN_IN_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_IN:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_IN_URL;
 				postget = 1;
 				message.init ();
 				
@@ -561,14 +561,14 @@ using System.IO;
 				message.append (dictionary["access_token"]);
 
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("email");
 				message.addValueDeli ();
 				message.append (dictionary["login"]);
 
 				message.addFieldDeli ();
-				message.append ("coach");
+				message.append ("parent");
 				message.addKeyDeli ();
 				message.append ("password");
 				message.addValueDeli ();
@@ -583,8 +583,8 @@ using System.IO;
 				
 
 				break;
-			case messageType.MESSAGETYPE_COACH_SIGN_OUT:
-				url = messageType.MESSAGETYPE_COACH_SIGN_OUT_URL;
+			case messageType.MESSAGETYPE_PARENT_SIGN_OUT:
+				url = messageType.MESSAGETYPE_PARENT_SIGN_OUT_URL;
 				
 				postget = 1;
 				

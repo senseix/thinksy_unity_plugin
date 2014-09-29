@@ -11,7 +11,7 @@
 //4. senseix
 //   *+add functionality to pull streaming
 //5. request
-//6. Container
+//6. container
 //------------------------------------------------------------------------------
 using System;
 using UnityEngine;
@@ -32,7 +32,7 @@ public class senseixManager:MonoBehaviour
 	{
 		int ret = 0;
 		senseix.initSenseix (access_token);
-		ret = senseix.coachUidPush ();
+		ret = senseix.parentUidPush ();
 		if (ret == 0)
 		{
 			//senseix.readProblemFromStr();

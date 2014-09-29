@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-public class Container
+public class container
 {
 	public byte[] binary = null;
 	public StringBuilder buffer = new StringBuilder();
@@ -11,7 +11,7 @@ public class Container
 	public int ready = 0;
 	public int postget = 0;
 	public string url = null;
-	public Container ()
+	public container ()
 	{
 	}
 	public static int count(string input,char target)
@@ -102,7 +102,7 @@ public class Container
 	{
 		int slashCount = 0;
 		string tmp = "\"";
-		slashCount = Container.count(result,'a');
+		slashCount = container.count(result,'a');
 		return null;
 	}
 	public Dictionary<string,string> formDictionary()
@@ -165,8 +165,8 @@ public class Container
 					builder.Remove(0,builder.Length);
 					mao1 = i+1;
 					mao2 = i+1;
-					key=Container.stripStringSign(key);
-					value=Container.stripStringSign(value);
+					key=container.stripStringSign(key);
+					value=container.stripStringSign(value);
 					if(value.Length < 1)
 						value = "null";
 //					MonoBehaviour.print("========test decoder========");
@@ -224,7 +224,7 @@ public class Container
 							}
 							if(binary[j] == '}')
 							{
-								Container decoder = new Container();
+								container decoder = new container();
 								objBuilder.Append('}');	
 								decoder.append(objBuilder.ToString());
 //								MonoBehaviour.print("Going to get obj with " + decoder.buffer.ToString());
@@ -282,8 +282,8 @@ public class Container
 					builder.Remove(0,builder.Length);
 					mao1 = i+1;
 					mao2 = i+1;
-					key=Container.stripStringSign(key);
-					value=Container.stripStringSign(value);
+					key=container.stripStringSign(key);
+					value=container.stripStringSign(value);
 					if(value.Length < 1)
 						value = "null";
 					//MonoBehaviour.print("========test decoder========");

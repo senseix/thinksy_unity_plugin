@@ -63,15 +63,15 @@ public class senseixGameManager:MonoBehaviour
 			return -1;
 		}
 	}
-	public static Container prepareProblemMT(int count,string category,int level)
+	public static container prepareProblemMT(int count,string category,int level)
 	{
-		Container message = senseix.pullProblemQMT(count,category,level);
+		container message = senseix.pullProblemQMT(count,category,level);
 		print ("DEBUG playlist " + message.ToString());
 		return message;
 	}
-	public static Container preparePlaylistMT()
+	public static container preparePlaylistMT()
 	{
-		Container message = senseix.pullPlaylistMT();
+		container message = senseix.pullPlaylistMT();
 		return message;
 	}
 	//if error happens, null will be returned
@@ -83,7 +83,7 @@ public class senseixGameManager:MonoBehaviour
 		//if senseix is in session and if player id is already set
 		if(senseix.inSession && senseix.id != 0)
 		{
-			Container message = preparePlaylistMT();
+			container message = preparePlaylistMT();
 			WWW recvResult =new WWW (message.buffer.ToString());
 			//print ("added message to line");
 			line.addMessage(new pagePack(messageType.MESSAGETYPE_PLAYLIST_PULL,recvResult));
@@ -107,7 +107,7 @@ public class senseixGameManager:MonoBehaviour
 		if (problemQ.Count < 5) 
 		{
 			//print ("=============Going to start new thread " + problemQ.Count);
-			Container message = prepareProblemMT(4,current_category,current_level);
+			container message = prepareProblemMT(4,current_category,current_level);
 			//print (message.url);
 			WWW recvResult =new WWW (message.buffer.ToString());
 			//print ("added message to line");

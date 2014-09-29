@@ -200,7 +200,7 @@ public class senseixMenuManager : MonoBehaviour {
 		passwordText = GUILayout.PasswordField(passwordText,"*"[0]);
 		if (GUILayout.Button("Login",buttonStyle,GUILayout.Height(50)))
 		{	
-			if(senseix.coachLogin(emailText,passwordText) == 0)
+			if(senseix.parentLogin(emailText,passwordText) == 0)
 			{
 				/*
 				emailText="Your E-mail";
@@ -231,9 +231,9 @@ public class senseixMenuManager : MonoBehaviour {
 		emailText = GUILayout.TextField(emailText);
 		passwordText = GUILayout.PasswordField(passwordText,"*"[0]);
 		nameText = GUILayout.TextField (nameText);
-		if (GUILayout.Button("Submit",buttonStyle,GUILayout.Height(Screen.height/8)))
+		if (GUILayout.Button("Summit",buttonStyle,GUILayout.Height(Screen.height/8)))
 		{	
-			if(senseix.coachSignUp(emailText,name,passwordText) == 0)
+			if(senseix.parentSignUp(emailText,name,passwordText) == 0)
 			{
 				emailText="Your E-mail";
 				passwordText="Your password";
@@ -352,7 +352,7 @@ public class senseixMenuManager : MonoBehaviour {
 		}
 		if (GUILayout.Button("Sign out",buttonStyle,GUILayout.Height(Screen.height/10)))
 		{	
-			senseix.coachLogout();
+			senseix.parentLogout();
 			menuState = senseixMenuConst.MENU_0_MAIN;
 			//popSenseixMenu = true;
 		}
@@ -403,7 +403,7 @@ public class senseixMenuManager : MonoBehaviour {
 		//print ("Got new skipCount "+skipCount);
 		if(sendToServer)
 		{
-			Container message = senseix.pushProblemAMT(currentProblem.problemID,1,correct,1,1,answer);
+			container message = senseix.pushProblemAMT(currentProblem.problemID,1,correct,1,1,answer);
 			message.formBinary();
 			//print (message.url);
 			WWW recvResult =new WWW (message.url,message.binary);

@@ -56,7 +56,7 @@ public class messageLine
 				{
 					Dictionary<string,string> command = new Dictionary<string, string>();
 					Dictionary<string,object> result = null;
-					Container decoder = new Container();
+					container decoder = new container();
 					StringBuilder tmpBuilder = new StringBuilder();
 					//FIXME: so far we just get strings with index 0
 					tmp = (string)senseixMenuManager.cachedProblemStr[0];
@@ -147,7 +147,7 @@ public class messageLine
 					{	
 						Dictionary<string,string> command = new Dictionary<string, string>();
 						Dictionary<string,object> result = null;
-						Container decoder = new Container();
+						container decoder = new container();
 						StringBuilder tmpBuilder = new StringBuilder();
 						tmp = tmpPack.wwwPage.text;
 						//MonoBehaviour.print("======got message=====  "+tmp);
@@ -185,7 +185,7 @@ public class messageLine
 					{
 						Dictionary<string,string> command = new Dictionary<string, string>();
 						Dictionary<string,object> result = null;
-						Container decoder = new Container();
+						container decoder = new container();
 						StringBuilder tmpBuilder = new StringBuilder();
 						tmp = tmpPack.wwwPage.text;
 						MonoBehaviour.print("======got message===== MESSAGETYPE_PLAYLIST_PULL  "+tmp);
