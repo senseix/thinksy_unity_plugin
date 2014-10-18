@@ -64,7 +64,6 @@ namespace Senseix.Message {
 
 			WWW recvResult = new WWW (url, bytes);
 
-			print ("Duane, calling Enumerator shit...");
 			WaitForRequest (recvResult);
 		
 			print ("Recv result is " + recvResult.text);
