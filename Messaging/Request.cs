@@ -17,8 +17,8 @@ namespace Senseix.Message {
 	//api-staging.senseix.com
 	public class Request:MonoBehaviour
 	{
-		const string ENCRYPTED = "";
-		const string SERVER_URL = ENCRYPTED + "10.211.55.9:3000/";
+		const string ENCRYPTED = "http://";
+		const string SERVER_URL = "api-staging.senseix.com/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/parents/";
