@@ -19,6 +19,9 @@ namespace Senseix {
 		public static volatile string playerID;
 		public static volatile string authToken; 
 		public const int ACCESS_TOKEN_LENGTH = 64;
+		public string developerAccessToken;
+		private Message.Request request = new Message.Request();
+
 
 		static public bool GetSessionState()
 		{
@@ -65,9 +68,22 @@ namespace Senseix {
 			problemWorkerThread.Join();
 		}
 		public SenseixController() { 
-		   if (startProblemWorkerThread () < 0) {
-			   throw new Exception ("Failed to start the problem worker thread, Please uninstall and reinstall this game");
-		   }
+	
+		}
+		void Start () { 
+			if (startProblemWorkerThread () < 0) {
+				throw new Exception ("Failed to start the problem worker thread, Please uninstall and reinstall this game");
+			}
+
+			
+			accessToken = developerAccessToken;
+			if (CheckAccessToken() == -1) {
+				throw new Exception("The Senseix Token you have provided is not of a valid length, please register at developer.senseix.com to create a valid key");
+			}
+
+			//Creates a temporary account based on device id
+			//returns an auth token. This is Syncronous.
+			request.RegisterDevice();
 		}
 		static private int startProblemWorkerThread()
 		{
@@ -87,21 +103,6 @@ namespace Senseix {
 			return problemWorker.CheckAnswer(problem, answer);
 		}
 
-		static public int initSenseix(string developerAccessToken)
-		{
-
-			accessToken = developerAccessToken;
-			if (CheckAccessToken() == -1) {
-				throw new Exception("The Senseix Token you have provided is not of a valid length, please register at developer.senseix.com to create a valid key");
-				return -1;
-			}
-
-			startProblemWorkerThread ();
-			//Creates a temporary account based on device id
-			//returns an auth token. This is Syncronous.
-			Message.Request.RegisterDevice();
-			return 1;
-		}
 		void Update()
 		{
 

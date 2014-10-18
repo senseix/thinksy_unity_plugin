@@ -9,11 +9,14 @@ using System.ComponentModel;
 namespace Senseix { 
 
 	class ProblemWorker:MonoBehaviour {
+
+		private const int PROBLEM_COUNT = 40; 
 		private volatile bool _shouldStop;
 		private static bool _onLine = false;
 		private static bool pullMoreProblems = true; 
 		public static volatile Queue newProblems = new Queue(); 
-		public static volatile Queue answeredProblems = new Queue(); 
+		public static volatile Queue answeredProblems = new Queue();
+		private Message.Request request = new Message.Request();
 
 	
 		private int ReplaceProblemSeed()
@@ -54,12 +57,12 @@ namespace Senseix {
 					}
 				}
 			} else {
-				Message.Request.GetProblems (SenseixController.playerID, 30); 
+				request.GetProblems (SenseixController.playerID, 30); 
 				ReplaceProblemSeed ();
 			}
 		}
 		public void PushServerProblems () { 
-			Message.Request.PostProblems (SenseixController.playerID, answeredProblems);
+			request.PostProblems (SenseixController.playerID, answeredProblems);
 		}
 
 		public Senseix.Message.Problem.ProblemData.Builder GetProblem()
