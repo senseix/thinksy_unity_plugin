@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Senseix { 
 
-	class ProblemWorker:MonoBehaviour {
+	class ProblemWorker {
 
 		private const int PROBLEM_COUNT = 40; 
 		private volatile bool _shouldStop;
@@ -29,7 +29,7 @@ namespace Senseix {
 			//last pull to server, Pull another N - repeat
 		}
 		public int GetNewProblemCount () { 
-		//	print ("Duane, problem count is" + newProblems.Count);
+		//	Debug.Log ("Duane, problem count is" + newProblems.Count);
 			return newProblems.Count;
 		}
 		public int GetAnsweredProblemCount () {

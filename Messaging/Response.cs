@@ -14,7 +14,7 @@ using UnityEngine;
 using System.Text;
 using System.IO;
 namespace Senseix.Message {
-	public class Response:MonoBehaviour
+	public class Response
 	{
 		public Response ()
 		{
@@ -23,16 +23,16 @@ namespace Senseix.Message {
 		public static int ParseResponse(Constant.MessageType type, ref ResponseHeader reply)
 		{
 			if (reply == null) {
-				print ("Reply was returned as null...this should not be possible");
+				Debug.Log ("Reply was returned as null...this should not be possible");
 				return -1;
 			}
 			if (!reply.IsInitialized) {
-				print ("Could not find a valid reply message from server...");
+				Debug.Log ("Could not find a valid reply message from server...");
 				return -2; 
 			}
 			if (reply.Status == Constant.Status.FAILURE) 
 			{
-				print (reply.Message);
+				Debug.Log (reply.Message);
 				return -2;
 			}
 	
@@ -45,31 +45,31 @@ namespace Senseix.Message {
 					SenseixController.SetSessionState(true);
 				} else {
 					SenseixController.SetSessionState(false);
-					print("Can't find key from result");
+					Debug.Log("Can't find key from result");
 					return -2;
 				}
 				break;
 			case Constant.MessageType.RegisterParent:
 				if (reply.Status == Constant.Status.FAILURE) {
-					print ("DUANE!!!! MERGE CODE REQUIRED HERE!!!");
+					Debug.Log ("DUANE!!!! MERGE CODE REQUIRED HERE!!!");
 				}
 				if(reply.HasParentRegistration && reply.ParentRegistration.IsInitialized) {
 					SenseixController.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);
 				} else {	
 					SenseixController.SetSessionState(false);
-					print("Can't find key from result");
+					Debug.Log("Can't find key from result");
 					return -2;
 				}
 				break;
 			case Constant.MessageType.SignInParent:
 				if (reply.Status == Constant.Status.FAILURE) {
-					print ("DUANE!!!! MERGE CODE REQUIRED HERE!!!");
+					Debug.Log ("DUANE!!!! MERGE CODE REQUIRED HERE!!!");
 				}
 				if(reply.HasParentSignIn && reply.ParentSignIn.IsInitialized) {
 					SenseixController.SetAndSaveAuthToken(reply.ParentSignIn.AuthToken);
 				} else {
 					SenseixController.SetSessionState(false);
-					print("Can't find key from result");
+					Debug.Log("Can't find key from result");
 					return -2;
 				}
 
@@ -92,7 +92,7 @@ namespace Senseix.Message {
 					SenseixController.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);
 				} else {	
 					SenseixController.SetSessionState(false);
-					print("Can't find key from result");
+					Debug.Log("Can't find key from result");
 					return -2;
 				}
 			break;
@@ -105,10 +105,10 @@ namespace Senseix.Message {
 			break;
 			case Constant.MessageType.ProblemPost:
 				if (reply.HasProblemPost){
-					print ("Successfully posted problems to the server.");
+					Debug.Log ("Successfully posted problems to the server.");
 				}
 				else {
-					print ("Message sent back for a problem was not as expected");
+					Debug.Log ("Message sent back for a problem was not as expected");
 				}
 			break;
 			case Constant.MessageType.ProblemGet:

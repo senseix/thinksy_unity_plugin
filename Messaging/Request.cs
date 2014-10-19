@@ -15,7 +15,7 @@ using System.IO;
 namespace Senseix.Message {
 	//API URLS
 	//api-staging.senseix.com
-	public class Request:MonoBehaviour
+	public class Request
 	{
 		const string ENCRYPTED = "http://";
 		const string SERVER_URL = "api-staging.senseix.com/";
@@ -66,7 +66,7 @@ namespace Senseix.Message {
 
 			WaitForRequest (recvResult);
 		
-			print ("Recv result is " + recvResult.text);
+			Debug.Log ("Recv result is " + recvResult.text);
 			var replyBytes = System.Text.Encoding.UTF8.GetBytes(recvResult.text);
 			reply = ResponseHeader.ParseFrom (replyBytes);
 
@@ -90,18 +90,18 @@ namespace Senseix.Message {
 			{
 				if(recvResult.error.Equals(401))
 				{
-					print (recvResult.error);
+					Debug.Log (recvResult.error);
 					SenseixController.SetSessionState(false);
 				}
 				else if(recvResult.error.Equals(422))
 				{
-					print (recvResult.error);
+					Debug.Log (recvResult.error);
 					SenseixController.SetSessionState(false);
 				}
 				else //This probably has no message or we hit a 500...either way
 					//This is a bad place to be in
 				{
-					print (recvResult.error);
+					Debug.Log (recvResult.error);
 					SenseixController.SetSessionState(false);
 			//		return -1;
 				}
