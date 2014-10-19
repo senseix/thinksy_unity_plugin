@@ -13,7 +13,7 @@ namespace Senseix {
 		private static bool problemThreadActive = false;
 		private static bool inSession = false;
 		private static volatile string accessToken = "";
-		private static volatile string deviceID = SystemInfo.deviceUniqueIdentifier;
+		private static volatile string deviceID;
 		private static ProblemWorker problemWorker; 
 		private static Thread problemWorkerThread;
 		public static volatile string playerID;
@@ -71,6 +71,8 @@ namespace Senseix {
 	
 		}
 		void Start () { 
+			deviceID = SystemInfo.deviceUniqueIdentifier;
+			
 			if (startProblemWorkerThread () < 0) {
 				throw new Exception ("Failed to start the problem worker thread, Please uninstall and reinstall this game");
 			}
