@@ -87,7 +87,8 @@ namespace Senseix {
 			//Creates a temporary account based on device id
 			//returns an auth token. This is Syncronous.
 			RegisterDevice ();
-			//VerifyGame ("123456");
+			VerifyGame ("123456");
+			//request.LeaderboardPage ();
 		}
 
 		static public void RegisterDevice()

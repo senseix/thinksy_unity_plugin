@@ -338,6 +338,7 @@ namespace Senseix.Message {
 			lbPage.SetSortBy (sortBy);
 			lbPage.SetPageSize (pageSize);
 			hdr_request.SetPage (lbPage);
+			Debug.Log ("leaderboard page request going off to " + GET_LEADERBOARD_PAGE_URL);
 			return SyncronousPostRequest (ref hdr_request, Constant.MessageType.LeaderboardPage, GET_LEADERBOARD_PAGE_URL);
 		}
 		/// <summary>
