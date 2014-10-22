@@ -37,7 +37,7 @@ namespace Senseix.Message {
 				"cHJvdG8aFnR1dG9yaWFsL1Byb2JsZW0ucHJvdG8aJGdvb2dsZS9wcm90b2J1" + 
 				"Zi9jc2hhcnBfb3B0aW9ucy5wcm90bxogZ29vZ2xlL3Byb3RvYnVmL2Rlc2Ny" + 
 				"aXB0b3IucHJvdG8iLwoMUGFzc3dvcmRBdXRoEg0KBWVtYWlsGAEgAigJEhAK" + 
-				"CHBhc3N3b3JkGAIgAigJItcICg1SZXF1ZXN0SGVhZGVyEhQKDGFjY2Vzc190" + 
+				"CHBhc3N3b3JkGAIgAigJIqMJCg1SZXF1ZXN0SGVhZGVyEhQKDGFjY2Vzc190" + 
 				"b2tlbhgBIAEoCRISCgphdXRoX3Rva2VuGAIgASgJEjQKDXBhc3N3b3JkX2F1" + 
 				"dGgYAyABKAsyHS5zZW5zZWl4Lm1lc3NhZ2UuUGFzc3dvcmRBdXRoEk4KE2Rl" + 
 				"dmljZV9yZWdpc3RyYXRpb24YBCABKAsyMS5zZW5zZWl4Lm1lc3NhZ2UucGFy" + 
@@ -62,32 +62,35 @@ namespace Senseix.Message {
 				"eWVyX3Njb3JlGBAgASgLMjUuc2Vuc2VpeC5tZXNzYWdlLmxlYWRlcmJvYXJk" + 
 				"LlVwZGF0ZVBsYXllclNjb3JlUmVxdWVzdBJDCgtwbGF5ZXJfcmFuaxgRIAEo" + 
 				"CzIuLnNlbnNlaXgubWVzc2FnZS5sZWFkZXJib2FyZC5QbGF5ZXJSYW5rUmVx" + 
-				"dWVzdCLSCAoOUmVzcG9uc2VIZWFkZXISOQoGc3RhdHVzGAEgAigOMiAuc2Vu" + 
-				"c2VpeC5tZXNzYWdlLmNvbnN0YW50LlN0YXR1czoHRkFJTFVSRRIPCgdtZXNz" + 
-				"YWdlGAIgAigJEkYKD3BhcmVudF9zaWduX291dBgDIAEoCzItLnNlbnNlaXgu" + 
-				"bWVzc2FnZS5wYXJlbnQuUGFyZW50U2lnbk91dFJlc3BvbnNlEk8KE3BhcmVu" + 
-				"dF9yZWdpc3RyYXRpb24YBCABKAsyMi5zZW5zZWl4Lm1lc3NhZ2UucGFyZW50" + 
-				"LlBhcmVudFJlZ2lzdHJhdGlvblJlc3BvbnNlEk8KE2RldmljZV9yZWdpc3Ry" + 
-				"YXRpb24YBSABKAsyMi5zZW5zZWl4Lm1lc3NhZ2UucGFyZW50LkRldmljZVJl" + 
-				"Z2lzdHJhdGlvblJlc3BvbnNlEkQKDnBhcmVudF9zaWduX2luGAYgASgLMiwu" + 
-				"c2Vuc2VpeC5tZXNzYWdlLnBhcmVudC5QYXJlbnRTaWduSW5SZXNwb25zZRI/" + 
-				"CgtwYXJlbnRfZWRpdBgHIAEoCzIqLnNlbnNlaXgubWVzc2FnZS5wYXJlbnQu" + 
-				"UGFyZW50RWRpdFJlc3BvbnNlEkEKDHBhcmVudF9tZXJnZRgIIAEoCzIrLnNl" + 
-				"bnNlaXgubWVzc2FnZS5wYXJlbnQuUGFyZW50TWVyZ2VSZXNwb25zZRJDCg1w" + 
-				"bGF5ZXJfY3JlYXRlGAkgASgLMiwuc2Vuc2VpeC5tZXNzYWdlLnBsYXllci5Q" + 
-				"bGF5ZXJDcmVhdGVSZXNwb25zZRI/CgtwbGF5ZXJfbGlzdBgKIAEoCzIqLnNl" + 
-				"bnNlaXgubWVzc2FnZS5wbGF5ZXIuUGxheWVyTGlzdFJlc3BvbnNlEmcKIHBs" + 
-				"YXllcl9yZWdpc3Rlcl93aXRoX2FwcGxpY2F0aW9uGAsgASgLMj0uc2Vuc2Vp" + 
-				"eC5tZXNzYWdlLnBsYXllci5QbGF5ZXJSZWdpc3RlcldpdGhBcHBsaWNhdGlv" + 
-				"blJlc3BvbnNlEkIKDHByb2JsZW1fcG9zdBgMIAEoCzIsLnNlbnNlaXgubWVz" + 
-				"c2FnZS5wcm9ibGVtLlByb2JsZW1Qb3N0UmVzcG9uc2USQAoLcHJvYmxlbV9n" + 
-				"ZXQYDSABKAsyKy5zZW5zZWl4Lm1lc3NhZ2UucHJvYmxlbS5Qcm9ibGVtR2V0" + 
-				"UmVzcG9uc2USNwoEcGFnZRgOIAEoCzIpLnNlbnNlaXgubWVzc2FnZS5sZWFk" + 
-				"ZXJib2FyZC5QYWdlUmVzcG9uc2USTAoMcGxheWVyX3Njb3JlGA8gASgLMjYu" + 
-				"c2Vuc2VpeC5tZXNzYWdlLmxlYWRlcmJvYXJkLlVwZGF0ZVBsYXllclNjb3Jl" + 
-				"UmVzcG9uc2USRAoLcGxheWVyX3JhbmsYECABKAsyLy5zZW5zZWl4Lm1lc3Nh" + 
-				"Z2UubGVhZGVyYm9hcmQuUGxheWVyUmFua1Jlc3BvbnNlQh9IAcI+GgoPU2Vu" + 
-				"c2VpeC5NZXNzYWdlEgdNZXNzYWdl");
+				"dWVzdBJKChFnYW1lX3ZlcmlmaWNhdGlvbhgSIAEoCzIvLnNlbnNlaXgubWVz" + 
+				"c2FnZS5wYXJlbnQuR2FtZVZlcmlmaWNhdGlvblJlcXVlc3QinwkKDlJlc3Bv" + 
+				"bnNlSGVhZGVyEjkKBnN0YXR1cxgBIAIoDjIgLnNlbnNlaXgubWVzc2FnZS5j" + 
+				"b25zdGFudC5TdGF0dXM6B0ZBSUxVUkUSDwoHbWVzc2FnZRgCIAIoCRJGCg9w" + 
+				"YXJlbnRfc2lnbl9vdXQYAyABKAsyLS5zZW5zZWl4Lm1lc3NhZ2UucGFyZW50" + 
+				"LlBhcmVudFNpZ25PdXRSZXNwb25zZRJPChNwYXJlbnRfcmVnaXN0cmF0aW9u" + 
+				"GAQgASgLMjIuc2Vuc2VpeC5tZXNzYWdlLnBhcmVudC5QYXJlbnRSZWdpc3Ry" + 
+				"YXRpb25SZXNwb25zZRJPChNkZXZpY2VfcmVnaXN0cmF0aW9uGAUgASgLMjIu" + 
+				"c2Vuc2VpeC5tZXNzYWdlLnBhcmVudC5EZXZpY2VSZWdpc3RyYXRpb25SZXNw" + 
+				"b25zZRJECg5wYXJlbnRfc2lnbl9pbhgGIAEoCzIsLnNlbnNlaXgubWVzc2Fn" + 
+				"ZS5wYXJlbnQuUGFyZW50U2lnbkluUmVzcG9uc2USPwoLcGxheWVyX2VkaXQY" + 
+				"ByABKAsyKi5zZW5zZWl4Lm1lc3NhZ2UucGFyZW50LlBhcmVudEVkaXRSZXNw" + 
+				"b25zZRJBCgxwYXJlbnRfbWVyZ2UYCCABKAsyKy5zZW5zZWl4Lm1lc3NhZ2Uu" + 
+				"cGFyZW50LlBhcmVudE1lcmdlUmVzcG9uc2USQwoNcGxheWVyX2NyZWF0ZRgJ" + 
+				"IAEoCzIsLnNlbnNlaXgubWVzc2FnZS5wbGF5ZXIuUGxheWVyQ3JlYXRlUmVz" + 
+				"cG9uc2USPwoLcGxheWVyX2xpc3QYCiABKAsyKi5zZW5zZWl4Lm1lc3NhZ2Uu" + 
+				"cGxheWVyLlBsYXllckxpc3RSZXNwb25zZRJnCiBwbGF5ZXJfcmVnaXN0ZXJf" + 
+				"d2l0aF9hcHBsaWNhdGlvbhgLIAEoCzI9LnNlbnNlaXgubWVzc2FnZS5wbGF5" + 
+				"ZXIuUGxheWVyUmVnaXN0ZXJXaXRoQXBwbGljYXRpb25SZXNwb25zZRJCCgxw" + 
+				"cm9ibGVtX3Bvc3QYDCABKAsyLC5zZW5zZWl4Lm1lc3NhZ2UucHJvYmxlbS5Q" + 
+				"cm9ibGVtUG9zdFJlc3BvbnNlEkAKC3Byb2JsZW1fZ2V0GA0gASgLMisuc2Vu" + 
+				"c2VpeC5tZXNzYWdlLnByb2JsZW0uUHJvYmxlbUdldFJlc3BvbnNlEjcKBHBh" + 
+				"Z2UYDiABKAsyKS5zZW5zZWl4Lm1lc3NhZ2UubGVhZGVyYm9hcmQuUGFnZVJl" + 
+				"c3BvbnNlEkwKDHBsYXllcl9zY29yZRgPIAEoCzI2LnNlbnNlaXgubWVzc2Fn" + 
+				"ZS5sZWFkZXJib2FyZC5VcGRhdGVQbGF5ZXJTY29yZVJlc3BvbnNlEkQKC3Bs" + 
+				"YXllcl9yYW5rGBAgASgLMi8uc2Vuc2VpeC5tZXNzYWdlLmxlYWRlcmJvYXJk" + 
+				"LlBsYXllclJhbmtSZXNwb25zZRJLChFnYW1lX3ZlcmlmaWNhdGlvbhgRIAEo" + 
+				"CzIwLnNlbnNlaXgubWVzc2FnZS5wYXJlbnQuR2FtZVZlcmlmaWNhdGlvblJl" + 
+				"c3BvbnNlQh9IAcI+GgoPU2Vuc2VpeC5NZXNzYWdlEgdNZXNzYWdl");
 			pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
 				descriptor = root;
 				internal__static_senseix_message_PasswordAuth__Descriptor = Descriptor.MessageTypes[0];
@@ -97,11 +100,11 @@ namespace Senseix.Message {
 				internal__static_senseix_message_RequestHeader__Descriptor = Descriptor.MessageTypes[1];
 				internal__static_senseix_message_RequestHeader__FieldAccessorTable = 
 				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.RequestHeader, global::Senseix.Message.RequestHeader.Builder>(internal__static_senseix_message_RequestHeader__Descriptor,
-				                                                                                                                             new string[] { "AccessToken", "AuthToken", "PasswordAuth", "DeviceRegistration", "ParentRegistration", "ParentSignOut", "ParentSignIn", "ParentEdit", "ParentMerge", "PlayerCreate", "PlayerList", "PlayerRegisterWithApplication", "ProblemPost", "ProblemGet", "Page", "PlayerScore", "PlayerRank", });
+				                                                                                                                             new string[] { "AccessToken", "AuthToken", "PasswordAuth", "DeviceRegistration", "ParentRegistration", "ParentSignOut", "ParentSignIn", "ParentEdit", "ParentMerge", "PlayerCreate", "PlayerList", "PlayerRegisterWithApplication", "ProblemPost", "ProblemGet", "Page", "PlayerScore", "PlayerRank", "GameVerification", });
 				internal__static_senseix_message_ResponseHeader__Descriptor = Descriptor.MessageTypes[2];
 				internal__static_senseix_message_ResponseHeader__FieldAccessorTable = 
 				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.ResponseHeader, global::Senseix.Message.ResponseHeader.Builder>(internal__static_senseix_message_ResponseHeader__Descriptor,
-				                                                                                                                               new string[] { "Status", "Message", "ParentSignOut", "ParentRegistration", "DeviceRegistration", "ParentSignIn", "ParentEdit", "ParentMerge", "PlayerCreate", "PlayerList", "PlayerRegisterWithApplication", "ProblemPost", "ProblemGet", "Page", "PlayerScore", "PlayerRank", });
+				                                                                                                                               new string[] { "Status", "Message", "ParentSignOut", "ParentRegistration", "DeviceRegistration", "ParentSignIn", "PlayerEdit", "ParentMerge", "PlayerCreate", "PlayerList", "PlayerRegisterWithApplication", "ProblemPost", "ProblemGet", "Page", "PlayerScore", "PlayerRank", "GameVerification", });
 				pb::ExtensionRegistry registry = pb::ExtensionRegistry.CreateInstance();
 				RegisterAllExtensions(registry);
 				global::Senseix.Message.Parent.Parent.RegisterAllExtensions(registry);
@@ -449,8 +452,8 @@ namespace Senseix.Message {
 	public sealed partial class RequestHeader : pb::GeneratedMessage<RequestHeader, RequestHeader.Builder> {
 		private RequestHeader() { }
 		private static readonly RequestHeader defaultInstance = new RequestHeader().MakeReadOnly();
-		private static readonly string[] _requestHeaderFieldNames = new string[] { "access_token", "auth_token", "device_registration", "page", "parent_edit", "parent_merge", "parent_registration", "parent_sign_in", "parent_sign_out", "password_auth", "player_create", "player_list", "player_rank", "player_register_with_application", "player_score", "problem_get", "problem_post" };
-		private static readonly uint[] _requestHeaderFieldTags = new uint[] { 10, 18, 34, 122, 66, 74, 42, 58, 50, 26, 82, 90, 138, 98, 130, 114, 106 };
+		private static readonly string[] _requestHeaderFieldNames = new string[] { "access_token", "auth_token", "device_registration", "game_verification", "page", "parent_edit", "parent_merge", "parent_registration", "parent_sign_in", "parent_sign_out", "password_auth", "player_create", "player_list", "player_rank", "player_register_with_application", "player_score", "problem_get", "problem_post" };
+		private static readonly uint[] _requestHeaderFieldTags = new uint[] { 10, 18, 34, 146, 122, 66, 74, 42, 58, 50, 26, 82, 90, 138, 98, 130, 114, 106 };
 		public static RequestHeader DefaultInstance {
 			get { return defaultInstance; }
 		}
@@ -641,6 +644,16 @@ namespace Senseix.Message {
 				get { return playerRank_ ?? global::Senseix.Message.Leaderboard.PlayerRankRequest.DefaultInstance; }
 		}
 		
+		public const int GameVerificationFieldNumber = 18;
+		private bool hasGameVerification;
+		private global::Senseix.Message.Parent.GameVerificationRequest gameVerification_;
+		public bool HasGameVerification {
+			get { return hasGameVerification; }
+		}
+		public global::Senseix.Message.Parent.GameVerificationRequest GameVerification {
+				get { return gameVerification_ ?? global::Senseix.Message.Parent.GameVerificationRequest.DefaultInstance; }
+		}
+		
 		public override bool IsInitialized {
 			get {
 				if (HasPasswordAuth) {
@@ -679,6 +692,9 @@ namespace Senseix.Message {
 				if (HasPlayerRank) {
 					if (!PlayerRank.IsInitialized) return false;
 				}
+				if (HasGameVerification) {
+					if (!GameVerification.IsInitialized) return false;
+				}
 				return true;
 			}
 		}
@@ -693,49 +709,52 @@ namespace Senseix.Message {
 				output.WriteString(2, field_names[1], AuthToken);
 			}
 			if (hasPasswordAuth) {
-				output.WriteMessage(3, field_names[9], PasswordAuth);
+				output.WriteMessage(3, field_names[10], PasswordAuth);
 			}
 			if (hasDeviceRegistration) {
 				output.WriteMessage(4, field_names[2], DeviceRegistration);
 			}
 			if (hasParentRegistration) {
-				output.WriteMessage(5, field_names[6], ParentRegistration);
+				output.WriteMessage(5, field_names[7], ParentRegistration);
 			}
 			if (hasParentSignOut) {
-				output.WriteMessage(6, field_names[8], ParentSignOut);
+				output.WriteMessage(6, field_names[9], ParentSignOut);
 			}
 			if (hasParentSignIn) {
-				output.WriteMessage(7, field_names[7], ParentSignIn);
+				output.WriteMessage(7, field_names[8], ParentSignIn);
 			}
 			if (hasParentEdit) {
-				output.WriteMessage(8, field_names[4], ParentEdit);
+				output.WriteMessage(8, field_names[5], ParentEdit);
 			}
 			if (hasParentMerge) {
-				output.WriteMessage(9, field_names[5], ParentMerge);
+				output.WriteMessage(9, field_names[6], ParentMerge);
 			}
 			if (hasPlayerCreate) {
-				output.WriteMessage(10, field_names[10], PlayerCreate);
+				output.WriteMessage(10, field_names[11], PlayerCreate);
 			}
 			if (hasPlayerList) {
-				output.WriteMessage(11, field_names[11], PlayerList);
+				output.WriteMessage(11, field_names[12], PlayerList);
 			}
 			if (hasPlayerRegisterWithApplication) {
-				output.WriteMessage(12, field_names[13], PlayerRegisterWithApplication);
+				output.WriteMessage(12, field_names[14], PlayerRegisterWithApplication);
 			}
 			if (hasProblemPost) {
-				output.WriteMessage(13, field_names[16], ProblemPost);
+				output.WriteMessage(13, field_names[17], ProblemPost);
 			}
 			if (hasProblemGet) {
-				output.WriteMessage(14, field_names[15], ProblemGet);
+				output.WriteMessage(14, field_names[16], ProblemGet);
 			}
 			if (hasPage) {
-				output.WriteMessage(15, field_names[3], Page);
+				output.WriteMessage(15, field_names[4], Page);
 			}
 			if (hasPlayerScore) {
-				output.WriteMessage(16, field_names[14], PlayerScore);
+				output.WriteMessage(16, field_names[15], PlayerScore);
 			}
 			if (hasPlayerRank) {
-				output.WriteMessage(17, field_names[12], PlayerRank);
+				output.WriteMessage(17, field_names[13], PlayerRank);
+			}
+			if (hasGameVerification) {
+				output.WriteMessage(18, field_names[3], GameVerification);
 			}
 			UnknownFields.WriteTo(output);
 		}
@@ -797,6 +816,9 @@ namespace Senseix.Message {
 				}
 				if (hasPlayerRank) {
 					size += pb::CodedOutputStream.ComputeMessageSize(17, PlayerRank);
+				}
+				if (hasGameVerification) {
+					size += pb::CodedOutputStream.ComputeMessageSize(18, GameVerification);
 				}
 				size += UnknownFields.SerializedSize;
 				memoizedSerializedSize = size;
@@ -972,6 +994,9 @@ namespace Senseix.Message {
 				}
 				if (other.HasPlayerRank) {
 					MergePlayerRank(other.PlayerRank);
+				}
+				if (other.HasGameVerification) {
+					MergeGameVerification(other.GameVerification);
 				}
 				this.MergeUnknownFields(other.UnknownFields);
 				return this;
@@ -1157,6 +1182,15 @@ namespace Senseix.Message {
 						}
 						input.ReadMessage(subBuilder, extensionRegistry);
 						PlayerRank = subBuilder.BuildPartial();
+						break;
+					}
+					case 146: {
+						global::Senseix.Message.Parent.GameVerificationRequest.Builder subBuilder = global::Senseix.Message.Parent.GameVerificationRequest.CreateBuilder();
+						if (result.hasGameVerification) {
+							subBuilder.MergeFrom(GameVerification);
+						}
+						input.ReadMessage(subBuilder, extensionRegistry);
+						GameVerification = subBuilder.BuildPartial();
 						break;
 					}
 					}
@@ -1810,6 +1844,46 @@ namespace Senseix.Message {
 				result.playerRank_ = null;
 				return this;
 			}
+			
+			public bool HasGameVerification {
+				get { return result.hasGameVerification; }
+			}
+			public global::Senseix.Message.Parent.GameVerificationRequest GameVerification {
+				get { return result.GameVerification; }
+				set { SetGameVerification(value); }
+			}
+			public Builder SetGameVerification(global::Senseix.Message.Parent.GameVerificationRequest value) {
+				pb::ThrowHelper.ThrowIfNull(value, "value");
+				PrepareBuilder();
+				result.hasGameVerification = true;
+				result.gameVerification_ = value;
+				return this;
+			}
+			public Builder SetGameVerification(global::Senseix.Message.Parent.GameVerificationRequest.Builder builderForValue) {
+				pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+				PrepareBuilder();
+				result.hasGameVerification = true;
+				result.gameVerification_ = builderForValue.Build();
+				return this;
+			}
+			public Builder MergeGameVerification(global::Senseix.Message.Parent.GameVerificationRequest value) {
+				pb::ThrowHelper.ThrowIfNull(value, "value");
+				PrepareBuilder();
+				if (result.hasGameVerification &&
+				    result.gameVerification_ != global::Senseix.Message.Parent.GameVerificationRequest.DefaultInstance) {
+					result.gameVerification_ = global::Senseix.Message.Parent.GameVerificationRequest.CreateBuilder(result.gameVerification_).MergeFrom(value).BuildPartial();
+				} else {
+					result.gameVerification_ = value;
+				}
+				result.hasGameVerification = true;
+				return this;
+			}
+			public Builder ClearGameVerification() {
+				PrepareBuilder();
+				result.hasGameVerification = false;
+				result.gameVerification_ = null;
+				return this;
+			}
 		}
 		static RequestHeader() {
 			object.ReferenceEquals(global::Senseix.Message.Message.Descriptor, null);
@@ -1820,8 +1894,8 @@ namespace Senseix.Message {
 	public sealed partial class ResponseHeader : pb::GeneratedMessage<ResponseHeader, ResponseHeader.Builder> {
 		private ResponseHeader() { }
 		private static readonly ResponseHeader defaultInstance = new ResponseHeader().MakeReadOnly();
-		private static readonly string[] _responseHeaderFieldNames = new string[] { "device_registration", "message", "page", "parent_edit", "parent_merge", "parent_registration", "parent_sign_in", "parent_sign_out", "player_create", "player_list", "player_rank", "player_register_with_application", "player_score", "problem_get", "problem_post", "status" };
-		private static readonly uint[] _responseHeaderFieldTags = new uint[] { 42, 18, 114, 58, 66, 34, 50, 26, 74, 82, 130, 90, 122, 106, 98, 8 };
+		private static readonly string[] _responseHeaderFieldNames = new string[] { "device_registration", "game_verification", "message", "page", "parent_merge", "parent_registration", "parent_sign_in", "parent_sign_out", "player_create", "player_edit", "player_list", "player_rank", "player_register_with_application", "player_score", "problem_get", "problem_post", "status" };
+		private static readonly uint[] _responseHeaderFieldTags = new uint[] { 42, 138, 18, 114, 66, 34, 50, 26, 74, 58, 82, 130, 90, 122, 106, 98, 8 };
 		public static ResponseHeader DefaultInstance {
 			get { return defaultInstance; }
 		}
@@ -1902,14 +1976,14 @@ namespace Senseix.Message {
 				get { return parentSignIn_ ?? global::Senseix.Message.Parent.ParentSignInResponse.DefaultInstance; }
 		}
 		
-		public const int ParentEditFieldNumber = 7;
-		private bool hasParentEdit;
-		private global::Senseix.Message.Parent.ParentEditResponse parentEdit_;
-		public bool HasParentEdit {
-			get { return hasParentEdit; }
+		public const int PlayerEditFieldNumber = 7;
+		private bool hasPlayerEdit;
+		private global::Senseix.Message.Parent.ParentEditResponse playerEdit_;
+		public bool HasPlayerEdit {
+			get { return hasPlayerEdit; }
 		}
-		public global::Senseix.Message.Parent.ParentEditResponse ParentEdit {
-				get { return parentEdit_ ?? global::Senseix.Message.Parent.ParentEditResponse.DefaultInstance; }
+		public global::Senseix.Message.Parent.ParentEditResponse PlayerEdit {
+				get { return playerEdit_ ?? global::Senseix.Message.Parent.ParentEditResponse.DefaultInstance; }
 		}
 		
 		public const int ParentMergeFieldNumber = 8;
@@ -2002,10 +2076,23 @@ namespace Senseix.Message {
 				get { return playerRank_ ?? global::Senseix.Message.Leaderboard.PlayerRankResponse.DefaultInstance; }
 		}
 		
+		public const int GameVerificationFieldNumber = 17;
+		private bool hasGameVerification;
+		private global::Senseix.Message.Parent.GameVerificationResponse gameVerification_;
+		public bool HasGameVerification {
+			get { return hasGameVerification; }
+		}
+		public global::Senseix.Message.Parent.GameVerificationResponse GameVerification {
+				get { return gameVerification_ ?? global::Senseix.Message.Parent.GameVerificationResponse.DefaultInstance; }
+		}
+		
 		public override bool IsInitialized {
 			get {
 				if (!hasStatus) return false;
 				if (!hasMessage) return false;
+				if (HasDeviceRegistration) {
+					if (!DeviceRegistration.IsInitialized) return false;
+				}
 				if (HasParentMerge) {
 					if (!ParentMerge.IsInitialized) return false;
 				}
@@ -2035,10 +2122,10 @@ namespace Senseix.Message {
 			int size = SerializedSize;
 			string[] field_names = _responseHeaderFieldNames;
 			if (hasStatus) {
-				output.WriteEnum(1, field_names[15], (int) Status, Status);
+				output.WriteEnum(1, field_names[16], (int) Status, Status);
 			}
 			if (hasMessage) {
-				output.WriteString(2, field_names[1], Message);
+				output.WriteString(2, field_names[2], Message);
 			}
 			if (hasParentSignOut) {
 				output.WriteMessage(3, field_names[7], ParentSignOut);
@@ -2052,8 +2139,8 @@ namespace Senseix.Message {
 			if (hasParentSignIn) {
 				output.WriteMessage(6, field_names[6], ParentSignIn);
 			}
-			if (hasParentEdit) {
-				output.WriteMessage(7, field_names[3], ParentEdit);
+			if (hasPlayerEdit) {
+				output.WriteMessage(7, field_names[9], PlayerEdit);
 			}
 			if (hasParentMerge) {
 				output.WriteMessage(8, field_names[4], ParentMerge);
@@ -2062,25 +2149,28 @@ namespace Senseix.Message {
 				output.WriteMessage(9, field_names[8], PlayerCreate);
 			}
 			if (hasPlayerList) {
-				output.WriteMessage(10, field_names[9], PlayerList);
+				output.WriteMessage(10, field_names[10], PlayerList);
 			}
 			if (hasPlayerRegisterWithApplication) {
-				output.WriteMessage(11, field_names[11], PlayerRegisterWithApplication);
+				output.WriteMessage(11, field_names[12], PlayerRegisterWithApplication);
 			}
 			if (hasProblemPost) {
-				output.WriteMessage(12, field_names[14], ProblemPost);
+				output.WriteMessage(12, field_names[15], ProblemPost);
 			}
 			if (hasProblemGet) {
-				output.WriteMessage(13, field_names[13], ProblemGet);
+				output.WriteMessage(13, field_names[14], ProblemGet);
 			}
 			if (hasPage) {
-				output.WriteMessage(14, field_names[2], Page);
+				output.WriteMessage(14, field_names[3], Page);
 			}
 			if (hasPlayerScore) {
-				output.WriteMessage(15, field_names[12], PlayerScore);
+				output.WriteMessage(15, field_names[13], PlayerScore);
 			}
 			if (hasPlayerRank) {
-				output.WriteMessage(16, field_names[10], PlayerRank);
+				output.WriteMessage(16, field_names[11], PlayerRank);
+			}
+			if (hasGameVerification) {
+				output.WriteMessage(17, field_names[1], GameVerification);
 			}
 			UnknownFields.WriteTo(output);
 		}
@@ -2110,8 +2200,8 @@ namespace Senseix.Message {
 				if (hasParentSignIn) {
 					size += pb::CodedOutputStream.ComputeMessageSize(6, ParentSignIn);
 				}
-				if (hasParentEdit) {
-					size += pb::CodedOutputStream.ComputeMessageSize(7, ParentEdit);
+				if (hasPlayerEdit) {
+					size += pb::CodedOutputStream.ComputeMessageSize(7, PlayerEdit);
 				}
 				if (hasParentMerge) {
 					size += pb::CodedOutputStream.ComputeMessageSize(8, ParentMerge);
@@ -2139,6 +2229,9 @@ namespace Senseix.Message {
 				}
 				if (hasPlayerRank) {
 					size += pb::CodedOutputStream.ComputeMessageSize(16, PlayerRank);
+				}
+				if (hasGameVerification) {
+					size += pb::CodedOutputStream.ComputeMessageSize(17, GameVerification);
 				}
 				size += UnknownFields.SerializedSize;
 				memoizedSerializedSize = size;
@@ -2282,8 +2375,8 @@ namespace Senseix.Message {
 				if (other.HasParentSignIn) {
 					MergeParentSignIn(other.ParentSignIn);
 				}
-				if (other.HasParentEdit) {
-					MergeParentEdit(other.ParentEdit);
+				if (other.HasPlayerEdit) {
+					MergePlayerEdit(other.PlayerEdit);
 				}
 				if (other.HasParentMerge) {
 					MergeParentMerge(other.ParentMerge);
@@ -2311,6 +2404,9 @@ namespace Senseix.Message {
 				}
 				if (other.HasPlayerRank) {
 					MergePlayerRank(other.PlayerRank);
+				}
+				if (other.HasGameVerification) {
+					MergeGameVerification(other.GameVerification);
 				}
 				this.MergeUnknownFields(other.UnknownFields);
 				return this;
@@ -2409,11 +2505,11 @@ namespace Senseix.Message {
 					}
 					case 58: {
 						global::Senseix.Message.Parent.ParentEditResponse.Builder subBuilder = global::Senseix.Message.Parent.ParentEditResponse.CreateBuilder();
-						if (result.hasParentEdit) {
-							subBuilder.MergeFrom(ParentEdit);
+						if (result.hasPlayerEdit) {
+							subBuilder.MergeFrom(PlayerEdit);
 						}
 						input.ReadMessage(subBuilder, extensionRegistry);
-						ParentEdit = subBuilder.BuildPartial();
+						PlayerEdit = subBuilder.BuildPartial();
 						break;
 					}
 					case 66: {
@@ -2495,6 +2591,15 @@ namespace Senseix.Message {
 						}
 						input.ReadMessage(subBuilder, extensionRegistry);
 						PlayerRank = subBuilder.BuildPartial();
+						break;
+					}
+					case 138: {
+						global::Senseix.Message.Parent.GameVerificationResponse.Builder subBuilder = global::Senseix.Message.Parent.GameVerificationResponse.CreateBuilder();
+						if (result.hasGameVerification) {
+							subBuilder.MergeFrom(GameVerification);
+						}
+						input.ReadMessage(subBuilder, extensionRegistry);
+						GameVerification = subBuilder.BuildPartial();
 						break;
 					}
 					}
@@ -2708,43 +2813,43 @@ namespace Senseix.Message {
 				return this;
 			}
 			
-			public bool HasParentEdit {
-				get { return result.hasParentEdit; }
+			public bool HasPlayerEdit {
+				get { return result.hasPlayerEdit; }
 			}
-			public global::Senseix.Message.Parent.ParentEditResponse ParentEdit {
-				get { return result.ParentEdit; }
-				set { SetParentEdit(value); }
+			public global::Senseix.Message.Parent.ParentEditResponse PlayerEdit {
+				get { return result.PlayerEdit; }
+				set { SetPlayerEdit(value); }
 			}
-			public Builder SetParentEdit(global::Senseix.Message.Parent.ParentEditResponse value) {
+			public Builder SetPlayerEdit(global::Senseix.Message.Parent.ParentEditResponse value) {
 				pb::ThrowHelper.ThrowIfNull(value, "value");
 				PrepareBuilder();
-				result.hasParentEdit = true;
-				result.parentEdit_ = value;
+				result.hasPlayerEdit = true;
+				result.playerEdit_ = value;
 				return this;
 			}
-			public Builder SetParentEdit(global::Senseix.Message.Parent.ParentEditResponse.Builder builderForValue) {
+			public Builder SetPlayerEdit(global::Senseix.Message.Parent.ParentEditResponse.Builder builderForValue) {
 				pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
 				PrepareBuilder();
-				result.hasParentEdit = true;
-				result.parentEdit_ = builderForValue.Build();
+				result.hasPlayerEdit = true;
+				result.playerEdit_ = builderForValue.Build();
 				return this;
 			}
-			public Builder MergeParentEdit(global::Senseix.Message.Parent.ParentEditResponse value) {
+			public Builder MergePlayerEdit(global::Senseix.Message.Parent.ParentEditResponse value) {
 				pb::ThrowHelper.ThrowIfNull(value, "value");
 				PrepareBuilder();
-				if (result.hasParentEdit &&
-				    result.parentEdit_ != global::Senseix.Message.Parent.ParentEditResponse.DefaultInstance) {
-					result.parentEdit_ = global::Senseix.Message.Parent.ParentEditResponse.CreateBuilder(result.parentEdit_).MergeFrom(value).BuildPartial();
+				if (result.hasPlayerEdit &&
+				    result.playerEdit_ != global::Senseix.Message.Parent.ParentEditResponse.DefaultInstance) {
+					result.playerEdit_ = global::Senseix.Message.Parent.ParentEditResponse.CreateBuilder(result.playerEdit_).MergeFrom(value).BuildPartial();
 				} else {
-					result.parentEdit_ = value;
+					result.playerEdit_ = value;
 				}
-				result.hasParentEdit = true;
+				result.hasPlayerEdit = true;
 				return this;
 			}
-			public Builder ClearParentEdit() {
+			public Builder ClearPlayerEdit() {
 				PrepareBuilder();
-				result.hasParentEdit = false;
-				result.parentEdit_ = null;
+				result.hasPlayerEdit = false;
+				result.playerEdit_ = null;
 				return this;
 			}
 			
@@ -3105,6 +3210,46 @@ namespace Senseix.Message {
 				PrepareBuilder();
 				result.hasPlayerRank = false;
 				result.playerRank_ = null;
+				return this;
+			}
+			
+			public bool HasGameVerification {
+				get { return result.hasGameVerification; }
+			}
+			public global::Senseix.Message.Parent.GameVerificationResponse GameVerification {
+				get { return result.GameVerification; }
+				set { SetGameVerification(value); }
+			}
+			public Builder SetGameVerification(global::Senseix.Message.Parent.GameVerificationResponse value) {
+				pb::ThrowHelper.ThrowIfNull(value, "value");
+				PrepareBuilder();
+				result.hasGameVerification = true;
+				result.gameVerification_ = value;
+				return this;
+			}
+			public Builder SetGameVerification(global::Senseix.Message.Parent.GameVerificationResponse.Builder builderForValue) {
+				pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+				PrepareBuilder();
+				result.hasGameVerification = true;
+				result.gameVerification_ = builderForValue.Build();
+				return this;
+			}
+			public Builder MergeGameVerification(global::Senseix.Message.Parent.GameVerificationResponse value) {
+				pb::ThrowHelper.ThrowIfNull(value, "value");
+				PrepareBuilder();
+				if (result.hasGameVerification &&
+				    result.gameVerification_ != global::Senseix.Message.Parent.GameVerificationResponse.DefaultInstance) {
+					result.gameVerification_ = global::Senseix.Message.Parent.GameVerificationResponse.CreateBuilder(result.gameVerification_).MergeFrom(value).BuildPartial();
+				} else {
+					result.gameVerification_ = value;
+				}
+				result.hasGameVerification = true;
+				return this;
+			}
+			public Builder ClearGameVerification() {
+				PrepareBuilder();
+				result.hasGameVerification = false;
+				result.gameVerification_ = null;
 				return this;
 			}
 		}

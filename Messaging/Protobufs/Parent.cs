@@ -40,6 +40,10 @@ namespace Senseix.Message.Parent {
 		internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentMergeResponse, global::Senseix.Message.Parent.ParentMergeResponse.Builder> internal__static_senseix_message_parent_ParentMergeResponse__FieldAccessorTable;
 		internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentMergeRequest__Descriptor;
 		internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentMergeRequest, global::Senseix.Message.Parent.ParentMergeRequest.Builder> internal__static_senseix_message_parent_ParentMergeRequest__FieldAccessorTable;
+		internal static pbd::MessageDescriptor internal__static_senseix_message_parent_GameVerificationRequest__Descriptor;
+		internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.GameVerificationRequest, global::Senseix.Message.Parent.GameVerificationRequest.Builder> internal__static_senseix_message_parent_GameVerificationRequest__FieldAccessorTable;
+		internal static pbd::MessageDescriptor internal__static_senseix_message_parent_GameVerificationResponse__Descriptor;
+		internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.GameVerificationResponse, global::Senseix.Message.Parent.GameVerificationResponse.Builder> internal__static_senseix_message_parent_GameVerificationResponse__FieldAccessorTable;
 		#endregion
 		#region Descriptor
 		public static pbd::FileDescriptor Descriptor {
@@ -53,28 +57,31 @@ namespace Senseix.Message.Parent {
 				"bnQaF3R1dG9yaWFsL0NvbnN0YW50LnByb3RvGiRnb29nbGUvcHJvdG9idWYv" + 
 				"Y3NoYXJwX29wdGlvbnMucHJvdG8aIGdvb2dsZS9wcm90b2J1Zi9kZXNjcmlw" + 
 				"dG9yLnByb3RvIikKFFBhcmVudFNpZ25PdXRSZXF1ZXN0EhEKCWRldmljZV9p" + 
-				"ZBgBIAEoCSJ8ChlQYXJlbnRSZWdpc3RyYXRpb25SZXF1ZXN0EhEKCWRldmlj" + 
+				"ZBgCIAEoCSJ8ChlQYXJlbnRSZWdpc3RyYXRpb25SZXF1ZXN0EhEKCWRldmlj" + 
 				"ZV9pZBgBIAIoCRINCgVlbWFpbBgCIAIoCRIQCghwYXNzd29yZBgDIAIoCRId" + 
 				"ChVjb25maXJtYXRpb25fcGFzc3dvcmQYBCACKAkSDAoEbmFtZRgFIAEoCSIw" + 
 				"ChpQYXJlbnRSZWdpc3RyYXRpb25SZXNwb25zZRISCgphdXRoX3Rva2VuGAEg" + 
-				"ASgJIi4KGURldmljZVJlZ2lzdHJhdGlvblJlcXVlc3QSEQoJZGV2aWNlX2lk" + 
-				"GAEgAigJIkMKGkRldmljZVJlZ2lzdHJhdGlvblJlc3BvbnNlEhEKCXBsYXll" + 
-				"cl9pZBgBIAIoCRISCgphdXRoX3Rva2VuGAIgASgJImgKE1BhcmVudFNpZ25J" + 
-				"blJlcXVlc3QSDQoFZW1haWwYASACKAkSEAoIcGFzc3dvcmQYAiACKAkSHQoV" + 
-				"Y29uZmlybWF0aW9uX3Bhc3N3b3JkGAMgAigJEhEKCWRldmljZV9pZBgEIAIo" + 
-				"CSIqChRQYXJlbnRTaWduSW5SZXNwb25zZRISCgphdXRoX3Rva2VuGAEgASgJ" + 
-				"IhcKFVBhcmVudFNpZ25PdXRSZXNwb25zZSKKAQoRUGFyZW50RWRpdFJlcXVl" + 
-				"c3QSEAoIcGFzc3dvcmQYASACKAkSEQoJZGV2aWNlX2lkGAIgAigJEhQKDG5l" + 
-				"d19wYXNzd29yZBgDIAEoCRIdChVjb25maXJtYXRpb25fcGFzc3dvcmQYBCAB" + 
-				"KAkSDQoFZW1haWwYBSABKAkSDAoEbmFtZRgGIAEoCSIoChJQYXJlbnRFZGl0" + 
-				"UmVzcG9uc2USEgoKYXV0aF90b2tlbhgBIAEoCSIpChNQYXJlbnRNZXJnZVJl" + 
-				"c3BvbnNlEhIKCmF1dGhfdG9rZW4YASACKAki8gEKElBhcmVudE1lcmdlUmVx" + 
-				"dWVzdBIQCghwYXNzd29yZBgBIAIoCRINCgVlbWFpbBgCIAIoCRIRCglkZXZp" + 
-				"Y2VfaWQYAyACKAkSTQoIZGVjaXNpb24YBCACKA4yMy5zZW5zZWl4Lm1lc3Nh" + 
-				"Z2UucGFyZW50LlBhcmVudE1lcmdlUmVxdWVzdC5EZWNpc2lvbjoGREVMRVRF" + 
-				"EhEKCXBsYXllcl9pZBgFIAEoCRIXCg9uZXdfcGxheWVyX25hbWUYBiABKAki" + 
-				"LQoIRGVjaXNpb24SCQoFTUVSR0UQABIKCgZDUkVBVEUQARIKCgZERUxFVEUQ" + 
-				"AkIlSAHCPiAKFlNlbnNlaXguTWVzc2FnZS5QYXJlbnQSBlBhcmVudA==");
+				"ASgJIkMKGURldmljZVJlZ2lzdHJhdGlvblJlcXVlc3QSEQoJZGV2aWNlX2lk" + 
+				"GAEgAigJEhMKC2luZm9ybWF0aW9uGAIgAigJIkMKGkRldmljZVJlZ2lzdHJh" + 
+				"dGlvblJlc3BvbnNlEhEKCXBsYXllcl9pZBgBIAIoCRISCgphdXRoX3Rva2Vu" + 
+				"GAIgASgJImgKE1BhcmVudFNpZ25JblJlcXVlc3QSDQoFZW1haWwYASACKAkS" + 
+				"EAoIcGFzc3dvcmQYAiACKAkSHQoVY29uZmlybWF0aW9uX3Bhc3N3b3JkGAMg" + 
+				"AigJEhEKCWRldmljZV9pZBgEIAIoCSIqChRQYXJlbnRTaWduSW5SZXNwb25z" + 
+				"ZRISCgphdXRoX3Rva2VuGAEgASgJIhcKFVBhcmVudFNpZ25PdXRSZXNwb25z" + 
+				"ZSKKAQoRUGFyZW50RWRpdFJlcXVlc3QSEAoIcGFzc3dvcmQYASACKAkSEQoJ" + 
+				"ZGV2aWNlX2lkGAIgAigJEhQKDG5ld19wYXNzd29yZBgDIAEoCRIdChVjb25m" + 
+				"aXJtYXRpb25fcGFzc3dvcmQYBCABKAkSDQoFZW1haWwYBSABKAkSDAoEbmFt" + 
+				"ZRgGIAEoCSIoChJQYXJlbnRFZGl0UmVzcG9uc2USEgoKYXV0aF90b2tlbhgB" + 
+				"IAEoCSIpChNQYXJlbnRNZXJnZVJlc3BvbnNlEhIKCmF1dGhfdG9rZW4YASAC" + 
+				"KAki8gEKElBhcmVudE1lcmdlUmVxdWVzdBIQCghwYXNzd29yZBgBIAIoCRIN" + 
+				"CgVlbWFpbBgCIAIoCRIRCglkZXZpY2VfaWQYAyACKAkSTQoIZGVjaXNpb24Y" + 
+				"BCACKA4yMy5zZW5zZWl4Lm1lc3NhZ2UucGFyZW50LlBhcmVudE1lcmdlUmVx" + 
+				"dWVzdC5EZWNpc2lvbjoGREVMRVRFEhEKCXBsYXllcl9pZBgFIAEoCRIXCg9u" + 
+				"ZXdfcGxheWVyX25hbWUYBiABKAkiLQoIRGVjaXNpb24SCQoFTUVSR0UQABIK" + 
+				"CgZDUkVBVEUQARIKCgZERUxFVEUQAiJDChdHYW1lVmVyaWZpY2F0aW9uUmVx" + 
+				"dWVzdBIMCgR1ZGlkGAEgAigJEhoKEnZlcmlmaWNhdGlvbl90b2tlbhgCIAIo" + 
+				"CSIaChhHYW1lVmVyaWZpY2F0aW9uUmVzcG9uc2VCJUgBwj4gChZTZW5zZWl4" + 
+				"Lk1lc3NhZ2UuUGFyZW50EgZQYXJlbnQ=");
 			pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
 				descriptor = root;
 				internal__static_senseix_message_parent_ParentSignOutRequest__Descriptor = Descriptor.MessageTypes[0];
@@ -92,7 +99,7 @@ namespace Senseix.Message.Parent {
 				internal__static_senseix_message_parent_DeviceRegistrationRequest__Descriptor = Descriptor.MessageTypes[3];
 				internal__static_senseix_message_parent_DeviceRegistrationRequest__FieldAccessorTable = 
 				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.DeviceRegistrationRequest, global::Senseix.Message.Parent.DeviceRegistrationRequest.Builder>(internal__static_senseix_message_parent_DeviceRegistrationRequest__Descriptor,
-				                                                                                                                                                                   new string[] { "DeviceId", });
+				                                                                                                                                                                   new string[] { "DeviceId", "Information", });
 				internal__static_senseix_message_parent_DeviceRegistrationResponse__Descriptor = Descriptor.MessageTypes[4];
 				internal__static_senseix_message_parent_DeviceRegistrationResponse__FieldAccessorTable = 
 				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.DeviceRegistrationResponse, global::Senseix.Message.Parent.DeviceRegistrationResponse.Builder>(internal__static_senseix_message_parent_DeviceRegistrationResponse__Descriptor,
@@ -125,6 +132,14 @@ namespace Senseix.Message.Parent {
 				internal__static_senseix_message_parent_ParentMergeRequest__FieldAccessorTable = 
 				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentMergeRequest, global::Senseix.Message.Parent.ParentMergeRequest.Builder>(internal__static_senseix_message_parent_ParentMergeRequest__Descriptor,
 				                                                                                                                                                     new string[] { "Password", "Email", "DeviceId", "Decision", "PlayerId", "NewPlayerName", });
+				internal__static_senseix_message_parent_GameVerificationRequest__Descriptor = Descriptor.MessageTypes[12];
+				internal__static_senseix_message_parent_GameVerificationRequest__FieldAccessorTable = 
+				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.GameVerificationRequest, global::Senseix.Message.Parent.GameVerificationRequest.Builder>(internal__static_senseix_message_parent_GameVerificationRequest__Descriptor,
+				                                                                                                                                                               new string[] { "Udid", "VerificationToken", });
+				internal__static_senseix_message_parent_GameVerificationResponse__Descriptor = Descriptor.MessageTypes[13];
+				internal__static_senseix_message_parent_GameVerificationResponse__FieldAccessorTable = 
+				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.GameVerificationResponse, global::Senseix.Message.Parent.GameVerificationResponse.Builder>(internal__static_senseix_message_parent_GameVerificationResponse__Descriptor,
+				                                                                                                                                                                 new string[] { });
 				pb::ExtensionRegistry registry = pb::ExtensionRegistry.CreateInstance();
 				RegisterAllExtensions(registry);
 				global::Senseix.Message.Constant.Constant.RegisterAllExtensions(registry);
@@ -148,7 +163,7 @@ namespace Senseix.Message.Parent {
 		private ParentSignOutRequest() { }
 		private static readonly ParentSignOutRequest defaultInstance = new ParentSignOutRequest().MakeReadOnly();
 		private static readonly string[] _parentSignOutRequestFieldNames = new string[] { "device_id" };
-		private static readonly uint[] _parentSignOutRequestFieldTags = new uint[] { 10 };
+		private static readonly uint[] _parentSignOutRequestFieldTags = new uint[] { 18 };
 		public static ParentSignOutRequest DefaultInstance {
 			get { return defaultInstance; }
 		}
@@ -169,7 +184,7 @@ namespace Senseix.Message.Parent {
 				get { return global::Senseix.Message.Parent.Parent.internal__static_senseix_message_parent_ParentSignOutRequest__FieldAccessorTable; }
 		}
 		
-		public const int DeviceIdFieldNumber = 1;
+		public const int DeviceIdFieldNumber = 2;
 		private bool hasDeviceId;
 		private string deviceId_ = "";
 		public bool HasDeviceId {
@@ -189,7 +204,7 @@ namespace Senseix.Message.Parent {
 			int size = SerializedSize;
 			string[] field_names = _parentSignOutRequestFieldNames;
 			if (hasDeviceId) {
-				output.WriteString(1, field_names[0], DeviceId);
+				output.WriteString(2, field_names[0], DeviceId);
 			}
 			UnknownFields.WriteTo(output);
 		}
@@ -202,7 +217,7 @@ namespace Senseix.Message.Parent {
 				
 				size = 0;
 				if (hasDeviceId) {
-					size += pb::CodedOutputStream.ComputeStringSize(1, DeviceId);
+					size += pb::CodedOutputStream.ComputeStringSize(2, DeviceId);
 				}
 				size += UnknownFields.SerializedSize;
 				memoizedSerializedSize = size;
@@ -374,7 +389,7 @@ namespace Senseix.Message.Parent {
 						ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
 						break;
 					}
-					case 10: {
+					case 18: {
 						result.hasDeviceId = input.ReadString(ref result.deviceId_);
 						break;
 					}
@@ -1140,8 +1155,8 @@ namespace Senseix.Message.Parent {
 	public sealed partial class DeviceRegistrationRequest : pb::GeneratedMessage<DeviceRegistrationRequest, DeviceRegistrationRequest.Builder> {
 		private DeviceRegistrationRequest() { }
 		private static readonly DeviceRegistrationRequest defaultInstance = new DeviceRegistrationRequest().MakeReadOnly();
-		private static readonly string[] _deviceRegistrationRequestFieldNames = new string[] { "device_id" };
-		private static readonly uint[] _deviceRegistrationRequestFieldTags = new uint[] { 10 };
+		private static readonly string[] _deviceRegistrationRequestFieldNames = new string[] { "device_id", "information" };
+		private static readonly uint[] _deviceRegistrationRequestFieldTags = new uint[] { 10, 18 };
 		public static DeviceRegistrationRequest DefaultInstance {
 			get { return defaultInstance; }
 		}
@@ -1172,9 +1187,20 @@ namespace Senseix.Message.Parent {
 			get { return deviceId_; }
 		}
 		
+		public const int InformationFieldNumber = 2;
+		private bool hasInformation;
+		private string information_ = "";
+		public bool HasInformation {
+			get { return hasInformation; }
+		}
+		public string Information {
+			get { return information_; }
+		}
+		
 		public override bool IsInitialized {
 			get {
 				if (!hasDeviceId) return false;
+				if (!hasInformation) return false;
 				return true;
 			}
 		}
@@ -1184,6 +1210,9 @@ namespace Senseix.Message.Parent {
 			string[] field_names = _deviceRegistrationRequestFieldNames;
 			if (hasDeviceId) {
 				output.WriteString(1, field_names[0], DeviceId);
+			}
+			if (hasInformation) {
+				output.WriteString(2, field_names[1], Information);
 			}
 			UnknownFields.WriteTo(output);
 		}
@@ -1197,6 +1226,9 @@ namespace Senseix.Message.Parent {
 				size = 0;
 				if (hasDeviceId) {
 					size += pb::CodedOutputStream.ComputeStringSize(1, DeviceId);
+				}
+				if (hasInformation) {
+					size += pb::CodedOutputStream.ComputeStringSize(2, Information);
 				}
 				size += UnknownFields.SerializedSize;
 				memoizedSerializedSize = size;
@@ -1325,6 +1357,9 @@ namespace Senseix.Message.Parent {
 				if (other.HasDeviceId) {
 					DeviceId = other.DeviceId;
 				}
+				if (other.HasInformation) {
+					Information = other.Information;
+				}
 				this.MergeUnknownFields(other.UnknownFields);
 				return this;
 			}
@@ -1372,6 +1407,10 @@ namespace Senseix.Message.Parent {
 						result.hasDeviceId = input.ReadString(ref result.deviceId_);
 						break;
 					}
+					case 18: {
+						result.hasInformation = input.ReadString(ref result.information_);
+						break;
+					}
 					}
 				}
 				
@@ -1400,6 +1439,27 @@ namespace Senseix.Message.Parent {
 				PrepareBuilder();
 				result.hasDeviceId = false;
 				result.deviceId_ = "";
+				return this;
+			}
+			
+			public bool HasInformation {
+				get { return result.hasInformation; }
+			}
+			public string Information {
+				get { return result.Information; }
+				set { SetInformation(value); }
+			}
+			public Builder SetInformation(string value) {
+				pb::ThrowHelper.ThrowIfNull(value, "value");
+				PrepareBuilder();
+				result.hasInformation = true;
+				result.information_ = value;
+				return this;
+			}
+			public Builder ClearInformation() {
+				PrepareBuilder();
+				result.hasInformation = false;
+				result.information_ = "";
 				return this;
 			}
 		}
@@ -4175,6 +4235,550 @@ namespace Senseix.Message.Parent {
 			}
 		}
 		static ParentMergeRequest() {
+			object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
+		}
+	}
+	
+	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+	public sealed partial class GameVerificationRequest : pb::GeneratedMessage<GameVerificationRequest, GameVerificationRequest.Builder> {
+		private GameVerificationRequest() { }
+		private static readonly GameVerificationRequest defaultInstance = new GameVerificationRequest().MakeReadOnly();
+		private static readonly string[] _gameVerificationRequestFieldNames = new string[] { "udid", "verification_token" };
+		private static readonly uint[] _gameVerificationRequestFieldTags = new uint[] { 10, 18 };
+		public static GameVerificationRequest DefaultInstance {
+			get { return defaultInstance; }
+		}
+		
+		public override GameVerificationRequest DefaultInstanceForType {
+			get { return DefaultInstance; }
+		}
+		
+		protected override GameVerificationRequest ThisMessage {
+			get { return this; }
+		}
+		
+		public static pbd::MessageDescriptor Descriptor {
+				get { return global::Senseix.Message.Parent.Parent.internal__static_senseix_message_parent_GameVerificationRequest__Descriptor; }
+		}
+		
+		protected override pb::FieldAccess.FieldAccessorTable<GameVerificationRequest, GameVerificationRequest.Builder> InternalFieldAccessors {
+				get { return global::Senseix.Message.Parent.Parent.internal__static_senseix_message_parent_GameVerificationRequest__FieldAccessorTable; }
+		}
+		
+		public const int UdidFieldNumber = 1;
+		private bool hasUdid;
+		private string udid_ = "";
+		public bool HasUdid {
+			get { return hasUdid; }
+		}
+		public string Udid {
+			get { return udid_; }
+		}
+		
+		public const int VerificationTokenFieldNumber = 2;
+		private bool hasVerificationToken;
+		private string verificationToken_ = "";
+		public bool HasVerificationToken {
+			get { return hasVerificationToken; }
+		}
+		public string VerificationToken {
+			get { return verificationToken_; }
+		}
+		
+		public override bool IsInitialized {
+			get {
+				if (!hasUdid) return false;
+				if (!hasVerificationToken) return false;
+				return true;
+			}
+		}
+		
+		public override void WriteTo(pb::ICodedOutputStream output) {
+			int size = SerializedSize;
+			string[] field_names = _gameVerificationRequestFieldNames;
+			if (hasUdid) {
+				output.WriteString(1, field_names[0], Udid);
+			}
+			if (hasVerificationToken) {
+				output.WriteString(2, field_names[1], VerificationToken);
+			}
+			UnknownFields.WriteTo(output);
+		}
+		
+		private int memoizedSerializedSize = -1;
+		public override int SerializedSize {
+			get {
+				int size = memoizedSerializedSize;
+				if (size != -1) return size;
+				
+				size = 0;
+				if (hasUdid) {
+					size += pb::CodedOutputStream.ComputeStringSize(1, Udid);
+				}
+				if (hasVerificationToken) {
+					size += pb::CodedOutputStream.ComputeStringSize(2, VerificationToken);
+				}
+				size += UnknownFields.SerializedSize;
+				memoizedSerializedSize = size;
+				return size;
+			}
+		}
+		
+		public static GameVerificationRequest ParseFrom(pb::ByteString data) {
+			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+		}
+		public static GameVerificationRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+		}
+		public static GameVerificationRequest ParseFrom(byte[] data) {
+			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+		}
+		public static GameVerificationRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+		}
+		public static GameVerificationRequest ParseFrom(global::System.IO.Stream input) {
+			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+		}
+		public static GameVerificationRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+		}
+		public static GameVerificationRequest ParseDelimitedFrom(global::System.IO.Stream input) {
+			return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+		}
+		public static GameVerificationRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+			return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+		}
+		public static GameVerificationRequest ParseFrom(pb::ICodedInputStream input) {
+			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+		}
+		public static GameVerificationRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+		}
+		private GameVerificationRequest MakeReadOnly() {
+			return this;
+		}
+		
+		public static Builder CreateBuilder() { return new Builder(); }
+		public override Builder ToBuilder() { return CreateBuilder(this); }
+		public override Builder CreateBuilderForType() { return new Builder(); }
+		public static Builder CreateBuilder(GameVerificationRequest prototype) {
+			return new Builder(prototype);
+		}
+		
+		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+		public sealed partial class Builder : pb::GeneratedBuilder<GameVerificationRequest, Builder> {
+			protected override Builder ThisBuilder {
+				get { return this; }
+			}
+			public Builder() {
+				result = DefaultInstance;
+				resultIsReadOnly = true;
+			}
+			internal Builder(GameVerificationRequest cloneFrom) {
+				result = cloneFrom;
+				resultIsReadOnly = true;
+			}
+			
+			private bool resultIsReadOnly;
+			private GameVerificationRequest result;
+			
+			private GameVerificationRequest PrepareBuilder() {
+				if (resultIsReadOnly) {
+					GameVerificationRequest original = result;
+					result = new GameVerificationRequest();
+					resultIsReadOnly = false;
+					MergeFrom(original);
+				}
+				return result;
+			}
+			
+			public override bool IsInitialized {
+				get { return result.IsInitialized; }
+			}
+			
+			protected override GameVerificationRequest MessageBeingBuilt {
+				get { return PrepareBuilder(); }
+			}
+			
+			public override Builder Clear() {
+				result = DefaultInstance;
+				resultIsReadOnly = true;
+				return this;
+			}
+			
+			public override Builder Clone() {
+				if (resultIsReadOnly) {
+					return new Builder(result);
+				} else {
+					return new Builder().MergeFrom(result);
+				}
+			}
+			
+			public override pbd::MessageDescriptor DescriptorForType {
+					get { return global::Senseix.Message.Parent.GameVerificationRequest.Descriptor; }
+			}
+			
+			public override GameVerificationRequest DefaultInstanceForType {
+					get { return global::Senseix.Message.Parent.GameVerificationRequest.DefaultInstance; }
+			}
+			
+			public override GameVerificationRequest BuildPartial() {
+				if (resultIsReadOnly) {
+					return result;
+				}
+				resultIsReadOnly = true;
+				return result.MakeReadOnly();
+			}
+			
+			public override Builder MergeFrom(pb::IMessage other) {
+				if (other is GameVerificationRequest) {
+					return MergeFrom((GameVerificationRequest) other);
+				} else {
+					base.MergeFrom(other);
+					return this;
+				}
+			}
+			
+			public override Builder MergeFrom(GameVerificationRequest other) {
+				if (other == global::Senseix.Message.Parent.GameVerificationRequest.DefaultInstance) return this;
+				PrepareBuilder();
+				if (other.HasUdid) {
+					Udid = other.Udid;
+				}
+				if (other.HasVerificationToken) {
+					VerificationToken = other.VerificationToken;
+				}
+				this.MergeUnknownFields(other.UnknownFields);
+				return this;
+			}
+			
+			public override Builder MergeFrom(pb::ICodedInputStream input) {
+				return MergeFrom(input, pb::ExtensionRegistry.Empty);
+			}
+			
+			public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+				PrepareBuilder();
+				pb::UnknownFieldSet.Builder unknownFields = null;
+				uint tag;
+				string field_name;
+				while (input.ReadTag(out tag, out field_name)) {
+					if(tag == 0 && field_name != null) {
+						int field_ordinal = global::System.Array.BinarySearch(_gameVerificationRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+						if(field_ordinal >= 0)
+							tag = _gameVerificationRequestFieldTags[field_ordinal];
+						else {
+							if (unknownFields == null) {
+								unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+							}
+							ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+							continue;
+						}
+					}
+					switch (tag) {
+					case 0: {
+						throw pb::InvalidProtocolBufferException.InvalidTag();
+					}
+					default: {
+						if (pb::WireFormat.IsEndGroupTag(tag)) {
+							if (unknownFields != null) {
+								this.UnknownFields = unknownFields.Build();
+							}
+							return this;
+						}
+						if (unknownFields == null) {
+							unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+						}
+						ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+						break;
+					}
+					case 10: {
+						result.hasUdid = input.ReadString(ref result.udid_);
+						break;
+					}
+					case 18: {
+						result.hasVerificationToken = input.ReadString(ref result.verificationToken_);
+						break;
+					}
+					}
+				}
+				
+				if (unknownFields != null) {
+					this.UnknownFields = unknownFields.Build();
+				}
+				return this;
+			}
+			
+			
+			public bool HasUdid {
+				get { return result.hasUdid; }
+			}
+			public string Udid {
+				get { return result.Udid; }
+				set { SetUdid(value); }
+			}
+			public Builder SetUdid(string value) {
+				pb::ThrowHelper.ThrowIfNull(value, "value");
+				PrepareBuilder();
+				result.hasUdid = true;
+				result.udid_ = value;
+				return this;
+			}
+			public Builder ClearUdid() {
+				PrepareBuilder();
+				result.hasUdid = false;
+				result.udid_ = "";
+				return this;
+			}
+			
+			public bool HasVerificationToken {
+				get { return result.hasVerificationToken; }
+			}
+			public string VerificationToken {
+				get { return result.VerificationToken; }
+				set { SetVerificationToken(value); }
+			}
+			public Builder SetVerificationToken(string value) {
+				pb::ThrowHelper.ThrowIfNull(value, "value");
+				PrepareBuilder();
+				result.hasVerificationToken = true;
+				result.verificationToken_ = value;
+				return this;
+			}
+			public Builder ClearVerificationToken() {
+				PrepareBuilder();
+				result.hasVerificationToken = false;
+				result.verificationToken_ = "";
+				return this;
+			}
+		}
+		static GameVerificationRequest() {
+			object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
+		}
+	}
+	
+	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+	public sealed partial class GameVerificationResponse : pb::GeneratedMessage<GameVerificationResponse, GameVerificationResponse.Builder> {
+		private GameVerificationResponse() { }
+		private static readonly GameVerificationResponse defaultInstance = new GameVerificationResponse().MakeReadOnly();
+		private static readonly string[] _gameVerificationResponseFieldNames = new string[] {  };
+		private static readonly uint[] _gameVerificationResponseFieldTags = new uint[] {  };
+		public static GameVerificationResponse DefaultInstance {
+			get { return defaultInstance; }
+		}
+		
+		public override GameVerificationResponse DefaultInstanceForType {
+			get { return DefaultInstance; }
+		}
+		
+		protected override GameVerificationResponse ThisMessage {
+			get { return this; }
+		}
+		
+		public static pbd::MessageDescriptor Descriptor {
+				get { return global::Senseix.Message.Parent.Parent.internal__static_senseix_message_parent_GameVerificationResponse__Descriptor; }
+		}
+		
+		protected override pb::FieldAccess.FieldAccessorTable<GameVerificationResponse, GameVerificationResponse.Builder> InternalFieldAccessors {
+				get { return global::Senseix.Message.Parent.Parent.internal__static_senseix_message_parent_GameVerificationResponse__FieldAccessorTable; }
+		}
+		
+		public override bool IsInitialized {
+			get {
+				return true;
+			}
+		}
+		
+		public override void WriteTo(pb::ICodedOutputStream output) {
+			int size = SerializedSize;
+			string[] field_names = _gameVerificationResponseFieldNames;
+			UnknownFields.WriteTo(output);
+		}
+		
+		private int memoizedSerializedSize = -1;
+		public override int SerializedSize {
+			get {
+				int size = memoizedSerializedSize;
+				if (size != -1) return size;
+				
+				size = 0;
+				size += UnknownFields.SerializedSize;
+				memoizedSerializedSize = size;
+				return size;
+			}
+		}
+		
+		public static GameVerificationResponse ParseFrom(pb::ByteString data) {
+			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+		}
+		public static GameVerificationResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+		}
+		public static GameVerificationResponse ParseFrom(byte[] data) {
+			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+		}
+		public static GameVerificationResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+		}
+		public static GameVerificationResponse ParseFrom(global::System.IO.Stream input) {
+			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+		}
+		public static GameVerificationResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+		}
+		public static GameVerificationResponse ParseDelimitedFrom(global::System.IO.Stream input) {
+			return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+		}
+		public static GameVerificationResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+			return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+		}
+		public static GameVerificationResponse ParseFrom(pb::ICodedInputStream input) {
+			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+		}
+		public static GameVerificationResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+		}
+		private GameVerificationResponse MakeReadOnly() {
+			return this;
+		}
+		
+		public static Builder CreateBuilder() { return new Builder(); }
+		public override Builder ToBuilder() { return CreateBuilder(this); }
+		public override Builder CreateBuilderForType() { return new Builder(); }
+		public static Builder CreateBuilder(GameVerificationResponse prototype) {
+			return new Builder(prototype);
+		}
+		
+		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+		public sealed partial class Builder : pb::GeneratedBuilder<GameVerificationResponse, Builder> {
+			protected override Builder ThisBuilder {
+				get { return this; }
+			}
+			public Builder() {
+				result = DefaultInstance;
+				resultIsReadOnly = true;
+			}
+			internal Builder(GameVerificationResponse cloneFrom) {
+				result = cloneFrom;
+				resultIsReadOnly = true;
+			}
+			
+			private bool resultIsReadOnly;
+			private GameVerificationResponse result;
+			
+			private GameVerificationResponse PrepareBuilder() {
+				if (resultIsReadOnly) {
+					GameVerificationResponse original = result;
+					result = new GameVerificationResponse();
+					resultIsReadOnly = false;
+					MergeFrom(original);
+				}
+				return result;
+			}
+			
+			public override bool IsInitialized {
+				get { return result.IsInitialized; }
+			}
+			
+			protected override GameVerificationResponse MessageBeingBuilt {
+				get { return PrepareBuilder(); }
+			}
+			
+			public override Builder Clear() {
+				result = DefaultInstance;
+				resultIsReadOnly = true;
+				return this;
+			}
+			
+			public override Builder Clone() {
+				if (resultIsReadOnly) {
+					return new Builder(result);
+				} else {
+					return new Builder().MergeFrom(result);
+				}
+			}
+			
+			public override pbd::MessageDescriptor DescriptorForType {
+					get { return global::Senseix.Message.Parent.GameVerificationResponse.Descriptor; }
+			}
+			
+			public override GameVerificationResponse DefaultInstanceForType {
+					get { return global::Senseix.Message.Parent.GameVerificationResponse.DefaultInstance; }
+			}
+			
+			public override GameVerificationResponse BuildPartial() {
+				if (resultIsReadOnly) {
+					return result;
+				}
+				resultIsReadOnly = true;
+				return result.MakeReadOnly();
+			}
+			
+			public override Builder MergeFrom(pb::IMessage other) {
+				if (other is GameVerificationResponse) {
+					return MergeFrom((GameVerificationResponse) other);
+				} else {
+					base.MergeFrom(other);
+					return this;
+				}
+			}
+			
+			public override Builder MergeFrom(GameVerificationResponse other) {
+				if (other == global::Senseix.Message.Parent.GameVerificationResponse.DefaultInstance) return this;
+				PrepareBuilder();
+				this.MergeUnknownFields(other.UnknownFields);
+				return this;
+			}
+			
+			public override Builder MergeFrom(pb::ICodedInputStream input) {
+				return MergeFrom(input, pb::ExtensionRegistry.Empty);
+			}
+			
+			public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+				PrepareBuilder();
+				pb::UnknownFieldSet.Builder unknownFields = null;
+				uint tag;
+				string field_name;
+				while (input.ReadTag(out tag, out field_name)) {
+					if(tag == 0 && field_name != null) {
+						int field_ordinal = global::System.Array.BinarySearch(_gameVerificationResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+						if(field_ordinal >= 0)
+							tag = _gameVerificationResponseFieldTags[field_ordinal];
+						else {
+							if (unknownFields == null) {
+								unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+							}
+							ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+							continue;
+						}
+					}
+					switch (tag) {
+					case 0: {
+						throw pb::InvalidProtocolBufferException.InvalidTag();
+					}
+					default: {
+						if (pb::WireFormat.IsEndGroupTag(tag)) {
+							if (unknownFields != null) {
+								this.UnknownFields = unknownFields.Build();
+							}
+							return this;
+						}
+						if (unknownFields == null) {
+							unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+						}
+						ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+						break;
+					}
+					}
+				}
+				
+				if (unknownFields != null) {
+					this.UnknownFields = unknownFields.Build();
+				}
+				return this;
+			}
+			
+		}
+		static GameVerificationResponse() {
 			object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
 		}
 	}

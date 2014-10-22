@@ -16,11 +16,12 @@ namespace Senseix {
 		private static volatile string deviceID;
 		private static ProblemWorker problemWorker; 
 		private static Thread problemWorkerThread;
+		private static bool isSignedIn = false;
 		public static volatile string playerID;
 		public static volatile string authToken; 
 		public const int ACCESS_TOKEN_LENGTH = 64;
 		public string developerAccessToken;
-		private Message.Request request = new Message.Request();
+		private static Message.Request request = new Message.Request();
 
 
 		static public bool GetSessionState()
@@ -54,7 +55,7 @@ namespace Senseix {
 		static public string GetAuthToken()
 		{
 			return authToken;
-				}
+		}
 		static public string GetPlayerID()
 		{
 			return playerID;
@@ -85,8 +86,25 @@ namespace Senseix {
 
 			//Creates a temporary account based on device id
 			//returns an auth token. This is Syncronous.
-			request.RegisterDevice();
+			RegisterDevice ();
+			//VerifyGame ("123456");
 		}
+
+		static public void RegisterDevice()
+		{
+			request.RegisterDevice(SystemInfo.deviceName);
+		}
+
+		public void InstanceRegisterDevice()
+		{
+			SenseixController.RegisterDevice ();
+		}
+		
+		static public void VerifyGame(string verificationCode)
+		{
+			request.VerifyGame (verificationCode);
+		}
+
 		static private int startProblemWorkerThread()
 		{
 			problemWorker = new ProblemWorker();
@@ -108,6 +126,11 @@ namespace Senseix {
 		void Update()
 		{
 
+		}
+
+		public static bool IsSignedIn()
+		{
+			return isSignedIn;
 		}
 	}
 }

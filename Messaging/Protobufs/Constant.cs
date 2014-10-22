@@ -27,16 +27,16 @@ namespace Senseix.Message.Constant {
 			byte[] descriptorData = global::System.Convert.FromBase64String(
 				"Chd0dXRvcmlhbC9Db25zdGFudC5wcm90bxIYc2Vuc2VpeC5tZXNzYWdlLmNv" + 
 				"bnN0YW50GiRnb29nbGUvcHJvdG9idWYvY3NoYXJwX29wdGlvbnMucHJvdG8a" + 
-				"IGdvb2dsZS9wcm90b2J1Zi9kZXNjcmlwdG9yLnByb3RvKpcCCgtNZXNzYWdl" + 
+				"IGdvb2dsZS9wcm90b2J1Zi9kZXNjcmlwdG9yLnByb3RvKq0CCgtNZXNzYWdl" + 
 				"VHlwZRISCg5SZWdpc3RlckRldmljZRABEhIKDlJlZ2lzdGVyUGFyZW50EAIS" + 
 				"EAoMU2lnbkluUGFyZW50EAMSEQoNU2lnbk91dFBhcmVudBAEEg4KCkVkaXRQ" + 
 				"YXJlbnQQBRIPCgtNZXJnZVBhcmVudBAGEhAKDENyZWF0ZVBsYXllchAHEg4K" + 
 				"Ckxpc3RQbGF5ZXIQCBIhCh1SZWdpc3RlclBsYXllcldpdGhBcHBsaWNhdGlv" + 
 				"bhAJEg8KC1Byb2JsZW1Qb3N0EAoSDgoKUHJvYmxlbUdldBALEhMKD0xlYWRl" + 
 				"cmJvYXJkUGFnZRAMEg8KC1BsYXllclNjb3JlEA0SDgoKUGxheWVyUmFuaxAO" + 
-				"KjYKBlN0YXR1cxILCgdGQUlMVVJFEAASCwoHU1VDQ0VTUxABEhIKDk1FUkdF" + 
-				"X1JFUVVJUkVEEAJCKUgBwj4kChhTZW5zZWl4Lk1lc3NhZ2UuQ29uc3RhbnQS" + 
-				"CENvbnN0YW50");
+				"EhQKEEdhbWVWZXJpZmljYXRpb24QDyo2CgZTdGF0dXMSCwoHRkFJTFVSRRAA" + 
+				"EgsKB1NVQ0NFU1MQARISCg5NRVJHRV9SRVFVSVJFRBACQilIAcI+JAoYU2Vu" + 
+				"c2VpeC5NZXNzYWdlLkNvbnN0YW50EghDb25zdGFudA==");
 			pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
 				descriptor = root;
 				pb::ExtensionRegistry registry = pb::ExtensionRegistry.CreateInstance();
@@ -70,6 +70,7 @@ namespace Senseix.Message.Constant {
 		LeaderboardPage = 12,
 		PlayerScore = 13,
 		PlayerRank = 14,
+		GameVerification = 15,
 	}
 	
 	public enum Status {

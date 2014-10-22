@@ -37,6 +37,7 @@ namespace Senseix {
 		}
 
 		public static void AddProblemsToProblemQueue (Message.Problem.ProblemData.Builder problem) {
+			//Debug.Log ("Added a problem to queue, queue length now " + newProblems.Count);
 			newProblems.Enqueue (problem);
 		}
 
@@ -54,14 +55,16 @@ namespace Senseix {
 						prob.SetAnswer ((i + j).ToString ());
 						prob.SetProblemId ((j+100+i).ToString());
 						newProblems.Enqueue (prob);
+
 					}
 				}
 			} else {
-				request.GetProblems (SenseixController.playerID, 30); 
+				request.GetProblems (SenseixController.playerID, 6);  //should be 30
 				ReplaceProblemSeed ();
 			}
 		}
 		public void PushServerProblems () { 
+			Debug.Log ("PUSH SERVER PROBLEMS");
 			request.PostProblems (SenseixController.playerID, answeredProblems);
 		}
 
@@ -70,6 +73,7 @@ namespace Senseix {
 			//Hopefully we never hit this case
 			if (GetNewProblemCount () < 1) {
 					GetServerProblems (); 
+					Debug.Log ("but we did hit this case");
 			}
 			return (Senseix.Message.Problem.ProblemData.Builder) newProblems.Dequeue ();
 		}
@@ -82,7 +86,7 @@ namespace Senseix {
 				problem.SetAnswer (answer);
 				return true;
 			} else {
-				problem.SetAnswer (answer);
+				//problem.SetAnswer (answer);
 				return false; 
 			}
 		}
@@ -90,6 +94,7 @@ namespace Senseix {
 		//Main worker thread for problems
 		public void DoWork()
 		{
+			Debug.Log ("doin' work");
 			while (!_shouldStop)
 			{
 				if(GetNewProblemCount() < 10) 

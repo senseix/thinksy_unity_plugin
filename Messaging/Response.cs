@@ -49,6 +49,12 @@ namespace Senseix.Message {
 					return -2;
 				}
 				break;
+			case Constant.MessageType.GameVerification:
+				//henry wrote this
+				SenseixController.SetSessionState(true);
+				Debug.Log("I got a response from my game verification message");
+				break;
+			
 			case Constant.MessageType.RegisterParent:
 				if (reply.Status == Constant.Status.FAILURE) {
 					Debug.Log ("DUANE!!!! MERGE CODE REQUIRED HERE!!!");
@@ -79,14 +85,14 @@ namespace Senseix.Message {
 
 				SenseixController.SetSessionState(false);//Duane, this seems..odd
 				break;
-			case Constant.MessageType.EditParent:
-				//We will only return a new authtoken if required i.e. password changed, email changed.
-				if(reply.HasParentEdit && reply.ParentEdit.IsInitialized && reply.ParentEdit.HasAuthToken){
-					SenseixController.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);
-				} else {
-					SenseixController.SetSessionState(false);
-				}
-				break;
+//			case Constant.MessageType.EditParent:
+//				//We will only return a new authtoken if required i.e. password changed, email changed.
+//				if(reply.HasParentEdit && reply.ParentEdit.IsInitialized && reply.ParentEdit.HasAuthToken){
+//					SenseixController.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);
+//				} else {
+//					SenseixController.SetSessionState(false);
+//				}
+//				break;
 			case Constant.MessageType.MergeParent:
 				if(reply.HasParentMerge && reply.ParentMerge.IsInitialized && reply.ParentMerge.HasAuthToken){
 					SenseixController.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);

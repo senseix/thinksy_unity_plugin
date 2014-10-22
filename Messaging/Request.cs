@@ -28,6 +28,7 @@ namespace Senseix.Message {
 
 		//Requests related to parent management 
 		const string REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
+		const string VERIFY_GAME_URL = PARENT_HDR + "game_verification";
 		const string REGISTER_PARENT_URL = PARENT_HDR + "register";
 		const string EDIT_PARENT_URL = PARENT_HDR + "edit";
 		const string SIGN_IN_PARENT_URL = PARENT_HDR + "sign_in";
@@ -113,17 +114,42 @@ namespace Senseix.Message {
 		/// and the player to begin playing without logging in. Once an account is registered
 		/// or created the temporary account is transitioned into a permanent one.  
 		/// </summary>
-		public int RegisterDevice()
+		public int RegisterDevice(string deviceNameInformation)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			Parent.DeviceRegistrationRequest.Builder newDevice = Parent.DeviceRegistrationRequest.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+
+			Parent.DeviceRegistrationRequest.Builder newDevice = Parent.DeviceRegistrationRequest.CreateBuilder ();
+			newDevice.SetInformation (deviceNameInformation);
 			newDevice.SetDeviceId (SenseixController.GetDeviceID());
+
 			hdr_request.SetDeviceRegistration(newDevice);
-	
+			Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
 			return SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterDevice, REGISTER_DEVICE_URL);
 		}
-	
+
+		/// <summary>
+		/// Adds the temporary verification code to the server.  When the user enters the verificationCode
+		/// on the SenseiX website now, it will be able to link this game with the user's account.
+		/// </summary>
+		public int VerifyGame(string verificationCode)
+		{
+			Debug.Log ("henry's first message...");
+
+			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
+			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+
+			Parent.GameVerificationRequest.Builder newVerification = Parent.GameVerificationRequest.CreateBuilder ();
+			newVerification.SetVerificationToken (verificationCode);
+			newVerification.SetUdid (SenseixController.GetDeviceID ());
+
+			hdr_request.SetGameVerification(newVerification);
+			Debug.Log ("going off to " + VERIFY_GAME_URL);
+			Debug.Log (hdr_request.GameVerification.Udid);
+			Debug.Log (hdr_request.GameVerification.VerificationToken);
+			Debug.Log (hdr_request.AccessToken);
+			return SyncronousPostRequest (ref hdr_request, Constant.MessageType.GameVerification, VERIFY_GAME_URL);
+		}
 		
 	     /// <summary>
 	     /// Registers a Parent with the SenseiX server and results in a auth_token for the current session.
