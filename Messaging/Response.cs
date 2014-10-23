@@ -129,6 +129,9 @@ namespace Senseix.Message {
 
 			break;
 			case Constant.MessageType.LeaderboardPage:
+				Debug.Log ("I recieved a leaderboard page response");
+				Debug.Log(reply.Page.PlayerList);
+				SenseixController.SetLeaderboardPlayers(reply.Page.PlayerList);
 			break;
 			case Constant.MessageType.PlayerScore:
 			break;

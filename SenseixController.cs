@@ -21,6 +21,7 @@ namespace Senseix {
 		public static volatile string authToken; 
 		public const int ACCESS_TOKEN_LENGTH = 64;
 		private static Message.Request request = new Message.Request();
+		private static IList<Message.Leaderboard.PlayerData> currentLeaderboard;
 
 
 		static public bool GetSessionState()
@@ -86,7 +87,26 @@ namespace Senseix {
 			//returns an auth token. This is Syncronous.
 			RegisterDevice ();
 			//VerifyGame ("123456");
-			request.LeaderboardPage ();
+			PullLeaderboard (1, 10);
+		}
+
+		static public void PullLeaderboard(uint pageNumber, uint pageSize)
+		{
+			request.LeaderboardPage (pageNumber, Senseix.Message.Leaderboard.SortBy.NONE, pageSize);
+		}
+
+		static public void SetLeaderboardPlayers(IList<Message.Leaderboard.PlayerData> playerList)
+		{
+			foreach (Message.Leaderboard.PlayerData player in playerList)
+			{
+				Debug.Log("player " + player.Name + " has score " + player.Score);
+			}
+			currentLeaderboard = playerList;
+		}
+
+		static public IList<Message.Leaderboard.PlayerData> GetCurrentLeaderboard()
+		{
+			return currentLeaderboard;
 		}
 
 		static public void RegisterDevice()
