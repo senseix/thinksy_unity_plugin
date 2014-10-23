@@ -24,7 +24,7 @@ namespace Senseix.Message {
 		const string PARENT_HDR = GENERIC_HDR + "/parents/";
 		const string PLAYER_HDR = GENERIC_HDR + "/players/";
 		const string PROBLEM_HDR = GENERIC_HDR + "/problems/";
-		const string LEADERBOARD_HDR = GENERIC_HDR + "/leaderboards/";
+		const string LEADERBOARD_HDR = GENERIC_HDR + "/leaderboard/";
 
 		//Requests related to parent management 
 		const string REGISTER_DEVICE_URL = PARENT_HDR + "create_device";

@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace Senseix { 
 
-	class SenseixController:MonoBehaviour {
+	static class SenseixController {
 		private static bool problemThreadActive = false;
 		private static bool inSession = false;
 		private static volatile string accessToken = "";
@@ -20,7 +20,6 @@ namespace Senseix {
 		public static volatile string playerID;
 		public static volatile string authToken; 
 		public const int ACCESS_TOKEN_LENGTH = 64;
-		public string developerAccessToken;
 		private static Message.Request request = new Message.Request();
 
 
@@ -64,22 +63,21 @@ namespace Senseix {
 		{
 			playerID = newPlayerID;
 		}
-		~SenseixController(){
+
+		public static void EndLife(){
 			problemWorker.RequestStop ();
 			problemWorkerThread.Join();
 		}
-		public SenseixController() { 
-	
-		}
-		void Start () { 
+
+
+		public static void InitializeSenseix (string newAccessToken) { 
 			deviceID = SystemInfo.deviceUniqueIdentifier;
 			
 			if (startProblemWorkerThread () < 0) {
 				throw new Exception ("Failed to start the problem worker thread, Please uninstall and reinstall this game");
 			}
 
-			
-			accessToken = developerAccessToken;
+			accessToken = newAccessToken; 
 			if (CheckAccessToken() == -1) {
 				throw new Exception("The Senseix Token you have provided is not of a valid length, please register at developer.senseix.com to create a valid key");
 			}
@@ -87,18 +85,13 @@ namespace Senseix {
 			//Creates a temporary account based on device id
 			//returns an auth token. This is Syncronous.
 			RegisterDevice ();
-			VerifyGame ("123456");
-			//request.LeaderboardPage ();
+			//VerifyGame ("123456");
+			request.LeaderboardPage ();
 		}
 
 		static public void RegisterDevice()
 		{
 			request.RegisterDevice(SystemInfo.deviceName);
-		}
-
-		public void InstanceRegisterDevice()
-		{
-			SenseixController.RegisterDevice ();
 		}
 		
 		static public void VerifyGame(string verificationCode)
@@ -122,11 +115,6 @@ namespace Senseix {
 		static public bool CheckAnswer(Message.Problem.ProblemData.Builder problem, string answer)
 		{
 			return problemWorker.CheckAnswer(problem, answer);
-		}
-
-		void Update()
-		{
-
 		}
 
 		public static bool IsSignedIn()

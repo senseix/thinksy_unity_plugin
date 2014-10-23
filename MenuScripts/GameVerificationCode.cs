@@ -28,7 +28,7 @@ namespace Senseix
 		{
 			string verificationCode = GetRandomSixDigitHexNumber();
 			codeText.text = verificationCode;
-			//SenseixController.VerifyGame (verificationCode);
+			SenseixController.VerifyGame (verificationCode);
 		}
 		
 		public string GetRandomSixDigitHexNumber()
