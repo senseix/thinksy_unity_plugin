@@ -87,7 +87,7 @@ namespace Senseix {
 			//returns an auth token. This is Syncronous.
 			RegisterDevice ();
 			//VerifyGame ("123456");
-			PullLeaderboard (1, 10);
+			//PullLeaderboard (1, 10);
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)
