@@ -30,7 +30,7 @@ namespace Senseix {
 		}
 		static public void SetSessionState(bool state)
 		{
-			problemWorker.SetOnline (state);
+//			problemWorker.SetOnline (state);
 			inSession = state;
 		}
 
@@ -74,10 +74,10 @@ namespace Senseix {
 		public static void InitializeSenseix (string newAccessToken) { 
 			deviceID = SystemInfo.deviceUniqueIdentifier;
 			
-			if (startProblemWorkerThread () < 0) {
-				throw new Exception ("Failed to start the problem worker thread, Please uninstall and reinstall this game");
-			}
-
+//			if (startProblemWorkerThread () < 0) {
+//				throw new Exception ("Failed to start the problem worker thread, Please uninstall and reinstall this game");
+//			}
+//
 			accessToken = newAccessToken; 
 			if (CheckAccessToken() == -1) {
 				throw new Exception("The Senseix Token you have provided is not of a valid length, please register at developer.senseix.com to create a valid key");
@@ -88,6 +88,12 @@ namespace Senseix {
 			RegisterDevice ();
 			//VerifyGame ("123456");
 			//PullLeaderboard (1, 10);
+			Debug.Log ("got past register device");
+		}
+
+		static public void ListPlayers()
+		{
+			request.ListPlayers ();
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)

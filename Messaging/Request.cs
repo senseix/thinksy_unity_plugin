@@ -18,13 +18,18 @@ namespace Senseix.Message {
 	public class Request
 	{
 		const string ENCRYPTED = "http://";
-		const string SERVER_URL = "api-staging.senseix.com/";
+		const string SERVER_URL = "192.168.2.105:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/parents/";
 		const string PLAYER_HDR = GENERIC_HDR + "/players/";
 		const string PROBLEM_HDR = GENERIC_HDR + "/problems/";
 		const string LEADERBOARD_HDR = GENERIC_HDR + "/applications/leaderboard/";
+
+		//External urls
+		public const string WEBSITE_URL = ENCRYPTED + SERVER_URL;
+		public const string DEVICES_WEBSITE_HDR = WEBSITE_URL + "/devices/";
+		public const string ENROLL_GAME_URL = DEVICES_WEBSITE_HDR + "new";
 
 		//Requests related to parent management 
 		const string REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
@@ -270,6 +275,7 @@ namespace Senseix.Message {
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			Player.PlayerListRequest.Builder listPlayer = Player.PlayerListRequest.CreateBuilder ();
 			hdr_request.SetPlayerList (listPlayer);
+			Debug.Log ("list players request going off to " + LIST_PLAYER_URL);
 			return SyncronousPostRequest (ref hdr_request, Constant.MessageType.ListPlayer, LIST_PLAYER_URL);
 		}
 		/// <summary>

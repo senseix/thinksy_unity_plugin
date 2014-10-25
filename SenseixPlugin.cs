@@ -40,7 +40,7 @@ class SenseixPlugin : MonoBehaviour
 	{
 		if (mostRecentProblem == null)
 		{
-			throw new Exception("There are not yet any problems.  Please user SenseixPlugin.NextProblem()");
+			throw new Exception("There are not yet any problems.  Please use SenseixPlugin.NextProblem()");
 		}
 		return mostRecentProblem;
 	}
