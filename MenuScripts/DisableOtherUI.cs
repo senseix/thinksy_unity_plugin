@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DisableOtherUI : MonoBehaviour {
 	
-	public GameObject [] reenableWhenThisDisabled;
+	private Canvas [] reenableWhenThisDisabled;
 
 	// Use this for initialization
 	void Start () {
@@ -17,21 +17,23 @@ public class DisableOtherUI : MonoBehaviour {
 
 	void OnEnable()
 	{
+		BuildDisabledList ();
 		SetOtherCanvasActive(false);
 	}
 
 	void OnDisable()
 	{
-		foreach(GameObject thisGameObject in reenableWhenThisDisabled)
-		{
-			thisGameObject.SetActive (true);
-		}
+		SetOtherCanvasActive(true);
+	}
+
+	private void BuildDisabledList()
+	{
+		reenableWhenThisDisabled = Object.FindObjectsOfType <Canvas>();
 	}
 
 	private void SetOtherCanvasActive(bool isActive)
 	{
-		Object [] Canvases = Object.FindObjectsOfType <Canvas>();
-		foreach(Object canvas in Canvases)
+		foreach(Canvas canvas in reenableWhenThisDisabled)
 		{
 			Canvas thisCanvas = canvas as Canvas;
 			if (thisCanvas.gameObject != this.gameObject)
