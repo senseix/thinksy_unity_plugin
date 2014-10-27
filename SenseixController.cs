@@ -22,7 +22,22 @@ namespace Senseix {
 		public const int ACCESS_TOKEN_LENGTH = 64;
 		private static Message.Request request = new Message.Request();
 		private static IList<Message.Leaderboard.PlayerData> currentLeaderboard;
+		private static Message.Player.PlayerListResponse currentPlayerList;
 
+		static public ArrayList GetCurrentPlayerList()
+		{
+			ArrayList returnList = new ArrayList ();
+			for (int i = 0; i < currentPlayerList.PlayerCount; i++)
+			{
+				returnList.Add(currentPlayerList.GetPlayer(i));
+			}
+			return returnList;
+		}
+
+		static public void SetCurrentPlayerList(Message.Player.PlayerListResponse newPlayerList)
+		{
+			currentPlayerList = newPlayerList;
+		}
 
 		static public bool GetSessionState()
 		{
@@ -30,7 +45,7 @@ namespace Senseix {
 		}
 		static public void SetSessionState(bool state)
 		{
-//			problemWorker.SetOnline (state);
+			problemWorker.SetOnline (state);
 			inSession = state;
 		}
 
@@ -74,9 +89,9 @@ namespace Senseix {
 		public static void InitializeSenseix (string newAccessToken) { 
 			deviceID = SystemInfo.deviceUniqueIdentifier;
 			
-//			if (startProblemWorkerThread () < 0) {
-//				throw new Exception ("Failed to start the problem worker thread, Please uninstall and reinstall this game");
-//			}
+			if (startProblemWorkerThread () < 0) {
+				throw new Exception ("Failed to start the problem worker thread, Please uninstall and reinstall this game");
+			}
 //
 			accessToken = newAccessToken; 
 			if (CheckAccessToken() == -1) {
@@ -89,11 +104,23 @@ namespace Senseix {
 			//VerifyGame ("123456");
 			//PullLeaderboard (1, 10);
 			Debug.Log ("got past register device");
+			ListPlayers ();
+			//RegisterAllPlayers ();
+			//RegisterPlayer is not working yet
 		}
 
 		static public void ListPlayers()
 		{
 			request.ListPlayers ();
+		}
+
+		static public void RegisterAllPlayers()
+		{
+			ArrayList players = GetCurrentPlayerList ();
+			foreach (Message.Player.Player player in players)
+			{
+				RegisterPlayer(player);
+			}
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)
@@ -123,6 +150,11 @@ namespace Senseix {
 		static public void VerifyGame(string verificationCode)
 		{
 			request.VerifyGame (verificationCode);
+		}
+
+		static public void RegisterPlayer(Message.Player.Player player)
+		{
+			request.RegisterPlayer (player.PlayerId);
 		}
 
 		static private int startProblemWorkerThread()

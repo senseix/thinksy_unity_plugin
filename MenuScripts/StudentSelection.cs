@@ -9,8 +9,8 @@ namespace Senseix
 
 		public Text playerNameText;
 
-		private ArrayList availablePlayerNames;
-		private int currentNameIndex = 0;
+		private ArrayList availablePlayers;
+		private int currentPlayerIndex = 0;
 
 		// Use this for initialization
 		void Start () 
@@ -27,30 +27,43 @@ namespace Senseix
 		void OnEnable()
 		{
 			PullAvailablePlayers ();
-			SetName (availablePlayerNames [currentNameIndex] as string);
+			SetName ();
 		}
 
 		public void NextStudent()
 		{
-			currentNameIndex = (currentNameIndex + 1) % availablePlayerNames.Count;
-			SetName (availablePlayerNames [currentNameIndex] as string);
+			SetStudent (currentPlayerIndex + 1);
 		}
 
 		public void PreviousStudent()
 		{
-			currentNameIndex = (currentNameIndex - 1) % availablePlayerNames.Count;
-			SetName (availablePlayerNames [currentNameIndex] as string);
+			SetStudent (currentPlayerIndex - 1);
 		}
 
-		public void SetName(string newName)
+		public void SetStudent(int studentIndex)
 		{
+			currentPlayerIndex = studentIndex % availablePlayers.Count;
+			//SenseixController.RegisterPlayer (GetCurrentPlayer ());
+			//Register player is not working yet
+			SetName ();
+		}
+
+		public Message.Player.Player GetCurrentPlayer()
+		{
+			return availablePlayers [currentPlayerIndex] as Senseix.Message.Player.Player;
+		}
+
+		public void SetName()
+		{
+			Message.Player.Player newPlayer = availablePlayers [currentPlayerIndex] as Message.Player.Player;
+			string newName = newPlayer.Name;
 			playerNameText.text = newName;
 		}
 
 		public void PullAvailablePlayers()
 		{
-			//SenseixController.ListPlayers ();
-			availablePlayerNames = new ArrayList() {"Alice", "Bob", "Jorge", "Yuanyuan"};
+			SenseixController.ListPlayers ();
+			availablePlayers = SenseixController.GetCurrentPlayerList ();
 		}
 	}
 }

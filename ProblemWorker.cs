@@ -95,16 +95,16 @@ namespace Senseix {
 		public void DoWork()
 		{
 			Debug.Log ("doin' work");
-			while (!_shouldStop)
-			{
-				if(GetNewProblemCount() < 10) 
-					GetServerProblems();
-
-				if (_onLine == true) {
-					if(GetAnsweredProblemCount() > 10)
-						PushServerProblems();
-				}
-			}
+//			while (!_shouldStop)
+//			{
+//				if(GetNewProblemCount() < 10) 
+//					GetServerProblems();
+//
+//				if (_onLine == true) {
+//					if(GetAnsweredProblemCount() > 10)
+//						PushServerProblems();
+//				}
+//			}
 		}
 
 		public void SetOnline(bool state)

@@ -73,7 +73,7 @@ namespace Senseix.Message {
 			WaitForRequest (recvResult);
 		
 			Debug.Log ("Recv result is " + recvResult.text);
-			var replyBytes = System.Text.Encoding.UTF8.GetBytes(recvResult.text);
+			var replyBytes = recvResult.bytes;
 			reply = ResponseHeader.ParseFrom (replyBytes);
 
 		
@@ -291,6 +291,10 @@ namespace Senseix.Message {
 			Player.PlayerRegisterWithApplicationRequest.Builder regPlayer = Player.PlayerRegisterWithApplicationRequest.CreateBuilder ();
 			regPlayer.SetPlayerId (player_id);
 			hdr_request.SetPlayerRegisterWithApplication(regPlayer);
+			Debug.Log(hdr_request.AccessToken);
+			Debug.Log(hdr_request.AuthToken);
+			Debug.Log(hdr_request.PlayerRegisterWithApplication.PlayerId);
+			Debug.Log ("register player going off to " + REGISTER_PLAYER_WITH_GAME_URL);
 			return SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterPlayerWithApplication, REGISTER_PLAYER_WITH_GAME_URL);
 		}
 
@@ -308,6 +312,11 @@ namespace Senseix.Message {
 			getProblem.SetProblemCount (count);
 			getProblem.SetPlayerId (player_id);
 			hdr_request.SetProblemGet (getProblem);
+			Debug.Log ("Get problems request going off to " + GET_PROBLEM_URL);
+			Debug.Log (hdr_request.AuthToken);
+			Debug.Log (hdr_request.AccessToken);
+			Debug.Log (hdr_request.ProblemGet.ProblemCount);
+			Debug.Log (hdr_request.ProblemGet.PlayerId);
 			return SyncronousPostRequest (ref hdr_request, Constant.MessageType.ProblemGet, GET_PROBLEM_URL);
 		}	
 

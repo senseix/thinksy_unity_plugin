@@ -10,7 +10,7 @@ using System.ComponentModel;
 class SenseixPlugin : MonoBehaviour
 {
 
-	public string developerAccessToken;
+	public string developerAccessToken; //this is your developer access token obtained from the SenseiX website.
 
 	private static Problem mostRecentProblem;
 

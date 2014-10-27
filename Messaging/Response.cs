@@ -106,7 +106,8 @@ namespace Senseix.Message {
 			case Constant.MessageType.CreatePlayer:
 			break;
 			case Constant.MessageType.ListPlayer:
-			break;
+				SenseixController.SetCurrentPlayerList(reply.PlayerList);
+				break;
 			case Constant.MessageType.RegisterPlayerWithApplication:
 			break;
 			case Constant.MessageType.ProblemPost:
