@@ -14,8 +14,14 @@ class SenseixPlugin : MonoBehaviour
 
 	private static Problem mostRecentProblem;
 
-	void Start()
+	void Update()
 	{
+		Senseix.ProblemWorker.GetServerProblems ();
+	}
+
+
+	void Start()
+	{	
 		Senseix.SenseixController.InitializeSenseix (developerAccessToken);
 	}
 
