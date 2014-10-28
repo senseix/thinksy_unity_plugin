@@ -27,7 +27,7 @@ namespace Senseix
 		void OnEnable()
 		{
 			PullAvailablePlayers ();
-			SetName ();
+			SetStudent (currentPlayerIndex);
 		}
 
 		public void NextStudent()
@@ -42,9 +42,9 @@ namespace Senseix
 
 		public void SetStudent(int studentIndex)
 		{
-			currentPlayerIndex = studentIndex % availablePlayers.Count;
-			//SenseixController.RegisterPlayer (GetCurrentPlayer ());
-			//Register player is not working yet
+			currentPlayerIndex = Mathf.Abs(studentIndex % availablePlayers.Count);
+			SenseixController.RegisterPlayer (GetCurrentPlayer ());
+			SenseixController.SetCurrentPlayer (GetCurrentPlayer ());
 			SetName ();
 		}
 

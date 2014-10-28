@@ -14,18 +14,15 @@ class SenseixPlugin : MonoBehaviour
 
 	private static Problem mostRecentProblem;
 
-	void Update()
-	{
-		Senseix.ProblemWorker.GetServerProblems ();
-	}
-
 
 	void Start()
 	{	
+		Debug.Log ("HENRY. INITIALIZING.");
 		Senseix.SenseixController.InitializeSenseix (developerAccessToken);
 	}
 
-	~SenseixPlugin(){
+	~SenseixPlugin()
+	{
 		Senseix.SenseixController.EndLife ();
 	}
 
@@ -80,6 +77,15 @@ class SenseixPlugin : MonoBehaviour
 	public static bool CheckAnswer(Problem problem, string answer)
 	{
 		return problem.CheckAnswer (answer);
+	}
+
+	/// <summary>
+	/// Whichever player is the currently active player in the SenseiX menus, this
+	/// will set that player's high score to the UInt32 argument.
+	/// </summary>
+	public static void SetCurrentPlayerHighScore (UInt32 score)
+	{
+		Senseix.SenseixController.UpdateCurrentPlayerScore(score);
 	}
 
 }

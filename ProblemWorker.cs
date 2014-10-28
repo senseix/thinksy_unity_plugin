@@ -8,18 +8,17 @@ using System.ComponentModel;
 
 namespace Senseix { 
 
-	class ProblemWorker {
+	static class ProblemWorker {
 
 		private const int PROBLEM_COUNT = 40; 
-		private volatile bool _shouldStop;
+		private static volatile bool _shouldStop;
 		private static bool _onLine = false;
 		private static bool pullMoreProblems = true; 
 		public static volatile Queue newProblems = new Queue(); 
 		public static volatile Queue answeredProblems = new Queue();
-		private Message.Request request = new Message.Request();
 
 	
-		private int ReplaceProblemSeed()
+		static private int ReplaceProblemSeed()
 		{
 			return 0;
 			//Replace the seed file for this game with 
@@ -28,11 +27,11 @@ namespace Senseix {
 			//into seed file, when Answered > N/2 since
 			//last pull to server, Pull another N - repeat
 		}
-		public int GetNewProblemCount () { 
+		static public int GetNewProblemCount () { 
 		//	Debug.Log ("Duane, problem count is" + newProblems.Count);
 			return newProblems.Count;
 		}
-		public int GetAnsweredProblemCount () {
+		static public int GetAnsweredProblemCount () {
 			return answeredProblems.Count;
 		}
 
@@ -43,7 +42,7 @@ namespace Senseix {
 
 		//Request more problems from the server
 		//and add them to the end of our problem queue
-		public void GetServerProblems () {
+		static public void GetServerProblems () {
 			
 			if (_onLine == false) {
 				//1. This case should be coming from the seed file
@@ -59,27 +58,28 @@ namespace Senseix {
 					}
 				}
 			} else {
-				request.GetProblems (SenseixController.playerID, 6);  //should be 30
+				Message.Request.GetProblems (SenseixController.GetCurrentPlayerID(), 6);  //should be 30
 				ReplaceProblemSeed ();
 			}
 		}
-		public void PushServerProblems () { 
+		static public void PushServerProblems () { 
 			Debug.Log ("PUSH SERVER PROBLEMS");
-			request.PostProblems (SenseixController.playerID, answeredProblems);
+			Message.Request.PostProblems (SenseixController.GetCurrentPlayerID(), answeredProblems);
 		}
 
-		public Senseix.Message.Problem.ProblemData.Builder GetProblem()
+		static public Senseix.Message.Problem.ProblemData.Builder GetProblem()
 		{
-			//Hopefully we never hit this case
+			//Right now we're just pulling more problem when we run out, but eventually we
+			//might want to do this with an asynchronous message
 			if (GetNewProblemCount () < 1) {
 					GetServerProblems (); 
-					Debug.Log ("but we did hit this case");
+					Debug.Log ("pulling more problems");
 			}
 			return (Senseix.Message.Problem.ProblemData.Builder) newProblems.Dequeue ();
 		}
 		//This is a public function exposed to the developer, it is used to check an answer 
 		//of the problem. If it returns true the developer should pop the next problem
-		public bool CheckAnswer(Message.Problem.ProblemData.Builder problem, string answer) 
+		static public bool CheckAnswer(Message.Problem.ProblemData.Builder problem, string answer) 
 		{
 			answeredProblems.Enqueue (answer);
 			if (problem.Answer == answer) {
@@ -92,7 +92,7 @@ namespace Senseix {
 		}
 
 		//Main worker thread for problems
-		public void DoWork()
+		static public void DoWork()
 		{
 			Debug.Log ("doin' work");
 //			while (!_shouldStop)
@@ -107,7 +107,7 @@ namespace Senseix {
 //			}
 		}
 
-		public void SetOnline(bool state)
+		static public void SetOnline(bool state)
 		{
 			if (_onLine == false && state == true) {
 				_onLine = state;
@@ -119,14 +119,13 @@ namespace Senseix {
 				{
 					newProblems.Dequeue();	
 				}
-				GetServerProblems();
 			}
 			else
 			{
 				_onLine = state;
 			}
 		}
-		public void RequestStop()
+		static public void RequestStop()
 		{
 			_shouldStop = true;
 		}

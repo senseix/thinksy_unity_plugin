@@ -15,7 +15,7 @@ using System.IO;
 namespace Senseix.Message {
 	//API URLS
 	//api-staging.senseix.com
-	public class Request
+	static public class Request
 	{
 		const string ENCRYPTED = "http://";
 		const string SERVER_URL = "192.168.2.105:3000/";
@@ -53,11 +53,8 @@ namespace Senseix.Message {
 		const string GET_LEADERBOARD_PAGE_URL = LEADERBOARD_HDR + "page";
 		const string GET_PLAYER_RANK_URL = LEADERBOARD_HDR + "player";
 		const string UPDATE_PLAYER_SCORE_URL = LEADERBOARD_HDR + "update_player_score";
-		public Request()
-		{
-		}
 	
-		public int SyncronousPostRequest(ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
+		static public int SyncronousPostRequest(ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
 	    {
 			ResponseHeader reply = null;
 			byte[] bytes;
@@ -82,7 +79,7 @@ namespace Senseix.Message {
 		}
 	 
 
-		private void WaitForRequest(WWW recvResult)
+		static private void WaitForRequest(WWW recvResult)
 		{
 			
 		
@@ -119,7 +116,7 @@ namespace Senseix.Message {
 		/// and the player to begin playing without logging in. Once an account is registered
 		/// or created the temporary account is transitioned into a permanent one.  
 		/// </summary>
-		public int RegisterDevice(string deviceNameInformation)
+		static public int RegisterDevice(string deviceNameInformation)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
@@ -137,7 +134,7 @@ namespace Senseix.Message {
 		/// Adds the temporary verification code to the server.  When the user enters the verificationCode
 		/// on the SenseiX website now, it will be able to link this game with the user's account.
 		/// </summary>
-		public int VerifyGame(string verificationCode)
+		static public int VerifyGame(string verificationCode)
 		{
 			Debug.Log ("henry's first message...");
 
@@ -160,7 +157,7 @@ namespace Senseix.Message {
 	     /// Registers a Parent with the SenseiX server and results in a auth_token for the current session.
 	    /// Name is an optional parameter for the server (it can be blank). 
 	    /// </summary>
-		public int RegisterParent (string email,string name,string password)
+		static public int RegisterParent (string email,string name,string password)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			Parent.ParentRegistrationRequest.Builder newParent = Parent.ParentRegistrationRequest.CreateBuilder ();
@@ -179,7 +176,7 @@ namespace Senseix.Message {
 		/// Logs in a parent given a password and email for that account. Sets the authentication token for the user
 		/// allowing for additional API calls such as pulling in additional problems, player management, etc.
 		/// </summary>
-		public int SignInParent (string email, string password)
+		static public int SignInParent (string email, string password)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			Parent.ParentSignInRequest.Builder signInParent = Parent.ParentSignInRequest.CreateBuilder ();
@@ -197,7 +194,7 @@ namespace Senseix.Message {
 		/// Logs a user out of the SenseiX platform. This will result in an action having to be taken by the user if they attempt to 
 		/// login with anoter account (each device is tied to a single account)	
 		/// </summary>
-		public int SignOutParent()
+		static public int SignOutParent()
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
@@ -211,7 +208,7 @@ namespace Senseix.Message {
 		/// Edit a users profile i.e. change password, name, email, etc. The current password is required to be re-entered
 		/// here for added security. 
 		/// </summary>
-		public int ParentEditProfile (string email,string name,string password, string new_password, string confirmation_password)
+		static public int ParentEditProfile (string email,string name,string password, string new_password, string confirmation_password)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
@@ -231,7 +228,7 @@ namespace Senseix.Message {
 		/// and now has a real account, we give the parent the option to either, create a new player, merge the data with 
 		/// a player they already have or just delete the current data.  
 		/// </summary>
-		public int ParentAccntResolution (string email, string password, Parent.ParentMergeRequest.Types.Decision decision, string player_id, string name) 
+		static public int ParentAccntResolution (string email, string password, Parent.ParentMergeRequest.Types.Decision decision, string player_id, string name) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAccessToken());
@@ -253,7 +250,7 @@ namespace Senseix.Message {
 		/// Create a new player for this parent. This will return a player_id for future calls
 		/// to the API. 
 		/// </summary>
-		public int CreatePlayer (string name) 
+		static public int CreatePlayer (string name) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
@@ -268,7 +265,7 @@ namespace Senseix.Message {
 		/// Return a list of player names and player_id's for a parent, most likely to 
 		/// pick which player should be playing the game at a given time.  
 		/// </summary>
-		public int ListPlayers () 
+		static public int ListPlayers () 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
@@ -283,7 +280,7 @@ namespace Senseix.Message {
 	    /// is selected from the drop downlist. It will add this game to a list of played games for the player and 
 		/// add them to things like the games leaderboard.
 		/// </summary>
-		public int RegisterPlayer (string player_id) 
+		static public int RegisterPlayer (string player_id) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
@@ -303,7 +300,7 @@ namespace Senseix.Message {
 		/// Return a list of player names and player_id's for a parent, most likely to 
 		/// pick which player should be playing the game at a given time.  
 		/// </summary>
-		public int GetProblems (string player_id, UInt32 count) 
+		static public int GetProblems (string player_id, UInt32 count) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
@@ -324,7 +321,7 @@ namespace Senseix.Message {
 		/// Posts a list of problems that have been answered or skipped by the player to the server. This is mainly 
 		/// for internal use/developers should not have to worry about this. 
 		/// </summary>
-		public int PostProblems (string playerId, Queue problems) 
+		static public int PostProblems (string playerId, Queue problems) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
@@ -344,7 +341,7 @@ namespace Senseix.Message {
 		/// Returns a page from the leaderboard with the request parameters, by default 25 entries are 
 		/// are returned per page. 
 		/// </summary>
-		public int LeaderboardPage (UInt32 pageNumber = 1, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
+		static public int LeaderboardPage (UInt32 pageNumber = 1, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
@@ -360,12 +357,12 @@ namespace Senseix.Message {
 		/// Pushes a players score to the leaderboard, this is dependent on the developer to take care of what
 	    /// "score" really means in their application.  
 		/// </summary>
-		public int UpdatePlayerScore (UInt32 playerId, UInt32 score)
+		static public int UpdatePlayerScore (string playerId, UInt32 score)
 	    {
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			Leaderboard.UpdatePlayerScoreRequest.Builder lbScore = Leaderboard.UpdatePlayerScoreRequest.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			lbScore.SetPlayerId(SenseixController.GetPlayerID());
+			lbScore.SetPlayerId(playerId);
 			lbScore.SetPlayerScore (score);
 
 			hdr_request.SetPlayerScore(lbScore);
@@ -376,7 +373,7 @@ namespace Senseix.Message {
 		/// Returns a players rank and players surrounding it based on the call preferences. 
 		/// By default we only return the players rank and score. 	
 		/// </summary>
-		public int GetPlayerRank ( UInt32 playerId, UInt32 surroundingUsers = 0, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
+		static public int GetPlayerRank ( string playerId, UInt32 surroundingUsers = 0, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 	
@@ -384,11 +381,11 @@ namespace Senseix.Message {
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			rank.SetCount (surroundingUsers);	
 			rank.SetPageSize (pageSize);
-			rank.SetPlayerId(SenseixController.GetPlayerID());
+			rank.SetPlayerId(SenseixController.GetCurrentPlayerID());
 			rank.SetSortBy(sortBy);
 		
 			hdr_request.SetPlayerRank(rank);
-			return this.SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerRank, GET_PLAYER_RANK_URL);
+			return SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerRank, GET_PLAYER_RANK_URL);
 			
 		}
 	

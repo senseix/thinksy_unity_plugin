@@ -41,6 +41,7 @@ namespace Senseix
 
 		void OnEnable()
 		{
+			currentPage = 1;
 			UpdateView ();
 		}
 

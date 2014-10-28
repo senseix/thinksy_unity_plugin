@@ -15,12 +15,11 @@ namespace Senseix {
 		private static volatile string accessToken = "";
 		private static volatile string deviceID;
 		private static bool isSignedIn = false;
-		public static volatile string playerID;
 		public static volatile string authToken; 
 		public const int ACCESS_TOKEN_LENGTH = 64;
-		private static Message.Request request = new Message.Request();
 		private static IList<Message.Leaderboard.PlayerData> currentLeaderboard;
 		private static Message.Player.PlayerListResponse currentPlayerList;
+		private static Message.Player.Player currentPlayer;
 
 		static public ArrayList GetCurrentPlayerList()
 		{
@@ -35,6 +34,16 @@ namespace Senseix {
 		static public void SetCurrentPlayerList(Message.Player.PlayerListResponse newPlayerList)
 		{
 			currentPlayerList = newPlayerList;
+		}
+
+		static public void SetCurrentPlayer(Message.Player.Player newPlayer)
+		{
+			currentPlayer = newPlayer;
+		}
+
+		static public Message.Player.Player GetCurrentPlayer()
+		{
+			return currentPlayer;
 		}
 
 		static public bool GetSessionState()
@@ -69,13 +78,19 @@ namespace Senseix {
 		{
 			return authToken;
 		}
-		static public string GetPlayerID()
+		static public string GetCurrentPlayerID()
 		{
-			return playerID;
+			return currentPlayer.PlayerId;
 		}
-		static public void SetPlayerID(string newPlayerID)
+		static public void SetToPlayerWithID(string newPlayerID)
 		{
-			playerID = newPlayerID;
+			foreach(Message.Player.Player player in GetCurrentPlayerList())
+			{
+				if (player.PlayerId == newPlayerID)
+				{
+					SetCurrentPlayer(player);
+				}
+			}
 		}
 
 		public static void EndLife(){
@@ -90,21 +105,21 @@ namespace Senseix {
 				throw new Exception("The Senseix Token you have provided is not of a valid length, please register at developer.senseix.com to create a valid key");
 			}
 
-			//VerifyGame ("123456");
 			//Creates a temporary account based on device id
 			//returns an auth token. This is Syncronous.
 			RegisterDevice ();
-		
 			Debug.Log ("got past register device");
-		  ListPlayers ();
+		  	ListPlayers ();
+			RegisterAllPlayers ();
 
 		}
 
 		static public void ListPlayers()
 		{
-			request.ListPlayers ();
+			Message.Request.ListPlayers ();
 		}
 
+		//this assumes that there is at least one player always.
 		static public void RegisterAllPlayers()
 		{
 			ArrayList players = GetCurrentPlayerList ();
@@ -112,11 +127,12 @@ namespace Senseix {
 			{
 				RegisterPlayer(player);
 			}
+			SetCurrentPlayer (players [0] as Message.Player.Player);
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)
 		{
-			request.LeaderboardPage (pageNumber, Senseix.Message.Leaderboard.SortBy.NONE, pageSize);
+			Message.Request.LeaderboardPage (pageNumber, Senseix.Message.Leaderboard.SortBy.NONE, pageSize);
 		}
 
 		static public void SetLeaderboardPlayers(IList<Message.Leaderboard.PlayerData> playerList)
@@ -135,17 +151,17 @@ namespace Senseix {
 
 		static public void RegisterDevice()
 		{
-			request.RegisterDevice(SystemInfo.deviceName);
+			Message.Request.RegisterDevice(SystemInfo.deviceName);
 		}
 		
 		static public void VerifyGame(string verificationCode)
 		{
-			request.VerifyGame (verificationCode);
+			Message.Request.VerifyGame (verificationCode);
 		}
 
 		static public void RegisterPlayer(Message.Player.Player player)
 		{
-			request.RegisterPlayer (player.PlayerId);
+			Message.Request.RegisterPlayer (player.PlayerId);
 		}
 
 
@@ -162,6 +178,11 @@ namespace Senseix {
 		public static bool IsSignedIn()
 		{
 			return isSignedIn;
+		}
+
+		public static void UpdateCurrentPlayerScore (UInt32 score)
+		{
+			Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), score);
 		}
 	}
 }

@@ -41,7 +41,6 @@ namespace Senseix.Message {
 			case Constant.MessageType.RegisterDevice:
 				if (reply.HasDeviceRegistration && reply.DeviceRegistration.IsInitialized) {	
 					SenseixController.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
-					SenseixController.SetPlayerID(reply.DeviceRegistration.PlayerId);
 					SenseixController.SetSessionState(true);
 				} else {
 					SenseixController.SetSessionState(false);
@@ -50,7 +49,6 @@ namespace Senseix.Message {
 				}
 				break;
 			case Constant.MessageType.GameVerification:
-				//henry wrote this
 				SenseixController.SetSessionState(true);
 				Debug.Log("I got a response from my game verification message");
 				break;
