@@ -17,8 +17,8 @@ namespace Senseix.Message {
 	//api-staging.senseix.com
 	static public class Request
 	{
-		const string ENCRYPTED = "http://";
-		const string SERVER_URL = "192.168.2.105:3000/";
+        const string ENCRYPTED = "http://";
+        const string SERVER_URL = "192.168.2.105:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/parents/";
@@ -60,12 +60,13 @@ namespace Senseix.Message {
 			byte[] bytes;
 		
 			MemoryStream stream = new MemoryStream ();
-
+			Dictionary<string, string> mods = new Dictionary<string, string>();
+			mods.Add("Content-Type", "application/protobuf");
 			hdr_request.BuildPartial().WriteTo (stream);
 			bytes = stream.ToArray();
 			stream.Close();
 
-			WWW recvResult = new WWW (url, bytes);
+			WWW recvResult = new WWW (url, bytes, mods);
 
 			WaitForRequest (recvResult);
 		
