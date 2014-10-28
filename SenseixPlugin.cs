@@ -12,17 +12,26 @@ class SenseixPlugin : MonoBehaviour
 
 	public string developerAccessToken; //this is your developer access token obtained from the SenseiX website.
 
+	private static SenseixPlugin singletonInstance;
 	private static Problem mostRecentProblem;
 
 
 	void Start()
 	{	
 		Debug.Log ("HENRY. INITIALIZING.");
+		if (singletonInstance != null)
+		{
+			throw new Exception("Something is creating a SenseixPlugin, but there is already an " +
+				"instance in existance.  There should only be one SenseixPlugin component at any " +
+				"time.  You can access its features through the class's static methods.");
+		}
+		singletonInstance = this;
 		Senseix.SenseixController.InitializeSenseix (developerAccessToken);
 	}
 
 	~SenseixPlugin()
 	{
+		singletonInstance = null;
 		Senseix.SenseixController.EndLife ();
 	}
 

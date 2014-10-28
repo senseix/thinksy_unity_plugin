@@ -42,7 +42,9 @@ namespace Senseix
 
 		public void SetStudent(int studentIndex)
 		{
-			currentPlayerIndex = Mathf.Abs(studentIndex % availablePlayers.Count);
+			currentPlayerIndex = studentIndex % availablePlayers.Count;
+			if (currentPlayerIndex < 0)
+								currentPlayerIndex = availablePlayers.Count + currentPlayerIndex;
 			SenseixController.RegisterPlayer (GetCurrentPlayer ());
 			SenseixController.SetCurrentPlayer (GetCurrentPlayer ());
 			SetName ();
