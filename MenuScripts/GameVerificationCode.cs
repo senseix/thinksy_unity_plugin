@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-namespace Senseix
+namespace senseix
 {
 
 	public class GameVerificationCode : MonoBehaviour {

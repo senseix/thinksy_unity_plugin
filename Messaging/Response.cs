@@ -13,10 +13,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using System.IO;
-namespace Senseix.Message {
+namespace senseix.message {
 	static public class Response
 	{
-		static public bool ParseResponse(Constant.MessageType type, ref ResponseHeader reply)
+		static public bool ParseResponse(constant.MessageType type, ref ResponseHeader reply)
 		{
 			if (reply == null) 
 			{
@@ -29,7 +29,7 @@ namespace Senseix.Message {
 				return false; 
 			}
 
-			if (reply.Status == Constant.Status.FAILURE) 
+			if (reply.Status == constant.Status.FAILURE) 
 			{
 				Debug.Log (reply.Message);
 				return false;
@@ -37,11 +37,14 @@ namespace Senseix.Message {
 	
 			switch (type) 
 			{
-				case Constant.MessageType.RegisterDevice:
+				case constant.MessageType.RegisterDevice:
 					if (reply.HasDeviceRegistration && reply.DeviceRegistration.IsInitialized) 
 					{	
 						SenseixController.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
 						SenseixController.SetSessionState(true);
+						Debug.Log("ALL THE WAY FROM THE CITY OF SERVER... THE FAMED ISTEMPORARYACCOUNT" +
+							"!!!!!!!!!!!!!!!!!!!!!!!: " + reply.DeviceRegistration.IsTemporaryAccount);
+						SenseixController.SetSignedIn(!reply.DeviceRegistration.IsTemporaryAccount);
 					} 
 					else 
 					{
@@ -51,13 +54,13 @@ namespace Senseix.Message {
 					}
 					break;
 
-				case Constant.MessageType.GameVerification:
+				case constant.MessageType.GameVerification:
 					SenseixController.SetSessionState(true);
 					Debug.Log("I got a response from my game verification message");
 					break;
 				
-				case Constant.MessageType.RegisterParent:
-					if (reply.Status == Constant.Status.FAILURE) 
+				case constant.MessageType.RegisterParent:
+					if (reply.Status == constant.Status.FAILURE) 
 					{
 						Debug.Log ("DUANE!!!! MERGE CODE REQUIRED HERE!!!");
 					}
@@ -73,8 +76,8 @@ namespace Senseix.Message {
 					}
 					break;
 
-				case Constant.MessageType.SignInParent:
-					if (reply.Status == Constant.Status.FAILURE) 
+				case constant.MessageType.SignInParent:
+					if (reply.Status == constant.Status.FAILURE) 
 					{
 						throw new Exception ("We encountered a fatal failure on sign in.");
 					}
@@ -90,11 +93,11 @@ namespace Senseix.Message {
 					}
 					break;
 
-				case Constant.MessageType.SignOutParent:
+				case constant.MessageType.SignOutParent:
 					SenseixController.SetSessionState(false);//Duane, this seems..odd
 					break;
 
-				case Constant.MessageType.MergeParent:
+				case constant.MessageType.MergeParent:
 					if(reply.HasParentMerge && reply.ParentMerge.IsInitialized && reply.ParentMerge.HasAuthToken)
 					{
 						SenseixController.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);
@@ -107,23 +110,23 @@ namespace Senseix.Message {
 					}
 					break;
 
-				case Constant.MessageType.CreatePlayer:
+				case constant.MessageType.CreatePlayer:
 					SenseixController.SetSessionState(true);
 					Debug.Log("I got a response from a create player message");
 					break;
 
-				case Constant.MessageType.ListPlayer:
+				case constant.MessageType.ListPlayer:
 					SenseixController.SetSessionState(true);
 					Debug.Log("I got a response from a list player message");
 					SenseixController.SetCurrentPlayerList(reply.PlayerList);
 					break;
 
-				case Constant.MessageType.RegisterPlayerWithApplication:
+				case constant.MessageType.RegisterPlayerWithApplication:
 					SenseixController.SetSessionState(true);
 					Debug.Log("I got a response from a register player message");
 					break;
 
-				case Constant.MessageType.ProblemPost:
+				case constant.MessageType.ProblemPost:
 					if (reply.HasProblemPost)
 					{
 						Debug.Log ("Successfully posted problems to the server.");
@@ -135,31 +138,31 @@ namespace Senseix.Message {
 					}
 					break;
 				
-				case Constant.MessageType.ProblemGet:
+				case constant.MessageType.ProblemGet:
 				Debug.Log("I got a response from a problem get message");
 					if(reply.HasProblemGet && reply.ProblemGet.IsInitialized) 
 					{
-						foreach(Problem.ProblemData entry in reply.ProblemGet.ProblemList) 
+						foreach(problem.ProblemData entry in reply.ProblemGet.ProblemList) 
 						{
-							Problem.ProblemData.Builder problem =  entry.ToBuilder();
+							problem.ProblemData.Builder problem =  entry.ToBuilder();
 							ProblemWorker.AddProblemsToProblemQueue(problem);
 						}
 					}
 
 					break;
 
-				case Constant.MessageType.LeaderboardPage:
+				case constant.MessageType.LeaderboardPage:
 					Debug.Log ("I recieved a leaderboard page response");
 					Debug.Log(reply.Page.PlayerList);
 					SenseixController.SetLeaderboardPlayers(reply.Page.PlayerList);
 					break;
 
-				case Constant.MessageType.PlayerScore:
+				case constant.MessageType.PlayerScore:
 					SenseixController.SetSessionState(true);
 					Debug.Log("I got a response from a player score message");
 					break;
 
-				case Constant.MessageType.PlayerRank:
+				case constant.MessageType.PlayerRank:
 					SenseixController.SetSessionState(true);
 					Debug.Log("I got a response from a player rank message");
 					break;

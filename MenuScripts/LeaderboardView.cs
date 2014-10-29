@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-namespace Senseix
+namespace senseix
 {
 	public class LeaderboardView : MonoBehaviour {
 
@@ -54,7 +54,7 @@ namespace Senseix
 		public void Refresh()
 		{
 			SenseixController.PullLeaderboard (currentPage, (uint)playersPerPage);
-			IList<Message.Leaderboard.PlayerData> leaders = SenseixController.GetCurrentLeaderboard ();
+			IList<message.leaderboard.PlayerData> leaders = SenseixController.GetCurrentLeaderboard ();
 
 			Text thisText = gameObject.GetComponent<Text> ();
 			thisText.text = "";

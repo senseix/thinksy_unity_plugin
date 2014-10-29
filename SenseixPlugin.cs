@@ -26,13 +26,13 @@ class SenseixPlugin : MonoBehaviour
 				"time.  You can access its features through the class's static methods.");
 		}
 		singletonInstance = this;
-		Senseix.SenseixController.InitializeSenseix (developerAccessToken);
+		senseix.SenseixController.InitializeSenseix (developerAccessToken);
 	}
 
 	~SenseixPlugin()
 	{
 		singletonInstance = null;
-		Senseix.SenseixController.EndLife ();
+		senseix.SenseixController.EndLife ();
 	}
 
 	/// <summary>
@@ -42,7 +42,7 @@ class SenseixPlugin : MonoBehaviour
 	/// </summary>
 	public void ReregisterDevice()
 	{
-		Senseix.SenseixController.RegisterDevice ();
+		senseix.SenseixController.RegisterDevice ();
 	}
 
 	/// <summary>
@@ -52,7 +52,7 @@ class SenseixPlugin : MonoBehaviour
 	/// </summary>
 	public static Problem NextProblem()
 	{
-		Senseix.Message.Problem.ProblemData.Builder protobufsProblemBuilder = Senseix.SenseixController.PullProblem ();
+		senseix.message.problem.ProblemData.Builder protobufsProblemBuilder = senseix.SenseixController.PullProblem ();
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
 		return mostRecentProblem;
 	}
@@ -94,17 +94,17 @@ class SenseixPlugin : MonoBehaviour
 	/// </summary>
 	public static void SetCurrentPlayerHighScore (UInt32 score)
 	{
-		Senseix.SenseixController.UpdateCurrentPlayerScore(score);
+		senseix.SenseixController.UpdateCurrentPlayerScore(score);
 	}
 
 }
 
 public class Problem {
 
-	private Senseix.Message.Problem.ProblemData.Builder protobufsProblemBuilder;
+	private senseix.message.problem.ProblemData.Builder protobufsProblemBuilder;
 	private string givenAnswer;
 
-	public Problem(Senseix.Message.Problem.ProblemData.Builder newProtobufsProblemBuilder)
+	public Problem(senseix.message.problem.ProblemData.Builder newProtobufsProblemBuilder)
 	{
 		protobufsProblemBuilder = newProtobufsProblemBuilder;
 	}
@@ -151,7 +151,7 @@ public class Problem {
 	/// </summary>
 	public bool CheckAnswer()
 	{
-		return Senseix.SenseixController.CheckAnswer (protobufsProblemBuilder, GetGivenAnswer());
+		return senseix.SenseixController.CheckAnswer (protobufsProblemBuilder, GetGivenAnswer());
 	}
 
 	/// <summary>

@@ -7,7 +7,7 @@ using System.IO;
 using System.Threading;
 using System.ComponentModel;
 
-namespace Senseix { 
+namespace senseix { 
 
 	static class SenseixController {
 		private static bool problemThreadActive = false;
@@ -17,9 +17,9 @@ namespace Senseix {
 		private static bool isSignedIn = false;
 		public static volatile string authToken; 
 		public const int ACCESS_TOKEN_LENGTH = 64;
-		private static IList<Message.Leaderboard.PlayerData> currentLeaderboard;
-		private static Message.Player.PlayerListResponse currentPlayerList;
-		private static Message.Player.Player currentPlayer;
+		private static IList<message.leaderboard.PlayerData> currentLeaderboard;
+		private static message.player.PlayerListResponse currentPlayerList;
+		private static message.player.Player currentPlayer;
 
 		static public ArrayList GetCurrentPlayerList()
 		{
@@ -31,17 +31,17 @@ namespace Senseix {
 			return returnList;
 		}
 
-		static public void SetCurrentPlayerList(Message.Player.PlayerListResponse newPlayerList)
+		static public void SetCurrentPlayerList(message.player.PlayerListResponse newPlayerList)
 		{
 			currentPlayerList = newPlayerList;
 		}
 
-		static public void SetCurrentPlayer(Message.Player.Player newPlayer)
+		static public void SetCurrentPlayer(message.player.Player newPlayer)
 		{
 			currentPlayer = newPlayer;
 		}
 
-		static public Message.Player.Player GetCurrentPlayer()
+		static public message.player.Player GetCurrentPlayer()
 		{
 			return currentPlayer;
 		}
@@ -84,7 +84,7 @@ namespace Senseix {
 		}
 		static public void SetToPlayerWithID(string newPlayerID)
 		{
-			foreach(Message.Player.Player player in GetCurrentPlayerList())
+			foreach(message.player.Player player in GetCurrentPlayerList())
 			{
 				if (player.PlayerId == newPlayerID)
 				{
@@ -116,63 +116,74 @@ namespace Senseix {
 
 		static public void ListPlayers()
 		{
-			Message.Request.ListPlayers ();
+			message.Request.ListPlayers ();
 		}
 
 		//this assumes that there is at least one player always.
 		static public void RegisterAllPlayers()
 		{
 			ArrayList players = GetCurrentPlayerList ();
-			foreach (Message.Player.Player player in players)
+			foreach (message.player.Player player in players)
 			{
 				RegisterPlayer(player);
 			}
-			SetCurrentPlayer (players [0] as Message.Player.Player);
+			SetCurrentPlayer (players [0] as message.player.Player);
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)
 		{
-			Message.Request.LeaderboardPage (pageNumber, Senseix.Message.Leaderboard.SortBy.NONE, pageSize);
+			message.Request.LeaderboardPage (pageNumber, senseix.message.leaderboard.SortBy.NONE, pageSize);
 		}
 
-		static public void SetLeaderboardPlayers(IList<Message.Leaderboard.PlayerData> playerList)
+		static public void SetLeaderboardPlayers(IList<message.leaderboard.PlayerData> playerList)
 		{
-			foreach (Message.Leaderboard.PlayerData player in playerList)
+			foreach (message.leaderboard.PlayerData player in playerList)
 			{
 				Debug.Log("player " + player.Name + " has score " + player.Score);
 			}
 			currentLeaderboard = playerList;
 		}
 
-		static public IList<Message.Leaderboard.PlayerData> GetCurrentLeaderboard()
+		static public IList<message.leaderboard.PlayerData> GetCurrentLeaderboard()
 		{
 			return currentLeaderboard;
 		}
 
 		static public void RegisterDevice()
 		{
-			Message.Request.RegisterDevice(SystemInfo.deviceName);
+			message.Request.RegisterDevice(SystemInfo.deviceName);
 		}
 		
 		static public void VerifyGame(string verificationCode)
 		{
-			Message.Request.VerifyGame (verificationCode);
+			message.Request.VerifyGame (verificationCode);
 		}
 
-		static public void RegisterPlayer(Message.Player.Player player)
+		static public void RegisterPlayer(message.player.Player player)
 		{
-			Message.Request.RegisterPlayer (player.PlayerId);
+			message.Request.RegisterPlayer (player.PlayerId);
 		}
 
 
-		static public Senseix.Message.Problem.ProblemData.Builder PullProblem()
+		static public senseix.message.problem.ProblemData.Builder PullProblem()
 		{
 			return ProblemWorker.GetProblem ();
 		}
 
-		static public bool CheckAnswer(Message.Problem.ProblemData.Builder problem, string answer)
+		static public bool CheckAnswer(message.problem.ProblemData.Builder problem, string answer)
 		{
 			return ProblemWorker.CheckAnswer(problem, answer);
+		}
+	
+
+		public static void UpdateCurrentPlayerScore (UInt32 score)
+		{
+			message.Request.UpdatePlayerScore (GetCurrentPlayerID(), score);
+		}
+
+		public static void SetSignedIn(bool newIsSignedIn)
+		{
+			isSignedIn = newIsSignedIn;
 		}
 
 		public static bool IsSignedIn()
@@ -180,9 +191,9 @@ namespace Senseix {
 			return isSignedIn;
 		}
 
-		public static void UpdateCurrentPlayerScore (UInt32 score)
+		public static void SignOutParent()
 		{
-			Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), score);
+			message.Request.SignOutParent ();
 		}
 	}
 }

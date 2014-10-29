@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 using System.ComponentModel;
 
-namespace Senseix { 
+namespace senseix { 
 
 	static class ProblemWorker {
 
@@ -35,7 +35,7 @@ namespace Senseix {
 			return answeredProblems.Count;
 		}
 
-		public static void AddProblemsToProblemQueue (Message.Problem.ProblemData.Builder problem) {
+		public static void AddProblemsToProblemQueue (message.problem.ProblemData.Builder problem) {
 			//Debug.Log ("Added a problem to queue, queue length now " + newProblems.Count);
 			newProblems.Enqueue (problem);
 		}
@@ -49,7 +49,7 @@ namespace Senseix {
 				//2. this currently is BAD logic...
 				for (int j = 1; j < 10; j++) { 
 					for (int i = 1; i < 10; i++) {
-						Message.Problem.ProblemData.Builder prob = Message.Problem.ProblemData.CreateBuilder ();
+						message.problem.ProblemData.Builder prob = message.problem.ProblemData.CreateBuilder ();
 						prob.SetQuestion (i.ToString () + "+" + j.ToString ());
 						prob.SetAnswer ((i + j).ToString ());
 						prob.SetProblemId ((j+100+i).ToString());
@@ -58,16 +58,16 @@ namespace Senseix {
 					}
 				}
 			} else {
-				Message.Request.GetProblems (SenseixController.GetCurrentPlayerID(), 6);  //should be 30
+				message.Request.GetProblems (SenseixController.GetCurrentPlayerID(), 6);  //should be 30
 				ReplaceProblemSeed ();
 			}
 		}
 		static public void PushServerProblems () { 
 			Debug.Log ("PUSH SERVER PROBLEMS");
-			Message.Request.PostProblems (SenseixController.GetCurrentPlayerID(), answeredProblems);
+			message.Request.PostProblems (SenseixController.GetCurrentPlayerID(), answeredProblems);
 		}
 
-		static public Senseix.Message.Problem.ProblemData.Builder GetProblem()
+		static public senseix.message.problem.ProblemData.Builder GetProblem()
 		{
 			//Right now we're just pulling more problem when we run out, but eventually we
 			//might want to do this with an asynchronous message
@@ -75,11 +75,11 @@ namespace Senseix {
 					GetServerProblems (); 
 					Debug.Log ("pulling more problems");
 			}
-			return (Senseix.Message.Problem.ProblemData.Builder) newProblems.Dequeue ();
+			return (senseix.message.problem.ProblemData.Builder) newProblems.Dequeue ();
 		}
 		//This is a public function exposed to the developer, it is used to check an answer 
 		//of the problem. If it returns true the developer should pop the next problem
-		static public bool CheckAnswer(Message.Problem.ProblemData.Builder problem, string answer) 
+		static public bool CheckAnswer(message.problem.ProblemData.Builder problem, string answer) 
 		{
 			answeredProblems.Enqueue (answer);
 			if (problem.Answer == answer) {

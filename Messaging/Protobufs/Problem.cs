@@ -6,1771 +6,1761 @@ using pb = global::Google.ProtocolBuffers;
 using pbc = global::Google.ProtocolBuffers.Collections;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
 using scg = global::System.Collections.Generic;
-namespace Senseix.Message.Problem {
-	
-	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-	public static partial class Problem {
-		
-		#region Extension registration
-		public static void RegisterAllExtensions(pb::ExtensionRegistry registry) {
-		}
-		#endregion
-		#region Static variables
-		internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemData__Descriptor;
-		internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemData, global::Senseix.Message.Problem.ProblemData.Builder> internal__static_senseix_message_problem_ProblemData__FieldAccessorTable;
-		internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemPostRequest__Descriptor;
-		internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPostRequest, global::Senseix.Message.Problem.ProblemPostRequest.Builder> internal__static_senseix_message_problem_ProblemPostRequest__FieldAccessorTable;
-		internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemPostResponse__Descriptor;
-		internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPostResponse, global::Senseix.Message.Problem.ProblemPostResponse.Builder> internal__static_senseix_message_problem_ProblemPostResponse__FieldAccessorTable;
-		internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemGetRequest__Descriptor;
-		internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemGetRequest, global::Senseix.Message.Problem.ProblemGetRequest.Builder> internal__static_senseix_message_problem_ProblemGetRequest__FieldAccessorTable;
-		internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemGetResponse__Descriptor;
-		internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemGetResponse, global::Senseix.Message.Problem.ProblemGetResponse.Builder> internal__static_senseix_message_problem_ProblemGetResponse__FieldAccessorTable;
-		#endregion
-		#region Descriptor
-		public static pbd::FileDescriptor Descriptor {
-			get { return descriptor; }
-		}
-		private static pbd::FileDescriptor descriptor;
-		
-		static Problem() {
-			byte[] descriptorData = global::System.Convert.FromBase64String(
-				"ChZ0dXRvcmlhbC9Qcm9ibGVtLnByb3RvEhdzZW5zZWl4Lm1lc3NhZ2UucHJv" + 
-				"YmxlbRoXdHV0b3JpYWwvQ29uc3RhbnQucHJvdG8aJGdvb2dsZS9wcm90b2J1" + 
-				"Zi9jc2hhcnBfb3B0aW9ucy5wcm90bxogZ29vZ2xlL3Byb3RvYnVmL2Rlc2Ny" + 
-				"aXB0b3IucHJvdG8idwoLUHJvYmxlbURhdGESEgoKcHJvYmxlbV9pZBgBIAIo" + 
-				"CRIQCghxdWVzdGlvbhgCIAIoCRIOCgZhbnN3ZXIYAyACKAkSEAoIZHVyYXRp" + 
-				"b24YBCABKAISDwoHc2tpcHBlZBgFIAEoCBIPCgdjb3JyZWN0GAYgASgIIl4K" + 
-				"ElByb2JsZW1Qb3N0UmVxdWVzdBIRCglwbGF5ZXJfaWQYASACKAkSNQoHcHJv" + 
-				"YmxlbRgCIAMoCzIkLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLlByb2JsZW1E" + 
-				"YXRhIhUKE1Byb2JsZW1Qb3N0UmVzcG9uc2UiPQoRUHJvYmxlbUdldFJlcXVl" + 
-				"c3QSEQoJcGxheWVyX2lkGAEgAigJEhUKDXByb2JsZW1fY291bnQYAiABKA0i" + 
-				"SwoSUHJvYmxlbUdldFJlc3BvbnNlEjUKB3Byb2JsZW0YASADKAsyJC5zZW5z" + 
-				"ZWl4Lm1lc3NhZ2UucHJvYmxlbS5Qcm9ibGVtRGF0YUInSAHCPiIKF1NlbnNl" + 
-				"aXguTWVzc2FnZS5Qcm9ibGVtEgdQcm9ibGVt");
-			pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
-				descriptor = root;
-				internal__static_senseix_message_problem_ProblemData__Descriptor = Descriptor.MessageTypes[0];
-				internal__static_senseix_message_problem_ProblemData__FieldAccessorTable = 
-				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemData, global::Senseix.Message.Problem.ProblemData.Builder>(internal__static_senseix_message_problem_ProblemData__Descriptor,
-				                                                                                                                                         new string[] { "ProblemId", "Question", "Answer", "Duration", "Skipped", "Correct", });
-				internal__static_senseix_message_problem_ProblemPostRequest__Descriptor = Descriptor.MessageTypes[1];
-				internal__static_senseix_message_problem_ProblemPostRequest__FieldAccessorTable = 
-				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPostRequest, global::Senseix.Message.Problem.ProblemPostRequest.Builder>(internal__static_senseix_message_problem_ProblemPostRequest__Descriptor,
-				                                                                                                                                                       new string[] { "PlayerId", "Problem", });
-				internal__static_senseix_message_problem_ProblemPostResponse__Descriptor = Descriptor.MessageTypes[2];
-				internal__static_senseix_message_problem_ProblemPostResponse__FieldAccessorTable = 
-				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPostResponse, global::Senseix.Message.Problem.ProblemPostResponse.Builder>(internal__static_senseix_message_problem_ProblemPostResponse__Descriptor,
-				                                                                                                                                                         new string[] { });
-				internal__static_senseix_message_problem_ProblemGetRequest__Descriptor = Descriptor.MessageTypes[3];
-				internal__static_senseix_message_problem_ProblemGetRequest__FieldAccessorTable = 
-				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemGetRequest, global::Senseix.Message.Problem.ProblemGetRequest.Builder>(internal__static_senseix_message_problem_ProblemGetRequest__Descriptor,
-				                                                                                                                                                     new string[] { "PlayerId", "ProblemCount", });
-				internal__static_senseix_message_problem_ProblemGetResponse__Descriptor = Descriptor.MessageTypes[4];
-				internal__static_senseix_message_problem_ProblemGetResponse__FieldAccessorTable = 
-				new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemGetResponse, global::Senseix.Message.Problem.ProblemGetResponse.Builder>(internal__static_senseix_message_problem_ProblemGetResponse__Descriptor,
-				                                                                                                                                                       new string[] { "Problem", });
-				pb::ExtensionRegistry registry = pb::ExtensionRegistry.CreateInstance();
-				RegisterAllExtensions(registry);
-				global::Senseix.Message.Constant.Constant.RegisterAllExtensions(registry);
-				global::Google.ProtocolBuffers.DescriptorProtos.CSharpOptions.RegisterAllExtensions(registry);
-				global::Google.ProtocolBuffers.DescriptorProtos.DescriptorProtoFile.RegisterAllExtensions(registry);
-				return registry;
-			};
-			pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
-			                                                   new pbd::FileDescriptor[] {
-				global::Senseix.Message.Constant.Constant.Descriptor, 
-				global::Google.ProtocolBuffers.DescriptorProtos.CSharpOptions.Descriptor, 
-				global::Google.ProtocolBuffers.DescriptorProtos.DescriptorProtoFile.Descriptor, 
-			}, assigner);
-		}
-		#endregion
-		
-	}
-	#region Messages
-	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-	public sealed partial class ProblemData : pb::GeneratedMessage<ProblemData, ProblemData.Builder> {
-		private ProblemData() { }
-		private static readonly ProblemData defaultInstance = new ProblemData().MakeReadOnly();
-		private static readonly string[] _problemDataFieldNames = new string[] { "answer", "correct", "duration", "problem_id", "question", "skipped" };
-		private static readonly uint[] _problemDataFieldTags = new uint[] { 26, 48, 37, 10, 18, 40 };
-		public static ProblemData DefaultInstance {
-			get { return defaultInstance; }
-		}
-		
-		public override ProblemData DefaultInstanceForType {
-			get { return DefaultInstance; }
-		}
-		
-		protected override ProblemData ThisMessage {
-			get { return this; }
-		}
-		
-		public static pbd::MessageDescriptor Descriptor {
-				get { return global::Senseix.Message.Problem.Problem.internal__static_senseix_message_problem_ProblemData__Descriptor; }
-		}
-		
-		protected override pb::FieldAccess.FieldAccessorTable<ProblemData, ProblemData.Builder> InternalFieldAccessors {
-				get { return global::Senseix.Message.Problem.Problem.internal__static_senseix_message_problem_ProblemData__FieldAccessorTable; }
-		}
-		
-		public const int ProblemIdFieldNumber = 1;
-		private bool hasProblemId;
-		private string problemId_ = "";
-		public bool HasProblemId {
-			get { return hasProblemId; }
-		}
-		public string ProblemId {
-			get { return problemId_; }
-		}
-		
-		public const int QuestionFieldNumber = 2;
-		private bool hasQuestion;
-		private string question_ = "";
-		public bool HasQuestion {
-			get { return hasQuestion; }
-		}
-		public string Question {
-			get { return question_; }
-		}
-		
-		public const int AnswerFieldNumber = 3;
-		private bool hasAnswer;
-		private string answer_ = "";
-		public bool HasAnswer {
-			get { return hasAnswer; }
-		}
-		public string Answer {
-			get { return answer_; }
-		}
-		
-		public const int DurationFieldNumber = 4;
-		private bool hasDuration;
-		private float duration_;
-		public bool HasDuration {
-			get { return hasDuration; }
-		}
-		public float Duration {
-			get { return duration_; }
-		}
-		
-		public const int SkippedFieldNumber = 5;
-		private bool hasSkipped;
-		private bool skipped_;
-		public bool HasSkipped {
-			get { return hasSkipped; }
-		}
-		public bool Skipped {
-			get { return skipped_; }
-		}
-		
-		public const int CorrectFieldNumber = 6;
-		private bool hasCorrect;
-		private bool correct_;
-		public bool HasCorrect {
-			get { return hasCorrect; }
-		}
-		public bool Correct {
-			get { return correct_; }
-		}
-		
-		public override bool IsInitialized {
-			get {
-				if (!hasProblemId) return false;
-				if (!hasQuestion) return false;
-				if (!hasAnswer) return false;
-				return true;
-			}
-		}
-		
-		public override void WriteTo(pb::ICodedOutputStream output) {
-			int size = SerializedSize;
-			string[] field_names = _problemDataFieldNames;
-			if (hasProblemId) {
-				output.WriteString(1, field_names[3], ProblemId);
-			}
-			if (hasQuestion) {
-				output.WriteString(2, field_names[4], Question);
-			}
-			if (hasAnswer) {
-				output.WriteString(3, field_names[0], Answer);
-			}
-			if (hasDuration) {
-				output.WriteFloat(4, field_names[2], Duration);
-			}
-			if (hasSkipped) {
-				output.WriteBool(5, field_names[5], Skipped);
-			}
-			if (hasCorrect) {
-				output.WriteBool(6, field_names[1], Correct);
-			}
-			UnknownFields.WriteTo(output);
-		}
-		
-		private int memoizedSerializedSize = -1;
-		public override int SerializedSize {
-			get {
-				int size = memoizedSerializedSize;
-				if (size != -1) return size;
-				
-				size = 0;
-				if (hasProblemId) {
-					size += pb::CodedOutputStream.ComputeStringSize(1, ProblemId);
-				}
-				if (hasQuestion) {
-					size += pb::CodedOutputStream.ComputeStringSize(2, Question);
-				}
-				if (hasAnswer) {
-					size += pb::CodedOutputStream.ComputeStringSize(3, Answer);
-				}
-				if (hasDuration) {
-					size += pb::CodedOutputStream.ComputeFloatSize(4, Duration);
-				}
-				if (hasSkipped) {
-					size += pb::CodedOutputStream.ComputeBoolSize(5, Skipped);
-				}
-				if (hasCorrect) {
-					size += pb::CodedOutputStream.ComputeBoolSize(6, Correct);
-				}
-				size += UnknownFields.SerializedSize;
-				memoizedSerializedSize = size;
-				return size;
-			}
-		}
-		
-		public static ProblemData ParseFrom(pb::ByteString data) {
-			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-		}
-		public static ProblemData ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemData ParseFrom(byte[] data) {
-			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-		}
-		public static ProblemData ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemData ParseFrom(global::System.IO.Stream input) {
-			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-		}
-		public static ProblemData ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemData ParseDelimitedFrom(global::System.IO.Stream input) {
-			return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
-		}
-		public static ProblemData ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-			return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
-		}
-		public static ProblemData ParseFrom(pb::ICodedInputStream input) {
-			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-		}
-		public static ProblemData ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-		}
-		private ProblemData MakeReadOnly() {
-			return this;
-		}
-		
-		public static Builder CreateBuilder() { return new Builder(); }
-		public override Builder ToBuilder() { return CreateBuilder(this); }
-		public override Builder CreateBuilderForType() { return new Builder(); }
-		public static Builder CreateBuilder(ProblemData prototype) {
-			return new Builder(prototype);
-		}
-		
-		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-		public sealed partial class Builder : pb::GeneratedBuilder<ProblemData, Builder> {
-			protected override Builder ThisBuilder {
-				get { return this; }
-			}
-			public Builder() {
-				result = DefaultInstance;
-				resultIsReadOnly = true;
-			}
-			internal Builder(ProblemData cloneFrom) {
-				result = cloneFrom;
-				resultIsReadOnly = true;
-			}
-			
-			private bool resultIsReadOnly;
-			private ProblemData result;
-			
-			private ProblemData PrepareBuilder() {
-				if (resultIsReadOnly) {
-					ProblemData original = result;
-					result = new ProblemData();
-					resultIsReadOnly = false;
-					MergeFrom(original);
-				}
-				return result;
-			}
-			
-			public override bool IsInitialized {
-				get { return result.IsInitialized; }
-			}
-			
-			protected override ProblemData MessageBeingBuilt {
-				get { return PrepareBuilder(); }
-			}
-			
-			public override Builder Clear() {
-				result = DefaultInstance;
-				resultIsReadOnly = true;
-				return this;
-			}
-			
-			public override Builder Clone() {
-				if (resultIsReadOnly) {
-					return new Builder(result);
-				} else {
-					return new Builder().MergeFrom(result);
-				}
-			}
-			
-			public override pbd::MessageDescriptor DescriptorForType {
-					get { return global::Senseix.Message.Problem.ProblemData.Descriptor; }
-			}
-			
-			public override ProblemData DefaultInstanceForType {
-					get { return global::Senseix.Message.Problem.ProblemData.DefaultInstance; }
-			}
-			
-			public override ProblemData BuildPartial() {
-				if (resultIsReadOnly) {
-					return result;
-				}
-				resultIsReadOnly = true;
-				return result.MakeReadOnly();
-			}
-			
-			public override Builder MergeFrom(pb::IMessage other) {
-				if (other is ProblemData) {
-					return MergeFrom((ProblemData) other);
-				} else {
-					base.MergeFrom(other);
-					return this;
-				}
-			}
-			
-			public override Builder MergeFrom(ProblemData other) {
-				if (other == global::Senseix.Message.Problem.ProblemData.DefaultInstance) return this;
-				PrepareBuilder();
-				if (other.HasProblemId) {
-					ProblemId = other.ProblemId;
-				}
-				if (other.HasQuestion) {
-					Question = other.Question;
-				}
-				if (other.HasAnswer) {
-					Answer = other.Answer;
-				}
-				if (other.HasDuration) {
-					Duration = other.Duration;
-				}
-				if (other.HasSkipped) {
-					Skipped = other.Skipped;
-				}
-				if (other.HasCorrect) {
-					Correct = other.Correct;
-				}
-				this.MergeUnknownFields(other.UnknownFields);
-				return this;
-			}
-			
-			public override Builder MergeFrom(pb::ICodedInputStream input) {
-				return MergeFrom(input, pb::ExtensionRegistry.Empty);
-			}
-			
-			public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-				PrepareBuilder();
-				pb::UnknownFieldSet.Builder unknownFields = null;
-				uint tag;
-				string field_name;
-				while (input.ReadTag(out tag, out field_name)) {
-					if(tag == 0 && field_name != null) {
-						int field_ordinal = global::System.Array.BinarySearch(_problemDataFieldNames, field_name, global::System.StringComparer.Ordinal);
-						if(field_ordinal >= 0)
-							tag = _problemDataFieldTags[field_ordinal];
-						else {
-							if (unknownFields == null) {
-								unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-							}
-							ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-							continue;
-						}
-					}
-					switch (tag) {
-					case 0: {
-						throw pb::InvalidProtocolBufferException.InvalidTag();
-					}
-					default: {
-						if (pb::WireFormat.IsEndGroupTag(tag)) {
-							if (unknownFields != null) {
-								this.UnknownFields = unknownFields.Build();
-							}
-							return this;
-						}
-						if (unknownFields == null) {
-							unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-						}
-						ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-						break;
-					}
-					case 10: {
-						result.hasProblemId = input.ReadString(ref result.problemId_);
-						break;
-					}
-					case 18: {
-						result.hasQuestion = input.ReadString(ref result.question_);
-						break;
-					}
-					case 26: {
-						result.hasAnswer = input.ReadString(ref result.answer_);
-						break;
-					}
-					case 37: {
-						result.hasDuration = input.ReadFloat(ref result.duration_);
-						break;
-					}
-					case 40: {
-						result.hasSkipped = input.ReadBool(ref result.skipped_);
-						break;
-					}
-					case 48: {
-						result.hasCorrect = input.ReadBool(ref result.correct_);
-						break;
-					}
-					}
-				}
-				
-				if (unknownFields != null) {
-					this.UnknownFields = unknownFields.Build();
-				}
-				return this;
-			}
-			
-			
-			public bool HasProblemId {
-				get { return result.hasProblemId; }
-			}
-			public string ProblemId {
-				get { return result.ProblemId; }
-				set { SetProblemId(value); }
-			}
-			public Builder SetProblemId(string value) {
-				pb::ThrowHelper.ThrowIfNull(value, "value");
-				PrepareBuilder();
-				result.hasProblemId = true;
-				result.problemId_ = value;
-				return this;
-			}
-			public Builder ClearProblemId() {
-				PrepareBuilder();
-				result.hasProblemId = false;
-				result.problemId_ = "";
-				return this;
-			}
-			
-			public bool HasQuestion {
-				get { return result.hasQuestion; }
-			}
-			public string Question {
-				get { return result.Question; }
-				set { SetQuestion(value); }
-			}
-			public Builder SetQuestion(string value) {
-				pb::ThrowHelper.ThrowIfNull(value, "value");
-				PrepareBuilder();
-				result.hasQuestion = true;
-				result.question_ = value;
-				return this;
-			}
-			public Builder ClearQuestion() {
-				PrepareBuilder();
-				result.hasQuestion = false;
-				result.question_ = "";
-				return this;
-			}
-			
-			public bool HasAnswer {
-				get { return result.hasAnswer; }
-			}
-			public string Answer {
-				get { return result.Answer; }
-				set { SetAnswer(value); }
-			}
-			public Builder SetAnswer(string value) {
-				pb::ThrowHelper.ThrowIfNull(value, "value");
-				PrepareBuilder();
-				result.hasAnswer = true;
-				result.answer_ = value;
-				return this;
-			}
-			public Builder ClearAnswer() {
-				PrepareBuilder();
-				result.hasAnswer = false;
-				result.answer_ = "";
-				return this;
-			}
-			
-			public bool HasDuration {
-				get { return result.hasDuration; }
-			}
-			public float Duration {
-				get { return result.Duration; }
-				set { SetDuration(value); }
-			}
-			public Builder SetDuration(float value) {
-				PrepareBuilder();
-				result.hasDuration = true;
-				result.duration_ = value;
-				return this;
-			}
-			public Builder ClearDuration() {
-				PrepareBuilder();
-				result.hasDuration = false;
-				result.duration_ = 0F;
-				return this;
-			}
-			
-			public bool HasSkipped {
-				get { return result.hasSkipped; }
-			}
-			public bool Skipped {
-				get { return result.Skipped; }
-				set { SetSkipped(value); }
-			}
-			public Builder SetSkipped(bool value) {
-				PrepareBuilder();
-				result.hasSkipped = true;
-				result.skipped_ = value;
-				return this;
-			}
-			public Builder ClearSkipped() {
-				PrepareBuilder();
-				result.hasSkipped = false;
-				result.skipped_ = false;
-				return this;
-			}
-			
-			public bool HasCorrect {
-				get { return result.hasCorrect; }
-			}
-			public bool Correct {
-				get { return result.Correct; }
-				set { SetCorrect(value); }
-			}
-			public Builder SetCorrect(bool value) {
-				PrepareBuilder();
-				result.hasCorrect = true;
-				result.correct_ = value;
-				return this;
-			}
-			public Builder ClearCorrect() {
-				PrepareBuilder();
-				result.hasCorrect = false;
-				result.correct_ = false;
-				return this;
-			}
-		}
-		static ProblemData() {
-			object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
-		}
-	}
-	
-	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-	public sealed partial class ProblemPostRequest : pb::GeneratedMessage<ProblemPostRequest, ProblemPostRequest.Builder> {
-		private ProblemPostRequest() { }
-		private static readonly ProblemPostRequest defaultInstance = new ProblemPostRequest().MakeReadOnly();
-		private static readonly string[] _problemPostRequestFieldNames = new string[] { "player_id", "problem" };
-		private static readonly uint[] _problemPostRequestFieldTags = new uint[] { 10, 18 };
-		public static ProblemPostRequest DefaultInstance {
-			get { return defaultInstance; }
-		}
-		
-		public override ProblemPostRequest DefaultInstanceForType {
-			get { return DefaultInstance; }
-		}
-		
-		protected override ProblemPostRequest ThisMessage {
-			get { return this; }
-		}
-		
-		public static pbd::MessageDescriptor Descriptor {
-				get { return global::Senseix.Message.Problem.Problem.internal__static_senseix_message_problem_ProblemPostRequest__Descriptor; }
-		}
-		
-		protected override pb::FieldAccess.FieldAccessorTable<ProblemPostRequest, ProblemPostRequest.Builder> InternalFieldAccessors {
-				get { return global::Senseix.Message.Problem.Problem.internal__static_senseix_message_problem_ProblemPostRequest__FieldAccessorTable; }
-		}
-		
-		public const int PlayerIdFieldNumber = 1;
-		private bool hasPlayerId;
-		private string playerId_ = "";
-		public bool HasPlayerId {
-			get { return hasPlayerId; }
-		}
-		public string PlayerId {
-			get { return playerId_; }
-		}
-		
-		public const int ProblemFieldNumber = 2;
-		private pbc::PopsicleList<global::Senseix.Message.Problem.ProblemData> problem_ = new pbc::PopsicleList<global::Senseix.Message.Problem.ProblemData>();
-		public scg::IList<global::Senseix.Message.Problem.ProblemData> ProblemList {
-			get { return problem_; }
-		}
-		public int ProblemCount {
-			get { return problem_.Count; }
-		}
-		public global::Senseix.Message.Problem.ProblemData GetProblem(int index) {
-			return problem_[index];
-		}
-		
-		public override bool IsInitialized {
-			get {
-				if (!hasPlayerId) return false;
-				foreach (global::Senseix.Message.Problem.ProblemData element in ProblemList) {
-					if (!element.IsInitialized) return false;
-				}
-				return true;
-			}
-		}
-		
-		public override void WriteTo(pb::ICodedOutputStream output) {
-			int size = SerializedSize;
-			string[] field_names = _problemPostRequestFieldNames;
-			if (hasPlayerId) {
-				output.WriteString(1, field_names[0], PlayerId);
-			}
-			if (problem_.Count > 0) {
-				output.WriteMessageArray(2, field_names[1], problem_);
-			}
-			UnknownFields.WriteTo(output);
-		}
-		
-		private int memoizedSerializedSize = -1;
-		public override int SerializedSize {
-			get {
-				int size = memoizedSerializedSize;
-				if (size != -1) return size;
-				
-				size = 0;
-				if (hasPlayerId) {
-					size += pb::CodedOutputStream.ComputeStringSize(1, PlayerId);
-				}
-				foreach (global::Senseix.Message.Problem.ProblemData element in ProblemList) {
-					size += pb::CodedOutputStream.ComputeMessageSize(2, element);
-				}
-				size += UnknownFields.SerializedSize;
-				memoizedSerializedSize = size;
-				return size;
-			}
-		}
-		
-		public static ProblemPostRequest ParseFrom(pb::ByteString data) {
-			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-		}
-		public static ProblemPostRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemPostRequest ParseFrom(byte[] data) {
-			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-		}
-		public static ProblemPostRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemPostRequest ParseFrom(global::System.IO.Stream input) {
-			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-		}
-		public static ProblemPostRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemPostRequest ParseDelimitedFrom(global::System.IO.Stream input) {
-			return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
-		}
-		public static ProblemPostRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-			return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
-		}
-		public static ProblemPostRequest ParseFrom(pb::ICodedInputStream input) {
-			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-		}
-		public static ProblemPostRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-		}
-		private ProblemPostRequest MakeReadOnly() {
-			problem_.MakeReadOnly();
-			return this;
-		}
-		
-		public static Builder CreateBuilder() { return new Builder(); }
-		public override Builder ToBuilder() { return CreateBuilder(this); }
-		public override Builder CreateBuilderForType() { return new Builder(); }
-		public static Builder CreateBuilder(ProblemPostRequest prototype) {
-			return new Builder(prototype);
-		}
-		
-		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-		public sealed partial class Builder : pb::GeneratedBuilder<ProblemPostRequest, Builder> {
-			protected override Builder ThisBuilder {
-				get { return this; }
-			}
-			public Builder() {
-				result = DefaultInstance;
-				resultIsReadOnly = true;
-			}
-			internal Builder(ProblemPostRequest cloneFrom) {
-				result = cloneFrom;
-				resultIsReadOnly = true;
-			}
-			
-			private bool resultIsReadOnly;
-			private ProblemPostRequest result;
-			
-			private ProblemPostRequest PrepareBuilder() {
-				if (resultIsReadOnly) {
-					ProblemPostRequest original = result;
-					result = new ProblemPostRequest();
-					resultIsReadOnly = false;
-					MergeFrom(original);
-				}
-				return result;
-			}
-			
-			public override bool IsInitialized {
-				get { return result.IsInitialized; }
-			}
-			
-			protected override ProblemPostRequest MessageBeingBuilt {
-				get { return PrepareBuilder(); }
-			}
-			
-			public override Builder Clear() {
-				result = DefaultInstance;
-				resultIsReadOnly = true;
-				return this;
-			}
-			
-			public override Builder Clone() {
-				if (resultIsReadOnly) {
-					return new Builder(result);
-				} else {
-					return new Builder().MergeFrom(result);
-				}
-			}
-			
-			public override pbd::MessageDescriptor DescriptorForType {
-					get { return global::Senseix.Message.Problem.ProblemPostRequest.Descriptor; }
-			}
-			
-			public override ProblemPostRequest DefaultInstanceForType {
-					get { return global::Senseix.Message.Problem.ProblemPostRequest.DefaultInstance; }
-			}
-			
-			public override ProblemPostRequest BuildPartial() {
-				if (resultIsReadOnly) {
-					return result;
-				}
-				resultIsReadOnly = true;
-				return result.MakeReadOnly();
-			}
-			
-			public override Builder MergeFrom(pb::IMessage other) {
-				if (other is ProblemPostRequest) {
-					return MergeFrom((ProblemPostRequest) other);
-				} else {
-					base.MergeFrom(other);
-					return this;
-				}
-			}
-			
-			public override Builder MergeFrom(ProblemPostRequest other) {
-				if (other == global::Senseix.Message.Problem.ProblemPostRequest.DefaultInstance) return this;
-				PrepareBuilder();
-				if (other.HasPlayerId) {
-					PlayerId = other.PlayerId;
-				}
-				if (other.problem_.Count != 0) {
-					result.problem_.Add(other.problem_);
-				}
-				this.MergeUnknownFields(other.UnknownFields);
-				return this;
-			}
-			
-			public override Builder MergeFrom(pb::ICodedInputStream input) {
-				return MergeFrom(input, pb::ExtensionRegistry.Empty);
-			}
-			
-			public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-				PrepareBuilder();
-				pb::UnknownFieldSet.Builder unknownFields = null;
-				uint tag;
-				string field_name;
-				while (input.ReadTag(out tag, out field_name)) {
-					if(tag == 0 && field_name != null) {
-						int field_ordinal = global::System.Array.BinarySearch(_problemPostRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
-						if(field_ordinal >= 0)
-							tag = _problemPostRequestFieldTags[field_ordinal];
-						else {
-							if (unknownFields == null) {
-								unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-							}
-							ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-							continue;
-						}
-					}
-					switch (tag) {
-					case 0: {
-						throw pb::InvalidProtocolBufferException.InvalidTag();
-					}
-					default: {
-						if (pb::WireFormat.IsEndGroupTag(tag)) {
-							if (unknownFields != null) {
-								this.UnknownFields = unknownFields.Build();
-							}
-							return this;
-						}
-						if (unknownFields == null) {
-							unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-						}
-						ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-						break;
-					}
-					case 10: {
-						result.hasPlayerId = input.ReadString(ref result.playerId_);
-						break;
-					}
-					case 18: {
-						input.ReadMessageArray(tag, field_name, result.problem_, global::Senseix.Message.Problem.ProblemData.DefaultInstance, extensionRegistry);
-						break;
-					}
-					}
-				}
-				
-				if (unknownFields != null) {
-					this.UnknownFields = unknownFields.Build();
-				}
-				return this;
-			}
-			
-			
-			public bool HasPlayerId {
-				get { return result.hasPlayerId; }
-			}
-			public string PlayerId {
-				get { return result.PlayerId; }
-				set { SetPlayerId(value); }
-			}
-			public Builder SetPlayerId(string value) {
-				pb::ThrowHelper.ThrowIfNull(value, "value");
-				PrepareBuilder();
-				result.hasPlayerId = true;
-				result.playerId_ = value;
-				return this;
-			}
-			public Builder ClearPlayerId() {
-				PrepareBuilder();
-				result.hasPlayerId = false;
-				result.playerId_ = "";
-				return this;
-			}
-			
-			public pbc::IPopsicleList<global::Senseix.Message.Problem.ProblemData> ProblemList {
-				get { return PrepareBuilder().problem_; }
-			}
-			public int ProblemCount {
-				get { return result.ProblemCount; }
-			}
-			public global::Senseix.Message.Problem.ProblemData GetProblem(int index) {
-				return result.GetProblem(index);
-			}
-			public Builder SetProblem(int index, global::Senseix.Message.Problem.ProblemData value) {
-				pb::ThrowHelper.ThrowIfNull(value, "value");
-				PrepareBuilder();
-				result.problem_[index] = value;
-				return this;
-			}
-			public Builder SetProblem(int index, global::Senseix.Message.Problem.ProblemData.Builder builderForValue) {
-				pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-				PrepareBuilder();
-				result.problem_[index] = builderForValue.Build();
-				return this;
-			}
-			public Builder AddProblem(global::Senseix.Message.Problem.ProblemData value) {
-				pb::ThrowHelper.ThrowIfNull(value, "value");
-				PrepareBuilder();
-				result.problem_.Add(value);
-				return this;
-			}
-			public Builder AddProblem(global::Senseix.Message.Problem.ProblemData.Builder builderForValue) {
-				pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-				PrepareBuilder();
-				result.problem_.Add(builderForValue.Build());
-				return this;
-			}
-			public Builder AddRangeProblem(scg::IEnumerable<global::Senseix.Message.Problem.ProblemData> values) {
-				PrepareBuilder();
-				result.problem_.Add(values);
-				return this;
-			}
-			public Builder ClearProblem() {
-				PrepareBuilder();
-				result.problem_.Clear();
-				return this;
-			}
-		}
-		static ProblemPostRequest() {
-			object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
-		}
-	}
-	
-	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-	public sealed partial class ProblemPostResponse : pb::GeneratedMessage<ProblemPostResponse, ProblemPostResponse.Builder> {
-		private ProblemPostResponse() { }
-		private static readonly ProblemPostResponse defaultInstance = new ProblemPostResponse().MakeReadOnly();
-		private static readonly string[] _problemPostResponseFieldNames = new string[] {  };
-		private static readonly uint[] _problemPostResponseFieldTags = new uint[] {  };
-		public static ProblemPostResponse DefaultInstance {
-			get { return defaultInstance; }
-		}
-		
-		public override ProblemPostResponse DefaultInstanceForType {
-			get { return DefaultInstance; }
-		}
-		
-		protected override ProblemPostResponse ThisMessage {
-			get { return this; }
-		}
-		
-		public static pbd::MessageDescriptor Descriptor {
-				get { return global::Senseix.Message.Problem.Problem.internal__static_senseix_message_problem_ProblemPostResponse__Descriptor; }
-		}
-		
-		protected override pb::FieldAccess.FieldAccessorTable<ProblemPostResponse, ProblemPostResponse.Builder> InternalFieldAccessors {
-				get { return global::Senseix.Message.Problem.Problem.internal__static_senseix_message_problem_ProblemPostResponse__FieldAccessorTable; }
-		}
-		
-		public override bool IsInitialized {
-			get {
-				return true;
-			}
-		}
-		
-		public override void WriteTo(pb::ICodedOutputStream output) {
-			int size = SerializedSize;
-			string[] field_names = _problemPostResponseFieldNames;
-			UnknownFields.WriteTo(output);
-		}
-		
-		private int memoizedSerializedSize = -1;
-		public override int SerializedSize {
-			get {
-				int size = memoizedSerializedSize;
-				if (size != -1) return size;
-				
-				size = 0;
-				size += UnknownFields.SerializedSize;
-				memoizedSerializedSize = size;
-				return size;
-			}
-		}
-		
-		public static ProblemPostResponse ParseFrom(pb::ByteString data) {
-			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-		}
-		public static ProblemPostResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemPostResponse ParseFrom(byte[] data) {
-			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-		}
-		public static ProblemPostResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemPostResponse ParseFrom(global::System.IO.Stream input) {
-			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-		}
-		public static ProblemPostResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemPostResponse ParseDelimitedFrom(global::System.IO.Stream input) {
-			return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
-		}
-		public static ProblemPostResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-			return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
-		}
-		public static ProblemPostResponse ParseFrom(pb::ICodedInputStream input) {
-			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-		}
-		public static ProblemPostResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-		}
-		private ProblemPostResponse MakeReadOnly() {
-			return this;
-		}
-		
-		public static Builder CreateBuilder() { return new Builder(); }
-		public override Builder ToBuilder() { return CreateBuilder(this); }
-		public override Builder CreateBuilderForType() { return new Builder(); }
-		public static Builder CreateBuilder(ProblemPostResponse prototype) {
-			return new Builder(prototype);
-		}
-		
-		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-		public sealed partial class Builder : pb::GeneratedBuilder<ProblemPostResponse, Builder> {
-			protected override Builder ThisBuilder {
-				get { return this; }
-			}
-			public Builder() {
-				result = DefaultInstance;
-				resultIsReadOnly = true;
-			}
-			internal Builder(ProblemPostResponse cloneFrom) {
-				result = cloneFrom;
-				resultIsReadOnly = true;
-			}
-			
-			private bool resultIsReadOnly;
-			private ProblemPostResponse result;
-			
-			private ProblemPostResponse PrepareBuilder() {
-				if (resultIsReadOnly) {
-					ProblemPostResponse original = result;
-					result = new ProblemPostResponse();
-					resultIsReadOnly = false;
-					MergeFrom(original);
-				}
-				return result;
-			}
-			
-			public override bool IsInitialized {
-				get { return result.IsInitialized; }
-			}
-			
-			protected override ProblemPostResponse MessageBeingBuilt {
-				get { return PrepareBuilder(); }
-			}
-			
-			public override Builder Clear() {
-				result = DefaultInstance;
-				resultIsReadOnly = true;
-				return this;
-			}
-			
-			public override Builder Clone() {
-				if (resultIsReadOnly) {
-					return new Builder(result);
-				} else {
-					return new Builder().MergeFrom(result);
-				}
-			}
-			
-			public override pbd::MessageDescriptor DescriptorForType {
-					get { return global::Senseix.Message.Problem.ProblemPostResponse.Descriptor; }
-			}
-			
-			public override ProblemPostResponse DefaultInstanceForType {
-					get { return global::Senseix.Message.Problem.ProblemPostResponse.DefaultInstance; }
-			}
-			
-			public override ProblemPostResponse BuildPartial() {
-				if (resultIsReadOnly) {
-					return result;
-				}
-				resultIsReadOnly = true;
-				return result.MakeReadOnly();
-			}
-			
-			public override Builder MergeFrom(pb::IMessage other) {
-				if (other is ProblemPostResponse) {
-					return MergeFrom((ProblemPostResponse) other);
-				} else {
-					base.MergeFrom(other);
-					return this;
-				}
-			}
-			
-			public override Builder MergeFrom(ProblemPostResponse other) {
-				if (other == global::Senseix.Message.Problem.ProblemPostResponse.DefaultInstance) return this;
-				PrepareBuilder();
-				this.MergeUnknownFields(other.UnknownFields);
-				return this;
-			}
-			
-			public override Builder MergeFrom(pb::ICodedInputStream input) {
-				return MergeFrom(input, pb::ExtensionRegistry.Empty);
-			}
-			
-			public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-				PrepareBuilder();
-				pb::UnknownFieldSet.Builder unknownFields = null;
-				uint tag;
-				string field_name;
-				while (input.ReadTag(out tag, out field_name)) {
-					if(tag == 0 && field_name != null) {
-						int field_ordinal = global::System.Array.BinarySearch(_problemPostResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
-						if(field_ordinal >= 0)
-							tag = _problemPostResponseFieldTags[field_ordinal];
-						else {
-							if (unknownFields == null) {
-								unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-							}
-							ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-							continue;
-						}
-					}
-					switch (tag) {
-					case 0: {
-						throw pb::InvalidProtocolBufferException.InvalidTag();
-					}
-					default: {
-						if (pb::WireFormat.IsEndGroupTag(tag)) {
-							if (unknownFields != null) {
-								this.UnknownFields = unknownFields.Build();
-							}
-							return this;
-						}
-						if (unknownFields == null) {
-							unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-						}
-						ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-						break;
-					}
-					}
-				}
-				
-				if (unknownFields != null) {
-					this.UnknownFields = unknownFields.Build();
-				}
-				return this;
-			}
-			
-		}
-		static ProblemPostResponse() {
-			object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
-		}
-	}
-	
-	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-	public sealed partial class ProblemGetRequest : pb::GeneratedMessage<ProblemGetRequest, ProblemGetRequest.Builder> {
-		private ProblemGetRequest() { }
-		private static readonly ProblemGetRequest defaultInstance = new ProblemGetRequest().MakeReadOnly();
-		private static readonly string[] _problemGetRequestFieldNames = new string[] { "player_id", "problem_count" };
-		private static readonly uint[] _problemGetRequestFieldTags = new uint[] { 10, 16 };
-		public static ProblemGetRequest DefaultInstance {
-			get { return defaultInstance; }
-		}
-		
-		public override ProblemGetRequest DefaultInstanceForType {
-			get { return DefaultInstance; }
-		}
-		
-		protected override ProblemGetRequest ThisMessage {
-			get { return this; }
-		}
-		
-		public static pbd::MessageDescriptor Descriptor {
-				get { return global::Senseix.Message.Problem.Problem.internal__static_senseix_message_problem_ProblemGetRequest__Descriptor; }
-		}
-		
-		protected override pb::FieldAccess.FieldAccessorTable<ProblemGetRequest, ProblemGetRequest.Builder> InternalFieldAccessors {
-				get { return global::Senseix.Message.Problem.Problem.internal__static_senseix_message_problem_ProblemGetRequest__FieldAccessorTable; }
-		}
-		
-		public const int PlayerIdFieldNumber = 1;
-		private bool hasPlayerId;
-		private string playerId_ = "";
-		public bool HasPlayerId {
-			get { return hasPlayerId; }
-		}
-		public string PlayerId {
-			get { return playerId_; }
-		}
-		
-		public const int ProblemCountFieldNumber = 2;
-		private bool hasProblemCount;
-		private uint problemCount_;
-		public bool HasProblemCount {
-			get { return hasProblemCount; }
-		}
-		[global::System.CLSCompliant(false)]
-		public uint ProblemCount {
-			get { return problemCount_; }
-		}
-		
-		public override bool IsInitialized {
-			get {
-				if (!hasPlayerId) return false;
-				return true;
-			}
-		}
-		
-		public override void WriteTo(pb::ICodedOutputStream output) {
-			int size = SerializedSize;
-			string[] field_names = _problemGetRequestFieldNames;
-			if (hasPlayerId) {
-				output.WriteString(1, field_names[0], PlayerId);
-			}
-			if (hasProblemCount) {
-				output.WriteUInt32(2, field_names[1], ProblemCount);
-			}
-			UnknownFields.WriteTo(output);
-		}
-		
-		private int memoizedSerializedSize = -1;
-		public override int SerializedSize {
-			get {
-				int size = memoizedSerializedSize;
-				if (size != -1) return size;
-				
-				size = 0;
-				if (hasPlayerId) {
-					size += pb::CodedOutputStream.ComputeStringSize(1, PlayerId);
-				}
-				if (hasProblemCount) {
-					size += pb::CodedOutputStream.ComputeUInt32Size(2, ProblemCount);
-				}
-				size += UnknownFields.SerializedSize;
-				memoizedSerializedSize = size;
-				return size;
-			}
-		}
-		
-		public static ProblemGetRequest ParseFrom(pb::ByteString data) {
-			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-		}
-		public static ProblemGetRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemGetRequest ParseFrom(byte[] data) {
-			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-		}
-		public static ProblemGetRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemGetRequest ParseFrom(global::System.IO.Stream input) {
-			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-		}
-		public static ProblemGetRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemGetRequest ParseDelimitedFrom(global::System.IO.Stream input) {
-			return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
-		}
-		public static ProblemGetRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-			return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
-		}
-		public static ProblemGetRequest ParseFrom(pb::ICodedInputStream input) {
-			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-		}
-		public static ProblemGetRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-		}
-		private ProblemGetRequest MakeReadOnly() {
-			return this;
-		}
-		
-		public static Builder CreateBuilder() { return new Builder(); }
-		public override Builder ToBuilder() { return CreateBuilder(this); }
-		public override Builder CreateBuilderForType() { return new Builder(); }
-		public static Builder CreateBuilder(ProblemGetRequest prototype) {
-			return new Builder(prototype);
-		}
-		
-		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-		public sealed partial class Builder : pb::GeneratedBuilder<ProblemGetRequest, Builder> {
-			protected override Builder ThisBuilder {
-				get { return this; }
-			}
-			public Builder() {
-				result = DefaultInstance;
-				resultIsReadOnly = true;
-			}
-			internal Builder(ProblemGetRequest cloneFrom) {
-				result = cloneFrom;
-				resultIsReadOnly = true;
-			}
-			
-			private bool resultIsReadOnly;
-			private ProblemGetRequest result;
-			
-			private ProblemGetRequest PrepareBuilder() {
-				if (resultIsReadOnly) {
-					ProblemGetRequest original = result;
-					result = new ProblemGetRequest();
-					resultIsReadOnly = false;
-					MergeFrom(original);
-				}
-				return result;
-			}
-			
-			public override bool IsInitialized {
-				get { return result.IsInitialized; }
-			}
-			
-			protected override ProblemGetRequest MessageBeingBuilt {
-				get { return PrepareBuilder(); }
-			}
-			
-			public override Builder Clear() {
-				result = DefaultInstance;
-				resultIsReadOnly = true;
-				return this;
-			}
-			
-			public override Builder Clone() {
-				if (resultIsReadOnly) {
-					return new Builder(result);
-				} else {
-					return new Builder().MergeFrom(result);
-				}
-			}
-			
-			public override pbd::MessageDescriptor DescriptorForType {
-					get { return global::Senseix.Message.Problem.ProblemGetRequest.Descriptor; }
-			}
-			
-			public override ProblemGetRequest DefaultInstanceForType {
-					get { return global::Senseix.Message.Problem.ProblemGetRequest.DefaultInstance; }
-			}
-			
-			public override ProblemGetRequest BuildPartial() {
-				if (resultIsReadOnly) {
-					return result;
-				}
-				resultIsReadOnly = true;
-				return result.MakeReadOnly();
-			}
-			
-			public override Builder MergeFrom(pb::IMessage other) {
-				if (other is ProblemGetRequest) {
-					return MergeFrom((ProblemGetRequest) other);
-				} else {
-					base.MergeFrom(other);
-					return this;
-				}
-			}
-			
-			public override Builder MergeFrom(ProblemGetRequest other) {
-				if (other == global::Senseix.Message.Problem.ProblemGetRequest.DefaultInstance) return this;
-				PrepareBuilder();
-				if (other.HasPlayerId) {
-					PlayerId = other.PlayerId;
-				}
-				if (other.HasProblemCount) {
-					ProblemCount = other.ProblemCount;
-				}
-				this.MergeUnknownFields(other.UnknownFields);
-				return this;
-			}
-			
-			public override Builder MergeFrom(pb::ICodedInputStream input) {
-				return MergeFrom(input, pb::ExtensionRegistry.Empty);
-			}
-			
-			public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-				PrepareBuilder();
-				pb::UnknownFieldSet.Builder unknownFields = null;
-				uint tag;
-				string field_name;
-				while (input.ReadTag(out tag, out field_name)) {
-					if(tag == 0 && field_name != null) {
-						int field_ordinal = global::System.Array.BinarySearch(_problemGetRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
-						if(field_ordinal >= 0)
-							tag = _problemGetRequestFieldTags[field_ordinal];
-						else {
-							if (unknownFields == null) {
-								unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-							}
-							ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-							continue;
-						}
-					}
-					switch (tag) {
-					case 0: {
-						throw pb::InvalidProtocolBufferException.InvalidTag();
-					}
-					default: {
-						if (pb::WireFormat.IsEndGroupTag(tag)) {
-							if (unknownFields != null) {
-								this.UnknownFields = unknownFields.Build();
-							}
-							return this;
-						}
-						if (unknownFields == null) {
-							unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-						}
-						ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-						break;
-					}
-					case 10: {
-						result.hasPlayerId = input.ReadString(ref result.playerId_);
-						break;
-					}
-					case 16: {
-						result.hasProblemCount = input.ReadUInt32(ref result.problemCount_);
-						break;
-					}
-					}
-				}
-				
-				if (unknownFields != null) {
-					this.UnknownFields = unknownFields.Build();
-				}
-				return this;
-			}
-			
-			
-			public bool HasPlayerId {
-				get { return result.hasPlayerId; }
-			}
-			public string PlayerId {
-				get { return result.PlayerId; }
-				set { SetPlayerId(value); }
-			}
-			public Builder SetPlayerId(string value) {
-				pb::ThrowHelper.ThrowIfNull(value, "value");
-				PrepareBuilder();
-				result.hasPlayerId = true;
-				result.playerId_ = value;
-				return this;
-			}
-			public Builder ClearPlayerId() {
-				PrepareBuilder();
-				result.hasPlayerId = false;
-				result.playerId_ = "";
-				return this;
-			}
-			
-			public bool HasProblemCount {
-				get { return result.hasProblemCount; }
-			}
-			[global::System.CLSCompliant(false)]
-			public uint ProblemCount {
-				get { return result.ProblemCount; }
-				set { SetProblemCount(value); }
-			}
-			[global::System.CLSCompliant(false)]
-			public Builder SetProblemCount(uint value) {
-				PrepareBuilder();
-				result.hasProblemCount = true;
-				result.problemCount_ = value;
-				return this;
-			}
-			public Builder ClearProblemCount() {
-				PrepareBuilder();
-				result.hasProblemCount = false;
-				result.problemCount_ = 0;
-				return this;
-			}
-		}
-		static ProblemGetRequest() {
-			object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
-		}
-	}
-	
-	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-	public sealed partial class ProblemGetResponse : pb::GeneratedMessage<ProblemGetResponse, ProblemGetResponse.Builder> {
-		private ProblemGetResponse() { }
-		private static readonly ProblemGetResponse defaultInstance = new ProblemGetResponse().MakeReadOnly();
-		private static readonly string[] _problemGetResponseFieldNames = new string[] { "problem" };
-		private static readonly uint[] _problemGetResponseFieldTags = new uint[] { 10 };
-		public static ProblemGetResponse DefaultInstance {
-			get { return defaultInstance; }
-		}
-		
-		public override ProblemGetResponse DefaultInstanceForType {
-			get { return DefaultInstance; }
-		}
-		
-		protected override ProblemGetResponse ThisMessage {
-			get { return this; }
-		}
-		
-		public static pbd::MessageDescriptor Descriptor {
-				get { return global::Senseix.Message.Problem.Problem.internal__static_senseix_message_problem_ProblemGetResponse__Descriptor; }
-		}
-		
-		protected override pb::FieldAccess.FieldAccessorTable<ProblemGetResponse, ProblemGetResponse.Builder> InternalFieldAccessors {
-				get { return global::Senseix.Message.Problem.Problem.internal__static_senseix_message_problem_ProblemGetResponse__FieldAccessorTable; }
-		}
-		
-		public const int ProblemFieldNumber = 1;
-		private pbc::PopsicleList<global::Senseix.Message.Problem.ProblemData> problem_ = new pbc::PopsicleList<global::Senseix.Message.Problem.ProblemData>();
-		public scg::IList<global::Senseix.Message.Problem.ProblemData> ProblemList {
-			get { return problem_; }
-		}
-		public int ProblemCount {
-			get { return problem_.Count; }
-		}
-		public global::Senseix.Message.Problem.ProblemData GetProblem(int index) {
-			return problem_[index];
-		}
-		
-		public override bool IsInitialized {
-			get {
-				foreach (global::Senseix.Message.Problem.ProblemData element in ProblemList) {
-					if (!element.IsInitialized) return false;
-				}
-				return true;
-			}
-		}
-		
-		public override void WriteTo(pb::ICodedOutputStream output) {
-			int size = SerializedSize;
-			string[] field_names = _problemGetResponseFieldNames;
-			if (problem_.Count > 0) {
-				output.WriteMessageArray(1, field_names[0], problem_);
-			}
-			UnknownFields.WriteTo(output);
-		}
-		
-		private int memoizedSerializedSize = -1;
-		public override int SerializedSize {
-			get {
-				int size = memoizedSerializedSize;
-				if (size != -1) return size;
-				
-				size = 0;
-				foreach (global::Senseix.Message.Problem.ProblemData element in ProblemList) {
-					size += pb::CodedOutputStream.ComputeMessageSize(1, element);
-				}
-				size += UnknownFields.SerializedSize;
-				memoizedSerializedSize = size;
-				return size;
-			}
-		}
-		
-		public static ProblemGetResponse ParseFrom(pb::ByteString data) {
-			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-		}
-		public static ProblemGetResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemGetResponse ParseFrom(byte[] data) {
-			return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-		}
-		public static ProblemGetResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemGetResponse ParseFrom(global::System.IO.Stream input) {
-			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-		}
-		public static ProblemGetResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-		}
-		public static ProblemGetResponse ParseDelimitedFrom(global::System.IO.Stream input) {
-			return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
-		}
-		public static ProblemGetResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-			return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
-		}
-		public static ProblemGetResponse ParseFrom(pb::ICodedInputStream input) {
-			return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-		}
-		public static ProblemGetResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-			return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-		}
-		private ProblemGetResponse MakeReadOnly() {
-			problem_.MakeReadOnly();
-			return this;
-		}
-		
-		public static Builder CreateBuilder() { return new Builder(); }
-		public override Builder ToBuilder() { return CreateBuilder(this); }
-		public override Builder CreateBuilderForType() { return new Builder(); }
-		public static Builder CreateBuilder(ProblemGetResponse prototype) {
-			return new Builder(prototype);
-		}
-		
-		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-		public sealed partial class Builder : pb::GeneratedBuilder<ProblemGetResponse, Builder> {
-			protected override Builder ThisBuilder {
-				get { return this; }
-			}
-			public Builder() {
-				result = DefaultInstance;
-				resultIsReadOnly = true;
-			}
-			internal Builder(ProblemGetResponse cloneFrom) {
-				result = cloneFrom;
-				resultIsReadOnly = true;
-			}
-			
-			private bool resultIsReadOnly;
-			private ProblemGetResponse result;
-			
-			private ProblemGetResponse PrepareBuilder() {
-				if (resultIsReadOnly) {
-					ProblemGetResponse original = result;
-					result = new ProblemGetResponse();
-					resultIsReadOnly = false;
-					MergeFrom(original);
-				}
-				return result;
-			}
-			
-			public override bool IsInitialized {
-				get { return result.IsInitialized; }
-			}
-			
-			protected override ProblemGetResponse MessageBeingBuilt {
-				get { return PrepareBuilder(); }
-			}
-			
-			public override Builder Clear() {
-				result = DefaultInstance;
-				resultIsReadOnly = true;
-				return this;
-			}
-			
-			public override Builder Clone() {
-				if (resultIsReadOnly) {
-					return new Builder(result);
-				} else {
-					return new Builder().MergeFrom(result);
-				}
-			}
-			
-			public override pbd::MessageDescriptor DescriptorForType {
-					get { return global::Senseix.Message.Problem.ProblemGetResponse.Descriptor; }
-			}
-			
-			public override ProblemGetResponse DefaultInstanceForType {
-					get { return global::Senseix.Message.Problem.ProblemGetResponse.DefaultInstance; }
-			}
-			
-			public override ProblemGetResponse BuildPartial() {
-				if (resultIsReadOnly) {
-					return result;
-				}
-				resultIsReadOnly = true;
-				return result.MakeReadOnly();
-			}
-			
-			public override Builder MergeFrom(pb::IMessage other) {
-				if (other is ProblemGetResponse) {
-					return MergeFrom((ProblemGetResponse) other);
-				} else {
-					base.MergeFrom(other);
-					return this;
-				}
-			}
-			
-			public override Builder MergeFrom(ProblemGetResponse other) {
-				if (other == global::Senseix.Message.Problem.ProblemGetResponse.DefaultInstance) return this;
-				PrepareBuilder();
-				if (other.problem_.Count != 0) {
-					result.problem_.Add(other.problem_);
-				}
-				this.MergeUnknownFields(other.UnknownFields);
-				return this;
-			}
-			
-			public override Builder MergeFrom(pb::ICodedInputStream input) {
-				return MergeFrom(input, pb::ExtensionRegistry.Empty);
-			}
-			
-			public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-				PrepareBuilder();
-				pb::UnknownFieldSet.Builder unknownFields = null;
-				uint tag;
-				string field_name;
-				while (input.ReadTag(out tag, out field_name)) {
-					if(tag == 0 && field_name != null) {
-						int field_ordinal = global::System.Array.BinarySearch(_problemGetResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
-						if(field_ordinal >= 0)
-							tag = _problemGetResponseFieldTags[field_ordinal];
-						else {
-							if (unknownFields == null) {
-								unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-							}
-							ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-							continue;
-						}
-					}
-					switch (tag) {
-					case 0: {
-						throw pb::InvalidProtocolBufferException.InvalidTag();
-					}
-					default: {
-						if (pb::WireFormat.IsEndGroupTag(tag)) {
-							if (unknownFields != null) {
-								this.UnknownFields = unknownFields.Build();
-							}
-							return this;
-						}
-						if (unknownFields == null) {
-							unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-						}
-						ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-						break;
-					}
-					case 10: {
-						input.ReadMessageArray(tag, field_name, result.problem_, global::Senseix.Message.Problem.ProblemData.DefaultInstance, extensionRegistry);
-						break;
-					}
-					}
-				}
-				
-				if (unknownFields != null) {
-					this.UnknownFields = unknownFields.Build();
-				}
-				return this;
-			}
-			
-			
-			public pbc::IPopsicleList<global::Senseix.Message.Problem.ProblemData> ProblemList {
-				get { return PrepareBuilder().problem_; }
-			}
-			public int ProblemCount {
-				get { return result.ProblemCount; }
-			}
-			public global::Senseix.Message.Problem.ProblemData GetProblem(int index) {
-				return result.GetProblem(index);
-			}
-			public Builder SetProblem(int index, global::Senseix.Message.Problem.ProblemData value) {
-				pb::ThrowHelper.ThrowIfNull(value, "value");
-				PrepareBuilder();
-				result.problem_[index] = value;
-				return this;
-			}
-			public Builder SetProblem(int index, global::Senseix.Message.Problem.ProblemData.Builder builderForValue) {
-				pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-				PrepareBuilder();
-				result.problem_[index] = builderForValue.Build();
-				return this;
-			}
-			public Builder AddProblem(global::Senseix.Message.Problem.ProblemData value) {
-				pb::ThrowHelper.ThrowIfNull(value, "value");
-				PrepareBuilder();
-				result.problem_.Add(value);
-				return this;
-			}
-			public Builder AddProblem(global::Senseix.Message.Problem.ProblemData.Builder builderForValue) {
-				pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-				PrepareBuilder();
-				result.problem_.Add(builderForValue.Build());
-				return this;
-			}
-			public Builder AddRangeProblem(scg::IEnumerable<global::Senseix.Message.Problem.ProblemData> values) {
-				PrepareBuilder();
-				result.problem_.Add(values);
-				return this;
-			}
-			public Builder ClearProblem() {
-				PrepareBuilder();
-				result.problem_.Clear();
-				return this;
-			}
-		}
-		static ProblemGetResponse() {
-			object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
-		}
-	}
-	
-	#endregion
-	
+namespace senseix.message.problem {
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public static partial class Problem {
+  
+    #region Extension registration
+    public static void RegisterAllExtensions(pb::ExtensionRegistry registry) {
+    }
+    #endregion
+    #region Static variables
+    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemData__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemData, global::senseix.message.problem.ProblemData.Builder> internal__static_senseix_message_problem_ProblemData__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemPostRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPostRequest, global::senseix.message.problem.ProblemPostRequest.Builder> internal__static_senseix_message_problem_ProblemPostRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemPostResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPostResponse, global::senseix.message.problem.ProblemPostResponse.Builder> internal__static_senseix_message_problem_ProblemPostResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemGetRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemGetRequest, global::senseix.message.problem.ProblemGetRequest.Builder> internal__static_senseix_message_problem_ProblemGetRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemGetResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemGetResponse, global::senseix.message.problem.ProblemGetResponse.Builder> internal__static_senseix_message_problem_ProblemGetResponse__FieldAccessorTable;
+    #endregion
+    #region Descriptor
+    public static pbd::FileDescriptor Descriptor {
+      get { return descriptor; }
+    }
+    private static pbd::FileDescriptor descriptor;
+    
+    static Problem() {
+      byte[] descriptorData = global::System.Convert.FromBase64String(
+          "Cg1Qcm9ibGVtLnByb3RvEhdzZW5zZWl4Lm1lc3NhZ2UucHJvYmxlbRoOQ29u" + 
+          "c3RhbnQucHJvdG8idwoLUHJvYmxlbURhdGESEgoKcHJvYmxlbV9pZBgBIAIo" + 
+          "CRIQCghxdWVzdGlvbhgCIAIoCRIOCgZhbnN3ZXIYAyACKAkSEAoIZHVyYXRp" + 
+          "b24YBCABKAISDwoHc2tpcHBlZBgFIAEoCBIPCgdjb3JyZWN0GAYgASgIIl4K" + 
+          "ElByb2JsZW1Qb3N0UmVxdWVzdBIRCglwbGF5ZXJfaWQYASACKAkSNQoHcHJv" + 
+          "YmxlbRgCIAMoCzIkLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLlByb2JsZW1E" + 
+          "YXRhIhUKE1Byb2JsZW1Qb3N0UmVzcG9uc2UiPQoRUHJvYmxlbUdldFJlcXVl" + 
+          "c3QSEQoJcGxheWVyX2lkGAEgAigJEhUKDXByb2JsZW1fY291bnQYAiABKA0i" + 
+          "SwoSUHJvYmxlbUdldFJlc3BvbnNlEjUKB3Byb2JsZW0YASADKAsyJC5zZW5z" + 
+          "ZWl4Lm1lc3NhZ2UucHJvYmxlbS5Qcm9ibGVtRGF0YQ==");
+      pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
+        descriptor = root;
+        internal__static_senseix_message_problem_ProblemData__Descriptor = Descriptor.MessageTypes[0];
+        internal__static_senseix_message_problem_ProblemData__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemData, global::senseix.message.problem.ProblemData.Builder>(internal__static_senseix_message_problem_ProblemData__Descriptor,
+                new string[] { "ProblemId", "Question", "Answer", "Duration", "Skipped", "Correct", });
+        internal__static_senseix_message_problem_ProblemPostRequest__Descriptor = Descriptor.MessageTypes[1];
+        internal__static_senseix_message_problem_ProblemPostRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPostRequest, global::senseix.message.problem.ProblemPostRequest.Builder>(internal__static_senseix_message_problem_ProblemPostRequest__Descriptor,
+                new string[] { "PlayerId", "Problem", });
+        internal__static_senseix_message_problem_ProblemPostResponse__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_senseix_message_problem_ProblemPostResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPostResponse, global::senseix.message.problem.ProblemPostResponse.Builder>(internal__static_senseix_message_problem_ProblemPostResponse__Descriptor,
+                new string[] { });
+        internal__static_senseix_message_problem_ProblemGetRequest__Descriptor = Descriptor.MessageTypes[3];
+        internal__static_senseix_message_problem_ProblemGetRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemGetRequest, global::senseix.message.problem.ProblemGetRequest.Builder>(internal__static_senseix_message_problem_ProblemGetRequest__Descriptor,
+                new string[] { "PlayerId", "ProblemCount", });
+        internal__static_senseix_message_problem_ProblemGetResponse__Descriptor = Descriptor.MessageTypes[4];
+        internal__static_senseix_message_problem_ProblemGetResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemGetResponse, global::senseix.message.problem.ProblemGetResponse.Builder>(internal__static_senseix_message_problem_ProblemGetResponse__Descriptor,
+                new string[] { "Problem", });
+        return null;
+      };
+      pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
+          new pbd::FileDescriptor[] {
+          global::senseix.message.constant.Constant.Descriptor, 
+          }, assigner);
+    }
+    #endregion
+    
+  }
+  #region Messages
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class ProblemData : pb::GeneratedMessage<ProblemData, ProblemData.Builder> {
+    private ProblemData() { }
+    private static readonly ProblemData defaultInstance = new ProblemData().MakeReadOnly();
+    private static readonly string[] _problemDataFieldNames = new string[] { "answer", "correct", "duration", "problem_id", "question", "skipped" };
+    private static readonly uint[] _problemDataFieldTags = new uint[] { 26, 48, 37, 10, 18, 40 };
+    public static ProblemData DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ProblemData DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ProblemData ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemData__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ProblemData, ProblemData.Builder> InternalFieldAccessors {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemData__FieldAccessorTable; }
+    }
+    
+    public const int ProblemIdFieldNumber = 1;
+    private bool hasProblemId;
+    private string problemId_ = "";
+    public bool HasProblemId {
+      get { return hasProblemId; }
+    }
+    public string ProblemId {
+      get { return problemId_; }
+    }
+    
+    public const int QuestionFieldNumber = 2;
+    private bool hasQuestion;
+    private string question_ = "";
+    public bool HasQuestion {
+      get { return hasQuestion; }
+    }
+    public string Question {
+      get { return question_; }
+    }
+    
+    public const int AnswerFieldNumber = 3;
+    private bool hasAnswer;
+    private string answer_ = "";
+    public bool HasAnswer {
+      get { return hasAnswer; }
+    }
+    public string Answer {
+      get { return answer_; }
+    }
+    
+    public const int DurationFieldNumber = 4;
+    private bool hasDuration;
+    private float duration_;
+    public bool HasDuration {
+      get { return hasDuration; }
+    }
+    public float Duration {
+      get { return duration_; }
+    }
+    
+    public const int SkippedFieldNumber = 5;
+    private bool hasSkipped;
+    private bool skipped_;
+    public bool HasSkipped {
+      get { return hasSkipped; }
+    }
+    public bool Skipped {
+      get { return skipped_; }
+    }
+    
+    public const int CorrectFieldNumber = 6;
+    private bool hasCorrect;
+    private bool correct_;
+    public bool HasCorrect {
+      get { return hasCorrect; }
+    }
+    public bool Correct {
+      get { return correct_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasProblemId) return false;
+        if (!hasQuestion) return false;
+        if (!hasAnswer) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _problemDataFieldNames;
+      if (hasProblemId) {
+        output.WriteString(1, field_names[3], ProblemId);
+      }
+      if (hasQuestion) {
+        output.WriteString(2, field_names[4], Question);
+      }
+      if (hasAnswer) {
+        output.WriteString(3, field_names[0], Answer);
+      }
+      if (hasDuration) {
+        output.WriteFloat(4, field_names[2], Duration);
+      }
+      if (hasSkipped) {
+        output.WriteBool(5, field_names[5], Skipped);
+      }
+      if (hasCorrect) {
+        output.WriteBool(6, field_names[1], Correct);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasProblemId) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, ProblemId);
+        }
+        if (hasQuestion) {
+          size += pb::CodedOutputStream.ComputeStringSize(2, Question);
+        }
+        if (hasAnswer) {
+          size += pb::CodedOutputStream.ComputeStringSize(3, Answer);
+        }
+        if (hasDuration) {
+          size += pb::CodedOutputStream.ComputeFloatSize(4, Duration);
+        }
+        if (hasSkipped) {
+          size += pb::CodedOutputStream.ComputeBoolSize(5, Skipped);
+        }
+        if (hasCorrect) {
+          size += pb::CodedOutputStream.ComputeBoolSize(6, Correct);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ProblemData ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ProblemData ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemData ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ProblemData ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemData ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ProblemData ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemData ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ProblemData ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ProblemData ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ProblemData ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ProblemData MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ProblemData prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<ProblemData, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ProblemData cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ProblemData result;
+      
+      private ProblemData PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ProblemData original = result;
+          result = new ProblemData();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ProblemData MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::senseix.message.problem.ProblemData.Descriptor; }
+      }
+      
+      public override ProblemData DefaultInstanceForType {
+        get { return global::senseix.message.problem.ProblemData.DefaultInstance; }
+      }
+      
+      public override ProblemData BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ProblemData) {
+          return MergeFrom((ProblemData) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ProblemData other) {
+        if (other == global::senseix.message.problem.ProblemData.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasProblemId) {
+          ProblemId = other.ProblemId;
+        }
+        if (other.HasQuestion) {
+          Question = other.Question;
+        }
+        if (other.HasAnswer) {
+          Answer = other.Answer;
+        }
+        if (other.HasDuration) {
+          Duration = other.Duration;
+        }
+        if (other.HasSkipped) {
+          Skipped = other.Skipped;
+        }
+        if (other.HasCorrect) {
+          Correct = other.Correct;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_problemDataFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _problemDataFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasProblemId = input.ReadString(ref result.problemId_);
+              break;
+            }
+            case 18: {
+              result.hasQuestion = input.ReadString(ref result.question_);
+              break;
+            }
+            case 26: {
+              result.hasAnswer = input.ReadString(ref result.answer_);
+              break;
+            }
+            case 37: {
+              result.hasDuration = input.ReadFloat(ref result.duration_);
+              break;
+            }
+            case 40: {
+              result.hasSkipped = input.ReadBool(ref result.skipped_);
+              break;
+            }
+            case 48: {
+              result.hasCorrect = input.ReadBool(ref result.correct_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasProblemId {
+        get { return result.hasProblemId; }
+      }
+      public string ProblemId {
+        get { return result.ProblemId; }
+        set { SetProblemId(value); }
+      }
+      public Builder SetProblemId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasProblemId = true;
+        result.problemId_ = value;
+        return this;
+      }
+      public Builder ClearProblemId() {
+        PrepareBuilder();
+        result.hasProblemId = false;
+        result.problemId_ = "";
+        return this;
+      }
+      
+      public bool HasQuestion {
+        get { return result.hasQuestion; }
+      }
+      public string Question {
+        get { return result.Question; }
+        set { SetQuestion(value); }
+      }
+      public Builder SetQuestion(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasQuestion = true;
+        result.question_ = value;
+        return this;
+      }
+      public Builder ClearQuestion() {
+        PrepareBuilder();
+        result.hasQuestion = false;
+        result.question_ = "";
+        return this;
+      }
+      
+      public bool HasAnswer {
+        get { return result.hasAnswer; }
+      }
+      public string Answer {
+        get { return result.Answer; }
+        set { SetAnswer(value); }
+      }
+      public Builder SetAnswer(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAnswer = true;
+        result.answer_ = value;
+        return this;
+      }
+      public Builder ClearAnswer() {
+        PrepareBuilder();
+        result.hasAnswer = false;
+        result.answer_ = "";
+        return this;
+      }
+      
+      public bool HasDuration {
+        get { return result.hasDuration; }
+      }
+      public float Duration {
+        get { return result.Duration; }
+        set { SetDuration(value); }
+      }
+      public Builder SetDuration(float value) {
+        PrepareBuilder();
+        result.hasDuration = true;
+        result.duration_ = value;
+        return this;
+      }
+      public Builder ClearDuration() {
+        PrepareBuilder();
+        result.hasDuration = false;
+        result.duration_ = 0F;
+        return this;
+      }
+      
+      public bool HasSkipped {
+        get { return result.hasSkipped; }
+      }
+      public bool Skipped {
+        get { return result.Skipped; }
+        set { SetSkipped(value); }
+      }
+      public Builder SetSkipped(bool value) {
+        PrepareBuilder();
+        result.hasSkipped = true;
+        result.skipped_ = value;
+        return this;
+      }
+      public Builder ClearSkipped() {
+        PrepareBuilder();
+        result.hasSkipped = false;
+        result.skipped_ = false;
+        return this;
+      }
+      
+      public bool HasCorrect {
+        get { return result.hasCorrect; }
+      }
+      public bool Correct {
+        get { return result.Correct; }
+        set { SetCorrect(value); }
+      }
+      public Builder SetCorrect(bool value) {
+        PrepareBuilder();
+        result.hasCorrect = true;
+        result.correct_ = value;
+        return this;
+      }
+      public Builder ClearCorrect() {
+        PrepareBuilder();
+        result.hasCorrect = false;
+        result.correct_ = false;
+        return this;
+      }
+    }
+    static ProblemData() {
+      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class ProblemPostRequest : pb::GeneratedMessage<ProblemPostRequest, ProblemPostRequest.Builder> {
+    private ProblemPostRequest() { }
+    private static readonly ProblemPostRequest defaultInstance = new ProblemPostRequest().MakeReadOnly();
+    private static readonly string[] _problemPostRequestFieldNames = new string[] { "player_id", "problem" };
+    private static readonly uint[] _problemPostRequestFieldTags = new uint[] { 10, 18 };
+    public static ProblemPostRequest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ProblemPostRequest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ProblemPostRequest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemPostRequest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ProblemPostRequest, ProblemPostRequest.Builder> InternalFieldAccessors {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemPostRequest__FieldAccessorTable; }
+    }
+    
+    public const int PlayerIdFieldNumber = 1;
+    private bool hasPlayerId;
+    private string playerId_ = "";
+    public bool HasPlayerId {
+      get { return hasPlayerId; }
+    }
+    public string PlayerId {
+      get { return playerId_; }
+    }
+    
+    public const int ProblemFieldNumber = 2;
+    private pbc::PopsicleList<global::senseix.message.problem.ProblemData> problem_ = new pbc::PopsicleList<global::senseix.message.problem.ProblemData>();
+    public scg::IList<global::senseix.message.problem.ProblemData> ProblemList {
+      get { return problem_; }
+    }
+    public int ProblemCount {
+      get { return problem_.Count; }
+    }
+    public global::senseix.message.problem.ProblemData GetProblem(int index) {
+      return problem_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasPlayerId) return false;
+        foreach (global::senseix.message.problem.ProblemData element in ProblemList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _problemPostRequestFieldNames;
+      if (hasPlayerId) {
+        output.WriteString(1, field_names[0], PlayerId);
+      }
+      if (problem_.Count > 0) {
+        output.WriteMessageArray(2, field_names[1], problem_);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasPlayerId) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, PlayerId);
+        }
+        foreach (global::senseix.message.problem.ProblemData element in ProblemList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, element);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ProblemPostRequest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ProblemPostRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemPostRequest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ProblemPostRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemPostRequest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ProblemPostRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemPostRequest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ProblemPostRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ProblemPostRequest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ProblemPostRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ProblemPostRequest MakeReadOnly() {
+      problem_.MakeReadOnly();
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ProblemPostRequest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<ProblemPostRequest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ProblemPostRequest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ProblemPostRequest result;
+      
+      private ProblemPostRequest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ProblemPostRequest original = result;
+          result = new ProblemPostRequest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ProblemPostRequest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::senseix.message.problem.ProblemPostRequest.Descriptor; }
+      }
+      
+      public override ProblemPostRequest DefaultInstanceForType {
+        get { return global::senseix.message.problem.ProblemPostRequest.DefaultInstance; }
+      }
+      
+      public override ProblemPostRequest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ProblemPostRequest) {
+          return MergeFrom((ProblemPostRequest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ProblemPostRequest other) {
+        if (other == global::senseix.message.problem.ProblemPostRequest.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasPlayerId) {
+          PlayerId = other.PlayerId;
+        }
+        if (other.problem_.Count != 0) {
+          result.problem_.Add(other.problem_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_problemPostRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _problemPostRequestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              break;
+            }
+            case 18: {
+              input.ReadMessageArray(tag, field_name, result.problem_, global::senseix.message.problem.ProblemData.DefaultInstance, extensionRegistry);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasPlayerId {
+        get { return result.hasPlayerId; }
+      }
+      public string PlayerId {
+        get { return result.PlayerId; }
+        set { SetPlayerId(value); }
+      }
+      public Builder SetPlayerId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasPlayerId = true;
+        result.playerId_ = value;
+        return this;
+      }
+      public Builder ClearPlayerId() {
+        PrepareBuilder();
+        result.hasPlayerId = false;
+        result.playerId_ = "";
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::senseix.message.problem.ProblemData> ProblemList {
+        get { return PrepareBuilder().problem_; }
+      }
+      public int ProblemCount {
+        get { return result.ProblemCount; }
+      }
+      public global::senseix.message.problem.ProblemData GetProblem(int index) {
+        return result.GetProblem(index);
+      }
+      public Builder SetProblem(int index, global::senseix.message.problem.ProblemData value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.problem_[index] = value;
+        return this;
+      }
+      public Builder SetProblem(int index, global::senseix.message.problem.ProblemData.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.problem_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddProblem(global::senseix.message.problem.ProblemData value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.problem_.Add(value);
+        return this;
+      }
+      public Builder AddProblem(global::senseix.message.problem.ProblemData.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.problem_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeProblem(scg::IEnumerable<global::senseix.message.problem.ProblemData> values) {
+        PrepareBuilder();
+        result.problem_.Add(values);
+        return this;
+      }
+      public Builder ClearProblem() {
+        PrepareBuilder();
+        result.problem_.Clear();
+        return this;
+      }
+    }
+    static ProblemPostRequest() {
+      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class ProblemPostResponse : pb::GeneratedMessage<ProblemPostResponse, ProblemPostResponse.Builder> {
+    private ProblemPostResponse() { }
+    private static readonly ProblemPostResponse defaultInstance = new ProblemPostResponse().MakeReadOnly();
+    private static readonly string[] _problemPostResponseFieldNames = new string[] {  };
+    private static readonly uint[] _problemPostResponseFieldTags = new uint[] {  };
+    public static ProblemPostResponse DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ProblemPostResponse DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ProblemPostResponse ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemPostResponse__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ProblemPostResponse, ProblemPostResponse.Builder> InternalFieldAccessors {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemPostResponse__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _problemPostResponseFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ProblemPostResponse ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ProblemPostResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemPostResponse ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ProblemPostResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemPostResponse ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ProblemPostResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemPostResponse ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ProblemPostResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ProblemPostResponse ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ProblemPostResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ProblemPostResponse MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ProblemPostResponse prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<ProblemPostResponse, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ProblemPostResponse cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ProblemPostResponse result;
+      
+      private ProblemPostResponse PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ProblemPostResponse original = result;
+          result = new ProblemPostResponse();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ProblemPostResponse MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::senseix.message.problem.ProblemPostResponse.Descriptor; }
+      }
+      
+      public override ProblemPostResponse DefaultInstanceForType {
+        get { return global::senseix.message.problem.ProblemPostResponse.DefaultInstance; }
+      }
+      
+      public override ProblemPostResponse BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ProblemPostResponse) {
+          return MergeFrom((ProblemPostResponse) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ProblemPostResponse other) {
+        if (other == global::senseix.message.problem.ProblemPostResponse.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_problemPostResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _problemPostResponseFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static ProblemPostResponse() {
+      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class ProblemGetRequest : pb::GeneratedMessage<ProblemGetRequest, ProblemGetRequest.Builder> {
+    private ProblemGetRequest() { }
+    private static readonly ProblemGetRequest defaultInstance = new ProblemGetRequest().MakeReadOnly();
+    private static readonly string[] _problemGetRequestFieldNames = new string[] { "player_id", "problem_count" };
+    private static readonly uint[] _problemGetRequestFieldTags = new uint[] { 10, 16 };
+    public static ProblemGetRequest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ProblemGetRequest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ProblemGetRequest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemGetRequest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ProblemGetRequest, ProblemGetRequest.Builder> InternalFieldAccessors {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemGetRequest__FieldAccessorTable; }
+    }
+    
+    public const int PlayerIdFieldNumber = 1;
+    private bool hasPlayerId;
+    private string playerId_ = "";
+    public bool HasPlayerId {
+      get { return hasPlayerId; }
+    }
+    public string PlayerId {
+      get { return playerId_; }
+    }
+    
+    public const int ProblemCountFieldNumber = 2;
+    private bool hasProblemCount;
+    private uint problemCount_;
+    public bool HasProblemCount {
+      get { return hasProblemCount; }
+    }
+    [global::System.CLSCompliant(false)]
+    public uint ProblemCount {
+      get { return problemCount_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasPlayerId) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _problemGetRequestFieldNames;
+      if (hasPlayerId) {
+        output.WriteString(1, field_names[0], PlayerId);
+      }
+      if (hasProblemCount) {
+        output.WriteUInt32(2, field_names[1], ProblemCount);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasPlayerId) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, PlayerId);
+        }
+        if (hasProblemCount) {
+          size += pb::CodedOutputStream.ComputeUInt32Size(2, ProblemCount);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ProblemGetRequest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ProblemGetRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemGetRequest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ProblemGetRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemGetRequest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ProblemGetRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemGetRequest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ProblemGetRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ProblemGetRequest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ProblemGetRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ProblemGetRequest MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ProblemGetRequest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<ProblemGetRequest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ProblemGetRequest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ProblemGetRequest result;
+      
+      private ProblemGetRequest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ProblemGetRequest original = result;
+          result = new ProblemGetRequest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ProblemGetRequest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::senseix.message.problem.ProblemGetRequest.Descriptor; }
+      }
+      
+      public override ProblemGetRequest DefaultInstanceForType {
+        get { return global::senseix.message.problem.ProblemGetRequest.DefaultInstance; }
+      }
+      
+      public override ProblemGetRequest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ProblemGetRequest) {
+          return MergeFrom((ProblemGetRequest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ProblemGetRequest other) {
+        if (other == global::senseix.message.problem.ProblemGetRequest.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasPlayerId) {
+          PlayerId = other.PlayerId;
+        }
+        if (other.HasProblemCount) {
+          ProblemCount = other.ProblemCount;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_problemGetRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _problemGetRequestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              break;
+            }
+            case 16: {
+              result.hasProblemCount = input.ReadUInt32(ref result.problemCount_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasPlayerId {
+        get { return result.hasPlayerId; }
+      }
+      public string PlayerId {
+        get { return result.PlayerId; }
+        set { SetPlayerId(value); }
+      }
+      public Builder SetPlayerId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasPlayerId = true;
+        result.playerId_ = value;
+        return this;
+      }
+      public Builder ClearPlayerId() {
+        PrepareBuilder();
+        result.hasPlayerId = false;
+        result.playerId_ = "";
+        return this;
+      }
+      
+      public bool HasProblemCount {
+        get { return result.hasProblemCount; }
+      }
+      [global::System.CLSCompliant(false)]
+      public uint ProblemCount {
+        get { return result.ProblemCount; }
+        set { SetProblemCount(value); }
+      }
+      [global::System.CLSCompliant(false)]
+      public Builder SetProblemCount(uint value) {
+        PrepareBuilder();
+        result.hasProblemCount = true;
+        result.problemCount_ = value;
+        return this;
+      }
+      public Builder ClearProblemCount() {
+        PrepareBuilder();
+        result.hasProblemCount = false;
+        result.problemCount_ = 0;
+        return this;
+      }
+    }
+    static ProblemGetRequest() {
+      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class ProblemGetResponse : pb::GeneratedMessage<ProblemGetResponse, ProblemGetResponse.Builder> {
+    private ProblemGetResponse() { }
+    private static readonly ProblemGetResponse defaultInstance = new ProblemGetResponse().MakeReadOnly();
+    private static readonly string[] _problemGetResponseFieldNames = new string[] { "problem" };
+    private static readonly uint[] _problemGetResponseFieldTags = new uint[] { 10 };
+    public static ProblemGetResponse DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ProblemGetResponse DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ProblemGetResponse ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemGetResponse__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ProblemGetResponse, ProblemGetResponse.Builder> InternalFieldAccessors {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemGetResponse__FieldAccessorTable; }
+    }
+    
+    public const int ProblemFieldNumber = 1;
+    private pbc::PopsicleList<global::senseix.message.problem.ProblemData> problem_ = new pbc::PopsicleList<global::senseix.message.problem.ProblemData>();
+    public scg::IList<global::senseix.message.problem.ProblemData> ProblemList {
+      get { return problem_; }
+    }
+    public int ProblemCount {
+      get { return problem_.Count; }
+    }
+    public global::senseix.message.problem.ProblemData GetProblem(int index) {
+      return problem_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        foreach (global::senseix.message.problem.ProblemData element in ProblemList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _problemGetResponseFieldNames;
+      if (problem_.Count > 0) {
+        output.WriteMessageArray(1, field_names[0], problem_);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        foreach (global::senseix.message.problem.ProblemData element in ProblemList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, element);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ProblemGetResponse ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ProblemGetResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemGetResponse ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ProblemGetResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemGetResponse ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ProblemGetResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ProblemGetResponse ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ProblemGetResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ProblemGetResponse ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ProblemGetResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ProblemGetResponse MakeReadOnly() {
+      problem_.MakeReadOnly();
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ProblemGetResponse prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<ProblemGetResponse, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ProblemGetResponse cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ProblemGetResponse result;
+      
+      private ProblemGetResponse PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ProblemGetResponse original = result;
+          result = new ProblemGetResponse();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ProblemGetResponse MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::senseix.message.problem.ProblemGetResponse.Descriptor; }
+      }
+      
+      public override ProblemGetResponse DefaultInstanceForType {
+        get { return global::senseix.message.problem.ProblemGetResponse.DefaultInstance; }
+      }
+      
+      public override ProblemGetResponse BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ProblemGetResponse) {
+          return MergeFrom((ProblemGetResponse) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ProblemGetResponse other) {
+        if (other == global::senseix.message.problem.ProblemGetResponse.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.problem_.Count != 0) {
+          result.problem_.Add(other.problem_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_problemGetResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _problemGetResponseFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              input.ReadMessageArray(tag, field_name, result.problem_, global::senseix.message.problem.ProblemData.DefaultInstance, extensionRegistry);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public pbc::IPopsicleList<global::senseix.message.problem.ProblemData> ProblemList {
+        get { return PrepareBuilder().problem_; }
+      }
+      public int ProblemCount {
+        get { return result.ProblemCount; }
+      }
+      public global::senseix.message.problem.ProblemData GetProblem(int index) {
+        return result.GetProblem(index);
+      }
+      public Builder SetProblem(int index, global::senseix.message.problem.ProblemData value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.problem_[index] = value;
+        return this;
+      }
+      public Builder SetProblem(int index, global::senseix.message.problem.ProblemData.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.problem_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddProblem(global::senseix.message.problem.ProblemData value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.problem_.Add(value);
+        return this;
+      }
+      public Builder AddProblem(global::senseix.message.problem.ProblemData.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.problem_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeProblem(scg::IEnumerable<global::senseix.message.problem.ProblemData> values) {
+        PrepareBuilder();
+        result.problem_.Add(values);
+        return this;
+      }
+      public Builder ClearProblem() {
+        PrepareBuilder();
+        result.problem_.Clear();
+        return this;
+      }
+    }
+    static ProblemGetResponse() {
+      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+    }
+  }
+  
+  #endregion
+  
 }
 
 #endregion Designer generated code
