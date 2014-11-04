@@ -112,6 +112,10 @@ namespace senseix {
 		  	ListPlayers ();
 			RegisterAllPlayers ();
 
+			if(!ProblemKeeper.SeedFileExists())
+			{
+				ProblemKeeper.CreateEmptySeedFile();
+			}
 		}
 
 		static public void ListPlayers()

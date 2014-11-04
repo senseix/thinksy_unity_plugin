@@ -10,32 +10,50 @@ namespace senseix {
 
 	static class ProblemKeeper 
 	{
-		private const int PROBLEM_COUNT = 40;
 		private const int PROBLEMS_PER_PULL = 6;
 		private const string SEED_FILE_NAME = "seed.proto";
 		private static bool _onLine = false;
 		public static volatile Queue newProblems = new Queue(); 
 		public static volatile Queue answeredProblems = new Queue();
 
+		static public void CreateEmptySeedFile()
+		{
+			System.IO.File.Create (FilePath (SEED_FILE_NAME));
+		}
+
+		static public bool SeedFileExists()
+		{
+			return System.IO.File.Exists (FilePath (SEED_FILE_NAME));
+		}
+
 		static private void GetProblemsFromSeed()
 		{
 			string seedPath = FilePath (SEED_FILE_NAME);
 			byte [] seedContents = System.IO.File.ReadAllBytes (seedPath);
+			if (seedContents.Length == 0)
+				throw new Exception ("The seed file is empty!");
 			message.ResponseHeader reply = message.ResponseHeader.ParseFrom (seedContents);
-			message.Response.ParseResponse(message.constant.MessageType.ProblemGet, ref reply);
+
+			for (int i = 0; i < reply.ProblemGet.ProblemList.Count; i++)
+			{
+				message.problem.ProblemData entry = reply.ProblemGet.ProblemList[i];
+				message.problem.ProblemData.Builder problem =  entry.ToBuilder();
+				ProblemKeeper.AddProblemsToProblemQueue(problem);
+			}
 		}
 
+		static public void ReplaceSeed(message.ResponseHeader reply)
+		{
+			Debug.Log ("Replacing seed file.");
+			MemoryStream stream = new MemoryStream ();
+			reply.WriteTo (stream);
+			byte[] replacementBytes = stream.ToArray();
+			System.IO.File.WriteAllBytes (FilePath(SEED_FILE_NAME), replacementBytes);
+		}
+		
 		static public string FilePath(string fileName)
 		{
 			return System.IO.Path.Combine(Application.persistentDataPath, fileName);
-		}
-
-		//Mehrdad wrote this function.
-		static byte[] GetBytes(string str)
-		{
-			byte[] bytes = new byte[str.Length * sizeof(char)];
-			System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
-			return bytes;
 		}
 
 		static private void AppendStringToFile (string content, string filePath)
@@ -47,9 +65,10 @@ namespace senseix {
 		{
 			MemoryStream stream = new MemoryStream ();
 			problemData.WriteTo (stream);
-			string appendMe = stream.ToString();
+			byte[] appendMeBytes = stream.ToArray();
+			string appendMeString = "\n" + System.Text.Encoding.Default.GetString (appendMeBytes);
 			string seedPath = FilePath (SEED_FILE_NAME);
-			AppendStringToFile (appendMe, seedPath);
+			AppendStringToFile (appendMeString, seedPath);
 			//Replace the seed file for this game with 
 			//problems from the server
 			//alg should be get N problems place N/2 
@@ -59,7 +78,7 @@ namespace senseix {
 
 		static public void ClearSeedExceptHeader()
 		{
-			IList<string> seedLines = System.IO.File.ReadLines (FilePath(SEED_FILE_NAME)) as IList<string>;
+			IList<string> seedLines = System.IO.File.ReadAllLines (FilePath(SEED_FILE_NAME)) as IList<string>;
 			if (seedLines.Count == 0)
 				throw new Exception("Problem: there is no seed file.  It should be here: " + FilePath (SEED_FILE_NAME));
 			System.IO.File.Delete (FilePath (SEED_FILE_NAME));
@@ -84,15 +103,11 @@ namespace senseix {
 		//and add them to the end of our problem queue
 		static public void GetProblems () 
 		{
-			_onLine = false;
-			if (_onLine == false) 
-			{
-				GetProblemsFromSeed();
-			} 
-			else 
+			if (_onLine)
 			{
 				message.Request.GetProblems (SenseixController.GetCurrentPlayerID(), PROBLEMS_PER_PULL);
 			}
+			GetProblemsFromSeed();
 		}
 		static public void PushServerProblems () 
 		{ 
@@ -104,7 +119,8 @@ namespace senseix {
 		{
 			//Right now we're just pulling more problems when we get low, but eventually we
 			//want to do this with an asynchronous message
-			if (GetNewProblemCount () < PROBLEMS_PER_PULL/3 ||　GetNewProblemCount() < 2) {
+			if (GetNewProblemCount() < PROBLEMS_PER_PULL/1.5 || GetNewProblemCount() < 1) 
+			{
 					GetProblems (); 
 					Debug.Log ("pulling more problems");
 			}

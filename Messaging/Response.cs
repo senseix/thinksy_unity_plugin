@@ -142,18 +142,7 @@ namespace senseix.message {
 					Debug.Log("I got a response from a problem get message");
 					if(reply.HasProblemGet && reply.ProblemGet.IsInitialized) 
 					{
-						for (int i = 0; i < reply.ProblemGet.ProblemList.Count / 2; i++)
-						{
-							problem.ProblemData entry = reply.ProblemGet.ProblemList[i];
-							problem.ProblemData.Builder problem =  entry.ToBuilder();
-							ProblemKeeper.AddProblemsToProblemQueue(problem);
-						}
-						ProblemKeeper.ClearSeedExceptHeader();
-						for (int i = reply.ProblemGet.ProblemList.Count / 2; i < reply.ProblemGet.ProblemList.Count; i++)
-						{
-							problem.ProblemData entry = reply.ProblemGet.ProblemList[i];
-							ProblemKeeper.AddProblemToSeed(entry);
-						}
+						ProblemKeeper.ReplaceSeed(reply);
 					}
 					else
 					{
