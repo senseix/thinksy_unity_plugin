@@ -139,16 +139,26 @@ namespace senseix.message {
 					break;
 				
 				case constant.MessageType.ProblemGet:
-				Debug.Log("I got a response from a problem get message");
+					Debug.Log("I got a response from a problem get message");
 					if(reply.HasProblemGet && reply.ProblemGet.IsInitialized) 
 					{
-						foreach(problem.ProblemData entry in reply.ProblemGet.ProblemList) 
+						for (int i = 0; i < reply.ProblemGet.ProblemList.Count / 2; i++)
 						{
+							problem.ProblemData entry = reply.ProblemGet.ProblemList[i];
 							problem.ProblemData.Builder problem =  entry.ToBuilder();
-							ProblemWorker.AddProblemsToProblemQueue(problem);
+							ProblemKeeper.AddProblemsToProblemQueue(problem);
+						}
+						ProblemKeeper.ClearSeedExceptHeader();
+						for (int i = reply.ProblemGet.ProblemList.Count / 2; i < reply.ProblemGet.ProblemList.Count; i++)
+						{
+							problem.ProblemData entry = reply.ProblemGet.ProblemList[i];
+							ProblemKeeper.AddProblemToSeed(entry);
 						}
 					}
-
+					else
+					{
+						throw new Exception("Response to ProblemGet request was empty or uninitialized");
+					}
 					break;
 
 				case constant.MessageType.LeaderboardPage:

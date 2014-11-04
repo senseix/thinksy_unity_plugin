@@ -52,7 +52,7 @@ namespace senseix {
 		}
 		static public void SetSessionState(bool state)
 		{
-			ProblemWorker.SetOnline (state);
+			ProblemKeeper.SetOnline (state);
 			inSession = state;
 		}
 
@@ -167,12 +167,12 @@ namespace senseix {
 
 		static public senseix.message.problem.ProblemData.Builder PullProblem()
 		{
-			return ProblemWorker.GetProblem ();
+			return ProblemKeeper.GetProblem ();
 		}
 
 		static public bool CheckAnswer(message.problem.ProblemData.Builder problem, string answer)
 		{
-			return ProblemWorker.CheckAnswer(problem, answer);
+			return ProblemKeeper.CheckAnswer(problem, answer);
 		}
 	
 

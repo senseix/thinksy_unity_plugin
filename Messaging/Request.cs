@@ -76,7 +76,6 @@ namespace senseix.message {
 
 		
 			return Response.ParseResponse(msgType, ref reply); 
-
 		}
 	 
 
@@ -200,7 +199,10 @@ namespace senseix.message {
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken ());
-			hdr_request.SetParentSignOut(parent.ParentSignOutRequest.CreateBuilder());
+
+			senseix.message.parent.ParentSignOutRequest.Builder parentSignOutBuilder = parent.ParentSignOutRequest.CreateBuilder ();
+			parentSignOutBuilder.SetDeviceId (SenseixController.GetDeviceID ());
+			hdr_request.SetParentSignOut(parentSignOutBuilder);
 
 			Debug.Log ("sign out parent going off to " + SIGN_OUT_PARENT_URL);
 			return SyncronousPostRequest (ref hdr_request, constant.MessageType.SignOutParent, SIGN_OUT_PARENT_URL);
