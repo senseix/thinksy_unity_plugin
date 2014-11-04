@@ -127,15 +127,8 @@ namespace senseix.message {
 					break;
 
 				case constant.MessageType.ProblemPost:
-					if (reply.HasProblemPost)
-					{
-						Debug.Log ("Successfully posted problems to the server.");
-					}
-					else 
-					{
-						Debug.Log ("Message sent back for a problem was not as expected");
-						return false;
-					}
+					SenseixController.SetSessionState(true);
+					Debug.Log("I got a response from a problem post message");
 					break;
 				
 				case constant.MessageType.ProblemGet:

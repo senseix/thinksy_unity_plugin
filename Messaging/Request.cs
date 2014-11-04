@@ -339,6 +339,7 @@ namespace senseix.message {
 			}
 			hdr_request.SetProblemPost (postProblem);
 				
+			Debug.Log ("Post problems request going off to " + POST_PROBLEM_URL);
 			return SyncronousPostRequest (ref hdr_request, constant.MessageType.ProblemPost, POST_PROBLEM_URL);
 		}	
 		/// <summary>

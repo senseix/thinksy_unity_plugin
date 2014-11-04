@@ -199,5 +199,10 @@ namespace senseix {
 		{
 			message.Request.SignOutParent ();
 		}
+
+		public static void PushProblems(Queue problems)
+		{
+			message.Request.PostProblems(GetCurrentPlayerID(), problems);
+		}
 	}
 }
