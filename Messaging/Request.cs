@@ -18,7 +18,7 @@ namespace senseix.message {
 	static public class Request
 	{
         const string ENCRYPTED = "http://";
-        const string SERVER_URL = "192.168.1.14:3000/";
+        const string SERVER_URL = "192.168.1.11:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/parents/";
@@ -332,10 +332,10 @@ namespace senseix.message {
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			problem.ProblemPostRequest.Builder postProblem = problem.ProblemPostRequest.CreateBuilder ();
 
-			postProblem.SetPlayerId (playerId);
-
 			while (problems.Count > 0) {
-				postProblem.AddProblem ((senseix.message.problem.ProblemData)problems.Dequeue());
+				senseix.message.problem.ProblemPost.Builder addMeProblem = (senseix.message.problem.ProblemPost.Builder)problems.Dequeue();
+				addMeProblem.SetPlayerId(SenseixController.GetCurrentPlayerID());
+				postProblem.AddProblem (addMeProblem);
 			}
 			hdr_request.SetProblemPost (postProblem);
 				

@@ -174,7 +174,7 @@ namespace senseix {
 			return ProblemKeeper.GetProblem ();
 		}
 
-		static public bool CheckAnswer(message.problem.ProblemData.Builder problem, string answer)
+		static public bool CheckAnswer(message.problem.ProblemData.Builder problem, senseix.message.problem.Answer answer)
 		{
 			return ProblemKeeper.CheckAnswer(problem, answer);
 		}

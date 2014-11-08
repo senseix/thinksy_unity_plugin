@@ -127,14 +127,14 @@ namespace senseix {
 		}
 		//This is called from functions exposed to the developer, it is used to check an answer 
 		//of the problem. If it returns true the developer should pop the next problem
-		static public bool CheckAnswer(message.problem.ProblemData.Builder problem, string answer) 
+		static public bool CheckAnswer(message.problem.ProblemData.Builder problem, senseix.message.problem.Answer answer) 
 		{
 			bool correct = (problem.Answer == answer);
 			AddAnsweredProblem (problem, answer);
 			return correct;
 		}
 
-		static private void AddAnsweredProblem(message.problem.ProblemData.Builder problemBuilder, string answer)
+		static private void AddAnsweredProblem(message.problem.ProblemData.Builder problemBuilder, senseix.message.problem.Answer answer)
 		{
 			message.problem.ProblemData.Builder answeredProblemBuilder = new message.problem.ProblemData.Builder(problemBuilder.BuildPartial());
 			answeredProblemBuilder.Answer = answer;

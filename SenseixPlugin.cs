@@ -47,7 +47,7 @@ class SenseixPlugin : MonoBehaviour
 
 	/// <summary>
 	/// Returns the next problem for the player as an instance of the Problem class.  If there aren't 
-	/// enough problems left in the queue, and asynchronous task will retrieve more from the SenseiX
+	/// enough problems left in the queue, an asynchronous task will retrieve more from the SenseiX
 	/// server.
 	/// </summary>
 	public static Problem NextProblem()
@@ -102,7 +102,7 @@ class SenseixPlugin : MonoBehaviour
 public class Problem {
 
 	private senseix.message.problem.ProblemData.Builder protobufsProblemBuilder;
-	private string givenAnswer;
+	private Answer givenAnswer;
 
 	public Problem(senseix.message.problem.ProblemData.Builder newProtobufsProblemBuilder)
 	{
@@ -112,15 +112,15 @@ public class Problem {
 	/// <summary>
 	/// Returns the correct answer to this problem
 	/// </summary>
-	public string GetCorrectAnswer()
+	public Answer GetCorrectAnswer()
 	{
-		return protobufsProblemBuilder.Answer;
+		return new Answer(protobufsProblemBuilder.Answer);
 	}
 
 	/// <summary>
 	/// Returns the answer set by SetGivenAnswer
 	/// </summary>
-	public string GetGivenAnswer()
+	public Answer GetGivenAnswer()
 	{
 		if (givenAnswer == null)
 		{
@@ -132,15 +132,15 @@ public class Problem {
 	/// <summary>
 	/// Returns the question to be answered.
 	/// </summary>
-	public string GetQuestion()
+	public Prompt GetPrompt()
 	{
-		return protobufsProblemBuilder.Question;
+		return new Prompt(protobufsProblemBuilder.Content);
 	}
 
 	/// <summary>
 	/// Sets the given answer.  This can then be checked for correctness through CheckAnswer.
 	/// </summary>
-	public void SetGivenAnswer(string newGivenAnswer)
+	public void SetGivenAnswer(Answer newGivenAnswer)
 	{
 		givenAnswer = newGivenAnswer;
 	}
@@ -151,7 +151,22 @@ public class Problem {
 	/// </summary>
 	public bool CheckAnswer()
 	{
-		return senseix.SenseixController.CheckAnswer (protobufsProblemBuilder, GetGivenAnswer());
+		senseix.message.problem.Answer.Builder givenAnswerProtoBuilder = senseix.message.problem.Answer.CreateBuilder();
+
+		foreach (string answer in GetGivenAnswerParts())
+		{
+			senseix.message.problem.Atom.Builder newAtomBuilder = senseix.message.problem.Atom.CreateBuilder();
+			newAtomBuilder.SetData(Google.ProtocolBuffers.ByteString.CopyFrom(answer, ASCIIEncoding.ASCII));
+			givenAnswerProtoBuilder.AddAtom(newAtomBuilder);
+		}
+
+		senseix.message.problem.Answer givenAnswerProto = givenAnswerProtoBuilder.BuildPartial ();
+		return senseix.SenseixController.CheckAnswer (protobufsProblemBuilder, givenAnswerProto);
+	}
+
+	public ArrayList GetGivenAnswerParts()
+	{
+		return GetGivenAnswer ().GetAnswerParts ();
 	}
 
 	/// <summary>
@@ -160,8 +175,112 @@ public class Problem {
 	/// </summary>
 	public bool CheckAnswer(string answer)
 	{
-		SetGivenAnswer (answer);
+		SetGivenAnswer (new Answer(answer));
 		return CheckAnswer();
 	}
+}
 
+public class Answer
+{
+	ArrayList answers = new ArrayList();
+
+	public Answer(senseix.message.problem.Answer protoAnswer)
+	{
+		foreach (senseix.message.problem.Atom atom in protoAnswer.AtomList)
+		{
+			answers.Add(atom.Data.ToStringUtf8());
+		}
+	}
+
+	public Answer(ICollection newAnswers)
+	{
+		answers.AddRange(newAnswers);
+	}
+
+	public Answer(string newAnswer)
+	{
+		answers.Add(newAnswer);
+	}
+
+	public void AddAnswerPart(string newAnswer)
+	{
+		answers.Add(newAnswer);
+	}
+
+	public void AddAnswerParts(ICollection newAnswers)
+	{
+		answers.AddRange(newAnswers);
+	}
+
+	public ArrayList GetAnswerParts()
+	{
+		return answers;
+	}
+}
+
+public class Prompt
+{
+
+	IList<senseix.message.problem.Atom> atomList;
+
+	public Prompt(senseix.message.problem.Content newContent)
+	{
+		atomList = newContent.AtomList;
+	}
+
+	public System.Collections.IEnumerator GetEnumerator()
+	{
+		foreach(senseix.message.problem.Atom atom in atomList)
+		{
+			yield return new PromptPart(atom);
+		}
+	}
+
+	public PromptPart GetPromptPart(int index)
+	{
+		try 
+		{
+			return new PromptPart(atomList[index]);
+		}
+		catch (Exception e)
+		{
+			throw new Exception("Prompt part index out of range");
+		}
+	}
+}
+
+public class PromptPart
+{
+	senseix.message.problem.Atom atom;
+
+	public PromptPart (senseix.message.problem.Atom newAtom)
+	{
+		atom = newAtom;
+	}
+
+	public bool IsString()
+	{
+		return atom.Type == senseix.message.problem.Atom.Types.Type.TEXT;
+	}
+
+	public bool IsImage()
+	{
+		return atom.Type == senseix.message.problem.Atom.Types.Type.IMAGE;
+	}
+
+	public string GetString()
+	{
+		if (!IsString())
+			throw new Exception ("This PromptPart is not a string.  Be sure to check IsString before GetString.");
+		return atom.Data.ToStringUtf8 ();
+	}
+
+	public Texture2D GetImage()
+	{
+		if (!IsImage())
+			throw new Exception ("This PromptPart is not an image.  Be sure to check IsImage before GetImage.");
+		Texture2D returnImage = new Texture2D(0, 0);
+		byte[] imageBytes = atom.Data.ToByteArray ();
+		return returnImage;
+	}
 }
