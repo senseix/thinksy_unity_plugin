@@ -69,6 +69,11 @@ class SenseixPlugin : MonoBehaviour
 		return mostRecentProblem;
 	}
 
+	public static ProblemPart[] GetMostRecentProblemDistractors(int howManyDistractors)
+	{
+		return GetMostRecentProblem ().GetDistractors (howManyDistractors);
+	}
+
 	/// <summary>
 	/// Checks the problem's given answer against its correct answer.  Also reports the player's answer
 	/// (correct or incorrect) to the SenseiX server.  Given and correct answer can be found in the Problem class.
@@ -79,16 +84,6 @@ class SenseixPlugin : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Sets the problem's given answer to the string answer, and checks the problem's given answer against its correct answer.  
-	/// Also reports the player's answer (correct or incorrect) to the SenseiX server.  Given and correct answer 
-	/// can be found in the Problem class.
-	/// </summary>
-	public static bool CheckAnswer(Problem problem, string answer)
-	{
-		return problem.CheckAnswer (answer);
-	}
-
-	/// <summary>
 	/// Whichever player is the currently active player in the SenseiX menus, this
 	/// will set that player's high score to the UInt32 argument.
 	/// </summary>
@@ -96,13 +91,18 @@ class SenseixPlugin : MonoBehaviour
 	{
 		senseix.SenseixController.UpdateCurrentPlayerScore(score);
 	}
+	
+	public static ArrayList GetMostRecentAnswerParts()
+	{
+		return GetMostRecentProblem ().GetCorrectAnswer ().GetAnswerParts ();
+	}
 
 }
 
-public class Problem {
-
+public class Problem 
+{
 	private senseix.message.problem.ProblemData.Builder protobufsProblemBuilder;
-	private Answer givenAnswer;
+	private Answer givenAnswer = new Answer();
 
 	public Problem(senseix.message.problem.ProblemData.Builder newProtobufsProblemBuilder)
 	{
@@ -115,6 +115,19 @@ public class Problem {
 	public Answer GetCorrectAnswer()
 	{
 		return new Answer(protobufsProblemBuilder.Answer);
+	}
+
+	public ProblemPart[] GetDistractors(int howManyDistractors)
+	{
+		ProblemPart[] distractors = new ProblemPart[howManyDistractors];
+		for (int i = 0; i < howManyDistractors; i++)
+		{
+			senseix.message.problem.Atom distractorAtom = protobufsProblemBuilder.Distractor.AtomList[i];
+			ProblemPart distractor = new ProblemPart(distractorAtom);
+			distractors[i] = distractor;
+		}
+		return distractors;
+
 	}
 
 	/// <summary>
@@ -140,9 +153,9 @@ public class Problem {
 	/// <summary>
 	/// Sets the given answer.  This can then be checked for correctness through CheckAnswer.
 	/// </summary>
-	public void SetGivenAnswer(Answer newGivenAnswer)
+	public void AddGivenAnswerPart(ProblemPart newGivenAnswerPart)
 	{
-		givenAnswer = newGivenAnswer;
+		givenAnswer.AddAnswerPart(newGivenAnswerPart);
 	}
 
 	/// <summary>
@@ -151,70 +164,56 @@ public class Problem {
 	/// </summary>
 	public bool CheckAnswer()
 	{
-		senseix.message.problem.Answer.Builder givenAnswerProtoBuilder = senseix.message.problem.Answer.CreateBuilder();
-
-		foreach (string answer in GetGivenAnswerParts())
-		{
-			senseix.message.problem.Atom.Builder newAtomBuilder = senseix.message.problem.Atom.CreateBuilder();
-			newAtomBuilder.SetData(Google.ProtocolBuffers.ByteString.CopyFrom(answer, ASCIIEncoding.ASCII));
-			givenAnswerProtoBuilder.AddAtom(newAtomBuilder);
-		}
-
-		senseix.message.problem.Answer givenAnswerProto = givenAnswerProtoBuilder.BuildPartial ();
-		return senseix.SenseixController.CheckAnswer (protobufsProblemBuilder, givenAnswerProto);
+		return senseix.SenseixController.CheckAnswer (protobufsProblemBuilder, GetGivenAnswer());
 	}
 
-	public ArrayList GetGivenAnswerParts()
+	public ArrayList GetGivenAnswerIDs()
 	{
-		return GetGivenAnswer ().GetAnswerParts ();
+		return GetGivenAnswer ().GetAnswerIDs ();
 	}
 
-	/// <summary>
-	/// Sets the problem's given answer to the string answer, and checks the problem's given answer against its correct answer.  
-	/// Also reports the player's answer (correct or incorrect) to the SenseiX server.
-	/// </summary>
-	public bool CheckAnswer(string answer)
+	public int AnswersGivenSoFar()
 	{
-		SetGivenAnswer (new Answer(answer));
-		return CheckAnswer();
+		return GetGivenAnswer ().GetAnswerParts ().Count ;
 	}
+
 }
 
 public class Answer
 {
-	ArrayList answers = new ArrayList();
+	ArrayList answerParts = new ArrayList();
 
 	public Answer(senseix.message.problem.Answer protoAnswer)
 	{
 		foreach (senseix.message.problem.Atom atom in protoAnswer.AtomList)
 		{
-			answers.Add(atom.Data.ToStringUtf8());
+			answerParts.Add(new ProblemPart(atom));
 		}
 	}
 
-	public Answer(ICollection newAnswers)
+	public Answer()
 	{
-		answers.AddRange(newAnswers);
+
 	}
 
-	public Answer(string newAnswer)
+	public void AddAnswerPart(ProblemPart part)
 	{
-		answers.Add(newAnswer);
+		answerParts.Add(part);
 	}
 
-	public void AddAnswerPart(string newAnswer)
+	public ArrayList GetAnswerIDs()
 	{
-		answers.Add(newAnswer);
-	}
-
-	public void AddAnswerParts(ICollection newAnswers)
-	{
-		answers.AddRange(newAnswers);
+		ArrayList answerIDs = new ArrayList ();
+		foreach(ProblemPart part in answerParts)
+		{
+			answerIDs.Add(part.GetUniqueID());
+		}
+		return answerIDs;
 	}
 
 	public ArrayList GetAnswerParts()
 	{
-		return answers;
+		return answerParts;
 	}
 }
 
@@ -232,15 +231,15 @@ public class Prompt
 	{
 		foreach(senseix.message.problem.Atom atom in atomList)
 		{
-			yield return new PromptPart(atom);
+			yield return new ProblemPart(atom);
 		}
 	}
 
-	public PromptPart GetPromptPart(int index)
+	public ProblemPart GetPromptPart(int index)
 	{
 		try 
 		{
-			return new PromptPart(atomList[index]);
+			return new ProblemPart(atomList[index]);
 		}
 		catch (Exception e)
 		{
@@ -249,13 +248,18 @@ public class Prompt
 	}
 }
 
-public class PromptPart
+public class ProblemPart
 {
 	senseix.message.problem.Atom atom;
 
-	public PromptPart (senseix.message.problem.Atom newAtom)
+	public ProblemPart (senseix.message.problem.Atom newAtom)
 	{
 		atom = newAtom;
+	}
+
+	public string GetUniqueID()
+	{
+		return atom.Uuid;
 	}
 
 	public bool IsString()
@@ -272,7 +276,9 @@ public class PromptPart
 	{
 		if (!IsString())
 			throw new Exception ("This PromptPart is not a string.  Be sure to check IsString before GetString.");
-		return atom.Data.ToStringUtf8 ();
+		string base64string = atom.Data.ToStringUtf8 ();
+		byte[] decodedBytes = System.Convert.FromBase64String (base64string);
+		return Encoding.ASCII.GetString (decodedBytes);
 	}
 
 	public Texture2D GetImage()
@@ -281,6 +287,7 @@ public class PromptPart
 			throw new Exception ("This PromptPart is not an image.  Be sure to check IsImage before GetImage.");
 		Texture2D returnImage = new Texture2D(0, 0);
 		byte[] imageBytes = atom.Data.ToByteArray ();
+		returnImage.LoadImage (imageBytes);
 		return returnImage;
 	}
 }

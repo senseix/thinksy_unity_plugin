@@ -125,21 +125,43 @@ namespace senseix {
 			CheckProblemPull ();
 			return (senseix.message.problem.ProblemData.Builder) newProblems.Dequeue ();
 		}
-		//This is called from functions exposed to the developer, it is used to check an answer 
-		//of the problem. If it returns true the developer should pop the next problem
-		static public bool CheckAnswer(message.problem.ProblemData.Builder problem, senseix.message.problem.Answer answer) 
+
+		static public bool CheckAnswer(message.problem.ProblemData.Builder answeredProblemData, Answer answer) 
 		{
-			bool correct = (problem.Answer == answer);
+			bool correct = true;
+			message.problem.ProblemPost.Builder problem = message.problem.ProblemPost.CreateBuilder ();
+
+			//get correct answer IDs
+			message.problem.AnswerIdentifier.Builder correctIDListBuilder = message.problem.AnswerIdentifier.CreateBuilder ();
+			foreach(senseix.message.problem.Atom atom in answeredProblemData.Answer.AtomList)
+			{
+				correctIDListBuilder.AddUuid(atom.Uuid);
+			}
+
+			//check given answers against correct answers
+			ArrayList answerIDStrings = answer.GetAnswerIDs ();
+			for (int i = 0; i < answerIDStrings.Count; i++)
+			{
+				correct = correct && (correctIDListBuilder.GetUuid(i) == (string)answerIDStrings[i]);
+			}
+			problem.SetCorrect (correct);
+
+			//set problem's answers to given ones
+			senseix.message.problem.AnswerIdentifier.Builder givenAnswerIDs = senseix.message.problem.AnswerIdentifier.CreateBuilder ();
+			foreach (string answerID in answerIDStrings)
+			{
+				givenAnswerIDs.AddUuid(answerID);
+			}
+
+			problem.SetProblemId (answeredProblemData.Uuid);
+			problem.SetAnswerIds (givenAnswerIDs);
 			AddAnsweredProblem (problem, answer);
 			return correct;
 		}
 
-		static private void AddAnsweredProblem(message.problem.ProblemData.Builder problemBuilder, senseix.message.problem.Answer answer)
+		static private void AddAnsweredProblem(message.problem.ProblemPost.Builder problemBuilder, Answer answer)
 		{
-			message.problem.ProblemData.Builder answeredProblemBuilder = new message.problem.ProblemData.Builder(problemBuilder.BuildPartial());
-			answeredProblemBuilder.Answer = answer;
-			message.problem.ProblemData answeredProblem = problemBuilder.BuildPartial ();
-			answeredProblems.Enqueue (answeredProblem);
+			answeredProblems.Enqueue (problemBuilder);
 			CheckAnsweredProblemPush ();
 		}
 
