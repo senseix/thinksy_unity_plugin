@@ -6,22 +6,37 @@ namespace senseix
 {
 	public class PromptDisplay : MonoBehaviour 
 	{
-		public Text questionDisplay;
+		public static PromptDisplay singletonInstance;
 
-		void Update()
+		public Text[] textDisplays;
+		public Image[] imageDisplays;
+
+
+		void Awake()
 		{
-			UpdateDisplay ();
+			singletonInstance = this;
 		}
 
 		public void UpdateDisplay()
 		{
 			Problem currentProblem = SenseixPlugin.GetMostRecentProblem ();
-			questionDisplay.text = "";
+
+			int textsSoFar = 0;
+			int imagesSoFar = 0;
+
 			foreach(ProblemPart part in currentProblem.GetPrompt())
 			{
 				if (part.IsString())
 				{
-					questionDisplay.text += part.GetString();
+					textDisplays[textsSoFar].text = "";
+					textDisplays[textsSoFar].text += part.GetString();
+					textsSoFar++;
+				}
+				if (part.IsImage())
+				{
+					Debug.Log("I found an image!");
+					//Texture2D thisImage = part.GetImage();
+					//GUI.DrawTexture(new Rect(0, 0, 100f, 100f), thisImage);
 				}
 			}
 		}

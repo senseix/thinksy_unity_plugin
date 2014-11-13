@@ -45,6 +45,11 @@ class SenseixPlugin : MonoBehaviour
 		senseix.SenseixController.RegisterDevice ();
 	}
 
+	public static void UpdateCurrentPlayerScore (UInt32 score)
+	{
+		senseix.SenseixController.UpdateCurrentPlayerScore (score);
+	}
+	
 	/// <summary>
 	/// Returns the next problem for the player as an instance of the Problem class.  If there aren't 
 	/// enough problems left in the queue, an asynchronous task will retrieve more from the SenseiX
@@ -54,6 +59,7 @@ class SenseixPlugin : MonoBehaviour
 	{
 		senseix.message.problem.ProblemData.Builder protobufsProblemBuilder = senseix.SenseixController.PullProblem ();
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
+		senseix.PromptDisplay.singletonInstance.UpdateDisplay ();
 		return mostRecentProblem;
 	}
 
@@ -72,6 +78,11 @@ class SenseixPlugin : MonoBehaviour
 	public static ProblemPart[] GetMostRecentProblemDistractors(int howManyDistractors)
 	{
 		return GetMostRecentProblem ().GetDistractors (howManyDistractors);
+	}
+
+	public static void AddGivenAnswerPartToMostRecentProblem(ProblemPart givenAnswerPart)
+	{
+		GetMostRecentProblem ().AddGivenAnswerPart (givenAnswerPart);
 	}
 
 	/// <summary>
@@ -97,13 +108,32 @@ class SenseixPlugin : MonoBehaviour
 		return GetMostRecentProblem ().GetCorrectAnswer ().GetAnswerParts ();
 	}
 
+	public static ProblemPart GetNextCorrectAnswerPart()
+	{
+		return GetMostRecentProblem ().GetNextCorrectAnswerPart ();
+	}
+
+	public static bool CheckMostRecentProblemAnswer()
+	{
+		return GetMostRecentProblem ().CheckAnswer ();
+	}
+
+	public static bool AllAnswerPartsGiven()
+	{
+		return GetMostRecentProblem().AnswersGivenSoFar() == GetCurrentCorrectAnswer().AnswerPartsCount();
+	}
+
+	public static Answer GetCurrentCorrectAnswer()
+	{
+		return GetMostRecentProblem ().GetCorrectAnswer ();
+	}
 }
 
 public class Problem 
 {
 	private senseix.message.problem.ProblemData.Builder protobufsProblemBuilder;
 	private Answer givenAnswer = new Answer();
-
+	
 	public Problem(senseix.message.problem.ProblemData.Builder newProtobufsProblemBuilder)
 	{
 		protobufsProblemBuilder = newProtobufsProblemBuilder;
@@ -117,11 +147,23 @@ public class Problem
 		return new Answer(protobufsProblemBuilder.Answer);
 	}
 
+	public ProblemPart GetNextCorrectAnswerPart()
+	{
+		int answersGivenSoFar = givenAnswer.AnswerPartsCount ();
+		if (answersGivenSoFar >= GetCorrectAnswer().AnswerPartsCount())
+		{
+			throw new Exception("There is no next correct answer part- all answer parts have already been given!");
+		}
+		ProblemPart nextCorrectAnswer = GetCorrectAnswer ().GetAnswerPart (answersGivenSoFar);
+		return nextCorrectAnswer;
+	}
+
 	public ProblemPart[] GetDistractors(int howManyDistractors)
 	{
 		ProblemPart[] distractors = new ProblemPart[howManyDistractors];
 		for (int i = 0; i < howManyDistractors; i++)
 		{
+			Debug.Log(protobufsProblemBuilder.Distractor.AtomCount + " distractors available");
 			senseix.message.problem.Atom distractorAtom = protobufsProblemBuilder.Distractor.AtomList[i];
 			ProblemPart distractor = new ProblemPart(distractorAtom);
 			distractors[i] = distractor;
@@ -182,7 +224,7 @@ public class Problem
 public class Answer
 {
 	ArrayList answerParts = new ArrayList();
-
+	
 	public Answer(senseix.message.problem.Answer protoAnswer)
 	{
 		foreach (senseix.message.problem.Atom atom in protoAnswer.AtomList)
@@ -214,6 +256,16 @@ public class Answer
 	public ArrayList GetAnswerParts()
 	{
 		return answerParts;
+	}
+
+	public ProblemPart GetAnswerPart(int index)
+	{
+		return (ProblemPart)answerParts [index];
+	}
+
+	public int AnswerPartsCount()
+	{
+		return answerParts.Count;
 	}
 }
 
@@ -286,7 +338,8 @@ public class ProblemPart
 		if (!IsImage())
 			throw new Exception ("This PromptPart is not an image.  Be sure to check IsImage before GetImage.");
 		Texture2D returnImage = new Texture2D(0, 0);
-		byte[] imageBytes = atom.Data.ToByteArray ();
+		string base64string = atom.Data.ToStringUtf8 ();
+		byte[] imageBytes = System.Convert.FromBase64String (base64string);
 		returnImage.LoadImage (imageBytes);
 		return returnImage;
 	}
