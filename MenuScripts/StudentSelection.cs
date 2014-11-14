@@ -45,8 +45,7 @@ namespace senseix
 			currentPlayerIndex = studentIndex % availablePlayers.Count;
 			if (currentPlayerIndex < 0)
 								currentPlayerIndex = availablePlayers.Count + currentPlayerIndex;
-			SenseixController.RegisterPlayer (GetCurrentPlayer ());
-			SenseixController.SetCurrentPlayer (GetCurrentPlayer ());
+			SenseixController.SelectPlayer (GetCurrentPlayer ());
 			SetName ();
 		}
 
