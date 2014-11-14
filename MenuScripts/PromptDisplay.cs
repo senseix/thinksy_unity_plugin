@@ -8,7 +8,8 @@ namespace senseix
 	{
 		public static PromptDisplay singletonInstance;
 
-		public UnityEngine.UI.Image promptDisplay;
+		public Text[] textDisplays;
+		public Image[] imageDisplays;
 
 
 		void Awake()
@@ -19,9 +20,25 @@ namespace senseix
 		public void UpdateDisplay()
 		{
 			Problem currentProblem = SenseixPlugin.GetMostRecentProblem ();
-			string currentProblemHTML = currentProblem.GetPromptHTML ();
 
-			promptDisplay.material = new Material ("");
+			int textsSoFar = 0;
+			int imagesSoFar = 0;
+
+			foreach(ProblemPart part in currentProblem.GetPrompt())
+			{
+				if (part.IsString())
+				{
+					textDisplays[textsSoFar].text = "";
+					textDisplays[textsSoFar].text += part.GetString();
+					textsSoFar++;
+				}
+				if (part.IsImage())
+				{
+					Debug.Log("I found an image!");
+					//Texture2D thisImage = part.GetImage();
+					//GUI.DrawTexture(new Rect(0, 0, 100f, 100f), thisImage);
+				}
+			}
 		}
 	}
 }

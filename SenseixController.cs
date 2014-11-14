@@ -36,16 +36,9 @@ namespace senseix {
 			currentPlayerList = newPlayerList;
 		}
 
-		static private void SetCurrentPlayer(message.player.Player newPlayer)
+		static public void SetCurrentPlayer(message.player.Player newPlayer)
 		{
 			currentPlayer = newPlayer;
-		}
-
-		static public void SelectPlayer(senseix.message.player.Player selectedPlayer)
-		{
-			SetCurrentPlayer (selectedPlayer);
-			RegisterPlayer (selectedPlayer);
-			ProblemKeeper.CreateSeedFileIfNeeded ();
 		}
 
 		static public message.player.Player GetCurrentPlayer()
@@ -118,7 +111,11 @@ namespace senseix {
 			Debug.Log ("got past register device");
 		  	ListPlayers ();
 			RegisterAllPlayers ();
-			ProblemKeeper.CreateSeedFileIfNeeded ();
+
+			if(!ProblemKeeper.SeedFileExists())
+			{
+				ProblemKeeper.CreateEmptySeedFile();
+			}
 		}
 
 		static public void ListPlayers()
@@ -166,7 +163,7 @@ namespace senseix {
 			message.Request.VerifyGame (verificationCode);
 		}
 
-		static private void RegisterPlayer(message.player.Player player)
+		static public void RegisterPlayer(message.player.Player player)
 		{
 			message.Request.RegisterPlayer (player.PlayerId);
 		}

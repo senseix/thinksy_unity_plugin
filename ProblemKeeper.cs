@@ -16,32 +16,24 @@ namespace senseix {
 		//thresholds are when to pull push.  pull or push when
 		//number of answered or waiting problems drops below
 		//problems per pull over threshold
-		private const string SEED_FILE_EXTENSION = ".seed";
+		private const string SEED_FILE_NAME = "seed.proto";
 		private static bool _onLine = false;
 		public static volatile Queue newProblems = new Queue(); 
 		public static volatile Queue answeredProblems = new Queue();
 
 		static public void CreateEmptySeedFile()
 		{
-			System.IO.File.Create (SeedFilePath());
+			System.IO.File.Create (FilePath (SEED_FILE_NAME));
 		}
 
 		static public bool SeedFileExists()
 		{
-			return System.IO.File.Exists (SeedFilePath());
-		}
-
-		static public void CreateSeedFileIfNeeded()
-		{
-			if(!ProblemKeeper.SeedFileExists())
-			{
-				ProblemKeeper.CreateEmptySeedFile();
-			}
+			return System.IO.File.Exists (FilePath (SEED_FILE_NAME));
 		}
 
 		static private void GetProblemsFromSeed()
 		{
-			string seedPath = SeedFilePath();
+			string seedPath = FilePath (SEED_FILE_NAME);
 			byte [] seedContents = System.IO.File.ReadAllBytes (seedPath);
 			if (seedContents.Length == 0)
 				throw new Exception ("The seed file is empty!");
@@ -61,12 +53,12 @@ namespace senseix {
 			MemoryStream stream = new MemoryStream ();
 			reply.WriteTo (stream);
 			byte[] replacementBytes = stream.ToArray();
-			System.IO.File.WriteAllBytes (SeedFilePath(), replacementBytes);
+			System.IO.File.WriteAllBytes (FilePath(SEED_FILE_NAME), replacementBytes);
 		}
 		
-		static public string SeedFilePath()
+		static public string FilePath(string fileName)
 		{
-			return System.IO.Path.Combine(Application.persistentDataPath, SenseixController.GetCurrentPlayerID() + SEED_FILE_EXTENSION);
+			return System.IO.Path.Combine(Application.persistentDataPath, fileName);
 		}
 
 		static private void AppendStringToFile (string content, string filePath)
@@ -80,7 +72,7 @@ namespace senseix {
 			problemData.WriteTo (stream);
 			byte[] appendMeBytes = stream.ToArray();
 			string appendMeString = "\n" + System.Text.Encoding.Default.GetString (appendMeBytes);
-			string seedPath = SeedFilePath();
+			string seedPath = FilePath (SEED_FILE_NAME);
 			AppendStringToFile (appendMeString, seedPath);
 			//Replace the seed file for this game with 
 			//problems from the server
@@ -89,15 +81,15 @@ namespace senseix {
 			//last pull to server, Pull another N - repeat
 		}
 
-//		static public void ClearSeedExceptHeader()
-//		{
-//			IList<string> seedLines = System.IO.File.ReadAllLines (SeedFilePath()) as IList<string>;
-//			if (seedLines.Count == 0)
-//				throw new Exception("Problem: there is no seed file.  It should be here: " + SeedFilePath());
-//			System.IO.File.Delete (SeedFilePath());
-//			string header = seedLines [0];
-//			System.IO.File.WriteAllText(SeedFilePath(), header);
-//		}
+		static public void ClearSeedExceptHeader()
+		{
+			IList<string> seedLines = System.IO.File.ReadAllLines (FilePath(SEED_FILE_NAME)) as IList<string>;
+			if (seedLines.Count == 0)
+				throw new Exception("Problem: there is no seed file.  It should be here: " + FilePath (SEED_FILE_NAME));
+			System.IO.File.Delete (FilePath (SEED_FILE_NAME));
+			string header = seedLines [0];
+			System.IO.File.WriteAllText(FilePath(SEED_FILE_NAME), header);
+		}
 
 		static public int GetNewProblemCount () { 
 		//	Debug.Log ("Duane, problem count is" + newProblems.Count);

@@ -16,7 +16,7 @@ class SenseixPlugin : MonoBehaviour
 	private static Problem mostRecentProblem;
 
 
-	void Awake()
+	void Start()
 	{	
 		Debug.Log ("HENRY. INITIALIZING.");
 		if (singletonInstance != null)
@@ -57,7 +57,6 @@ class SenseixPlugin : MonoBehaviour
 	/// </summary>
 	public static Problem NextProblem()
 	{
-		Debug.Log ("NEXT PROBLEM");
 		senseix.message.problem.ProblemData.Builder protobufsProblemBuilder = senseix.SenseixController.PullProblem ();
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
 		senseix.PromptDisplay.singletonInstance.UpdateDisplay ();
@@ -128,11 +127,6 @@ class SenseixPlugin : MonoBehaviour
 	{
 		return GetMostRecentProblem ().GetCorrectAnswer ();
 	}
-
-	public static string GetMostRecentProblemHTML()
-	{
-		return GetMostRecentProblem ().GetPrompt ().GetHTML ();
-	}
 }
 
 public class Problem 
@@ -195,7 +189,7 @@ public class Problem
 	/// </summary>
 	public Prompt GetPrompt()
 	{
-		return new Prompt(protobufsProblemBuilder.Question);
+		return new Prompt(protobufsProblemBuilder.Content);
 	}
 
 	/// <summary>
@@ -225,10 +219,6 @@ public class Problem
 		return GetGivenAnswer ().GetAnswerParts ().Count ;
 	}
 
-	public string GetPromptHTML()
-	{
-		return GetPrompt ().GetHTML ();
-	}
 }
 
 public class Answer
@@ -281,18 +271,12 @@ public class Answer
 
 public class Prompt
 {
-	private senseix.message.problem.Question question;
-	private IList<senseix.message.problem.Atom> atomList;
 
-	public Prompt(senseix.message.problem.Question newQuestion)
-	{
-		question = newQuestion;
-		atomList = newQuestion.AtomList;
-	}
+	IList<senseix.message.problem.Atom> atomList;
 
-	public string GetHTML()
+	public Prompt(senseix.message.problem.Content newContent)
 	{
-		return question.Format.Html;
+		atomList = newContent.AtomList;
 	}
 
 	public System.Collections.IEnumerator GetEnumerator()
