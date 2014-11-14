@@ -18,8 +18,10 @@ namespace senseix.message.problem {
     #region Static variables
     internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Atom__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Atom, global::senseix.message.problem.Atom.Builder> internal__static_senseix_message_problem_Atom__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Content__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Content, global::senseix.message.problem.Content.Builder> internal__static_senseix_message_problem_Content__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Formatter__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Formatter, global::senseix.message.problem.Formatter.Builder> internal__static_senseix_message_problem_Formatter__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Question__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Question, global::senseix.message.problem.Question.Builder> internal__static_senseix_message_problem_Question__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Answer__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Answer, global::senseix.message.problem.Answer.Builder> internal__static_senseix_message_problem_Answer__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Distractor__Descriptor;
@@ -51,68 +53,77 @@ namespace senseix.message.problem {
           "c3RhbnQucHJvdG8inwEKBEF0b20SDAoEdXVpZBgBIAIoCRI2CgR0eXBlGAIg" + 
           "AigOMiIuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uQXRvbS5UeXBlOgRURVhU" + 
           "EgwKBGRhdGEYAyACKAwSEAoIcmVxdWlyZWQYBCACKAgiMQoEVHlwZRIICgRU" + 
-          "RVhUEAASCQoFSU1BR0UQARIJCgVBVURJTxACEgkKBVZJREVPEAMiNgoHQ29u" + 
-          "dGVudBIrCgRhdG9tGAEgAygLMh0uc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0u" + 
-          "QXRvbSI1CgZBbnN3ZXISKwoEYXRvbRgBIAMoCzIdLnNlbnNlaXgubWVzc2Fn" + 
-          "ZS5wcm9ibGVtLkF0b20iOQoKRGlzdHJhY3RvchIrCgRhdG9tGAEgAygLMh0u" + 
-          "c2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uQXRvbSK4AQoLUHJvYmxlbURhdGES" + 
-          "DAoEdXVpZBgBIAIoCRIxCgdjb250ZW50GAIgAigLMiAuc2Vuc2VpeC5tZXNz" + 
-          "YWdlLnByb2JsZW0uQ29udGVudBIvCgZhbnN3ZXIYAyACKAsyHy5zZW5zZWl4" + 
-          "Lm1lc3NhZ2UucHJvYmxlbS5BbnN3ZXISNwoKZGlzdHJhY3RvchgEIAIoCzIj" + 
-          "LnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLkRpc3RyYWN0b3IiIAoQQW5zd2Vy" + 
-          "SWRlbnRpZmllchIMCgR1dWlkGAEgAygJIqcBCgtQcm9ibGVtUG9zdBIRCglw" + 
-          "bGF5ZXJfaWQYASACKAkSEgoKcHJvYmxlbV9pZBgCIAIoCRI9CgphbnN3ZXJf" + 
-          "aWRzGAMgASgLMikuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uQW5zd2VySWRl" + 
-          "bnRpZmllchIQCghkdXJhdGlvbhgEIAEoAhIPCgdza2lwcGVkGAUgASgIEg8K" + 
-          "B2NvcnJlY3QYBiABKAgiSwoSUHJvYmxlbVBvc3RSZXF1ZXN0EjUKB3Byb2Js" + 
-          "ZW0YASADKAsyJC5zZW5zZWl4Lm1lc3NhZ2UucHJvYmxlbS5Qcm9ibGVtUG9z" + 
-          "dCIVChNQcm9ibGVtUG9zdFJlc3BvbnNlIj0KEVByb2JsZW1HZXRSZXF1ZXN0" + 
-          "EhEKCXBsYXllcl9pZBgBIAIoCRIVCg1wcm9ibGVtX2NvdW50GAIgASgNIksK" + 
-          "ElByb2JsZW1HZXRSZXNwb25zZRI1Cgdwcm9ibGVtGAEgAygLMiQuc2Vuc2Vp" + 
-          "eC5tZXNzYWdlLnByb2JsZW0uUHJvYmxlbURhdGE=");
+          "RVhUEAASCQoFSU1BR0UQARIJCgVBVURJTxACEgkKBVZJREVPEAMiJgoJRm9y" + 
+          "bWF0dGVyEgwKBGh0bWwYASABKAkSCwoDY3NzGAIgASgJImsKCFF1ZXN0aW9u" + 
+          "EisKBGF0b20YASADKAsyHS5zZW5zZWl4Lm1lc3NhZ2UucHJvYmxlbS5BdG9t" + 
+          "EjIKBmZvcm1hdBgCIAEoCzIiLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLkZv" + 
+          "cm1hdHRlciJpCgZBbnN3ZXISKwoEYXRvbRgBIAMoCzIdLnNlbnNlaXgubWVz" + 
+          "c2FnZS5wcm9ibGVtLkF0b20SMgoGZm9ybWF0GAIgASgLMiIuc2Vuc2VpeC5t" + 
+          "ZXNzYWdlLnByb2JsZW0uRm9ybWF0dGVyIm0KCkRpc3RyYWN0b3ISKwoEYXRv" + 
+          "bRgBIAMoCzIdLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLkF0b20SMgoGZm9y" + 
+          "bWF0GAIgASgLMiIuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uRm9ybWF0dGVy" + 
+          "IroBCgtQcm9ibGVtRGF0YRIMCgR1dWlkGAEgAigJEjMKCHF1ZXN0aW9uGAIg" + 
+          "AigLMiEuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uUXVlc3Rpb24SLwoGYW5z" + 
+          "d2VyGAMgAigLMh8uc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uQW5zd2VyEjcK" + 
+          "CmRpc3RyYWN0b3IYBCACKAsyIy5zZW5zZWl4Lm1lc3NhZ2UucHJvYmxlbS5E" + 
+          "aXN0cmFjdG9yIiAKEEFuc3dlcklkZW50aWZpZXISDAoEdXVpZBgBIAMoCSKn" + 
+          "AQoLUHJvYmxlbVBvc3QSEQoJcGxheWVyX2lkGAEgAigJEhIKCnByb2JsZW1f" + 
+          "aWQYAiACKAkSPQoKYW5zd2VyX2lkcxgDIAEoCzIpLnNlbnNlaXgubWVzc2Fn" + 
+          "ZS5wcm9ibGVtLkFuc3dlcklkZW50aWZpZXISEAoIZHVyYXRpb24YBCABKAIS" + 
+          "DwoHc2tpcHBlZBgFIAEoCBIPCgdjb3JyZWN0GAYgASgIIksKElByb2JsZW1Q" + 
+          "b3N0UmVxdWVzdBI1Cgdwcm9ibGVtGAEgAygLMiQuc2Vuc2VpeC5tZXNzYWdl" + 
+          "LnByb2JsZW0uUHJvYmxlbVBvc3QiFQoTUHJvYmxlbVBvc3RSZXNwb25zZSI9" + 
+          "ChFQcm9ibGVtR2V0UmVxdWVzdBIRCglwbGF5ZXJfaWQYASACKAkSFQoNcHJv" + 
+          "YmxlbV9jb3VudBgCIAEoDSJLChJQcm9ibGVtR2V0UmVzcG9uc2USNQoHcHJv" + 
+          "YmxlbRgBIAMoCzIkLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLlByb2JsZW1E" + 
+          "YXRh");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_senseix_message_problem_Atom__Descriptor = Descriptor.MessageTypes[0];
         internal__static_senseix_message_problem_Atom__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Atom, global::senseix.message.problem.Atom.Builder>(internal__static_senseix_message_problem_Atom__Descriptor,
                 new string[] { "Uuid", "Type", "Data", "Required", });
-        internal__static_senseix_message_problem_Content__Descriptor = Descriptor.MessageTypes[1];
-        internal__static_senseix_message_problem_Content__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Content, global::senseix.message.problem.Content.Builder>(internal__static_senseix_message_problem_Content__Descriptor,
-                new string[] { "Atom", });
-        internal__static_senseix_message_problem_Answer__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_senseix_message_problem_Formatter__Descriptor = Descriptor.MessageTypes[1];
+        internal__static_senseix_message_problem_Formatter__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Formatter, global::senseix.message.problem.Formatter.Builder>(internal__static_senseix_message_problem_Formatter__Descriptor,
+                new string[] { "Html", "Css", });
+        internal__static_senseix_message_problem_Question__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_senseix_message_problem_Question__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Question, global::senseix.message.problem.Question.Builder>(internal__static_senseix_message_problem_Question__Descriptor,
+                new string[] { "Atom", "Format", });
+        internal__static_senseix_message_problem_Answer__Descriptor = Descriptor.MessageTypes[3];
         internal__static_senseix_message_problem_Answer__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Answer, global::senseix.message.problem.Answer.Builder>(internal__static_senseix_message_problem_Answer__Descriptor,
-                new string[] { "Atom", });
-        internal__static_senseix_message_problem_Distractor__Descriptor = Descriptor.MessageTypes[3];
+                new string[] { "Atom", "Format", });
+        internal__static_senseix_message_problem_Distractor__Descriptor = Descriptor.MessageTypes[4];
         internal__static_senseix_message_problem_Distractor__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Distractor, global::senseix.message.problem.Distractor.Builder>(internal__static_senseix_message_problem_Distractor__Descriptor,
-                new string[] { "Atom", });
-        internal__static_senseix_message_problem_ProblemData__Descriptor = Descriptor.MessageTypes[4];
+                new string[] { "Atom", "Format", });
+        internal__static_senseix_message_problem_ProblemData__Descriptor = Descriptor.MessageTypes[5];
         internal__static_senseix_message_problem_ProblemData__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemData, global::senseix.message.problem.ProblemData.Builder>(internal__static_senseix_message_problem_ProblemData__Descriptor,
-                new string[] { "Uuid", "Content", "Answer", "Distractor", });
-        internal__static_senseix_message_problem_AnswerIdentifier__Descriptor = Descriptor.MessageTypes[5];
+                new string[] { "Uuid", "Question", "Answer", "Distractor", });
+        internal__static_senseix_message_problem_AnswerIdentifier__Descriptor = Descriptor.MessageTypes[6];
         internal__static_senseix_message_problem_AnswerIdentifier__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.AnswerIdentifier, global::senseix.message.problem.AnswerIdentifier.Builder>(internal__static_senseix_message_problem_AnswerIdentifier__Descriptor,
                 new string[] { "Uuid", });
-        internal__static_senseix_message_problem_ProblemPost__Descriptor = Descriptor.MessageTypes[6];
+        internal__static_senseix_message_problem_ProblemPost__Descriptor = Descriptor.MessageTypes[7];
         internal__static_senseix_message_problem_ProblemPost__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPost, global::senseix.message.problem.ProblemPost.Builder>(internal__static_senseix_message_problem_ProblemPost__Descriptor,
                 new string[] { "PlayerId", "ProblemId", "AnswerIds", "Duration", "Skipped", "Correct", });
-        internal__static_senseix_message_problem_ProblemPostRequest__Descriptor = Descriptor.MessageTypes[7];
+        internal__static_senseix_message_problem_ProblemPostRequest__Descriptor = Descriptor.MessageTypes[8];
         internal__static_senseix_message_problem_ProblemPostRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPostRequest, global::senseix.message.problem.ProblemPostRequest.Builder>(internal__static_senseix_message_problem_ProblemPostRequest__Descriptor,
                 new string[] { "Problem", });
-        internal__static_senseix_message_problem_ProblemPostResponse__Descriptor = Descriptor.MessageTypes[8];
+        internal__static_senseix_message_problem_ProblemPostResponse__Descriptor = Descriptor.MessageTypes[9];
         internal__static_senseix_message_problem_ProblemPostResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPostResponse, global::senseix.message.problem.ProblemPostResponse.Builder>(internal__static_senseix_message_problem_ProblemPostResponse__Descriptor,
                 new string[] { });
-        internal__static_senseix_message_problem_ProblemGetRequest__Descriptor = Descriptor.MessageTypes[9];
+        internal__static_senseix_message_problem_ProblemGetRequest__Descriptor = Descriptor.MessageTypes[10];
         internal__static_senseix_message_problem_ProblemGetRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemGetRequest, global::senseix.message.problem.ProblemGetRequest.Builder>(internal__static_senseix_message_problem_ProblemGetRequest__Descriptor,
                 new string[] { "PlayerId", "ProblemCount", });
-        internal__static_senseix_message_problem_ProblemGetResponse__Descriptor = Descriptor.MessageTypes[10];
+        internal__static_senseix_message_problem_ProblemGetResponse__Descriptor = Descriptor.MessageTypes[11];
         internal__static_senseix_message_problem_ProblemGetResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemGetResponse, global::senseix.message.problem.ProblemGetResponse.Builder>(internal__static_senseix_message_problem_ProblemGetResponse__Descriptor,
                 new string[] { "Problem", });
@@ -554,57 +565,65 @@ namespace senseix.message.problem {
   }
   
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-  public sealed partial class Content : pb::GeneratedMessage<Content, Content.Builder> {
-    private Content() { }
-    private static readonly Content defaultInstance = new Content().MakeReadOnly();
-    private static readonly string[] _contentFieldNames = new string[] { "atom" };
-    private static readonly uint[] _contentFieldTags = new uint[] { 10 };
-    public static Content DefaultInstance {
+  public sealed partial class Formatter : pb::GeneratedMessage<Formatter, Formatter.Builder> {
+    private Formatter() { }
+    private static readonly Formatter defaultInstance = new Formatter().MakeReadOnly();
+    private static readonly string[] _formatterFieldNames = new string[] { "css", "html" };
+    private static readonly uint[] _formatterFieldTags = new uint[] { 18, 10 };
+    public static Formatter DefaultInstance {
       get { return defaultInstance; }
     }
     
-    public override Content DefaultInstanceForType {
+    public override Formatter DefaultInstanceForType {
       get { return DefaultInstance; }
     }
     
-    protected override Content ThisMessage {
+    protected override Formatter ThisMessage {
       get { return this; }
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Content__Descriptor; }
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Formatter__Descriptor; }
     }
     
-    protected override pb::FieldAccess.FieldAccessorTable<Content, Content.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Content__FieldAccessorTable; }
+    protected override pb::FieldAccess.FieldAccessorTable<Formatter, Formatter.Builder> InternalFieldAccessors {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Formatter__FieldAccessorTable; }
     }
     
-    public const int AtomFieldNumber = 1;
-    private pbc::PopsicleList<global::senseix.message.problem.Atom> atom_ = new pbc::PopsicleList<global::senseix.message.problem.Atom>();
-    public scg::IList<global::senseix.message.problem.Atom> AtomList {
-      get { return atom_; }
+    public const int HtmlFieldNumber = 1;
+    private bool hasHtml;
+    private string html_ = "";
+    public bool HasHtml {
+      get { return hasHtml; }
     }
-    public int AtomCount {
-      get { return atom_.Count; }
+    public string Html {
+      get { return html_; }
     }
-    public global::senseix.message.problem.Atom GetAtom(int index) {
-      return atom_[index];
+    
+    public const int CssFieldNumber = 2;
+    private bool hasCss;
+    private string css_ = "";
+    public bool HasCss {
+      get { return hasCss; }
+    }
+    public string Css {
+      get { return css_; }
     }
     
     public override bool IsInitialized {
       get {
-        foreach (global::senseix.message.problem.Atom element in AtomList) {
-          if (!element.IsInitialized) return false;
-        }
         return true;
       }
     }
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _contentFieldNames;
-      if (atom_.Count > 0) {
-        output.WriteMessageArray(1, field_names[0], atom_);
+      string[] field_names = _formatterFieldNames;
+      if (hasHtml) {
+        output.WriteString(1, field_names[1], Html);
+      }
+      if (hasCss) {
+        output.WriteString(2, field_names[0], Css);
       }
       UnknownFields.WriteTo(output);
     }
@@ -616,8 +635,11 @@ namespace senseix.message.problem {
         if (size != -1) return size;
         
         size = 0;
-        foreach (global::senseix.message.problem.Atom element in AtomList) {
-          size += pb::CodedOutputStream.ComputeMessageSize(1, element);
+        if (hasHtml) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, Html);
+        }
+        if (hasCss) {
+          size += pb::CodedOutputStream.ComputeStringSize(2, Css);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -625,50 +647,49 @@ namespace senseix.message.problem {
       }
     }
     
-    public static Content ParseFrom(pb::ByteString data) {
+    public static Formatter ParseFrom(pb::ByteString data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static Content ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+    public static Formatter ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static Content ParseFrom(byte[] data) {
+    public static Formatter ParseFrom(byte[] data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static Content ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+    public static Formatter ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static Content ParseFrom(global::System.IO.Stream input) {
+    public static Formatter ParseFrom(global::System.IO.Stream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static Content ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static Formatter ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    public static Content ParseDelimitedFrom(global::System.IO.Stream input) {
+    public static Formatter ParseDelimitedFrom(global::System.IO.Stream input) {
       return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
     }
-    public static Content ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static Formatter ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
     }
-    public static Content ParseFrom(pb::ICodedInputStream input) {
+    public static Formatter ParseFrom(pb::ICodedInputStream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static Content ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+    public static Formatter ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    private Content MakeReadOnly() {
-      atom_.MakeReadOnly();
+    private Formatter MakeReadOnly() {
       return this;
     }
     
     public static Builder CreateBuilder() { return new Builder(); }
     public override Builder ToBuilder() { return CreateBuilder(this); }
     public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(Content prototype) {
+    public static Builder CreateBuilder(Formatter prototype) {
       return new Builder(prototype);
     }
     
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    public sealed partial class Builder : pb::GeneratedBuilder<Content, Builder> {
+    public sealed partial class Builder : pb::GeneratedBuilder<Formatter, Builder> {
       protected override Builder ThisBuilder {
         get { return this; }
       }
@@ -676,18 +697,18 @@ namespace senseix.message.problem {
         result = DefaultInstance;
         resultIsReadOnly = true;
       }
-      internal Builder(Content cloneFrom) {
+      internal Builder(Formatter cloneFrom) {
         result = cloneFrom;
         resultIsReadOnly = true;
       }
       
       private bool resultIsReadOnly;
-      private Content result;
+      private Formatter result;
       
-      private Content PrepareBuilder() {
+      private Formatter PrepareBuilder() {
         if (resultIsReadOnly) {
-          Content original = result;
-          result = new Content();
+          Formatter original = result;
+          result = new Formatter();
           resultIsReadOnly = false;
           MergeFrom(original);
         }
@@ -698,7 +719,7 @@ namespace senseix.message.problem {
         get { return result.IsInitialized; }
       }
       
-      protected override Content MessageBeingBuilt {
+      protected override Formatter MessageBeingBuilt {
         get { return PrepareBuilder(); }
       }
       
@@ -717,14 +738,14 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.Content.Descriptor; }
+        get { return global::senseix.message.problem.Formatter.Descriptor; }
       }
       
-      public override Content DefaultInstanceForType {
-        get { return global::senseix.message.problem.Content.DefaultInstance; }
+      public override Formatter DefaultInstanceForType {
+        get { return global::senseix.message.problem.Formatter.DefaultInstance; }
       }
       
-      public override Content BuildPartial() {
+      public override Formatter BuildPartial() {
         if (resultIsReadOnly) {
           return result;
         }
@@ -733,19 +754,22 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(pb::IMessage other) {
-        if (other is Content) {
-          return MergeFrom((Content) other);
+        if (other is Formatter) {
+          return MergeFrom((Formatter) other);
         } else {
           base.MergeFrom(other);
           return this;
         }
       }
       
-      public override Builder MergeFrom(Content other) {
-        if (other == global::senseix.message.problem.Content.DefaultInstance) return this;
+      public override Builder MergeFrom(Formatter other) {
+        if (other == global::senseix.message.problem.Formatter.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.atom_.Count != 0) {
-          result.atom_.Add(other.atom_);
+        if (other.HasHtml) {
+          Html = other.Html;
+        }
+        if (other.HasCss) {
+          Css = other.Css;
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -762,9 +786,330 @@ namespace senseix.message.problem {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_contentFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_formatterFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _contentFieldTags[field_ordinal];
+              tag = _formatterFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasHtml = input.ReadString(ref result.html_);
+              break;
+            }
+            case 18: {
+              result.hasCss = input.ReadString(ref result.css_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasHtml {
+        get { return result.hasHtml; }
+      }
+      public string Html {
+        get { return result.Html; }
+        set { SetHtml(value); }
+      }
+      public Builder SetHtml(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHtml = true;
+        result.html_ = value;
+        return this;
+      }
+      public Builder ClearHtml() {
+        PrepareBuilder();
+        result.hasHtml = false;
+        result.html_ = "";
+        return this;
+      }
+      
+      public bool HasCss {
+        get { return result.hasCss; }
+      }
+      public string Css {
+        get { return result.Css; }
+        set { SetCss(value); }
+      }
+      public Builder SetCss(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasCss = true;
+        result.css_ = value;
+        return this;
+      }
+      public Builder ClearCss() {
+        PrepareBuilder();
+        result.hasCss = false;
+        result.css_ = "";
+        return this;
+      }
+    }
+    static Formatter() {
+      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class Question : pb::GeneratedMessage<Question, Question.Builder> {
+    private Question() { }
+    private static readonly Question defaultInstance = new Question().MakeReadOnly();
+    private static readonly string[] _questionFieldNames = new string[] { "atom", "format" };
+    private static readonly uint[] _questionFieldTags = new uint[] { 10, 18 };
+    public static Question DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override Question DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override Question ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Question__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<Question, Question.Builder> InternalFieldAccessors {
+      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Question__FieldAccessorTable; }
+    }
+    
+    public const int AtomFieldNumber = 1;
+    private pbc::PopsicleList<global::senseix.message.problem.Atom> atom_ = new pbc::PopsicleList<global::senseix.message.problem.Atom>();
+    public scg::IList<global::senseix.message.problem.Atom> AtomList {
+      get { return atom_; }
+    }
+    public int AtomCount {
+      get { return atom_.Count; }
+    }
+    public global::senseix.message.problem.Atom GetAtom(int index) {
+      return atom_[index];
+    }
+    
+    public const int FormatFieldNumber = 2;
+    private bool hasFormat;
+    private global::senseix.message.problem.Formatter format_;
+    public bool HasFormat {
+      get { return hasFormat; }
+    }
+    public global::senseix.message.problem.Formatter Format {
+      get { return format_ ?? global::senseix.message.problem.Formatter.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        foreach (global::senseix.message.problem.Atom element in AtomList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _questionFieldNames;
+      if (atom_.Count > 0) {
+        output.WriteMessageArray(1, field_names[0], atom_);
+      }
+      if (hasFormat) {
+        output.WriteMessage(2, field_names[1], Format);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        foreach (global::senseix.message.problem.Atom element in AtomList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, element);
+        }
+        if (hasFormat) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, Format);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static Question ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static Question ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static Question ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static Question ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static Question ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static Question ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Question ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static Question ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static Question ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static Question ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private Question MakeReadOnly() {
+      atom_.MakeReadOnly();
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(Question prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<Question, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(Question cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private Question result;
+      
+      private Question PrepareBuilder() {
+        if (resultIsReadOnly) {
+          Question original = result;
+          result = new Question();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override Question MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::senseix.message.problem.Question.Descriptor; }
+      }
+      
+      public override Question DefaultInstanceForType {
+        get { return global::senseix.message.problem.Question.DefaultInstance; }
+      }
+      
+      public override Question BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is Question) {
+          return MergeFrom((Question) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(Question other) {
+        if (other == global::senseix.message.problem.Question.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.atom_.Count != 0) {
+          result.atom_.Add(other.atom_);
+        }
+        if (other.HasFormat) {
+          MergeFormat(other.Format);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_questionFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _questionFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -792,6 +1137,15 @@ namespace senseix.message.problem {
             }
             case 10: {
               input.ReadMessageArray(tag, field_name, result.atom_, global::senseix.message.problem.Atom.DefaultInstance, extensionRegistry);
+              break;
+            }
+            case 18: {
+              global::senseix.message.problem.Formatter.Builder subBuilder = global::senseix.message.problem.Formatter.CreateBuilder();
+              if (result.hasFormat) {
+                subBuilder.MergeFrom(Format);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Format = subBuilder.BuildPartial();
               break;
             }
           }
@@ -847,8 +1201,48 @@ namespace senseix.message.problem {
         result.atom_.Clear();
         return this;
       }
+      
+      public bool HasFormat {
+       get { return result.hasFormat; }
+      }
+      public global::senseix.message.problem.Formatter Format {
+        get { return result.Format; }
+        set { SetFormat(value); }
+      }
+      public Builder SetFormat(global::senseix.message.problem.Formatter value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasFormat = true;
+        result.format_ = value;
+        return this;
+      }
+      public Builder SetFormat(global::senseix.message.problem.Formatter.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasFormat = true;
+        result.format_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeFormat(global::senseix.message.problem.Formatter value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasFormat &&
+            result.format_ != global::senseix.message.problem.Formatter.DefaultInstance) {
+            result.format_ = global::senseix.message.problem.Formatter.CreateBuilder(result.format_).MergeFrom(value).BuildPartial();
+        } else {
+          result.format_ = value;
+        }
+        result.hasFormat = true;
+        return this;
+      }
+      public Builder ClearFormat() {
+        PrepareBuilder();
+        result.hasFormat = false;
+        result.format_ = null;
+        return this;
+      }
     }
-    static Content() {
+    static Question() {
       object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
     }
   }
@@ -857,8 +1251,8 @@ namespace senseix.message.problem {
   public sealed partial class Answer : pb::GeneratedMessage<Answer, Answer.Builder> {
     private Answer() { }
     private static readonly Answer defaultInstance = new Answer().MakeReadOnly();
-    private static readonly string[] _answerFieldNames = new string[] { "atom" };
-    private static readonly uint[] _answerFieldTags = new uint[] { 10 };
+    private static readonly string[] _answerFieldNames = new string[] { "atom", "format" };
+    private static readonly uint[] _answerFieldTags = new uint[] { 10, 18 };
     public static Answer DefaultInstance {
       get { return defaultInstance; }
     }
@@ -891,6 +1285,16 @@ namespace senseix.message.problem {
       return atom_[index];
     }
     
+    public const int FormatFieldNumber = 2;
+    private bool hasFormat;
+    private global::senseix.message.problem.Formatter format_;
+    public bool HasFormat {
+      get { return hasFormat; }
+    }
+    public global::senseix.message.problem.Formatter Format {
+      get { return format_ ?? global::senseix.message.problem.Formatter.DefaultInstance; }
+    }
+    
     public override bool IsInitialized {
       get {
         foreach (global::senseix.message.problem.Atom element in AtomList) {
@@ -906,6 +1310,9 @@ namespace senseix.message.problem {
       if (atom_.Count > 0) {
         output.WriteMessageArray(1, field_names[0], atom_);
       }
+      if (hasFormat) {
+        output.WriteMessage(2, field_names[1], Format);
+      }
       UnknownFields.WriteTo(output);
     }
     
@@ -918,6 +1325,9 @@ namespace senseix.message.problem {
         size = 0;
         foreach (global::senseix.message.problem.Atom element in AtomList) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, element);
+        }
+        if (hasFormat) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, Format);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -1047,6 +1457,9 @@ namespace senseix.message.problem {
         if (other.atom_.Count != 0) {
           result.atom_.Add(other.atom_);
         }
+        if (other.HasFormat) {
+          MergeFormat(other.Format);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -1092,6 +1505,15 @@ namespace senseix.message.problem {
             }
             case 10: {
               input.ReadMessageArray(tag, field_name, result.atom_, global::senseix.message.problem.Atom.DefaultInstance, extensionRegistry);
+              break;
+            }
+            case 18: {
+              global::senseix.message.problem.Formatter.Builder subBuilder = global::senseix.message.problem.Formatter.CreateBuilder();
+              if (result.hasFormat) {
+                subBuilder.MergeFrom(Format);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Format = subBuilder.BuildPartial();
               break;
             }
           }
@@ -1147,6 +1569,46 @@ namespace senseix.message.problem {
         result.atom_.Clear();
         return this;
       }
+      
+      public bool HasFormat {
+       get { return result.hasFormat; }
+      }
+      public global::senseix.message.problem.Formatter Format {
+        get { return result.Format; }
+        set { SetFormat(value); }
+      }
+      public Builder SetFormat(global::senseix.message.problem.Formatter value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasFormat = true;
+        result.format_ = value;
+        return this;
+      }
+      public Builder SetFormat(global::senseix.message.problem.Formatter.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasFormat = true;
+        result.format_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeFormat(global::senseix.message.problem.Formatter value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasFormat &&
+            result.format_ != global::senseix.message.problem.Formatter.DefaultInstance) {
+            result.format_ = global::senseix.message.problem.Formatter.CreateBuilder(result.format_).MergeFrom(value).BuildPartial();
+        } else {
+          result.format_ = value;
+        }
+        result.hasFormat = true;
+        return this;
+      }
+      public Builder ClearFormat() {
+        PrepareBuilder();
+        result.hasFormat = false;
+        result.format_ = null;
+        return this;
+      }
     }
     static Answer() {
       object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
@@ -1157,8 +1619,8 @@ namespace senseix.message.problem {
   public sealed partial class Distractor : pb::GeneratedMessage<Distractor, Distractor.Builder> {
     private Distractor() { }
     private static readonly Distractor defaultInstance = new Distractor().MakeReadOnly();
-    private static readonly string[] _distractorFieldNames = new string[] { "atom" };
-    private static readonly uint[] _distractorFieldTags = new uint[] { 10 };
+    private static readonly string[] _distractorFieldNames = new string[] { "atom", "format" };
+    private static readonly uint[] _distractorFieldTags = new uint[] { 10, 18 };
     public static Distractor DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1191,6 +1653,16 @@ namespace senseix.message.problem {
       return atom_[index];
     }
     
+    public const int FormatFieldNumber = 2;
+    private bool hasFormat;
+    private global::senseix.message.problem.Formatter format_;
+    public bool HasFormat {
+      get { return hasFormat; }
+    }
+    public global::senseix.message.problem.Formatter Format {
+      get { return format_ ?? global::senseix.message.problem.Formatter.DefaultInstance; }
+    }
+    
     public override bool IsInitialized {
       get {
         foreach (global::senseix.message.problem.Atom element in AtomList) {
@@ -1206,6 +1678,9 @@ namespace senseix.message.problem {
       if (atom_.Count > 0) {
         output.WriteMessageArray(1, field_names[0], atom_);
       }
+      if (hasFormat) {
+        output.WriteMessage(2, field_names[1], Format);
+      }
       UnknownFields.WriteTo(output);
     }
     
@@ -1218,6 +1693,9 @@ namespace senseix.message.problem {
         size = 0;
         foreach (global::senseix.message.problem.Atom element in AtomList) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, element);
+        }
+        if (hasFormat) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, Format);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -1347,6 +1825,9 @@ namespace senseix.message.problem {
         if (other.atom_.Count != 0) {
           result.atom_.Add(other.atom_);
         }
+        if (other.HasFormat) {
+          MergeFormat(other.Format);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -1392,6 +1873,15 @@ namespace senseix.message.problem {
             }
             case 10: {
               input.ReadMessageArray(tag, field_name, result.atom_, global::senseix.message.problem.Atom.DefaultInstance, extensionRegistry);
+              break;
+            }
+            case 18: {
+              global::senseix.message.problem.Formatter.Builder subBuilder = global::senseix.message.problem.Formatter.CreateBuilder();
+              if (result.hasFormat) {
+                subBuilder.MergeFrom(Format);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Format = subBuilder.BuildPartial();
               break;
             }
           }
@@ -1447,6 +1937,46 @@ namespace senseix.message.problem {
         result.atom_.Clear();
         return this;
       }
+      
+      public bool HasFormat {
+       get { return result.hasFormat; }
+      }
+      public global::senseix.message.problem.Formatter Format {
+        get { return result.Format; }
+        set { SetFormat(value); }
+      }
+      public Builder SetFormat(global::senseix.message.problem.Formatter value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasFormat = true;
+        result.format_ = value;
+        return this;
+      }
+      public Builder SetFormat(global::senseix.message.problem.Formatter.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasFormat = true;
+        result.format_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeFormat(global::senseix.message.problem.Formatter value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasFormat &&
+            result.format_ != global::senseix.message.problem.Formatter.DefaultInstance) {
+            result.format_ = global::senseix.message.problem.Formatter.CreateBuilder(result.format_).MergeFrom(value).BuildPartial();
+        } else {
+          result.format_ = value;
+        }
+        result.hasFormat = true;
+        return this;
+      }
+      public Builder ClearFormat() {
+        PrepareBuilder();
+        result.hasFormat = false;
+        result.format_ = null;
+        return this;
+      }
     }
     static Distractor() {
       object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
@@ -1457,8 +1987,8 @@ namespace senseix.message.problem {
   public sealed partial class ProblemData : pb::GeneratedMessage<ProblemData, ProblemData.Builder> {
     private ProblemData() { }
     private static readonly ProblemData defaultInstance = new ProblemData().MakeReadOnly();
-    private static readonly string[] _problemDataFieldNames = new string[] { "answer", "content", "distractor", "uuid" };
-    private static readonly uint[] _problemDataFieldTags = new uint[] { 26, 18, 34, 10 };
+    private static readonly string[] _problemDataFieldNames = new string[] { "answer", "distractor", "question", "uuid" };
+    private static readonly uint[] _problemDataFieldTags = new uint[] { 26, 34, 18, 10 };
     public static ProblemData DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1489,14 +2019,14 @@ namespace senseix.message.problem {
       get { return uuid_; }
     }
     
-    public const int ContentFieldNumber = 2;
-    private bool hasContent;
-    private global::senseix.message.problem.Content content_;
-    public bool HasContent {
-      get { return hasContent; }
+    public const int QuestionFieldNumber = 2;
+    private bool hasQuestion;
+    private global::senseix.message.problem.Question question_;
+    public bool HasQuestion {
+      get { return hasQuestion; }
     }
-    public global::senseix.message.problem.Content Content {
-      get { return content_ ?? global::senseix.message.problem.Content.DefaultInstance; }
+    public global::senseix.message.problem.Question Question {
+      get { return question_ ?? global::senseix.message.problem.Question.DefaultInstance; }
     }
     
     public const int AnswerFieldNumber = 3;
@@ -1522,10 +2052,10 @@ namespace senseix.message.problem {
     public override bool IsInitialized {
       get {
         if (!hasUuid) return false;
-        if (!hasContent) return false;
+        if (!hasQuestion) return false;
         if (!hasAnswer) return false;
         if (!hasDistractor) return false;
-        if (!Content.IsInitialized) return false;
+        if (!Question.IsInitialized) return false;
         if (!Answer.IsInitialized) return false;
         if (!Distractor.IsInitialized) return false;
         return true;
@@ -1538,14 +2068,14 @@ namespace senseix.message.problem {
       if (hasUuid) {
         output.WriteString(1, field_names[3], Uuid);
       }
-      if (hasContent) {
-        output.WriteMessage(2, field_names[1], Content);
+      if (hasQuestion) {
+        output.WriteMessage(2, field_names[2], Question);
       }
       if (hasAnswer) {
         output.WriteMessage(3, field_names[0], Answer);
       }
       if (hasDistractor) {
-        output.WriteMessage(4, field_names[2], Distractor);
+        output.WriteMessage(4, field_names[1], Distractor);
       }
       UnknownFields.WriteTo(output);
     }
@@ -1560,8 +2090,8 @@ namespace senseix.message.problem {
         if (hasUuid) {
           size += pb::CodedOutputStream.ComputeStringSize(1, Uuid);
         }
-        if (hasContent) {
-          size += pb::CodedOutputStream.ComputeMessageSize(2, Content);
+        if (hasQuestion) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, Question);
         }
         if (hasAnswer) {
           size += pb::CodedOutputStream.ComputeMessageSize(3, Answer);
@@ -1696,8 +2226,8 @@ namespace senseix.message.problem {
         if (other.HasUuid) {
           Uuid = other.Uuid;
         }
-        if (other.HasContent) {
-          MergeContent(other.Content);
+        if (other.HasQuestion) {
+          MergeQuestion(other.Question);
         }
         if (other.HasAnswer) {
           MergeAnswer(other.Answer);
@@ -1753,12 +2283,12 @@ namespace senseix.message.problem {
               break;
             }
             case 18: {
-              global::senseix.message.problem.Content.Builder subBuilder = global::senseix.message.problem.Content.CreateBuilder();
-              if (result.hasContent) {
-                subBuilder.MergeFrom(Content);
+              global::senseix.message.problem.Question.Builder subBuilder = global::senseix.message.problem.Question.CreateBuilder();
+              if (result.hasQuestion) {
+                subBuilder.MergeFrom(Question);
               }
               input.ReadMessage(subBuilder, extensionRegistry);
-              Content = subBuilder.BuildPartial();
+              Question = subBuilder.BuildPartial();
               break;
             }
             case 26: {
@@ -1810,43 +2340,43 @@ namespace senseix.message.problem {
         return this;
       }
       
-      public bool HasContent {
-       get { return result.hasContent; }
+      public bool HasQuestion {
+       get { return result.hasQuestion; }
       }
-      public global::senseix.message.problem.Content Content {
-        get { return result.Content; }
-        set { SetContent(value); }
+      public global::senseix.message.problem.Question Question {
+        get { return result.Question; }
+        set { SetQuestion(value); }
       }
-      public Builder SetContent(global::senseix.message.problem.Content value) {
+      public Builder SetQuestion(global::senseix.message.problem.Question value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hasContent = true;
-        result.content_ = value;
+        result.hasQuestion = true;
+        result.question_ = value;
         return this;
       }
-      public Builder SetContent(global::senseix.message.problem.Content.Builder builderForValue) {
+      public Builder SetQuestion(global::senseix.message.problem.Question.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.hasContent = true;
-        result.content_ = builderForValue.Build();
+        result.hasQuestion = true;
+        result.question_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeContent(global::senseix.message.problem.Content value) {
+      public Builder MergeQuestion(global::senseix.message.problem.Question value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        if (result.hasContent &&
-            result.content_ != global::senseix.message.problem.Content.DefaultInstance) {
-            result.content_ = global::senseix.message.problem.Content.CreateBuilder(result.content_).MergeFrom(value).BuildPartial();
+        if (result.hasQuestion &&
+            result.question_ != global::senseix.message.problem.Question.DefaultInstance) {
+            result.question_ = global::senseix.message.problem.Question.CreateBuilder(result.question_).MergeFrom(value).BuildPartial();
         } else {
-          result.content_ = value;
+          result.question_ = value;
         }
-        result.hasContent = true;
+        result.hasQuestion = true;
         return this;
       }
-      public Builder ClearContent() {
+      public Builder ClearQuestion() {
         PrepareBuilder();
-        result.hasContent = false;
-        result.content_ = null;
+        result.hasQuestion = false;
+        result.question_ = null;
         return this;
       }
       
