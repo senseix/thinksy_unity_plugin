@@ -11,10 +11,22 @@ class SenseixPlugin : MonoBehaviour
 {
 
 	public string developerAccessToken; //this is your developer access token obtained from the SenseiX website.
+	public GameObject emergencyWindow;
 
 	private static SenseixPlugin singletonInstance;
 	private static Problem mostRecentProblem;
 
+	private const int reconnectRetryInterval = 6000;
+
+	static public void ShowEmergencyWindow()
+	{
+		singletonInstance.ShowThisEmergencyWindow ();
+	}
+
+	private void ShowThisEmergencyWindow()
+	{
+		emergencyWindow.SetActive (true);
+	}
 
 	void Awake()
 	{	
@@ -29,10 +41,12 @@ class SenseixPlugin : MonoBehaviour
 		senseix.SenseixController.InitializeSenseix (developerAccessToken);
 	}
 
-	~SenseixPlugin()
+	void Update()
 	{
-		singletonInstance = null;
-		senseix.SenseixController.EndLife ();
+		if (!senseix.SenseixController.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
+		{
+			senseix.SenseixController.InitializeSenseix(developerAccessToken);
+		}
 	}
 
 	/// <summary>
@@ -60,7 +74,7 @@ class SenseixPlugin : MonoBehaviour
 		Debug.Log ("NEXT PROBLEM");
 		senseix.message.problem.ProblemData.Builder protobufsProblemBuilder = senseix.SenseixController.PullProblem ();
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
-		senseix.PromptDisplay.singletonInstance.UpdateDisplay ();
+		senseix.QuestionDisplay.singletonInstance.UpdateDisplay ();
 		return mostRecentProblem;
 	}
 
@@ -131,7 +145,7 @@ class SenseixPlugin : MonoBehaviour
 
 	public static string GetMostRecentProblemHTML()
 	{
-		return GetMostRecentProblem ().GetPrompt ().GetHTML ();
+		return GetMostRecentProblem ().GetQuestion ().GetHTML ();
 	}
 }
 
@@ -193,9 +207,9 @@ public class Problem
 	/// <summary>
 	/// Returns the question to be answered.
 	/// </summary>
-	public Prompt GetPrompt()
+	public Question GetQuestion()
 	{
-		return new Prompt(protobufsProblemBuilder.Question);
+		return new Question(protobufsProblemBuilder.Question);
 	}
 
 	/// <summary>
@@ -225,9 +239,9 @@ public class Problem
 		return GetGivenAnswer ().GetAnswerParts ().Count ;
 	}
 
-	public string GetPromptHTML()
+	public string GetQuestionHTML()
 	{
-		return GetPrompt ().GetHTML ();
+		return GetQuestion ().GetHTML ();
 	}
 }
 
@@ -279,12 +293,12 @@ public class Answer
 	}
 }
 
-public class Prompt
+public class Question
 {
 	private senseix.message.problem.Question question;
 	private IList<senseix.message.problem.Atom> atomList;
 
-	public Prompt(senseix.message.problem.Question newQuestion)
+	public Question(senseix.message.problem.Question newQuestion)
 	{
 		question = newQuestion;
 		atomList = newQuestion.AtomList;
@@ -292,7 +306,10 @@ public class Prompt
 
 	public string GetHTML()
 	{
-		return question.Format.Html;
+		string html64 = question.Format.Html;
+		byte[] htmlutf = System.Convert.FromBase64String (html64);
+		string html = ASCIIEncoding.ASCII.GetString (htmlutf);
+		return html;
 	}
 
 	public System.Collections.IEnumerator GetEnumerator()
@@ -303,7 +320,7 @@ public class Prompt
 		}
 	}
 
-	public ProblemPart GetPromptPart(int index)
+	public ProblemPart GetQuestionPart(int index)
 	{
 		try 
 		{
@@ -311,7 +328,7 @@ public class Prompt
 		}
 		catch (Exception e)
 		{
-			throw new Exception("Prompt part index out of range");
+			throw new Exception("Question part index out of range");
 		}
 	}
 }
@@ -343,7 +360,7 @@ public class ProblemPart
 	public string GetString()
 	{
 		if (!IsString())
-			throw new Exception ("This PromptPart is not a string.  Be sure to check IsString before GetString.");
+			throw new Exception ("This QuestionPart is not a string.  Be sure to check IsString before GetString.");
 		string base64string = atom.Data.ToStringUtf8 ();
 		byte[] decodedBytes = System.Convert.FromBase64String (base64string);
 		return Encoding.ASCII.GetString (decodedBytes);
@@ -352,7 +369,7 @@ public class ProblemPart
 	public Texture2D GetImage()
 	{
 		if (!IsImage())
-			throw new Exception ("This PromptPart is not an image.  Be sure to check IsImage before GetImage.");
+			throw new Exception ("This QuestionPart is not an image.  Be sure to check IsImage before GetImage.");
 		Texture2D returnImage = new Texture2D(0, 0);
 		string base64string = atom.Data.ToStringUtf8 ();
 		byte[] imageBytes = System.Convert.FromBase64String (base64string);

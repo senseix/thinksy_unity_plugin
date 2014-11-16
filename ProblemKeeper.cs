@@ -44,7 +44,10 @@ namespace senseix {
 			string seedPath = SeedFilePath();
 			byte [] seedContents = System.IO.File.ReadAllBytes (seedPath);
 			if (seedContents.Length == 0)
+			{
+				SenseixPlugin.ShowEmergencyWindow();
 				throw new Exception ("The seed file is empty!");
+			}
 			message.ResponseHeader reply = message.ResponseHeader.ParseFrom (seedContents);
 
 			for (int i = 0; i < reply.ProblemGet.ProblemList.Count; i++)
@@ -66,7 +69,17 @@ namespace senseix {
 		
 		static public string SeedFilePath()
 		{
-			return System.IO.Path.Combine(Application.persistentDataPath, SenseixController.GetCurrentPlayerID() + SEED_FILE_EXTENSION);
+			string playerName = SenseixController.GetCurrentPlayerID ();
+			if (playerName == "no current player")
+			{
+				string[] files = Directory.GetFiles (Application.persistentDataPath, "*.seed");
+				if (files.Length == 0)
+				{
+					SenseixPlugin.ShowEmergencyWindow();
+				}
+				return files[0];
+			}
+			return System.IO.Path.Combine(Application.persistentDataPath, playerName + SEED_FILE_EXTENSION);
 		}
 
 		static private void AppendStringToFile (string content, string filePath)

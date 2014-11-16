@@ -18,7 +18,7 @@ namespace senseix.message {
 	static public class Request
 	{
         const string ENCRYPTED = "http://";
-        const string SERVER_URL = "192.168.1.14:3000/";
+        const string SERVER_URL = "192.168.1.2:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/parents/";
@@ -58,7 +58,7 @@ namespace senseix.message {
 	    {
 			ResponseHeader reply = null;
 			byte[] bytes;
-		
+
 			MemoryStream stream = new MemoryStream ();
 			Dictionary<string, string> mods = new Dictionary<string, string>();
 			mods.Add("Content-Type", "application/protobuf");
@@ -70,8 +70,16 @@ namespace senseix.message {
 
 			WaitForRequest (recvResult);
 		
+			byte[] replyBytes;
+			replyBytes = recvResult.bytes;
 			Debug.Log ("Recv result is " + recvResult.bytes);
-			var replyBytes = recvResult.bytes;
+
+			if (replyBytes.Length == 0)
+			{
+				Debug.Log("Bytes empty");
+				SenseixController.SetSessionState (false);
+				return false;
+			}
 			reply = ResponseHeader.ParseFrom (replyBytes);
 
 		

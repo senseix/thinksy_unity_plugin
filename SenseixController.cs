@@ -24,6 +24,12 @@ namespace senseix {
 		static public ArrayList GetCurrentPlayerList()
 		{
 			ArrayList returnList = new ArrayList ();
+			if (currentPlayerList == null)
+			{
+				Debug.Log("no current player list.  maybe not connected.");
+				return returnList;
+			}
+
 			for (int i = 0; i < currentPlayerList.PlayerCount; i++)
 			{
 				returnList.Add(currentPlayerList.GetPlayer(i));
@@ -83,10 +89,15 @@ namespace senseix {
 		}
 		static public string GetAuthToken()
 		{
-			return authToken;
+			if (GetSessionState ())
+				return authToken;
+			else
+				return "not connected";
 		}
 		static public string GetCurrentPlayerID()
 		{
+			if (currentPlayer == null)
+				return "no current player";
 			return currentPlayer.PlayerId;
 		}
 		static public void SetToPlayerWithID(string newPlayerID)
@@ -100,11 +111,8 @@ namespace senseix {
 			}
 		}
 
-		public static void EndLife(){
-		}
 
-
-		public static void InitializeSenseix (string newAccessToken) { 
+		public static bool InitializeSenseix (string newAccessToken) { 
 			deviceID = SystemInfo.deviceUniqueIdentifier;
 
 			accessToken = newAccessToken; 
@@ -119,6 +127,7 @@ namespace senseix {
 		  	ListPlayers ();
 			RegisterAllPlayers ();
 			ProblemKeeper.CreateSeedFileIfNeeded ();
+			return GetSessionState ();
 		}
 
 		static public void ListPlayers()
@@ -134,7 +143,7 @@ namespace senseix {
 			{
 				RegisterPlayer(player);
 			}
-			SetCurrentPlayer (players [0] as message.player.Player);
+			if (players.Count > 0) SetCurrentPlayer (players [0] as message.player.Player);
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)
