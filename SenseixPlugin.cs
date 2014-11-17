@@ -47,6 +47,8 @@ class SenseixPlugin : MonoBehaviour
 		{
 			senseix.SenseixController.InitializeSenseix(developerAccessToken);
 		}
+
+		senseix.message.Request.CheckResults ();
 	}
 
 	/// <summary>
@@ -180,10 +182,14 @@ public class Problem
 
 	public ProblemPart[] GetDistractors(int howManyDistractors)
 	{
+		if (protobufsProblemBuilder.Distractor.AtomCount < howManyDistractors)
+		{
+			throw new Exception("There aren't enough distractors!  There are only "
+			                    + protobufsProblemBuilder.Distractor.AtomCount + " distractors.");
+		}
 		ProblemPart[] distractors = new ProblemPart[howManyDistractors];
 		for (int i = 0; i < howManyDistractors; i++)
 		{
-			Debug.Log(protobufsProblemBuilder.Distractor.AtomCount + " distractors available");
 			senseix.message.problem.Atom distractorAtom = protobufsProblemBuilder.Distractor.AtomList[i];
 			ProblemPart distractor = new ProblemPart(distractorAtom);
 			distractors[i] = distractor;
