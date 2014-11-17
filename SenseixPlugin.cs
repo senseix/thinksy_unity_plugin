@@ -38,6 +38,7 @@ class SenseixPlugin : MonoBehaviour
 				"time.  You can access its features through the class's static methods.");
 		}
 		singletonInstance = this;
+		senseix.ProblemKeeper.CopyFailsafeOver ();
 		senseix.SenseixController.InitializeSenseix (developerAccessToken);
 	}
 

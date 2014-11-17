@@ -21,6 +21,14 @@ namespace senseix {
 		public static volatile Queue newProblems = new Queue(); 
 		public static volatile Queue answeredProblems = new Queue();
 
+		static public void CopyFailsafeOver()
+		{
+			string failsafeFileName = "failsafe";
+			string failsafeSource = System.IO.Path.Combine (Application.dataPath, "senseix_unity_plugin/" + failsafeFileName + SEED_FILE_EXTENSION);
+			string failsafeDestination = System.IO.Path.Combine (Application.persistentDataPath, failsafeFileName + SEED_FILE_EXTENSION);
+			System.IO.File.Copy (failsafeSource, failsafeDestination, true);
+		}
+
 		static public void CreateEmptySeedFile()
 		{
 			System.IO.File.Create (SeedFilePath());
