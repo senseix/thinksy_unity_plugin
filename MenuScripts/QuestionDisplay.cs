@@ -8,17 +8,48 @@ namespace senseix
 	{
 		public static QuestionDisplay singletonInstance;
 
-		public UnityEngine.UI.Image promptDisplay;
+		public UnityEngine.UI.RawImage promptDisplay;
 		public UnityEngine.UI.Text promptText;
+		public UnityEngine.UI.Text answersSoFarText;
 
 		void Awake()
 		{
 			singletonInstance = this;
 		}
 
+		public static void Update()
+		{
+			singletonInstance.UpdateDisplay ();
+		}
+
 		public void UpdateDisplay()
 		{
-			promptText.text = SenseixPlugin.GetMostRecentProblemHTML();
+			UpdateQuestionText ();
+			UpdateQuestionImage ();
+			UpdateAnswersText ();
+		}
+
+		private void UpdateQuestionText()
+		{
+			foreach (ProblemPart part in SenseixPlugin.GetMostRecentProblemQuestion())
+			{
+				if (part.IsString())
+					promptText.text = part.GetString();
+			}
+		}
+
+		private void UpdateQuestionImage()
+		{
+			promptDisplay.texture = SenseixPlugin.GetMostRecentProblemImage ();
+		}
+
+		private void UpdateAnswersText ()
+		{
+			answersSoFarText.text = "";
+			foreach (ProblemPart part in SenseixPlugin.GetMostRecentGivenAnswer().GetAnswerParts())
+			{
+				answersSoFarText.text += " " + part.GetString();
+			}
 		}
 	}
 }

@@ -10,7 +10,8 @@ using System.ComponentModel;
 class SenseixPlugin : MonoBehaviour
 {
 
-	public string developerAccessToken; //this is your developer access token obtained from the SenseiX website.
+	public string developerAccessToken; //this is your developer access token obtained from 
+										//the SenseiX website.
 	public GameObject emergencyWindow;
 
 	private static SenseixPlugin singletonInstance;
@@ -77,7 +78,7 @@ class SenseixPlugin : MonoBehaviour
 		Debug.Log ("NEXT PROBLEM");
 		senseix.message.problem.ProblemData.Builder protobufsProblemBuilder = senseix.SenseixController.PullProblem ();
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
-		senseix.QuestionDisplay.singletonInstance.UpdateDisplay ();
+		senseix.QuestionDisplay.Update ();
 		return mostRecentProblem;
 	}
 
@@ -91,6 +92,16 @@ class SenseixPlugin : MonoBehaviour
 			throw new Exception("There are not yet any problems.  Please use SenseixPlugin.NextProblem()");
 		}
 		return mostRecentProblem;
+	}
+
+	public static Answer GetMostRecentGivenAnswer()
+	{
+		return GetMostRecentProblem ().GetGivenAnswer ();
+	}
+
+	public static Question GetMostRecentProblemQuestion()
+	{
+		return GetMostRecentProblem ().GetQuestion();
 	}
 
 	public static ProblemPart[] GetMostRecentProblemDistractors(int howManyDistractors)
@@ -150,6 +161,17 @@ class SenseixPlugin : MonoBehaviour
 	{
 		return GetMostRecentProblem ().GetQuestion ().GetHTML ();
 	}
+
+	public static Texture2D GetMostRecentProblemImage()
+	{
+//		Texture2D returnImage = new Texture2D(0, 0);
+//		string exampleText = System.IO.File.ReadAllText (System.IO.Path.Combine (Application.dataPath, "example.proto"));
+//		string base64string = exampleText;
+//		byte[] imageBytes = System.Convert.FromBase64String (base64string);
+//		returnImage.LoadImage (imageBytes);
+//		return returnImage;
+		return GetMostRecentProblem ().GetQuestion ().GetImage ();
+	}
 }
 
 public class Problem 
@@ -183,20 +205,30 @@ public class Problem
 
 	public ProblemPart[] GetDistractors(int howManyDistractors)
 	{
-		if (protobufsProblemBuilder.Distractor.AtomCount < howManyDistractors)
+		int availableDistractors = protobufsProblemBuilder.Distractor.AtomCount;
+		if (availableDistractors < howManyDistractors)
 		{
 			throw new Exception("There aren't enough distractors!  There are only "
-			                    + protobufsProblemBuilder.Distractor.AtomCount + " distractors.");
+			                    + availableDistractors + " distractors.");
 		}
-		ProblemPart[] distractors = new ProblemPart[howManyDistractors];
-		for (int i = 0; i < howManyDistractors; i++)
+		ArrayList allDistractors = new ArrayList();
+		for (int i = 0; i < availableDistractors; i++)
 		{
 			senseix.message.problem.Atom distractorAtom = protobufsProblemBuilder.Distractor.AtomList[i];
 			ProblemPart distractor = new ProblemPart(distractorAtom);
-			distractors[i] = distractor;
-		}
-		return distractors;
+			allDistractors.Add(distractor);
+		} //find all the distractors
 
+		ProblemPart[] resultDistractors = new ProblemPart[howManyDistractors];
+		System.Random random = new System.Random ();
+		for (int i = 0; i < howManyDistractors; i++)
+		{
+			int randomDistractorIndex = random.Next (allDistractors.Count);
+			resultDistractors[i] = (ProblemPart)allDistractors[randomDistractorIndex];
+			allDistractors.RemoveAt(randomDistractorIndex);
+		} //take random ones
+
+		return resultDistractors;
 	}
 
 	/// <summary>
@@ -216,6 +248,7 @@ public class Problem
 	/// </summary>
 	public Question GetQuestion()
 	{
+		Debug.Log ("PROBLEM ID" + protobufsProblemBuilder.Uuid);
 		return new Question(protobufsProblemBuilder.Question);
 	}
 
@@ -250,6 +283,11 @@ public class Problem
 	{
 		return GetQuestion ().GetHTML ();
 	}
+
+	public Texture2D GetQuestionImage()
+	{
+		return GetQuestion ().GetImage ();
+	}
 }
 
 public class Answer
@@ -272,6 +310,7 @@ public class Answer
 	public void AddAnswerPart(ProblemPart part)
 	{
 		answerParts.Add(part);
+		senseix.QuestionDisplay.Update ();
 	}
 
 	public ArrayList GetAnswerIDs()
@@ -317,6 +356,16 @@ public class Question
 		byte[] htmlutf = System.Convert.FromBase64String (html64);
 		string html = ASCIIEncoding.ASCII.GetString (htmlutf);
 		return html;
+	}
+
+	public Texture2D GetImage()
+	{
+		Texture2D returnImage = new Texture2D(0, 0);
+		Debug.Log ("LENGTH OF THE IMAGE BYTES FIELD " + question.Image.Length);
+		byte[] imageBytes = senseix.SenseixController.DecodeServerBytes (question.Image);
+		returnImage.LoadImage (imageBytes);
+		Debug.Log (returnImage.GetPixels ().Length);
+		return returnImage;
 	}
 
 	public System.Collections.IEnumerator GetEnumerator()
@@ -368,8 +417,7 @@ public class ProblemPart
 	{
 		if (!IsString())
 			throw new Exception ("This QuestionPart is not a string.  Be sure to check IsString before GetString.");
-		string base64string = atom.Data.ToStringUtf8 ();
-		byte[] decodedBytes = System.Convert.FromBase64String (base64string);
+		byte[] decodedBytes = senseix.SenseixController.DecodeServerBytes (atom.Data);
 		return Encoding.ASCII.GetString (decodedBytes);
 	}
 
@@ -378,8 +426,7 @@ public class ProblemPart
 		if (!IsImage())
 			throw new Exception ("This QuestionPart is not an image.  Be sure to check IsImage before GetImage.");
 		Texture2D returnImage = new Texture2D(0, 0);
-		string base64string = atom.Data.ToStringUtf8 ();
-		byte[] imageBytes = System.Convert.FromBase64String (base64string);
+		byte[] imageBytes = senseix.SenseixController.DecodeServerBytes (atom.Data);
 		returnImage.LoadImage (imageBytes);
 		return returnImage;
 	}

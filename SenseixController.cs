@@ -216,5 +216,12 @@ namespace senseix {
 		{
 			message.Request.PostProblems(GetCurrentPlayerID(), problems);
 		}
+
+		public static byte[] DecodeServerBytes(Google.ProtocolBuffers.ByteString serverBytes)
+		{
+			string base64string = serverBytes.ToStringUtf8 ();
+			byte[] decodedBytes = System.Convert.FromBase64String (base64string);
+			return decodedBytes;
+		}
 	}
 }

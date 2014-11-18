@@ -54,29 +54,29 @@ namespace senseix.message.problem {
           "AigOMiIuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uQXRvbS5UeXBlOgRURVhU" + 
           "EgwKBGRhdGEYAyACKAwSEAoIcmVxdWlyZWQYBCACKAgiMQoEVHlwZRIICgRU" + 
           "RVhUEAASCQoFSU1BR0UQARIJCgVBVURJTxACEgkKBVZJREVPEAMiJgoJRm9y" + 
-          "bWF0dGVyEgwKBGh0bWwYASABKAkSCwoDY3NzGAIgASgJImsKCFF1ZXN0aW9u" + 
+          "bWF0dGVyEgwKBGh0bWwYASABKAkSCwoDY3NzGAIgASgJInoKCFF1ZXN0aW9u" + 
           "EisKBGF0b20YASADKAsyHS5zZW5zZWl4Lm1lc3NhZ2UucHJvYmxlbS5BdG9t" + 
           "EjIKBmZvcm1hdBgCIAEoCzIiLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLkZv" + 
-          "cm1hdHRlciJpCgZBbnN3ZXISKwoEYXRvbRgBIAMoCzIdLnNlbnNlaXgubWVz" + 
-          "c2FnZS5wcm9ibGVtLkF0b20SMgoGZm9ybWF0GAIgASgLMiIuc2Vuc2VpeC5t" + 
-          "ZXNzYWdlLnByb2JsZW0uRm9ybWF0dGVyIm0KCkRpc3RyYWN0b3ISKwoEYXRv" + 
-          "bRgBIAMoCzIdLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLkF0b20SMgoGZm9y" + 
-          "bWF0GAIgASgLMiIuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uRm9ybWF0dGVy" + 
-          "IroBCgtQcm9ibGVtRGF0YRIMCgR1dWlkGAEgAigJEjMKCHF1ZXN0aW9uGAIg" + 
-          "AigLMiEuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uUXVlc3Rpb24SLwoGYW5z" + 
-          "d2VyGAMgAigLMh8uc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uQW5zd2VyEjcK" + 
-          "CmRpc3RyYWN0b3IYBCACKAsyIy5zZW5zZWl4Lm1lc3NhZ2UucHJvYmxlbS5E" + 
-          "aXN0cmFjdG9yIiAKEEFuc3dlcklkZW50aWZpZXISDAoEdXVpZBgBIAMoCSKn" + 
-          "AQoLUHJvYmxlbVBvc3QSEQoJcGxheWVyX2lkGAEgAigJEhIKCnByb2JsZW1f" + 
-          "aWQYAiACKAkSPQoKYW5zd2VyX2lkcxgDIAEoCzIpLnNlbnNlaXgubWVzc2Fn" + 
-          "ZS5wcm9ibGVtLkFuc3dlcklkZW50aWZpZXISEAoIZHVyYXRpb24YBCABKAIS" + 
-          "DwoHc2tpcHBlZBgFIAEoCBIPCgdjb3JyZWN0GAYgASgIIksKElByb2JsZW1Q" + 
-          "b3N0UmVxdWVzdBI1Cgdwcm9ibGVtGAEgAygLMiQuc2Vuc2VpeC5tZXNzYWdl" + 
-          "LnByb2JsZW0uUHJvYmxlbVBvc3QiFQoTUHJvYmxlbVBvc3RSZXNwb25zZSI9" + 
-          "ChFQcm9ibGVtR2V0UmVxdWVzdBIRCglwbGF5ZXJfaWQYASACKAkSFQoNcHJv" + 
-          "YmxlbV9jb3VudBgCIAEoDSJLChJQcm9ibGVtR2V0UmVzcG9uc2USNQoHcHJv" + 
-          "YmxlbRgBIAMoCzIkLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLlByb2JsZW1E" + 
-          "YXRh");
+          "cm1hdHRlchINCgVpbWFnZRgDIAEoDCJpCgZBbnN3ZXISKwoEYXRvbRgBIAMo" + 
+          "CzIdLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLkF0b20SMgoGZm9ybWF0GAIg" + 
+          "ASgLMiIuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uRm9ybWF0dGVyIm0KCkRp" + 
+          "c3RyYWN0b3ISKwoEYXRvbRgBIAMoCzIdLnNlbnNlaXgubWVzc2FnZS5wcm9i" + 
+          "bGVtLkF0b20SMgoGZm9ybWF0GAIgASgLMiIuc2Vuc2VpeC5tZXNzYWdlLnBy" + 
+          "b2JsZW0uRm9ybWF0dGVyIroBCgtQcm9ibGVtRGF0YRIMCgR1dWlkGAEgAigJ" + 
+          "EjMKCHF1ZXN0aW9uGAIgAigLMiEuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0u" + 
+          "UXVlc3Rpb24SLwoGYW5zd2VyGAMgAigLMh8uc2Vuc2VpeC5tZXNzYWdlLnBy" + 
+          "b2JsZW0uQW5zd2VyEjcKCmRpc3RyYWN0b3IYBCACKAsyIy5zZW5zZWl4Lm1l" + 
+          "c3NhZ2UucHJvYmxlbS5EaXN0cmFjdG9yIiAKEEFuc3dlcklkZW50aWZpZXIS" + 
+          "DAoEdXVpZBgBIAMoCSKnAQoLUHJvYmxlbVBvc3QSEQoJcGxheWVyX2lkGAEg" + 
+          "AigJEhIKCnByb2JsZW1faWQYAiACKAkSPQoKYW5zd2VyX2lkcxgDIAEoCzIp" + 
+          "LnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLkFuc3dlcklkZW50aWZpZXISEAoI" + 
+          "ZHVyYXRpb24YBCABKAISDwoHc2tpcHBlZBgFIAEoCBIPCgdjb3JyZWN0GAYg" + 
+          "ASgIIksKElByb2JsZW1Qb3N0UmVxdWVzdBI1Cgdwcm9ibGVtGAEgAygLMiQu" + 
+          "c2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uUHJvYmxlbVBvc3QiFQoTUHJvYmxl" + 
+          "bVBvc3RSZXNwb25zZSI9ChFQcm9ibGVtR2V0UmVxdWVzdBIRCglwbGF5ZXJf" + 
+          "aWQYASACKAkSFQoNcHJvYmxlbV9jb3VudBgCIAEoDSJLChJQcm9ibGVtR2V0" + 
+          "UmVzcG9uc2USNQoHcHJvYmxlbRgBIAMoCzIkLnNlbnNlaXgubWVzc2FnZS5w" + 
+          "cm9ibGVtLlByb2JsZW1EYXRh");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_senseix_message_problem_Atom__Descriptor = Descriptor.MessageTypes[0];
@@ -90,7 +90,7 @@ namespace senseix.message.problem {
         internal__static_senseix_message_problem_Question__Descriptor = Descriptor.MessageTypes[2];
         internal__static_senseix_message_problem_Question__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Question, global::senseix.message.problem.Question.Builder>(internal__static_senseix_message_problem_Question__Descriptor,
-                new string[] { "Atom", "Format", });
+                new string[] { "Atom", "Format", "Image", });
         internal__static_senseix_message_problem_Answer__Descriptor = Descriptor.MessageTypes[3];
         internal__static_senseix_message_problem_Answer__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Answer, global::senseix.message.problem.Answer.Builder>(internal__static_senseix_message_problem_Answer__Descriptor,
@@ -883,8 +883,8 @@ namespace senseix.message.problem {
   public sealed partial class Question : pb::GeneratedMessage<Question, Question.Builder> {
     private Question() { }
     private static readonly Question defaultInstance = new Question().MakeReadOnly();
-    private static readonly string[] _questionFieldNames = new string[] { "atom", "format" };
-    private static readonly uint[] _questionFieldTags = new uint[] { 10, 18 };
+    private static readonly string[] _questionFieldNames = new string[] { "atom", "format", "image" };
+    private static readonly uint[] _questionFieldTags = new uint[] { 10, 18, 26 };
     public static Question DefaultInstance {
       get { return defaultInstance; }
     }
@@ -927,6 +927,16 @@ namespace senseix.message.problem {
       get { return format_ ?? global::senseix.message.problem.Formatter.DefaultInstance; }
     }
     
+    public const int ImageFieldNumber = 3;
+    private bool hasImage;
+    private pb::ByteString image_ = pb::ByteString.Empty;
+    public bool HasImage {
+      get { return hasImage; }
+    }
+    public pb::ByteString Image {
+      get { return image_; }
+    }
+    
     public override bool IsInitialized {
       get {
         foreach (global::senseix.message.problem.Atom element in AtomList) {
@@ -945,6 +955,9 @@ namespace senseix.message.problem {
       if (hasFormat) {
         output.WriteMessage(2, field_names[1], Format);
       }
+      if (hasImage) {
+        output.WriteBytes(3, field_names[2], Image);
+      }
       UnknownFields.WriteTo(output);
     }
     
@@ -960,6 +973,9 @@ namespace senseix.message.problem {
         }
         if (hasFormat) {
           size += pb::CodedOutputStream.ComputeMessageSize(2, Format);
+        }
+        if (hasImage) {
+          size += pb::CodedOutputStream.ComputeBytesSize(3, Image);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -1092,6 +1108,9 @@ namespace senseix.message.problem {
         if (other.HasFormat) {
           MergeFormat(other.Format);
         }
+        if (other.HasImage) {
+          Image = other.Image;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -1146,6 +1165,10 @@ namespace senseix.message.problem {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               Format = subBuilder.BuildPartial();
+              break;
+            }
+            case 26: {
+              result.hasImage = input.ReadBytes(ref result.image_);
               break;
             }
           }
@@ -1239,6 +1262,27 @@ namespace senseix.message.problem {
         PrepareBuilder();
         result.hasFormat = false;
         result.format_ = null;
+        return this;
+      }
+      
+      public bool HasImage {
+        get { return result.hasImage; }
+      }
+      public pb::ByteString Image {
+        get { return result.Image; }
+        set { SetImage(value); }
+      }
+      public Builder SetImage(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasImage = true;
+        result.image_ = value;
+        return this;
+      }
+      public Builder ClearImage() {
+        PrepareBuilder();
+        result.hasImage = false;
+        result.image_ = pb::ByteString.Empty;
         return this;
       }
     }

@@ -68,12 +68,23 @@ namespace senseix.message {
 
 		public static void CheckResults()
 		{
+			if (!SenseixController.GetSessionState ())
+				return;
+
+			ArrayList removeUsRequests = new ArrayList ();
+
 			foreach (PostRequestParameters parameters in activeRequests)
 			{
 				if (parameters.recvResult.isDone)
 				{
 					HandleResult(parameters.recvResult, parameters.msgType);
+					removeUsRequests.Add(parameters);
 				}
+			}
+
+			foreach (PostRequestParameters parameters in removeUsRequests)
+			{
+				activeRequests.Remove(parameters);
 			}
 		}
 
