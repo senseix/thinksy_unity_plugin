@@ -133,6 +133,7 @@ namespace senseix.message {
 				
 				case constant.MessageType.ProblemGet:
 					Debug.Log("I got a response from a problem get message");
+					Debug.Log ("LENGTH OF THE IMAGE FROM RESPONSE " + reply.ProblemGet.GetProblem(0).Question.Image.Length);
 					if(reply.HasProblemGet && reply.ProblemGet.IsInitialized) 
 					{
 						ProblemKeeper.ReplaceSeed(reply);

@@ -28,7 +28,7 @@ namespace senseix.message {
 	public class Request : MonoBehaviour
 	{
         const string ENCRYPTED = "http://";
-        const string SERVER_URL = "192.168.1.8:3000/";
+        const string SERVER_URL = "192.168.1.17:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/parents/";
