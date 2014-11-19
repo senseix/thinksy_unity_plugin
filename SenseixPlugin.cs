@@ -13,6 +13,7 @@ class SenseixPlugin : MonoBehaviour
 	public string developerAccessToken; //this is your developer access token obtained from 
 										//the Senseix website.
 	public GameObject emergencyWindow;
+	public GameObject displayWindow;
 
 	private static SenseixPlugin singletonInstance;
 	private static Problem mostRecentProblem;

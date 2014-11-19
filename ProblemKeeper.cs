@@ -29,24 +29,6 @@ namespace Senseix {
 			System.IO.File.Copy (failsafeSource, failsafeDestination, true);
 		}
 
-		static public void CreateEmptySeedFile()
-		{
-			System.IO.File.Create (SeedFilePath());
-		}
-
-		static public bool SeedFileExists()
-		{
-			return System.IO.File.Exists (SeedFilePath());
-		}
-
-		static public void CreateSeedFileIfNeeded()
-		{
-			if(!ProblemKeeper.SeedFileExists())
-			{
-				ProblemKeeper.CreateEmptySeedFile();
-			}
-		}
-
 		static private void GetProblemsFromSeed()
 		{
 			string seedPath = SeedFilePath();
@@ -72,13 +54,22 @@ namespace Senseix {
 			MemoryStream stream = new MemoryStream ();
 			reply.WriteTo (stream);
 			byte[] replacementBytes = stream.ToArray();
+			FileStream newFile = System.IO.File.Create (PlayerSeedPath ());
+			newFile.Close ();
+			stream.Close ();
 			System.IO.File.WriteAllBytes (SeedFilePath(), replacementBytes);
+		}
+
+		static public string PlayerSeedPath()
+		{
+			string PlayerName = SenseixController.GetCurrentPlayerID ();
+			string playerSeedPath = System.IO.Path.Combine (Application.persistentDataPath, PlayerName + SEED_FILE_EXTENSION);
+			return playerSeedPath;
 		}
 		
 		static public string SeedFilePath()
 		{
-			string PlayerName = SenseixController.GetCurrentPlayerID ();
-			string playerSeedPath = System.IO.Path.Combine (Application.persistentDataPath, PlayerName + SEED_FILE_EXTENSION);
+			string playerSeedPath = PlayerSeedPath ();
 			if (File.Exists(playerSeedPath))
 			{
 				return playerSeedPath;
@@ -105,6 +96,7 @@ namespace Senseix {
 			string appendMeString = "\n" + System.Text.Encoding.Default.GetString (appendMeBytes);
 			string seedPath = SeedFilePath();
 			AppendStringToFile (appendMeString, seedPath);
+			stream.Close ();
 			//Replace the seed file for this game with 
 			//Problems from the server
 			//alg should be get N Problems place N/2 
