@@ -6,7 +6,7 @@ using pb = global::Google.ProtocolBuffers;
 using pbc = global::Google.ProtocolBuffers.Collections;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
 using scg = global::System.Collections.Generic;
-namespace senseix.message.leaderboard {
+namespace Senseix.Message.Leaderboard {
   
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public static partial class Leaderboard {
@@ -16,22 +16,22 @@ namespace senseix.message.leaderboard {
     }
     #endregion
     #region Static variables
-    internal static pbd::MessageDescriptor internal__static_senseix_message_leaderboard_MemberData__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.MemberData, global::senseix.message.leaderboard.MemberData.Builder> internal__static_senseix_message_leaderboard_MemberData__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_leaderboard_PlayerData__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.PlayerData, global::senseix.message.leaderboard.PlayerData.Builder> internal__static_senseix_message_leaderboard_PlayerData__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_leaderboard_PageRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.PageRequest, global::senseix.message.leaderboard.PageRequest.Builder> internal__static_senseix_message_leaderboard_PageRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_leaderboard_PageResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.PageResponse, global::senseix.message.leaderboard.PageResponse.Builder> internal__static_senseix_message_leaderboard_PageResponse__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_leaderboard_UpdatePlayerScoreRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.UpdatePlayerScoreRequest, global::senseix.message.leaderboard.UpdatePlayerScoreRequest.Builder> internal__static_senseix_message_leaderboard_UpdatePlayerScoreRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_leaderboard_UpdatePlayerScoreResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.UpdatePlayerScoreResponse, global::senseix.message.leaderboard.UpdatePlayerScoreResponse.Builder> internal__static_senseix_message_leaderboard_UpdatePlayerScoreResponse__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_leaderboard_PlayerRankRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.PlayerRankRequest, global::senseix.message.leaderboard.PlayerRankRequest.Builder> internal__static_senseix_message_leaderboard_PlayerRankRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_leaderboard_PlayerRankResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.PlayerRankResponse, global::senseix.message.leaderboard.PlayerRankResponse.Builder> internal__static_senseix_message_leaderboard_PlayerRankResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_MemberData__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.MemberData, global::Senseix.Message.Leaderboard.MemberData.Builder> internal__static_Senseix_Message_Leaderboard_MemberData__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_PlayerData__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PlayerData, global::Senseix.Message.Leaderboard.PlayerData.Builder> internal__static_Senseix_Message_Leaderboard_PlayerData__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_PageRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PageRequest, global::Senseix.Message.Leaderboard.PageRequest.Builder> internal__static_Senseix_Message_Leaderboard_PageRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_PageResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PageResponse, global::Senseix.Message.Leaderboard.PageResponse.Builder> internal__static_Senseix_Message_Leaderboard_PageResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.UpdatePlayerScoreRequest, global::Senseix.Message.Leaderboard.UpdatePlayerScoreRequest.Builder> internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.UpdatePlayerScoreResponse, global::Senseix.Message.Leaderboard.UpdatePlayerScoreResponse.Builder> internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PlayerRankRequest, global::Senseix.Message.Leaderboard.PlayerRankRequest.Builder> internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PlayerRankResponse, global::Senseix.Message.Leaderboard.PlayerRankResponse.Builder> internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__FieldAccessorTable;
     #endregion
     #region Descriptor
     public static pbd::FileDescriptor Descriptor {
@@ -41,64 +41,64 @@ namespace senseix.message.leaderboard {
     
     static Leaderboard() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "ChFMZWFkZXJib2FyZC5wcm90bxIbc2Vuc2VpeC5tZXNzYWdlLmxlYWRlcmJv" + 
+          "ChFMZWFkZXJib2FyZC5wcm90bxIbU2Vuc2VpeC5NZXNzYWdlLkxlYWRlcmJv" + 
           "YXJkGg5Db25zdGFudC5wcm90byIhCgpNZW1iZXJEYXRhEhMKC3BsYXllcl9u" + 
           "YW1lGAEgAigJIjcKClBsYXllckRhdGESDQoFc2NvcmUYASABKA0SDAoEcmFu" + 
           "axgCIAEoDRIMCgRuYW1lGAMgASgJImoKC1BhZ2VSZXF1ZXN0EgwKBHBhZ2UY" + 
-          "ASABKA0SEQoJcGFnZV9zaXplGAIgASgNEjoKB3NvcnRfYnkYAyABKA4yIy5z" + 
-          "ZW5zZWl4Lm1lc3NhZ2UubGVhZGVyYm9hcmQuU29ydEJ5OgROT05FIl4KDFBh" + 
+          "ASABKA0SEQoJcGFnZV9zaXplGAIgASgNEjoKB3NvcnRfYnkYAyABKA4yIy5T" + 
+          "ZW5zZWl4Lk1lc3NhZ2UuTGVhZGVyYm9hcmQuU29ydEJ5OgROT05FIl4KDFBh" + 
           "Z2VSZXNwb25zZRIVCg10b3RhbF9tZW1iZXJzGAEgAigNEjcKBnBsYXllchgC" + 
-          "IAMoCzInLnNlbnNlaXgubWVzc2FnZS5sZWFkZXJib2FyZC5QbGF5ZXJEYXRh" + 
+          "IAMoCzInLlNlbnNlaXguTWVzc2FnZS5MZWFkZXJib2FyZC5QbGF5ZXJEYXRh" + 
           "IkMKGFVwZGF0ZVBsYXllclNjb3JlUmVxdWVzdBIRCglwbGF5ZXJfaWQYASAC" + 
           "KAkSFAoMcGxheWVyX3Njb3JlGAIgAigNImsKGVVwZGF0ZVBsYXllclNjb3Jl" + 
           "UmVzcG9uc2USFQoNdG90YWxfbWVtYmVycxgBIAIoDRI3CgZwbGF5ZXIYAiAC" + 
-          "KAsyJy5zZW5zZWl4Lm1lc3NhZ2UubGVhZGVyYm9hcmQuUGxheWVyRGF0YSKE" + 
+          "KAsyJy5TZW5zZWl4Lk1lc3NhZ2UuTGVhZGVyYm9hcmQuUGxheWVyRGF0YSKE" + 
           "AQoRUGxheWVyUmFua1JlcXVlc3QSEQoJcGxheWVyX2lkGAEgAigJEg0KBWNv" + 
           "dW50GAIgASgNEhEKCXBhZ2Vfc2l6ZRgDIAEoDRI6Cgdzb3J0X2J5GAQgASgO" + 
-          "MiMuc2Vuc2VpeC5tZXNzYWdlLmxlYWRlcmJvYXJkLlNvcnRCeToETk9ORSJk" + 
+          "MiMuU2Vuc2VpeC5NZXNzYWdlLkxlYWRlcmJvYXJkLlNvcnRCeToETk9ORSJk" + 
           "ChJQbGF5ZXJSYW5rUmVzcG9uc2USFQoNdG90YWxfbWVtYmVycxgBIAIoDRI3" + 
-          "CgZwbGF5ZXIYAiADKAsyJy5zZW5zZWl4Lm1lc3NhZ2UubGVhZGVyYm9hcmQu" + 
+          "CgZwbGF5ZXIYAiADKAsyJy5TZW5zZWl4Lk1lc3NhZ2UuTGVhZGVyYm9hcmQu" + 
           "UGxheWVyRGF0YSonCgZTb3J0QnkSCAoEUkFOSxABEgkKBVNDT1JFEAISCAoE" + 
           "Tk9ORRAD");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
-        internal__static_senseix_message_leaderboard_MemberData__Descriptor = Descriptor.MessageTypes[0];
-        internal__static_senseix_message_leaderboard_MemberData__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.MemberData, global::senseix.message.leaderboard.MemberData.Builder>(internal__static_senseix_message_leaderboard_MemberData__Descriptor,
+        internal__static_Senseix_Message_Leaderboard_MemberData__Descriptor = Descriptor.MessageTypes[0];
+        internal__static_Senseix_Message_Leaderboard_MemberData__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.MemberData, global::Senseix.Message.Leaderboard.MemberData.Builder>(internal__static_Senseix_Message_Leaderboard_MemberData__Descriptor,
                 new string[] { "PlayerName", });
-        internal__static_senseix_message_leaderboard_PlayerData__Descriptor = Descriptor.MessageTypes[1];
-        internal__static_senseix_message_leaderboard_PlayerData__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.PlayerData, global::senseix.message.leaderboard.PlayerData.Builder>(internal__static_senseix_message_leaderboard_PlayerData__Descriptor,
+        internal__static_Senseix_Message_Leaderboard_PlayerData__Descriptor = Descriptor.MessageTypes[1];
+        internal__static_Senseix_Message_Leaderboard_PlayerData__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PlayerData, global::Senseix.Message.Leaderboard.PlayerData.Builder>(internal__static_Senseix_Message_Leaderboard_PlayerData__Descriptor,
                 new string[] { "Score", "Rank", "Name", });
-        internal__static_senseix_message_leaderboard_PageRequest__Descriptor = Descriptor.MessageTypes[2];
-        internal__static_senseix_message_leaderboard_PageRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.PageRequest, global::senseix.message.leaderboard.PageRequest.Builder>(internal__static_senseix_message_leaderboard_PageRequest__Descriptor,
+        internal__static_Senseix_Message_Leaderboard_PageRequest__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_Senseix_Message_Leaderboard_PageRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PageRequest, global::Senseix.Message.Leaderboard.PageRequest.Builder>(internal__static_Senseix_Message_Leaderboard_PageRequest__Descriptor,
                 new string[] { "Page", "PageSize", "SortBy", });
-        internal__static_senseix_message_leaderboard_PageResponse__Descriptor = Descriptor.MessageTypes[3];
-        internal__static_senseix_message_leaderboard_PageResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.PageResponse, global::senseix.message.leaderboard.PageResponse.Builder>(internal__static_senseix_message_leaderboard_PageResponse__Descriptor,
+        internal__static_Senseix_Message_Leaderboard_PageResponse__Descriptor = Descriptor.MessageTypes[3];
+        internal__static_Senseix_Message_Leaderboard_PageResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PageResponse, global::Senseix.Message.Leaderboard.PageResponse.Builder>(internal__static_Senseix_Message_Leaderboard_PageResponse__Descriptor,
                 new string[] { "TotalMembers", "Player", });
-        internal__static_senseix_message_leaderboard_UpdatePlayerScoreRequest__Descriptor = Descriptor.MessageTypes[4];
-        internal__static_senseix_message_leaderboard_UpdatePlayerScoreRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.UpdatePlayerScoreRequest, global::senseix.message.leaderboard.UpdatePlayerScoreRequest.Builder>(internal__static_senseix_message_leaderboard_UpdatePlayerScoreRequest__Descriptor,
+        internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__Descriptor = Descriptor.MessageTypes[4];
+        internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.UpdatePlayerScoreRequest, global::Senseix.Message.Leaderboard.UpdatePlayerScoreRequest.Builder>(internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__Descriptor,
                 new string[] { "PlayerId", "PlayerScore", });
-        internal__static_senseix_message_leaderboard_UpdatePlayerScoreResponse__Descriptor = Descriptor.MessageTypes[5];
-        internal__static_senseix_message_leaderboard_UpdatePlayerScoreResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.UpdatePlayerScoreResponse, global::senseix.message.leaderboard.UpdatePlayerScoreResponse.Builder>(internal__static_senseix_message_leaderboard_UpdatePlayerScoreResponse__Descriptor,
+        internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__Descriptor = Descriptor.MessageTypes[5];
+        internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.UpdatePlayerScoreResponse, global::Senseix.Message.Leaderboard.UpdatePlayerScoreResponse.Builder>(internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__Descriptor,
                 new string[] { "TotalMembers", "Player", });
-        internal__static_senseix_message_leaderboard_PlayerRankRequest__Descriptor = Descriptor.MessageTypes[6];
-        internal__static_senseix_message_leaderboard_PlayerRankRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.PlayerRankRequest, global::senseix.message.leaderboard.PlayerRankRequest.Builder>(internal__static_senseix_message_leaderboard_PlayerRankRequest__Descriptor,
+        internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__Descriptor = Descriptor.MessageTypes[6];
+        internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PlayerRankRequest, global::Senseix.Message.Leaderboard.PlayerRankRequest.Builder>(internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__Descriptor,
                 new string[] { "PlayerId", "Count", "PageSize", "SortBy", });
-        internal__static_senseix_message_leaderboard_PlayerRankResponse__Descriptor = Descriptor.MessageTypes[7];
-        internal__static_senseix_message_leaderboard_PlayerRankResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.leaderboard.PlayerRankResponse, global::senseix.message.leaderboard.PlayerRankResponse.Builder>(internal__static_senseix_message_leaderboard_PlayerRankResponse__Descriptor,
+        internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__Descriptor = Descriptor.MessageTypes[7];
+        internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PlayerRankResponse, global::Senseix.Message.Leaderboard.PlayerRankResponse.Builder>(internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__Descriptor,
                 new string[] { "TotalMembers", "Player", });
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
           new pbd::FileDescriptor[] {
-          global::senseix.message.constant.Constant.Descriptor, 
+          global::Senseix.Message.Constant.Constant.Descriptor, 
           }, assigner);
     }
     #endregion
@@ -118,7 +118,7 @@ namespace senseix.message.leaderboard {
   public sealed partial class MemberData : pb::GeneratedMessage<MemberData, MemberData.Builder> {
     private MemberData() { }
     private static readonly MemberData defaultInstance = new MemberData().MakeReadOnly();
-    private static readonly string[] _memberDataFieldNames = new string[] { "player_name" };
+    private static readonly string[] _memberDataFieldNames = new string[] { "Player_name" };
     private static readonly uint[] _memberDataFieldTags = new uint[] { 10 };
     public static MemberData DefaultInstance {
       get { return defaultInstance; }
@@ -133,21 +133,21 @@ namespace senseix.message.leaderboard {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_MemberData__Descriptor; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_MemberData__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<MemberData, MemberData.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_MemberData__FieldAccessorTable; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_MemberData__FieldAccessorTable; }
     }
     
     public const int PlayerNameFieldNumber = 1;
     private bool hasPlayerName;
-    private string playerName_ = "";
+    private string PlayerName_ = "";
     public bool HasPlayerName {
       get { return hasPlayerName; }
     }
     public string PlayerName {
-      get { return playerName_; }
+      get { return PlayerName_; }
     }
     
     public override bool IsInitialized {
@@ -273,11 +273,11 @@ namespace senseix.message.leaderboard {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.leaderboard.MemberData.Descriptor; }
+        get { return global::Senseix.Message.Leaderboard.MemberData.Descriptor; }
       }
       
       public override MemberData DefaultInstanceForType {
-        get { return global::senseix.message.leaderboard.MemberData.DefaultInstance; }
+        get { return global::Senseix.Message.Leaderboard.MemberData.DefaultInstance; }
       }
       
       public override MemberData BuildPartial() {
@@ -298,7 +298,7 @@ namespace senseix.message.leaderboard {
       }
       
       public override Builder MergeFrom(MemberData other) {
-        if (other == global::senseix.message.leaderboard.MemberData.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Leaderboard.MemberData.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPlayerName) {
           PlayerName = other.PlayerName;
@@ -347,7 +347,7 @@ namespace senseix.message.leaderboard {
               break;
             }
             case 10: {
-              result.hasPlayerName = input.ReadString(ref result.playerName_);
+              result.hasPlayerName = input.ReadString(ref result.PlayerName_);
               break;
             }
           }
@@ -371,18 +371,18 @@ namespace senseix.message.leaderboard {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerName = true;
-        result.playerName_ = value;
+        result.PlayerName_ = value;
         return this;
       }
       public Builder ClearPlayerName() {
         PrepareBuilder();
         result.hasPlayerName = false;
-        result.playerName_ = "";
+        result.PlayerName_ = "";
         return this;
       }
     }
     static MemberData() {
-      object.ReferenceEquals(global::senseix.message.leaderboard.Leaderboard.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Leaderboard.Leaderboard.Descriptor, null);
     }
   }
   
@@ -390,8 +390,8 @@ namespace senseix.message.leaderboard {
   public sealed partial class PlayerData : pb::GeneratedMessage<PlayerData, PlayerData.Builder> {
     private PlayerData() { }
     private static readonly PlayerData defaultInstance = new PlayerData().MakeReadOnly();
-    private static readonly string[] _playerDataFieldNames = new string[] { "name", "rank", "score" };
-    private static readonly uint[] _playerDataFieldTags = new uint[] { 26, 16, 8 };
+    private static readonly string[] _PlayerDataFieldNames = new string[] { "name", "rank", "score" };
+    private static readonly uint[] _PlayerDataFieldTags = new uint[] { 26, 16, 8 };
     public static PlayerData DefaultInstance {
       get { return defaultInstance; }
     }
@@ -405,11 +405,11 @@ namespace senseix.message.leaderboard {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_PlayerData__Descriptor; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_PlayerData__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PlayerData, PlayerData.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_PlayerData__FieldAccessorTable; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_PlayerData__FieldAccessorTable; }
     }
     
     public const int ScoreFieldNumber = 1;
@@ -452,7 +452,7 @@ namespace senseix.message.leaderboard {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _playerDataFieldNames;
+      string[] field_names = _PlayerDataFieldNames;
       if (hasScore) {
         output.WriteUInt32(1, field_names[2], Score);
       }
@@ -578,11 +578,11 @@ namespace senseix.message.leaderboard {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.leaderboard.PlayerData.Descriptor; }
+        get { return global::Senseix.Message.Leaderboard.PlayerData.Descriptor; }
       }
       
       public override PlayerData DefaultInstanceForType {
-        get { return global::senseix.message.leaderboard.PlayerData.DefaultInstance; }
+        get { return global::Senseix.Message.Leaderboard.PlayerData.DefaultInstance; }
       }
       
       public override PlayerData BuildPartial() {
@@ -603,7 +603,7 @@ namespace senseix.message.leaderboard {
       }
       
       public override Builder MergeFrom(PlayerData other) {
-        if (other == global::senseix.message.leaderboard.PlayerData.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Leaderboard.PlayerData.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasScore) {
           Score = other.Score;
@@ -629,9 +629,9 @@ namespace senseix.message.leaderboard {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerDataFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_PlayerDataFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _playerDataFieldTags[field_ordinal];
+              tag = _PlayerDataFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -745,7 +745,7 @@ namespace senseix.message.leaderboard {
       }
     }
     static PlayerData() {
-      object.ReferenceEquals(global::senseix.message.leaderboard.Leaderboard.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Leaderboard.Leaderboard.Descriptor, null);
     }
   }
   
@@ -768,11 +768,11 @@ namespace senseix.message.leaderboard {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_PageRequest__Descriptor; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_PageRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PageRequest, PageRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_PageRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_PageRequest__FieldAccessorTable; }
     }
     
     public const int PageFieldNumber = 1;
@@ -799,11 +799,11 @@ namespace senseix.message.leaderboard {
     
     public const int SortByFieldNumber = 3;
     private bool hasSortBy;
-    private global::senseix.message.leaderboard.SortBy sortBy_ = global::senseix.message.leaderboard.SortBy.NONE;
+    private global::Senseix.Message.Leaderboard.SortBy sortBy_ = global::Senseix.Message.Leaderboard.SortBy.NONE;
     public bool HasSortBy {
       get { return hasSortBy; }
     }
-    public global::senseix.message.leaderboard.SortBy SortBy {
+    public global::Senseix.Message.Leaderboard.SortBy SortBy {
       get { return sortBy_; }
     }
     
@@ -941,11 +941,11 @@ namespace senseix.message.leaderboard {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.leaderboard.PageRequest.Descriptor; }
+        get { return global::Senseix.Message.Leaderboard.PageRequest.Descriptor; }
       }
       
       public override PageRequest DefaultInstanceForType {
-        get { return global::senseix.message.leaderboard.PageRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Leaderboard.PageRequest.DefaultInstance; }
       }
       
       public override PageRequest BuildPartial() {
@@ -966,7 +966,7 @@ namespace senseix.message.leaderboard {
       }
       
       public override Builder MergeFrom(PageRequest other) {
-        if (other == global::senseix.message.leaderboard.PageRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Leaderboard.PageRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPage) {
           Page = other.Page;
@@ -1097,11 +1097,11 @@ namespace senseix.message.leaderboard {
       public bool HasSortBy {
        get { return result.hasSortBy; }
       }
-      public global::senseix.message.leaderboard.SortBy SortBy {
+      public global::Senseix.Message.Leaderboard.SortBy SortBy {
         get { return result.SortBy; }
         set { SetSortBy(value); }
       }
-      public Builder SetSortBy(global::senseix.message.leaderboard.SortBy value) {
+      public Builder SetSortBy(global::Senseix.Message.Leaderboard.SortBy value) {
         PrepareBuilder();
         result.hasSortBy = true;
         result.sortBy_ = value;
@@ -1110,12 +1110,12 @@ namespace senseix.message.leaderboard {
       public Builder ClearSortBy() {
         PrepareBuilder();
         result.hasSortBy = false;
-        result.sortBy_ = global::senseix.message.leaderboard.SortBy.NONE;
+        result.sortBy_ = global::Senseix.Message.Leaderboard.SortBy.NONE;
         return this;
       }
     }
     static PageRequest() {
-      object.ReferenceEquals(global::senseix.message.leaderboard.Leaderboard.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Leaderboard.Leaderboard.Descriptor, null);
     }
   }
   
@@ -1123,7 +1123,7 @@ namespace senseix.message.leaderboard {
   public sealed partial class PageResponse : pb::GeneratedMessage<PageResponse, PageResponse.Builder> {
     private PageResponse() { }
     private static readonly PageResponse defaultInstance = new PageResponse().MakeReadOnly();
-    private static readonly string[] _pageResponseFieldNames = new string[] { "player", "total_members" };
+    private static readonly string[] _pageResponseFieldNames = new string[] { "Player", "total_members" };
     private static readonly uint[] _pageResponseFieldTags = new uint[] { 18, 8 };
     public static PageResponse DefaultInstance {
       get { return defaultInstance; }
@@ -1138,11 +1138,11 @@ namespace senseix.message.leaderboard {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_PageResponse__Descriptor; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_PageResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PageResponse, PageResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_PageResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_PageResponse__FieldAccessorTable; }
     }
     
     public const int TotalMembersFieldNumber = 1;
@@ -1157,15 +1157,15 @@ namespace senseix.message.leaderboard {
     }
     
     public const int PlayerFieldNumber = 2;
-    private pbc::PopsicleList<global::senseix.message.leaderboard.PlayerData> player_ = new pbc::PopsicleList<global::senseix.message.leaderboard.PlayerData>();
-    public scg::IList<global::senseix.message.leaderboard.PlayerData> PlayerList {
-      get { return player_; }
+    private pbc::PopsicleList<global::Senseix.Message.Leaderboard.PlayerData> Player_ = new pbc::PopsicleList<global::Senseix.Message.Leaderboard.PlayerData>();
+    public scg::IList<global::Senseix.Message.Leaderboard.PlayerData> PlayerList {
+      get { return Player_; }
     }
     public int PlayerCount {
-      get { return player_.Count; }
+      get { return Player_.Count; }
     }
-    public global::senseix.message.leaderboard.PlayerData GetPlayer(int index) {
-      return player_[index];
+    public global::Senseix.Message.Leaderboard.PlayerData GetPlayer(int index) {
+      return Player_[index];
     }
     
     public override bool IsInitialized {
@@ -1181,8 +1181,8 @@ namespace senseix.message.leaderboard {
       if (hasTotalMembers) {
         output.WriteUInt32(1, field_names[1], TotalMembers);
       }
-      if (player_.Count > 0) {
-        output.WriteMessageArray(2, field_names[0], player_);
+      if (Player_.Count > 0) {
+        output.WriteMessageArray(2, field_names[0], Player_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -1197,7 +1197,7 @@ namespace senseix.message.leaderboard {
         if (hasTotalMembers) {
           size += pb::CodedOutputStream.ComputeUInt32Size(1, TotalMembers);
         }
-        foreach (global::senseix.message.leaderboard.PlayerData element in PlayerList) {
+        foreach (global::Senseix.Message.Leaderboard.PlayerData element in PlayerList) {
           size += pb::CodedOutputStream.ComputeMessageSize(2, element);
         }
         size += UnknownFields.SerializedSize;
@@ -1237,7 +1237,7 @@ namespace senseix.message.leaderboard {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private PageResponse MakeReadOnly() {
-      player_.MakeReadOnly();
+      Player_.MakeReadOnly();
       return this;
     }
     
@@ -1298,11 +1298,11 @@ namespace senseix.message.leaderboard {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.leaderboard.PageResponse.Descriptor; }
+        get { return global::Senseix.Message.Leaderboard.PageResponse.Descriptor; }
       }
       
       public override PageResponse DefaultInstanceForType {
-        get { return global::senseix.message.leaderboard.PageResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Leaderboard.PageResponse.DefaultInstance; }
       }
       
       public override PageResponse BuildPartial() {
@@ -1323,13 +1323,13 @@ namespace senseix.message.leaderboard {
       }
       
       public override Builder MergeFrom(PageResponse other) {
-        if (other == global::senseix.message.leaderboard.PageResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Leaderboard.PageResponse.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasTotalMembers) {
           TotalMembers = other.TotalMembers;
         }
-        if (other.player_.Count != 0) {
-          result.player_.Add(other.player_);
+        if (other.Player_.Count != 0) {
+          result.Player_.Add(other.Player_);
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -1379,7 +1379,7 @@ namespace senseix.message.leaderboard {
               break;
             }
             case 18: {
-              input.ReadMessageArray(tag, field_name, result.player_, global::senseix.message.leaderboard.PlayerData.DefaultInstance, extensionRegistry);
+              input.ReadMessageArray(tag, field_name, result.Player_, global::Senseix.Message.Leaderboard.PlayerData.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -1414,52 +1414,52 @@ namespace senseix.message.leaderboard {
         return this;
       }
       
-      public pbc::IPopsicleList<global::senseix.message.leaderboard.PlayerData> PlayerList {
-        get { return PrepareBuilder().player_; }
+      public pbc::IPopsicleList<global::Senseix.Message.Leaderboard.PlayerData> PlayerList {
+        get { return PrepareBuilder().Player_; }
       }
       public int PlayerCount {
         get { return result.PlayerCount; }
       }
-      public global::senseix.message.leaderboard.PlayerData GetPlayer(int index) {
+      public global::Senseix.Message.Leaderboard.PlayerData GetPlayer(int index) {
         return result.GetPlayer(index);
       }
-      public Builder SetPlayer(int index, global::senseix.message.leaderboard.PlayerData value) {
+      public Builder SetPlayer(int index, global::Senseix.Message.Leaderboard.PlayerData value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.player_[index] = value;
+        result.Player_[index] = value;
         return this;
       }
-      public Builder SetPlayer(int index, global::senseix.message.leaderboard.PlayerData.Builder builderForValue) {
+      public Builder SetPlayer(int index, global::Senseix.Message.Leaderboard.PlayerData.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.player_[index] = builderForValue.Build();
+        result.Player_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddPlayer(global::senseix.message.leaderboard.PlayerData value) {
+      public Builder AddPlayer(global::Senseix.Message.Leaderboard.PlayerData value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.player_.Add(value);
+        result.Player_.Add(value);
         return this;
       }
-      public Builder AddPlayer(global::senseix.message.leaderboard.PlayerData.Builder builderForValue) {
+      public Builder AddPlayer(global::Senseix.Message.Leaderboard.PlayerData.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.player_.Add(builderForValue.Build());
+        result.Player_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangePlayer(scg::IEnumerable<global::senseix.message.leaderboard.PlayerData> values) {
+      public Builder AddRangePlayer(scg::IEnumerable<global::Senseix.Message.Leaderboard.PlayerData> values) {
         PrepareBuilder();
-        result.player_.Add(values);
+        result.Player_.Add(values);
         return this;
       }
       public Builder ClearPlayer() {
         PrepareBuilder();
-        result.player_.Clear();
+        result.Player_.Clear();
         return this;
       }
     }
     static PageResponse() {
-      object.ReferenceEquals(global::senseix.message.leaderboard.Leaderboard.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Leaderboard.Leaderboard.Descriptor, null);
     }
   }
   
@@ -1467,7 +1467,7 @@ namespace senseix.message.leaderboard {
   public sealed partial class UpdatePlayerScoreRequest : pb::GeneratedMessage<UpdatePlayerScoreRequest, UpdatePlayerScoreRequest.Builder> {
     private UpdatePlayerScoreRequest() { }
     private static readonly UpdatePlayerScoreRequest defaultInstance = new UpdatePlayerScoreRequest().MakeReadOnly();
-    private static readonly string[] _updatePlayerScoreRequestFieldNames = new string[] { "player_id", "player_score" };
+    private static readonly string[] _updatePlayerScoreRequestFieldNames = new string[] { "Player_id", "Player_score" };
     private static readonly uint[] _updatePlayerScoreRequestFieldTags = new uint[] { 10, 16 };
     public static UpdatePlayerScoreRequest DefaultInstance {
       get { return defaultInstance; }
@@ -1482,32 +1482,32 @@ namespace senseix.message.leaderboard {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_UpdatePlayerScoreRequest__Descriptor; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<UpdatePlayerScoreRequest, UpdatePlayerScoreRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_UpdatePlayerScoreRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__FieldAccessorTable; }
     }
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string playerId_ = "";
+    private string PlayerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return playerId_; }
+      get { return PlayerId_; }
     }
     
     public const int PlayerScoreFieldNumber = 2;
     private bool hasPlayerScore;
-    private uint playerScore_;
+    private uint PlayerScore_;
     public bool HasPlayerScore {
       get { return hasPlayerScore; }
     }
     [global::System.CLSCompliant(false)]
     public uint PlayerScore {
-      get { return playerScore_; }
+      get { return PlayerScore_; }
     }
     
     public override bool IsInitialized {
@@ -1640,11 +1640,11 @@ namespace senseix.message.leaderboard {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.leaderboard.UpdatePlayerScoreRequest.Descriptor; }
+        get { return global::Senseix.Message.Leaderboard.UpdatePlayerScoreRequest.Descriptor; }
       }
       
       public override UpdatePlayerScoreRequest DefaultInstanceForType {
-        get { return global::senseix.message.leaderboard.UpdatePlayerScoreRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Leaderboard.UpdatePlayerScoreRequest.DefaultInstance; }
       }
       
       public override UpdatePlayerScoreRequest BuildPartial() {
@@ -1665,7 +1665,7 @@ namespace senseix.message.leaderboard {
       }
       
       public override Builder MergeFrom(UpdatePlayerScoreRequest other) {
-        if (other == global::senseix.message.leaderboard.UpdatePlayerScoreRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Leaderboard.UpdatePlayerScoreRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPlayerId) {
           PlayerId = other.PlayerId;
@@ -1717,11 +1717,11 @@ namespace senseix.message.leaderboard {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
               break;
             }
             case 16: {
-              result.hasPlayerScore = input.ReadUInt32(ref result.playerScore_);
+              result.hasPlayerScore = input.ReadUInt32(ref result.PlayerScore_);
               break;
             }
           }
@@ -1745,13 +1745,13 @@ namespace senseix.message.leaderboard {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.playerId_ = value;
+        result.PlayerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.playerId_ = "";
+        result.PlayerId_ = "";
         return this;
       }
       
@@ -1767,18 +1767,18 @@ namespace senseix.message.leaderboard {
       public Builder SetPlayerScore(uint value) {
         PrepareBuilder();
         result.hasPlayerScore = true;
-        result.playerScore_ = value;
+        result.PlayerScore_ = value;
         return this;
       }
       public Builder ClearPlayerScore() {
         PrepareBuilder();
         result.hasPlayerScore = false;
-        result.playerScore_ = 0;
+        result.PlayerScore_ = 0;
         return this;
       }
     }
     static UpdatePlayerScoreRequest() {
-      object.ReferenceEquals(global::senseix.message.leaderboard.Leaderboard.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Leaderboard.Leaderboard.Descriptor, null);
     }
   }
   
@@ -1786,7 +1786,7 @@ namespace senseix.message.leaderboard {
   public sealed partial class UpdatePlayerScoreResponse : pb::GeneratedMessage<UpdatePlayerScoreResponse, UpdatePlayerScoreResponse.Builder> {
     private UpdatePlayerScoreResponse() { }
     private static readonly UpdatePlayerScoreResponse defaultInstance = new UpdatePlayerScoreResponse().MakeReadOnly();
-    private static readonly string[] _updatePlayerScoreResponseFieldNames = new string[] { "player", "total_members" };
+    private static readonly string[] _updatePlayerScoreResponseFieldNames = new string[] { "Player", "total_members" };
     private static readonly uint[] _updatePlayerScoreResponseFieldTags = new uint[] { 18, 8 };
     public static UpdatePlayerScoreResponse DefaultInstance {
       get { return defaultInstance; }
@@ -1801,11 +1801,11 @@ namespace senseix.message.leaderboard {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_UpdatePlayerScoreResponse__Descriptor; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<UpdatePlayerScoreResponse, UpdatePlayerScoreResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_UpdatePlayerScoreResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__FieldAccessorTable; }
     }
     
     public const int TotalMembersFieldNumber = 1;
@@ -1821,12 +1821,12 @@ namespace senseix.message.leaderboard {
     
     public const int PlayerFieldNumber = 2;
     private bool hasPlayer;
-    private global::senseix.message.leaderboard.PlayerData player_;
+    private global::Senseix.Message.Leaderboard.PlayerData Player_;
     public bool HasPlayer {
       get { return hasPlayer; }
     }
-    public global::senseix.message.leaderboard.PlayerData Player {
-      get { return player_ ?? global::senseix.message.leaderboard.PlayerData.DefaultInstance; }
+    public global::Senseix.Message.Leaderboard.PlayerData Player {
+      get { return Player_ ?? global::Senseix.Message.Leaderboard.PlayerData.DefaultInstance; }
     }
     
     public override bool IsInitialized {
@@ -1959,11 +1959,11 @@ namespace senseix.message.leaderboard {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.leaderboard.UpdatePlayerScoreResponse.Descriptor; }
+        get { return global::Senseix.Message.Leaderboard.UpdatePlayerScoreResponse.Descriptor; }
       }
       
       public override UpdatePlayerScoreResponse DefaultInstanceForType {
-        get { return global::senseix.message.leaderboard.UpdatePlayerScoreResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Leaderboard.UpdatePlayerScoreResponse.DefaultInstance; }
       }
       
       public override UpdatePlayerScoreResponse BuildPartial() {
@@ -1984,7 +1984,7 @@ namespace senseix.message.leaderboard {
       }
       
       public override Builder MergeFrom(UpdatePlayerScoreResponse other) {
-        if (other == global::senseix.message.leaderboard.UpdatePlayerScoreResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Leaderboard.UpdatePlayerScoreResponse.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasTotalMembers) {
           TotalMembers = other.TotalMembers;
@@ -2040,7 +2040,7 @@ namespace senseix.message.leaderboard {
               break;
             }
             case 18: {
-              global::senseix.message.leaderboard.PlayerData.Builder subBuilder = global::senseix.message.leaderboard.PlayerData.CreateBuilder();
+              global::Senseix.Message.Leaderboard.PlayerData.Builder subBuilder = global::Senseix.Message.Leaderboard.PlayerData.CreateBuilder();
               if (result.hasPlayer) {
                 subBuilder.MergeFrom(Player);
               }
@@ -2083,32 +2083,32 @@ namespace senseix.message.leaderboard {
       public bool HasPlayer {
        get { return result.hasPlayer; }
       }
-      public global::senseix.message.leaderboard.PlayerData Player {
+      public global::Senseix.Message.Leaderboard.PlayerData Player {
         get { return result.Player; }
         set { SetPlayer(value); }
       }
-      public Builder SetPlayer(global::senseix.message.leaderboard.PlayerData value) {
+      public Builder SetPlayer(global::Senseix.Message.Leaderboard.PlayerData value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayer = true;
-        result.player_ = value;
+        result.Player_ = value;
         return this;
       }
-      public Builder SetPlayer(global::senseix.message.leaderboard.PlayerData.Builder builderForValue) {
+      public Builder SetPlayer(global::Senseix.Message.Leaderboard.PlayerData.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.hasPlayer = true;
-        result.player_ = builderForValue.Build();
+        result.Player_ = builderForValue.Build();
         return this;
       }
-      public Builder MergePlayer(global::senseix.message.leaderboard.PlayerData value) {
+      public Builder MergePlayer(global::Senseix.Message.Leaderboard.PlayerData value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         if (result.hasPlayer &&
-            result.player_ != global::senseix.message.leaderboard.PlayerData.DefaultInstance) {
-            result.player_ = global::senseix.message.leaderboard.PlayerData.CreateBuilder(result.player_).MergeFrom(value).BuildPartial();
+            result.Player_ != global::Senseix.Message.Leaderboard.PlayerData.DefaultInstance) {
+            result.Player_ = global::Senseix.Message.Leaderboard.PlayerData.CreateBuilder(result.Player_).MergeFrom(value).BuildPartial();
         } else {
-          result.player_ = value;
+          result.Player_ = value;
         }
         result.hasPlayer = true;
         return this;
@@ -2116,12 +2116,12 @@ namespace senseix.message.leaderboard {
       public Builder ClearPlayer() {
         PrepareBuilder();
         result.hasPlayer = false;
-        result.player_ = null;
+        result.Player_ = null;
         return this;
       }
     }
     static UpdatePlayerScoreResponse() {
-      object.ReferenceEquals(global::senseix.message.leaderboard.Leaderboard.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Leaderboard.Leaderboard.Descriptor, null);
     }
   }
   
@@ -2129,8 +2129,8 @@ namespace senseix.message.leaderboard {
   public sealed partial class PlayerRankRequest : pb::GeneratedMessage<PlayerRankRequest, PlayerRankRequest.Builder> {
     private PlayerRankRequest() { }
     private static readonly PlayerRankRequest defaultInstance = new PlayerRankRequest().MakeReadOnly();
-    private static readonly string[] _playerRankRequestFieldNames = new string[] { "count", "page_size", "player_id", "sort_by" };
-    private static readonly uint[] _playerRankRequestFieldTags = new uint[] { 16, 24, 10, 32 };
+    private static readonly string[] _PlayerRankRequestFieldNames = new string[] { "count", "page_size", "Player_id", "sort_by" };
+    private static readonly uint[] _PlayerRankRequestFieldTags = new uint[] { 16, 24, 10, 32 };
     public static PlayerRankRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2144,21 +2144,21 @@ namespace senseix.message.leaderboard {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_PlayerRankRequest__Descriptor; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PlayerRankRequest, PlayerRankRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_PlayerRankRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__FieldAccessorTable; }
     }
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string playerId_ = "";
+    private string PlayerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return playerId_; }
+      get { return PlayerId_; }
     }
     
     public const int CountFieldNumber = 2;
@@ -2185,11 +2185,11 @@ namespace senseix.message.leaderboard {
     
     public const int SortByFieldNumber = 4;
     private bool hasSortBy;
-    private global::senseix.message.leaderboard.SortBy sortBy_ = global::senseix.message.leaderboard.SortBy.NONE;
+    private global::Senseix.Message.Leaderboard.SortBy sortBy_ = global::Senseix.Message.Leaderboard.SortBy.NONE;
     public bool HasSortBy {
       get { return hasSortBy; }
     }
-    public global::senseix.message.leaderboard.SortBy SortBy {
+    public global::Senseix.Message.Leaderboard.SortBy SortBy {
       get { return sortBy_; }
     }
     
@@ -2202,7 +2202,7 @@ namespace senseix.message.leaderboard {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _playerRankRequestFieldNames;
+      string[] field_names = _PlayerRankRequestFieldNames;
       if (hasPlayerId) {
         output.WriteString(1, field_names[2], PlayerId);
       }
@@ -2334,11 +2334,11 @@ namespace senseix.message.leaderboard {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.leaderboard.PlayerRankRequest.Descriptor; }
+        get { return global::Senseix.Message.Leaderboard.PlayerRankRequest.Descriptor; }
       }
       
       public override PlayerRankRequest DefaultInstanceForType {
-        get { return global::senseix.message.leaderboard.PlayerRankRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Leaderboard.PlayerRankRequest.DefaultInstance; }
       }
       
       public override PlayerRankRequest BuildPartial() {
@@ -2359,7 +2359,7 @@ namespace senseix.message.leaderboard {
       }
       
       public override Builder MergeFrom(PlayerRankRequest other) {
-        if (other == global::senseix.message.leaderboard.PlayerRankRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Leaderboard.PlayerRankRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPlayerId) {
           PlayerId = other.PlayerId;
@@ -2388,9 +2388,9 @@ namespace senseix.message.leaderboard {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerRankRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_PlayerRankRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _playerRankRequestFieldTags[field_ordinal];
+              tag = _PlayerRankRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -2417,7 +2417,7 @@ namespace senseix.message.leaderboard {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
               break;
             }
             case 16: {
@@ -2461,13 +2461,13 @@ namespace senseix.message.leaderboard {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.playerId_ = value;
+        result.PlayerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.playerId_ = "";
+        result.PlayerId_ = "";
         return this;
       }
       
@@ -2518,11 +2518,11 @@ namespace senseix.message.leaderboard {
       public bool HasSortBy {
        get { return result.hasSortBy; }
       }
-      public global::senseix.message.leaderboard.SortBy SortBy {
+      public global::Senseix.Message.Leaderboard.SortBy SortBy {
         get { return result.SortBy; }
         set { SetSortBy(value); }
       }
-      public Builder SetSortBy(global::senseix.message.leaderboard.SortBy value) {
+      public Builder SetSortBy(global::Senseix.Message.Leaderboard.SortBy value) {
         PrepareBuilder();
         result.hasSortBy = true;
         result.sortBy_ = value;
@@ -2531,12 +2531,12 @@ namespace senseix.message.leaderboard {
       public Builder ClearSortBy() {
         PrepareBuilder();
         result.hasSortBy = false;
-        result.sortBy_ = global::senseix.message.leaderboard.SortBy.NONE;
+        result.sortBy_ = global::Senseix.Message.Leaderboard.SortBy.NONE;
         return this;
       }
     }
     static PlayerRankRequest() {
-      object.ReferenceEquals(global::senseix.message.leaderboard.Leaderboard.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Leaderboard.Leaderboard.Descriptor, null);
     }
   }
   
@@ -2544,8 +2544,8 @@ namespace senseix.message.leaderboard {
   public sealed partial class PlayerRankResponse : pb::GeneratedMessage<PlayerRankResponse, PlayerRankResponse.Builder> {
     private PlayerRankResponse() { }
     private static readonly PlayerRankResponse defaultInstance = new PlayerRankResponse().MakeReadOnly();
-    private static readonly string[] _playerRankResponseFieldNames = new string[] { "player", "total_members" };
-    private static readonly uint[] _playerRankResponseFieldTags = new uint[] { 18, 8 };
+    private static readonly string[] _PlayerRankResponseFieldNames = new string[] { "Player", "total_members" };
+    private static readonly uint[] _PlayerRankResponseFieldTags = new uint[] { 18, 8 };
     public static PlayerRankResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2559,11 +2559,11 @@ namespace senseix.message.leaderboard {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_PlayerRankResponse__Descriptor; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PlayerRankResponse, PlayerRankResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.leaderboard.Leaderboard.internal__static_senseix_message_leaderboard_PlayerRankResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__FieldAccessorTable; }
     }
     
     public const int TotalMembersFieldNumber = 1;
@@ -2578,15 +2578,15 @@ namespace senseix.message.leaderboard {
     }
     
     public const int PlayerFieldNumber = 2;
-    private pbc::PopsicleList<global::senseix.message.leaderboard.PlayerData> player_ = new pbc::PopsicleList<global::senseix.message.leaderboard.PlayerData>();
-    public scg::IList<global::senseix.message.leaderboard.PlayerData> PlayerList {
-      get { return player_; }
+    private pbc::PopsicleList<global::Senseix.Message.Leaderboard.PlayerData> Player_ = new pbc::PopsicleList<global::Senseix.Message.Leaderboard.PlayerData>();
+    public scg::IList<global::Senseix.Message.Leaderboard.PlayerData> PlayerList {
+      get { return Player_; }
     }
     public int PlayerCount {
-      get { return player_.Count; }
+      get { return Player_.Count; }
     }
-    public global::senseix.message.leaderboard.PlayerData GetPlayer(int index) {
-      return player_[index];
+    public global::Senseix.Message.Leaderboard.PlayerData GetPlayer(int index) {
+      return Player_[index];
     }
     
     public override bool IsInitialized {
@@ -2598,12 +2598,12 @@ namespace senseix.message.leaderboard {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _playerRankResponseFieldNames;
+      string[] field_names = _PlayerRankResponseFieldNames;
       if (hasTotalMembers) {
         output.WriteUInt32(1, field_names[1], TotalMembers);
       }
-      if (player_.Count > 0) {
-        output.WriteMessageArray(2, field_names[0], player_);
+      if (Player_.Count > 0) {
+        output.WriteMessageArray(2, field_names[0], Player_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -2618,7 +2618,7 @@ namespace senseix.message.leaderboard {
         if (hasTotalMembers) {
           size += pb::CodedOutputStream.ComputeUInt32Size(1, TotalMembers);
         }
-        foreach (global::senseix.message.leaderboard.PlayerData element in PlayerList) {
+        foreach (global::Senseix.Message.Leaderboard.PlayerData element in PlayerList) {
           size += pb::CodedOutputStream.ComputeMessageSize(2, element);
         }
         size += UnknownFields.SerializedSize;
@@ -2658,7 +2658,7 @@ namespace senseix.message.leaderboard {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private PlayerRankResponse MakeReadOnly() {
-      player_.MakeReadOnly();
+      Player_.MakeReadOnly();
       return this;
     }
     
@@ -2719,11 +2719,11 @@ namespace senseix.message.leaderboard {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.leaderboard.PlayerRankResponse.Descriptor; }
+        get { return global::Senseix.Message.Leaderboard.PlayerRankResponse.Descriptor; }
       }
       
       public override PlayerRankResponse DefaultInstanceForType {
-        get { return global::senseix.message.leaderboard.PlayerRankResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Leaderboard.PlayerRankResponse.DefaultInstance; }
       }
       
       public override PlayerRankResponse BuildPartial() {
@@ -2744,13 +2744,13 @@ namespace senseix.message.leaderboard {
       }
       
       public override Builder MergeFrom(PlayerRankResponse other) {
-        if (other == global::senseix.message.leaderboard.PlayerRankResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Leaderboard.PlayerRankResponse.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasTotalMembers) {
           TotalMembers = other.TotalMembers;
         }
-        if (other.player_.Count != 0) {
-          result.player_.Add(other.player_);
+        if (other.Player_.Count != 0) {
+          result.Player_.Add(other.Player_);
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -2767,9 +2767,9 @@ namespace senseix.message.leaderboard {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerRankResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_PlayerRankResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _playerRankResponseFieldTags[field_ordinal];
+              tag = _PlayerRankResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -2800,7 +2800,7 @@ namespace senseix.message.leaderboard {
               break;
             }
             case 18: {
-              input.ReadMessageArray(tag, field_name, result.player_, global::senseix.message.leaderboard.PlayerData.DefaultInstance, extensionRegistry);
+              input.ReadMessageArray(tag, field_name, result.Player_, global::Senseix.Message.Leaderboard.PlayerData.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -2835,52 +2835,52 @@ namespace senseix.message.leaderboard {
         return this;
       }
       
-      public pbc::IPopsicleList<global::senseix.message.leaderboard.PlayerData> PlayerList {
-        get { return PrepareBuilder().player_; }
+      public pbc::IPopsicleList<global::Senseix.Message.Leaderboard.PlayerData> PlayerList {
+        get { return PrepareBuilder().Player_; }
       }
       public int PlayerCount {
         get { return result.PlayerCount; }
       }
-      public global::senseix.message.leaderboard.PlayerData GetPlayer(int index) {
+      public global::Senseix.Message.Leaderboard.PlayerData GetPlayer(int index) {
         return result.GetPlayer(index);
       }
-      public Builder SetPlayer(int index, global::senseix.message.leaderboard.PlayerData value) {
+      public Builder SetPlayer(int index, global::Senseix.Message.Leaderboard.PlayerData value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.player_[index] = value;
+        result.Player_[index] = value;
         return this;
       }
-      public Builder SetPlayer(int index, global::senseix.message.leaderboard.PlayerData.Builder builderForValue) {
+      public Builder SetPlayer(int index, global::Senseix.Message.Leaderboard.PlayerData.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.player_[index] = builderForValue.Build();
+        result.Player_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddPlayer(global::senseix.message.leaderboard.PlayerData value) {
+      public Builder AddPlayer(global::Senseix.Message.Leaderboard.PlayerData value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.player_.Add(value);
+        result.Player_.Add(value);
         return this;
       }
-      public Builder AddPlayer(global::senseix.message.leaderboard.PlayerData.Builder builderForValue) {
+      public Builder AddPlayer(global::Senseix.Message.Leaderboard.PlayerData.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.player_.Add(builderForValue.Build());
+        result.Player_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangePlayer(scg::IEnumerable<global::senseix.message.leaderboard.PlayerData> values) {
+      public Builder AddRangePlayer(scg::IEnumerable<global::Senseix.Message.Leaderboard.PlayerData> values) {
         PrepareBuilder();
-        result.player_.Add(values);
+        result.Player_.Add(values);
         return this;
       }
       public Builder ClearPlayer() {
         PrepareBuilder();
-        result.player_.Clear();
+        result.Player_.Clear();
         return this;
       }
     }
     static PlayerRankResponse() {
-      object.ReferenceEquals(global::senseix.message.leaderboard.Leaderboard.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Leaderboard.Leaderboard.Descriptor, null);
     }
   }
   

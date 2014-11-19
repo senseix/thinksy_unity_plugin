@@ -15,7 +15,7 @@ namespace sensei
 		
 		// Update is called once per frame
 		void Update () {
-			warningText.SetActive (!senseix.SenseixController.GetSessionState ());
+			warningText.SetActive (!Senseix.SenseixController.GetSessionState ());
 		}
 	}
 }

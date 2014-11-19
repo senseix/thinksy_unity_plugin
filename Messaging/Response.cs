@@ -13,10 +13,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using System.IO;
-namespace senseix.message {
+namespace Senseix.Message {
 	static public class Response
 	{
-		static public bool ParseResponse(constant.MessageType type, ref ResponseHeader reply)
+		static public bool ParseResponse(Constant.MessageType type, ref ResponseHeader reply)
 		{
 			if (reply == null) 
 			{
@@ -25,11 +25,11 @@ namespace senseix.message {
 
 			if (!reply.IsInitialized) 
 			{
-				Debug.Log ("Could not find a valid reply message from server...");
+				Debug.Log ("Could not find a valid reply Message from server...");
 				return false; 
 			}
 
-			if (reply.Status == constant.Status.FAILURE) 
+			if (reply.Status == Constant.Status.FAILURE) 
 			{
 				Debug.Log (reply.Message);
 				return false;
@@ -37,7 +37,7 @@ namespace senseix.message {
 	
 			switch (type) 
 			{
-				case constant.MessageType.RegisterDevice:
+				case Constant.MessageType.RegisterDevice:
 					if (reply.HasDeviceRegistration && reply.DeviceRegistration.IsInitialized) 
 					{	
 						SenseixController.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
@@ -54,13 +54,13 @@ namespace senseix.message {
 					}
 					break;
 
-				case constant.MessageType.GameVerification:
+				case Constant.MessageType.GameVerification:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from my game verification message");
+					Debug.Log("I got a response from my game verification Message");
 					break;
 				
-				case constant.MessageType.RegisterParent:
-					if (reply.Status == constant.Status.FAILURE) 
+				case Constant.MessageType.RegisterParent:
+					if (reply.Status == Constant.Status.FAILURE) 
 					{
 						Debug.Log ("DUANE!!!! MERGE CODE REQUIRED HERE!!!");
 					}
@@ -76,8 +76,8 @@ namespace senseix.message {
 					}
 					break;
 
-				case constant.MessageType.SignInParent:
-					if (reply.Status == constant.Status.FAILURE) 
+				case Constant.MessageType.SignInParent:
+					if (reply.Status == Constant.Status.FAILURE) 
 					{
 						throw new Exception ("We encountered a fatal failure on sign in.");
 					}
@@ -93,11 +93,11 @@ namespace senseix.message {
 					}
 					break;
 
-				case constant.MessageType.SignOutParent:
+				case Constant.MessageType.SignOutParent:
 					SenseixController.SetSessionState(false);//Duane, this seems..odd
 					break;
 
-				case constant.MessageType.MergeParent:
+				case Constant.MessageType.MergeParent:
 					if(reply.HasParentMerge && reply.ParentMerge.IsInitialized && reply.ParentMerge.HasAuthToken)
 					{
 						SenseixController.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);
@@ -110,29 +110,29 @@ namespace senseix.message {
 					}
 					break;
 
-				case constant.MessageType.CreatePlayer:
+				case Constant.MessageType.CreatePlayer:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a create player message");
+					Debug.Log("I got a response from a create Player Message");
 					break;
 
-				case constant.MessageType.ListPlayer:
+				case Constant.MessageType.ListPlayer:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a list player message");
+					Debug.Log("I got a response from a list Player Message");
 					SenseixController.SetCurrentPlayerList(reply.PlayerList);
 					break;
 
-				case constant.MessageType.RegisterPlayerWithApplication:
+				case Constant.MessageType.RegisterPlayerWithApplication:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a register player message");
+					Debug.Log("I got a response from a register Player Message");
 					break;
 
-				case constant.MessageType.ProblemPost:
+				case Constant.MessageType.ProblemPost:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a problem post message");
+					Debug.Log("I got a response from a Problem post Message");
 					break;
 				
-				case constant.MessageType.ProblemGet:
-					Debug.Log("I got a response from a problem get message");
+				case Constant.MessageType.ProblemGet:
+					Debug.Log("I got a response from a Problem get Message");
 					Debug.Log ("LENGTH OF THE IMAGE FROM RESPONSE " + reply.ProblemGet.GetProblem(0).Question.Image.Length);
 					if(reply.HasProblemGet && reply.ProblemGet.IsInitialized) 
 					{
@@ -144,20 +144,20 @@ namespace senseix.message {
 					}
 					break;
 
-				case constant.MessageType.LeaderboardPage:
-					Debug.Log ("I recieved a leaderboard page response");
+				case Constant.MessageType.LeaderboardPage:
+					Debug.Log ("I recieved a Leaderboard page response");
 					Debug.Log(reply.Page.PlayerList);
 					SenseixController.SetLeaderboardPlayers(reply.Page.PlayerList);
 					break;
 
-				case constant.MessageType.PlayerScore:
+				case Constant.MessageType.PlayerScore:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a player score message");
+					Debug.Log("I got a response from a Player score Message");
 					break;
 
-				case constant.MessageType.PlayerRank:
+				case Constant.MessageType.PlayerRank:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a player rank message");
+					Debug.Log("I got a response from a Player rank Message");
 					break;
 
 				default:

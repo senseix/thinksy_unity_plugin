@@ -11,7 +11,7 @@ class SenseixPlugin : MonoBehaviour
 {
 
 	public string developerAccessToken; //this is your developer access token obtained from 
-										//the SenseiX website.
+										//the Senseix website.
 	public GameObject emergencyWindow;
 
 	private static SenseixPlugin singletonInstance;
@@ -39,57 +39,57 @@ class SenseixPlugin : MonoBehaviour
 				"time.  You can access its features through the class's static methods.");
 		}
 		singletonInstance = this;
-		senseix.ProblemKeeper.CopyFailsafeOver ();
-		senseix.SenseixController.InitializeSenseix (developerAccessToken);
+		Senseix.ProblemKeeper.CopyFailsafeOver ();
+		Senseix.SenseixController.InitializeSenseix (developerAccessToken);
 	}
 
 	void Update()
 	{
-		if (!senseix.SenseixController.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
+		if (!Senseix.SenseixController.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
 		{
-			senseix.SenseixController.InitializeSenseix(developerAccessToken);
+			Senseix.SenseixController.InitializeSenseix(developerAccessToken);
 		}
 
-		senseix.message.Request.CheckResults ();
+		Senseix.Message.Request.CheckResults ();
 	}
 
 	/// <summary>
-	/// Registers the device with the SenseiX server, allows a temporary account to be created
-	/// and the player to begin playing without logging in. Once an account is registered
+	/// Registers the device with the Senseix server, allows a temporary account to be created
+	/// and the Player to begin playing without logging in. Once an account is registered
 	/// or created the temporary account is transitioned into a permanent one.  
 	/// </summary>
 	public void ReregisterDevice()
 	{
-		senseix.SenseixController.RegisterDevice ();
+		Senseix.SenseixController.RegisterDevice ();
 	}
 
 	public static void UpdateCurrentPlayerScore (UInt32 score)
 	{
-		senseix.SenseixController.UpdateCurrentPlayerScore (score);
+		Senseix.SenseixController.UpdateCurrentPlayerScore (score);
 	}
 	
 	/// <summary>
-	/// Returns the next problem for the player as an instance of the Problem class.  If there aren't 
-	/// enough problems left in the queue, an asynchronous task will retrieve more from the SenseiX
+	/// Returns the next Problem for the Player as an instance of the Problem class.  If there aren't 
+	/// enough Problems left in the queue, an asynchronous task will retrieve more from the Senseix
 	/// server.
 	/// </summary>
 	public static Problem NextProblem()
 	{
-		Debug.Log ("NEXT PROBLEM");
-		senseix.message.problem.ProblemData.Builder protobufsProblemBuilder = senseix.SenseixController.PullProblem ();
+		Debug.Log ("NEXT Problem");
+		Senseix.Message.Problem.ProblemData.Builder protobufsProblemBuilder = Senseix.SenseixController.PullProblem ();
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
-		senseix.QuestionDisplay.Update ();
+		Senseix.QuestionDisplay.Update ();
 		return mostRecentProblem;
 	}
 
 	/// <summary>
-	/// Returns the most recent problem returned by the NextProblem() function.
+	/// Returns the most recent Problem returned by the NextProblem() function.
 	/// </summary>
 	public static Problem GetMostRecentProblem()
 	{
 		if (mostRecentProblem == null)
 		{
-			throw new Exception("There are not yet any problems.  Please use SenseixPlugin.NextProblem()");
+			throw new Exception("There are not yet any Problems.  Please use SenseixPlugin.NextProblem()");
 		}
 		return mostRecentProblem;
 	}
@@ -115,21 +115,21 @@ class SenseixPlugin : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Checks the problem's given answer against its correct answer.  Also reports the player's answer
-	/// (correct or incorrect) to the SenseiX server.  Given and correct answer can be found in the Problem class.
+	/// Checks the Problem's given answer against its correct answer.  Also reports the Player's answer
+	/// (correct or incorrect) to the Senseix server.  Given and correct answer can be found in the Problem class.
 	/// </summary>
-	public static bool CheckAnswer(Problem problem)
+	public static bool CheckAnswer(Problem Problem)
 	{
-		return problem.CheckAnswer ();
+		return Problem.CheckAnswer ();
 	}
 
 	/// <summary>
-	/// Whichever player is the currently active player in the SenseiX menus, this
-	/// will set that player's high score to the UInt32 argument.
+	/// Whichever Player is the currently active Player in the Senseix menus, this
+	/// will set that Player's high score to the UInt32 argument.
 	/// </summary>
 	public static void SetCurrentPlayerHighScore (UInt32 score)
 	{
-		senseix.SenseixController.UpdateCurrentPlayerScore(score);
+		Senseix.SenseixController.UpdateCurrentPlayerScore(score);
 	}
 	
 	public static ArrayList GetMostRecentAnswerParts()
@@ -176,16 +176,21 @@ class SenseixPlugin : MonoBehaviour
 
 public class Problem 
 {
-	private senseix.message.problem.ProblemData.Builder protobufsProblemBuilder;
+	private Senseix.Message.Problem.ProblemData.Builder protobufsProblemBuilder;
 	private Answer givenAnswer = new Answer();
 	
-	public Problem(senseix.message.problem.ProblemData.Builder newProtobufsProblemBuilder)
+	public Problem(Senseix.Message.Problem.ProblemData.Builder newProtobufsProblemBuilder)
 	{
 		protobufsProblemBuilder = newProtobufsProblemBuilder;
 	}
 
+	public void SetGivenAnswer(Answer newGivenAnswer)
+	{
+		givenAnswer = newGivenAnswer;
+	}
+
 	/// <summary>
-	/// Returns the correct answer to this problem
+	/// Returns the correct answer to this Problem
 	/// </summary>
 	public Answer GetCorrectAnswer()
 	{
@@ -214,7 +219,7 @@ public class Problem
 		ArrayList allDistractors = new ArrayList();
 		for (int i = 0; i < availableDistractors; i++)
 		{
-			senseix.message.problem.Atom distractorAtom = protobufsProblemBuilder.Distractor.AtomList[i];
+			Senseix.Message.Problem.Atom distractorAtom = protobufsProblemBuilder.Distractor.AtomList[i];
 			ProblemPart distractor = new ProblemPart(distractorAtom);
 			allDistractors.Add(distractor);
 		} //find all the distractors
@@ -248,7 +253,7 @@ public class Problem
 	/// </summary>
 	public Question GetQuestion()
 	{
-		Debug.Log ("PROBLEM ID" + protobufsProblemBuilder.Uuid);
+		Debug.Log ("Problem ID" + protobufsProblemBuilder.Uuid);
 		return new Question(protobufsProblemBuilder.Question);
 	}
 
@@ -261,12 +266,12 @@ public class Problem
 	}
 
 	/// <summary>
-	/// Checks the problem's given answer against its correct answer.  Also reports the player's answer
-	/// (correct or incorrect) to the SenseiX server.
+	/// Checks the Problem's given answer against its correct answer.  Also reports the Player's answer
+	/// (correct or incorrect) to the Senseix server.
 	/// </summary>
 	public bool CheckAnswer()
 	{
-		return senseix.SenseixController.CheckAnswer (protobufsProblemBuilder, GetGivenAnswer());
+		return Senseix.SenseixController.CheckAnswer (protobufsProblemBuilder, GetGivenAnswer());
 	}
 
 	public ArrayList GetGivenAnswerIDs()
@@ -294,9 +299,9 @@ public class Answer
 {
 	ArrayList answerParts = new ArrayList();
 	
-	public Answer(senseix.message.problem.Answer protoAnswer)
+	public Answer(Senseix.Message.Problem.Answer protoAnswer)
 	{
-		foreach (senseix.message.problem.Atom atom in protoAnswer.AtomList)
+		foreach (Senseix.Message.Problem.Atom atom in protoAnswer.AtomList)
 		{
 			answerParts.Add(new ProblemPart(atom));
 		}
@@ -310,7 +315,7 @@ public class Answer
 	public void AddAnswerPart(ProblemPart part)
 	{
 		answerParts.Add(part);
-		senseix.QuestionDisplay.Update ();
+		Senseix.QuestionDisplay.Update ();
 	}
 
 	public ArrayList GetAnswerIDs()
@@ -341,10 +346,10 @@ public class Answer
 
 public class Question
 {
-	private senseix.message.problem.Question question;
-	private IList<senseix.message.problem.Atom> atomList;
+	private Senseix.Message.Problem.Question question;
+	private IList<Senseix.Message.Problem.Atom> atomList;
 
-	public Question(senseix.message.problem.Question newQuestion)
+	public Question(Senseix.Message.Problem.Question newQuestion)
 	{
 		question = newQuestion;
 		atomList = newQuestion.AtomList;
@@ -362,7 +367,7 @@ public class Question
 	{
 		Texture2D returnImage = new Texture2D(0, 0);
 		Debug.Log ("LENGTH OF THE IMAGE BYTES FIELD " + question.Image.Length);
-		//byte[] imageBytes = senseix.SenseixController.DecodeServerBytes (question.Image);
+		//byte[] imageBytes = Senseix.SenseixController.DecodeServerBytes (question.Image);
 		string base64 = question.Image.ToStringUtf8 ();
 		byte[] imageBytes = System.Convert.FromBase64String (base64);
 		//Debug.Log ("BYTES AS HEX: " + System.BitConverter.ToString(imageBytes));
@@ -373,7 +378,7 @@ public class Question
 
 	public System.Collections.IEnumerator GetEnumerator()
 	{
-		foreach(senseix.message.problem.Atom atom in atomList)
+		foreach(Senseix.Message.Problem.Atom atom in atomList)
 		{
 			yield return new ProblemPart(atom);
 		}
@@ -394,9 +399,9 @@ public class Question
 
 public class ProblemPart
 {
-	senseix.message.problem.Atom atom;
+	Senseix.Message.Problem.Atom atom;
 
-	public ProblemPart (senseix.message.problem.Atom newAtom)
+	public ProblemPart (Senseix.Message.Problem.Atom newAtom)
 	{
 		atom = newAtom;
 	}
@@ -408,19 +413,19 @@ public class ProblemPart
 
 	public bool IsString()
 	{
-		return atom.Type == senseix.message.problem.Atom.Types.Type.TEXT;
+		return atom.Type == Senseix.Message.Problem.Atom.Types.Type.TEXT;
 	}
 
 	public bool IsImage()
 	{
-		return atom.Type == senseix.message.problem.Atom.Types.Type.IMAGE;
+		return atom.Type == Senseix.Message.Problem.Atom.Types.Type.IMAGE;
 	}
 
 	public string GetString()
 	{
 		if (!IsString())
 			throw new Exception ("This QuestionPart is not a string.  Be sure to check IsString before GetString.");
-		byte[] decodedBytes = senseix.SenseixController.DecodeServerBytes (atom.Data);
+		byte[] decodedBytes = Senseix.SenseixController.DecodeServerBytes (atom.Data);
 		return Encoding.ASCII.GetString (decodedBytes);
 	}
 
@@ -429,7 +434,7 @@ public class ProblemPart
 		if (!IsImage())
 			throw new Exception ("This QuestionPart is not an image.  Be sure to check IsImage before GetImage.");
 		Texture2D returnImage = new Texture2D(0, 0);
-		byte[] imageBytes = senseix.SenseixController.DecodeServerBytes (atom.Data);
+		byte[] imageBytes = Senseix.SenseixController.DecodeServerBytes (atom.Data);
 		returnImage.LoadImage (imageBytes);
 		return returnImage;
 	}

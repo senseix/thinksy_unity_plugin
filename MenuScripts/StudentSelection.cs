@@ -2,12 +2,12 @@
 using UnityEngine.UI;
 using System.Collections;
 
-namespace senseix
+namespace Senseix
 {
 	public class StudentSelection : MonoBehaviour 
 	{
 
-		public Text playerNameText;
+		public Text PlayerNameText;
 
 		private ArrayList availablePlayers;
 		private int currentPlayerIndex = 0;
@@ -49,16 +49,16 @@ namespace senseix
 			SetName ();
 		}
 
-		public senseix.message.player.Player GetCurrentPlayer()
+		public Senseix.Message.Player.Player GetCurrentPlayer()
 		{
-			return availablePlayers [currentPlayerIndex] as senseix.message.player.Player;
+			return availablePlayers [currentPlayerIndex] as Senseix.Message.Player.Player;
 		}
 
 		public void SetName()
 		{
-			message.player.Player newPlayer = availablePlayers [currentPlayerIndex] as message.player.Player;
+			Message.Player.Player newPlayer = availablePlayers [currentPlayerIndex] as Message.Player.Player;
 			string newName = newPlayer.Name;
-			playerNameText.text = newName;
+			PlayerNameText.text = newName;
 		}
 
 		public void PullAvailablePlayers()

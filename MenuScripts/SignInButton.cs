@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 
-namespace senseix
+namespace Senseix
 {
 	public class SignInButton : MonoBehaviour 
 	{
@@ -22,7 +22,7 @@ namespace senseix
 		}
 
 		void OnEnable() {
-			if (senseix.SenseixController.IsSignedIn())
+			if (Senseix.SenseixController.IsSignedIn())
 			{
 				buttonText.text = "Sign out";
 			}
@@ -34,7 +34,7 @@ namespace senseix
 
 		public void SignInClicked ()
 		{
-			if (senseix.SenseixController.IsSignedIn())
+			if (Senseix.SenseixController.IsSignedIn())
 			{
 				SignOut();
 			}

@@ -1,10 +1,10 @@
 // ------------------------------------------------------------------------------
-//Responsible for passing messages to and receiving from the server. 
+//Responsible for passing Messages to and receiving from the server. 
 //We sacrifice some overlap of code here for readibility for the 
 //end user. 
-//In general, any messages related to authentication/user management
+//In general, any Messages related to authentication/user management
 //are done syncronously, everything to do with updating/pulling 
-//problems is done on a separate thread. 
+//Problems is done on a separate thread. 
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,14 +13,14 @@ using System.Text;
 using System.IO;
 using System.Threading;
 
-namespace senseix.message {
+namespace Senseix.Message {
 	//API URLS
-	//api-staging.senseix.com
+	//api-staging.Senseix.com
 
 	public struct PostRequestParameters
 	{
 		public RequestHeader.Builder hdr_request;
-		public constant.MessageType msgType;
+		public Constant.MessageType msgType;
 		public string url;
 		public WWW recvResult;
 	}
@@ -31,38 +31,38 @@ namespace senseix.message {
         const string SERVER_URL = "192.168.1.17:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
-		const string PARENT_HDR = GENERIC_HDR + "/parents/";
-		const string PLAYER_HDR = GENERIC_HDR + "/players/";
-		const string PROBLEM_HDR = GENERIC_HDR + "/problems/";
-		const string LEADERBOARD_HDR = GENERIC_HDR + "/applications/leaderboard/";
+		const string Parent_HDR = GENERIC_HDR + "/Parents/";
+		const string Player_HDR = GENERIC_HDR + "/Players/";
+		const string Problem_HDR = GENERIC_HDR + "/Problems/";
+		const string Leaderboard_HDR = GENERIC_HDR + "/applications/Leaderboard/";
 
 		//External urls
 		public const string WEBSITE_URL = ENCRYPTED + SERVER_URL;
 		public const string DEVICES_WEBSITE_HDR = WEBSITE_URL + "/devices/";
 		public const string ENROLL_GAME_URL = DEVICES_WEBSITE_HDR + "new";
 
-		//Requests related to parent management 
-		const string REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
-		const string VERIFY_GAME_URL = PARENT_HDR + "game_verification";
-		const string REGISTER_PARENT_URL = PARENT_HDR + "register";
-		const string EDIT_PARENT_URL = PARENT_HDR + "edit";
-		const string SIGN_IN_PARENT_URL = PARENT_HDR + "sign_in";
-		const string SIGN_OUT_PARENT_URL = PARENT_HDR + "sign_out";
-		const string MERGE_PARENT_URL = PARENT_HDR + "merge";
+		//Requests related to Parent management 
+		const string REGISTER_DEVICE_URL = Parent_HDR + "create_device";
+		const string VERIFY_GAME_URL = Parent_HDR + "game_verification";
+		const string REGISTER_Parent_URL = Parent_HDR + "register";
+		const string EDIT_Parent_URL = Parent_HDR + "edit";
+		const string SIGN_IN_Parent_URL = Parent_HDR + "sign_in";
+		const string SIGN_OUT_Parent_URL = Parent_HDR + "sign_out";
+		const string MERGE_Parent_URL = Parent_HDR + "merge";
 
-		//Requests related to player management
-		const string CREATE_PLAYER_URL = PLAYER_HDR + "create";
-		const string LIST_PLAYER_URL = PLAYER_HDR + "list_players";
-		const string REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";
+		//Requests related to Player management
+		const string CREATE_Player_URL = Player_HDR + "create";
+		const string LIST_Player_URL = Player_HDR + "list_Players";
+		const string REGISTER_Player_WITH_GAME_URL = Player_HDR + "register_Player_with_game";
 
-		//Requests related to problems
-		const string GET_PROBLEM_URL = PROBLEM_HDR + "index";
-		const string POST_PROBLEM_URL = PROBLEM_HDR + "update";
+		//Requests related to Problems
+		const string GET_Problem_URL = Problem_HDR + "index";
+		const string POST_Problem_URL = Problem_HDR + "update";
 
-		//Requests related to leaderboards
-		const string GET_LEADERBOARD_PAGE_URL = LEADERBOARD_HDR + "page";
-		const string GET_PLAYER_RANK_URL = LEADERBOARD_HDR + "player";
-		const string UPDATE_PLAYER_SCORE_URL = LEADERBOARD_HDR + "update_player_score";
+		//Requests related to Leaderboards
+		const string GET_Leaderboard_PAGE_URL = Leaderboard_HDR + "page";
+		const string GET_Player_RANK_URL = Leaderboard_HDR + "Player";
+		const string UPDATE_Player_SCORE_URL = Leaderboard_HDR + "update_Player_score";
 
 		public static ArrayList activeRequests = new ArrayList();
 
@@ -107,20 +107,20 @@ namespace senseix.message {
 			return recvResult;
 		}
 
-		public static void SyncronousPostRequest(ref RequestHeader.Builder hdr_request, constant.MessageType msgType, string url)
+		public static void SyncronousPostRequest(ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
 		{
 			WWW recvResult = SetUpRecvResult (ref hdr_request, url);
 			SyncronousPostRequest (recvResult, ref hdr_request, msgType, url);
 		}
 
-		public static void SyncronousPostRequest(WWW recvResult, ref RequestHeader.Builder hdr_request, constant.MessageType msgType, string url)
+		public static void SyncronousPostRequest(WWW recvResult, ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
 	    {
 			Debug.Log ("Wait for Request:");
 			WaitForRequest (recvResult);
 			HandleResult (recvResult, msgType);
 		}
 
-		public static void HandleResult(WWW recvResult, constant.MessageType msgType)
+		public static void HandleResult(WWW recvResult, Constant.MessageType msgType)
 		{
 			ResponseHeader reply = null;
 
@@ -166,7 +166,7 @@ namespace senseix.message {
 					Debug.Log (recvResult.error);
 					SenseixController.SetSessionState(false);
 				}
-				else //This probably has no message or we hit a 500...either way
+				else //This probably has no Message or we hit a 500...either way
 					//This is a bad place to be in
 				{
 					Debug.Log (recvResult.error);
@@ -182,7 +182,7 @@ namespace senseix.message {
 			activeRequests.Add (parameters);
 		}
 
-		static public void NonblockingPostRequest(ref RequestHeader.Builder hdr_request, constant.MessageType msgType, string url)
+		static public void NonblockingPostRequest(ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
 		{
 			PostRequestParameters parameters = new PostRequestParameters ();
 			parameters.hdr_request = hdr_request;
@@ -193,8 +193,8 @@ namespace senseix.message {
 		}
 
 		/// <summary>
-		/// Registers the device with the SenseiX server, allows a temporary account to be created
-		/// and the player to begin playing without logging in. Once an account is registered
+		/// Registers the device with the Senseix server, allows a temporary account to be created
+		/// and the Player to begin playing without logging in. Once an account is registered
 		/// or created the temporary account is transitioned into a permanent one.  
 		/// </summary>
 		static public void RegisterDevice(string deviceNameInformation)
@@ -202,27 +202,27 @@ namespace senseix.message {
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 
-			parent.DeviceRegistrationRequest.Builder newDevice = parent.DeviceRegistrationRequest.CreateBuilder ();
+			Parent.DeviceRegistrationRequest.Builder newDevice = Parent.DeviceRegistrationRequest.CreateBuilder ();
 			newDevice.SetInformation (deviceNameInformation);
 			newDevice.SetDeviceId (SenseixController.GetDeviceID());
 
 			hdr_request.SetDeviceRegistration(newDevice);
 			Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
-			SyncronousPostRequest (ref hdr_request, constant.MessageType.RegisterDevice, REGISTER_DEVICE_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterDevice, REGISTER_DEVICE_URL);
 		}
 
 		/// <summary>
 		/// Adds the temporary verification code to the server.  When the user enters the verificationCode
-		/// on the SenseiX website now, it will be able to link this game with the user's account.
+		/// on the Senseix website now, it will be able to link this game with the user's account.
 		/// </summary>
 		static public void VerifyGame(string verificationCode)
 		{
-			Debug.Log ("henry's first message...");
+			Debug.Log ("henry's first Message...");
 
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 
-			parent.GameVerificationRequest.Builder newVerification = parent.GameVerificationRequest.CreateBuilder ();
+			Parent.GameVerificationRequest.Builder newVerification = Parent.GameVerificationRequest.CreateBuilder ();
 			newVerification.SetVerificationToken (verificationCode);
 			newVerification.SetUdid (SenseixController.GetDeviceID ());
 
@@ -231,17 +231,17 @@ namespace senseix.message {
 			Debug.Log (hdr_request.GameVerification.Udid);
 			Debug.Log (hdr_request.GameVerification.VerificationToken);
 			Debug.Log (hdr_request.AccessToken);
-			SyncronousPostRequest (ref hdr_request, constant.MessageType.GameVerification, VERIFY_GAME_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.GameVerification, VERIFY_GAME_URL);
 		}
 		
 	     /// <summary>
-	     /// Registers a Parent with the SenseiX server and results in a auth_token for the current session.
+	     /// Registers a Parent with the Senseix server and results in a auth_token for the current session.
 	    /// Name is an optional parameter for the server (it can be blank). 
 	    /// </summary>
 		static public void RegisterParent (string email,string name,string password)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			parent.ParentRegistrationRequest.Builder newParent = parent.ParentRegistrationRequest.CreateBuilder ();
+			Parent.ParentRegistrationRequest.Builder newParent = Parent.ParentRegistrationRequest.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			newParent.SetDeviceId(SenseixController.GetDeviceID());
 			newParent.SetEmail(email);
@@ -250,29 +250,29 @@ namespace senseix.message {
 			newParent.SetPassword(password);
 			hdr_request.SetParentRegistration(newParent);		
 
-			SyncronousPostRequest (ref hdr_request, constant.MessageType.RegisterParent, REGISTER_PARENT_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterParent, REGISTER_Parent_URL);
 		}
 
 		/// <summary>
-		/// Logs in a parent given a password and email for that account. Sets the authentication token for the user
-		/// allowing for additional API calls such as pulling in additional problems, player management, etc.
+		/// Logs in a Parent given a password and email for that account. Sets the authentication token for the user
+		/// allowing for additional API calls such as pulling in additional Problems, Player management, etc.
 		/// </summary>
 		static public void SignInParent (string email, string password)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			parent.ParentSignInRequest.Builder signInParent = parent.ParentSignInRequest.CreateBuilder ();
+			Parent.ParentSignInRequest.Builder signInParent = Parent.ParentSignInRequest.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			signInParent.SetDeviceId(SenseixController.GetDeviceID());
 			signInParent.SetEmail(email);
 			signInParent.SetPassword(password);
 			hdr_request.SetParentSignIn(signInParent);
 
-			SyncronousPostRequest (ref hdr_request,  constant.MessageType.SignInParent, SIGN_IN_PARENT_URL);	
+			SyncronousPostRequest (ref hdr_request,  Constant.MessageType.SignInParent, SIGN_IN_Parent_URL);	
 		}
 
 		
 		/// <summary>
-		/// Logs a user out of the SenseiX platform. This will result in an action having to be taken by the user if they attempt to 
+		/// Logs a user out of the Senseix platform. This will result in an action having to be taken by the user if they attempt to 
 		/// login with anoter account (each device is tied to a single account)	
 		/// </summary>
 		static public void SignOutParent()
@@ -281,12 +281,12 @@ namespace senseix.message {
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken ());
 
-			senseix.message.parent.ParentSignOutRequest.Builder parentSignOutBuilder = parent.ParentSignOutRequest.CreateBuilder ();
-			parentSignOutBuilder.SetDeviceId (SenseixController.GetDeviceID ());
-			hdr_request.SetParentSignOut(parentSignOutBuilder);
+			Senseix.Message.Parent.ParentSignOutRequest.Builder ParentSignOutBuilder = Parent.ParentSignOutRequest.CreateBuilder ();
+			ParentSignOutBuilder.SetDeviceId (SenseixController.GetDeviceID ());
+			hdr_request.SetParentSignOut(ParentSignOutBuilder);
 
-			Debug.Log ("sign out parent going off to " + SIGN_OUT_PARENT_URL);
-			SyncronousPostRequest (ref hdr_request, constant.MessageType.SignOutParent, SIGN_OUT_PARENT_URL);
+			Debug.Log ("sign out Parent going off to " + SIGN_OUT_Parent_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.SignOutParent, SIGN_OUT_Parent_URL);
 		}
 		   
 		/// <summary>
@@ -298,41 +298,41 @@ namespace senseix.message {
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
-			parent.ParentEditRequest.Builder editParent = parent.ParentEditRequest.CreateBuilder();
+			Parent.ParentEditRequest.Builder editParent = Parent.ParentEditRequest.CreateBuilder();
 			editParent.SetDeviceId(SenseixController.GetDeviceID());
 			editParent.SetEmail(email);
 			editParent.SetPassword (password);
 			editParent.SetNewPassword(new_password);
 			editParent.SetName(name);
 			hdr_request.SetParentEdit(editParent);      
-			SyncronousPostRequest (ref hdr_request, constant.MessageType.EditParent, EDIT_PARENT_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.EditParent, EDIT_Parent_URL);
 		}
 
 		/// <summary>
-		/// This is a specialized function that is called when a player has played on a device with a temporary account
-		/// and now has a real account, we give the parent the option to either, create a new player, merge the data with 
-		/// a player they already have or just delete the current data.  
+		/// This is a specialized function that is called when a Player has played on a device with a temporary account
+		/// and now has a real account, we give the Parent the option to either, create a new Player, merge the data with 
+		/// a Player they already have or just delete the current data.  
 		/// </summary>
-		static public void ParentAccntResolution (string email, string password, parent.ParentMergeRequest.Types.Decision decision, string player_id, string name) 
+		static public void ParentAccntResolution (string email, string password, Parent.ParentMergeRequest.Types.Decision decision, string Player_id, string name) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAccessToken());
 			hdr_request.SetAccessToken (SenseixController.GetDeviceID());
-			parent.ParentMergeRequest.Builder mergeParent = parent.ParentMergeRequest.CreateBuilder();
+			Parent.ParentMergeRequest.Builder mergeParent = Parent.ParentMergeRequest.CreateBuilder();
 
 			mergeParent.SetNewPlayerName (name);
 			mergeParent.SetEmail (email);
-			mergeParent.SetPlayerId (player_id);
+			mergeParent.SetPlayerId (Player_id);
 			mergeParent.SetPassword (password);
 			mergeParent.SetDecision (decision);
 			hdr_request.SetParentMerge (mergeParent);
 
-			SyncronousPostRequest (ref hdr_request, constant.MessageType.MergeParent, MERGE_PARENT_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.MergeParent, MERGE_Parent_URL);
 		}
 
 
 		/// <summary>
-		/// Create a new player for this parent. This will return a player_id for future calls
+		/// Create a new Player for this Parent. This will return a Player_id for future calls
 		/// to the API. 
 		/// </summary>
 		static public void CreatePlayer (string name) 
@@ -340,130 +340,130 @@ namespace senseix.message {
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
-			player.PlayerCreateRequest.Builder createPlayer = player.PlayerCreateRequest.CreateBuilder ();
+			Player.PlayerCreateRequest.Builder createPlayer = Player.PlayerCreateRequest.CreateBuilder ();
 			createPlayer.SetName (name);
 			hdr_request.SetPlayerCreate (createPlayer);
-			SyncronousPostRequest (ref hdr_request, constant.MessageType.CreatePlayer, CREATE_PLAYER_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.CreatePlayer, CREATE_Player_URL);
 		}
 
 		/// <summary>
-		/// Return a list of player names and player_id's for a parent, most likely to 
-		/// pick which player should be playing the game at a given time.  
+		/// Return a list of Player names and Player_id's for a Parent, most likely to 
+		/// pick which Player should be playing the game at a given time.  
 		/// </summary>
 		static public void ListPlayers () 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			player.PlayerListRequest.Builder listPlayer = player.PlayerListRequest.CreateBuilder ();
+			Player.PlayerListRequest.Builder listPlayer = Player.PlayerListRequest.CreateBuilder ();
 			hdr_request.SetPlayerList (listPlayer);
-			Debug.Log ("list players request going off to " + LIST_PLAYER_URL);
-			SyncronousPostRequest (ref hdr_request, constant.MessageType.ListPlayer, LIST_PLAYER_URL);
+			Debug.Log ("list Players request going off to " + LIST_Player_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.ListPlayer, LIST_Player_URL);
 		}
 		/// <summary>
-		/// We have an explicit call to register a player with a game, this should be called each time a new player
-	    /// is selected from the drop downlist. It will add this game to a list of played games for the player and 
-		/// add them to things like the games leaderboard.
+		/// We have an explicit call to register a Player with a game, this should be called each time a new Player
+	    /// is selected from the drop downlist. It will add this game to a list of played games for the Player and 
+		/// add them to things like the games Leaderboard.
 		/// </summary>
-		static public void RegisterPlayer (string player_id) 
+		static public void RegisterPlayer (string Player_id) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			player.PlayerRegisterWithApplicationRequest.Builder regPlayer = player.PlayerRegisterWithApplicationRequest.CreateBuilder ();
-			regPlayer.SetPlayerId (player_id);
+			Player.PlayerRegisterWithApplicationRequest.Builder regPlayer = Player.PlayerRegisterWithApplicationRequest.CreateBuilder ();
+			regPlayer.SetPlayerId (Player_id);
 			hdr_request.SetPlayerRegisterWithApplication(regPlayer);
 			Debug.Log(hdr_request.AccessToken);
 			Debug.Log(hdr_request.AuthToken);
 			Debug.Log(hdr_request.PlayerRegisterWithApplication.PlayerId);
-			Debug.Log ("register player going off to " + REGISTER_PLAYER_WITH_GAME_URL);
-			SyncronousPostRequest (ref hdr_request, constant.MessageType.RegisterPlayerWithApplication, REGISTER_PLAYER_WITH_GAME_URL);
+			Debug.Log ("register Player going off to " + REGISTER_Player_WITH_GAME_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterPlayerWithApplication, REGISTER_Player_WITH_GAME_URL);
 		}
 
 	
 		/// <summary>
-		/// Return a list of player names and player_id's for a parent, most likely to 
-		/// pick which player should be playing the game at a given time.  
+		/// Return a list of Player names and Player_id's for a Parent, most likely to 
+		/// pick which Player should be playing the game at a given time.  
 		/// </summary>
-		static public void GetProblems (string player_id, UInt32 count) 
+		static public void GetProblems (string Player_id, UInt32 count) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			problem.ProblemGetRequest.Builder getProblem = problem.ProblemGetRequest.CreateBuilder ();
+			Problem.ProblemGetRequest.Builder getProblem = Problem.ProblemGetRequest.CreateBuilder ();
 			getProblem.SetProblemCount (count);
-			getProblem.SetPlayerId (player_id);
+			getProblem.SetPlayerId (Player_id);
 			hdr_request.SetProblemGet (getProblem);
-			Debug.Log ("Get problems request going off to " + GET_PROBLEM_URL);
+			Debug.Log ("Get Problems request going off to " + GET_Problem_URL);
 			Debug.Log (hdr_request.AuthToken);
 			Debug.Log (hdr_request.AccessToken);
 			Debug.Log (hdr_request.ProblemGet.ProblemCount);
 			Debug.Log (hdr_request.ProblemGet.PlayerId);
-			NonblockingPostRequest (ref hdr_request, constant.MessageType.ProblemGet, GET_PROBLEM_URL);
+			NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemGet, GET_Problem_URL);
 		}	
 
 		/// <summary>
-		/// Posts a list of problems that have been answered or skipped by the player to the server. This is mainly 
+		/// Posts a list of Problems that have been answered or skipped by the Player to the server. This is mainly 
 		/// for internal use/developers should not have to worry about this. 
 		/// </summary>
-		static public void PostProblems (string playerId, Queue problems) 
+		static public void PostProblems (string PlayerId, Queue Problems) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			problem.ProblemPostRequest.Builder postProblem = problem.ProblemPostRequest.CreateBuilder ();
+			Problem.ProblemPostRequest.Builder postProblem = Problem.ProblemPostRequest.CreateBuilder ();
 
-			while (problems.Count > 0) {
-				senseix.message.problem.ProblemPost.Builder addMeProblem = (senseix.message.problem.ProblemPost.Builder)problems.Dequeue();
+			while (Problems.Count > 0) {
+				Senseix.Message.Problem.ProblemPost.Builder addMeProblem = (Senseix.Message.Problem.ProblemPost.Builder)Problems.Dequeue();
 				addMeProblem.SetPlayerId(SenseixController.GetCurrentPlayerID());
 				postProblem.AddProblem (addMeProblem);
 			}
 			hdr_request.SetProblemPost (postProblem);
 				
-			Debug.Log ("Post problems request going off to " + POST_PROBLEM_URL);
-			NonblockingPostRequest (ref hdr_request, constant.MessageType.ProblemPost, POST_PROBLEM_URL);
+			Debug.Log ("Post Problems request going off to " + POST_Problem_URL);
+			NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemPost, POST_Problem_URL);
 		}	
 		/// <summary>
-		/// Returns a page from the leaderboard with the request parameters, by default 25 entries are 
+		/// Returns a page from the Leaderboard with the request parameters, by default 25 entries are 
 		/// are returned per page. 
 		/// </summary>
-		static public void LeaderboardPage (UInt32 pageNumber = 1, leaderboard.SortBy sortBy = leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
+		static public void LeaderboardPage (UInt32 pageNumber = 1, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			leaderboard.PageRequest.Builder lbPage = leaderboard.PageRequest.CreateBuilder ();
+			Leaderboard.PageRequest.Builder lbPage = Leaderboard.PageRequest.CreateBuilder ();
 			lbPage.SetPage (pageNumber);
 			lbPage.SetSortBy (sortBy);
 			lbPage.SetPageSize (pageSize);
 			hdr_request.SetPage (lbPage);
-			Debug.Log ("leaderboard page request going off to " + GET_LEADERBOARD_PAGE_URL);
-			SyncronousPostRequest (ref hdr_request, constant.MessageType.LeaderboardPage, GET_LEADERBOARD_PAGE_URL);
+			Debug.Log ("Leaderboard page request going off to " + GET_Leaderboard_PAGE_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.LeaderboardPage, GET_Leaderboard_PAGE_URL);
 		}
 		/// <summary>
-		/// Pushes a players score to the leaderboard, this is dependent on the developer to take care of what
+		/// Pushes a Players score to the Leaderboard, this is dependent on the developer to take care of what
 	    /// "score" really means in their application.  
 		/// </summary>
-		static public void UpdatePlayerScore (string playerId, UInt32 score)
+		static public void UpdatePlayerScore (string PlayerId, UInt32 score)
 	    {
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			leaderboard.UpdatePlayerScoreRequest.Builder lbScore = leaderboard.UpdatePlayerScoreRequest.CreateBuilder ();
+			Leaderboard.UpdatePlayerScoreRequest.Builder lbScore = Leaderboard.UpdatePlayerScoreRequest.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			lbScore.SetPlayerId(playerId);
+			lbScore.SetPlayerId(PlayerId);
 			lbScore.SetPlayerScore (score);
 
 			hdr_request.SetPlayerScore(lbScore);
-			SyncronousPostRequest(ref hdr_request, constant.MessageType.PlayerScore, UPDATE_PLAYER_SCORE_URL);
+			SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerScore, UPDATE_Player_SCORE_URL);
 		}
 
 		/// <summary>
-		/// Stores a players rank and players surrounding it based on the call preferences. 
-		/// By default we only return the players rank and score. 	
+		/// Stores a Players rank and Players surrounding it based on the call preferences. 
+		/// By default we only return the Players rank and score. 	
 		/// </summary>
-		static public void GetPlayerRank ( string playerId, UInt32 surroundingUsers = 0, leaderboard.SortBy sortBy = leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
+		static public void GetPlayerRank ( string PlayerId, UInt32 surroundingUsers = 0, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 	
-		    leaderboard.PlayerRankRequest.Builder rank = leaderboard.PlayerRankRequest.CreateBuilder ();
+		    Leaderboard.PlayerRankRequest.Builder rank = Leaderboard.PlayerRankRequest.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			rank.SetCount (surroundingUsers);	
 			rank.SetPageSize (pageSize);
@@ -471,7 +471,7 @@ namespace senseix.message {
 			rank.SetSortBy(sortBy);
 		
 			hdr_request.SetPlayerRank(rank);
-			SyncronousPostRequest(ref hdr_request, constant.MessageType.PlayerRank, GET_PLAYER_RANK_URL);
+			SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerRank, GET_Player_RANK_URL);
 			
 		}
 	

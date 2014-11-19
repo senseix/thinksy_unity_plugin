@@ -6,7 +6,7 @@ using pb = global::Google.ProtocolBuffers;
 using pbc = global::Google.ProtocolBuffers.Collections;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
 using scg = global::System.Collections.Generic;
-namespace senseix.message.parent {
+namespace Senseix.Message.Parent {
   
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public static partial class Parent {
@@ -16,34 +16,34 @@ namespace senseix.message.parent {
     }
     #endregion
     #region Static variables
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentSignOutRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentSignOutRequest, global::senseix.message.parent.ParentSignOutRequest.Builder> internal__static_senseix_message_parent_ParentSignOutRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentRegistrationRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentRegistrationRequest, global::senseix.message.parent.ParentRegistrationRequest.Builder> internal__static_senseix_message_parent_ParentRegistrationRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentRegistrationResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentRegistrationResponse, global::senseix.message.parent.ParentRegistrationResponse.Builder> internal__static_senseix_message_parent_ParentRegistrationResponse__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_DeviceRegistrationRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.DeviceRegistrationRequest, global::senseix.message.parent.DeviceRegistrationRequest.Builder> internal__static_senseix_message_parent_DeviceRegistrationRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_DeviceRegistrationResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.DeviceRegistrationResponse, global::senseix.message.parent.DeviceRegistrationResponse.Builder> internal__static_senseix_message_parent_DeviceRegistrationResponse__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentSignInRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentSignInRequest, global::senseix.message.parent.ParentSignInRequest.Builder> internal__static_senseix_message_parent_ParentSignInRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentSignInResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentSignInResponse, global::senseix.message.parent.ParentSignInResponse.Builder> internal__static_senseix_message_parent_ParentSignInResponse__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentSignOutResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentSignOutResponse, global::senseix.message.parent.ParentSignOutResponse.Builder> internal__static_senseix_message_parent_ParentSignOutResponse__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentEditRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentEditRequest, global::senseix.message.parent.ParentEditRequest.Builder> internal__static_senseix_message_parent_ParentEditRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentEditResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentEditResponse, global::senseix.message.parent.ParentEditResponse.Builder> internal__static_senseix_message_parent_ParentEditResponse__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentMergeResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentMergeResponse, global::senseix.message.parent.ParentMergeResponse.Builder> internal__static_senseix_message_parent_ParentMergeResponse__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_ParentMergeRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentMergeRequest, global::senseix.message.parent.ParentMergeRequest.Builder> internal__static_senseix_message_parent_ParentMergeRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_GameVerificationRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.GameVerificationRequest, global::senseix.message.parent.GameVerificationRequest.Builder> internal__static_senseix_message_parent_GameVerificationRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_parent_GameVerificationResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.GameVerificationResponse, global::senseix.message.parent.GameVerificationResponse.Builder> internal__static_senseix_message_parent_GameVerificationResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_ParentSignOutRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentSignOutRequest, global::Senseix.Message.Parent.ParentSignOutRequest.Builder> internal__static_Senseix_Message_Parent_ParentSignOutRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_ParentRegistrationRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentRegistrationRequest, global::Senseix.Message.Parent.ParentRegistrationRequest.Builder> internal__static_Senseix_Message_Parent_ParentRegistrationRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_ParentRegistrationResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentRegistrationResponse, global::Senseix.Message.Parent.ParentRegistrationResponse.Builder> internal__static_Senseix_Message_Parent_ParentRegistrationResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_DeviceRegistrationRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.DeviceRegistrationRequest, global::Senseix.Message.Parent.DeviceRegistrationRequest.Builder> internal__static_Senseix_Message_Parent_DeviceRegistrationRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_DeviceRegistrationResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.DeviceRegistrationResponse, global::Senseix.Message.Parent.DeviceRegistrationResponse.Builder> internal__static_Senseix_Message_Parent_DeviceRegistrationResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_ParentSignInRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentSignInRequest, global::Senseix.Message.Parent.ParentSignInRequest.Builder> internal__static_Senseix_Message_Parent_ParentSignInRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_ParentSignInResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentSignInResponse, global::Senseix.Message.Parent.ParentSignInResponse.Builder> internal__static_Senseix_Message_Parent_ParentSignInResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_ParentSignOutResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentSignOutResponse, global::Senseix.Message.Parent.ParentSignOutResponse.Builder> internal__static_Senseix_Message_Parent_ParentSignOutResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_ParentEditRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentEditRequest, global::Senseix.Message.Parent.ParentEditRequest.Builder> internal__static_Senseix_Message_Parent_ParentEditRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_ParentEditResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentEditResponse, global::Senseix.Message.Parent.ParentEditResponse.Builder> internal__static_Senseix_Message_Parent_ParentEditResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_ParentMergeResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentMergeResponse, global::Senseix.Message.Parent.ParentMergeResponse.Builder> internal__static_Senseix_Message_Parent_ParentMergeResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_ParentMergeRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentMergeRequest, global::Senseix.Message.Parent.ParentMergeRequest.Builder> internal__static_Senseix_Message_Parent_ParentMergeRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_GameVerificationRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.GameVerificationRequest, global::Senseix.Message.Parent.GameVerificationRequest.Builder> internal__static_Senseix_Message_Parent_GameVerificationRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Parent_GameVerificationResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.GameVerificationResponse, global::Senseix.Message.Parent.GameVerificationResponse.Builder> internal__static_Senseix_Message_Parent_GameVerificationResponse__FieldAccessorTable;
     #endregion
     #region Descriptor
     public static pbd::FileDescriptor Descriptor {
@@ -53,7 +53,7 @@ namespace senseix.message.parent {
     
     static Parent() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "CgxQYXJlbnQucHJvdG8SFnNlbnNlaXgubWVzc2FnZS5wYXJlbnQaDkNvbnN0" + 
+          "CgxQYXJlbnQucHJvdG8SFlNlbnNlaXguTWVzc2FnZS5QYXJlbnQaDkNvbnN0" + 
           "YW50LnByb3RvIikKFFBhcmVudFNpZ25PdXRSZXF1ZXN0EhEKCWRldmljZV9p" + 
           "ZBgCIAEoCSJ8ChlQYXJlbnRSZWdpc3RyYXRpb25SZXF1ZXN0EhEKCWRldmlj" + 
           "ZV9pZBgBIAIoCRINCgVlbWFpbBgCIAIoCRIQCghwYXNzd29yZBgDIAIoCRId" + 
@@ -73,8 +73,8 @@ namespace senseix.message.parent {
           "bnRFZGl0UmVzcG9uc2USEgoKYXV0aF90b2tlbhgBIAEoCSIpChNQYXJlbnRN" + 
           "ZXJnZVJlc3BvbnNlEhIKCmF1dGhfdG9rZW4YASACKAki8gEKElBhcmVudE1l" + 
           "cmdlUmVxdWVzdBIQCghwYXNzd29yZBgBIAIoCRINCgVlbWFpbBgCIAIoCRIR" + 
-          "CglkZXZpY2VfaWQYAyACKAkSTQoIZGVjaXNpb24YBCACKA4yMy5zZW5zZWl4" + 
-          "Lm1lc3NhZ2UucGFyZW50LlBhcmVudE1lcmdlUmVxdWVzdC5EZWNpc2lvbjoG" + 
+          "CglkZXZpY2VfaWQYAyACKAkSTQoIZGVjaXNpb24YBCACKA4yMy5TZW5zZWl4" + 
+          "Lk1lc3NhZ2UuUGFyZW50LlBhcmVudE1lcmdlUmVxdWVzdC5EZWNpc2lvbjoG" + 
           "REVMRVRFEhEKCXBsYXllcl9pZBgFIAEoCRIXCg9uZXdfcGxheWVyX25hbWUY" + 
           "BiABKAkiLQoIRGVjaXNpb24SCQoFTUVSR0UQABIKCgZDUkVBVEUQARIKCgZE" + 
           "RUxFVEUQAiJDChdHYW1lVmVyaWZpY2F0aW9uUmVxdWVzdBIMCgR1ZGlkGAEg" + 
@@ -82,67 +82,67 @@ namespace senseix.message.parent {
           "Y2F0aW9uUmVzcG9uc2U=");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
-        internal__static_senseix_message_parent_ParentSignOutRequest__Descriptor = Descriptor.MessageTypes[0];
-        internal__static_senseix_message_parent_ParentSignOutRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentSignOutRequest, global::senseix.message.parent.ParentSignOutRequest.Builder>(internal__static_senseix_message_parent_ParentSignOutRequest__Descriptor,
+        internal__static_Senseix_Message_Parent_ParentSignOutRequest__Descriptor = Descriptor.MessageTypes[0];
+        internal__static_Senseix_Message_Parent_ParentSignOutRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentSignOutRequest, global::Senseix.Message.Parent.ParentSignOutRequest.Builder>(internal__static_Senseix_Message_Parent_ParentSignOutRequest__Descriptor,
                 new string[] { "DeviceId", });
-        internal__static_senseix_message_parent_ParentRegistrationRequest__Descriptor = Descriptor.MessageTypes[1];
-        internal__static_senseix_message_parent_ParentRegistrationRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentRegistrationRequest, global::senseix.message.parent.ParentRegistrationRequest.Builder>(internal__static_senseix_message_parent_ParentRegistrationRequest__Descriptor,
+        internal__static_Senseix_Message_Parent_ParentRegistrationRequest__Descriptor = Descriptor.MessageTypes[1];
+        internal__static_Senseix_Message_Parent_ParentRegistrationRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentRegistrationRequest, global::Senseix.Message.Parent.ParentRegistrationRequest.Builder>(internal__static_Senseix_Message_Parent_ParentRegistrationRequest__Descriptor,
                 new string[] { "DeviceId", "Email", "Password", "ConfirmationPassword", "Name", });
-        internal__static_senseix_message_parent_ParentRegistrationResponse__Descriptor = Descriptor.MessageTypes[2];
-        internal__static_senseix_message_parent_ParentRegistrationResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentRegistrationResponse, global::senseix.message.parent.ParentRegistrationResponse.Builder>(internal__static_senseix_message_parent_ParentRegistrationResponse__Descriptor,
+        internal__static_Senseix_Message_Parent_ParentRegistrationResponse__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_Senseix_Message_Parent_ParentRegistrationResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentRegistrationResponse, global::Senseix.Message.Parent.ParentRegistrationResponse.Builder>(internal__static_Senseix_Message_Parent_ParentRegistrationResponse__Descriptor,
                 new string[] { "AuthToken", });
-        internal__static_senseix_message_parent_DeviceRegistrationRequest__Descriptor = Descriptor.MessageTypes[3];
-        internal__static_senseix_message_parent_DeviceRegistrationRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.DeviceRegistrationRequest, global::senseix.message.parent.DeviceRegistrationRequest.Builder>(internal__static_senseix_message_parent_DeviceRegistrationRequest__Descriptor,
+        internal__static_Senseix_Message_Parent_DeviceRegistrationRequest__Descriptor = Descriptor.MessageTypes[3];
+        internal__static_Senseix_Message_Parent_DeviceRegistrationRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.DeviceRegistrationRequest, global::Senseix.Message.Parent.DeviceRegistrationRequest.Builder>(internal__static_Senseix_Message_Parent_DeviceRegistrationRequest__Descriptor,
                 new string[] { "DeviceId", "Information", });
-        internal__static_senseix_message_parent_DeviceRegistrationResponse__Descriptor = Descriptor.MessageTypes[4];
-        internal__static_senseix_message_parent_DeviceRegistrationResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.DeviceRegistrationResponse, global::senseix.message.parent.DeviceRegistrationResponse.Builder>(internal__static_senseix_message_parent_DeviceRegistrationResponse__Descriptor,
+        internal__static_Senseix_Message_Parent_DeviceRegistrationResponse__Descriptor = Descriptor.MessageTypes[4];
+        internal__static_Senseix_Message_Parent_DeviceRegistrationResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.DeviceRegistrationResponse, global::Senseix.Message.Parent.DeviceRegistrationResponse.Builder>(internal__static_Senseix_Message_Parent_DeviceRegistrationResponse__Descriptor,
                 new string[] { "PlayerId", "IsTemporaryAccount", "AuthToken", });
-        internal__static_senseix_message_parent_ParentSignInRequest__Descriptor = Descriptor.MessageTypes[5];
-        internal__static_senseix_message_parent_ParentSignInRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentSignInRequest, global::senseix.message.parent.ParentSignInRequest.Builder>(internal__static_senseix_message_parent_ParentSignInRequest__Descriptor,
+        internal__static_Senseix_Message_Parent_ParentSignInRequest__Descriptor = Descriptor.MessageTypes[5];
+        internal__static_Senseix_Message_Parent_ParentSignInRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentSignInRequest, global::Senseix.Message.Parent.ParentSignInRequest.Builder>(internal__static_Senseix_Message_Parent_ParentSignInRequest__Descriptor,
                 new string[] { "Email", "Password", "ConfirmationPassword", "DeviceId", });
-        internal__static_senseix_message_parent_ParentSignInResponse__Descriptor = Descriptor.MessageTypes[6];
-        internal__static_senseix_message_parent_ParentSignInResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentSignInResponse, global::senseix.message.parent.ParentSignInResponse.Builder>(internal__static_senseix_message_parent_ParentSignInResponse__Descriptor,
+        internal__static_Senseix_Message_Parent_ParentSignInResponse__Descriptor = Descriptor.MessageTypes[6];
+        internal__static_Senseix_Message_Parent_ParentSignInResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentSignInResponse, global::Senseix.Message.Parent.ParentSignInResponse.Builder>(internal__static_Senseix_Message_Parent_ParentSignInResponse__Descriptor,
                 new string[] { "AuthToken", });
-        internal__static_senseix_message_parent_ParentSignOutResponse__Descriptor = Descriptor.MessageTypes[7];
-        internal__static_senseix_message_parent_ParentSignOutResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentSignOutResponse, global::senseix.message.parent.ParentSignOutResponse.Builder>(internal__static_senseix_message_parent_ParentSignOutResponse__Descriptor,
+        internal__static_Senseix_Message_Parent_ParentSignOutResponse__Descriptor = Descriptor.MessageTypes[7];
+        internal__static_Senseix_Message_Parent_ParentSignOutResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentSignOutResponse, global::Senseix.Message.Parent.ParentSignOutResponse.Builder>(internal__static_Senseix_Message_Parent_ParentSignOutResponse__Descriptor,
                 new string[] { });
-        internal__static_senseix_message_parent_ParentEditRequest__Descriptor = Descriptor.MessageTypes[8];
-        internal__static_senseix_message_parent_ParentEditRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentEditRequest, global::senseix.message.parent.ParentEditRequest.Builder>(internal__static_senseix_message_parent_ParentEditRequest__Descriptor,
+        internal__static_Senseix_Message_Parent_ParentEditRequest__Descriptor = Descriptor.MessageTypes[8];
+        internal__static_Senseix_Message_Parent_ParentEditRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentEditRequest, global::Senseix.Message.Parent.ParentEditRequest.Builder>(internal__static_Senseix_Message_Parent_ParentEditRequest__Descriptor,
                 new string[] { "Password", "DeviceId", "NewPassword", "ConfirmationPassword", "Email", "Name", });
-        internal__static_senseix_message_parent_ParentEditResponse__Descriptor = Descriptor.MessageTypes[9];
-        internal__static_senseix_message_parent_ParentEditResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentEditResponse, global::senseix.message.parent.ParentEditResponse.Builder>(internal__static_senseix_message_parent_ParentEditResponse__Descriptor,
+        internal__static_Senseix_Message_Parent_ParentEditResponse__Descriptor = Descriptor.MessageTypes[9];
+        internal__static_Senseix_Message_Parent_ParentEditResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentEditResponse, global::Senseix.Message.Parent.ParentEditResponse.Builder>(internal__static_Senseix_Message_Parent_ParentEditResponse__Descriptor,
                 new string[] { "AuthToken", });
-        internal__static_senseix_message_parent_ParentMergeResponse__Descriptor = Descriptor.MessageTypes[10];
-        internal__static_senseix_message_parent_ParentMergeResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentMergeResponse, global::senseix.message.parent.ParentMergeResponse.Builder>(internal__static_senseix_message_parent_ParentMergeResponse__Descriptor,
+        internal__static_Senseix_Message_Parent_ParentMergeResponse__Descriptor = Descriptor.MessageTypes[10];
+        internal__static_Senseix_Message_Parent_ParentMergeResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentMergeResponse, global::Senseix.Message.Parent.ParentMergeResponse.Builder>(internal__static_Senseix_Message_Parent_ParentMergeResponse__Descriptor,
                 new string[] { "AuthToken", });
-        internal__static_senseix_message_parent_ParentMergeRequest__Descriptor = Descriptor.MessageTypes[11];
-        internal__static_senseix_message_parent_ParentMergeRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.ParentMergeRequest, global::senseix.message.parent.ParentMergeRequest.Builder>(internal__static_senseix_message_parent_ParentMergeRequest__Descriptor,
+        internal__static_Senseix_Message_Parent_ParentMergeRequest__Descriptor = Descriptor.MessageTypes[11];
+        internal__static_Senseix_Message_Parent_ParentMergeRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.ParentMergeRequest, global::Senseix.Message.Parent.ParentMergeRequest.Builder>(internal__static_Senseix_Message_Parent_ParentMergeRequest__Descriptor,
                 new string[] { "Password", "Email", "DeviceId", "Decision", "PlayerId", "NewPlayerName", });
-        internal__static_senseix_message_parent_GameVerificationRequest__Descriptor = Descriptor.MessageTypes[12];
-        internal__static_senseix_message_parent_GameVerificationRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.GameVerificationRequest, global::senseix.message.parent.GameVerificationRequest.Builder>(internal__static_senseix_message_parent_GameVerificationRequest__Descriptor,
+        internal__static_Senseix_Message_Parent_GameVerificationRequest__Descriptor = Descriptor.MessageTypes[12];
+        internal__static_Senseix_Message_Parent_GameVerificationRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.GameVerificationRequest, global::Senseix.Message.Parent.GameVerificationRequest.Builder>(internal__static_Senseix_Message_Parent_GameVerificationRequest__Descriptor,
                 new string[] { "Udid", "VerificationToken", });
-        internal__static_senseix_message_parent_GameVerificationResponse__Descriptor = Descriptor.MessageTypes[13];
-        internal__static_senseix_message_parent_GameVerificationResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.parent.GameVerificationResponse, global::senseix.message.parent.GameVerificationResponse.Builder>(internal__static_senseix_message_parent_GameVerificationResponse__Descriptor,
+        internal__static_Senseix_Message_Parent_GameVerificationResponse__Descriptor = Descriptor.MessageTypes[13];
+        internal__static_Senseix_Message_Parent_GameVerificationResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Parent.GameVerificationResponse, global::Senseix.Message.Parent.GameVerificationResponse.Builder>(internal__static_Senseix_Message_Parent_GameVerificationResponse__Descriptor,
                 new string[] { });
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
           new pbd::FileDescriptor[] {
-          global::senseix.message.constant.Constant.Descriptor, 
+          global::Senseix.Message.Constant.Constant.Descriptor, 
           }, assigner);
     }
     #endregion
@@ -153,8 +153,8 @@ namespace senseix.message.parent {
   public sealed partial class ParentSignOutRequest : pb::GeneratedMessage<ParentSignOutRequest, ParentSignOutRequest.Builder> {
     private ParentSignOutRequest() { }
     private static readonly ParentSignOutRequest defaultInstance = new ParentSignOutRequest().MakeReadOnly();
-    private static readonly string[] _parentSignOutRequestFieldNames = new string[] { "device_id" };
-    private static readonly uint[] _parentSignOutRequestFieldTags = new uint[] { 18 };
+    private static readonly string[] _ParentSignOutRequestFieldNames = new string[] { "device_id" };
+    private static readonly uint[] _ParentSignOutRequestFieldTags = new uint[] { 18 };
     public static ParentSignOutRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -168,11 +168,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentSignOutRequest__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentSignOutRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ParentSignOutRequest, ParentSignOutRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentSignOutRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentSignOutRequest__FieldAccessorTable; }
     }
     
     public const int DeviceIdFieldNumber = 2;
@@ -193,7 +193,7 @@ namespace senseix.message.parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _parentSignOutRequestFieldNames;
+      string[] field_names = _ParentSignOutRequestFieldNames;
       if (hasDeviceId) {
         output.WriteString(2, field_names[0], DeviceId);
       }
@@ -307,11 +307,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.ParentSignOutRequest.Descriptor; }
+        get { return global::Senseix.Message.Parent.ParentSignOutRequest.Descriptor; }
       }
       
       public override ParentSignOutRequest DefaultInstanceForType {
-        get { return global::senseix.message.parent.ParentSignOutRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.ParentSignOutRequest.DefaultInstance; }
       }
       
       public override ParentSignOutRequest BuildPartial() {
@@ -332,7 +332,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(ParentSignOutRequest other) {
-        if (other == global::senseix.message.parent.ParentSignOutRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.ParentSignOutRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasDeviceId) {
           DeviceId = other.DeviceId;
@@ -352,9 +352,9 @@ namespace senseix.message.parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_parentSignOutRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ParentSignOutRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _parentSignOutRequestFieldTags[field_ordinal];
+              tag = _ParentSignOutRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -416,7 +416,7 @@ namespace senseix.message.parent {
       }
     }
     static ParentSignOutRequest() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -424,8 +424,8 @@ namespace senseix.message.parent {
   public sealed partial class ParentRegistrationRequest : pb::GeneratedMessage<ParentRegistrationRequest, ParentRegistrationRequest.Builder> {
     private ParentRegistrationRequest() { }
     private static readonly ParentRegistrationRequest defaultInstance = new ParentRegistrationRequest().MakeReadOnly();
-    private static readonly string[] _parentRegistrationRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "name", "password" };
-    private static readonly uint[] _parentRegistrationRequestFieldTags = new uint[] { 34, 10, 18, 42, 26 };
+    private static readonly string[] _ParentRegistrationRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "name", "password" };
+    private static readonly uint[] _ParentRegistrationRequestFieldTags = new uint[] { 34, 10, 18, 42, 26 };
     public static ParentRegistrationRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -439,11 +439,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentRegistrationRequest__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentRegistrationRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ParentRegistrationRequest, ParentRegistrationRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentRegistrationRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentRegistrationRequest__FieldAccessorTable; }
     }
     
     public const int DeviceIdFieldNumber = 1;
@@ -508,7 +508,7 @@ namespace senseix.message.parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _parentRegistrationRequestFieldNames;
+      string[] field_names = _ParentRegistrationRequestFieldNames;
       if (hasDeviceId) {
         output.WriteString(1, field_names[1], DeviceId);
       }
@@ -646,11 +646,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.ParentRegistrationRequest.Descriptor; }
+        get { return global::Senseix.Message.Parent.ParentRegistrationRequest.Descriptor; }
       }
       
       public override ParentRegistrationRequest DefaultInstanceForType {
-        get { return global::senseix.message.parent.ParentRegistrationRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.ParentRegistrationRequest.DefaultInstance; }
       }
       
       public override ParentRegistrationRequest BuildPartial() {
@@ -671,7 +671,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(ParentRegistrationRequest other) {
-        if (other == global::senseix.message.parent.ParentRegistrationRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.ParentRegistrationRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasDeviceId) {
           DeviceId = other.DeviceId;
@@ -703,9 +703,9 @@ namespace senseix.message.parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_parentRegistrationRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ParentRegistrationRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _parentRegistrationRequestFieldTags[field_ordinal];
+              tag = _ParentRegistrationRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -867,7 +867,7 @@ namespace senseix.message.parent {
       }
     }
     static ParentRegistrationRequest() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -875,8 +875,8 @@ namespace senseix.message.parent {
   public sealed partial class ParentRegistrationResponse : pb::GeneratedMessage<ParentRegistrationResponse, ParentRegistrationResponse.Builder> {
     private ParentRegistrationResponse() { }
     private static readonly ParentRegistrationResponse defaultInstance = new ParentRegistrationResponse().MakeReadOnly();
-    private static readonly string[] _parentRegistrationResponseFieldNames = new string[] { "auth_token" };
-    private static readonly uint[] _parentRegistrationResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _ParentRegistrationResponseFieldNames = new string[] { "auth_token" };
+    private static readonly uint[] _ParentRegistrationResponseFieldTags = new uint[] { 10 };
     public static ParentRegistrationResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -890,11 +890,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentRegistrationResponse__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentRegistrationResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ParentRegistrationResponse, ParentRegistrationResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentRegistrationResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentRegistrationResponse__FieldAccessorTable; }
     }
     
     public const int AuthTokenFieldNumber = 1;
@@ -915,7 +915,7 @@ namespace senseix.message.parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _parentRegistrationResponseFieldNames;
+      string[] field_names = _ParentRegistrationResponseFieldNames;
       if (hasAuthToken) {
         output.WriteString(1, field_names[0], AuthToken);
       }
@@ -1029,11 +1029,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.ParentRegistrationResponse.Descriptor; }
+        get { return global::Senseix.Message.Parent.ParentRegistrationResponse.Descriptor; }
       }
       
       public override ParentRegistrationResponse DefaultInstanceForType {
-        get { return global::senseix.message.parent.ParentRegistrationResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.ParentRegistrationResponse.DefaultInstance; }
       }
       
       public override ParentRegistrationResponse BuildPartial() {
@@ -1054,7 +1054,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(ParentRegistrationResponse other) {
-        if (other == global::senseix.message.parent.ParentRegistrationResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.ParentRegistrationResponse.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasAuthToken) {
           AuthToken = other.AuthToken;
@@ -1074,9 +1074,9 @@ namespace senseix.message.parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_parentRegistrationResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ParentRegistrationResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _parentRegistrationResponseFieldTags[field_ordinal];
+              tag = _ParentRegistrationResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -1138,7 +1138,7 @@ namespace senseix.message.parent {
       }
     }
     static ParentRegistrationResponse() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -1161,11 +1161,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_DeviceRegistrationRequest__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_DeviceRegistrationRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<DeviceRegistrationRequest, DeviceRegistrationRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_DeviceRegistrationRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_DeviceRegistrationRequest__FieldAccessorTable; }
     }
     
     public const int DeviceIdFieldNumber = 1;
@@ -1318,11 +1318,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.DeviceRegistrationRequest.Descriptor; }
+        get { return global::Senseix.Message.Parent.DeviceRegistrationRequest.Descriptor; }
       }
       
       public override DeviceRegistrationRequest DefaultInstanceForType {
-        get { return global::senseix.message.parent.DeviceRegistrationRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.DeviceRegistrationRequest.DefaultInstance; }
       }
       
       public override DeviceRegistrationRequest BuildPartial() {
@@ -1343,7 +1343,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(DeviceRegistrationRequest other) {
-        if (other == global::senseix.message.parent.DeviceRegistrationRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.DeviceRegistrationRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasDeviceId) {
           DeviceId = other.DeviceId;
@@ -1455,7 +1455,7 @@ namespace senseix.message.parent {
       }
     }
     static DeviceRegistrationRequest() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -1463,7 +1463,7 @@ namespace senseix.message.parent {
   public sealed partial class DeviceRegistrationResponse : pb::GeneratedMessage<DeviceRegistrationResponse, DeviceRegistrationResponse.Builder> {
     private DeviceRegistrationResponse() { }
     private static readonly DeviceRegistrationResponse defaultInstance = new DeviceRegistrationResponse().MakeReadOnly();
-    private static readonly string[] _deviceRegistrationResponseFieldNames = new string[] { "auth_token", "is_temporary_account", "player_id" };
+    private static readonly string[] _deviceRegistrationResponseFieldNames = new string[] { "auth_token", "is_temporary_account", "Player_id" };
     private static readonly uint[] _deviceRegistrationResponseFieldTags = new uint[] { 26, 16, 10 };
     public static DeviceRegistrationResponse DefaultInstance {
       get { return defaultInstance; }
@@ -1478,21 +1478,21 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_DeviceRegistrationResponse__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_DeviceRegistrationResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<DeviceRegistrationResponse, DeviceRegistrationResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_DeviceRegistrationResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_DeviceRegistrationResponse__FieldAccessorTable; }
     }
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string playerId_ = "";
+    private string PlayerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return playerId_; }
+      get { return PlayerId_; }
     }
     
     public const int IsTemporaryAccountFieldNumber = 2;
@@ -1651,11 +1651,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.DeviceRegistrationResponse.Descriptor; }
+        get { return global::Senseix.Message.Parent.DeviceRegistrationResponse.Descriptor; }
       }
       
       public override DeviceRegistrationResponse DefaultInstanceForType {
-        get { return global::senseix.message.parent.DeviceRegistrationResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.DeviceRegistrationResponse.DefaultInstance; }
       }
       
       public override DeviceRegistrationResponse BuildPartial() {
@@ -1676,7 +1676,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(DeviceRegistrationResponse other) {
-        if (other == global::senseix.message.parent.DeviceRegistrationResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.DeviceRegistrationResponse.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPlayerId) {
           PlayerId = other.PlayerId;
@@ -1731,7 +1731,7 @@ namespace senseix.message.parent {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
               break;
             }
             case 16: {
@@ -1763,13 +1763,13 @@ namespace senseix.message.parent {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.playerId_ = value;
+        result.PlayerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.playerId_ = "";
+        result.PlayerId_ = "";
         return this;
       }
       
@@ -1815,7 +1815,7 @@ namespace senseix.message.parent {
       }
     }
     static DeviceRegistrationResponse() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -1823,8 +1823,8 @@ namespace senseix.message.parent {
   public sealed partial class ParentSignInRequest : pb::GeneratedMessage<ParentSignInRequest, ParentSignInRequest.Builder> {
     private ParentSignInRequest() { }
     private static readonly ParentSignInRequest defaultInstance = new ParentSignInRequest().MakeReadOnly();
-    private static readonly string[] _parentSignInRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "password" };
-    private static readonly uint[] _parentSignInRequestFieldTags = new uint[] { 26, 34, 10, 18 };
+    private static readonly string[] _ParentSignInRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "password" };
+    private static readonly uint[] _ParentSignInRequestFieldTags = new uint[] { 26, 34, 10, 18 };
     public static ParentSignInRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1838,11 +1838,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentSignInRequest__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentSignInRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ParentSignInRequest, ParentSignInRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentSignInRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentSignInRequest__FieldAccessorTable; }
     }
     
     public const int EmailFieldNumber = 1;
@@ -1897,7 +1897,7 @@ namespace senseix.message.parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _parentSignInRequestFieldNames;
+      string[] field_names = _ParentSignInRequestFieldNames;
       if (hasEmail) {
         output.WriteString(1, field_names[2], Email);
       }
@@ -2029,11 +2029,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.ParentSignInRequest.Descriptor; }
+        get { return global::Senseix.Message.Parent.ParentSignInRequest.Descriptor; }
       }
       
       public override ParentSignInRequest DefaultInstanceForType {
-        get { return global::senseix.message.parent.ParentSignInRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.ParentSignInRequest.DefaultInstance; }
       }
       
       public override ParentSignInRequest BuildPartial() {
@@ -2054,7 +2054,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(ParentSignInRequest other) {
-        if (other == global::senseix.message.parent.ParentSignInRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.ParentSignInRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasEmail) {
           Email = other.Email;
@@ -2083,9 +2083,9 @@ namespace senseix.message.parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_parentSignInRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ParentSignInRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _parentSignInRequestFieldTags[field_ordinal];
+              tag = _ParentSignInRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -2222,7 +2222,7 @@ namespace senseix.message.parent {
       }
     }
     static ParentSignInRequest() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -2230,8 +2230,8 @@ namespace senseix.message.parent {
   public sealed partial class ParentSignInResponse : pb::GeneratedMessage<ParentSignInResponse, ParentSignInResponse.Builder> {
     private ParentSignInResponse() { }
     private static readonly ParentSignInResponse defaultInstance = new ParentSignInResponse().MakeReadOnly();
-    private static readonly string[] _parentSignInResponseFieldNames = new string[] { "auth_token" };
-    private static readonly uint[] _parentSignInResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _ParentSignInResponseFieldNames = new string[] { "auth_token" };
+    private static readonly uint[] _ParentSignInResponseFieldTags = new uint[] { 10 };
     public static ParentSignInResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2245,11 +2245,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentSignInResponse__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentSignInResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ParentSignInResponse, ParentSignInResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentSignInResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentSignInResponse__FieldAccessorTable; }
     }
     
     public const int AuthTokenFieldNumber = 1;
@@ -2270,7 +2270,7 @@ namespace senseix.message.parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _parentSignInResponseFieldNames;
+      string[] field_names = _ParentSignInResponseFieldNames;
       if (hasAuthToken) {
         output.WriteString(1, field_names[0], AuthToken);
       }
@@ -2384,11 +2384,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.ParentSignInResponse.Descriptor; }
+        get { return global::Senseix.Message.Parent.ParentSignInResponse.Descriptor; }
       }
       
       public override ParentSignInResponse DefaultInstanceForType {
-        get { return global::senseix.message.parent.ParentSignInResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.ParentSignInResponse.DefaultInstance; }
       }
       
       public override ParentSignInResponse BuildPartial() {
@@ -2409,7 +2409,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(ParentSignInResponse other) {
-        if (other == global::senseix.message.parent.ParentSignInResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.ParentSignInResponse.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasAuthToken) {
           AuthToken = other.AuthToken;
@@ -2429,9 +2429,9 @@ namespace senseix.message.parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_parentSignInResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ParentSignInResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _parentSignInResponseFieldTags[field_ordinal];
+              tag = _ParentSignInResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -2493,7 +2493,7 @@ namespace senseix.message.parent {
       }
     }
     static ParentSignInResponse() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -2501,8 +2501,8 @@ namespace senseix.message.parent {
   public sealed partial class ParentSignOutResponse : pb::GeneratedMessage<ParentSignOutResponse, ParentSignOutResponse.Builder> {
     private ParentSignOutResponse() { }
     private static readonly ParentSignOutResponse defaultInstance = new ParentSignOutResponse().MakeReadOnly();
-    private static readonly string[] _parentSignOutResponseFieldNames = new string[] {  };
-    private static readonly uint[] _parentSignOutResponseFieldTags = new uint[] {  };
+    private static readonly string[] _ParentSignOutResponseFieldNames = new string[] {  };
+    private static readonly uint[] _ParentSignOutResponseFieldTags = new uint[] {  };
     public static ParentSignOutResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2516,11 +2516,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentSignOutResponse__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentSignOutResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ParentSignOutResponse, ParentSignOutResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentSignOutResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentSignOutResponse__FieldAccessorTable; }
     }
     
     public override bool IsInitialized {
@@ -2531,7 +2531,7 @@ namespace senseix.message.parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _parentSignOutResponseFieldNames;
+      string[] field_names = _ParentSignOutResponseFieldNames;
       UnknownFields.WriteTo(output);
     }
     
@@ -2639,11 +2639,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.ParentSignOutResponse.Descriptor; }
+        get { return global::Senseix.Message.Parent.ParentSignOutResponse.Descriptor; }
       }
       
       public override ParentSignOutResponse DefaultInstanceForType {
-        get { return global::senseix.message.parent.ParentSignOutResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.ParentSignOutResponse.DefaultInstance; }
       }
       
       public override ParentSignOutResponse BuildPartial() {
@@ -2664,7 +2664,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(ParentSignOutResponse other) {
-        if (other == global::senseix.message.parent.ParentSignOutResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.ParentSignOutResponse.DefaultInstance) return this;
         PrepareBuilder();
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -2681,9 +2681,9 @@ namespace senseix.message.parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_parentSignOutResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ParentSignOutResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _parentSignOutResponseFieldTags[field_ordinal];
+              tag = _ParentSignOutResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -2720,7 +2720,7 @@ namespace senseix.message.parent {
       
     }
     static ParentSignOutResponse() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -2728,8 +2728,8 @@ namespace senseix.message.parent {
   public sealed partial class ParentEditRequest : pb::GeneratedMessage<ParentEditRequest, ParentEditRequest.Builder> {
     private ParentEditRequest() { }
     private static readonly ParentEditRequest defaultInstance = new ParentEditRequest().MakeReadOnly();
-    private static readonly string[] _parentEditRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "name", "new_password", "password" };
-    private static readonly uint[] _parentEditRequestFieldTags = new uint[] { 34, 18, 42, 50, 26, 10 };
+    private static readonly string[] _ParentEditRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "name", "new_password", "password" };
+    private static readonly uint[] _ParentEditRequestFieldTags = new uint[] { 34, 18, 42, 50, 26, 10 };
     public static ParentEditRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2743,11 +2743,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentEditRequest__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentEditRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ParentEditRequest, ParentEditRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentEditRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentEditRequest__FieldAccessorTable; }
     }
     
     public const int PasswordFieldNumber = 1;
@@ -2820,7 +2820,7 @@ namespace senseix.message.parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _parentEditRequestFieldNames;
+      string[] field_names = _ParentEditRequestFieldNames;
       if (hasPassword) {
         output.WriteString(1, field_names[5], Password);
       }
@@ -2964,11 +2964,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.ParentEditRequest.Descriptor; }
+        get { return global::Senseix.Message.Parent.ParentEditRequest.Descriptor; }
       }
       
       public override ParentEditRequest DefaultInstanceForType {
-        get { return global::senseix.message.parent.ParentEditRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.ParentEditRequest.DefaultInstance; }
       }
       
       public override ParentEditRequest BuildPartial() {
@@ -2989,7 +2989,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(ParentEditRequest other) {
-        if (other == global::senseix.message.parent.ParentEditRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.ParentEditRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPassword) {
           Password = other.Password;
@@ -3024,9 +3024,9 @@ namespace senseix.message.parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_parentEditRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ParentEditRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _parentEditRequestFieldTags[field_ordinal];
+              tag = _ParentEditRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -3213,7 +3213,7 @@ namespace senseix.message.parent {
       }
     }
     static ParentEditRequest() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -3221,8 +3221,8 @@ namespace senseix.message.parent {
   public sealed partial class ParentEditResponse : pb::GeneratedMessage<ParentEditResponse, ParentEditResponse.Builder> {
     private ParentEditResponse() { }
     private static readonly ParentEditResponse defaultInstance = new ParentEditResponse().MakeReadOnly();
-    private static readonly string[] _parentEditResponseFieldNames = new string[] { "auth_token" };
-    private static readonly uint[] _parentEditResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _ParentEditResponseFieldNames = new string[] { "auth_token" };
+    private static readonly uint[] _ParentEditResponseFieldTags = new uint[] { 10 };
     public static ParentEditResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3236,11 +3236,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentEditResponse__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentEditResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ParentEditResponse, ParentEditResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentEditResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentEditResponse__FieldAccessorTable; }
     }
     
     public const int AuthTokenFieldNumber = 1;
@@ -3261,7 +3261,7 @@ namespace senseix.message.parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _parentEditResponseFieldNames;
+      string[] field_names = _ParentEditResponseFieldNames;
       if (hasAuthToken) {
         output.WriteString(1, field_names[0], AuthToken);
       }
@@ -3375,11 +3375,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.ParentEditResponse.Descriptor; }
+        get { return global::Senseix.Message.Parent.ParentEditResponse.Descriptor; }
       }
       
       public override ParentEditResponse DefaultInstanceForType {
-        get { return global::senseix.message.parent.ParentEditResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.ParentEditResponse.DefaultInstance; }
       }
       
       public override ParentEditResponse BuildPartial() {
@@ -3400,7 +3400,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(ParentEditResponse other) {
-        if (other == global::senseix.message.parent.ParentEditResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.ParentEditResponse.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasAuthToken) {
           AuthToken = other.AuthToken;
@@ -3420,9 +3420,9 @@ namespace senseix.message.parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_parentEditResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ParentEditResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _parentEditResponseFieldTags[field_ordinal];
+              tag = _ParentEditResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -3484,7 +3484,7 @@ namespace senseix.message.parent {
       }
     }
     static ParentEditResponse() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -3492,8 +3492,8 @@ namespace senseix.message.parent {
   public sealed partial class ParentMergeResponse : pb::GeneratedMessage<ParentMergeResponse, ParentMergeResponse.Builder> {
     private ParentMergeResponse() { }
     private static readonly ParentMergeResponse defaultInstance = new ParentMergeResponse().MakeReadOnly();
-    private static readonly string[] _parentMergeResponseFieldNames = new string[] { "auth_token" };
-    private static readonly uint[] _parentMergeResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _ParentMergeResponseFieldNames = new string[] { "auth_token" };
+    private static readonly uint[] _ParentMergeResponseFieldTags = new uint[] { 10 };
     public static ParentMergeResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3507,11 +3507,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentMergeResponse__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentMergeResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ParentMergeResponse, ParentMergeResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentMergeResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentMergeResponse__FieldAccessorTable; }
     }
     
     public const int AuthTokenFieldNumber = 1;
@@ -3533,7 +3533,7 @@ namespace senseix.message.parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _parentMergeResponseFieldNames;
+      string[] field_names = _ParentMergeResponseFieldNames;
       if (hasAuthToken) {
         output.WriteString(1, field_names[0], AuthToken);
       }
@@ -3647,11 +3647,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.ParentMergeResponse.Descriptor; }
+        get { return global::Senseix.Message.Parent.ParentMergeResponse.Descriptor; }
       }
       
       public override ParentMergeResponse DefaultInstanceForType {
-        get { return global::senseix.message.parent.ParentMergeResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.ParentMergeResponse.DefaultInstance; }
       }
       
       public override ParentMergeResponse BuildPartial() {
@@ -3672,7 +3672,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(ParentMergeResponse other) {
-        if (other == global::senseix.message.parent.ParentMergeResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.ParentMergeResponse.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasAuthToken) {
           AuthToken = other.AuthToken;
@@ -3692,9 +3692,9 @@ namespace senseix.message.parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_parentMergeResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ParentMergeResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _parentMergeResponseFieldTags[field_ordinal];
+              tag = _ParentMergeResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -3756,7 +3756,7 @@ namespace senseix.message.parent {
       }
     }
     static ParentMergeResponse() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -3764,8 +3764,8 @@ namespace senseix.message.parent {
   public sealed partial class ParentMergeRequest : pb::GeneratedMessage<ParentMergeRequest, ParentMergeRequest.Builder> {
     private ParentMergeRequest() { }
     private static readonly ParentMergeRequest defaultInstance = new ParentMergeRequest().MakeReadOnly();
-    private static readonly string[] _parentMergeRequestFieldNames = new string[] { "decision", "device_id", "email", "new_player_name", "password", "player_id" };
-    private static readonly uint[] _parentMergeRequestFieldTags = new uint[] { 32, 26, 18, 50, 10, 42 };
+    private static readonly string[] _ParentMergeRequestFieldNames = new string[] { "decision", "device_id", "email", "new_Player_name", "password", "Player_id" };
+    private static readonly uint[] _ParentMergeRequestFieldTags = new uint[] { 32, 26, 18, 50, 10, 42 };
     public static ParentMergeRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3779,11 +3779,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentMergeRequest__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentMergeRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ParentMergeRequest, ParentMergeRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_ParentMergeRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_ParentMergeRequest__FieldAccessorTable; }
     }
     
     #region Nested types
@@ -3830,22 +3830,22 @@ namespace senseix.message.parent {
     
     public const int DecisionFieldNumber = 4;
     private bool hasDecision;
-    private global::senseix.message.parent.ParentMergeRequest.Types.Decision decision_ = global::senseix.message.parent.ParentMergeRequest.Types.Decision.DELETE;
+    private global::Senseix.Message.Parent.ParentMergeRequest.Types.Decision decision_ = global::Senseix.Message.Parent.ParentMergeRequest.Types.Decision.DELETE;
     public bool HasDecision {
       get { return hasDecision; }
     }
-    public global::senseix.message.parent.ParentMergeRequest.Types.Decision Decision {
+    public global::Senseix.Message.Parent.ParentMergeRequest.Types.Decision Decision {
       get { return decision_; }
     }
     
     public const int PlayerIdFieldNumber = 5;
     private bool hasPlayerId;
-    private string playerId_ = "";
+    private string PlayerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return playerId_; }
+      get { return PlayerId_; }
     }
     
     public const int NewPlayerNameFieldNumber = 6;
@@ -3870,7 +3870,7 @@ namespace senseix.message.parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _parentMergeRequestFieldNames;
+      string[] field_names = _ParentMergeRequestFieldNames;
       if (hasPassword) {
         output.WriteString(1, field_names[4], Password);
       }
@@ -4014,11 +4014,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.ParentMergeRequest.Descriptor; }
+        get { return global::Senseix.Message.Parent.ParentMergeRequest.Descriptor; }
       }
       
       public override ParentMergeRequest DefaultInstanceForType {
-        get { return global::senseix.message.parent.ParentMergeRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.ParentMergeRequest.DefaultInstance; }
       }
       
       public override ParentMergeRequest BuildPartial() {
@@ -4039,7 +4039,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(ParentMergeRequest other) {
-        if (other == global::senseix.message.parent.ParentMergeRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.ParentMergeRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPassword) {
           Password = other.Password;
@@ -4074,9 +4074,9 @@ namespace senseix.message.parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_parentMergeRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ParentMergeRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _parentMergeRequestFieldTags[field_ordinal];
+              tag = _ParentMergeRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -4127,7 +4127,7 @@ namespace senseix.message.parent {
               break;
             }
             case 42: {
-              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
               break;
             }
             case 50: {
@@ -4210,11 +4210,11 @@ namespace senseix.message.parent {
       public bool HasDecision {
        get { return result.hasDecision; }
       }
-      public global::senseix.message.parent.ParentMergeRequest.Types.Decision Decision {
+      public global::Senseix.Message.Parent.ParentMergeRequest.Types.Decision Decision {
         get { return result.Decision; }
         set { SetDecision(value); }
       }
-      public Builder SetDecision(global::senseix.message.parent.ParentMergeRequest.Types.Decision value) {
+      public Builder SetDecision(global::Senseix.Message.Parent.ParentMergeRequest.Types.Decision value) {
         PrepareBuilder();
         result.hasDecision = true;
         result.decision_ = value;
@@ -4223,7 +4223,7 @@ namespace senseix.message.parent {
       public Builder ClearDecision() {
         PrepareBuilder();
         result.hasDecision = false;
-        result.decision_ = global::senseix.message.parent.ParentMergeRequest.Types.Decision.DELETE;
+        result.decision_ = global::Senseix.Message.Parent.ParentMergeRequest.Types.Decision.DELETE;
         return this;
       }
       
@@ -4238,13 +4238,13 @@ namespace senseix.message.parent {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.playerId_ = value;
+        result.PlayerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.playerId_ = "";
+        result.PlayerId_ = "";
         return this;
       }
       
@@ -4270,7 +4270,7 @@ namespace senseix.message.parent {
       }
     }
     static ParentMergeRequest() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -4293,11 +4293,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_GameVerificationRequest__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_GameVerificationRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<GameVerificationRequest, GameVerificationRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_GameVerificationRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_GameVerificationRequest__FieldAccessorTable; }
     }
     
     public const int UdidFieldNumber = 1;
@@ -4450,11 +4450,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.GameVerificationRequest.Descriptor; }
+        get { return global::Senseix.Message.Parent.GameVerificationRequest.Descriptor; }
       }
       
       public override GameVerificationRequest DefaultInstanceForType {
-        get { return global::senseix.message.parent.GameVerificationRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.GameVerificationRequest.DefaultInstance; }
       }
       
       public override GameVerificationRequest BuildPartial() {
@@ -4475,7 +4475,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(GameVerificationRequest other) {
-        if (other == global::senseix.message.parent.GameVerificationRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.GameVerificationRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasUdid) {
           Udid = other.Udid;
@@ -4587,7 +4587,7 @@ namespace senseix.message.parent {
       }
     }
     static GameVerificationRequest() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   
@@ -4610,11 +4610,11 @@ namespace senseix.message.parent {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_GameVerificationResponse__Descriptor; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_GameVerificationResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<GameVerificationResponse, GameVerificationResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.parent.Parent.internal__static_senseix_message_parent_GameVerificationResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Parent.Parent.internal__static_Senseix_Message_Parent_GameVerificationResponse__FieldAccessorTable; }
     }
     
     public override bool IsInitialized {
@@ -4733,11 +4733,11 @@ namespace senseix.message.parent {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.parent.GameVerificationResponse.Descriptor; }
+        get { return global::Senseix.Message.Parent.GameVerificationResponse.Descriptor; }
       }
       
       public override GameVerificationResponse DefaultInstanceForType {
-        get { return global::senseix.message.parent.GameVerificationResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Parent.GameVerificationResponse.DefaultInstance; }
       }
       
       public override GameVerificationResponse BuildPartial() {
@@ -4758,7 +4758,7 @@ namespace senseix.message.parent {
       }
       
       public override Builder MergeFrom(GameVerificationResponse other) {
-        if (other == global::senseix.message.parent.GameVerificationResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Parent.GameVerificationResponse.DefaultInstance) return this;
         PrepareBuilder();
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -4814,7 +4814,7 @@ namespace senseix.message.parent {
       
     }
     static GameVerificationResponse() {
-      object.ReferenceEquals(global::senseix.message.parent.Parent.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Parent.Parent.Descriptor, null);
     }
   }
   

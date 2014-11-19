@@ -6,7 +6,7 @@ using pb = global::Google.ProtocolBuffers;
 using pbc = global::Google.ProtocolBuffers.Collections;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
 using scg = global::System.Collections.Generic;
-namespace senseix.message.constant {
+namespace Senseix.Message.Constant {
   
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public static partial class Constant {
@@ -25,7 +25,7 @@ namespace senseix.message.constant {
     
     static Constant() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "Cg5Db25zdGFudC5wcm90bxIYc2Vuc2VpeC5tZXNzYWdlLmNvbnN0YW50Kq0C" + 
+          "Cg5Db25zdGFudC5wcm90bxIYU2Vuc2VpeC5NZXNzYWdlLkNvbnN0YW50Kq0C" + 
           "CgtNZXNzYWdlVHlwZRISCg5SZWdpc3RlckRldmljZRABEhIKDlJlZ2lzdGVy" + 
           "UGFyZW50EAISEAoMU2lnbkluUGFyZW50EAMSEQoNU2lnbk91dFBhcmVudBAE" + 
           "Eg4KCkVkaXRQYXJlbnQQBRIPCgtNZXJnZVBhcmVudBAGEhAKDENyZWF0ZVBs" + 

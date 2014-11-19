@@ -6,7 +6,7 @@ using pb = global::Google.ProtocolBuffers;
 using pbc = global::Google.ProtocolBuffers.Collections;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
 using scg = global::System.Collections.Generic;
-namespace senseix.message.problem {
+namespace Senseix.Message.Problem {
   
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public static partial class Problem {
@@ -16,30 +16,30 @@ namespace senseix.message.problem {
     }
     #endregion
     #region Static variables
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Atom__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Atom, global::senseix.message.problem.Atom.Builder> internal__static_senseix_message_problem_Atom__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Formatter__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Formatter, global::senseix.message.problem.Formatter.Builder> internal__static_senseix_message_problem_Formatter__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Question__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Question, global::senseix.message.problem.Question.Builder> internal__static_senseix_message_problem_Question__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Answer__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Answer, global::senseix.message.problem.Answer.Builder> internal__static_senseix_message_problem_Answer__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_Distractor__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Distractor, global::senseix.message.problem.Distractor.Builder> internal__static_senseix_message_problem_Distractor__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemData__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemData, global::senseix.message.problem.ProblemData.Builder> internal__static_senseix_message_problem_ProblemData__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_AnswerIdentifier__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.AnswerIdentifier, global::senseix.message.problem.AnswerIdentifier.Builder> internal__static_senseix_message_problem_AnswerIdentifier__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemPost__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPost, global::senseix.message.problem.ProblemPost.Builder> internal__static_senseix_message_problem_ProblemPost__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemPostRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPostRequest, global::senseix.message.problem.ProblemPostRequest.Builder> internal__static_senseix_message_problem_ProblemPostRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemPostResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPostResponse, global::senseix.message.problem.ProblemPostResponse.Builder> internal__static_senseix_message_problem_ProblemPostResponse__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemGetRequest__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemGetRequest, global::senseix.message.problem.ProblemGetRequest.Builder> internal__static_senseix_message_problem_ProblemGetRequest__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_senseix_message_problem_ProblemGetResponse__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemGetResponse, global::senseix.message.problem.ProblemGetResponse.Builder> internal__static_senseix_message_problem_ProblemGetResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_Atom__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.Atom, global::Senseix.Message.Problem.Atom.Builder> internal__static_Senseix_Message_Problem_Atom__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_Formatter__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.Formatter, global::Senseix.Message.Problem.Formatter.Builder> internal__static_Senseix_Message_Problem_Formatter__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_Question__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.Question, global::Senseix.Message.Problem.Question.Builder> internal__static_Senseix_Message_Problem_Question__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_Answer__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.Answer, global::Senseix.Message.Problem.Answer.Builder> internal__static_Senseix_Message_Problem_Answer__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_Distractor__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.Distractor, global::Senseix.Message.Problem.Distractor.Builder> internal__static_Senseix_Message_Problem_Distractor__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_ProblemData__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemData, global::Senseix.Message.Problem.ProblemData.Builder> internal__static_Senseix_Message_Problem_ProblemData__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_AnswerIdentifier__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.AnswerIdentifier, global::Senseix.Message.Problem.AnswerIdentifier.Builder> internal__static_Senseix_Message_Problem_AnswerIdentifier__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_ProblemPost__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPost, global::Senseix.Message.Problem.ProblemPost.Builder> internal__static_Senseix_Message_Problem_ProblemPost__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_ProblemPostRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPostRequest, global::Senseix.Message.Problem.ProblemPostRequest.Builder> internal__static_Senseix_Message_Problem_ProblemPostRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_ProblemPostResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPostResponse, global::Senseix.Message.Problem.ProblemPostResponse.Builder> internal__static_Senseix_Message_Problem_ProblemPostResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_ProblemGetRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemGetRequest, global::Senseix.Message.Problem.ProblemGetRequest.Builder> internal__static_Senseix_Message_Problem_ProblemGetRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Problem_ProblemGetResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemGetResponse, global::Senseix.Message.Problem.ProblemGetResponse.Builder> internal__static_Senseix_Message_Problem_ProblemGetResponse__FieldAccessorTable;
     #endregion
     #region Descriptor
     public static pbd::FileDescriptor Descriptor {
@@ -49,89 +49,89 @@ namespace senseix.message.problem {
     
     static Problem() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "Cg1Qcm9ibGVtLnByb3RvEhdzZW5zZWl4Lm1lc3NhZ2UucHJvYmxlbRoOQ29u" + 
+          "Cg1Qcm9ibGVtLnByb3RvEhdTZW5zZWl4Lk1lc3NhZ2UuUHJvYmxlbRoOQ29u" + 
           "c3RhbnQucHJvdG8inwEKBEF0b20SDAoEdXVpZBgBIAIoCRI2CgR0eXBlGAIg" + 
-          "AigOMiIuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uQXRvbS5UeXBlOgRURVhU" + 
+          "AigOMiIuU2Vuc2VpeC5NZXNzYWdlLlByb2JsZW0uQXRvbS5UeXBlOgRURVhU" + 
           "EgwKBGRhdGEYAyACKAwSEAoIcmVxdWlyZWQYBCACKAgiMQoEVHlwZRIICgRU" + 
           "RVhUEAASCQoFSU1BR0UQARIJCgVBVURJTxACEgkKBVZJREVPEAMiJgoJRm9y" + 
           "bWF0dGVyEgwKBGh0bWwYASABKAkSCwoDY3NzGAIgASgJInoKCFF1ZXN0aW9u" + 
-          "EisKBGF0b20YASADKAsyHS5zZW5zZWl4Lm1lc3NhZ2UucHJvYmxlbS5BdG9t" + 
-          "EjIKBmZvcm1hdBgCIAEoCzIiLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLkZv" + 
+          "EisKBGF0b20YASADKAsyHS5TZW5zZWl4Lk1lc3NhZ2UuUHJvYmxlbS5BdG9t" + 
+          "EjIKBmZvcm1hdBgCIAEoCzIiLlNlbnNlaXguTWVzc2FnZS5Qcm9ibGVtLkZv" + 
           "cm1hdHRlchINCgVpbWFnZRgDIAEoDCJpCgZBbnN3ZXISKwoEYXRvbRgBIAMo" + 
-          "CzIdLnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLkF0b20SMgoGZm9ybWF0GAIg" + 
-          "ASgLMiIuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uRm9ybWF0dGVyIm0KCkRp" + 
-          "c3RyYWN0b3ISKwoEYXRvbRgBIAMoCzIdLnNlbnNlaXgubWVzc2FnZS5wcm9i" + 
-          "bGVtLkF0b20SMgoGZm9ybWF0GAIgASgLMiIuc2Vuc2VpeC5tZXNzYWdlLnBy" + 
+          "CzIdLlNlbnNlaXguTWVzc2FnZS5Qcm9ibGVtLkF0b20SMgoGZm9ybWF0GAIg" + 
+          "ASgLMiIuU2Vuc2VpeC5NZXNzYWdlLlByb2JsZW0uRm9ybWF0dGVyIm0KCkRp" + 
+          "c3RyYWN0b3ISKwoEYXRvbRgBIAMoCzIdLlNlbnNlaXguTWVzc2FnZS5Qcm9i" + 
+          "bGVtLkF0b20SMgoGZm9ybWF0GAIgASgLMiIuU2Vuc2VpeC5NZXNzYWdlLlBy" + 
           "b2JsZW0uRm9ybWF0dGVyIroBCgtQcm9ibGVtRGF0YRIMCgR1dWlkGAEgAigJ" + 
-          "EjMKCHF1ZXN0aW9uGAIgAigLMiEuc2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0u" + 
-          "UXVlc3Rpb24SLwoGYW5zd2VyGAMgAigLMh8uc2Vuc2VpeC5tZXNzYWdlLnBy" + 
-          "b2JsZW0uQW5zd2VyEjcKCmRpc3RyYWN0b3IYBCACKAsyIy5zZW5zZWl4Lm1l" + 
-          "c3NhZ2UucHJvYmxlbS5EaXN0cmFjdG9yIiAKEEFuc3dlcklkZW50aWZpZXIS" + 
+          "EjMKCHF1ZXN0aW9uGAIgAigLMiEuU2Vuc2VpeC5NZXNzYWdlLlByb2JsZW0u" + 
+          "UXVlc3Rpb24SLwoGYW5zd2VyGAMgAigLMh8uU2Vuc2VpeC5NZXNzYWdlLlBy" + 
+          "b2JsZW0uQW5zd2VyEjcKCmRpc3RyYWN0b3IYBCACKAsyIy5TZW5zZWl4Lk1l" + 
+          "c3NhZ2UuUHJvYmxlbS5EaXN0cmFjdG9yIiAKEEFuc3dlcklkZW50aWZpZXIS" + 
           "DAoEdXVpZBgBIAMoCSKnAQoLUHJvYmxlbVBvc3QSEQoJcGxheWVyX2lkGAEg" + 
           "AigJEhIKCnByb2JsZW1faWQYAiACKAkSPQoKYW5zd2VyX2lkcxgDIAEoCzIp" + 
-          "LnNlbnNlaXgubWVzc2FnZS5wcm9ibGVtLkFuc3dlcklkZW50aWZpZXISEAoI" + 
+          "LlNlbnNlaXguTWVzc2FnZS5Qcm9ibGVtLkFuc3dlcklkZW50aWZpZXISEAoI" + 
           "ZHVyYXRpb24YBCABKAISDwoHc2tpcHBlZBgFIAEoCBIPCgdjb3JyZWN0GAYg" + 
           "ASgIIksKElByb2JsZW1Qb3N0UmVxdWVzdBI1Cgdwcm9ibGVtGAEgAygLMiQu" + 
-          "c2Vuc2VpeC5tZXNzYWdlLnByb2JsZW0uUHJvYmxlbVBvc3QiFQoTUHJvYmxl" + 
+          "U2Vuc2VpeC5NZXNzYWdlLlByb2JsZW0uUHJvYmxlbVBvc3QiFQoTUHJvYmxl" + 
           "bVBvc3RSZXNwb25zZSI9ChFQcm9ibGVtR2V0UmVxdWVzdBIRCglwbGF5ZXJf" + 
           "aWQYASACKAkSFQoNcHJvYmxlbV9jb3VudBgCIAEoDSJLChJQcm9ibGVtR2V0" + 
-          "UmVzcG9uc2USNQoHcHJvYmxlbRgBIAMoCzIkLnNlbnNlaXgubWVzc2FnZS5w" + 
+          "UmVzcG9uc2USNQoHcHJvYmxlbRgBIAMoCzIkLlNlbnNlaXguTWVzc2FnZS5Q" + 
           "cm9ibGVtLlByb2JsZW1EYXRh");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
-        internal__static_senseix_message_problem_Atom__Descriptor = Descriptor.MessageTypes[0];
-        internal__static_senseix_message_problem_Atom__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Atom, global::senseix.message.problem.Atom.Builder>(internal__static_senseix_message_problem_Atom__Descriptor,
+        internal__static_Senseix_Message_Problem_Atom__Descriptor = Descriptor.MessageTypes[0];
+        internal__static_Senseix_Message_Problem_Atom__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.Atom, global::Senseix.Message.Problem.Atom.Builder>(internal__static_Senseix_Message_Problem_Atom__Descriptor,
                 new string[] { "Uuid", "Type", "Data", "Required", });
-        internal__static_senseix_message_problem_Formatter__Descriptor = Descriptor.MessageTypes[1];
-        internal__static_senseix_message_problem_Formatter__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Formatter, global::senseix.message.problem.Formatter.Builder>(internal__static_senseix_message_problem_Formatter__Descriptor,
+        internal__static_Senseix_Message_Problem_Formatter__Descriptor = Descriptor.MessageTypes[1];
+        internal__static_Senseix_Message_Problem_Formatter__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.Formatter, global::Senseix.Message.Problem.Formatter.Builder>(internal__static_Senseix_Message_Problem_Formatter__Descriptor,
                 new string[] { "Html", "Css", });
-        internal__static_senseix_message_problem_Question__Descriptor = Descriptor.MessageTypes[2];
-        internal__static_senseix_message_problem_Question__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Question, global::senseix.message.problem.Question.Builder>(internal__static_senseix_message_problem_Question__Descriptor,
+        internal__static_Senseix_Message_Problem_Question__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_Senseix_Message_Problem_Question__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.Question, global::Senseix.Message.Problem.Question.Builder>(internal__static_Senseix_Message_Problem_Question__Descriptor,
                 new string[] { "Atom", "Format", "Image", });
-        internal__static_senseix_message_problem_Answer__Descriptor = Descriptor.MessageTypes[3];
-        internal__static_senseix_message_problem_Answer__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Answer, global::senseix.message.problem.Answer.Builder>(internal__static_senseix_message_problem_Answer__Descriptor,
+        internal__static_Senseix_Message_Problem_Answer__Descriptor = Descriptor.MessageTypes[3];
+        internal__static_Senseix_Message_Problem_Answer__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.Answer, global::Senseix.Message.Problem.Answer.Builder>(internal__static_Senseix_Message_Problem_Answer__Descriptor,
                 new string[] { "Atom", "Format", });
-        internal__static_senseix_message_problem_Distractor__Descriptor = Descriptor.MessageTypes[4];
-        internal__static_senseix_message_problem_Distractor__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.Distractor, global::senseix.message.problem.Distractor.Builder>(internal__static_senseix_message_problem_Distractor__Descriptor,
+        internal__static_Senseix_Message_Problem_Distractor__Descriptor = Descriptor.MessageTypes[4];
+        internal__static_Senseix_Message_Problem_Distractor__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.Distractor, global::Senseix.Message.Problem.Distractor.Builder>(internal__static_Senseix_Message_Problem_Distractor__Descriptor,
                 new string[] { "Atom", "Format", });
-        internal__static_senseix_message_problem_ProblemData__Descriptor = Descriptor.MessageTypes[5];
-        internal__static_senseix_message_problem_ProblemData__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemData, global::senseix.message.problem.ProblemData.Builder>(internal__static_senseix_message_problem_ProblemData__Descriptor,
+        internal__static_Senseix_Message_Problem_ProblemData__Descriptor = Descriptor.MessageTypes[5];
+        internal__static_Senseix_Message_Problem_ProblemData__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemData, global::Senseix.Message.Problem.ProblemData.Builder>(internal__static_Senseix_Message_Problem_ProblemData__Descriptor,
                 new string[] { "Uuid", "Question", "Answer", "Distractor", });
-        internal__static_senseix_message_problem_AnswerIdentifier__Descriptor = Descriptor.MessageTypes[6];
-        internal__static_senseix_message_problem_AnswerIdentifier__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.AnswerIdentifier, global::senseix.message.problem.AnswerIdentifier.Builder>(internal__static_senseix_message_problem_AnswerIdentifier__Descriptor,
+        internal__static_Senseix_Message_Problem_AnswerIdentifier__Descriptor = Descriptor.MessageTypes[6];
+        internal__static_Senseix_Message_Problem_AnswerIdentifier__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.AnswerIdentifier, global::Senseix.Message.Problem.AnswerIdentifier.Builder>(internal__static_Senseix_Message_Problem_AnswerIdentifier__Descriptor,
                 new string[] { "Uuid", });
-        internal__static_senseix_message_problem_ProblemPost__Descriptor = Descriptor.MessageTypes[7];
-        internal__static_senseix_message_problem_ProblemPost__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPost, global::senseix.message.problem.ProblemPost.Builder>(internal__static_senseix_message_problem_ProblemPost__Descriptor,
+        internal__static_Senseix_Message_Problem_ProblemPost__Descriptor = Descriptor.MessageTypes[7];
+        internal__static_Senseix_Message_Problem_ProblemPost__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPost, global::Senseix.Message.Problem.ProblemPost.Builder>(internal__static_Senseix_Message_Problem_ProblemPost__Descriptor,
                 new string[] { "PlayerId", "ProblemId", "AnswerIds", "Duration", "Skipped", "Correct", });
-        internal__static_senseix_message_problem_ProblemPostRequest__Descriptor = Descriptor.MessageTypes[8];
-        internal__static_senseix_message_problem_ProblemPostRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPostRequest, global::senseix.message.problem.ProblemPostRequest.Builder>(internal__static_senseix_message_problem_ProblemPostRequest__Descriptor,
+        internal__static_Senseix_Message_Problem_ProblemPostRequest__Descriptor = Descriptor.MessageTypes[8];
+        internal__static_Senseix_Message_Problem_ProblemPostRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPostRequest, global::Senseix.Message.Problem.ProblemPostRequest.Builder>(internal__static_Senseix_Message_Problem_ProblemPostRequest__Descriptor,
                 new string[] { "Problem", });
-        internal__static_senseix_message_problem_ProblemPostResponse__Descriptor = Descriptor.MessageTypes[9];
-        internal__static_senseix_message_problem_ProblemPostResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemPostResponse, global::senseix.message.problem.ProblemPostResponse.Builder>(internal__static_senseix_message_problem_ProblemPostResponse__Descriptor,
+        internal__static_Senseix_Message_Problem_ProblemPostResponse__Descriptor = Descriptor.MessageTypes[9];
+        internal__static_Senseix_Message_Problem_ProblemPostResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPostResponse, global::Senseix.Message.Problem.ProblemPostResponse.Builder>(internal__static_Senseix_Message_Problem_ProblemPostResponse__Descriptor,
                 new string[] { });
-        internal__static_senseix_message_problem_ProblemGetRequest__Descriptor = Descriptor.MessageTypes[10];
-        internal__static_senseix_message_problem_ProblemGetRequest__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemGetRequest, global::senseix.message.problem.ProblemGetRequest.Builder>(internal__static_senseix_message_problem_ProblemGetRequest__Descriptor,
+        internal__static_Senseix_Message_Problem_ProblemGetRequest__Descriptor = Descriptor.MessageTypes[10];
+        internal__static_Senseix_Message_Problem_ProblemGetRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemGetRequest, global::Senseix.Message.Problem.ProblemGetRequest.Builder>(internal__static_Senseix_Message_Problem_ProblemGetRequest__Descriptor,
                 new string[] { "PlayerId", "ProblemCount", });
-        internal__static_senseix_message_problem_ProblemGetResponse__Descriptor = Descriptor.MessageTypes[11];
-        internal__static_senseix_message_problem_ProblemGetResponse__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::senseix.message.problem.ProblemGetResponse, global::senseix.message.problem.ProblemGetResponse.Builder>(internal__static_senseix_message_problem_ProblemGetResponse__Descriptor,
+        internal__static_Senseix_Message_Problem_ProblemGetResponse__Descriptor = Descriptor.MessageTypes[11];
+        internal__static_Senseix_Message_Problem_ProblemGetResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemGetResponse, global::Senseix.Message.Problem.ProblemGetResponse.Builder>(internal__static_Senseix_Message_Problem_ProblemGetResponse__Descriptor,
                 new string[] { "Problem", });
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
           new pbd::FileDescriptor[] {
-          global::senseix.message.constant.Constant.Descriptor, 
+          global::Senseix.Message.Constant.Constant.Descriptor, 
           }, assigner);
     }
     #endregion
@@ -157,11 +157,11 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Atom__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_Atom__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<Atom, Atom.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Atom__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_Atom__FieldAccessorTable; }
     }
     
     #region Nested types
@@ -189,11 +189,11 @@ namespace senseix.message.problem {
     
     public const int TypeFieldNumber = 2;
     private bool hasType;
-    private global::senseix.message.problem.Atom.Types.Type type_ = global::senseix.message.problem.Atom.Types.Type.TEXT;
+    private global::Senseix.Message.Problem.Atom.Types.Type type_ = global::Senseix.Message.Problem.Atom.Types.Type.TEXT;
     public bool HasType {
       get { return hasType; }
     }
-    public global::senseix.message.problem.Atom.Types.Type Type {
+    public global::Senseix.Message.Problem.Atom.Types.Type Type {
       get { return type_; }
     }
     
@@ -361,11 +361,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.Atom.Descriptor; }
+        get { return global::Senseix.Message.Problem.Atom.Descriptor; }
       }
       
       public override Atom DefaultInstanceForType {
-        get { return global::senseix.message.problem.Atom.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.Atom.DefaultInstance; }
       }
       
       public override Atom BuildPartial() {
@@ -386,7 +386,7 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(Atom other) {
-        if (other == global::senseix.message.problem.Atom.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.Atom.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasUuid) {
           Uuid = other.Uuid;
@@ -501,11 +501,11 @@ namespace senseix.message.problem {
       public bool HasType {
        get { return result.hasType; }
       }
-      public global::senseix.message.problem.Atom.Types.Type Type {
+      public global::Senseix.Message.Problem.Atom.Types.Type Type {
         get { return result.Type; }
         set { SetType(value); }
       }
-      public Builder SetType(global::senseix.message.problem.Atom.Types.Type value) {
+      public Builder SetType(global::Senseix.Message.Problem.Atom.Types.Type value) {
         PrepareBuilder();
         result.hasType = true;
         result.type_ = value;
@@ -514,7 +514,7 @@ namespace senseix.message.problem {
       public Builder ClearType() {
         PrepareBuilder();
         result.hasType = false;
-        result.type_ = global::senseix.message.problem.Atom.Types.Type.TEXT;
+        result.type_ = global::Senseix.Message.Problem.Atom.Types.Type.TEXT;
         return this;
       }
       
@@ -560,7 +560,7 @@ namespace senseix.message.problem {
       }
     }
     static Atom() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -583,11 +583,11 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Formatter__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_Formatter__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<Formatter, Formatter.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Formatter__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_Formatter__FieldAccessorTable; }
     }
     
     public const int HtmlFieldNumber = 1;
@@ -738,11 +738,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.Formatter.Descriptor; }
+        get { return global::Senseix.Message.Problem.Formatter.Descriptor; }
       }
       
       public override Formatter DefaultInstanceForType {
-        get { return global::senseix.message.problem.Formatter.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.Formatter.DefaultInstance; }
       }
       
       public override Formatter BuildPartial() {
@@ -763,7 +763,7 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(Formatter other) {
-        if (other == global::senseix.message.problem.Formatter.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.Formatter.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasHtml) {
           Html = other.Html;
@@ -875,7 +875,7 @@ namespace senseix.message.problem {
       }
     }
     static Formatter() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -898,33 +898,33 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Question__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_Question__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<Question, Question.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Question__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_Question__FieldAccessorTable; }
     }
     
     public const int AtomFieldNumber = 1;
-    private pbc::PopsicleList<global::senseix.message.problem.Atom> atom_ = new pbc::PopsicleList<global::senseix.message.problem.Atom>();
-    public scg::IList<global::senseix.message.problem.Atom> AtomList {
+    private pbc::PopsicleList<global::Senseix.Message.Problem.Atom> atom_ = new pbc::PopsicleList<global::Senseix.Message.Problem.Atom>();
+    public scg::IList<global::Senseix.Message.Problem.Atom> AtomList {
       get { return atom_; }
     }
     public int AtomCount {
       get { return atom_.Count; }
     }
-    public global::senseix.message.problem.Atom GetAtom(int index) {
+    public global::Senseix.Message.Problem.Atom GetAtom(int index) {
       return atom_[index];
     }
     
     public const int FormatFieldNumber = 2;
     private bool hasFormat;
-    private global::senseix.message.problem.Formatter format_;
+    private global::Senseix.Message.Problem.Formatter format_;
     public bool HasFormat {
       get { return hasFormat; }
     }
-    public global::senseix.message.problem.Formatter Format {
-      get { return format_ ?? global::senseix.message.problem.Formatter.DefaultInstance; }
+    public global::Senseix.Message.Problem.Formatter Format {
+      get { return format_ ?? global::Senseix.Message.Problem.Formatter.DefaultInstance; }
     }
     
     public const int ImageFieldNumber = 3;
@@ -939,7 +939,7 @@ namespace senseix.message.problem {
     
     public override bool IsInitialized {
       get {
-        foreach (global::senseix.message.problem.Atom element in AtomList) {
+        foreach (global::Senseix.Message.Problem.Atom element in AtomList) {
           if (!element.IsInitialized) return false;
         }
         return true;
@@ -968,7 +968,7 @@ namespace senseix.message.problem {
         if (size != -1) return size;
         
         size = 0;
-        foreach (global::senseix.message.problem.Atom element in AtomList) {
+        foreach (global::Senseix.Message.Problem.Atom element in AtomList) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, element);
         }
         if (hasFormat) {
@@ -1075,11 +1075,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.Question.Descriptor; }
+        get { return global::Senseix.Message.Problem.Question.Descriptor; }
       }
       
       public override Question DefaultInstanceForType {
-        get { return global::senseix.message.problem.Question.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.Question.DefaultInstance; }
       }
       
       public override Question BuildPartial() {
@@ -1100,7 +1100,7 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(Question other) {
-        if (other == global::senseix.message.problem.Question.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.Question.DefaultInstance) return this;
         PrepareBuilder();
         if (other.atom_.Count != 0) {
           result.atom_.Add(other.atom_);
@@ -1155,11 +1155,11 @@ namespace senseix.message.problem {
               break;
             }
             case 10: {
-              input.ReadMessageArray(tag, field_name, result.atom_, global::senseix.message.problem.Atom.DefaultInstance, extensionRegistry);
+              input.ReadMessageArray(tag, field_name, result.atom_, global::Senseix.Message.Problem.Atom.DefaultInstance, extensionRegistry);
               break;
             }
             case 18: {
-              global::senseix.message.problem.Formatter.Builder subBuilder = global::senseix.message.problem.Formatter.CreateBuilder();
+              global::Senseix.Message.Problem.Formatter.Builder subBuilder = global::Senseix.Message.Problem.Formatter.CreateBuilder();
               if (result.hasFormat) {
                 subBuilder.MergeFrom(Format);
               }
@@ -1181,40 +1181,40 @@ namespace senseix.message.problem {
       }
       
       
-      public pbc::IPopsicleList<global::senseix.message.problem.Atom> AtomList {
+      public pbc::IPopsicleList<global::Senseix.Message.Problem.Atom> AtomList {
         get { return PrepareBuilder().atom_; }
       }
       public int AtomCount {
         get { return result.AtomCount; }
       }
-      public global::senseix.message.problem.Atom GetAtom(int index) {
+      public global::Senseix.Message.Problem.Atom GetAtom(int index) {
         return result.GetAtom(index);
       }
-      public Builder SetAtom(int index, global::senseix.message.problem.Atom value) {
+      public Builder SetAtom(int index, global::Senseix.Message.Problem.Atom value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.atom_[index] = value;
         return this;
       }
-      public Builder SetAtom(int index, global::senseix.message.problem.Atom.Builder builderForValue) {
+      public Builder SetAtom(int index, global::Senseix.Message.Problem.Atom.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.atom_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddAtom(global::senseix.message.problem.Atom value) {
+      public Builder AddAtom(global::Senseix.Message.Problem.Atom value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.atom_.Add(value);
         return this;
       }
-      public Builder AddAtom(global::senseix.message.problem.Atom.Builder builderForValue) {
+      public Builder AddAtom(global::Senseix.Message.Problem.Atom.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.atom_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangeAtom(scg::IEnumerable<global::senseix.message.problem.Atom> values) {
+      public Builder AddRangeAtom(scg::IEnumerable<global::Senseix.Message.Problem.Atom> values) {
         PrepareBuilder();
         result.atom_.Add(values);
         return this;
@@ -1228,30 +1228,30 @@ namespace senseix.message.problem {
       public bool HasFormat {
        get { return result.hasFormat; }
       }
-      public global::senseix.message.problem.Formatter Format {
+      public global::Senseix.Message.Problem.Formatter Format {
         get { return result.Format; }
         set { SetFormat(value); }
       }
-      public Builder SetFormat(global::senseix.message.problem.Formatter value) {
+      public Builder SetFormat(global::Senseix.Message.Problem.Formatter value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasFormat = true;
         result.format_ = value;
         return this;
       }
-      public Builder SetFormat(global::senseix.message.problem.Formatter.Builder builderForValue) {
+      public Builder SetFormat(global::Senseix.Message.Problem.Formatter.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.hasFormat = true;
         result.format_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeFormat(global::senseix.message.problem.Formatter value) {
+      public Builder MergeFormat(global::Senseix.Message.Problem.Formatter value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         if (result.hasFormat &&
-            result.format_ != global::senseix.message.problem.Formatter.DefaultInstance) {
-            result.format_ = global::senseix.message.problem.Formatter.CreateBuilder(result.format_).MergeFrom(value).BuildPartial();
+            result.format_ != global::Senseix.Message.Problem.Formatter.DefaultInstance) {
+            result.format_ = global::Senseix.Message.Problem.Formatter.CreateBuilder(result.format_).MergeFrom(value).BuildPartial();
         } else {
           result.format_ = value;
         }
@@ -1287,7 +1287,7 @@ namespace senseix.message.problem {
       }
     }
     static Question() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -1310,38 +1310,38 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Answer__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_Answer__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<Answer, Answer.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Answer__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_Answer__FieldAccessorTable; }
     }
     
     public const int AtomFieldNumber = 1;
-    private pbc::PopsicleList<global::senseix.message.problem.Atom> atom_ = new pbc::PopsicleList<global::senseix.message.problem.Atom>();
-    public scg::IList<global::senseix.message.problem.Atom> AtomList {
+    private pbc::PopsicleList<global::Senseix.Message.Problem.Atom> atom_ = new pbc::PopsicleList<global::Senseix.Message.Problem.Atom>();
+    public scg::IList<global::Senseix.Message.Problem.Atom> AtomList {
       get { return atom_; }
     }
     public int AtomCount {
       get { return atom_.Count; }
     }
-    public global::senseix.message.problem.Atom GetAtom(int index) {
+    public global::Senseix.Message.Problem.Atom GetAtom(int index) {
       return atom_[index];
     }
     
     public const int FormatFieldNumber = 2;
     private bool hasFormat;
-    private global::senseix.message.problem.Formatter format_;
+    private global::Senseix.Message.Problem.Formatter format_;
     public bool HasFormat {
       get { return hasFormat; }
     }
-    public global::senseix.message.problem.Formatter Format {
-      get { return format_ ?? global::senseix.message.problem.Formatter.DefaultInstance; }
+    public global::Senseix.Message.Problem.Formatter Format {
+      get { return format_ ?? global::Senseix.Message.Problem.Formatter.DefaultInstance; }
     }
     
     public override bool IsInitialized {
       get {
-        foreach (global::senseix.message.problem.Atom element in AtomList) {
+        foreach (global::Senseix.Message.Problem.Atom element in AtomList) {
           if (!element.IsInitialized) return false;
         }
         return true;
@@ -1367,7 +1367,7 @@ namespace senseix.message.problem {
         if (size != -1) return size;
         
         size = 0;
-        foreach (global::senseix.message.problem.Atom element in AtomList) {
+        foreach (global::Senseix.Message.Problem.Atom element in AtomList) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, element);
         }
         if (hasFormat) {
@@ -1471,11 +1471,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.Answer.Descriptor; }
+        get { return global::Senseix.Message.Problem.Answer.Descriptor; }
       }
       
       public override Answer DefaultInstanceForType {
-        get { return global::senseix.message.problem.Answer.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.Answer.DefaultInstance; }
       }
       
       public override Answer BuildPartial() {
@@ -1496,7 +1496,7 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(Answer other) {
-        if (other == global::senseix.message.problem.Answer.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.Answer.DefaultInstance) return this;
         PrepareBuilder();
         if (other.atom_.Count != 0) {
           result.atom_.Add(other.atom_);
@@ -1548,11 +1548,11 @@ namespace senseix.message.problem {
               break;
             }
             case 10: {
-              input.ReadMessageArray(tag, field_name, result.atom_, global::senseix.message.problem.Atom.DefaultInstance, extensionRegistry);
+              input.ReadMessageArray(tag, field_name, result.atom_, global::Senseix.Message.Problem.Atom.DefaultInstance, extensionRegistry);
               break;
             }
             case 18: {
-              global::senseix.message.problem.Formatter.Builder subBuilder = global::senseix.message.problem.Formatter.CreateBuilder();
+              global::Senseix.Message.Problem.Formatter.Builder subBuilder = global::Senseix.Message.Problem.Formatter.CreateBuilder();
               if (result.hasFormat) {
                 subBuilder.MergeFrom(Format);
               }
@@ -1570,40 +1570,40 @@ namespace senseix.message.problem {
       }
       
       
-      public pbc::IPopsicleList<global::senseix.message.problem.Atom> AtomList {
+      public pbc::IPopsicleList<global::Senseix.Message.Problem.Atom> AtomList {
         get { return PrepareBuilder().atom_; }
       }
       public int AtomCount {
         get { return result.AtomCount; }
       }
-      public global::senseix.message.problem.Atom GetAtom(int index) {
+      public global::Senseix.Message.Problem.Atom GetAtom(int index) {
         return result.GetAtom(index);
       }
-      public Builder SetAtom(int index, global::senseix.message.problem.Atom value) {
+      public Builder SetAtom(int index, global::Senseix.Message.Problem.Atom value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.atom_[index] = value;
         return this;
       }
-      public Builder SetAtom(int index, global::senseix.message.problem.Atom.Builder builderForValue) {
+      public Builder SetAtom(int index, global::Senseix.Message.Problem.Atom.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.atom_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddAtom(global::senseix.message.problem.Atom value) {
+      public Builder AddAtom(global::Senseix.Message.Problem.Atom value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.atom_.Add(value);
         return this;
       }
-      public Builder AddAtom(global::senseix.message.problem.Atom.Builder builderForValue) {
+      public Builder AddAtom(global::Senseix.Message.Problem.Atom.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.atom_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangeAtom(scg::IEnumerable<global::senseix.message.problem.Atom> values) {
+      public Builder AddRangeAtom(scg::IEnumerable<global::Senseix.Message.Problem.Atom> values) {
         PrepareBuilder();
         result.atom_.Add(values);
         return this;
@@ -1617,30 +1617,30 @@ namespace senseix.message.problem {
       public bool HasFormat {
        get { return result.hasFormat; }
       }
-      public global::senseix.message.problem.Formatter Format {
+      public global::Senseix.Message.Problem.Formatter Format {
         get { return result.Format; }
         set { SetFormat(value); }
       }
-      public Builder SetFormat(global::senseix.message.problem.Formatter value) {
+      public Builder SetFormat(global::Senseix.Message.Problem.Formatter value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasFormat = true;
         result.format_ = value;
         return this;
       }
-      public Builder SetFormat(global::senseix.message.problem.Formatter.Builder builderForValue) {
+      public Builder SetFormat(global::Senseix.Message.Problem.Formatter.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.hasFormat = true;
         result.format_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeFormat(global::senseix.message.problem.Formatter value) {
+      public Builder MergeFormat(global::Senseix.Message.Problem.Formatter value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         if (result.hasFormat &&
-            result.format_ != global::senseix.message.problem.Formatter.DefaultInstance) {
-            result.format_ = global::senseix.message.problem.Formatter.CreateBuilder(result.format_).MergeFrom(value).BuildPartial();
+            result.format_ != global::Senseix.Message.Problem.Formatter.DefaultInstance) {
+            result.format_ = global::Senseix.Message.Problem.Formatter.CreateBuilder(result.format_).MergeFrom(value).BuildPartial();
         } else {
           result.format_ = value;
         }
@@ -1655,7 +1655,7 @@ namespace senseix.message.problem {
       }
     }
     static Answer() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -1678,38 +1678,38 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Distractor__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_Distractor__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<Distractor, Distractor.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_Distractor__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_Distractor__FieldAccessorTable; }
     }
     
     public const int AtomFieldNumber = 1;
-    private pbc::PopsicleList<global::senseix.message.problem.Atom> atom_ = new pbc::PopsicleList<global::senseix.message.problem.Atom>();
-    public scg::IList<global::senseix.message.problem.Atom> AtomList {
+    private pbc::PopsicleList<global::Senseix.Message.Problem.Atom> atom_ = new pbc::PopsicleList<global::Senseix.Message.Problem.Atom>();
+    public scg::IList<global::Senseix.Message.Problem.Atom> AtomList {
       get { return atom_; }
     }
     public int AtomCount {
       get { return atom_.Count; }
     }
-    public global::senseix.message.problem.Atom GetAtom(int index) {
+    public global::Senseix.Message.Problem.Atom GetAtom(int index) {
       return atom_[index];
     }
     
     public const int FormatFieldNumber = 2;
     private bool hasFormat;
-    private global::senseix.message.problem.Formatter format_;
+    private global::Senseix.Message.Problem.Formatter format_;
     public bool HasFormat {
       get { return hasFormat; }
     }
-    public global::senseix.message.problem.Formatter Format {
-      get { return format_ ?? global::senseix.message.problem.Formatter.DefaultInstance; }
+    public global::Senseix.Message.Problem.Formatter Format {
+      get { return format_ ?? global::Senseix.Message.Problem.Formatter.DefaultInstance; }
     }
     
     public override bool IsInitialized {
       get {
-        foreach (global::senseix.message.problem.Atom element in AtomList) {
+        foreach (global::Senseix.Message.Problem.Atom element in AtomList) {
           if (!element.IsInitialized) return false;
         }
         return true;
@@ -1735,7 +1735,7 @@ namespace senseix.message.problem {
         if (size != -1) return size;
         
         size = 0;
-        foreach (global::senseix.message.problem.Atom element in AtomList) {
+        foreach (global::Senseix.Message.Problem.Atom element in AtomList) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, element);
         }
         if (hasFormat) {
@@ -1839,11 +1839,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.Distractor.Descriptor; }
+        get { return global::Senseix.Message.Problem.Distractor.Descriptor; }
       }
       
       public override Distractor DefaultInstanceForType {
-        get { return global::senseix.message.problem.Distractor.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.Distractor.DefaultInstance; }
       }
       
       public override Distractor BuildPartial() {
@@ -1864,7 +1864,7 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(Distractor other) {
-        if (other == global::senseix.message.problem.Distractor.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.Distractor.DefaultInstance) return this;
         PrepareBuilder();
         if (other.atom_.Count != 0) {
           result.atom_.Add(other.atom_);
@@ -1916,11 +1916,11 @@ namespace senseix.message.problem {
               break;
             }
             case 10: {
-              input.ReadMessageArray(tag, field_name, result.atom_, global::senseix.message.problem.Atom.DefaultInstance, extensionRegistry);
+              input.ReadMessageArray(tag, field_name, result.atom_, global::Senseix.Message.Problem.Atom.DefaultInstance, extensionRegistry);
               break;
             }
             case 18: {
-              global::senseix.message.problem.Formatter.Builder subBuilder = global::senseix.message.problem.Formatter.CreateBuilder();
+              global::Senseix.Message.Problem.Formatter.Builder subBuilder = global::Senseix.Message.Problem.Formatter.CreateBuilder();
               if (result.hasFormat) {
                 subBuilder.MergeFrom(Format);
               }
@@ -1938,40 +1938,40 @@ namespace senseix.message.problem {
       }
       
       
-      public pbc::IPopsicleList<global::senseix.message.problem.Atom> AtomList {
+      public pbc::IPopsicleList<global::Senseix.Message.Problem.Atom> AtomList {
         get { return PrepareBuilder().atom_; }
       }
       public int AtomCount {
         get { return result.AtomCount; }
       }
-      public global::senseix.message.problem.Atom GetAtom(int index) {
+      public global::Senseix.Message.Problem.Atom GetAtom(int index) {
         return result.GetAtom(index);
       }
-      public Builder SetAtom(int index, global::senseix.message.problem.Atom value) {
+      public Builder SetAtom(int index, global::Senseix.Message.Problem.Atom value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.atom_[index] = value;
         return this;
       }
-      public Builder SetAtom(int index, global::senseix.message.problem.Atom.Builder builderForValue) {
+      public Builder SetAtom(int index, global::Senseix.Message.Problem.Atom.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.atom_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddAtom(global::senseix.message.problem.Atom value) {
+      public Builder AddAtom(global::Senseix.Message.Problem.Atom value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.atom_.Add(value);
         return this;
       }
-      public Builder AddAtom(global::senseix.message.problem.Atom.Builder builderForValue) {
+      public Builder AddAtom(global::Senseix.Message.Problem.Atom.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.atom_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangeAtom(scg::IEnumerable<global::senseix.message.problem.Atom> values) {
+      public Builder AddRangeAtom(scg::IEnumerable<global::Senseix.Message.Problem.Atom> values) {
         PrepareBuilder();
         result.atom_.Add(values);
         return this;
@@ -1985,30 +1985,30 @@ namespace senseix.message.problem {
       public bool HasFormat {
        get { return result.hasFormat; }
       }
-      public global::senseix.message.problem.Formatter Format {
+      public global::Senseix.Message.Problem.Formatter Format {
         get { return result.Format; }
         set { SetFormat(value); }
       }
-      public Builder SetFormat(global::senseix.message.problem.Formatter value) {
+      public Builder SetFormat(global::Senseix.Message.Problem.Formatter value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasFormat = true;
         result.format_ = value;
         return this;
       }
-      public Builder SetFormat(global::senseix.message.problem.Formatter.Builder builderForValue) {
+      public Builder SetFormat(global::Senseix.Message.Problem.Formatter.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.hasFormat = true;
         result.format_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeFormat(global::senseix.message.problem.Formatter value) {
+      public Builder MergeFormat(global::Senseix.Message.Problem.Formatter value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         if (result.hasFormat &&
-            result.format_ != global::senseix.message.problem.Formatter.DefaultInstance) {
-            result.format_ = global::senseix.message.problem.Formatter.CreateBuilder(result.format_).MergeFrom(value).BuildPartial();
+            result.format_ != global::Senseix.Message.Problem.Formatter.DefaultInstance) {
+            result.format_ = global::Senseix.Message.Problem.Formatter.CreateBuilder(result.format_).MergeFrom(value).BuildPartial();
         } else {
           result.format_ = value;
         }
@@ -2023,7 +2023,7 @@ namespace senseix.message.problem {
       }
     }
     static Distractor() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -2031,8 +2031,8 @@ namespace senseix.message.problem {
   public sealed partial class ProblemData : pb::GeneratedMessage<ProblemData, ProblemData.Builder> {
     private ProblemData() { }
     private static readonly ProblemData defaultInstance = new ProblemData().MakeReadOnly();
-    private static readonly string[] _problemDataFieldNames = new string[] { "answer", "distractor", "question", "uuid" };
-    private static readonly uint[] _problemDataFieldTags = new uint[] { 26, 34, 18, 10 };
+    private static readonly string[] _ProblemDataFieldNames = new string[] { "answer", "distractor", "question", "uuid" };
+    private static readonly uint[] _ProblemDataFieldTags = new uint[] { 26, 34, 18, 10 };
     public static ProblemData DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2046,11 +2046,11 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemData__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemData__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ProblemData, ProblemData.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemData__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemData__FieldAccessorTable; }
     }
     
     public const int UuidFieldNumber = 1;
@@ -2065,32 +2065,32 @@ namespace senseix.message.problem {
     
     public const int QuestionFieldNumber = 2;
     private bool hasQuestion;
-    private global::senseix.message.problem.Question question_;
+    private global::Senseix.Message.Problem.Question question_;
     public bool HasQuestion {
       get { return hasQuestion; }
     }
-    public global::senseix.message.problem.Question Question {
-      get { return question_ ?? global::senseix.message.problem.Question.DefaultInstance; }
+    public global::Senseix.Message.Problem.Question Question {
+      get { return question_ ?? global::Senseix.Message.Problem.Question.DefaultInstance; }
     }
     
     public const int AnswerFieldNumber = 3;
     private bool hasAnswer;
-    private global::senseix.message.problem.Answer answer_;
+    private global::Senseix.Message.Problem.Answer answer_;
     public bool HasAnswer {
       get { return hasAnswer; }
     }
-    public global::senseix.message.problem.Answer Answer {
-      get { return answer_ ?? global::senseix.message.problem.Answer.DefaultInstance; }
+    public global::Senseix.Message.Problem.Answer Answer {
+      get { return answer_ ?? global::Senseix.Message.Problem.Answer.DefaultInstance; }
     }
     
     public const int DistractorFieldNumber = 4;
     private bool hasDistractor;
-    private global::senseix.message.problem.Distractor distractor_;
+    private global::Senseix.Message.Problem.Distractor distractor_;
     public bool HasDistractor {
       get { return hasDistractor; }
     }
-    public global::senseix.message.problem.Distractor Distractor {
-      get { return distractor_ ?? global::senseix.message.problem.Distractor.DefaultInstance; }
+    public global::Senseix.Message.Problem.Distractor Distractor {
+      get { return distractor_ ?? global::Senseix.Message.Problem.Distractor.DefaultInstance; }
     }
     
     public override bool IsInitialized {
@@ -2108,7 +2108,7 @@ namespace senseix.message.problem {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _problemDataFieldNames;
+      string[] field_names = _ProblemDataFieldNames;
       if (hasUuid) {
         output.WriteString(1, field_names[3], Uuid);
       }
@@ -2240,11 +2240,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.ProblemData.Descriptor; }
+        get { return global::Senseix.Message.Problem.ProblemData.Descriptor; }
       }
       
       public override ProblemData DefaultInstanceForType {
-        get { return global::senseix.message.problem.ProblemData.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.ProblemData.DefaultInstance; }
       }
       
       public override ProblemData BuildPartial() {
@@ -2265,7 +2265,7 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(ProblemData other) {
-        if (other == global::senseix.message.problem.ProblemData.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.ProblemData.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasUuid) {
           Uuid = other.Uuid;
@@ -2294,9 +2294,9 @@ namespace senseix.message.problem {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_problemDataFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ProblemDataFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _problemDataFieldTags[field_ordinal];
+              tag = _ProblemDataFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -2327,7 +2327,7 @@ namespace senseix.message.problem {
               break;
             }
             case 18: {
-              global::senseix.message.problem.Question.Builder subBuilder = global::senseix.message.problem.Question.CreateBuilder();
+              global::Senseix.Message.Problem.Question.Builder subBuilder = global::Senseix.Message.Problem.Question.CreateBuilder();
               if (result.hasQuestion) {
                 subBuilder.MergeFrom(Question);
               }
@@ -2336,7 +2336,7 @@ namespace senseix.message.problem {
               break;
             }
             case 26: {
-              global::senseix.message.problem.Answer.Builder subBuilder = global::senseix.message.problem.Answer.CreateBuilder();
+              global::Senseix.Message.Problem.Answer.Builder subBuilder = global::Senseix.Message.Problem.Answer.CreateBuilder();
               if (result.hasAnswer) {
                 subBuilder.MergeFrom(Answer);
               }
@@ -2345,7 +2345,7 @@ namespace senseix.message.problem {
               break;
             }
             case 34: {
-              global::senseix.message.problem.Distractor.Builder subBuilder = global::senseix.message.problem.Distractor.CreateBuilder();
+              global::Senseix.Message.Problem.Distractor.Builder subBuilder = global::Senseix.Message.Problem.Distractor.CreateBuilder();
               if (result.hasDistractor) {
                 subBuilder.MergeFrom(Distractor);
               }
@@ -2387,30 +2387,30 @@ namespace senseix.message.problem {
       public bool HasQuestion {
        get { return result.hasQuestion; }
       }
-      public global::senseix.message.problem.Question Question {
+      public global::Senseix.Message.Problem.Question Question {
         get { return result.Question; }
         set { SetQuestion(value); }
       }
-      public Builder SetQuestion(global::senseix.message.problem.Question value) {
+      public Builder SetQuestion(global::Senseix.Message.Problem.Question value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasQuestion = true;
         result.question_ = value;
         return this;
       }
-      public Builder SetQuestion(global::senseix.message.problem.Question.Builder builderForValue) {
+      public Builder SetQuestion(global::Senseix.Message.Problem.Question.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.hasQuestion = true;
         result.question_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeQuestion(global::senseix.message.problem.Question value) {
+      public Builder MergeQuestion(global::Senseix.Message.Problem.Question value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         if (result.hasQuestion &&
-            result.question_ != global::senseix.message.problem.Question.DefaultInstance) {
-            result.question_ = global::senseix.message.problem.Question.CreateBuilder(result.question_).MergeFrom(value).BuildPartial();
+            result.question_ != global::Senseix.Message.Problem.Question.DefaultInstance) {
+            result.question_ = global::Senseix.Message.Problem.Question.CreateBuilder(result.question_).MergeFrom(value).BuildPartial();
         } else {
           result.question_ = value;
         }
@@ -2427,30 +2427,30 @@ namespace senseix.message.problem {
       public bool HasAnswer {
        get { return result.hasAnswer; }
       }
-      public global::senseix.message.problem.Answer Answer {
+      public global::Senseix.Message.Problem.Answer Answer {
         get { return result.Answer; }
         set { SetAnswer(value); }
       }
-      public Builder SetAnswer(global::senseix.message.problem.Answer value) {
+      public Builder SetAnswer(global::Senseix.Message.Problem.Answer value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasAnswer = true;
         result.answer_ = value;
         return this;
       }
-      public Builder SetAnswer(global::senseix.message.problem.Answer.Builder builderForValue) {
+      public Builder SetAnswer(global::Senseix.Message.Problem.Answer.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.hasAnswer = true;
         result.answer_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeAnswer(global::senseix.message.problem.Answer value) {
+      public Builder MergeAnswer(global::Senseix.Message.Problem.Answer value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         if (result.hasAnswer &&
-            result.answer_ != global::senseix.message.problem.Answer.DefaultInstance) {
-            result.answer_ = global::senseix.message.problem.Answer.CreateBuilder(result.answer_).MergeFrom(value).BuildPartial();
+            result.answer_ != global::Senseix.Message.Problem.Answer.DefaultInstance) {
+            result.answer_ = global::Senseix.Message.Problem.Answer.CreateBuilder(result.answer_).MergeFrom(value).BuildPartial();
         } else {
           result.answer_ = value;
         }
@@ -2467,30 +2467,30 @@ namespace senseix.message.problem {
       public bool HasDistractor {
        get { return result.hasDistractor; }
       }
-      public global::senseix.message.problem.Distractor Distractor {
+      public global::Senseix.Message.Problem.Distractor Distractor {
         get { return result.Distractor; }
         set { SetDistractor(value); }
       }
-      public Builder SetDistractor(global::senseix.message.problem.Distractor value) {
+      public Builder SetDistractor(global::Senseix.Message.Problem.Distractor value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasDistractor = true;
         result.distractor_ = value;
         return this;
       }
-      public Builder SetDistractor(global::senseix.message.problem.Distractor.Builder builderForValue) {
+      public Builder SetDistractor(global::Senseix.Message.Problem.Distractor.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.hasDistractor = true;
         result.distractor_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeDistractor(global::senseix.message.problem.Distractor value) {
+      public Builder MergeDistractor(global::Senseix.Message.Problem.Distractor value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         if (result.hasDistractor &&
-            result.distractor_ != global::senseix.message.problem.Distractor.DefaultInstance) {
-            result.distractor_ = global::senseix.message.problem.Distractor.CreateBuilder(result.distractor_).MergeFrom(value).BuildPartial();
+            result.distractor_ != global::Senseix.Message.Problem.Distractor.DefaultInstance) {
+            result.distractor_ = global::Senseix.Message.Problem.Distractor.CreateBuilder(result.distractor_).MergeFrom(value).BuildPartial();
         } else {
           result.distractor_ = value;
         }
@@ -2505,7 +2505,7 @@ namespace senseix.message.problem {
       }
     }
     static ProblemData() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -2528,11 +2528,11 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_AnswerIdentifier__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_AnswerIdentifier__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<AnswerIdentifier, AnswerIdentifier.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_AnswerIdentifier__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_AnswerIdentifier__FieldAccessorTable; }
     }
     
     public const int UuidFieldNumber = 1;
@@ -2675,11 +2675,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.AnswerIdentifier.Descriptor; }
+        get { return global::Senseix.Message.Problem.AnswerIdentifier.Descriptor; }
       }
       
       public override AnswerIdentifier DefaultInstanceForType {
-        get { return global::senseix.message.problem.AnswerIdentifier.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.AnswerIdentifier.DefaultInstance; }
       }
       
       public override AnswerIdentifier BuildPartial() {
@@ -2700,7 +2700,7 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(AnswerIdentifier other) {
-        if (other == global::senseix.message.problem.AnswerIdentifier.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.AnswerIdentifier.DefaultInstance) return this;
         PrepareBuilder();
         if (other.uuid_.Count != 0) {
           result.uuid_.Add(other.uuid_);
@@ -2795,7 +2795,7 @@ namespace senseix.message.problem {
       }
     }
     static AnswerIdentifier() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -2803,8 +2803,8 @@ namespace senseix.message.problem {
   public sealed partial class ProblemPost : pb::GeneratedMessage<ProblemPost, ProblemPost.Builder> {
     private ProblemPost() { }
     private static readonly ProblemPost defaultInstance = new ProblemPost().MakeReadOnly();
-    private static readonly string[] _problemPostFieldNames = new string[] { "answer_ids", "correct", "duration", "player_id", "problem_id", "skipped" };
-    private static readonly uint[] _problemPostFieldTags = new uint[] { 26, 48, 37, 10, 18, 40 };
+    private static readonly string[] _ProblemPostFieldNames = new string[] { "answer_ids", "correct", "duration", "Player_id", "Problem_id", "skipped" };
+    private static readonly uint[] _ProblemPostFieldTags = new uint[] { 26, 48, 37, 10, 18, 40 };
     public static ProblemPost DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2818,41 +2818,41 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemPost__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemPost__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ProblemPost, ProblemPost.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemPost__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemPost__FieldAccessorTable; }
     }
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string playerId_ = "";
+    private string PlayerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return playerId_; }
+      get { return PlayerId_; }
     }
     
     public const int ProblemIdFieldNumber = 2;
     private bool hasProblemId;
-    private string problemId_ = "";
+    private string ProblemId_ = "";
     public bool HasProblemId {
       get { return hasProblemId; }
     }
     public string ProblemId {
-      get { return problemId_; }
+      get { return ProblemId_; }
     }
     
     public const int AnswerIdsFieldNumber = 3;
     private bool hasAnswerIds;
-    private global::senseix.message.problem.AnswerIdentifier answerIds_;
+    private global::Senseix.Message.Problem.AnswerIdentifier answerIds_;
     public bool HasAnswerIds {
       get { return hasAnswerIds; }
     }
-    public global::senseix.message.problem.AnswerIdentifier AnswerIds {
-      get { return answerIds_ ?? global::senseix.message.problem.AnswerIdentifier.DefaultInstance; }
+    public global::Senseix.Message.Problem.AnswerIdentifier AnswerIds {
+      get { return answerIds_ ?? global::Senseix.Message.Problem.AnswerIdentifier.DefaultInstance; }
     }
     
     public const int DurationFieldNumber = 4;
@@ -2895,7 +2895,7 @@ namespace senseix.message.problem {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _problemPostFieldNames;
+      string[] field_names = _ProblemPostFieldNames;
       if (hasPlayerId) {
         output.WriteString(1, field_names[3], PlayerId);
       }
@@ -3039,11 +3039,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.ProblemPost.Descriptor; }
+        get { return global::Senseix.Message.Problem.ProblemPost.Descriptor; }
       }
       
       public override ProblemPost DefaultInstanceForType {
-        get { return global::senseix.message.problem.ProblemPost.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.ProblemPost.DefaultInstance; }
       }
       
       public override ProblemPost BuildPartial() {
@@ -3064,7 +3064,7 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(ProblemPost other) {
-        if (other == global::senseix.message.problem.ProblemPost.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.ProblemPost.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPlayerId) {
           PlayerId = other.PlayerId;
@@ -3099,9 +3099,9 @@ namespace senseix.message.problem {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_problemPostFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ProblemPostFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _problemPostFieldTags[field_ordinal];
+              tag = _ProblemPostFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -3128,15 +3128,15 @@ namespace senseix.message.problem {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
               break;
             }
             case 18: {
-              result.hasProblemId = input.ReadString(ref result.problemId_);
+              result.hasProblemId = input.ReadString(ref result.ProblemId_);
               break;
             }
             case 26: {
-              global::senseix.message.problem.AnswerIdentifier.Builder subBuilder = global::senseix.message.problem.AnswerIdentifier.CreateBuilder();
+              global::Senseix.Message.Problem.AnswerIdentifier.Builder subBuilder = global::Senseix.Message.Problem.AnswerIdentifier.CreateBuilder();
               if (result.hasAnswerIds) {
                 subBuilder.MergeFrom(AnswerIds);
               }
@@ -3177,13 +3177,13 @@ namespace senseix.message.problem {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.playerId_ = value;
+        result.PlayerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.playerId_ = "";
+        result.PlayerId_ = "";
         return this;
       }
       
@@ -3198,43 +3198,43 @@ namespace senseix.message.problem {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasProblemId = true;
-        result.problemId_ = value;
+        result.ProblemId_ = value;
         return this;
       }
       public Builder ClearProblemId() {
         PrepareBuilder();
         result.hasProblemId = false;
-        result.problemId_ = "";
+        result.ProblemId_ = "";
         return this;
       }
       
       public bool HasAnswerIds {
        get { return result.hasAnswerIds; }
       }
-      public global::senseix.message.problem.AnswerIdentifier AnswerIds {
+      public global::Senseix.Message.Problem.AnswerIdentifier AnswerIds {
         get { return result.AnswerIds; }
         set { SetAnswerIds(value); }
       }
-      public Builder SetAnswerIds(global::senseix.message.problem.AnswerIdentifier value) {
+      public Builder SetAnswerIds(global::Senseix.Message.Problem.AnswerIdentifier value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasAnswerIds = true;
         result.answerIds_ = value;
         return this;
       }
-      public Builder SetAnswerIds(global::senseix.message.problem.AnswerIdentifier.Builder builderForValue) {
+      public Builder SetAnswerIds(global::Senseix.Message.Problem.AnswerIdentifier.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
         result.hasAnswerIds = true;
         result.answerIds_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeAnswerIds(global::senseix.message.problem.AnswerIdentifier value) {
+      public Builder MergeAnswerIds(global::Senseix.Message.Problem.AnswerIdentifier value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         if (result.hasAnswerIds &&
-            result.answerIds_ != global::senseix.message.problem.AnswerIdentifier.DefaultInstance) {
-            result.answerIds_ = global::senseix.message.problem.AnswerIdentifier.CreateBuilder(result.answerIds_).MergeFrom(value).BuildPartial();
+            result.answerIds_ != global::Senseix.Message.Problem.AnswerIdentifier.DefaultInstance) {
+            result.answerIds_ = global::Senseix.Message.Problem.AnswerIdentifier.CreateBuilder(result.answerIds_).MergeFrom(value).BuildPartial();
         } else {
           result.answerIds_ = value;
         }
@@ -3309,7 +3309,7 @@ namespace senseix.message.problem {
       }
     }
     static ProblemPost() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -3317,8 +3317,8 @@ namespace senseix.message.problem {
   public sealed partial class ProblemPostRequest : pb::GeneratedMessage<ProblemPostRequest, ProblemPostRequest.Builder> {
     private ProblemPostRequest() { }
     private static readonly ProblemPostRequest defaultInstance = new ProblemPostRequest().MakeReadOnly();
-    private static readonly string[] _problemPostRequestFieldNames = new string[] { "problem" };
-    private static readonly uint[] _problemPostRequestFieldTags = new uint[] { 10 };
+    private static readonly string[] _ProblemPostRequestFieldNames = new string[] { "Problem" };
+    private static readonly uint[] _ProblemPostRequestFieldTags = new uint[] { 10 };
     public static ProblemPostRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3332,28 +3332,28 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemPostRequest__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemPostRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ProblemPostRequest, ProblemPostRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemPostRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemPostRequest__FieldAccessorTable; }
     }
     
     public const int ProblemFieldNumber = 1;
-    private pbc::PopsicleList<global::senseix.message.problem.ProblemPost> problem_ = new pbc::PopsicleList<global::senseix.message.problem.ProblemPost>();
-    public scg::IList<global::senseix.message.problem.ProblemPost> ProblemList {
-      get { return problem_; }
+    private pbc::PopsicleList<global::Senseix.Message.Problem.ProblemPost> Problem_ = new pbc::PopsicleList<global::Senseix.Message.Problem.ProblemPost>();
+    public scg::IList<global::Senseix.Message.Problem.ProblemPost> ProblemList {
+      get { return Problem_; }
     }
     public int ProblemCount {
-      get { return problem_.Count; }
+      get { return Problem_.Count; }
     }
-    public global::senseix.message.problem.ProblemPost GetProblem(int index) {
-      return problem_[index];
+    public global::Senseix.Message.Problem.ProblemPost GetProblem(int index) {
+      return Problem_[index];
     }
     
     public override bool IsInitialized {
       get {
-        foreach (global::senseix.message.problem.ProblemPost element in ProblemList) {
+        foreach (global::Senseix.Message.Problem.ProblemPost element in ProblemList) {
           if (!element.IsInitialized) return false;
         }
         return true;
@@ -3362,9 +3362,9 @@ namespace senseix.message.problem {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _problemPostRequestFieldNames;
-      if (problem_.Count > 0) {
-        output.WriteMessageArray(1, field_names[0], problem_);
+      string[] field_names = _ProblemPostRequestFieldNames;
+      if (Problem_.Count > 0) {
+        output.WriteMessageArray(1, field_names[0], Problem_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -3376,7 +3376,7 @@ namespace senseix.message.problem {
         if (size != -1) return size;
         
         size = 0;
-        foreach (global::senseix.message.problem.ProblemPost element in ProblemList) {
+        foreach (global::Senseix.Message.Problem.ProblemPost element in ProblemList) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, element);
         }
         size += UnknownFields.SerializedSize;
@@ -3416,7 +3416,7 @@ namespace senseix.message.problem {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private ProblemPostRequest MakeReadOnly() {
-      problem_.MakeReadOnly();
+      Problem_.MakeReadOnly();
       return this;
     }
     
@@ -3477,11 +3477,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.ProblemPostRequest.Descriptor; }
+        get { return global::Senseix.Message.Problem.ProblemPostRequest.Descriptor; }
       }
       
       public override ProblemPostRequest DefaultInstanceForType {
-        get { return global::senseix.message.problem.ProblemPostRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.ProblemPostRequest.DefaultInstance; }
       }
       
       public override ProblemPostRequest BuildPartial() {
@@ -3502,10 +3502,10 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(ProblemPostRequest other) {
-        if (other == global::senseix.message.problem.ProblemPostRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.ProblemPostRequest.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.problem_.Count != 0) {
-          result.problem_.Add(other.problem_);
+        if (other.Problem_.Count != 0) {
+          result.Problem_.Add(other.Problem_);
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -3522,9 +3522,9 @@ namespace senseix.message.problem {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_problemPostRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ProblemPostRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _problemPostRequestFieldTags[field_ordinal];
+              tag = _ProblemPostRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -3551,7 +3551,7 @@ namespace senseix.message.problem {
               break;
             }
             case 10: {
-              input.ReadMessageArray(tag, field_name, result.problem_, global::senseix.message.problem.ProblemPost.DefaultInstance, extensionRegistry);
+              input.ReadMessageArray(tag, field_name, result.Problem_, global::Senseix.Message.Problem.ProblemPost.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -3564,52 +3564,52 @@ namespace senseix.message.problem {
       }
       
       
-      public pbc::IPopsicleList<global::senseix.message.problem.ProblemPost> ProblemList {
-        get { return PrepareBuilder().problem_; }
+      public pbc::IPopsicleList<global::Senseix.Message.Problem.ProblemPost> ProblemList {
+        get { return PrepareBuilder().Problem_; }
       }
       public int ProblemCount {
         get { return result.ProblemCount; }
       }
-      public global::senseix.message.problem.ProblemPost GetProblem(int index) {
+      public global::Senseix.Message.Problem.ProblemPost GetProblem(int index) {
         return result.GetProblem(index);
       }
-      public Builder SetProblem(int index, global::senseix.message.problem.ProblemPost value) {
+      public Builder SetProblem(int index, global::Senseix.Message.Problem.ProblemPost value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.problem_[index] = value;
+        result.Problem_[index] = value;
         return this;
       }
-      public Builder SetProblem(int index, global::senseix.message.problem.ProblemPost.Builder builderForValue) {
+      public Builder SetProblem(int index, global::Senseix.Message.Problem.ProblemPost.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.problem_[index] = builderForValue.Build();
+        result.Problem_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddProblem(global::senseix.message.problem.ProblemPost value) {
+      public Builder AddProblem(global::Senseix.Message.Problem.ProblemPost value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.problem_.Add(value);
+        result.Problem_.Add(value);
         return this;
       }
-      public Builder AddProblem(global::senseix.message.problem.ProblemPost.Builder builderForValue) {
+      public Builder AddProblem(global::Senseix.Message.Problem.ProblemPost.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.problem_.Add(builderForValue.Build());
+        result.Problem_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangeProblem(scg::IEnumerable<global::senseix.message.problem.ProblemPost> values) {
+      public Builder AddRangeProblem(scg::IEnumerable<global::Senseix.Message.Problem.ProblemPost> values) {
         PrepareBuilder();
-        result.problem_.Add(values);
+        result.Problem_.Add(values);
         return this;
       }
       public Builder ClearProblem() {
         PrepareBuilder();
-        result.problem_.Clear();
+        result.Problem_.Clear();
         return this;
       }
     }
     static ProblemPostRequest() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -3617,8 +3617,8 @@ namespace senseix.message.problem {
   public sealed partial class ProblemPostResponse : pb::GeneratedMessage<ProblemPostResponse, ProblemPostResponse.Builder> {
     private ProblemPostResponse() { }
     private static readonly ProblemPostResponse defaultInstance = new ProblemPostResponse().MakeReadOnly();
-    private static readonly string[] _problemPostResponseFieldNames = new string[] {  };
-    private static readonly uint[] _problemPostResponseFieldTags = new uint[] {  };
+    private static readonly string[] _ProblemPostResponseFieldNames = new string[] {  };
+    private static readonly uint[] _ProblemPostResponseFieldTags = new uint[] {  };
     public static ProblemPostResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3632,11 +3632,11 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemPostResponse__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemPostResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ProblemPostResponse, ProblemPostResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemPostResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemPostResponse__FieldAccessorTable; }
     }
     
     public override bool IsInitialized {
@@ -3647,7 +3647,7 @@ namespace senseix.message.problem {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _problemPostResponseFieldNames;
+      string[] field_names = _ProblemPostResponseFieldNames;
       UnknownFields.WriteTo(output);
     }
     
@@ -3755,11 +3755,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.ProblemPostResponse.Descriptor; }
+        get { return global::Senseix.Message.Problem.ProblemPostResponse.Descriptor; }
       }
       
       public override ProblemPostResponse DefaultInstanceForType {
-        get { return global::senseix.message.problem.ProblemPostResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.ProblemPostResponse.DefaultInstance; }
       }
       
       public override ProblemPostResponse BuildPartial() {
@@ -3780,7 +3780,7 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(ProblemPostResponse other) {
-        if (other == global::senseix.message.problem.ProblemPostResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.ProblemPostResponse.DefaultInstance) return this;
         PrepareBuilder();
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -3797,9 +3797,9 @@ namespace senseix.message.problem {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_problemPostResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ProblemPostResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _problemPostResponseFieldTags[field_ordinal];
+              tag = _ProblemPostResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -3836,7 +3836,7 @@ namespace senseix.message.problem {
       
     }
     static ProblemPostResponse() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -3844,8 +3844,8 @@ namespace senseix.message.problem {
   public sealed partial class ProblemGetRequest : pb::GeneratedMessage<ProblemGetRequest, ProblemGetRequest.Builder> {
     private ProblemGetRequest() { }
     private static readonly ProblemGetRequest defaultInstance = new ProblemGetRequest().MakeReadOnly();
-    private static readonly string[] _problemGetRequestFieldNames = new string[] { "player_id", "problem_count" };
-    private static readonly uint[] _problemGetRequestFieldTags = new uint[] { 10, 16 };
+    private static readonly string[] _ProblemGetRequestFieldNames = new string[] { "Player_id", "Problem_count" };
+    private static readonly uint[] _ProblemGetRequestFieldTags = new uint[] { 10, 16 };
     public static ProblemGetRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3859,32 +3859,32 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemGetRequest__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemGetRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ProblemGetRequest, ProblemGetRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemGetRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemGetRequest__FieldAccessorTable; }
     }
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string playerId_ = "";
+    private string PlayerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return playerId_; }
+      get { return PlayerId_; }
     }
     
     public const int ProblemCountFieldNumber = 2;
     private bool hasProblemCount;
-    private uint problemCount_;
+    private uint ProblemCount_;
     public bool HasProblemCount {
       get { return hasProblemCount; }
     }
     [global::System.CLSCompliant(false)]
     public uint ProblemCount {
-      get { return problemCount_; }
+      get { return ProblemCount_; }
     }
     
     public override bool IsInitialized {
@@ -3896,7 +3896,7 @@ namespace senseix.message.problem {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _problemGetRequestFieldNames;
+      string[] field_names = _ProblemGetRequestFieldNames;
       if (hasPlayerId) {
         output.WriteString(1, field_names[0], PlayerId);
       }
@@ -4016,11 +4016,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.ProblemGetRequest.Descriptor; }
+        get { return global::Senseix.Message.Problem.ProblemGetRequest.Descriptor; }
       }
       
       public override ProblemGetRequest DefaultInstanceForType {
-        get { return global::senseix.message.problem.ProblemGetRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.ProblemGetRequest.DefaultInstance; }
       }
       
       public override ProblemGetRequest BuildPartial() {
@@ -4041,7 +4041,7 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(ProblemGetRequest other) {
-        if (other == global::senseix.message.problem.ProblemGetRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.ProblemGetRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPlayerId) {
           PlayerId = other.PlayerId;
@@ -4064,9 +4064,9 @@ namespace senseix.message.problem {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_problemGetRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ProblemGetRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _problemGetRequestFieldTags[field_ordinal];
+              tag = _ProblemGetRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -4093,11 +4093,11 @@ namespace senseix.message.problem {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
               break;
             }
             case 16: {
-              result.hasProblemCount = input.ReadUInt32(ref result.problemCount_);
+              result.hasProblemCount = input.ReadUInt32(ref result.ProblemCount_);
               break;
             }
           }
@@ -4121,13 +4121,13 @@ namespace senseix.message.problem {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.playerId_ = value;
+        result.PlayerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.playerId_ = "";
+        result.PlayerId_ = "";
         return this;
       }
       
@@ -4143,18 +4143,18 @@ namespace senseix.message.problem {
       public Builder SetProblemCount(uint value) {
         PrepareBuilder();
         result.hasProblemCount = true;
-        result.problemCount_ = value;
+        result.ProblemCount_ = value;
         return this;
       }
       public Builder ClearProblemCount() {
         PrepareBuilder();
         result.hasProblemCount = false;
-        result.problemCount_ = 0;
+        result.ProblemCount_ = 0;
         return this;
       }
     }
     static ProblemGetRequest() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   
@@ -4162,8 +4162,8 @@ namespace senseix.message.problem {
   public sealed partial class ProblemGetResponse : pb::GeneratedMessage<ProblemGetResponse, ProblemGetResponse.Builder> {
     private ProblemGetResponse() { }
     private static readonly ProblemGetResponse defaultInstance = new ProblemGetResponse().MakeReadOnly();
-    private static readonly string[] _problemGetResponseFieldNames = new string[] { "problem" };
-    private static readonly uint[] _problemGetResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _ProblemGetResponseFieldNames = new string[] { "Problem" };
+    private static readonly uint[] _ProblemGetResponseFieldTags = new uint[] { 10 };
     public static ProblemGetResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -4177,28 +4177,28 @@ namespace senseix.message.problem {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemGetResponse__Descriptor; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemGetResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<ProblemGetResponse, ProblemGetResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.problem.Problem.internal__static_senseix_message_problem_ProblemGetResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Problem.Problem.internal__static_Senseix_Message_Problem_ProblemGetResponse__FieldAccessorTable; }
     }
     
     public const int ProblemFieldNumber = 1;
-    private pbc::PopsicleList<global::senseix.message.problem.ProblemData> problem_ = new pbc::PopsicleList<global::senseix.message.problem.ProblemData>();
-    public scg::IList<global::senseix.message.problem.ProblemData> ProblemList {
-      get { return problem_; }
+    private pbc::PopsicleList<global::Senseix.Message.Problem.ProblemData> Problem_ = new pbc::PopsicleList<global::Senseix.Message.Problem.ProblemData>();
+    public scg::IList<global::Senseix.Message.Problem.ProblemData> ProblemList {
+      get { return Problem_; }
     }
     public int ProblemCount {
-      get { return problem_.Count; }
+      get { return Problem_.Count; }
     }
-    public global::senseix.message.problem.ProblemData GetProblem(int index) {
-      return problem_[index];
+    public global::Senseix.Message.Problem.ProblemData GetProblem(int index) {
+      return Problem_[index];
     }
     
     public override bool IsInitialized {
       get {
-        foreach (global::senseix.message.problem.ProblemData element in ProblemList) {
+        foreach (global::Senseix.Message.Problem.ProblemData element in ProblemList) {
           if (!element.IsInitialized) return false;
         }
         return true;
@@ -4207,9 +4207,9 @@ namespace senseix.message.problem {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _problemGetResponseFieldNames;
-      if (problem_.Count > 0) {
-        output.WriteMessageArray(1, field_names[0], problem_);
+      string[] field_names = _ProblemGetResponseFieldNames;
+      if (Problem_.Count > 0) {
+        output.WriteMessageArray(1, field_names[0], Problem_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -4221,7 +4221,7 @@ namespace senseix.message.problem {
         if (size != -1) return size;
         
         size = 0;
-        foreach (global::senseix.message.problem.ProblemData element in ProblemList) {
+        foreach (global::Senseix.Message.Problem.ProblemData element in ProblemList) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, element);
         }
         size += UnknownFields.SerializedSize;
@@ -4261,7 +4261,7 @@ namespace senseix.message.problem {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private ProblemGetResponse MakeReadOnly() {
-      problem_.MakeReadOnly();
+      Problem_.MakeReadOnly();
       return this;
     }
     
@@ -4322,11 +4322,11 @@ namespace senseix.message.problem {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.problem.ProblemGetResponse.Descriptor; }
+        get { return global::Senseix.Message.Problem.ProblemGetResponse.Descriptor; }
       }
       
       public override ProblemGetResponse DefaultInstanceForType {
-        get { return global::senseix.message.problem.ProblemGetResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Problem.ProblemGetResponse.DefaultInstance; }
       }
       
       public override ProblemGetResponse BuildPartial() {
@@ -4347,10 +4347,10 @@ namespace senseix.message.problem {
       }
       
       public override Builder MergeFrom(ProblemGetResponse other) {
-        if (other == global::senseix.message.problem.ProblemGetResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Problem.ProblemGetResponse.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.problem_.Count != 0) {
-          result.problem_.Add(other.problem_);
+        if (other.Problem_.Count != 0) {
+          result.Problem_.Add(other.Problem_);
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -4367,9 +4367,9 @@ namespace senseix.message.problem {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_problemGetResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_ProblemGetResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _problemGetResponseFieldTags[field_ordinal];
+              tag = _ProblemGetResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -4396,7 +4396,7 @@ namespace senseix.message.problem {
               break;
             }
             case 10: {
-              input.ReadMessageArray(tag, field_name, result.problem_, global::senseix.message.problem.ProblemData.DefaultInstance, extensionRegistry);
+              input.ReadMessageArray(tag, field_name, result.Problem_, global::Senseix.Message.Problem.ProblemData.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -4409,52 +4409,52 @@ namespace senseix.message.problem {
       }
       
       
-      public pbc::IPopsicleList<global::senseix.message.problem.ProblemData> ProblemList {
-        get { return PrepareBuilder().problem_; }
+      public pbc::IPopsicleList<global::Senseix.Message.Problem.ProblemData> ProblemList {
+        get { return PrepareBuilder().Problem_; }
       }
       public int ProblemCount {
         get { return result.ProblemCount; }
       }
-      public global::senseix.message.problem.ProblemData GetProblem(int index) {
+      public global::Senseix.Message.Problem.ProblemData GetProblem(int index) {
         return result.GetProblem(index);
       }
-      public Builder SetProblem(int index, global::senseix.message.problem.ProblemData value) {
+      public Builder SetProblem(int index, global::Senseix.Message.Problem.ProblemData value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.problem_[index] = value;
+        result.Problem_[index] = value;
         return this;
       }
-      public Builder SetProblem(int index, global::senseix.message.problem.ProblemData.Builder builderForValue) {
+      public Builder SetProblem(int index, global::Senseix.Message.Problem.ProblemData.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.problem_[index] = builderForValue.Build();
+        result.Problem_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddProblem(global::senseix.message.problem.ProblemData value) {
+      public Builder AddProblem(global::Senseix.Message.Problem.ProblemData value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.problem_.Add(value);
+        result.Problem_.Add(value);
         return this;
       }
-      public Builder AddProblem(global::senseix.message.problem.ProblemData.Builder builderForValue) {
+      public Builder AddProblem(global::Senseix.Message.Problem.ProblemData.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.problem_.Add(builderForValue.Build());
+        result.Problem_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangeProblem(scg::IEnumerable<global::senseix.message.problem.ProblemData> values) {
+      public Builder AddRangeProblem(scg::IEnumerable<global::Senseix.Message.Problem.ProblemData> values) {
         PrepareBuilder();
-        result.problem_.Add(values);
+        result.Problem_.Add(values);
         return this;
       }
       public Builder ClearProblem() {
         PrepareBuilder();
-        result.problem_.Clear();
+        result.Problem_.Clear();
         return this;
       }
     }
     static ProblemGetResponse() {
-      object.ReferenceEquals(global::senseix.message.problem.Problem.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Problem.Problem.Descriptor, null);
     }
   }
   

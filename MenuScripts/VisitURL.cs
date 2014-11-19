@@ -14,9 +14,9 @@ public class VisitURL : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (visitEnrollDeviceURL)
-			targetURL = senseix.message.Request.ENROLL_GAME_URL;
+			targetURL = Senseix.Message.Request.ENROLL_GAME_URL;
 		else if (visitRegistrationURL)
-			targetURL = senseix.message.Request.WEBSITE_URL;
+			targetURL = Senseix.Message.Request.WEBSITE_URL;
 		else
 			targetURL = otherURL;
 	}

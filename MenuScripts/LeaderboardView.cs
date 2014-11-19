@@ -2,12 +2,12 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-namespace senseix
+namespace Senseix
 {
 	public class LeaderboardView : MonoBehaviour {
 
 		public Text pageNumberText;
-		public int playersPerPage = 5;
+		public int PlayersPerPage = 5;
 		private uint currentPage = 1;
 
 		// Use this for initialization
@@ -53,8 +53,8 @@ namespace senseix
 
 		public void Refresh()
 		{
-			SenseixController.PullLeaderboard (currentPage, (uint)playersPerPage);
-			IList<message.leaderboard.PlayerData> leaders = SenseixController.GetCurrentLeaderboard ();
+			SenseixController.PullLeaderboard (currentPage, (uint)PlayersPerPage);
+			IList<Message.Leaderboard.PlayerData> leaders = SenseixController.GetCurrentLeaderboard ();
 
 			Text thisText = gameObject.GetComponent<Text> ();
 			thisText.text = "";

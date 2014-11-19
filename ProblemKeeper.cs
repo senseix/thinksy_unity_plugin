@@ -6,16 +6,16 @@ using System.Text;
 using System.IO;
 using System.ComponentModel;
 
-namespace senseix { 
+namespace Senseix { 
 
 	static class ProblemKeeper 
 	{
-		private const int PROBLEMS_PER_PULL = 6;
+		private const int ProblemS_PER_PULL = 6;
 		private const float PULL_THRESHOLD = 1.5f;
 		private const float PUSH_THRESHOLD = 2f; 
 		//thresholds are when to pull push.  pull or push when
-		//number of answered or waiting problems drops below
-		//problems per pull over threshold
+		//number of answered or waiting Problems drops below
+		//Problems per pull over threshold
 		private const string SEED_FILE_EXTENSION = ".seed";
 		private static bool _onLine = false;
 		public static volatile Queue newProblems = new Queue(); 
@@ -24,7 +24,7 @@ namespace senseix {
 		static public void CopyFailsafeOver()
 		{
 			string failsafeFileName = "failsafe";
-			string failsafeSource = System.IO.Path.Combine (Application.dataPath, "senseix_unity_plugin/" + failsafeFileName + SEED_FILE_EXTENSION);
+			string failsafeSource = System.IO.Path.Combine (Application.dataPath, "Senseix_unity_plugin/" + failsafeFileName + SEED_FILE_EXTENSION);
 			string failsafeDestination = System.IO.Path.Combine (Application.persistentDataPath, failsafeFileName + SEED_FILE_EXTENSION);
 			System.IO.File.Copy (failsafeSource, failsafeDestination, true);
 		}
@@ -56,17 +56,17 @@ namespace senseix {
 				SenseixPlugin.ShowEmergencyWindow();
 				throw new Exception ("The seed file is empty!");
 			}
-			message.ResponseHeader reply = message.ResponseHeader.ParseFrom (seedContents);
+			Message.ResponseHeader reply = Message.ResponseHeader.ParseFrom (seedContents);
 
 			for (int i = 0; i < reply.ProblemGet.ProblemList.Count; i++)
 			{
-				message.problem.ProblemData entry = reply.ProblemGet.ProblemList[i];
-				message.problem.ProblemData.Builder problem =  entry.ToBuilder();
-				ProblemKeeper.AddProblemsToProblemQueue(problem);
+				Message.Problem.ProblemData entry = reply.ProblemGet.ProblemList[i];
+				Message.Problem.ProblemData.Builder Problem =  entry.ToBuilder();
+				ProblemKeeper.AddProblemsToProblemQueue(Problem);
 			}
 		}
 
-		static public void ReplaceSeed(message.ResponseHeader reply)
+		static public void ReplaceSeed(Message.ResponseHeader reply)
 		{
 			Debug.Log ("Replacing seed file.");
 			MemoryStream stream = new MemoryStream ();
@@ -77,8 +77,8 @@ namespace senseix {
 		
 		static public string SeedFilePath()
 		{
-			string playerName = SenseixController.GetCurrentPlayerID ();
-			if (playerName == "no current player")
+			string PlayerName = SenseixController.GetCurrentPlayerID ();
+			if (PlayerName == "no current Player")
 			{
 				string[] files = Directory.GetFiles (Application.persistentDataPath, "*.seed");
 				if (files.Length == 0)
@@ -87,7 +87,7 @@ namespace senseix {
 				}
 				return files[0];
 			}
-			return System.IO.Path.Combine(Application.persistentDataPath, playerName + SEED_FILE_EXTENSION);
+			return System.IO.Path.Combine(Application.persistentDataPath, PlayerName + SEED_FILE_EXTENSION);
 		}
 
 		static private void AppendStringToFile (string content, string filePath)
@@ -95,17 +95,17 @@ namespace senseix {
 			System.IO.File.AppendAllText (filePath, content);
 		}
 	
-		static public void AddProblemToSeed(message.problem.ProblemData problemData)
+		static public void AddProblemToSeed(Message.Problem.ProblemData ProblemData)
 		{
 			MemoryStream stream = new MemoryStream ();
-			problemData.WriteTo (stream);
+			ProblemData.WriteTo (stream);
 			byte[] appendMeBytes = stream.ToArray();
 			string appendMeString = "\n" + System.Text.Encoding.Default.GetString (appendMeBytes);
 			string seedPath = SeedFilePath();
 			AppendStringToFile (appendMeString, seedPath);
 			//Replace the seed file for this game with 
-			//problems from the server
-			//alg should be get N problems place N/2 
+			//Problems from the server
+			//alg should be get N Problems place N/2 
 			//into seed file, when Answered > N/2 since
 			//last pull to server, Pull another N - repeat
 		}
@@ -121,48 +121,48 @@ namespace senseix {
 //		}
 
 		static public int GetNewProblemCount () { 
-		//	Debug.Log ("Duane, problem count is" + newProblems.Count);
+		//	Debug.Log ("Duane, Problem count is" + newProblems.Count);
 			return newProblems.Count;
 		}
 		static public int GetAnsweredProblemCount () {
 			return answeredProblems.Count;
 		}
 
-		public static void AddProblemsToProblemQueue (message.problem.ProblemData.Builder problem) {
-			//Debug.Log ("Added a problem to queue, queue length now " + newProblems.Count);
-			newProblems.Enqueue (problem);
+		public static void AddProblemsToProblemQueue (Message.Problem.ProblemData.Builder Problem) {
+			//Debug.Log ("Added a Problem to queue, queue length now " + newProblems.Count);
+			newProblems.Enqueue (Problem);
 		}
 
-		//Request more problems from the server
-		//and add them to the end of our problem queue
+		//Request more Problems from the server
+		//and add them to the end of our Problem queue
 		static public void GetProblems () 
 		{
 			if (_onLine)
 			{
-				message.Request.GetProblems (SenseixController.GetCurrentPlayerID(), PROBLEMS_PER_PULL);
+				Message.Request.GetProblems (SenseixController.GetCurrentPlayerID(), ProblemS_PER_PULL);
 			}
 			GetProblemsFromSeed();
 		}
 		static public void PushServerProblems () 
 		{ 
-			Debug.Log ("PUSH SERVER PROBLEMS");
-			message.Request.PostProblems (SenseixController.GetCurrentPlayerID(), answeredProblems);
+			Debug.Log ("PUSH SERVER ProblemS");
+			Message.Request.PostProblems (SenseixController.GetCurrentPlayerID(), answeredProblems);
 		}
 
-		static public senseix.message.problem.ProblemData.Builder GetProblem()
+		static public Senseix.Message.Problem.ProblemData.Builder GetProblem()
 		{
 			CheckProblemPull ();
-			return (senseix.message.problem.ProblemData.Builder) newProblems.Dequeue ();
+			return (Senseix.Message.Problem.ProblemData.Builder) newProblems.Dequeue ();
 		}
 
-		static public bool CheckAnswer(message.problem.ProblemData.Builder answeredProblemData, Answer answer) 
+		static public bool CheckAnswer(Message.Problem.ProblemData.Builder answeredProblemData, Answer answer) 
 		{
 			bool correct = true;
-			message.problem.ProblemPost.Builder problem = message.problem.ProblemPost.CreateBuilder ();
+			Message.Problem.ProblemPost.Builder Problem = Message.Problem.ProblemPost.CreateBuilder ();
 
 			//get correct answer IDs
-			message.problem.AnswerIdentifier.Builder correctIDListBuilder = message.problem.AnswerIdentifier.CreateBuilder ();
-			foreach(senseix.message.problem.Atom atom in answeredProblemData.Answer.AtomList)
+			Message.Problem.AnswerIdentifier.Builder correctIDListBuilder = Message.Problem.AnswerIdentifier.CreateBuilder ();
+			foreach(Senseix.Message.Problem.Atom atom in answeredProblemData.Answer.AtomList)
 			{
 				correctIDListBuilder.AddUuid(atom.Uuid);
 			}
@@ -173,30 +173,30 @@ namespace senseix {
 			{
 				correct = correct && (correctIDListBuilder.GetUuid(i) == (string)answerIDStrings[i]);
 			}
-			problem.SetCorrect (correct);
+			Problem.SetCorrect (correct);
 
-			//set problem's answers to given ones
-			senseix.message.problem.AnswerIdentifier.Builder givenAnswerIDs = senseix.message.problem.AnswerIdentifier.CreateBuilder ();
+			//set Problem's answers to given ones
+			Senseix.Message.Problem.AnswerIdentifier.Builder givenAnswerIDs = Senseix.Message.Problem.AnswerIdentifier.CreateBuilder ();
 			foreach (string answerID in answerIDStrings)
 			{
 				givenAnswerIDs.AddUuid(answerID);
 			}
 
-			problem.SetProblemId (answeredProblemData.Uuid);
-			problem.SetAnswerIds (givenAnswerIDs);
-			AddAnsweredProblem (problem, answer);
+			Problem.SetProblemId (answeredProblemData.Uuid);
+			Problem.SetAnswerIds (givenAnswerIDs);
+			AddAnsweredProblem (Problem, answer);
 			return correct;
 		}
 
-		static private void AddAnsweredProblem(message.problem.ProblemPost.Builder problemBuilder, Answer answer)
+		static private void AddAnsweredProblem(Message.Problem.ProblemPost.Builder ProblemBuilder, Answer answer)
 		{
-			answeredProblems.Enqueue (problemBuilder);
+			answeredProblems.Enqueue (ProblemBuilder);
 			CheckAnsweredProblemPush ();
 		}
 
 		static private void CheckAnsweredProblemPush()
 		{
-			if (answeredProblems.Count > PROBLEMS_PER_PULL/PUSH_THRESHOLD)
+			if (answeredProblems.Count > ProblemS_PER_PULL/PUSH_THRESHOLD)
 			{
 				SenseixController.PushProblems(answeredProblems);
 				answeredProblems.Clear ();
@@ -205,12 +205,12 @@ namespace senseix {
 
 		static private void CheckProblemPull()
 		{
-			//Right now we're just pulling more problems when we get low, but eventually we
-			//want to do this with an asynchronous message
-			if (GetNewProblemCount() < PROBLEMS_PER_PULL/PULL_THRESHOLD || GetNewProblemCount() < 1) 
+			//Right now we're just pulling more Problems when we get low, but eventually we
+			//want to do this with an asynchronous Message
+			if (GetNewProblemCount() < ProblemS_PER_PULL/PULL_THRESHOLD || GetNewProblemCount() < 1) 
 			{
 				GetProblems (); 
-				Debug.Log ("pulling more problems");
+				Debug.Log ("pulling more Problems");
 			}
 		}
 
@@ -219,7 +219,7 @@ namespace senseix {
 			if (_onLine == false && state == true) {
 				_onLine = state;
 				
-				//Drain the current queue and go for some problems!
+				//Drain the current queue and go for some Problems!
 				//Duane - improve this logic...we might be flipping the 
 				//connection but still have a valid cache of prob.
 				while(newProblems.Count > 2)//give it a little wiggle room...

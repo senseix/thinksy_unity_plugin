@@ -6,7 +6,7 @@ using pb = global::Google.ProtocolBuffers;
 using pbc = global::Google.ProtocolBuffers.Collections;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
 using scg = global::System.Collections.Generic;
-namespace senseix.message.player {
+namespace Senseix.Message.Player {
   
   namespace Proto {
     
@@ -18,20 +18,20 @@ namespace senseix.message.player {
       }
       #endregion
       #region Static variables
-      internal static pbd::MessageDescriptor internal__static_senseix_message_player_Player__Descriptor;
-      internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.Player, global::senseix.message.player.Player.Builder> internal__static_senseix_message_player_Player__FieldAccessorTable;
-      internal static pbd::MessageDescriptor internal__static_senseix_message_player_PlayerCreateRequest__Descriptor;
-      internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerCreateRequest, global::senseix.message.player.PlayerCreateRequest.Builder> internal__static_senseix_message_player_PlayerCreateRequest__FieldAccessorTable;
-      internal static pbd::MessageDescriptor internal__static_senseix_message_player_PlayerCreateResponse__Descriptor;
-      internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerCreateResponse, global::senseix.message.player.PlayerCreateResponse.Builder> internal__static_senseix_message_player_PlayerCreateResponse__FieldAccessorTable;
-      internal static pbd::MessageDescriptor internal__static_senseix_message_player_PlayerListRequest__Descriptor;
-      internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerListRequest, global::senseix.message.player.PlayerListRequest.Builder> internal__static_senseix_message_player_PlayerListRequest__FieldAccessorTable;
-      internal static pbd::MessageDescriptor internal__static_senseix_message_player_PlayerListResponse__Descriptor;
-      internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerListResponse, global::senseix.message.player.PlayerListResponse.Builder> internal__static_senseix_message_player_PlayerListResponse__FieldAccessorTable;
-      internal static pbd::MessageDescriptor internal__static_senseix_message_player_PlayerRegisterWithApplicationRequest__Descriptor;
-      internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerRegisterWithApplicationRequest, global::senseix.message.player.PlayerRegisterWithApplicationRequest.Builder> internal__static_senseix_message_player_PlayerRegisterWithApplicationRequest__FieldAccessorTable;
-      internal static pbd::MessageDescriptor internal__static_senseix_message_player_PlayerRegisterWithApplicationResponse__Descriptor;
-      internal static pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerRegisterWithApplicationResponse, global::senseix.message.player.PlayerRegisterWithApplicationResponse.Builder> internal__static_senseix_message_player_PlayerRegisterWithApplicationResponse__FieldAccessorTable;
+      internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_Player__Descriptor;
+      internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.Player, global::Senseix.Message.Player.Player.Builder> internal__static_Senseix_Message_Player_Player__FieldAccessorTable;
+      internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_PlayerCreateRequest__Descriptor;
+      internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerCreateRequest, global::Senseix.Message.Player.PlayerCreateRequest.Builder> internal__static_Senseix_Message_Player_PlayerCreateRequest__FieldAccessorTable;
+      internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_PlayerCreateResponse__Descriptor;
+      internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerCreateResponse, global::Senseix.Message.Player.PlayerCreateResponse.Builder> internal__static_Senseix_Message_Player_PlayerCreateResponse__FieldAccessorTable;
+      internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_PlayerListRequest__Descriptor;
+      internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerListRequest, global::Senseix.Message.Player.PlayerListRequest.Builder> internal__static_Senseix_Message_Player_PlayerListRequest__FieldAccessorTable;
+      internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_PlayerListResponse__Descriptor;
+      internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerListResponse, global::Senseix.Message.Player.PlayerListResponse.Builder> internal__static_Senseix_Message_Player_PlayerListResponse__FieldAccessorTable;
+      internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__Descriptor;
+      internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerRegisterWithApplicationRequest, global::Senseix.Message.Player.PlayerRegisterWithApplicationRequest.Builder> internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__FieldAccessorTable;
+      internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__Descriptor;
+      internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerRegisterWithApplicationResponse, global::Senseix.Message.Player.PlayerRegisterWithApplicationResponse.Builder> internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__FieldAccessorTable;
       #endregion
       #region Descriptor
       public static pbd::FileDescriptor Descriptor {
@@ -41,50 +41,50 @@ namespace senseix.message.player {
       
       static Player() {
         byte[] descriptorData = global::System.Convert.FromBase64String(
-            "CgxQbGF5ZXIucHJvdG8SFnNlbnNlaXgubWVzc2FnZS5wbGF5ZXIaDkNvbnN0" + 
+            "CgxQbGF5ZXIucHJvdG8SFlNlbnNlaXguTWVzc2FnZS5QbGF5ZXIaDkNvbnN0" + 
             "YW50LnByb3RvIikKBlBsYXllchIRCglwbGF5ZXJfaWQYASACKAkSDAoEbmFt" + 
             "ZRgCIAIoCSIjChNQbGF5ZXJDcmVhdGVSZXF1ZXN0EgwKBG5hbWUYASACKAki" + 
             "KQoUUGxheWVyQ3JlYXRlUmVzcG9uc2USEQoJcGxheWVyX2lkGAEgAigJIhMK" + 
             "EVBsYXllckxpc3RSZXF1ZXN0IkQKElBsYXllckxpc3RSZXNwb25zZRIuCgZw" + 
-            "bGF5ZXIYASADKAsyHi5zZW5zZWl4Lm1lc3NhZ2UucGxheWVyLlBsYXllciI5" + 
+            "bGF5ZXIYASADKAsyHi5TZW5zZWl4Lk1lc3NhZ2UuUGxheWVyLlBsYXllciI5" + 
             "CiRQbGF5ZXJSZWdpc3RlcldpdGhBcHBsaWNhdGlvblJlcXVlc3QSEQoJcGxh" + 
             "eWVyX2lkGAEgAigJIicKJVBsYXllclJlZ2lzdGVyV2l0aEFwcGxpY2F0aW9u" + 
             "UmVzcG9uc2U=");
         pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
           descriptor = root;
-          internal__static_senseix_message_player_Player__Descriptor = Descriptor.MessageTypes[0];
-          internal__static_senseix_message_player_Player__FieldAccessorTable = 
-              new pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.Player, global::senseix.message.player.Player.Builder>(internal__static_senseix_message_player_Player__Descriptor,
+          internal__static_Senseix_Message_Player_Player__Descriptor = Descriptor.MessageTypes[0];
+          internal__static_Senseix_Message_Player_Player__FieldAccessorTable = 
+              new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.Player, global::Senseix.Message.Player.Player.Builder>(internal__static_Senseix_Message_Player_Player__Descriptor,
                   new string[] { "PlayerId", "Name", });
-          internal__static_senseix_message_player_PlayerCreateRequest__Descriptor = Descriptor.MessageTypes[1];
-          internal__static_senseix_message_player_PlayerCreateRequest__FieldAccessorTable = 
-              new pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerCreateRequest, global::senseix.message.player.PlayerCreateRequest.Builder>(internal__static_senseix_message_player_PlayerCreateRequest__Descriptor,
+          internal__static_Senseix_Message_Player_PlayerCreateRequest__Descriptor = Descriptor.MessageTypes[1];
+          internal__static_Senseix_Message_Player_PlayerCreateRequest__FieldAccessorTable = 
+              new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerCreateRequest, global::Senseix.Message.Player.PlayerCreateRequest.Builder>(internal__static_Senseix_Message_Player_PlayerCreateRequest__Descriptor,
                   new string[] { "Name", });
-          internal__static_senseix_message_player_PlayerCreateResponse__Descriptor = Descriptor.MessageTypes[2];
-          internal__static_senseix_message_player_PlayerCreateResponse__FieldAccessorTable = 
-              new pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerCreateResponse, global::senseix.message.player.PlayerCreateResponse.Builder>(internal__static_senseix_message_player_PlayerCreateResponse__Descriptor,
+          internal__static_Senseix_Message_Player_PlayerCreateResponse__Descriptor = Descriptor.MessageTypes[2];
+          internal__static_Senseix_Message_Player_PlayerCreateResponse__FieldAccessorTable = 
+              new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerCreateResponse, global::Senseix.Message.Player.PlayerCreateResponse.Builder>(internal__static_Senseix_Message_Player_PlayerCreateResponse__Descriptor,
                   new string[] { "PlayerId", });
-          internal__static_senseix_message_player_PlayerListRequest__Descriptor = Descriptor.MessageTypes[3];
-          internal__static_senseix_message_player_PlayerListRequest__FieldAccessorTable = 
-              new pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerListRequest, global::senseix.message.player.PlayerListRequest.Builder>(internal__static_senseix_message_player_PlayerListRequest__Descriptor,
+          internal__static_Senseix_Message_Player_PlayerListRequest__Descriptor = Descriptor.MessageTypes[3];
+          internal__static_Senseix_Message_Player_PlayerListRequest__FieldAccessorTable = 
+              new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerListRequest, global::Senseix.Message.Player.PlayerListRequest.Builder>(internal__static_Senseix_Message_Player_PlayerListRequest__Descriptor,
                   new string[] { });
-          internal__static_senseix_message_player_PlayerListResponse__Descriptor = Descriptor.MessageTypes[4];
-          internal__static_senseix_message_player_PlayerListResponse__FieldAccessorTable = 
-              new pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerListResponse, global::senseix.message.player.PlayerListResponse.Builder>(internal__static_senseix_message_player_PlayerListResponse__Descriptor,
+          internal__static_Senseix_Message_Player_PlayerListResponse__Descriptor = Descriptor.MessageTypes[4];
+          internal__static_Senseix_Message_Player_PlayerListResponse__FieldAccessorTable = 
+              new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerListResponse, global::Senseix.Message.Player.PlayerListResponse.Builder>(internal__static_Senseix_Message_Player_PlayerListResponse__Descriptor,
                   new string[] { "Player", });
-          internal__static_senseix_message_player_PlayerRegisterWithApplicationRequest__Descriptor = Descriptor.MessageTypes[5];
-          internal__static_senseix_message_player_PlayerRegisterWithApplicationRequest__FieldAccessorTable = 
-              new pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerRegisterWithApplicationRequest, global::senseix.message.player.PlayerRegisterWithApplicationRequest.Builder>(internal__static_senseix_message_player_PlayerRegisterWithApplicationRequest__Descriptor,
+          internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__Descriptor = Descriptor.MessageTypes[5];
+          internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__FieldAccessorTable = 
+              new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerRegisterWithApplicationRequest, global::Senseix.Message.Player.PlayerRegisterWithApplicationRequest.Builder>(internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__Descriptor,
                   new string[] { "PlayerId", });
-          internal__static_senseix_message_player_PlayerRegisterWithApplicationResponse__Descriptor = Descriptor.MessageTypes[6];
-          internal__static_senseix_message_player_PlayerRegisterWithApplicationResponse__FieldAccessorTable = 
-              new pb::FieldAccess.FieldAccessorTable<global::senseix.message.player.PlayerRegisterWithApplicationResponse, global::senseix.message.player.PlayerRegisterWithApplicationResponse.Builder>(internal__static_senseix_message_player_PlayerRegisterWithApplicationResponse__Descriptor,
+          internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__Descriptor = Descriptor.MessageTypes[6];
+          internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__FieldAccessorTable = 
+              new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerRegisterWithApplicationResponse, global::Senseix.Message.Player.PlayerRegisterWithApplicationResponse.Builder>(internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__Descriptor,
                   new string[] { });
           return null;
         };
         pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
             new pbd::FileDescriptor[] {
-            global::senseix.message.constant.Constant.Descriptor, 
+            global::Senseix.Message.Constant.Constant.Descriptor, 
             }, assigner);
       }
       #endregion
@@ -96,8 +96,8 @@ namespace senseix.message.player {
   public sealed partial class Player : pb::GeneratedMessage<Player, Player.Builder> {
     private Player() { }
     private static readonly Player defaultInstance = new Player().MakeReadOnly();
-    private static readonly string[] _playerFieldNames = new string[] { "name", "player_id" };
-    private static readonly uint[] _playerFieldTags = new uint[] { 18, 10 };
+    private static readonly string[] _PlayerFieldNames = new string[] { "name", "Player_id" };
+    private static readonly uint[] _PlayerFieldTags = new uint[] { 18, 10 };
     public static Player DefaultInstance {
       get { return defaultInstance; }
     }
@@ -111,21 +111,21 @@ namespace senseix.message.player {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_Player__Descriptor; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_Player__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<Player, Player.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_Player__FieldAccessorTable; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_Player__FieldAccessorTable; }
     }
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string playerId_ = "";
+    private string PlayerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return playerId_; }
+      get { return PlayerId_; }
     }
     
     public const int NameFieldNumber = 2;
@@ -148,7 +148,7 @@ namespace senseix.message.player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _playerFieldNames;
+      string[] field_names = _PlayerFieldNames;
       if (hasPlayerId) {
         output.WriteString(1, field_names[1], PlayerId);
       }
@@ -268,11 +268,11 @@ namespace senseix.message.player {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.player.Player.Descriptor; }
+        get { return global::Senseix.Message.Player.Player.Descriptor; }
       }
       
       public override Player DefaultInstanceForType {
-        get { return global::senseix.message.player.Player.DefaultInstance; }
+        get { return global::Senseix.Message.Player.Player.DefaultInstance; }
       }
       
       public override Player BuildPartial() {
@@ -293,7 +293,7 @@ namespace senseix.message.player {
       }
       
       public override Builder MergeFrom(Player other) {
-        if (other == global::senseix.message.player.Player.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Player.Player.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPlayerId) {
           PlayerId = other.PlayerId;
@@ -316,9 +316,9 @@ namespace senseix.message.player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_PlayerFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _playerFieldTags[field_ordinal];
+              tag = _PlayerFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -345,7 +345,7 @@ namespace senseix.message.player {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
               break;
             }
             case 18: {
@@ -373,13 +373,13 @@ namespace senseix.message.player {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.playerId_ = value;
+        result.PlayerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.playerId_ = "";
+        result.PlayerId_ = "";
         return this;
       }
       
@@ -405,7 +405,7 @@ namespace senseix.message.player {
       }
     }
     static Player() {
-      object.ReferenceEquals(global::senseix.message.player.Proto.Player.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Player.Proto.Player.Descriptor, null);
     }
   }
   
@@ -413,8 +413,8 @@ namespace senseix.message.player {
   public sealed partial class PlayerCreateRequest : pb::GeneratedMessage<PlayerCreateRequest, PlayerCreateRequest.Builder> {
     private PlayerCreateRequest() { }
     private static readonly PlayerCreateRequest defaultInstance = new PlayerCreateRequest().MakeReadOnly();
-    private static readonly string[] _playerCreateRequestFieldNames = new string[] { "name" };
-    private static readonly uint[] _playerCreateRequestFieldTags = new uint[] { 10 };
+    private static readonly string[] _PlayerCreateRequestFieldNames = new string[] { "name" };
+    private static readonly uint[] _PlayerCreateRequestFieldTags = new uint[] { 10 };
     public static PlayerCreateRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -428,11 +428,11 @@ namespace senseix.message.player {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerCreateRequest__Descriptor; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerCreateRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PlayerCreateRequest, PlayerCreateRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerCreateRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerCreateRequest__FieldAccessorTable; }
     }
     
     public const int NameFieldNumber = 1;
@@ -454,7 +454,7 @@ namespace senseix.message.player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _playerCreateRequestFieldNames;
+      string[] field_names = _PlayerCreateRequestFieldNames;
       if (hasName) {
         output.WriteString(1, field_names[0], Name);
       }
@@ -568,11 +568,11 @@ namespace senseix.message.player {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.player.PlayerCreateRequest.Descriptor; }
+        get { return global::Senseix.Message.Player.PlayerCreateRequest.Descriptor; }
       }
       
       public override PlayerCreateRequest DefaultInstanceForType {
-        get { return global::senseix.message.player.PlayerCreateRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Player.PlayerCreateRequest.DefaultInstance; }
       }
       
       public override PlayerCreateRequest BuildPartial() {
@@ -593,7 +593,7 @@ namespace senseix.message.player {
       }
       
       public override Builder MergeFrom(PlayerCreateRequest other) {
-        if (other == global::senseix.message.player.PlayerCreateRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Player.PlayerCreateRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasName) {
           Name = other.Name;
@@ -613,9 +613,9 @@ namespace senseix.message.player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerCreateRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_PlayerCreateRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _playerCreateRequestFieldTags[field_ordinal];
+              tag = _PlayerCreateRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -677,7 +677,7 @@ namespace senseix.message.player {
       }
     }
     static PlayerCreateRequest() {
-      object.ReferenceEquals(global::senseix.message.player.Proto.Player.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Player.Proto.Player.Descriptor, null);
     }
   }
   
@@ -685,8 +685,8 @@ namespace senseix.message.player {
   public sealed partial class PlayerCreateResponse : pb::GeneratedMessage<PlayerCreateResponse, PlayerCreateResponse.Builder> {
     private PlayerCreateResponse() { }
     private static readonly PlayerCreateResponse defaultInstance = new PlayerCreateResponse().MakeReadOnly();
-    private static readonly string[] _playerCreateResponseFieldNames = new string[] { "player_id" };
-    private static readonly uint[] _playerCreateResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _PlayerCreateResponseFieldNames = new string[] { "Player_id" };
+    private static readonly uint[] _PlayerCreateResponseFieldTags = new uint[] { 10 };
     public static PlayerCreateResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -700,21 +700,21 @@ namespace senseix.message.player {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerCreateResponse__Descriptor; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerCreateResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PlayerCreateResponse, PlayerCreateResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerCreateResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerCreateResponse__FieldAccessorTable; }
     }
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string playerId_ = "";
+    private string PlayerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return playerId_; }
+      get { return PlayerId_; }
     }
     
     public override bool IsInitialized {
@@ -726,7 +726,7 @@ namespace senseix.message.player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _playerCreateResponseFieldNames;
+      string[] field_names = _PlayerCreateResponseFieldNames;
       if (hasPlayerId) {
         output.WriteString(1, field_names[0], PlayerId);
       }
@@ -840,11 +840,11 @@ namespace senseix.message.player {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.player.PlayerCreateResponse.Descriptor; }
+        get { return global::Senseix.Message.Player.PlayerCreateResponse.Descriptor; }
       }
       
       public override PlayerCreateResponse DefaultInstanceForType {
-        get { return global::senseix.message.player.PlayerCreateResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Player.PlayerCreateResponse.DefaultInstance; }
       }
       
       public override PlayerCreateResponse BuildPartial() {
@@ -865,7 +865,7 @@ namespace senseix.message.player {
       }
       
       public override Builder MergeFrom(PlayerCreateResponse other) {
-        if (other == global::senseix.message.player.PlayerCreateResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Player.PlayerCreateResponse.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPlayerId) {
           PlayerId = other.PlayerId;
@@ -885,9 +885,9 @@ namespace senseix.message.player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerCreateResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_PlayerCreateResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _playerCreateResponseFieldTags[field_ordinal];
+              tag = _PlayerCreateResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -914,7 +914,7 @@ namespace senseix.message.player {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
               break;
             }
           }
@@ -938,18 +938,18 @@ namespace senseix.message.player {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.playerId_ = value;
+        result.PlayerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.playerId_ = "";
+        result.PlayerId_ = "";
         return this;
       }
     }
     static PlayerCreateResponse() {
-      object.ReferenceEquals(global::senseix.message.player.Proto.Player.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Player.Proto.Player.Descriptor, null);
     }
   }
   
@@ -957,8 +957,8 @@ namespace senseix.message.player {
   public sealed partial class PlayerListRequest : pb::GeneratedMessage<PlayerListRequest, PlayerListRequest.Builder> {
     private PlayerListRequest() { }
     private static readonly PlayerListRequest defaultInstance = new PlayerListRequest().MakeReadOnly();
-    private static readonly string[] _playerListRequestFieldNames = new string[] {  };
-    private static readonly uint[] _playerListRequestFieldTags = new uint[] {  };
+    private static readonly string[] _PlayerListRequestFieldNames = new string[] {  };
+    private static readonly uint[] _PlayerListRequestFieldTags = new uint[] {  };
     public static PlayerListRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -972,11 +972,11 @@ namespace senseix.message.player {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerListRequest__Descriptor; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerListRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PlayerListRequest, PlayerListRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerListRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerListRequest__FieldAccessorTable; }
     }
     
     public override bool IsInitialized {
@@ -987,7 +987,7 @@ namespace senseix.message.player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _playerListRequestFieldNames;
+      string[] field_names = _PlayerListRequestFieldNames;
       UnknownFields.WriteTo(output);
     }
     
@@ -1095,11 +1095,11 @@ namespace senseix.message.player {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.player.PlayerListRequest.Descriptor; }
+        get { return global::Senseix.Message.Player.PlayerListRequest.Descriptor; }
       }
       
       public override PlayerListRequest DefaultInstanceForType {
-        get { return global::senseix.message.player.PlayerListRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Player.PlayerListRequest.DefaultInstance; }
       }
       
       public override PlayerListRequest BuildPartial() {
@@ -1120,7 +1120,7 @@ namespace senseix.message.player {
       }
       
       public override Builder MergeFrom(PlayerListRequest other) {
-        if (other == global::senseix.message.player.PlayerListRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Player.PlayerListRequest.DefaultInstance) return this;
         PrepareBuilder();
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -1137,9 +1137,9 @@ namespace senseix.message.player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerListRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_PlayerListRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _playerListRequestFieldTags[field_ordinal];
+              tag = _PlayerListRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -1176,7 +1176,7 @@ namespace senseix.message.player {
       
     }
     static PlayerListRequest() {
-      object.ReferenceEquals(global::senseix.message.player.Proto.Player.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Player.Proto.Player.Descriptor, null);
     }
   }
   
@@ -1184,8 +1184,8 @@ namespace senseix.message.player {
   public sealed partial class PlayerListResponse : pb::GeneratedMessage<PlayerListResponse, PlayerListResponse.Builder> {
     private PlayerListResponse() { }
     private static readonly PlayerListResponse defaultInstance = new PlayerListResponse().MakeReadOnly();
-    private static readonly string[] _playerListResponseFieldNames = new string[] { "player" };
-    private static readonly uint[] _playerListResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _PlayerListResponseFieldNames = new string[] { "Player" };
+    private static readonly uint[] _PlayerListResponseFieldTags = new uint[] { 10 };
     public static PlayerListResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1199,28 +1199,28 @@ namespace senseix.message.player {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerListResponse__Descriptor; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerListResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PlayerListResponse, PlayerListResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerListResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerListResponse__FieldAccessorTable; }
     }
     
     public const int PlayerFieldNumber = 1;
-    private pbc::PopsicleList<global::senseix.message.player.Player> player_ = new pbc::PopsicleList<global::senseix.message.player.Player>();
-    public scg::IList<global::senseix.message.player.Player> PlayerList {
-      get { return player_; }
+    private pbc::PopsicleList<global::Senseix.Message.Player.Player> Player_ = new pbc::PopsicleList<global::Senseix.Message.Player.Player>();
+    public scg::IList<global::Senseix.Message.Player.Player> PlayerList {
+      get { return Player_; }
     }
     public int PlayerCount {
-      get { return player_.Count; }
+      get { return Player_.Count; }
     }
-    public global::senseix.message.player.Player GetPlayer(int index) {
-      return player_[index];
+    public global::Senseix.Message.Player.Player GetPlayer(int index) {
+      return Player_[index];
     }
     
     public override bool IsInitialized {
       get {
-        foreach (global::senseix.message.player.Player element in PlayerList) {
+        foreach (global::Senseix.Message.Player.Player element in PlayerList) {
           if (!element.IsInitialized) return false;
         }
         return true;
@@ -1229,9 +1229,9 @@ namespace senseix.message.player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _playerListResponseFieldNames;
-      if (player_.Count > 0) {
-        output.WriteMessageArray(1, field_names[0], player_);
+      string[] field_names = _PlayerListResponseFieldNames;
+      if (Player_.Count > 0) {
+        output.WriteMessageArray(1, field_names[0], Player_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -1243,7 +1243,7 @@ namespace senseix.message.player {
         if (size != -1) return size;
         
         size = 0;
-        foreach (global::senseix.message.player.Player element in PlayerList) {
+        foreach (global::Senseix.Message.Player.Player element in PlayerList) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, element);
         }
         size += UnknownFields.SerializedSize;
@@ -1283,7 +1283,7 @@ namespace senseix.message.player {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private PlayerListResponse MakeReadOnly() {
-      player_.MakeReadOnly();
+      Player_.MakeReadOnly();
       return this;
     }
     
@@ -1344,11 +1344,11 @@ namespace senseix.message.player {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.player.PlayerListResponse.Descriptor; }
+        get { return global::Senseix.Message.Player.PlayerListResponse.Descriptor; }
       }
       
       public override PlayerListResponse DefaultInstanceForType {
-        get { return global::senseix.message.player.PlayerListResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Player.PlayerListResponse.DefaultInstance; }
       }
       
       public override PlayerListResponse BuildPartial() {
@@ -1369,10 +1369,10 @@ namespace senseix.message.player {
       }
       
       public override Builder MergeFrom(PlayerListResponse other) {
-        if (other == global::senseix.message.player.PlayerListResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Player.PlayerListResponse.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.player_.Count != 0) {
-          result.player_.Add(other.player_);
+        if (other.Player_.Count != 0) {
+          result.Player_.Add(other.Player_);
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -1389,9 +1389,9 @@ namespace senseix.message.player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerListResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_PlayerListResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _playerListResponseFieldTags[field_ordinal];
+              tag = _PlayerListResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -1418,7 +1418,7 @@ namespace senseix.message.player {
               break;
             }
             case 10: {
-              input.ReadMessageArray(tag, field_name, result.player_, global::senseix.message.player.Player.DefaultInstance, extensionRegistry);
+              input.ReadMessageArray(tag, field_name, result.Player_, global::Senseix.Message.Player.Player.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -1431,52 +1431,52 @@ namespace senseix.message.player {
       }
       
       
-      public pbc::IPopsicleList<global::senseix.message.player.Player> PlayerList {
-        get { return PrepareBuilder().player_; }
+      public pbc::IPopsicleList<global::Senseix.Message.Player.Player> PlayerList {
+        get { return PrepareBuilder().Player_; }
       }
       public int PlayerCount {
         get { return result.PlayerCount; }
       }
-      public global::senseix.message.player.Player GetPlayer(int index) {
+      public global::Senseix.Message.Player.Player GetPlayer(int index) {
         return result.GetPlayer(index);
       }
-      public Builder SetPlayer(int index, global::senseix.message.player.Player value) {
+      public Builder SetPlayer(int index, global::Senseix.Message.Player.Player value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.player_[index] = value;
+        result.Player_[index] = value;
         return this;
       }
-      public Builder SetPlayer(int index, global::senseix.message.player.Player.Builder builderForValue) {
+      public Builder SetPlayer(int index, global::Senseix.Message.Player.Player.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.player_[index] = builderForValue.Build();
+        result.Player_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddPlayer(global::senseix.message.player.Player value) {
+      public Builder AddPlayer(global::Senseix.Message.Player.Player value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.player_.Add(value);
+        result.Player_.Add(value);
         return this;
       }
-      public Builder AddPlayer(global::senseix.message.player.Player.Builder builderForValue) {
+      public Builder AddPlayer(global::Senseix.Message.Player.Player.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.player_.Add(builderForValue.Build());
+        result.Player_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangePlayer(scg::IEnumerable<global::senseix.message.player.Player> values) {
+      public Builder AddRangePlayer(scg::IEnumerable<global::Senseix.Message.Player.Player> values) {
         PrepareBuilder();
-        result.player_.Add(values);
+        result.Player_.Add(values);
         return this;
       }
       public Builder ClearPlayer() {
         PrepareBuilder();
-        result.player_.Clear();
+        result.Player_.Clear();
         return this;
       }
     }
     static PlayerListResponse() {
-      object.ReferenceEquals(global::senseix.message.player.Proto.Player.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Player.Proto.Player.Descriptor, null);
     }
   }
   
@@ -1484,8 +1484,8 @@ namespace senseix.message.player {
   public sealed partial class PlayerRegisterWithApplicationRequest : pb::GeneratedMessage<PlayerRegisterWithApplicationRequest, PlayerRegisterWithApplicationRequest.Builder> {
     private PlayerRegisterWithApplicationRequest() { }
     private static readonly PlayerRegisterWithApplicationRequest defaultInstance = new PlayerRegisterWithApplicationRequest().MakeReadOnly();
-    private static readonly string[] _playerRegisterWithApplicationRequestFieldNames = new string[] { "player_id" };
-    private static readonly uint[] _playerRegisterWithApplicationRequestFieldTags = new uint[] { 10 };
+    private static readonly string[] _PlayerRegisterWithApplicationRequestFieldNames = new string[] { "Player_id" };
+    private static readonly uint[] _PlayerRegisterWithApplicationRequestFieldTags = new uint[] { 10 };
     public static PlayerRegisterWithApplicationRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1499,21 +1499,21 @@ namespace senseix.message.player {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerRegisterWithApplicationRequest__Descriptor; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PlayerRegisterWithApplicationRequest, PlayerRegisterWithApplicationRequest.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerRegisterWithApplicationRequest__FieldAccessorTable; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__FieldAccessorTable; }
     }
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string playerId_ = "";
+    private string PlayerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return playerId_; }
+      get { return PlayerId_; }
     }
     
     public override bool IsInitialized {
@@ -1525,7 +1525,7 @@ namespace senseix.message.player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _playerRegisterWithApplicationRequestFieldNames;
+      string[] field_names = _PlayerRegisterWithApplicationRequestFieldNames;
       if (hasPlayerId) {
         output.WriteString(1, field_names[0], PlayerId);
       }
@@ -1639,11 +1639,11 @@ namespace senseix.message.player {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.player.PlayerRegisterWithApplicationRequest.Descriptor; }
+        get { return global::Senseix.Message.Player.PlayerRegisterWithApplicationRequest.Descriptor; }
       }
       
       public override PlayerRegisterWithApplicationRequest DefaultInstanceForType {
-        get { return global::senseix.message.player.PlayerRegisterWithApplicationRequest.DefaultInstance; }
+        get { return global::Senseix.Message.Player.PlayerRegisterWithApplicationRequest.DefaultInstance; }
       }
       
       public override PlayerRegisterWithApplicationRequest BuildPartial() {
@@ -1664,7 +1664,7 @@ namespace senseix.message.player {
       }
       
       public override Builder MergeFrom(PlayerRegisterWithApplicationRequest other) {
-        if (other == global::senseix.message.player.PlayerRegisterWithApplicationRequest.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Player.PlayerRegisterWithApplicationRequest.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasPlayerId) {
           PlayerId = other.PlayerId;
@@ -1684,9 +1684,9 @@ namespace senseix.message.player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerRegisterWithApplicationRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_PlayerRegisterWithApplicationRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _playerRegisterWithApplicationRequestFieldTags[field_ordinal];
+              tag = _PlayerRegisterWithApplicationRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -1713,7 +1713,7 @@ namespace senseix.message.player {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
               break;
             }
           }
@@ -1737,18 +1737,18 @@ namespace senseix.message.player {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.playerId_ = value;
+        result.PlayerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.playerId_ = "";
+        result.PlayerId_ = "";
         return this;
       }
     }
     static PlayerRegisterWithApplicationRequest() {
-      object.ReferenceEquals(global::senseix.message.player.Proto.Player.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Player.Proto.Player.Descriptor, null);
     }
   }
   
@@ -1756,8 +1756,8 @@ namespace senseix.message.player {
   public sealed partial class PlayerRegisterWithApplicationResponse : pb::GeneratedMessage<PlayerRegisterWithApplicationResponse, PlayerRegisterWithApplicationResponse.Builder> {
     private PlayerRegisterWithApplicationResponse() { }
     private static readonly PlayerRegisterWithApplicationResponse defaultInstance = new PlayerRegisterWithApplicationResponse().MakeReadOnly();
-    private static readonly string[] _playerRegisterWithApplicationResponseFieldNames = new string[] {  };
-    private static readonly uint[] _playerRegisterWithApplicationResponseFieldTags = new uint[] {  };
+    private static readonly string[] _PlayerRegisterWithApplicationResponseFieldNames = new string[] {  };
+    private static readonly uint[] _PlayerRegisterWithApplicationResponseFieldTags = new uint[] {  };
     public static PlayerRegisterWithApplicationResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1771,11 +1771,11 @@ namespace senseix.message.player {
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerRegisterWithApplicationResponse__Descriptor; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__Descriptor; }
     }
     
     protected override pb::FieldAccess.FieldAccessorTable<PlayerRegisterWithApplicationResponse, PlayerRegisterWithApplicationResponse.Builder> InternalFieldAccessors {
-      get { return global::senseix.message.player.Proto.Player.internal__static_senseix_message_player_PlayerRegisterWithApplicationResponse__FieldAccessorTable; }
+      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__FieldAccessorTable; }
     }
     
     public override bool IsInitialized {
@@ -1786,7 +1786,7 @@ namespace senseix.message.player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _playerRegisterWithApplicationResponseFieldNames;
+      string[] field_names = _PlayerRegisterWithApplicationResponseFieldNames;
       UnknownFields.WriteTo(output);
     }
     
@@ -1894,11 +1894,11 @@ namespace senseix.message.player {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::senseix.message.player.PlayerRegisterWithApplicationResponse.Descriptor; }
+        get { return global::Senseix.Message.Player.PlayerRegisterWithApplicationResponse.Descriptor; }
       }
       
       public override PlayerRegisterWithApplicationResponse DefaultInstanceForType {
-        get { return global::senseix.message.player.PlayerRegisterWithApplicationResponse.DefaultInstance; }
+        get { return global::Senseix.Message.Player.PlayerRegisterWithApplicationResponse.DefaultInstance; }
       }
       
       public override PlayerRegisterWithApplicationResponse BuildPartial() {
@@ -1919,7 +1919,7 @@ namespace senseix.message.player {
       }
       
       public override Builder MergeFrom(PlayerRegisterWithApplicationResponse other) {
-        if (other == global::senseix.message.player.PlayerRegisterWithApplicationResponse.DefaultInstance) return this;
+        if (other == global::Senseix.Message.Player.PlayerRegisterWithApplicationResponse.DefaultInstance) return this;
         PrepareBuilder();
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -1936,9 +1936,9 @@ namespace senseix.message.player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerRegisterWithApplicationResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_PlayerRegisterWithApplicationResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _playerRegisterWithApplicationResponseFieldTags[field_ordinal];
+              tag = _PlayerRegisterWithApplicationResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -1975,7 +1975,7 @@ namespace senseix.message.player {
       
     }
     static PlayerRegisterWithApplicationResponse() {
-      object.ReferenceEquals(global::senseix.message.player.Proto.Player.Descriptor, null);
+      object.ReferenceEquals(global::Senseix.Message.Player.Proto.Player.Descriptor, null);
     }
   }
   
