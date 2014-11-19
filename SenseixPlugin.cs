@@ -118,9 +118,9 @@ class SenseixPlugin : MonoBehaviour
 	/// Checks the Problem's given answer against its correct answer.  Also reports the Player's answer
 	/// (correct or incorrect) to the Senseix server.  Given and correct answer can be found in the Problem class.
 	/// </summary>
-	public static bool CheckAnswer(Problem Problem)
+	public static bool CheckAnswer(Problem problem)
 	{
-		return Problem.CheckAnswer ();
+		return problem.CheckAnswer ();
 	}
 
 	/// <summary>

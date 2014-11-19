@@ -51,7 +51,7 @@ namespace Senseix {
 		{
 			SetCurrentPlayer (selectedPlayer);
 			RegisterPlayer (selectedPlayer);
-			ProblemKeeper.CreateSeedFileIfNeeded ();
+			//ProblemKeeper.CreateSeedFileIfNeeded ();
 		}
 
 		static public Message.Player.Player GetCurrentPlayer()
@@ -126,7 +126,7 @@ namespace Senseix {
 			Debug.Log ("got past register device");
 		  	ListPlayers ();
 			RegisterAllPlayers ();
-			ProblemKeeper.CreateSeedFileIfNeeded ();
+			//ProblemKeeper.CreateSeedFileIfNeeded ();
 			return GetSessionState ();
 		}
 

@@ -31,10 +31,10 @@ namespace Senseix.Message {
         const string SERVER_URL = "192.168.1.17:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
-		const string Parent_HDR = GENERIC_HDR + "/Parents/";
-		const string Player_HDR = GENERIC_HDR + "/Players/";
-		const string Problem_HDR = GENERIC_HDR + "/Problems/";
-		const string Leaderboard_HDR = GENERIC_HDR + "/applications/Leaderboard/";
+		const string Parent_HDR = GENERIC_HDR + "/parents/";
+		const string Player_HDR = GENERIC_HDR + "/players/";
+		const string Problem_HDR = GENERIC_HDR + "/problems/";
+		const string Leaderboard_HDR = GENERIC_HDR + "/applications/leaderboard/";
 
 		//External urls
 		public const string WEBSITE_URL = ENCRYPTED + SERVER_URL;
@@ -52,8 +52,8 @@ namespace Senseix.Message {
 
 		//Requests related to Player management
 		const string CREATE_Player_URL = Player_HDR + "create";
-		const string LIST_Player_URL = Player_HDR + "list_Players";
-		const string REGISTER_Player_WITH_GAME_URL = Player_HDR + "register_Player_with_game";
+		const string LIST_Player_URL = Player_HDR + "list_players";
+		const string REGISTER_Player_WITH_GAME_URL = Player_HDR + "register_player_with_game";
 
 		//Requests related to Problems
 		const string GET_Problem_URL = Problem_HDR + "index";
@@ -61,8 +61,8 @@ namespace Senseix.Message {
 
 		//Requests related to Leaderboards
 		const string GET_Leaderboard_PAGE_URL = Leaderboard_HDR + "page";
-		const string GET_Player_RANK_URL = Leaderboard_HDR + "Player";
-		const string UPDATE_Player_SCORE_URL = Leaderboard_HDR + "update_Player_score";
+		const string GET_Player_RANK_URL = Leaderboard_HDR + "player";
+		const string UPDATE_Player_SCORE_URL = Leaderboard_HDR + "update_player_score";
 
 		public static ArrayList activeRequests = new ArrayList();
 

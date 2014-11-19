@@ -78,16 +78,18 @@ namespace Senseix {
 		static public string SeedFilePath()
 		{
 			string PlayerName = SenseixController.GetCurrentPlayerID ();
-			if (PlayerName == "no current Player")
+			string playerSeedPath = System.IO.Path.Combine (Application.persistentDataPath, PlayerName + SEED_FILE_EXTENSION);
+			if (File.Exists(playerSeedPath))
 			{
-				string[] files = Directory.GetFiles (Application.persistentDataPath, "*.seed");
-				if (files.Length == 0)
-				{
-					SenseixPlugin.ShowEmergencyWindow();
-				}
-				return files[0];
+				return playerSeedPath;
 			}
-			return System.IO.Path.Combine(Application.persistentDataPath, PlayerName + SEED_FILE_EXTENSION);
+			string[] files = Directory.GetFiles (Application.persistentDataPath, "*.seed");
+			if (files.Length == 0)
+			{
+				SenseixPlugin.ShowEmergencyWindow();
+				throw new Exception("No seed files found!");
+			}
+			return files[0];
 		}
 
 		static private void AppendStringToFile (string content, string filePath)
