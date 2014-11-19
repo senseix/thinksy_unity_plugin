@@ -159,6 +159,10 @@ namespace Senseix {
 
 		static public bool CheckAnswer(Message.Problem.ProblemData.Builder answeredProblemData, Answer answer) 
 		{
+			ArrayList answerIDStrings = answer.GetAnswerIDs ();
+			if (answerIDStrings.Count == 0)
+				return false;
+
 			bool correct = true;
 			Message.Problem.ProblemPost.Builder Problem = Message.Problem.ProblemPost.CreateBuilder ();
 
@@ -170,7 +174,6 @@ namespace Senseix {
 			}
 
 			//check given answers against correct answers
-			ArrayList answerIDStrings = answer.GetAnswerIDs ();
 			for (int i = 0; i < answerIDStrings.Count; i++)
 			{
 				correct = correct && (correctIDListBuilder.GetUuid(i) == (string)answerIDStrings[i]);
