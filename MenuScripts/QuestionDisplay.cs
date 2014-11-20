@@ -22,10 +22,20 @@ namespace Senseix
 			singletonInstance.UpdateDisplay ();
 		}
 
+		public static void UpdateTextOnly()
+		{
+			singletonInstance.UpdateText ();
+		}
+
 		public void UpdateDisplay()
 		{
-			UpdateQuestionText ();
 			UpdateQuestionImage ();
+			UpdateText ();
+		}
+
+		public void UpdateText()
+		{
+			UpdateQuestionText ();
 			UpdateAnswersText ();
 		}
 

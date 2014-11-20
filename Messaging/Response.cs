@@ -42,8 +42,7 @@ namespace Senseix.Message {
 					{	
 						SenseixController.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
 						SenseixController.SetSessionState(true);
-						Debug.Log("ALL THE WAY FROM THE CITY OF SERVER... THE FAMED ISTEMPORARYACCOUNT" +
-							"!!!!!!!!!!!!!!!!!!!!!!!: " + reply.DeviceRegistration.IsTemporaryAccount);
+						Debug.Log("I come from the City of Compton, and am I a temporary account? " + reply.DeviceRegistration.IsTemporaryAccount);
 						SenseixController.SetSignedIn(!reply.DeviceRegistration.IsTemporaryAccount);
 					} 
 					else 
@@ -133,7 +132,7 @@ namespace Senseix.Message {
 				
 				case Constant.MessageType.ProblemGet:
 					Debug.Log("I got a response from a Problem get Message");
-					Debug.Log ("LENGTH OF THE IMAGE FROM RESPONSE " + reply.ProblemGet.GetProblem(0).Question.Image.Length);
+					//Debug.Log ("LENGTH OF THE IMAGE FROM RESPONSE " + reply.ProblemGet.GetProblem(0).Question.Image.Length);
 					if(reply.HasProblemGet && reply.ProblemGet.IsInitialized) 
 					{
 						ProblemKeeper.ReplaceSeed(reply);

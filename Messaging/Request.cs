@@ -28,7 +28,7 @@ namespace Senseix.Message {
 	public class Request : MonoBehaviour
 	{
         const string ENCRYPTED = "http://";
-        const string SERVER_URL = "192.168.1.17:3000/";
+        const string SERVER_URL = "192.168.1.2:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string Parent_HDR = GENERIC_HDR + "/parents/";
@@ -77,7 +77,16 @@ namespace Senseix.Message {
 			{
 				if (parameters.recvResult.isDone)
 				{
-					HandleResult(parameters.recvResult, parameters.msgType);
+					try
+					{
+						HandleResult(parameters.recvResult, parameters.msgType);
+					}
+					catch (Google.ProtocolBuffers.InvalidProtocolBufferException)
+					{
+						Debug.Log ("A pending request had a protobufs error" +
+						           " so I'm just going to get rid of it." + 
+						           "  What's one request, right?");
+					}
 					removeUsRequests.Add(parameters);
 				}
 			}
@@ -115,7 +124,7 @@ namespace Senseix.Message {
 
 		public static void SyncronousPostRequest(WWW recvResult, ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
 	    {
-			Debug.Log ("Wait for Request:");
+//			Debug.Log ("Wait for Request:");
 			WaitForRequest (recvResult);
 			HandleResult (recvResult, msgType);
 		}
@@ -123,13 +132,18 @@ namespace Senseix.Message {
 		public static void HandleResult(WWW recvResult, Constant.MessageType msgType)
 		{
 			ResponseHeader reply = null;
+			byte[] replyBytes = new byte[0];
 
-			Debug.Log ("Network error checking:");
-			NetworkErrorChecking(recvResult);
-			
-			byte[] replyBytes;
-			replyBytes = recvResult.bytes;
-			Debug.Log ("Recv result is " + recvResult.bytes);
+			if (NetworkErrorChecking(recvResult))
+			{
+				replyBytes = recvResult.bytes;
+				Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
+			}
+			else
+			{
+				Debug.Log ("A message had an error.  These things happen.");
+				SenseixController.SetSessionState (false);
+			}
 			
 			if (replyBytes.Length == 0)
 			{
@@ -137,8 +151,8 @@ namespace Senseix.Message {
 				SenseixController.SetSessionState (false);
 				return;
 			}
+
 			reply = ResponseHeader.ParseFrom (replyBytes);
-			
 			Response.ParseResponse(msgType, ref reply); 
 		}
 
@@ -146,35 +160,36 @@ namespace Senseix.Message {
 		{
 			while(!recvResult.isDone && string.IsNullOrEmpty(recvResult.error))
 			{
-				//display some waiting sign to the user if on the main thread...
+				//display dancing Senseis
 			}
 		}
 
-
-		static public void NetworkErrorChecking(WWW recvResult)
+		/// <summary>
+		/// Returns false for an error, or true for no errors.
+		/// </summary>
+		static public bool NetworkErrorChecking(WWW recvResult)
 		{
 			//Did we receive any response?
 			if (!string.IsNullOrEmpty (recvResult.error))
 			{
+				Debug.LogWarning (recvResult.error);
+				SenseixController.SetSessionState(false);
 				if(recvResult.error.Equals(401))
 				{
-					Debug.Log (recvResult.error);
-					SenseixController.SetSessionState(false);
+					//This is probably a problem with an auth token
 				}
 				else if(recvResult.error.Equals(422))
 				{
-					Debug.Log (recvResult.error);
-					SenseixController.SetSessionState(false);
+					//This is probably a server side error
 				}
-				else //This probably has no Message or we hit a 500...either way
-					//This is a bad place to be in
+				else
 				{
-					Debug.Log (recvResult.error);
-					SenseixController.SetSessionState(false);
-					//		return -1;
+					//This is probably a 500.
+					//This is a bad place in which to be.
 				}
+				return false;
 			}
-			//Maybe set state to up here? Or parse first..hmmm
+			return true;
 		}
 
 		static public void NonblockingPostRequest(PostRequestParameters parameters)
@@ -373,9 +388,9 @@ namespace Senseix.Message {
 			Player.PlayerRegisterWithApplicationRequest.Builder regPlayer = Player.PlayerRegisterWithApplicationRequest.CreateBuilder ();
 			regPlayer.SetPlayerId (Player_id);
 			hdr_request.SetPlayerRegisterWithApplication(regPlayer);
-			Debug.Log(hdr_request.AccessToken);
-			Debug.Log(hdr_request.AuthToken);
-			Debug.Log(hdr_request.PlayerRegisterWithApplication.PlayerId);
+//			Debug.Log(hdr_request.AccessToken);
+//			Debug.Log(hdr_request.AuthToken);
+//			Debug.Log(hdr_request.PlayerRegisterWithApplication.PlayerId);
 			Debug.Log ("register Player going off to " + REGISTER_Player_WITH_GAME_URL);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterPlayerWithApplication, REGISTER_Player_WITH_GAME_URL);
 		}
@@ -395,10 +410,10 @@ namespace Senseix.Message {
 			getProblem.SetPlayerId (Player_id);
 			hdr_request.SetProblemGet (getProblem);
 			Debug.Log ("Get Problems request going off to " + GET_Problem_URL);
-			Debug.Log (hdr_request.AuthToken);
-			Debug.Log (hdr_request.AccessToken);
-			Debug.Log (hdr_request.ProblemGet.ProblemCount);
-			Debug.Log (hdr_request.ProblemGet.PlayerId);
+//			Debug.Log (hdr_request.AuthToken);
+//			Debug.Log (hdr_request.AccessToken);
+//			Debug.Log (hdr_request.ProblemGet.ProblemCount);
+//			Debug.Log (hdr_request.ProblemGet.PlayerId);
 			NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemGet, GET_Problem_URL);
 		}	
 
@@ -406,15 +421,16 @@ namespace Senseix.Message {
 		/// Posts a list of Problems that have been answered or skipped by the Player to the server. This is mainly 
 		/// for internal use/developers should not have to worry about this. 
 		/// </summary>
-		static public void PostProblems (string PlayerId, Queue Problems) 
+		static public void PostProblems (string PlayerId, Queue problems) 
 		{
+			problems = new Queue (problems);
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			Problem.ProblemPostRequest.Builder postProblem = Problem.ProblemPostRequest.CreateBuilder ();
 
-			while (Problems.Count > 0) {
-				Senseix.Message.Problem.ProblemPost.Builder addMeProblem = (Senseix.Message.Problem.ProblemPost.Builder)Problems.Dequeue();
+			while (problems.Count > 0) {
+				Senseix.Message.Problem.ProblemPost.Builder addMeProblem = (Senseix.Message.Problem.ProblemPost.Builder)problems.Dequeue();
 				addMeProblem.SetPlayerId(SenseixController.GetCurrentPlayerID());
 				postProblem.AddProblem (addMeProblem);
 			}
