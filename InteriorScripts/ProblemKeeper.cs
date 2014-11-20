@@ -202,10 +202,9 @@ namespace Senseix {
 
 		static private void CheckAnsweredProblemPush()
 		{
-			if (answeredProblems.Count > PROBLEMS_PER_PULL*PUSH_THRESHOLD)
+			if (answeredProblems.Count > PROBLEMS_PER_PULL*PUSH_THRESHOLD && SenseixController.GetSessionState())
 			{
-				SenseixController.PushProblems(answeredProblems);
-				if (SenseixController.GetSessionState())
+					SenseixController.PushProblems(answeredProblems);
 					answeredProblems.Clear ();
 			}
 		}
