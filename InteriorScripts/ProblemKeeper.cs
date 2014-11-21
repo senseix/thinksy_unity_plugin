@@ -16,7 +16,7 @@ namespace Senseix {
 		//thresholds are when to pull push.  pull or push when
 		//number of answered or waiting Problems drops below
 		//Problems per pull over threshold
-		private const string SEED_FILE_EXTENSION = ".seed";
+		private const string SEED_FILE_EXTENSION = ".bytes";
 		private static bool _onLine = false;
 		public static volatile Queue newProblems = new Queue(); 
 		public static volatile Queue answeredProblems = new Queue();
@@ -24,9 +24,21 @@ namespace Senseix {
 		static public void CopyFailsafeOver()
 		{
 			string failsafeFileName = "failsafe";
-			string failsafeSource = System.IO.Path.Combine (Application.dataPath, "Senseix_unity_plugin/" + failsafeFileName + SEED_FILE_EXTENSION);
 			string failsafeDestination = System.IO.Path.Combine (Application.persistentDataPath, failsafeFileName + SEED_FILE_EXTENSION);
-			System.IO.File.Copy (failsafeSource, failsafeDestination, true);
+
+			TextAsset failsafeAsset = Resources.Load <TextAsset>(failsafeFileName);
+			byte[] failsafeContents = failsafeAsset.bytes;
+
+			try
+			{
+				FileStream newFile = System.IO.File.Create (failsafeDestination);
+				newFile.Close ();
+				System.IO.File.WriteAllBytes(failsafeDestination, failsafeContents);
+			}
+			catch
+			{
+				SenseixPlugin.ShowEmergencyWindow("An error occurred while creating a failsafe seed file in " + failsafeDestination);
+			}
 		}
 
 		static private void GetProblemsFromSeed()
@@ -35,7 +47,7 @@ namespace Senseix {
 			byte [] seedContents = System.IO.File.ReadAllBytes (seedPath);
 			if (seedContents.Length == 0)
 			{
-				SenseixPlugin.ShowEmergencyWindow();
+				SenseixPlugin.ShowEmergencyWindow("The seed file is empty! (" + seedPath + ")");
 				throw new Exception ("The seed file is empty!");
 			}
 			Message.ResponseHeader reply = Message.ResponseHeader.ParseFrom (seedContents);
@@ -54,8 +66,15 @@ namespace Senseix {
 			MemoryStream stream = new MemoryStream ();
 			reply.WriteTo (stream);
 			byte[] replacementBytes = stream.ToArray();
-			FileStream newFile = System.IO.File.Create (PlayerSeedPath ());
-			newFile.Close ();
+			try
+			{
+				FileStream newFile = System.IO.File.Create (PlayerSeedPath ());
+				newFile.Close ();
+			}
+			catch
+			{
+				SenseixPlugin.ShowEmergencyWindow("An error occurred while creating a seedfile in " + PlayerSeedPath());
+			}
 			stream.Close ();
 			System.IO.File.WriteAllBytes (SeedFilePath(), replacementBytes);
 		}
@@ -74,11 +93,11 @@ namespace Senseix {
 			{
 				return playerSeedPath;
 			}
-			string[] files = Directory.GetFiles (Application.persistentDataPath, "*.seed");
+			string[] files = Directory.GetFiles (Application.persistentDataPath, "*" + SEED_FILE_EXTENSION);
 			if (files.Length == 0)
 			{
-				SenseixPlugin.ShowEmergencyWindow();
-				throw new Exception("No seed files found!");
+				SenseixPlugin.ShowEmergencyWindow("No seed files found in " + Application.persistentDataPath);
+				throw new Exception("No seed files found in " + Application.persistentDataPath);
 			}
 			return files[0];
 		}

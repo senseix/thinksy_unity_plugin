@@ -18,16 +18,18 @@ class SenseixPlugin : MonoBehaviour
 	
 	/// <summary>
 	/// Shows a window indicating that something horrible has happened.
-	/// Only use this if something horrible happens.
+	/// Use this if something horrible happens.
 	/// </summary>
-	static public void ShowEmergencyWindow()
+	static public void ShowEmergencyWindow(string additionalMessage)
 	{
-		singletonInstance.ShowThisEmergencyWindow ();
+		singletonInstance.ShowThisEmergencyWindow (additionalMessage);
 	}
-	
-	private void ShowThisEmergencyWindow()
+
+	private void ShowThisEmergencyWindow(string additionalMessage)
 	{
 		emergencyWindow.SetActive (true);
+		UnityEngine.UI.Text emergencyText = emergencyWindow.GetComponentInChildren<UnityEngine.UI.Text> ();
+		emergencyText.text += " " + additionalMessage;
 	}
 	
 	void Awake()
@@ -41,9 +43,10 @@ class SenseixPlugin : MonoBehaviour
 		}
 		singletonInstance = this;
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
+		Debug.Log ("PAST THE COPY FAILSAFE OVER PART");
 		Senseix.SenseixController.InitializeSenseix (developerAccessToken);
 	}
-	
+
 	void Update()
 	{
 		if (!Senseix.SenseixController.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
@@ -240,12 +243,6 @@ class SenseixPlugin : MonoBehaviour
 	/// <returns>The most recent problem image.</returns>
 	public static Texture2D GetMostRecentProblemImage()
 	{
-		//		Texture2D returnImage = new Texture2D(0, 0);
-		//		string exampleText = System.IO.File.ReadAllText (System.IO.Path.Combine (Application.dataPath, "example.proto"));
-		//		string base64string = exampleText;
-		//		byte[] imageBytes = System.Convert.FromBase64String (base64string);
-		//		returnImage.LoadImage (imageBytes);
-		//		return returnImage;
 		return GetMostRecentProblem ().GetQuestion ().GetImage ();
 	}
 }
