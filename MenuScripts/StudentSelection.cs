@@ -42,6 +42,8 @@ namespace Senseix
 
 		public void SetStudent(int studentIndex)
 		{
+			if (availablePlayers.Count == 0)
+				return;
 			currentPlayerIndex = studentIndex % availablePlayers.Count;
 			if (currentPlayerIndex < 0)
 								currentPlayerIndex = availablePlayers.Count + currentPlayerIndex;

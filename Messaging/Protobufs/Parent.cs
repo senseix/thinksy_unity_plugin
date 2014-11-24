@@ -153,8 +153,8 @@ namespace Senseix.Message.Parent {
   public sealed partial class ParentSignOutRequest : pb::GeneratedMessage<ParentSignOutRequest, ParentSignOutRequest.Builder> {
     private ParentSignOutRequest() { }
     private static readonly ParentSignOutRequest defaultInstance = new ParentSignOutRequest().MakeReadOnly();
-    private static readonly string[] _ParentSignOutRequestFieldNames = new string[] { "device_id" };
-    private static readonly uint[] _ParentSignOutRequestFieldTags = new uint[] { 18 };
+    private static readonly string[] _parentSignOutRequestFieldNames = new string[] { "device_id" };
+    private static readonly uint[] _parentSignOutRequestFieldTags = new uint[] { 18 };
     public static ParentSignOutRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -193,7 +193,7 @@ namespace Senseix.Message.Parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _ParentSignOutRequestFieldNames;
+      string[] field_names = _parentSignOutRequestFieldNames;
       if (hasDeviceId) {
         output.WriteString(2, field_names[0], DeviceId);
       }
@@ -352,9 +352,9 @@ namespace Senseix.Message.Parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_ParentSignOutRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_parentSignOutRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _ParentSignOutRequestFieldTags[field_ordinal];
+              tag = _parentSignOutRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -424,8 +424,8 @@ namespace Senseix.Message.Parent {
   public sealed partial class ParentRegistrationRequest : pb::GeneratedMessage<ParentRegistrationRequest, ParentRegistrationRequest.Builder> {
     private ParentRegistrationRequest() { }
     private static readonly ParentRegistrationRequest defaultInstance = new ParentRegistrationRequest().MakeReadOnly();
-    private static readonly string[] _ParentRegistrationRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "name", "password" };
-    private static readonly uint[] _ParentRegistrationRequestFieldTags = new uint[] { 34, 10, 18, 42, 26 };
+    private static readonly string[] _parentRegistrationRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "name", "password" };
+    private static readonly uint[] _parentRegistrationRequestFieldTags = new uint[] { 34, 10, 18, 42, 26 };
     public static ParentRegistrationRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -508,7 +508,7 @@ namespace Senseix.Message.Parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _ParentRegistrationRequestFieldNames;
+      string[] field_names = _parentRegistrationRequestFieldNames;
       if (hasDeviceId) {
         output.WriteString(1, field_names[1], DeviceId);
       }
@@ -703,9 +703,9 @@ namespace Senseix.Message.Parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_ParentRegistrationRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_parentRegistrationRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _ParentRegistrationRequestFieldTags[field_ordinal];
+              tag = _parentRegistrationRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -875,8 +875,8 @@ namespace Senseix.Message.Parent {
   public sealed partial class ParentRegistrationResponse : pb::GeneratedMessage<ParentRegistrationResponse, ParentRegistrationResponse.Builder> {
     private ParentRegistrationResponse() { }
     private static readonly ParentRegistrationResponse defaultInstance = new ParentRegistrationResponse().MakeReadOnly();
-    private static readonly string[] _ParentRegistrationResponseFieldNames = new string[] { "auth_token" };
-    private static readonly uint[] _ParentRegistrationResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _parentRegistrationResponseFieldNames = new string[] { "auth_token" };
+    private static readonly uint[] _parentRegistrationResponseFieldTags = new uint[] { 10 };
     public static ParentRegistrationResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -915,7 +915,7 @@ namespace Senseix.Message.Parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _ParentRegistrationResponseFieldNames;
+      string[] field_names = _parentRegistrationResponseFieldNames;
       if (hasAuthToken) {
         output.WriteString(1, field_names[0], AuthToken);
       }
@@ -1074,9 +1074,9 @@ namespace Senseix.Message.Parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_ParentRegistrationResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_parentRegistrationResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _ParentRegistrationResponseFieldTags[field_ordinal];
+              tag = _parentRegistrationResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -1463,7 +1463,7 @@ namespace Senseix.Message.Parent {
   public sealed partial class DeviceRegistrationResponse : pb::GeneratedMessage<DeviceRegistrationResponse, DeviceRegistrationResponse.Builder> {
     private DeviceRegistrationResponse() { }
     private static readonly DeviceRegistrationResponse defaultInstance = new DeviceRegistrationResponse().MakeReadOnly();
-    private static readonly string[] _deviceRegistrationResponseFieldNames = new string[] { "auth_token", "is_temporary_account", "Player_id" };
+    private static readonly string[] _deviceRegistrationResponseFieldNames = new string[] { "auth_token", "is_temporary_account", "player_id" };
     private static readonly uint[] _deviceRegistrationResponseFieldTags = new uint[] { 26, 16, 10 };
     public static DeviceRegistrationResponse DefaultInstance {
       get { return defaultInstance; }
@@ -1487,12 +1487,12 @@ namespace Senseix.Message.Parent {
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string PlayerId_ = "";
+    private string playerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return PlayerId_; }
+      get { return playerId_; }
     }
     
     public const int IsTemporaryAccountFieldNumber = 2;
@@ -1731,7 +1731,7 @@ namespace Senseix.Message.Parent {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
+              result.hasPlayerId = input.ReadString(ref result.playerId_);
               break;
             }
             case 16: {
@@ -1763,13 +1763,13 @@ namespace Senseix.Message.Parent {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.PlayerId_ = value;
+        result.playerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.PlayerId_ = "";
+        result.playerId_ = "";
         return this;
       }
       
@@ -1823,8 +1823,8 @@ namespace Senseix.Message.Parent {
   public sealed partial class ParentSignInRequest : pb::GeneratedMessage<ParentSignInRequest, ParentSignInRequest.Builder> {
     private ParentSignInRequest() { }
     private static readonly ParentSignInRequest defaultInstance = new ParentSignInRequest().MakeReadOnly();
-    private static readonly string[] _ParentSignInRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "password" };
-    private static readonly uint[] _ParentSignInRequestFieldTags = new uint[] { 26, 34, 10, 18 };
+    private static readonly string[] _parentSignInRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "password" };
+    private static readonly uint[] _parentSignInRequestFieldTags = new uint[] { 26, 34, 10, 18 };
     public static ParentSignInRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1897,7 +1897,7 @@ namespace Senseix.Message.Parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _ParentSignInRequestFieldNames;
+      string[] field_names = _parentSignInRequestFieldNames;
       if (hasEmail) {
         output.WriteString(1, field_names[2], Email);
       }
@@ -2083,9 +2083,9 @@ namespace Senseix.Message.Parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_ParentSignInRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_parentSignInRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _ParentSignInRequestFieldTags[field_ordinal];
+              tag = _parentSignInRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -2230,8 +2230,8 @@ namespace Senseix.Message.Parent {
   public sealed partial class ParentSignInResponse : pb::GeneratedMessage<ParentSignInResponse, ParentSignInResponse.Builder> {
     private ParentSignInResponse() { }
     private static readonly ParentSignInResponse defaultInstance = new ParentSignInResponse().MakeReadOnly();
-    private static readonly string[] _ParentSignInResponseFieldNames = new string[] { "auth_token" };
-    private static readonly uint[] _ParentSignInResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _parentSignInResponseFieldNames = new string[] { "auth_token" };
+    private static readonly uint[] _parentSignInResponseFieldTags = new uint[] { 10 };
     public static ParentSignInResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2270,7 +2270,7 @@ namespace Senseix.Message.Parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _ParentSignInResponseFieldNames;
+      string[] field_names = _parentSignInResponseFieldNames;
       if (hasAuthToken) {
         output.WriteString(1, field_names[0], AuthToken);
       }
@@ -2429,9 +2429,9 @@ namespace Senseix.Message.Parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_ParentSignInResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_parentSignInResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _ParentSignInResponseFieldTags[field_ordinal];
+              tag = _parentSignInResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -2501,8 +2501,8 @@ namespace Senseix.Message.Parent {
   public sealed partial class ParentSignOutResponse : pb::GeneratedMessage<ParentSignOutResponse, ParentSignOutResponse.Builder> {
     private ParentSignOutResponse() { }
     private static readonly ParentSignOutResponse defaultInstance = new ParentSignOutResponse().MakeReadOnly();
-    private static readonly string[] _ParentSignOutResponseFieldNames = new string[] {  };
-    private static readonly uint[] _ParentSignOutResponseFieldTags = new uint[] {  };
+    private static readonly string[] _parentSignOutResponseFieldNames = new string[] {  };
+    private static readonly uint[] _parentSignOutResponseFieldTags = new uint[] {  };
     public static ParentSignOutResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2531,7 +2531,7 @@ namespace Senseix.Message.Parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _ParentSignOutResponseFieldNames;
+      string[] field_names = _parentSignOutResponseFieldNames;
       UnknownFields.WriteTo(output);
     }
     
@@ -2681,9 +2681,9 @@ namespace Senseix.Message.Parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_ParentSignOutResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_parentSignOutResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _ParentSignOutResponseFieldTags[field_ordinal];
+              tag = _parentSignOutResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -2728,8 +2728,8 @@ namespace Senseix.Message.Parent {
   public sealed partial class ParentEditRequest : pb::GeneratedMessage<ParentEditRequest, ParentEditRequest.Builder> {
     private ParentEditRequest() { }
     private static readonly ParentEditRequest defaultInstance = new ParentEditRequest().MakeReadOnly();
-    private static readonly string[] _ParentEditRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "name", "new_password", "password" };
-    private static readonly uint[] _ParentEditRequestFieldTags = new uint[] { 34, 18, 42, 50, 26, 10 };
+    private static readonly string[] _parentEditRequestFieldNames = new string[] { "confirmation_password", "device_id", "email", "name", "new_password", "password" };
+    private static readonly uint[] _parentEditRequestFieldTags = new uint[] { 34, 18, 42, 50, 26, 10 };
     public static ParentEditRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2820,7 +2820,7 @@ namespace Senseix.Message.Parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _ParentEditRequestFieldNames;
+      string[] field_names = _parentEditRequestFieldNames;
       if (hasPassword) {
         output.WriteString(1, field_names[5], Password);
       }
@@ -3024,9 +3024,9 @@ namespace Senseix.Message.Parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_ParentEditRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_parentEditRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _ParentEditRequestFieldTags[field_ordinal];
+              tag = _parentEditRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -3221,8 +3221,8 @@ namespace Senseix.Message.Parent {
   public sealed partial class ParentEditResponse : pb::GeneratedMessage<ParentEditResponse, ParentEditResponse.Builder> {
     private ParentEditResponse() { }
     private static readonly ParentEditResponse defaultInstance = new ParentEditResponse().MakeReadOnly();
-    private static readonly string[] _ParentEditResponseFieldNames = new string[] { "auth_token" };
-    private static readonly uint[] _ParentEditResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _parentEditResponseFieldNames = new string[] { "auth_token" };
+    private static readonly uint[] _parentEditResponseFieldTags = new uint[] { 10 };
     public static ParentEditResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3261,7 +3261,7 @@ namespace Senseix.Message.Parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _ParentEditResponseFieldNames;
+      string[] field_names = _parentEditResponseFieldNames;
       if (hasAuthToken) {
         output.WriteString(1, field_names[0], AuthToken);
       }
@@ -3420,9 +3420,9 @@ namespace Senseix.Message.Parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_ParentEditResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_parentEditResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _ParentEditResponseFieldTags[field_ordinal];
+              tag = _parentEditResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -3492,8 +3492,8 @@ namespace Senseix.Message.Parent {
   public sealed partial class ParentMergeResponse : pb::GeneratedMessage<ParentMergeResponse, ParentMergeResponse.Builder> {
     private ParentMergeResponse() { }
     private static readonly ParentMergeResponse defaultInstance = new ParentMergeResponse().MakeReadOnly();
-    private static readonly string[] _ParentMergeResponseFieldNames = new string[] { "auth_token" };
-    private static readonly uint[] _ParentMergeResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _parentMergeResponseFieldNames = new string[] { "auth_token" };
+    private static readonly uint[] _parentMergeResponseFieldTags = new uint[] { 10 };
     public static ParentMergeResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3533,7 +3533,7 @@ namespace Senseix.Message.Parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _ParentMergeResponseFieldNames;
+      string[] field_names = _parentMergeResponseFieldNames;
       if (hasAuthToken) {
         output.WriteString(1, field_names[0], AuthToken);
       }
@@ -3692,9 +3692,9 @@ namespace Senseix.Message.Parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_ParentMergeResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_parentMergeResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _ParentMergeResponseFieldTags[field_ordinal];
+              tag = _parentMergeResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -3764,8 +3764,8 @@ namespace Senseix.Message.Parent {
   public sealed partial class ParentMergeRequest : pb::GeneratedMessage<ParentMergeRequest, ParentMergeRequest.Builder> {
     private ParentMergeRequest() { }
     private static readonly ParentMergeRequest defaultInstance = new ParentMergeRequest().MakeReadOnly();
-    private static readonly string[] _ParentMergeRequestFieldNames = new string[] { "decision", "device_id", "email", "new_Player_name", "password", "Player_id" };
-    private static readonly uint[] _ParentMergeRequestFieldTags = new uint[] { 32, 26, 18, 50, 10, 42 };
+    private static readonly string[] _parentMergeRequestFieldNames = new string[] { "decision", "device_id", "email", "new_player_name", "password", "player_id" };
+    private static readonly uint[] _parentMergeRequestFieldTags = new uint[] { 32, 26, 18, 50, 10, 42 };
     public static ParentMergeRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3840,12 +3840,12 @@ namespace Senseix.Message.Parent {
     
     public const int PlayerIdFieldNumber = 5;
     private bool hasPlayerId;
-    private string PlayerId_ = "";
+    private string playerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return PlayerId_; }
+      get { return playerId_; }
     }
     
     public const int NewPlayerNameFieldNumber = 6;
@@ -3870,7 +3870,7 @@ namespace Senseix.Message.Parent {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _ParentMergeRequestFieldNames;
+      string[] field_names = _parentMergeRequestFieldNames;
       if (hasPassword) {
         output.WriteString(1, field_names[4], Password);
       }
@@ -4074,9 +4074,9 @@ namespace Senseix.Message.Parent {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_ParentMergeRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_parentMergeRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _ParentMergeRequestFieldTags[field_ordinal];
+              tag = _parentMergeRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -4127,7 +4127,7 @@ namespace Senseix.Message.Parent {
               break;
             }
             case 42: {
-              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
+              result.hasPlayerId = input.ReadString(ref result.playerId_);
               break;
             }
             case 50: {
@@ -4238,13 +4238,13 @@ namespace Senseix.Message.Parent {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.PlayerId_ = value;
+        result.playerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.PlayerId_ = "";
+        result.playerId_ = "";
         return this;
       }
       

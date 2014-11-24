@@ -96,8 +96,8 @@ namespace Senseix.Message.Player {
   public sealed partial class Player : pb::GeneratedMessage<Player, Player.Builder> {
     private Player() { }
     private static readonly Player defaultInstance = new Player().MakeReadOnly();
-    private static readonly string[] _PlayerFieldNames = new string[] { "name", "Player_id" };
-    private static readonly uint[] _PlayerFieldTags = new uint[] { 18, 10 };
+    private static readonly string[] _playerFieldNames = new string[] { "name", "player_id" };
+    private static readonly uint[] _playerFieldTags = new uint[] { 18, 10 };
     public static Player DefaultInstance {
       get { return defaultInstance; }
     }
@@ -120,12 +120,12 @@ namespace Senseix.Message.Player {
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string PlayerId_ = "";
+    private string playerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return PlayerId_; }
+      get { return playerId_; }
     }
     
     public const int NameFieldNumber = 2;
@@ -148,7 +148,7 @@ namespace Senseix.Message.Player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _PlayerFieldNames;
+      string[] field_names = _playerFieldNames;
       if (hasPlayerId) {
         output.WriteString(1, field_names[1], PlayerId);
       }
@@ -316,9 +316,9 @@ namespace Senseix.Message.Player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_PlayerFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_playerFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _PlayerFieldTags[field_ordinal];
+              tag = _playerFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -345,7 +345,7 @@ namespace Senseix.Message.Player {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
+              result.hasPlayerId = input.ReadString(ref result.playerId_);
               break;
             }
             case 18: {
@@ -373,13 +373,13 @@ namespace Senseix.Message.Player {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.PlayerId_ = value;
+        result.playerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.PlayerId_ = "";
+        result.playerId_ = "";
         return this;
       }
       
@@ -413,8 +413,8 @@ namespace Senseix.Message.Player {
   public sealed partial class PlayerCreateRequest : pb::GeneratedMessage<PlayerCreateRequest, PlayerCreateRequest.Builder> {
     private PlayerCreateRequest() { }
     private static readonly PlayerCreateRequest defaultInstance = new PlayerCreateRequest().MakeReadOnly();
-    private static readonly string[] _PlayerCreateRequestFieldNames = new string[] { "name" };
-    private static readonly uint[] _PlayerCreateRequestFieldTags = new uint[] { 10 };
+    private static readonly string[] _playerCreateRequestFieldNames = new string[] { "name" };
+    private static readonly uint[] _playerCreateRequestFieldTags = new uint[] { 10 };
     public static PlayerCreateRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -454,7 +454,7 @@ namespace Senseix.Message.Player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _PlayerCreateRequestFieldNames;
+      string[] field_names = _playerCreateRequestFieldNames;
       if (hasName) {
         output.WriteString(1, field_names[0], Name);
       }
@@ -613,9 +613,9 @@ namespace Senseix.Message.Player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_PlayerCreateRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_playerCreateRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _PlayerCreateRequestFieldTags[field_ordinal];
+              tag = _playerCreateRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -685,8 +685,8 @@ namespace Senseix.Message.Player {
   public sealed partial class PlayerCreateResponse : pb::GeneratedMessage<PlayerCreateResponse, PlayerCreateResponse.Builder> {
     private PlayerCreateResponse() { }
     private static readonly PlayerCreateResponse defaultInstance = new PlayerCreateResponse().MakeReadOnly();
-    private static readonly string[] _PlayerCreateResponseFieldNames = new string[] { "Player_id" };
-    private static readonly uint[] _PlayerCreateResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _playerCreateResponseFieldNames = new string[] { "player_id" };
+    private static readonly uint[] _playerCreateResponseFieldTags = new uint[] { 10 };
     public static PlayerCreateResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -709,12 +709,12 @@ namespace Senseix.Message.Player {
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string PlayerId_ = "";
+    private string playerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return PlayerId_; }
+      get { return playerId_; }
     }
     
     public override bool IsInitialized {
@@ -726,7 +726,7 @@ namespace Senseix.Message.Player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _PlayerCreateResponseFieldNames;
+      string[] field_names = _playerCreateResponseFieldNames;
       if (hasPlayerId) {
         output.WriteString(1, field_names[0], PlayerId);
       }
@@ -885,9 +885,9 @@ namespace Senseix.Message.Player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_PlayerCreateResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_playerCreateResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _PlayerCreateResponseFieldTags[field_ordinal];
+              tag = _playerCreateResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -914,7 +914,7 @@ namespace Senseix.Message.Player {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
+              result.hasPlayerId = input.ReadString(ref result.playerId_);
               break;
             }
           }
@@ -938,13 +938,13 @@ namespace Senseix.Message.Player {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.PlayerId_ = value;
+        result.playerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.PlayerId_ = "";
+        result.playerId_ = "";
         return this;
       }
     }
@@ -957,8 +957,8 @@ namespace Senseix.Message.Player {
   public sealed partial class PlayerListRequest : pb::GeneratedMessage<PlayerListRequest, PlayerListRequest.Builder> {
     private PlayerListRequest() { }
     private static readonly PlayerListRequest defaultInstance = new PlayerListRequest().MakeReadOnly();
-    private static readonly string[] _PlayerListRequestFieldNames = new string[] {  };
-    private static readonly uint[] _PlayerListRequestFieldTags = new uint[] {  };
+    private static readonly string[] _playerListRequestFieldNames = new string[] {  };
+    private static readonly uint[] _playerListRequestFieldTags = new uint[] {  };
     public static PlayerListRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -987,7 +987,7 @@ namespace Senseix.Message.Player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _PlayerListRequestFieldNames;
+      string[] field_names = _playerListRequestFieldNames;
       UnknownFields.WriteTo(output);
     }
     
@@ -1137,9 +1137,9 @@ namespace Senseix.Message.Player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_PlayerListRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_playerListRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _PlayerListRequestFieldTags[field_ordinal];
+              tag = _playerListRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -1184,8 +1184,8 @@ namespace Senseix.Message.Player {
   public sealed partial class PlayerListResponse : pb::GeneratedMessage<PlayerListResponse, PlayerListResponse.Builder> {
     private PlayerListResponse() { }
     private static readonly PlayerListResponse defaultInstance = new PlayerListResponse().MakeReadOnly();
-    private static readonly string[] _PlayerListResponseFieldNames = new string[] { "Player" };
-    private static readonly uint[] _PlayerListResponseFieldTags = new uint[] { 10 };
+    private static readonly string[] _playerListResponseFieldNames = new string[] { "player" };
+    private static readonly uint[] _playerListResponseFieldTags = new uint[] { 10 };
     public static PlayerListResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1207,15 +1207,15 @@ namespace Senseix.Message.Player {
     }
     
     public const int PlayerFieldNumber = 1;
-    private pbc::PopsicleList<global::Senseix.Message.Player.Player> Player_ = new pbc::PopsicleList<global::Senseix.Message.Player.Player>();
+    private pbc::PopsicleList<global::Senseix.Message.Player.Player> player_ = new pbc::PopsicleList<global::Senseix.Message.Player.Player>();
     public scg::IList<global::Senseix.Message.Player.Player> PlayerList {
-      get { return Player_; }
+      get { return player_; }
     }
     public int PlayerCount {
-      get { return Player_.Count; }
+      get { return player_.Count; }
     }
     public global::Senseix.Message.Player.Player GetPlayer(int index) {
-      return Player_[index];
+      return player_[index];
     }
     
     public override bool IsInitialized {
@@ -1229,9 +1229,9 @@ namespace Senseix.Message.Player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _PlayerListResponseFieldNames;
-      if (Player_.Count > 0) {
-        output.WriteMessageArray(1, field_names[0], Player_);
+      string[] field_names = _playerListResponseFieldNames;
+      if (player_.Count > 0) {
+        output.WriteMessageArray(1, field_names[0], player_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -1283,7 +1283,7 @@ namespace Senseix.Message.Player {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private PlayerListResponse MakeReadOnly() {
-      Player_.MakeReadOnly();
+      player_.MakeReadOnly();
       return this;
     }
     
@@ -1371,8 +1371,8 @@ namespace Senseix.Message.Player {
       public override Builder MergeFrom(PlayerListResponse other) {
         if (other == global::Senseix.Message.Player.PlayerListResponse.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.Player_.Count != 0) {
-          result.Player_.Add(other.Player_);
+        if (other.player_.Count != 0) {
+          result.player_.Add(other.player_);
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -1389,9 +1389,9 @@ namespace Senseix.Message.Player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_PlayerListResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_playerListResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _PlayerListResponseFieldTags[field_ordinal];
+              tag = _playerListResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -1418,7 +1418,7 @@ namespace Senseix.Message.Player {
               break;
             }
             case 10: {
-              input.ReadMessageArray(tag, field_name, result.Player_, global::Senseix.Message.Player.Player.DefaultInstance, extensionRegistry);
+              input.ReadMessageArray(tag, field_name, result.player_, global::Senseix.Message.Player.Player.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -1432,7 +1432,7 @@ namespace Senseix.Message.Player {
       
       
       public pbc::IPopsicleList<global::Senseix.Message.Player.Player> PlayerList {
-        get { return PrepareBuilder().Player_; }
+        get { return PrepareBuilder().player_; }
       }
       public int PlayerCount {
         get { return result.PlayerCount; }
@@ -1443,35 +1443,35 @@ namespace Senseix.Message.Player {
       public Builder SetPlayer(int index, global::Senseix.Message.Player.Player value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.Player_[index] = value;
+        result.player_[index] = value;
         return this;
       }
       public Builder SetPlayer(int index, global::Senseix.Message.Player.Player.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.Player_[index] = builderForValue.Build();
+        result.player_[index] = builderForValue.Build();
         return this;
       }
       public Builder AddPlayer(global::Senseix.Message.Player.Player value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.Player_.Add(value);
+        result.player_.Add(value);
         return this;
       }
       public Builder AddPlayer(global::Senseix.Message.Player.Player.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.Player_.Add(builderForValue.Build());
+        result.player_.Add(builderForValue.Build());
         return this;
       }
       public Builder AddRangePlayer(scg::IEnumerable<global::Senseix.Message.Player.Player> values) {
         PrepareBuilder();
-        result.Player_.Add(values);
+        result.player_.Add(values);
         return this;
       }
       public Builder ClearPlayer() {
         PrepareBuilder();
-        result.Player_.Clear();
+        result.player_.Clear();
         return this;
       }
     }
@@ -1484,8 +1484,8 @@ namespace Senseix.Message.Player {
   public sealed partial class PlayerRegisterWithApplicationRequest : pb::GeneratedMessage<PlayerRegisterWithApplicationRequest, PlayerRegisterWithApplicationRequest.Builder> {
     private PlayerRegisterWithApplicationRequest() { }
     private static readonly PlayerRegisterWithApplicationRequest defaultInstance = new PlayerRegisterWithApplicationRequest().MakeReadOnly();
-    private static readonly string[] _PlayerRegisterWithApplicationRequestFieldNames = new string[] { "Player_id" };
-    private static readonly uint[] _PlayerRegisterWithApplicationRequestFieldTags = new uint[] { 10 };
+    private static readonly string[] _playerRegisterWithApplicationRequestFieldNames = new string[] { "player_id" };
+    private static readonly uint[] _playerRegisterWithApplicationRequestFieldTags = new uint[] { 10 };
     public static PlayerRegisterWithApplicationRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1508,12 +1508,12 @@ namespace Senseix.Message.Player {
     
     public const int PlayerIdFieldNumber = 1;
     private bool hasPlayerId;
-    private string PlayerId_ = "";
+    private string playerId_ = "";
     public bool HasPlayerId {
       get { return hasPlayerId; }
     }
     public string PlayerId {
-      get { return PlayerId_; }
+      get { return playerId_; }
     }
     
     public override bool IsInitialized {
@@ -1525,7 +1525,7 @@ namespace Senseix.Message.Player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _PlayerRegisterWithApplicationRequestFieldNames;
+      string[] field_names = _playerRegisterWithApplicationRequestFieldNames;
       if (hasPlayerId) {
         output.WriteString(1, field_names[0], PlayerId);
       }
@@ -1684,9 +1684,9 @@ namespace Senseix.Message.Player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_PlayerRegisterWithApplicationRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_playerRegisterWithApplicationRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _PlayerRegisterWithApplicationRequestFieldTags[field_ordinal];
+              tag = _playerRegisterWithApplicationRequestFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -1713,7 +1713,7 @@ namespace Senseix.Message.Player {
               break;
             }
             case 10: {
-              result.hasPlayerId = input.ReadString(ref result.PlayerId_);
+              result.hasPlayerId = input.ReadString(ref result.playerId_);
               break;
             }
           }
@@ -1737,13 +1737,13 @@ namespace Senseix.Message.Player {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasPlayerId = true;
-        result.PlayerId_ = value;
+        result.playerId_ = value;
         return this;
       }
       public Builder ClearPlayerId() {
         PrepareBuilder();
         result.hasPlayerId = false;
-        result.PlayerId_ = "";
+        result.playerId_ = "";
         return this;
       }
     }
@@ -1756,8 +1756,8 @@ namespace Senseix.Message.Player {
   public sealed partial class PlayerRegisterWithApplicationResponse : pb::GeneratedMessage<PlayerRegisterWithApplicationResponse, PlayerRegisterWithApplicationResponse.Builder> {
     private PlayerRegisterWithApplicationResponse() { }
     private static readonly PlayerRegisterWithApplicationResponse defaultInstance = new PlayerRegisterWithApplicationResponse().MakeReadOnly();
-    private static readonly string[] _PlayerRegisterWithApplicationResponseFieldNames = new string[] {  };
-    private static readonly uint[] _PlayerRegisterWithApplicationResponseFieldTags = new uint[] {  };
+    private static readonly string[] _playerRegisterWithApplicationResponseFieldNames = new string[] {  };
+    private static readonly uint[] _playerRegisterWithApplicationResponseFieldTags = new uint[] {  };
     public static PlayerRegisterWithApplicationResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1786,7 +1786,7 @@ namespace Senseix.Message.Player {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _PlayerRegisterWithApplicationResponseFieldNames;
+      string[] field_names = _playerRegisterWithApplicationResponseFieldNames;
       UnknownFields.WriteTo(output);
     }
     
@@ -1936,9 +1936,9 @@ namespace Senseix.Message.Player {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_PlayerRegisterWithApplicationResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_playerRegisterWithApplicationResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _PlayerRegisterWithApplicationResponseFieldTags[field_ordinal];
+              tag = _playerRegisterWithApplicationResponseFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);

@@ -161,6 +161,10 @@ namespace Senseix {
 
 		static public IList<Message.Leaderboard.PlayerData> GetCurrentLeaderboard()
 		{
+			if (currentLeaderboard == null)
+			{
+				return new Message.Leaderboard.PlayerData[0];
+			}
 			return currentLeaderboard;
 		}
 

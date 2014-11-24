@@ -180,9 +180,9 @@ class SenseixPlugin : MonoBehaviour
 	/// The same as GetMostRecentProblem ().GetNextCorrectAnswerPart ();
 	/// </summary>
 	/// <returns>The next correct answer part.</returns>
-	public static ProblemPart GetNextCorrectAnswerPart()
+	public static ProblemPart GetCurrentCorrectAnswerPart()
 	{
-		return GetMostRecentProblem ().GetNextCorrectAnswerPart ();
+		return GetMostRecentProblem ().GetCurrentCorrectAnswerPart ();
 	}
 	
 	/// <summary>

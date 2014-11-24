@@ -48,7 +48,7 @@ public class Problem
 	/// given so far.
 	/// </summary>
 	/// <returns>The next correct answer part.</returns>
-	public ProblemPart GetNextCorrectAnswerPart()
+	public ProblemPart GetCurrentCorrectAnswerPart()
 	{
 		int answersGivenSoFar = givenAnswer.AnswerPartsCount ();
 		if (answersGivenSoFar >= GetCorrectAnswer().AnswerPartsCount())
