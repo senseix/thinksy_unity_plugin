@@ -28,7 +28,7 @@ namespace Senseix.Message {
 	public class Request : MonoBehaviour
 	{
         const string ENCRYPTED = "http://";
-        const string SERVER_URL = "192.168.1.2:3000/";
+        const string SERVER_URL = "192.168.1.16:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string Parent_HDR = GENERIC_HDR + "/parents/";
@@ -158,9 +158,13 @@ namespace Senseix.Message {
 
 		static private void WaitForRequest(WWW recvResult)
 		{
+			if (!SenseixController.GetSessionState())
+			{
+				return;
+			}
 			while(!recvResult.isDone && string.IsNullOrEmpty(recvResult.error))
 			{
-				//display dancing Senseis
+				//display dancing ninjas
 			}
 		}
 

@@ -112,6 +112,7 @@ namespace Senseix {
 
 
 		public static bool InitializeSenseix (string newAccessToken) { 
+			SetSessionState (true);
 			deviceID = SystemInfo.deviceUniqueIdentifier;
 
 			accessToken = newAccessToken; 

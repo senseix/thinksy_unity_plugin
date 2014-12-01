@@ -14,7 +14,7 @@ class SenseixPlugin : MonoBehaviour
 	private static SenseixPlugin singletonInstance;
 	private static Problem mostRecentProblem;
 	
-	private const int reconnectRetryInterval = 3000;
+	private const int reconnectRetryInterval = 9000;
 	
 	/// <summary>
 	/// Shows a window indicating that something horrible has happened.
