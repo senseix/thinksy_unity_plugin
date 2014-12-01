@@ -83,15 +83,24 @@ public class Problem
 		} //find all the distractors
 		
 		ProblemPart[] resultDistractors = new ProblemPart[howManyDistractors];
-		System.Random random = new System.Random ();
 		for (int i = 0; i < howManyDistractors; i++)
 		{
-			int randomDistractorIndex = random.Next (allDistractors.Count);
+			int randomDistractorIndex = UnityEngine.Random.Range (0, allDistractors.Count);
 			resultDistractors[i] = (ProblemPart)allDistractors[randomDistractorIndex];
 			allDistractors.RemoveAt(randomDistractorIndex);
 		} //take random ones
 		
 		return resultDistractors;
+	}
+
+	/// <summary>
+	/// Gets one distractor.
+	/// Distractors are wrong answers which can be presented as options to the player.
+	/// </summary>
+	/// <returns>The distractor.</returns>
+	public ProblemPart GetDistractor()
+	{
+		return GetDistractors (1) [0];
 	}
 	
 	/// <summary>

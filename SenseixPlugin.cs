@@ -133,6 +133,16 @@ class SenseixPlugin : MonoBehaviour
 	{
 		return GetMostRecentProblem ().GetDistractors (howManyDistractors);
 	}
+
+	/// <summary>
+	/// The same an GetMostRecentProblemDistractors, but gets only one distractor.
+	/// Distractors are wrong answers which can be presented as options to the player.
+	/// </summary>
+	/// <returns>The most recent problem distractor.</returns>
+	public static ProblemPart GetMostRecentProblemDistractor()
+	{
+		return GetMostRecentProblem ().GetDistractor ();
+	}
 	
 	/// <summary>
 	/// Adds the given answer part to most recent problem.  This will be considered 
