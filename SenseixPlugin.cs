@@ -34,16 +34,18 @@ class SenseixPlugin : MonoBehaviour
 	
 	void Awake()
 	{	
-		Debug.Log ("HENRY. INITIALIZING.");
 		if (singletonInstance != null)
 		{
-			throw new Exception("Something is creating a SenseixPlugin, but there is already an " +
+			Destroy(gameObject);
+			Debug.LogWarning ("Something is creating a SenseixPlugin, but there is already an " +
 			                    "instance in existance.  There should only be one SenseixPlugin component at any " +
-			                    "time.  You can access its features through the class's static methods.");
+			                    "time.  You can access its features \nthrough the class's static methods.  The SenseiX" +
+			                  	"prefab will automatically persist between scenes.  The object this message is coming" +
+			                  	"from is redundant.  I'm going to delete myself.");
 		}
 		singletonInstance = this;
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
-		Debug.Log ("PAST THE COPY FAILSAFE OVER PART");
+		DontDestroyOnLoad (gameObject);
 		Senseix.SenseixController.InitializeSenseix (developerAccessToken);
 	}
 
@@ -84,8 +86,12 @@ class SenseixPlugin : MonoBehaviour
 	/// </summary>
 	public static Problem NextProblem()
 	{
+		if (AllAnswerPartsGiven() && !GetMostRecentProblem().HasBeenSubmitted())
+		{
+			SubmitMostRecentProblemAnswer();
+		}
 		Senseix.Message.Problem.ProblemData.Builder protobufsProblemBuilder = Senseix.SenseixController.PullProblem ();
-		Debug.Log ("Next problem!  Problem ID: " + protobufsProblemBuilder.Uuid);
+		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblemBuilder.Uuid);
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
 		Senseix.QuestionDisplay.Update ();
 		return mostRecentProblem;
@@ -111,6 +117,14 @@ class SenseixPlugin : MonoBehaviour
 	public static Answer GetMostRecentGivenAnswer()
 	{
 		return GetMostRecentProblem ().GetGivenAnswer ();
+	}
+
+	/// <summary>
+	/// Clears all the answers given so far, allowing the player to try again.
+	/// </summary>
+	public static void ClearMostRecentGivenAnswerParts()
+	{
+		GetMostRecentGivenAnswer().ClearAnswerParts();
 	}
 	
 	/// <summary>
@@ -223,6 +237,7 @@ class SenseixPlugin : MonoBehaviour
 	/// </summary>
 	public static bool AllAnswerPartsGiven()
 	{
+		if (mostRecentProblem == null) return false;
 		return GetMostRecentProblem().AnswersGivenSoFar() == GetCurrentCorrectAnswer().AnswerPartsCount();
 	}
 	

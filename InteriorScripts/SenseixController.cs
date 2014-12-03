@@ -25,7 +25,7 @@ namespace Senseix {
 			ArrayList returnList = new ArrayList ();
 			if (currentPlayerList == null)
 			{
-				Debug.Log("no current Player list.  maybe not connected.");
+				//Debug.Log("no current Player list.  maybe not connected.");
 				return returnList;
 			}
 

@@ -22,7 +22,10 @@ public class Problem
 	{
 		if (!submitted)
 		{
-			Debug.Log("A problem which had never been submitted died.  That is sad. :(");
+			Debug.Log("A problem which had never been submitted died.  That is sad. :( " +
+			          "If you are seeing this message a lot, it might mean that you are " +
+			          "using more than one problem at a time,\n and not submitting every " +
+			          "problem you use.  For best results, remember to use Problem.SubmitAnswer()");
 		}
 	}
 	
@@ -197,7 +200,7 @@ public class Problem
 	{
 		return GetQuestion ().GetHTML ();
 	}
-	
+
 	/// <summary>
 	/// Gets the question image.
 	/// The same as GetQuestion ().GetImage ()
@@ -206,5 +209,10 @@ public class Problem
 	public Texture2D GetQuestionImage()
 	{
 		return GetQuestion ().GetImage ();
+	}
+
+	public bool HasBeenSubmitted()
+	{
+		return submitted;
 	}
 }

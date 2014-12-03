@@ -83,7 +83,7 @@ namespace Senseix.Message {
 					}
 					catch (Google.ProtocolBuffers.InvalidProtocolBufferException)
 					{
-						Debug.Log ("A pending request had a protobufs error" +
+						Debug.LogWarning ("A pending SenseiX request had a protobufs error" +
 						           " so I'm just going to get rid of it." + 
 						           "  What's one request, right?");
 					}
@@ -125,6 +125,10 @@ namespace Senseix.Message {
 		public static void SyncronousPostRequest(WWW recvResult, ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
 	    {
 //			Debug.Log ("Wait for Request:");
+			if (!SenseixController.GetSessionState())
+			{
+				return;
+			}
 			WaitForRequest (recvResult);
 			HandleResult (recvResult, msgType);
 		}
@@ -137,17 +141,18 @@ namespace Senseix.Message {
 			if (NetworkErrorChecking(recvResult))
 			{
 				replyBytes = recvResult.bytes;
-				Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
+				//Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
 			}
 			else
 			{
-				Debug.Log ("A message had an error.  These things happen.");
+				Debug.LogWarning ("A SenseiX message had an error.  " + 
+				                  "Most likely internet connectivity issues.");
 				SenseixController.SetSessionState (false);
 			}
 			
 			if (replyBytes.Length == 0)
 			{
-				Debug.Log("Bytes empty");
+				//Debug.Log("Bytes empty");
 				SenseixController.SetSessionState (false);
 				return;
 			}
@@ -158,10 +163,6 @@ namespace Senseix.Message {
 
 		static private void WaitForRequest(WWW recvResult)
 		{
-			if (!SenseixController.GetSessionState())
-			{
-				return;
-			}
 			while(!recvResult.isDone && string.IsNullOrEmpty(recvResult.error))
 			{
 				//display dancing ninjas
@@ -226,7 +227,7 @@ namespace Senseix.Message {
 			newDevice.SetDeviceId (SenseixController.GetDeviceID());
 
 			hdr_request.SetDeviceRegistration(newDevice);
-			Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
+			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterDevice, REGISTER_DEVICE_URL);
 		}
 
@@ -236,8 +237,6 @@ namespace Senseix.Message {
 		/// </summary>
 		static public void VerifyGame(string verificationCode)
 		{
-			Debug.Log ("henry's first Message...");
-
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 
@@ -246,10 +245,10 @@ namespace Senseix.Message {
 			newVerification.SetUdid (SenseixController.GetDeviceID ());
 
 			hdr_request.SetGameVerification(newVerification);
-			Debug.Log ("going off to " + VERIFY_GAME_URL);
-			Debug.Log (hdr_request.GameVerification.Udid);
-			Debug.Log (hdr_request.GameVerification.VerificationToken);
-			Debug.Log (hdr_request.AccessToken);
+			//Debug.Log ("going off to " + VERIFY_GAME_URL);
+			//Debug.Log (hdr_request.GameVerification.Udid);
+			//Debug.Log (hdr_request.GameVerification.VerificationToken);
+			//Debug.Log (hdr_request.AccessToken);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.GameVerification, VERIFY_GAME_URL);
 		}
 		
@@ -260,7 +259,7 @@ namespace Senseix.Message {
 		static public void RegisterParent (string email,string name,string password)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			Parent.ParentRegistrationRequest.Builder newParent = Parent.ParentRegistrationRequest.CreateBuilder ();
+			Senseix.Message.Parent.ParentRegistrationRequest.Builder newParent = Parent.ParentRegistrationRequest.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			newParent.SetDeviceId(SenseixController.GetDeviceID());
 			newParent.SetEmail(email);
@@ -304,7 +303,7 @@ namespace Senseix.Message {
 			ParentSignOutBuilder.SetDeviceId (SenseixController.GetDeviceID ());
 			hdr_request.SetParentSignOut(ParentSignOutBuilder);
 
-			Debug.Log ("sign out Parent going off to " + SIGN_OUT_Parent_URL);
+			//Debug.Log ("sign out Parent going off to " + SIGN_OUT_Parent_URL);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.SignOutParent, SIGN_OUT_Parent_URL);
 		}
 		   
@@ -376,7 +375,7 @@ namespace Senseix.Message {
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
 			Player.PlayerListRequest.Builder listPlayer = Player.PlayerListRequest.CreateBuilder ();
 			hdr_request.SetPlayerList (listPlayer);
-			Debug.Log ("list Players request going off to " + LIST_Player_URL);
+			//Debug.Log ("list Players request going off to " + LIST_Player_URL);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.ListPlayer, LIST_Player_URL);
 		}
 		/// <summary>
@@ -395,7 +394,7 @@ namespace Senseix.Message {
 //			Debug.Log(hdr_request.AccessToken);
 //			Debug.Log(hdr_request.AuthToken);
 //			Debug.Log(hdr_request.PlayerRegisterWithApplication.PlayerId);
-			Debug.Log ("register Player going off to " + REGISTER_Player_WITH_GAME_URL);
+//			Debug.Log ("register Player going off to " + REGISTER_Player_WITH_GAME_URL);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterPlayerWithApplication, REGISTER_Player_WITH_GAME_URL);
 		}
 
@@ -413,7 +412,7 @@ namespace Senseix.Message {
 			getProblem.SetProblemCount (count);
 			getProblem.SetPlayerId (Player_id);
 			hdr_request.SetProblemGet (getProblem);
-			Debug.Log ("Get Problems request going off to " + GET_Problem_URL);
+//			Debug.Log ("Get Problems request going off to " + GET_Problem_URL);
 //			Debug.Log (hdr_request.AuthToken);
 //			Debug.Log (hdr_request.AccessToken);
 //			Debug.Log (hdr_request.ProblemGet.ProblemCount);
@@ -440,7 +439,7 @@ namespace Senseix.Message {
 			}
 			hdr_request.SetProblemPost (postProblem);
 				
-			Debug.Log ("Post Problems request going off to " + POST_Problem_URL);
+//			Debug.Log ("Post Problems request going off to " + POST_Problem_URL);
 			NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemPost, POST_Problem_URL);
 		}	
 		/// <summary>
@@ -456,7 +455,7 @@ namespace Senseix.Message {
 			lbPage.SetSortBy (sortBy);
 			lbPage.SetPageSize (pageSize);
 			hdr_request.SetPage (lbPage);
-			Debug.Log ("Leaderboard page request going off to " + GET_Leaderboard_PAGE_URL);
+//			Debug.Log ("Leaderboard page request going off to " + GET_Leaderboard_PAGE_URL);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.LeaderboardPage, GET_Leaderboard_PAGE_URL);
 		}
 		/// <summary>

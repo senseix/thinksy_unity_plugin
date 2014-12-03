@@ -216,7 +216,7 @@ namespace Senseix {
 		{
 			answeredProblems.Enqueue (ProblemBuilder);
 			CheckAnsweredProblemPush ();
-			Debug.Log (answeredProblems.Count + " answered problems are waiting to be set free (posted).");
+			//Debug.Log (answeredProblems.Count + " answered problems are waiting to be set free (posted).");
 		}
 
 		static private void CheckAnsweredProblemPush()
@@ -235,7 +235,7 @@ namespace Senseix {
 			if (GetNewProblemCount() < PROBLEMS_PER_PULL*PULL_THRESHOLD || GetNewProblemCount() < 1) 
 			{
 				GetProblems (); 
-				Debug.Log ("pulling more Problems");
+				//Debug.Log ("pulling more Problems");
 			}
 		}
 
