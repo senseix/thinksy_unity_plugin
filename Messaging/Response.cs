@@ -18,6 +18,8 @@ namespace Senseix.Message {
 	{
 		static public bool ParseResponse(Constant.MessageType type, ref ResponseHeader reply)
 		{
+			//Debug.Log ("parse response status: " + reply.Status);
+
 			if (reply == null) 
 			{
 				throw new Exception ("Reply was returned as null...this should not be possible");
@@ -29,6 +31,7 @@ namespace Senseix.Message {
 				return false; 
 			}
 
+			Debug.Log (reply.Message);
 			if (reply.Status == Constant.Status.FAILURE) 
 			{
 				Debug.Log (reply.Message);
@@ -42,7 +45,7 @@ namespace Senseix.Message {
 					{	
 						SenseixController.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
 						SenseixController.SetSessionState(true);
-						Debug.Log("I come from the City of Compton, and am I a temporary account? " + reply.DeviceRegistration.IsTemporaryAccount);
+						//Debug.Log("I come from the City of Compton, and am I a temporary account? " + reply.DeviceRegistration.IsTemporaryAccount);
 						SenseixController.SetSignedIn(!reply.DeviceRegistration.IsTemporaryAccount);
 					} 
 					else 
@@ -111,27 +114,27 @@ namespace Senseix.Message {
 
 				case Constant.MessageType.CreatePlayer:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a create Player Message");
+//					Debug.Log("I got a response from a create Player Message");
 					break;
 
 				case Constant.MessageType.ListPlayer:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a list Player Message");
+//					Debug.Log("I got a response from a list Player Message");
 					SenseixController.SetCurrentPlayerList(reply.PlayerList);
 					break;
 
 				case Constant.MessageType.RegisterPlayerWithApplication:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a register Player Message");
+//					Debug.Log("I got a response from a register Player Message");
 					break;
 
 				case Constant.MessageType.ProblemPost:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a Problem post Message");
+//					Debug.Log("I got a response from a Problem post Message");
 					break;
 				
 				case Constant.MessageType.ProblemGet:
-					Debug.Log("I got a response from a Problem get Message");
+//					Debug.Log("I got a response from a Problem get Message");
 					//Debug.Log ("LENGTH OF THE IMAGE FROM RESPONSE " + reply.ProblemGet.GetProblem(0).Question.Image.Length);
 					if(reply.HasProblemGet && reply.ProblemGet.IsInitialized) 
 					{
@@ -144,19 +147,19 @@ namespace Senseix.Message {
 					break;
 
 				case Constant.MessageType.LeaderboardPage:
-					Debug.Log ("I recieved a Leaderboard page response");
+//					Debug.Log ("I recieved a Leaderboard page response");
 					Debug.Log(reply.Page.PlayerList);
 					SenseixController.SetLeaderboardPlayers(reply.Page.PlayerList);
 					break;
 
 				case Constant.MessageType.PlayerScore:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a Player score Message");
+//					Debug.Log("I got a response from a Player score Message");
 					break;
 
 				case Constant.MessageType.PlayerRank:
 					SenseixController.SetSessionState(true);
-					Debug.Log("I got a response from a Player rank Message");
+//					Debug.Log("I got a response from a Player rank Message");
 					break;
 
 				default:

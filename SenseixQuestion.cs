@@ -37,7 +37,7 @@ public class Question
 	{
 		Texture2D returnImage = new Texture2D(0, 0);
 		//Debug.Log ("LENGTH OF THE IMAGE BYTES FIELD " + question.Image.Length);
-		byte[] imageBytes = Senseix.SenseixController.DecodeServerBytes (question.Image);
+		byte[] imageBytes = question.Image.ToByteArray();//Senseix.SenseixController.DecodeServerBytes (question.Image);
 		//string base64 = question.Image.ToStringUtf8 ();
 		//byte[] imageBytes = System.Convert.FromBase64String (base64);
 		//Debug.Log ("BYTES AS HEX: " + System.BitConverter.ToString(imageBytes));
