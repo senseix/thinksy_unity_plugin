@@ -193,7 +193,7 @@ namespace Senseix {
 
 			//get correct answer IDs
 			Message.Problem.AnswerIdentifier.Builder correctIDListBuilder = Message.Problem.AnswerIdentifier.CreateBuilder ();
-			foreach(Senseix.Message.Problem.Atom atom in answeredProblemData.Answer.AtomList)
+			foreach(Senseix.Message.Atom.Atom atom in answeredProblemData.Answer.AtomList)
 			{
 				correctIDListBuilder.AddUuid(atom.Uuid);
 			}

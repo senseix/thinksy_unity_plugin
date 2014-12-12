@@ -80,7 +80,7 @@ public class Problem
 		ArrayList allDistractors = new ArrayList();
 		for (int i = 0; i < availableDistractors; i++)
 		{
-			Senseix.Message.Problem.Atom distractorAtom = protobufsProblemBuilder.Distractor.AtomList[i];
+			Senseix.Message.Atom.Atom distractorAtom = protobufsProblemBuilder.Distractor.AtomList[i];
 			ProblemPart distractor = new ProblemPart(distractorAtom);
 			allDistractors.Add(distractor);
 		} //find all the distractors

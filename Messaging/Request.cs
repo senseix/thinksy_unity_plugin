@@ -28,7 +28,7 @@ namespace Senseix.Message {
 	public class Request : MonoBehaviour
 	{
         const string ENCRYPTED = "http://";
-		const string SERVER_URL = "54.165.219.172/";
+		const string SERVER_URL = "192.168.1.8:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string Parent_HDR = GENERIC_HDR + "/parents/";
@@ -137,7 +137,6 @@ namespace Senseix.Message {
 		{
 			ResponseHeader reply = null;
 			byte[] replyBytes = new byte[0];
-
 			if (NetworkErrorChecking(recvResult))
 			{
 				//happy

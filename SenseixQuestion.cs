@@ -7,7 +7,7 @@ using System.Text;
 public class Question
 {
 	private Senseix.Message.Problem.Question question;
-	private IList<Senseix.Message.Problem.Atom> atomList;
+	private IList<Senseix.Message.Atom.Atom> atomList;
 	
 	/// <summary>
 	/// Don't use this constructor unless you know what you're doing.  You can get the question from a
@@ -48,7 +48,7 @@ public class Question
 	
 	public System.Collections.IEnumerator GetEnumerator()
 	{
-		foreach(Senseix.Message.Problem.Atom atom in atomList)
+		foreach(Senseix.Message.Atom.Atom atom in atomList)
 		{
 			yield return new ProblemPart(atom);
 		}

@@ -6,7 +6,7 @@ using System.Text;
 
 public class ProblemPart
 {
-	Senseix.Message.Problem.Atom atom;
+	Senseix.Message.Atom.Atom atom;
 	
 	/// <summary>
 	/// You can get problem parts from questions, answers, and distractors.
@@ -18,7 +18,7 @@ public class ProblemPart
 	/// 
 	/// But you can't do that yet, unless you really know what you're doing.
 	/// </summary>
-	public ProblemPart (Senseix.Message.Problem.Atom newAtom)
+	public ProblemPart (Senseix.Message.Atom.Atom newAtom)
 	{
 		atom = newAtom;
 	}
@@ -39,7 +39,7 @@ public class ProblemPart
 	/// <returns><c>true</c> if this instance is string; otherwise, <c>false</c>.</returns>
 	public bool IsString()
 	{
-		return atom.Type == Senseix.Message.Problem.Atom.Types.Type.TEXT;
+		return atom.Type == Senseix.Message.Atom.Atom.Types.Type.TEXT;
 	}
 	
 	/// <summary>
@@ -49,7 +49,7 @@ public class ProblemPart
 	/// <returns><c>true</c> if this instance is image; otherwise, <c>false</c>.</returns>
 	public bool IsImage()
 	{
-		return atom.Type == Senseix.Message.Problem.Atom.Types.Type.IMAGE;
+		return atom.Type == Senseix.Message.Atom.Atom.Types.Type.IMAGE;
 	}
 	
 	/// <summary>
