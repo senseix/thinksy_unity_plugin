@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 class SenseixPlugin : MonoBehaviour
-{
-	
+{	
 	public string developerAccessToken; //this is your developer access token obtained from 
 	//the Senseix website.
 	public GameObject emergencyWindow;
@@ -15,6 +14,7 @@ class SenseixPlugin : MonoBehaviour
 	private static Problem mostRecentProblem;
 	
 	private const int reconnectRetryInterval = 9000;
+	private const int encouragementGetInterval = 3001;
 	
 	/// <summary>
 	/// Shows a window indicating that something horrible has happened.
@@ -56,7 +56,10 @@ class SenseixPlugin : MonoBehaviour
 			Debug.Log ("Attempting to reconnect...");
 			Senseix.SenseixController.InitializeSenseix(developerAccessToken);
 		}
-		
+		if (Senseix.SenseixController.GetSessionState() && Time.frameCount%encouragementGetInterval == 0)
+		{
+			Senseix.SenseixController.GetEncouragements();
+		}
 		Senseix.Message.Request.CheckResults ();
 	}
 	

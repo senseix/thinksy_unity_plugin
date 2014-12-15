@@ -33,7 +33,7 @@ public class ProblemPart
 	}
 	
 	/// <summary>
-	/// If this problem part is representing using a string, this will return true.
+	/// If this problem part is represented using a string, this will return true.
 	/// Otherwise, this will return false.
 	/// </summary>
 	/// <returns><c>true</c> if this instance is string; otherwise, <c>false</c>.</returns>
@@ -43,13 +43,49 @@ public class ProblemPart
 	}
 	
 	/// <summary>
-	/// If this problem part is representing using an image, this will return true.
+	/// If this problem part is represented using an image, this will return true.
 	/// Otherwise, this will return false.
 	/// </summary>
 	/// <returns><c>true</c> if this instance is image; otherwise, <c>false</c>.</returns>
 	public bool IsImage()
 	{
 		return atom.Type == Senseix.Message.Atom.Atom.Types.Type.IMAGE;
+	}
+
+	/// <summary>
+	/// If this problem can be represented as an integer, this will return true.
+	/// Otherwise, this will return false.
+	/// </summary>
+	/// <returns><c>true</c> if this instance is integer; otherwise, <c>false</c>.</returns>
+	public bool IsInteger()
+	{
+		if (!IsString ())
+			return false;
+		try
+		{
+			UnsafeGetInteger();
+		}
+		catch
+		{
+			return false;
+		}
+		return true;
+	}
+
+	private int UnsafeGetInteger()
+	{
+		return Convert.ToInt32(GetString());
+	}
+
+	/// <summary>
+	/// If this is represented by an integer, gets the integer.
+	/// You probably want to check IsInteger before calling this.
+	/// </summary>
+	public int GetInteger()
+	{
+		if (!IsInteger())
+			throw new Exception ("This QuestionPart is not an integer.  Be sure to check IsInteger before GetInteger.");
+		return UnsafeGetInteger ();
 	}
 	
 	/// <summary>
@@ -60,7 +96,7 @@ public class ProblemPart
 	{
 		if (!IsString())
 			throw new Exception ("This QuestionPart is not a string.  Be sure to check IsString before GetString.");
-		byte[] decodedBytes = Senseix.SenseixController.DecodeServerBytes (atom.Data);
+		byte[] decodedBytes = atom.Data.ToByteArray ();//Senseix.SenseixController.DecodeServerBytes (atom.Data);
 		return Encoding.ASCII.GetString (decodedBytes);
 	}
 	
@@ -73,7 +109,7 @@ public class ProblemPart
 		if (!IsImage())
 			throw new Exception ("This QuestionPart is not an image.  Be sure to check IsImage before GetImage.");
 		Texture2D returnImage = new Texture2D(0, 0);
-		byte[] imageBytes = Senseix.SenseixController.DecodeServerBytes (atom.Data);
+		byte[] imageBytes = atom.Data.ToByteArray ();//Senseix.SenseixController.DecodeServerBytes (atom.Data);
 		returnImage.LoadImage (imageBytes);
 		return returnImage;
 	}

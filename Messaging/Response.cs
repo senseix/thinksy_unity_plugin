@@ -162,6 +162,11 @@ namespace Senseix.Message {
 //					Debug.Log("I got a response from a Player rank Message");
 					break;
 
+				case Senseix.Message.Constant.MessageType.EncouragementGet:
+					SenseixController.SetSessionState(true);
+					//Debug.Log("I got a response from an encouragement get Message");
+					break;
+
 				default:
 					throw new Exception("Response.cs recieved a MessageType that it didn't recognize.");
 			}

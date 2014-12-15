@@ -31,10 +31,10 @@ namespace Senseix.Message {
 		const string SERVER_URL = "192.168.1.8:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
-		const string Parent_HDR = GENERIC_HDR + "/parents/";
-		const string Player_HDR = GENERIC_HDR + "/players/";
-		const string Problem_HDR = GENERIC_HDR + "/problems/";
-		const string Leaderboard_HDR = GENERIC_HDR + "/applications/leaderboard/";
+		const string PARENT_HDR = GENERIC_HDR + "/parents/";
+		const string PLAYER_HDR = GENERIC_HDR + "/players/";
+		const string PROBLEM_HDR = GENERIC_HDR + "/problems/";
+		const string LEADERBOARD_HDR = GENERIC_HDR + "/applications/leaderboard/";
 
 		//External urls
 		public const string WEBSITE_URL = ENCRYPTED + SERVER_URL;
@@ -42,27 +42,28 @@ namespace Senseix.Message {
 		public const string ENROLL_GAME_URL = DEVICES_WEBSITE_HDR + "new";
 
 		//Requests related to Parent management 
-		const string REGISTER_DEVICE_URL = Parent_HDR + "create_device";
-		const string VERIFY_GAME_URL = Parent_HDR + "game_verification";
-		const string REGISTER_Parent_URL = Parent_HDR + "register";
-		const string EDIT_Parent_URL = Parent_HDR + "edit";
-		const string SIGN_IN_Parent_URL = Parent_HDR + "sign_in";
-		const string SIGN_OUT_Parent_URL = Parent_HDR + "sign_out";
-		const string MERGE_Parent_URL = Parent_HDR + "merge";
+		const string REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
+		const string VERIFY_GAME_URL = PARENT_HDR + "game_verification";
+		const string REGISTER_PARENT_URL = PARENT_HDR + "register";
+		const string EDIT_PARENT_URL = PARENT_HDR + "edit";
+		const string SIGN_IN_PARENT_URL = PARENT_HDR + "sign_in";
+		const string SIGN_OUT_PARENT_URL = PARENT_HDR + "sign_out";
+		const string MERGE_PARENT_URL = PARENT_HDR + "merge";
 
 		//Requests related to Player management
-		const string CREATE_Player_URL = Player_HDR + "create";
-		const string LIST_Player_URL = Player_HDR + "list_players";
-		const string REGISTER_Player_WITH_GAME_URL = Player_HDR + "register_player_with_game";
+		const string CREATE_PLAYER_URL = PLAYER_HDR + "create";
+		const string LIST_PLAYER_URL = PLAYER_HDR + "list_players";
+		const string REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";
+		const string GET_ENCOURAGEMENT_URL = PLAYER_HDR + "get_encouragements";
 
 		//Requests related to Problems
-		const string GET_Problem_URL = Problem_HDR + "index";
-		const string POST_Problem_URL = Problem_HDR + "update";
+		const string GET_PROBLEM_URL = PROBLEM_HDR + "index";
+		const string POST_PROBLEM_URL = PROBLEM_HDR + "update";
 
 		//Requests related to Leaderboards
-		const string GET_Leaderboard_PAGE_URL = Leaderboard_HDR + "page";
-		const string GET_Player_RANK_URL = Leaderboard_HDR + "player";
-		const string UPDATE_Player_SCORE_URL = Leaderboard_HDR + "update_player_score";
+		const string GET_LEADERBOARD_PAGE_URL = LEADERBOARD_HDR + "page";
+		const string GET_PLAYER_RANK_URL = LEADERBOARD_HDR + "player";
+		const string UPDATE_PLAYER_SCORE_URL = LEADERBOARD_HDR + "update_player_score";
 
 		public static ArrayList activeRequests = new ArrayList();
 
@@ -268,7 +269,7 @@ namespace Senseix.Message {
 			newParent.SetPassword(password);
 			hdr_request.SetParentRegistration(newParent);		
 
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterParent, REGISTER_Parent_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterParent, REGISTER_PARENT_URL);
 		}
 
 		/// <summary>
@@ -285,7 +286,7 @@ namespace Senseix.Message {
 			signInParent.SetPassword(password);
 			hdr_request.SetParentSignIn(signInParent);
 
-			SyncronousPostRequest (ref hdr_request,  Constant.MessageType.SignInParent, SIGN_IN_Parent_URL);	
+			SyncronousPostRequest (ref hdr_request,  Constant.MessageType.SignInParent, SIGN_IN_PARENT_URL);	
 		}
 
 		
@@ -304,7 +305,7 @@ namespace Senseix.Message {
 			hdr_request.SetParentSignOut(ParentSignOutBuilder);
 
 			//Debug.Log ("sign out Parent going off to " + SIGN_OUT_Parent_URL);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.SignOutParent, SIGN_OUT_Parent_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.SignOutParent, SIGN_OUT_PARENT_URL);
 		}
 		   
 		/// <summary>
@@ -323,7 +324,7 @@ namespace Senseix.Message {
 			editParent.SetNewPassword(new_password);
 			editParent.SetName(name);
 			hdr_request.SetParentEdit(editParent);      
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.EditParent, EDIT_Parent_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.EditParent, EDIT_PARENT_URL);
 		}
 
 		/// <summary>
@@ -345,7 +346,7 @@ namespace Senseix.Message {
 			mergeParent.SetDecision (decision);
 			hdr_request.SetParentMerge (mergeParent);
 
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.MergeParent, MERGE_Parent_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.MergeParent, MERGE_PARENT_URL);
 		}
 
 
@@ -361,7 +362,7 @@ namespace Senseix.Message {
 			Player.PlayerCreateRequest.Builder createPlayer = Player.PlayerCreateRequest.CreateBuilder ();
 			createPlayer.SetName (name);
 			hdr_request.SetPlayerCreate (createPlayer);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.CreatePlayer, CREATE_Player_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.CreatePlayer, CREATE_PLAYER_URL);
 		}
 
 		/// <summary>
@@ -376,7 +377,7 @@ namespace Senseix.Message {
 			Player.PlayerListRequest.Builder listPlayer = Player.PlayerListRequest.CreateBuilder ();
 			hdr_request.SetPlayerList (listPlayer);
 			//Debug.Log ("list Players request going off to " + LIST_Player_URL);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.ListPlayer, LIST_Player_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.ListPlayer, LIST_PLAYER_URL);
 		}
 		/// <summary>
 		/// We have an explicit call to register a Player with a game, this should be called each time a new Player
@@ -395,7 +396,7 @@ namespace Senseix.Message {
 //			Debug.Log(hdr_request.AuthToken);
 //			Debug.Log(hdr_request.PlayerRegisterWithApplication.PlayerId);
 //			Debug.Log ("register Player going off to " + REGISTER_Player_WITH_GAME_URL);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterPlayerWithApplication, REGISTER_Player_WITH_GAME_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterPlayerWithApplication, REGISTER_PLAYER_WITH_GAME_URL);
 		}
 
 	
@@ -417,7 +418,18 @@ namespace Senseix.Message {
 //			Debug.Log (hdr_request.AccessToken);
 //			Debug.Log (hdr_request.ProblemGet.ProblemCount);
 //			Debug.Log (hdr_request.ProblemGet.PlayerId);
-			NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemGet, GET_Problem_URL);
+			NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemGet, GET_PROBLEM_URL);
+		}	
+
+		static public void GetEncouragements (string Player_id) 
+		{
+			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
+			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
+			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			Player.EncouragementGetRequest.Builder getEncouragements = Player.EncouragementGetRequest.CreateBuilder ();
+			getEncouragements.SetPlayerId (Player_id);
+			hdr_request.SetEncouragementGet (getEncouragements);
+			NonblockingPostRequest (ref hdr_request, Constant.MessageType.EncouragementGet, GET_ENCOURAGEMENT_URL);
 		}	
 
 		/// <summary>
@@ -440,7 +452,7 @@ namespace Senseix.Message {
 			hdr_request.SetProblemPost (postProblem);
 				
 //			Debug.Log ("Post Problems request going off to " + POST_Problem_URL);
-			NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemPost, POST_Problem_URL);
+			NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemPost, POST_PROBLEM_URL);
 		}	
 		/// <summary>
 		/// Returns a page from the Leaderboard with the request parameters, by default 25 entries are 
@@ -456,7 +468,7 @@ namespace Senseix.Message {
 			lbPage.SetPageSize (pageSize);
 			hdr_request.SetPage (lbPage);
 //			Debug.Log ("Leaderboard page request going off to " + GET_Leaderboard_PAGE_URL);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.LeaderboardPage, GET_Leaderboard_PAGE_URL);
+			SyncronousPostRequest (ref hdr_request, Constant.MessageType.LeaderboardPage, GET_LEADERBOARD_PAGE_URL);
 		}
 		/// <summary>
 		/// Pushes a Players score to the Leaderboard, this is dependent on the developer to take care of what
@@ -471,7 +483,7 @@ namespace Senseix.Message {
 			lbScore.SetPlayerScore (score);
 
 			hdr_request.SetPlayerScore(lbScore);
-			SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerScore, UPDATE_Player_SCORE_URL);
+			SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerScore, UPDATE_PLAYER_SCORE_URL);
 		}
 
 		/// <summary>
@@ -490,7 +502,7 @@ namespace Senseix.Message {
 			rank.SetSortBy(sortBy);
 		
 			hdr_request.SetPlayerRank(rank);
-			SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerRank, GET_Player_RANK_URL);
+			SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerRank, GET_PLAYER_RANK_URL);
 			
 		}
 	
