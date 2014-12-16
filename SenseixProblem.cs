@@ -149,7 +149,7 @@ public class Problem
 	/// </summary>
 	public bool CheckAnswer(Answer answer)
 	{
-		return Senseix.SenseixController.CheckAnswer (protobufsProblemBuilder, answer);
+		return Senseix.SenseixSession.CheckAnswer (protobufsProblemBuilder, answer);
 	}
 	
 	/// <summary>
@@ -159,8 +159,8 @@ public class Problem
 	/// <returns>Whether or not the answer is correct</returns>
 	public bool SubmitAnswer()
 	{
-		bool correct = Senseix.SenseixController.CheckAnswer (protobufsProblemBuilder, GetGivenAnswer());
-		Senseix.SenseixController.SubmitAnswer (protobufsProblemBuilder, GetGivenAnswer(), correct);
+		bool correct = Senseix.SenseixSession.CheckAnswer (protobufsProblemBuilder, GetGivenAnswer());
+		Senseix.SenseixSession.SubmitAnswer (protobufsProblemBuilder, GetGivenAnswer(), correct);
 		submitted = true;
 		return correct;
 	}

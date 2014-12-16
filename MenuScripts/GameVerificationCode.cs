@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -28,7 +28,7 @@ namespace Senseix
 		{
 			string verificationCode = GetRandomSixDigitHexNumber();
 			codeText.text = verificationCode;
-			SenseixController.VerifyGame (verificationCode);
+			SenseixSession.VerifyGame (verificationCode);
 		}
 		
 		public string GetRandomSixDigitHexNumber()

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
@@ -53,8 +53,8 @@ namespace Senseix
 
 		public void Refresh()
 		{
-			SenseixController.PullLeaderboard (currentPage, (uint)PlayersPerPage);
-			IList<Message.Leaderboard.PlayerData> leaders = SenseixController.GetCurrentLeaderboard ();
+			SenseixSession.PullLeaderboard (currentPage, (uint)PlayersPerPage);
+			IList<Message.Leaderboard.PlayerData> leaders = SenseixSession.GetCurrentLeaderboard ();
 
 			Text thisText = gameObject.GetComponent<Text> ();
 			thisText.text = "";

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -47,7 +47,7 @@ namespace Senseix
 			currentPlayerIndex = studentIndex % availablePlayers.Count;
 			if (currentPlayerIndex < 0)
 								currentPlayerIndex = availablePlayers.Count + currentPlayerIndex;
-			SenseixController.SelectPlayer (GetCurrentPlayer ());
+			SenseixSession.SelectPlayer (GetCurrentPlayer ());
 			SetName ();
 		}
 
@@ -65,8 +65,8 @@ namespace Senseix
 
 		public void PullAvailablePlayers()
 		{
-			SenseixController.ListPlayers ();
-			availablePlayers = SenseixController.GetCurrentPlayerList ();
+			SenseixSession.ListPlayers ();
+			availablePlayers = SenseixSession.GetCurrentPlayerList ();
 		}
 	}
 }

@@ -22,7 +22,7 @@ namespace Senseix
 		}
 
 		void OnEnable() {
-			if (Senseix.SenseixController.IsSignedIn())
+			if (Senseix.SenseixSession.IsSignedIn())
 			{
 				buttonText.text = "Sign out";
 			}
@@ -34,7 +34,7 @@ namespace Senseix
 
 		public void SignInClicked ()
 		{
-			if (Senseix.SenseixController.IsSignedIn())
+			if (Senseix.SenseixSession.IsSignedIn())
 			{
 				SignOut();
 			}
@@ -47,7 +47,7 @@ namespace Senseix
 
 		private void SignOut()
 		{
-			SenseixController.SignOutParent ();
+			SenseixSession.SignOutParent ();
 		}
 	}
 }

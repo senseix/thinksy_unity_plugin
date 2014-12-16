@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace sensei
@@ -18,7 +18,7 @@ namespace sensei
 		
 		// Update is called once per frame
 		void Update () {
-			warningText.SetActive (!Senseix.SenseixController.GetSessionState ());
+			warningText.SetActive (!Senseix.SenseixSession.GetSessionState ());
 		}
 	}
 }

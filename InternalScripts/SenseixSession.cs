@@ -9,13 +9,14 @@ using System.ComponentModel;
 
 namespace Senseix { 
 
-	static class SenseixController {
+	static class SenseixSession 
+	{
+		private const int ACCESS_TOKEN_LENGTH = 64;
+
 		private static bool inSession = false;
 		private static volatile string accessToken = "";
-		private static volatile string deviceID;
 		private static bool isSignedIn = false;
-		public static volatile string authToken; 
-		public const int ACCESS_TOKEN_LENGTH = 64;
+		private static string authToken; 
 		private static IList<Message.Leaderboard.PlayerData> currentLeaderboard;
 		private static Message.Player.PlayerListResponse currentPlayerList;
 		private static Message.Player.Player currentPlayer;
@@ -74,7 +75,7 @@ namespace Senseix {
 		}
 		static private int CheckAccessToken()
 		{
-			if (accessToken.Length != ACCESS_TOKEN_LENGTH) 
+			if (accessToken.Length != ACCESS_TOKEN_LENGTH)
 				return -1;
 			return 0;
 		}
@@ -84,7 +85,7 @@ namespace Senseix {
 		}
 		static public string GetDeviceID()
 		{
-			return deviceID;
+			return SystemInfo.deviceUniqueIdentifier;
 		}
 		static public string GetAuthToken()
 		{
@@ -113,7 +114,6 @@ namespace Senseix {
 
 		public static bool InitializeSenseix (string newAccessToken) { 
 			SetSessionState (true);
-			deviceID = SystemInfo.deviceUniqueIdentifier;
 
 			accessToken = newAccessToken; 
 			if (CheckAccessToken() == -1) {

@@ -81,7 +81,7 @@ namespace Senseix {
 
 		static public string PlayerSeedPath()
 		{
-			string PlayerName = SenseixController.GetCurrentPlayerID ();
+			string PlayerName = SenseixSession.GetCurrentPlayerID ();
 			string playerSeedPath = System.IO.Path.Combine (Application.persistentDataPath, PlayerName + SEED_FILE_EXTENSION);
 			return playerSeedPath;
 		}
@@ -152,14 +152,14 @@ namespace Senseix {
 		{
 			if (_onLine)
 			{
-				Message.Request.GetProblems (SenseixController.GetCurrentPlayerID(), PROBLEMS_PER_PULL);
+				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), PROBLEMS_PER_PULL);
 			}
 			GetProblemsFromSeed();
 		}
 		static public void PushServerProblems () 
 		{ 
 			Debug.Log ("PUSH SERVER PROBLEMS");
-			Message.Request.PostProblems (SenseixController.GetCurrentPlayerID(), answeredProblems);
+			Message.Request.PostProblems (SenseixSession.GetCurrentPlayerID(), answeredProblems);
 		}
 
 		static public Senseix.Message.Problem.ProblemData.Builder GetProblem()
@@ -221,9 +221,9 @@ namespace Senseix {
 
 		static private void CheckAnsweredProblemPush()
 		{
-			if (answeredProblems.Count > PROBLEMS_PER_PULL*PUSH_THRESHOLD && SenseixController.GetSessionState())
+			if (answeredProblems.Count > PROBLEMS_PER_PULL*PUSH_THRESHOLD && SenseixSession.GetSessionState())
 			{
-					SenseixController.PushProblems(answeredProblems);
+					SenseixSession.PushProblems(answeredProblems);
 					answeredProblems.Clear ();
 			}
 		}

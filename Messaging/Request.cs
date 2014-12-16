@@ -1,10 +1,3 @@
-// ------------------------------------------------------------------------------
-//Responsible for passing Messages to and receiving from the server. 
-//We sacrifice some overlap of code here for readibility for the 
-//end user. 
-//In general, any Messages related to authentication/user management
-//are done syncronously, everything to do with updating/pulling 
-//Problems is done on a separate thread. 
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,9 +6,8 @@ using System.Text;
 using System.IO;
 using System.Threading;
 
-namespace Senseix.Message {
-	//API URLS
-	//api-staging.Senseix.com
+namespace Senseix.Message 
+{
 
 	public struct PostRequestParameters
 	{
@@ -27,6 +19,8 @@ namespace Senseix.Message {
 
 	public class Request : MonoBehaviour
 	{
+		//API URLS
+		//api-staging.Senseix.com
         const string ENCRYPTED = "http://";
 		const string SERVER_URL = "192.168.1.15:3000/";
 		const string API_VERSION = "v1";
@@ -69,7 +63,7 @@ namespace Senseix.Message {
 
 		public static void CheckResults()
 		{
-			if (!SenseixController.GetSessionState ())
+			if (!SenseixSession.GetSessionState ())
 				return;
 
 			ArrayList removeUsRequests = new ArrayList ();
@@ -126,7 +120,7 @@ namespace Senseix.Message {
 		public static void SyncronousPostRequest(WWW recvResult, ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
 	    {
 //			Debug.Log ("Wait for Request:");
-			if (!SenseixController.GetSessionState())
+			if (!SenseixSession.GetSessionState())
 			{
 				return;
 			}
@@ -148,13 +142,13 @@ namespace Senseix.Message {
 			{
 				Debug.LogWarning ("A SenseiX message had an error.  " + 
 				                  "Most likely internet connectivity issues.");
-				SenseixController.SetSessionState (false);
+				SenseixSession.SetSessionState (false);
 			}
 			
 			if (replyBytes.Length == 0)
 			{
 				//Debug.Log("Bytes empty");
-				SenseixController.SetSessionState (false);
+				SenseixSession.SetSessionState (false);
 				return;
 			}
 
@@ -179,7 +173,7 @@ namespace Senseix.Message {
 			if (!string.IsNullOrEmpty (recvResult.error))
 			{
 				Debug.LogWarning (recvResult.error);
-				SenseixController.SetSessionState(false);
+				SenseixSession.SetSessionState(false);
 				if(recvResult.error.Equals(401))
 				{
 					//This is probably a problem with an auth token
@@ -221,11 +215,11 @@ namespace Senseix.Message {
 		static public void RegisterDevice(string deviceNameInformation)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 
 			Parent.DeviceRegistrationRequest.Builder newDevice = Parent.DeviceRegistrationRequest.CreateBuilder ();
 			newDevice.SetInformation (deviceNameInformation);
-			newDevice.SetDeviceId (SenseixController.GetDeviceID());
+			newDevice.SetDeviceId (SenseixSession.GetDeviceID());
 
 			hdr_request.SetDeviceRegistration(newDevice);
 			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
@@ -239,11 +233,11 @@ namespace Senseix.Message {
 		static public void VerifyGame(string verificationCode)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 
 			Parent.GameVerificationRequest.Builder newVerification = Parent.GameVerificationRequest.CreateBuilder ();
 			newVerification.SetVerificationToken (verificationCode);
-			newVerification.SetUdid (SenseixController.GetDeviceID ());
+			newVerification.SetUdid (SenseixSession.GetDeviceID ());
 
 			hdr_request.SetGameVerification(newVerification);
 			//Debug.Log ("going off to " + VERIFY_GAME_URL);
@@ -261,8 +255,8 @@ namespace Senseix.Message {
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			Senseix.Message.Parent.ParentRegistrationRequest.Builder newParent = Parent.ParentRegistrationRequest.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			newParent.SetDeviceId(SenseixController.GetDeviceID());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
+			newParent.SetDeviceId(SenseixSession.GetDeviceID());
 			newParent.SetEmail(email);
 			newParent.SetConfirmationPassword(password);
 			newParent.SetName(name);
@@ -280,8 +274,8 @@ namespace Senseix.Message {
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			Parent.ParentSignInRequest.Builder signInParent = Parent.ParentSignInRequest.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			signInParent.SetDeviceId(SenseixController.GetDeviceID());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
+			signInParent.SetDeviceId(SenseixSession.GetDeviceID());
 			signInParent.SetEmail(email);
 			signInParent.SetPassword(password);
 			hdr_request.SetParentSignIn(signInParent);
@@ -297,11 +291,11 @@ namespace Senseix.Message {
 		static public void SignOutParent()
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			hdr_request.SetAuthToken(SenseixController.GetAuthToken ());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
+			hdr_request.SetAuthToken(SenseixSession.GetAuthToken ());
 
 			Senseix.Message.Parent.ParentSignOutRequest.Builder ParentSignOutBuilder = Parent.ParentSignOutRequest.CreateBuilder ();
-			ParentSignOutBuilder.SetDeviceId (SenseixController.GetDeviceID ());
+			ParentSignOutBuilder.SetDeviceId (SenseixSession.GetDeviceID ());
 			hdr_request.SetParentSignOut(ParentSignOutBuilder);
 
 			//Debug.Log ("sign out Parent going off to " + SIGN_OUT_Parent_URL);
@@ -315,10 +309,10 @@ namespace Senseix.Message {
 		static public void ParentEditProfile (string email,string name,string password, string new_password, string confirmation_password)
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
+			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
 			Parent.ParentEditRequest.Builder editParent = Parent.ParentEditRequest.CreateBuilder();
-			editParent.SetDeviceId(SenseixController.GetDeviceID());
+			editParent.SetDeviceId(SenseixSession.GetDeviceID());
 			editParent.SetEmail(email);
 			editParent.SetPassword (password);
 			editParent.SetNewPassword(new_password);
@@ -335,8 +329,8 @@ namespace Senseix.Message {
 		static public void ParentAccntResolution (string email, string password, Parent.ParentMergeRequest.Types.Decision decision, string Player_id, string name) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixController.GetAccessToken());
-			hdr_request.SetAccessToken (SenseixController.GetDeviceID());
+			hdr_request.SetAuthToken(SenseixSession.GetAccessToken());
+			hdr_request.SetAccessToken (SenseixSession.GetDeviceID());
 			Parent.ParentMergeRequest.Builder mergeParent = Parent.ParentMergeRequest.CreateBuilder();
 
 			mergeParent.SetNewPlayerName (name);
@@ -357,8 +351,8 @@ namespace Senseix.Message {
 		static public void CreatePlayer (string name) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
-			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
+			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
 			Player.PlayerCreateRequest.Builder createPlayer = Player.PlayerCreateRequest.CreateBuilder ();
 			createPlayer.SetName (name);
 			hdr_request.SetPlayerCreate (createPlayer);
@@ -373,8 +367,8 @@ namespace Senseix.Message {
 		{
 			//Debug.Log ("Auth Token: " + SenseixController.GetAuthToken ());
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			Player.PlayerListRequest.Builder listPlayer = Player.PlayerListRequest.CreateBuilder ();
 			hdr_request.SetPlayerList (listPlayer);
 			//Debug.Log ("list Players request going off to " + LIST_Player_URL);
@@ -388,8 +382,8 @@ namespace Senseix.Message {
 		static public void RegisterPlayer (string Player_id) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			Player.PlayerRegisterWithApplicationRequest.Builder regPlayer = Player.PlayerRegisterWithApplicationRequest.CreateBuilder ();
 			regPlayer.SetPlayerId (Player_id);
 			hdr_request.SetPlayerRegisterWithApplication(regPlayer);
@@ -408,8 +402,8 @@ namespace Senseix.Message {
 		static public void GetProblems (string Player_id, UInt32 count) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			Problem.ProblemGetRequest.Builder getProblem = Problem.ProblemGetRequest.CreateBuilder ();
 			getProblem.SetProblemCount (count);
 			getProblem.SetPlayerId (Player_id);
@@ -425,8 +419,8 @@ namespace Senseix.Message {
 		static public void GetEncouragements (string Player_id) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			Player.EncouragementGetRequest.Builder getEncouragements = Player.EncouragementGetRequest.CreateBuilder ();
 			getEncouragements.SetPlayerId (Player_id);
 			hdr_request.SetEncouragementGet (getEncouragements);
@@ -441,13 +435,13 @@ namespace Senseix.Message {
 		{
 			problems = new Queue (problems);
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			Problem.ProblemPostRequest.Builder postProblem = Problem.ProblemPostRequest.CreateBuilder ();
 
 			while (problems.Count > 0) {
 				Senseix.Message.Problem.ProblemPost.Builder addMeProblem = (Senseix.Message.Problem.ProblemPost.Builder)problems.Dequeue();
-				addMeProblem.SetPlayerId(SenseixController.GetCurrentPlayerID());
+				addMeProblem.SetPlayerId(SenseixSession.GetCurrentPlayerID());
 				postProblem.AddProblem (addMeProblem);
 			}
 			hdr_request.SetProblemPost (postProblem);
@@ -462,7 +456,7 @@ namespace Senseix.Message {
 		static public void LeaderboardPage (UInt32 pageNumber = 1, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
 		{
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			Leaderboard.PageRequest.Builder lbPage = Leaderboard.PageRequest.CreateBuilder ();
 			lbPage.SetPage (pageNumber);
 			lbPage.SetSortBy (sortBy);
@@ -479,7 +473,7 @@ namespace Senseix.Message {
 	    {
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			Leaderboard.UpdatePlayerScoreRequest.Builder lbScore = Leaderboard.UpdatePlayerScoreRequest.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			lbScore.SetPlayerId(PlayerId);
 			lbScore.SetPlayerScore (score);
 
@@ -496,10 +490,10 @@ namespace Senseix.Message {
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 	
 		    Leaderboard.PlayerRankRequest.Builder rank = Leaderboard.PlayerRankRequest.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixController.GetAccessToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			rank.SetCount (surroundingUsers);	
 			rank.SetPageSize (pageSize);
-			rank.SetPlayerId(SenseixController.GetCurrentPlayerID());
+			rank.SetPlayerId(SenseixSession.GetCurrentPlayerID());
 			rank.SetSortBy(sortBy);
 		
 			hdr_request.SetPlayerRank(rank);

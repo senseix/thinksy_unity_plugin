@@ -44,21 +44,21 @@ namespace Senseix.Message {
 					if (reply.HasDeviceRegistration && reply.DeviceRegistration.IsInitialized) 
 					{	
 						Debug.Log("save auth token.");
-						SenseixController.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
-						SenseixController.SetSessionState(true);
+						SenseixSession.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
+						SenseixSession.SetSessionState(true);
 						//Debug.Log("I come from the City of Compton, and am I a temporary account? " + reply.DeviceRegistration.IsTemporaryAccount);
-						SenseixController.SetSignedIn(!reply.DeviceRegistration.IsTemporaryAccount);
+						SenseixSession.SetSignedIn(!reply.DeviceRegistration.IsTemporaryAccount);
 					} 
 					else 
 					{
-						SenseixController.SetSessionState(false);
+						SenseixSession.SetSessionState(false);
 						Debug.Log("Can't find key from result");
 						return false;
 					}
 					break;
 
 				case Constant.MessageType.GameVerification:
-					SenseixController.SetSessionState(true);
+					SenseixSession.SetSessionState(true);
 					Debug.Log("I got a response from my game verification Message");
 					break;
 				
@@ -69,11 +69,11 @@ namespace Senseix.Message {
 					}
 					if(reply.HasParentRegistration && reply.ParentRegistration.IsInitialized) 
 					{
-						SenseixController.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);
+						SenseixSession.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);
 					} 
 					else 
 					{	
-						SenseixController.SetSessionState(false);
+						SenseixSession.SetSessionState(false);
 						Debug.Log("Can't find key from result");
 						return false;
 					}
@@ -86,51 +86,51 @@ namespace Senseix.Message {
 					}
 					if(reply.HasParentSignIn && reply.ParentSignIn.IsInitialized) 
 					{
-						SenseixController.SetAndSaveAuthToken(reply.ParentSignIn.AuthToken);
+						SenseixSession.SetAndSaveAuthToken(reply.ParentSignIn.AuthToken);
 					} 
 					else 
 					{
-						SenseixController.SetSessionState(false);
+						SenseixSession.SetSessionState(false);
 						Debug.Log("Can't find key from result");
 						return false;
 					}
 					break;
 
 				case Constant.MessageType.SignOutParent:
-					SenseixController.SetSessionState(false);//Duane, this seems..odd
+					SenseixSession.SetSessionState(false);//Duane, this seems..odd
 					break;
 
 				case Constant.MessageType.MergeParent:
 					if(reply.HasParentMerge && reply.ParentMerge.IsInitialized && reply.ParentMerge.HasAuthToken)
 					{
-						SenseixController.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);
+						SenseixSession.SetAndSaveAuthToken(reply.ParentRegistration.AuthToken);
 					} 
 					else 
 					{	
-						SenseixController.SetSessionState(false);
+						SenseixSession.SetSessionState(false);
 						Debug.Log("Can't find key from result");
 						return false;
 					}
 					break;
 
 				case Constant.MessageType.CreatePlayer:
-					SenseixController.SetSessionState(true);
+					SenseixSession.SetSessionState(true);
 //					Debug.Log("I got a response from a create Player Message");
 					break;
 
 				case Constant.MessageType.ListPlayer:
-					SenseixController.SetSessionState(true);
+					SenseixSession.SetSessionState(true);
 //					Debug.Log("I got a response from a list Player Message");
-					SenseixController.SetCurrentPlayerList(reply.PlayerList);
+					SenseixSession.SetCurrentPlayerList(reply.PlayerList);
 					break;
 
 				case Constant.MessageType.RegisterPlayerWithApplication:
-					SenseixController.SetSessionState(true);
+					SenseixSession.SetSessionState(true);
 //					Debug.Log("I got a response from a register Player Message");
 					break;
 
 				case Constant.MessageType.ProblemPost:
-					SenseixController.SetSessionState(true);
+					SenseixSession.SetSessionState(true);
 //					Debug.Log("I got a response from a Problem post Message");
 					break;
 				
@@ -150,21 +150,21 @@ namespace Senseix.Message {
 				case Constant.MessageType.LeaderboardPage:
 //					Debug.Log ("I recieved a Leaderboard page response");
 					Debug.Log(reply.Page.PlayerList);
-					SenseixController.SetLeaderboardPlayers(reply.Page.PlayerList);
+					SenseixSession.SetLeaderboardPlayers(reply.Page.PlayerList);
 					break;
 
 				case Constant.MessageType.PlayerScore:
-					SenseixController.SetSessionState(true);
+					SenseixSession.SetSessionState(true);
 //					Debug.Log("I got a response from a Player score Message");
 					break;
 
 				case Constant.MessageType.PlayerRank:
-					SenseixController.SetSessionState(true);
+					SenseixSession.SetSessionState(true);
 //					Debug.Log("I got a response from a Player rank Message");
 					break;
 
 				case Senseix.Message.Constant.MessageType.EncouragementGet:
-					SenseixController.SetSessionState(true);
+					SenseixSession.SetSessionState(true);
 					//Debug.Log("I got a response from an encouragement get Message");
 					break;
 
