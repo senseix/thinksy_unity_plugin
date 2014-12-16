@@ -28,7 +28,7 @@ namespace Senseix.Message {
 	public class Request : MonoBehaviour
 	{
         const string ENCRYPTED = "http://";
-		const string SERVER_URL = "192.168.1.8:3000/";
+		const string SERVER_URL = "192.168.1.15:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/parents/";
@@ -371,6 +371,7 @@ namespace Senseix.Message {
 		/// </summary>
 		static public void ListPlayers () 
 		{
+			//Debug.Log ("Auth Token: " + SenseixController.GetAuthToken ());
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixController.GetAuthToken());
 			hdr_request.SetAccessToken (SenseixController.GetAccessToken());

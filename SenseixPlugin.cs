@@ -7,6 +7,7 @@ class SenseixPlugin : MonoBehaviour
 {	
 	public string developerAccessToken; //this is your developer access token obtained from 
 	//the Senseix website.
+	public bool offlineMode;
 	public GameObject emergencyWindow;
 	public GameObject displayWindow;
 	
@@ -23,6 +24,11 @@ class SenseixPlugin : MonoBehaviour
 	static public void ShowEmergencyWindow(string additionalMessage)
 	{
 		singletonInstance.ShowThisEmergencyWindow (additionalMessage);
+	}
+
+	static public bool IsInOfflineMode()
+	{
+		return singletonInstance.offlineMode;
 	}
 
 	private void ShowThisEmergencyWindow(string additionalMessage)
@@ -46,17 +52,17 @@ class SenseixPlugin : MonoBehaviour
 		singletonInstance = this;
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
 		DontDestroyOnLoad (gameObject);
-		Senseix.SenseixController.InitializeSenseix (developerAccessToken);
+		if (!offlineMode) Senseix.SenseixController.InitializeSenseix (developerAccessToken);
 	}
 
 	void Update()
 	{
-		if (!Senseix.SenseixController.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
+		if (!offlineMode && !Senseix.SenseixController.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
 		{
 			Debug.Log ("Attempting to reconnect...");
 			Senseix.SenseixController.InitializeSenseix(developerAccessToken);
 		}
-		if (Senseix.SenseixController.GetSessionState() && Time.frameCount%encouragementGetInterval == 0)
+		if (Senseix.SenseixController.GetSessionState() && Time.frameCount%encouragementGetInterval == 0 &&  Time.frameCount != 0)
 		{
 			Senseix.SenseixController.GetEncouragements();
 		}

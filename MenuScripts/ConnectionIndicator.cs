@@ -10,7 +10,10 @@ namespace sensei
 
 		// Use this for initialization
 		void Start () {
-		
+			if (SenseixPlugin.IsInOfflineMode())
+			{
+				warningText.GetComponentInChildren<UnityEngine.UI.Text>().text = "Offline mode";
+			}
 		}
 		
 		// Update is called once per frame

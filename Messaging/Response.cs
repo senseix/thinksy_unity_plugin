@@ -43,6 +43,7 @@ namespace Senseix.Message {
 				case Constant.MessageType.RegisterDevice:
 					if (reply.HasDeviceRegistration && reply.DeviceRegistration.IsInitialized) 
 					{	
+						Debug.Log("save auth token.");
 						SenseixController.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
 						SenseixController.SetSessionState(true);
 						//Debug.Log("I come from the City of Compton, and am I a temporary account? " + reply.DeviceRegistration.IsTemporaryAccount);
