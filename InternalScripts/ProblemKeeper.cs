@@ -6,18 +6,17 @@ using System.Text;
 using System.IO;
 using System.ComponentModel;
 
-namespace Senseix { 
-
+namespace Senseix 
+{ 
 	static class ProblemKeeper 
 	{
-		private const int PROBLEMS_PER_PULL = 40;
+		private const int PROBLEMS_PER_PULL = 30;
 		private const float PULL_THRESHOLD = 0.25f;
 		private const float PUSH_THRESHOLD = 0.25f; 
 		//thresholds are when to pull push.  pull or push when
 		//number of answered or waiting Problems drops below
 		//Problems per pull over threshold
-		private const string SEED_FILE_EXTENSION = ".bytes";
-		private static bool _onLine = false;
+		public const string SEED_FILE_EXTENSION = ".bytes";
 		public static volatile Queue newProblems = new Queue(); 
 		public static volatile Queue answeredProblems = new Queue();
 
@@ -55,8 +54,8 @@ namespace Senseix {
 			for (int i = 0; i < reply.ProblemGet.ProblemList.Count; i++)
 			{
 				Message.Problem.ProblemData entry = reply.ProblemGet.ProblemList[i];
-				Message.Problem.ProblemData.Builder Problem =  entry.ToBuilder();
-				ProblemKeeper.AddProblemsToProblemQueue(Problem);
+				Message.Problem.ProblemData.Builder problem =  entry.ToBuilder();
+				ProblemKeeper.AddProblemsToProblemQueue(problem);
 			}
 		}
 
@@ -150,7 +149,7 @@ namespace Senseix {
 		//and add them to the end of our Problem queue
 		static public void GetProblems () 
 		{
-			if (_onLine)
+			if (SenseixSession.GetSessionState())
 			{
 				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), PROBLEMS_PER_PULL);
 			}
@@ -183,6 +182,11 @@ namespace Senseix {
 			
 			problem.SetProblemId (answeredProblemData.Uuid);
 			problem.SetAnswerIds (givenAnswerIDs);
+			if (SenseixSession.GetCurrentPlayerID () == "no current player")
+			{
+				return correct;
+			}
+			problem.SetPlayerId (SenseixSession.GetCurrentPlayerID ());
 			AddAnsweredProblem (problem, answer);
 			return correct;
 		}
@@ -221,7 +225,7 @@ namespace Senseix {
 
 		static private void CheckAnsweredProblemPush()
 		{
-			if (answeredProblems.Count > PROBLEMS_PER_PULL*PUSH_THRESHOLD && SenseixSession.GetSessionState())
+			if (answeredProblems.Count > PROBLEMS_PER_PULL*PUSH_THRESHOLD)
 			{
 					SenseixSession.PushProblems(answeredProblems);
 					answeredProblems.Clear ();
@@ -230,33 +234,19 @@ namespace Senseix {
 
 		static private void CheckProblemPull()
 		{
-			//Right now we're just pulling more Problems when we get low, but eventually we
-			//want to do this with an asynchronous Message
 			if (GetNewProblemCount() < PROBLEMS_PER_PULL*PULL_THRESHOLD || GetNewProblemCount() < 1) 
 			{
-				GetProblems (); 
+				GetProblems ();
 				//Debug.Log ("pulling more Problems");
 			}
 		}
 
-		static public void SetOnline(bool state)
+		static public void DrainProblems()
 		{
-			if (_onLine == false && state == true) {
-				_onLine = state;
-				
-				//Drain the current queue and go for some Problems!
-				//Duane - improve this logic...we might be flipping the 
-				//connection but still have a valid cache of prob.
-				while(newProblems.Count > 2)//give it a little wiggle room...
-				{
-					newProblems.Dequeue();	
-				}
-			}
-			else
+			while(newProblems.Count > 2)//give it a little wiggle room...
 			{
-				_onLine = state;
+				newProblems.Dequeue();	
 			}
 		}
     }
 }
-

@@ -22,7 +22,7 @@ namespace Senseix.Message
 		//API URLS
 		//api-staging.Senseix.com
         const string ENCRYPTED = "http://";
-		const string SERVER_URL = "192.168.1.15:3000/";
+		const string SERVER_URL = "api.senseix.com/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/parents/";
@@ -441,14 +441,41 @@ namespace Senseix.Message
 
 			while (problems.Count > 0) {
 				Senseix.Message.Problem.ProblemPost.Builder addMeProblem = (Senseix.Message.Problem.ProblemPost.Builder)problems.Dequeue();
-				addMeProblem.SetPlayerId(SenseixSession.GetCurrentPlayerID());
+				addMeProblem.SetPlayerId(addMeProblem.PlayerId);
 				postProblem.AddProblem (addMeProblem);
 			}
 			hdr_request.SetProblemPost (postProblem);
 				
-//			Debug.Log ("Post Problems request going off to " + POST_Problem_URL);
-			NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemPost, POST_PROBLEM_URL);
+			//Debug.Log ("Post Problems request going off to " + POST_PROBLEM_URL);
+			if (SenseixSession.ShouldCacheProblemPosts())
+			{
+				PostRequestParameters queueParameters = new PostRequestParameters();
+				queueParameters.hdr_request = hdr_request;
+				queueParameters.msgType = Constant.MessageType.ProblemPost;
+				queueParameters.url = POST_PROBLEM_URL;
+				WriteRequestToCache(queueParameters);
+			}
+			else
+			{
+				NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemPost, POST_PROBLEM_URL);
+			}
 		}	
+
+
+		private static void WriteRequestToCache(PostRequestParameters parameters)
+		{
+			MemoryStream stream = new MemoryStream ();
+			parameters.hdr_request.BuildPartial().WriteTo (stream);
+			byte[] bytes = stream.ToArray();
+			string directoryPath = Path.Combine (Application.persistentDataPath, "post_cache/");
+			string fileCount = (Directory.GetFiles (directoryPath).Length + 1).ToString ();
+			//Debug.Log (fileCount);
+			if (!Directory.Exists(directoryPath))
+			    Directory.CreateDirectory(directoryPath);
+			string filePath = Path.Combine (directoryPath, fileCount + ProblemKeeper.SEED_FILE_EXTENSION);
+			System.IO.File.WriteAllBytes (filePath, bytes);
+		}
+
 		/// <summary>
 		/// Returns a page from the Leaderboard with the request parameters, by default 25 entries are 
 		/// are returned per page. 
@@ -500,7 +527,24 @@ namespace Senseix.Message
 			SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerRank, GET_PLAYER_RANK_URL);
 			
 		}
-	
+
+
+
+		static public void SubmitProblemPostCache()
+		{
+			string directoryPath = Path.Combine (Application.persistentDataPath, "post_cache/");
+			string[] fileNames = Directory.GetFiles (directoryPath);
+			foreach (string fileName in fileNames)
+			{
+				Debug.Log("From the cache into the world.");
+				byte[] bytes = System.IO.File.ReadAllBytes(fileName);
+				RequestHeader.Builder hdr_request = RequestHeader.ParseFrom(bytes).ToBuilder();
+				hdr_request.AuthToken = SenseixSession.GetAuthToken();
+				hdr_request.AccessToken = SenseixSession.GetAccessToken();
+				NonblockingPostRequest(ref hdr_request, Constant.MessageType.ProblemPost, POST_PROBLEM_URL);
+				File.Delete(fileName);
+			}
+		}
 	}
 }
 

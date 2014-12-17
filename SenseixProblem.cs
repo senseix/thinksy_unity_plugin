@@ -8,7 +8,17 @@ public class Problem
 	private Senseix.Message.Problem.ProblemData.Builder protobufsProblemBuilder;
 	private Answer givenAnswer = new Answer();
 	private bool submitted = false;
-	
+	private static uint problemsAnsweredCorrectly = 0;
+
+	/// <summary>
+	/// Counts the problems answered correctly so far.
+	/// </summary>
+	/// <returns>The problems answered correctly so far.</returns>
+	public static uint CountProblemsAnsweredCorrectlySoFar()
+	{
+		return problemsAnsweredCorrectly;
+	}
+
 	/// <summary>
 	/// Don't use this unless you know what you're doing- instead get a problem from
 	/// SenseixPlugin.NextProblem().
@@ -162,6 +172,8 @@ public class Problem
 		bool correct = Senseix.SenseixSession.CheckAnswer (protobufsProblemBuilder, GetGivenAnswer());
 		Senseix.SenseixSession.SubmitAnswer (protobufsProblemBuilder, GetGivenAnswer(), correct);
 		submitted = true;
+		if (correct)
+			problemsAnsweredCorrectly++;
 		return correct;
 	}
 	

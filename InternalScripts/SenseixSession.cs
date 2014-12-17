@@ -7,7 +7,8 @@ using System.IO;
 using System.Threading;
 using System.ComponentModel;
 
-namespace Senseix { 
+namespace Senseix 
+{ 
 
 	static class SenseixSession 
 	{
@@ -65,13 +66,13 @@ namespace Senseix {
 		}
 		static public void SetSessionState(bool state)
 		{
-			ProblemKeeper.SetOnline (state);
 			inSession = state;
 		}
 
 		static public void SetAndSaveAuthToken(string newAuthToken) 
 		{
 			authToken = newAuthToken;
+			Debug.Log ("auth token: " + authToken);
 		}
 		static private int CheckAccessToken()
 		{
@@ -92,7 +93,8 @@ namespace Senseix {
 			if (authToken != null)
 				return authToken;
 			else
-				return "you don't need to see my identification";
+				Debug.LogWarning("Something got the auth token, but there was no auth token available.");
+			return "you don't need to see my identification";
 		}
 		static public string GetCurrentPlayerID()
 		{
@@ -237,5 +239,17 @@ namespace Senseix {
 		//	byte[] decodedBytes = System.Convert.FromBase64String (base64string);
 		//	return decodedBytes;
 		//}
+
+		static public void CheckProblemPostCacheSubmission()
+		{
+			//Debug.Log (ShouldCacheProblemPosts ());
+			if (!ShouldCacheProblemPosts ())
+				Message.Request.SubmitProblemPostCache ();
+		}
+
+		static public bool ShouldCacheProblemPosts()
+		{
+			return !SenseixSession.IsSignedIn ();
+		}
 	}
 }

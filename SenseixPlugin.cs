@@ -5,7 +5,7 @@ using UnityEngine;
 
 class SenseixPlugin : MonoBehaviour
 {	
-	public string developerAccessToken; //this is your developer access token obtained from 
+	public string gameAccessToken; //this is your developer access token obtained from 
 	//the Senseix website.
 	public bool offlineMode;
 	public GameObject emergencyWindow;
@@ -16,7 +16,7 @@ class SenseixPlugin : MonoBehaviour
 	
 	private const int reconnectRetryInterval = 9000;
 	private const int encouragementGetInterval = 3001;
-	
+
 	/// <summary>
 	/// Shows a window indicating that something horrible has happened.
 	/// Use this if something horrible happens.
@@ -52,7 +52,7 @@ class SenseixPlugin : MonoBehaviour
 		singletonInstance = this;
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
 		DontDestroyOnLoad (gameObject);
-		if (!offlineMode) Senseix.SenseixSession.InitializeSenseix (developerAccessToken);
+		if (!offlineMode) Senseix.SenseixSession.InitializeSenseix (gameAccessToken);
 	}
 
 	void Update()
@@ -60,7 +60,7 @@ class SenseixPlugin : MonoBehaviour
 		if (!offlineMode && !Senseix.SenseixSession.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
 		{
 			Debug.Log ("Attempting to reconnect...");
-			Senseix.SenseixSession.InitializeSenseix(developerAccessToken);
+			Senseix.SenseixSession.InitializeSenseix(gameAccessToken);
 		}
 		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%encouragementGetInterval == 0 &&  Time.frameCount != 0)
 		{
@@ -273,5 +273,13 @@ class SenseixPlugin : MonoBehaviour
 	public static Texture2D GetMostRecentProblemImage()
 	{
 		return GetMostRecentProblem ().GetQuestion ().GetImage ();
+	}
+	/// <summary>
+	/// Counts the problems answered correctly so far.
+	/// </summary>
+	/// <returns>The problems answered correctly so far.</returns>
+	public static uint CountProblemsAnsweredCorrectlySoFar()
+	{
+		return Problem.CountProblemsAnsweredCorrectlySoFar();
 	}
 }
