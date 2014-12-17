@@ -182,10 +182,6 @@ namespace Senseix
 			
 			problem.SetProblemId (answeredProblemData.Uuid);
 			problem.SetAnswerIds (givenAnswerIDs);
-			if (SenseixSession.GetCurrentPlayerID () == "no current player")
-			{
-				return correct;
-			}
 			problem.SetPlayerId (SenseixSession.GetCurrentPlayerID ());
 			AddAnsweredProblem (problem, answer);
 			return correct;

@@ -441,7 +441,14 @@ namespace Senseix.Message
 
 			while (problems.Count > 0) {
 				Senseix.Message.Problem.ProblemPost.Builder addMeProblem = (Senseix.Message.Problem.ProblemPost.Builder)problems.Dequeue();
-				addMeProblem.SetPlayerId(addMeProblem.PlayerId);
+				if (addMeProblem.PlayerId == "no current player")
+				{
+					addMeProblem.SetPlayerId(SenseixSession.GetCurrentPlayerID());
+				}
+				if (addMeProblem.PlayerId == "no current player")
+				{
+					Debug.LogWarning("I'm sending a problem to the server with no player ID.");
+				}
 				postProblem.AddProblem (addMeProblem);
 			}
 			hdr_request.SetProblemPost (postProblem);
@@ -468,10 +475,10 @@ namespace Senseix.Message
 			parameters.hdr_request.BuildPartial().WriteTo (stream);
 			byte[] bytes = stream.ToArray();
 			string directoryPath = Path.Combine (Application.persistentDataPath, "post_cache/");
-			string fileCount = (Directory.GetFiles (directoryPath).Length + 1).ToString ();
 			//Debug.Log (fileCount);
 			if (!Directory.Exists(directoryPath))
 			    Directory.CreateDirectory(directoryPath);
+			string fileCount = (Directory.GetFiles (directoryPath).Length + 1).ToString ();
 			string filePath = Path.Combine (directoryPath, fileCount + ProblemKeeper.SEED_FILE_EXTENSION);
 			System.IO.File.WriteAllBytes (filePath, bytes);
 		}
