@@ -535,15 +535,13 @@ namespace Senseix.Message
 			
 		}
 
-
-
 		static public void SubmitProblemPostCache()
 		{
 			string directoryPath = Path.Combine (Application.persistentDataPath, "post_cache/");
 			string[] fileNames = Directory.GetFiles (directoryPath);
 			foreach (string fileName in fileNames)
 			{
-				Debug.Log("From the cache into the world.");
+				Debug.Log("Submitting cache");
 				byte[] bytes = System.IO.File.ReadAllBytes(fileName);
 				RequestHeader.Builder hdr_request = RequestHeader.ParseFrom(bytes).ToBuilder();
 				hdr_request.AuthToken = SenseixSession.GetAuthToken();
@@ -554,6 +552,3 @@ namespace Senseix.Message
 		}
 	}
 }
-
-
-

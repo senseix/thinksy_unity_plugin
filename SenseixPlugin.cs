@@ -15,7 +15,7 @@ class SenseixPlugin : MonoBehaviour
 	private static Problem mostRecentProblem;
 	
 	private const int reconnectRetryInterval = 9000;
-	private const int encouragementGetInterval = 3001;
+	private const int encouragementGetInterval = 9001;
 
 	/// <summary>
 	/// Shows a window indicating that something horrible has happened.
@@ -107,6 +107,11 @@ class SenseixPlugin : MonoBehaviour
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
 		Senseix.QuestionDisplay.Update ();
 		return mostRecentProblem;
+	}
+
+	public void NextProblemFromInstance()
+	{
+		NextProblem ();
 	}
 	
 	/// <summary>

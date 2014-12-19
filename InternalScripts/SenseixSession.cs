@@ -72,7 +72,7 @@ namespace Senseix
 		static public void SetAndSaveAuthToken(string newAuthToken) 
 		{
 			authToken = newAuthToken;
-			Debug.Log ("auth token: " + authToken);
+			//Debug.Log ("auth token: " + authToken);
 		}
 		static private int CheckAccessToken()
 		{

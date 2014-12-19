@@ -10,7 +10,7 @@ namespace Senseix
 { 
 	static class ProblemKeeper 
 	{
-		private const int PROBLEMS_PER_PULL = 30;
+		public const int PROBLEMS_PER_PULL = 30;
 		private const float PULL_THRESHOLD = 0.25f;
 		private const float PUSH_THRESHOLD = 0.25f; 
 		//thresholds are when to pull push.  pull or push when

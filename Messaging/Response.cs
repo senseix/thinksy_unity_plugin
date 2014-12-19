@@ -43,10 +43,10 @@ namespace Senseix.Message {
 				case Constant.MessageType.RegisterDevice:
 					if (reply.HasDeviceRegistration && reply.DeviceRegistration.IsInitialized) 
 					{	
-						Debug.Log("save auth token.");
+						//Debug.Log("save auth token.");
 						SenseixSession.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
 						SenseixSession.SetSessionState(true);
-						Debug.Log("I come from the City of Compton, and am I a temporary account? " + reply.DeviceRegistration.IsTemporaryAccount);
+						//Debug.Log("I come from the City of Compton, and am I a temporary account? " + reply.DeviceRegistration.IsTemporaryAccount);
 						SenseixSession.SetSignedIn(!reply.DeviceRegistration.IsTemporaryAccount);
 						SenseixSession.CheckProblemPostCacheSubmission();
 					} 
@@ -66,7 +66,7 @@ namespace Senseix.Message {
 				case Constant.MessageType.RegisterParent:
 					if (reply.Status == Constant.Status.FAILURE) 
 					{
-						Debug.Log ("DUANE!!!! MERGE CODE REQUIRED HERE!!!");
+						Debug.Log ("Register parent failed.");
 					}
 					if(reply.HasParentRegistration && reply.ParentRegistration.IsInitialized) 
 					{
@@ -136,8 +136,9 @@ namespace Senseix.Message {
 					break;
 				
 				case Constant.MessageType.ProblemGet:
-//					Debug.Log("I got a response from a Problem get Message");
-					//Debug.Log ("LENGTH OF THE IMAGE FROM RESPONSE " + reply.ProblemGet.GetProblem(0).Question.Image.Length);
+					Debug.Log("I got a response from a Problem get Message");
+					if (reply.ProblemGet.ProblemCount != ProblemKeeper.PROBLEMS_PER_PULL)
+						Debug.LogWarning("I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + reply.ProblemGet.ProblemCount);
 					if(reply.HasProblemGet && reply.ProblemGet.IsInitialized) 
 					{
 						ProblemKeeper.ReplaceSeed(reply);
