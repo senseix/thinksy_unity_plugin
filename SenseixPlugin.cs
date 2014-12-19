@@ -64,7 +64,7 @@ class SenseixPlugin : MonoBehaviour
 		}
 		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%encouragementGetInterval == 0 &&  Time.frameCount != 0)
 		{
-			Senseix.SenseixSession.GetEncouragements();
+			//Senseix.SenseixSession.GetEncouragements();
 		}
 		Senseix.Message.Request.CheckResults ();
 	}
