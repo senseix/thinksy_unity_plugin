@@ -50,7 +50,8 @@ namespace Senseix
 
 		private void UpdateQuestionImage()
 		{
-			promptDisplay.texture = SenseixPlugin.GetMostRecentProblemImage ();
+			if (promptDisplay != null)
+				promptDisplay.texture = SenseixPlugin.GetMostRecentProblemImage ();
 		}
 
 		private void UpdateAnswersText ()

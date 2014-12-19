@@ -44,14 +44,13 @@ class SenseixPlugin : MonoBehaviour
 		{
 			Debug.LogWarning ("Something is creating a SenseixPlugin, but there is already an " +
 			                  "instance in existance.  There should only be one SenseixPlugin component at any " +
-			                  "time.  You can access its features \nthrough the class's static methods.  The SenseiX" +
-			                  "prefab will automatically persist between scenes.  The object this message is coming" +
+			                  "time.  You can access its features \nthrough the class's static methods.  The object this message is coming" +
 			                  " from is redundant.  I'm going to delete myself.");
 			Destroy(gameObject);
 		}
 		singletonInstance = this;
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
-		DontDestroyOnLoad (gameObject);
+		//DontDestroyOnLoad (gameObject);
 		if (!offlineMode) Senseix.SenseixSession.InitializeSenseix (gameAccessToken);
 	}
 

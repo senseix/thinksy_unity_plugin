@@ -538,6 +538,8 @@ namespace Senseix.Message
 		static public void SubmitProblemPostCache()
 		{
 			string directoryPath = Path.Combine (Application.persistentDataPath, "post_cache/");
+			if (!Directory.Exists(directoryPath))
+				Directory.CreateDirectory(directoryPath);
 			string[] fileNames = Directory.GetFiles (directoryPath);
 			foreach (string fileName in fileNames)
 			{
