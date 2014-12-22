@@ -36,7 +36,9 @@ public class DisableOtherUI : MonoBehaviour {
 		foreach(Canvas canvas in reenableWhenThisDisabled)
 		{
 			Canvas thisCanvas = canvas as Canvas;
-			if (thisCanvas != null && thisCanvas.gameObject != this.gameObject)
+			if (thisCanvas != null &&
+			    thisCanvas.gameObject != null &&
+			    thisCanvas.gameObject != this.gameObject)
 			{
 				thisCanvas.gameObject.SetActive(isActive);
 			}
