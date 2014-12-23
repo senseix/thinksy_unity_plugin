@@ -46,7 +46,7 @@ namespace Senseix.Message {
 						//Debug.Log("save auth token.");
 						SenseixSession.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
 						SenseixSession.SetSessionState(true);
-						//Debug.Log("I come from the City of Compton, and am I a temporary account? " + reply.DeviceRegistration.IsTemporaryAccount);
+						Debug.Log("Temporary account: " + reply.DeviceRegistration.IsTemporaryAccount);
 						SenseixSession.SetSignedIn(!reply.DeviceRegistration.IsTemporaryAccount);
 						SenseixSession.CheckProblemPostCacheSubmission();
 					} 
@@ -137,6 +137,9 @@ namespace Senseix.Message {
 				
 				case Constant.MessageType.ProblemGet:
 					Debug.Log("I got a response from a Problem get Message");
+					//Debug.Log("has message: " + reply.HasMessage);
+					//Debug.Log("message length: " + reply.Message.Length);
+					//Debug.Log("has problem get: " + reply.HasProblemGet);
 					if (reply.ProblemGet.ProblemCount != ProblemKeeper.PROBLEMS_PER_PULL)
 						Debug.LogWarning("I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + reply.ProblemGet.ProblemCount);
 					if(reply.HasProblemGet && reply.ProblemGet.IsInitialized) 

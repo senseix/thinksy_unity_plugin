@@ -164,6 +164,8 @@ namespace Senseix
 		static public Senseix.Message.Problem.ProblemData.Builder GetProblem()
 		{
 			CheckProblemPull ();
+			if (newProblems.Count == 0)
+				SenseixPlugin.ShowEmergencyWindow ("We ran out of problems.  That really shouldn't happen!");
 			return (Senseix.Message.Problem.ProblemData.Builder) newProblems.Dequeue ();
 		}
 

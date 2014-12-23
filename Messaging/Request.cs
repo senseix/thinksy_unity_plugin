@@ -298,7 +298,7 @@ namespace Senseix.Message
 			ParentSignOutBuilder.SetDeviceId (SenseixSession.GetDeviceID ());
 			hdr_request.SetParentSignOut(ParentSignOutBuilder);
 
-			//Debug.Log ("sign out Parent going off to " + SIGN_OUT_Parent_URL);
+			//Debug.Log ("sign out Parent going off to " + SIGN_OUT_PARENT_URL);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.SignOutParent, SIGN_OUT_PARENT_URL);
 		}
 		   
