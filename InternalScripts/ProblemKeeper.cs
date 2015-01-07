@@ -223,6 +223,7 @@ namespace Senseix
 
 		static private void CheckAnsweredProblemPush()
 		{
+			//Debug.Log ("Answered problems count: " + answeredProblems.Count);
 			if (answeredProblems.Count > PROBLEMS_PER_PULL*PUSH_THRESHOLD)
 			{
 					SenseixSession.PushProblems(answeredProblems);

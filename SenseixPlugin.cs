@@ -23,6 +23,7 @@ class SenseixPlugin : MonoBehaviour
 	/// </summary>
 	static public void ShowEmergencyWindow(string additionalMessage)
 	{
+		Senseix.SenseixSession.SubmitBugReport ("Emergency window being displayed: " + additionalMessage);
 		singletonInstance.ShowThisEmergencyWindow (additionalMessage);
 	}
 

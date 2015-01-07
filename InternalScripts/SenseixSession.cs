@@ -93,7 +93,9 @@ namespace Senseix
 			if (authToken != null)
 				return authToken;
 			else
-				Debug.LogWarning("Something got the auth token, but there was no auth token available.");
+				Debug.LogWarning("Something got the auth token, but there was no auth token available." +
+					"  It is possible that the register device message failed and/or we are sending a request" +
+					" without ever having registered.");
 			return "you don't need to see my identification";
 		}
 		static public string GetCurrentPlayerID()
@@ -242,14 +244,23 @@ namespace Senseix
 
 		static public void CheckProblemPostCacheSubmission()
 		{
-			//Debug.Log (ShouldCacheProblemPosts ());
+			//Debug.Log ("Should cache: " + ShouldCacheProblemPosts ());
 			if (!ShouldCacheProblemPosts ())
 				Message.Request.SubmitProblemPostCache ();
 		}
 
 		static public bool ShouldCacheProblemPosts()
 		{
-			return !SenseixSession.IsSignedIn ();
+			return !SenseixSession.GetSessionState ();
+		}
+
+		static public void SubmitBugReport(string additionalMessage)
+		{
+			string debugText = Logger.GetCurrentLog ();
+			string message = additionalMessage + Environment.NewLine + " --- " 
+				+ Environment.NewLine + debugText + Environment.NewLine;
+
+			Message.Request.BugReport (GetDeviceID(), message);
 		}
 	}
 }

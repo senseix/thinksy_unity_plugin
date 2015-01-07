@@ -2,27 +2,52 @@
 using System.Collections;
 using System.IO;
 
-public class Logger : MonoBehaviour 
+namespace Senseix
 {
-	private const string logFileName = "SenseiXLog.txt";
-
-	void OnEnable() 
+	public class Logger : MonoBehaviour 
 	{
-		Application.RegisterLogCallback(HandleLog);
-	}
+		private const string logFileName = "SenseiXLog.txt";
 
-	void OnDisable() 
-	{
-		Application.RegisterLogCallback(null);
-	}
+		void Start()
+		{
+			SenseixPlugin.ShowEmergencyWindow ("Testing");
+		}
 
-	void HandleLog(string logString, string stackTrace, LogType type) 
-	{
-		string logPath = Path.Combine(Application.persistentDataPath, logFileName);
+		void OnEnable() 
+		{
+			Application.RegisterLogCallback(HandleLog);
+		}
 
-		string writeString = "logString:\n" + logString + "\nstackTrace\n" 
-						+ stackTrace + "\ntype:\n" + type.ToString ();
+		void OnDisable() 
+		{
+			Application.RegisterLogCallback(null);
+		}
 
-		File.AppendAllText (logPath, writeString);
+		void HandleLog(string logString, string stackTrace, LogType type) 
+		{
+			string logPath = GetLogPath();
+
+			string writeString = "logString:\n" + logString + "\nstackTrace\n" 
+							+ stackTrace + "\ntype:\n" + type.ToString ();
+
+			File.AppendAllText (logPath, writeString);
+
+			if (type == LogType.Warning || type == LogType.Exception || type == LogType.Error)
+			{
+				Senseix.SenseixSession.SubmitBugReport ("Automatic submission of non-routine unity log: ");
+			}
+		}
+
+		static string GetLogPath()
+		{
+			return Path.Combine (Application.persistentDataPath, logFileName);
+		}
+
+		public static string GetCurrentLog()
+		{
+			string logPath = GetLogPath();
+			string currentLog = File.ReadAllText (logPath);
+			return currentLog;
+		}
 	}
 }

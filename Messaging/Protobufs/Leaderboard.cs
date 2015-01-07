@@ -42,24 +42,23 @@ namespace Senseix.Message.Leaderboard {
     static Leaderboard() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           "ChFMZWFkZXJib2FyZC5wcm90bxIbU2Vuc2VpeC5NZXNzYWdlLkxlYWRlcmJv" + 
-          "YXJkGg5Db25zdGFudC5wcm90byIhCgpNZW1iZXJEYXRhEhMKC3BsYXllcl9u" + 
-          "YW1lGAEgAigJIjcKClBsYXllckRhdGESDQoFc2NvcmUYASABKA0SDAoEcmFu" + 
-          "axgCIAEoDRIMCgRuYW1lGAMgASgJImoKC1BhZ2VSZXF1ZXN0EgwKBHBhZ2UY" + 
-          "ASABKA0SEQoJcGFnZV9zaXplGAIgASgNEjoKB3NvcnRfYnkYAyABKA4yIy5T" + 
-          "ZW5zZWl4Lk1lc3NhZ2UuTGVhZGVyYm9hcmQuU29ydEJ5OgROT05FIl4KDFBh" + 
-          "Z2VSZXNwb25zZRIVCg10b3RhbF9tZW1iZXJzGAEgAigNEjcKBnBsYXllchgC" + 
-          "IAMoCzInLlNlbnNlaXguTWVzc2FnZS5MZWFkZXJib2FyZC5QbGF5ZXJEYXRh" + 
-          "IkMKGFVwZGF0ZVBsYXllclNjb3JlUmVxdWVzdBIRCglwbGF5ZXJfaWQYASAC" + 
-          "KAkSFAoMcGxheWVyX3Njb3JlGAIgAigNImsKGVVwZGF0ZVBsYXllclNjb3Jl" + 
-          "UmVzcG9uc2USFQoNdG90YWxfbWVtYmVycxgBIAIoDRI3CgZwbGF5ZXIYAiAC" + 
-          "KAsyJy5TZW5zZWl4Lk1lc3NhZ2UuTGVhZGVyYm9hcmQuUGxheWVyRGF0YSKE" + 
-          "AQoRUGxheWVyUmFua1JlcXVlc3QSEQoJcGxheWVyX2lkGAEgAigJEg0KBWNv" + 
-          "dW50GAIgASgNEhEKCXBhZ2Vfc2l6ZRgDIAEoDRI6Cgdzb3J0X2J5GAQgASgO" + 
-          "MiMuU2Vuc2VpeC5NZXNzYWdlLkxlYWRlcmJvYXJkLlNvcnRCeToETk9ORSJk" + 
-          "ChJQbGF5ZXJSYW5rUmVzcG9uc2USFQoNdG90YWxfbWVtYmVycxgBIAIoDRI3" + 
-          "CgZwbGF5ZXIYAiADKAsyJy5TZW5zZWl4Lk1lc3NhZ2UuTGVhZGVyYm9hcmQu" + 
-          "UGxheWVyRGF0YSonCgZTb3J0QnkSCAoEUkFOSxABEgkKBVNDT1JFEAISCAoE" + 
-          "Tk9ORRAD");
+          "YXJkIiEKCk1lbWJlckRhdGESEwoLcGxheWVyX25hbWUYASACKAkiNwoKUGxh" + 
+          "eWVyRGF0YRINCgVzY29yZRgBIAEoDRIMCgRyYW5rGAIgASgNEgwKBG5hbWUY" + 
+          "AyABKAkiagoLUGFnZVJlcXVlc3QSDAoEcGFnZRgBIAEoDRIRCglwYWdlX3Np" + 
+          "emUYAiABKA0SOgoHc29ydF9ieRgDIAEoDjIjLlNlbnNlaXguTWVzc2FnZS5M" + 
+          "ZWFkZXJib2FyZC5Tb3J0Qnk6BE5PTkUiXgoMUGFnZVJlc3BvbnNlEhUKDXRv" + 
+          "dGFsX21lbWJlcnMYASACKA0SNwoGcGxheWVyGAIgAygLMicuU2Vuc2VpeC5N" + 
+          "ZXNzYWdlLkxlYWRlcmJvYXJkLlBsYXllckRhdGEiQwoYVXBkYXRlUGxheWVy" + 
+          "U2NvcmVSZXF1ZXN0EhEKCXBsYXllcl9pZBgBIAIoCRIUCgxwbGF5ZXJfc2Nv" + 
+          "cmUYAiACKA0iawoZVXBkYXRlUGxheWVyU2NvcmVSZXNwb25zZRIVCg10b3Rh" + 
+          "bF9tZW1iZXJzGAEgAigNEjcKBnBsYXllchgCIAIoCzInLlNlbnNlaXguTWVz" + 
+          "c2FnZS5MZWFkZXJib2FyZC5QbGF5ZXJEYXRhIoQBChFQbGF5ZXJSYW5rUmVx" + 
+          "dWVzdBIRCglwbGF5ZXJfaWQYASACKAkSDQoFY291bnQYAiABKA0SEQoJcGFn" + 
+          "ZV9zaXplGAMgASgNEjoKB3NvcnRfYnkYBCABKA4yIy5TZW5zZWl4Lk1lc3Nh" + 
+          "Z2UuTGVhZGVyYm9hcmQuU29ydEJ5OgROT05FImQKElBsYXllclJhbmtSZXNw" + 
+          "b25zZRIVCg10b3RhbF9tZW1iZXJzGAEgAigNEjcKBnBsYXllchgCIAMoCzIn" + 
+          "LlNlbnNlaXguTWVzc2FnZS5MZWFkZXJib2FyZC5QbGF5ZXJEYXRhKicKBlNv" + 
+          "cnRCeRIICgRSQU5LEAESCQoFU0NPUkUQAhIICgROT05FEAM=");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_Senseix_Message_Leaderboard_MemberData__Descriptor = Descriptor.MessageTypes[0];
@@ -98,7 +97,6 @@ namespace Senseix.Message.Leaderboard {
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
           new pbd::FileDescriptor[] {
-          global::Senseix.Message.Constant.Constant.Descriptor, 
           }, assigner);
     }
     #endregion

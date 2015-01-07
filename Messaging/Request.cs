@@ -29,11 +29,12 @@ namespace Senseix.Message
 		const string PLAYER_HDR = GENERIC_HDR + "/players/";
 		const string PROBLEM_HDR = GENERIC_HDR + "/problems/";
 		const string LEADERBOARD_HDR = GENERIC_HDR + "/applications/leaderboard/";
+		const string DEBUG_HDR = GENERIC_HDR + "/debug/";
 
 		//External urls
-		public const string WEBSITE_URL = ENCRYPTED + SERVER_URL;
+		public const string WEBSITE_URL = "http://parent.senseix.com/parents/sign_up";
 		public const string DEVICES_WEBSITE_HDR = WEBSITE_URL + "/devices/";
-		public const string ENROLL_GAME_URL = DEVICES_WEBSITE_HDR + "new";
+		public const string ENROLL_GAME_URL = "http://parent.senseix.com/devices/enroll";
 
 		//Requests related to Parent management 
 		const string REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
@@ -59,6 +60,9 @@ namespace Senseix.Message
 		const string GET_PLAYER_RANK_URL = LEADERBOARD_HDR + "player";
 		const string UPDATE_PLAYER_SCORE_URL = LEADERBOARD_HDR + "update_player_score";
 
+		//Requests related to Debugging
+		const string DEBUG_LOG_SUBMIT_URL = DEBUG_HDR + "debug_log_submit";
+
 		public static ArrayList activeRequests = new ArrayList();
 
 		public static void CheckResults()
@@ -78,7 +82,7 @@ namespace Senseix.Message
 					}
 					catch (Google.ProtocolBuffers.InvalidProtocolBufferException)
 					{
-						Debug.LogWarning ("A pending SenseiX request had a protobufs error" +
+						UnityEngine.Debug.LogWarning ("A pending SenseiX request had a protobufs error" +
 						           " so I'm just going to get rid of it." + 
 						           "  What's one request, right?");
 					}
@@ -140,7 +144,7 @@ namespace Senseix.Message
 			}
 			else
 			{
-				Debug.LogWarning ("A SenseiX message had an error.  " + 
+				UnityEngine.Debug.LogWarning ("A SenseiX message had an error.  " + 
 				                  "Most likely internet connectivity issues.");
 				SenseixSession.SetSessionState (false);
 			}
@@ -172,7 +176,7 @@ namespace Senseix.Message
 			//Did we receive any response?
 			if (!string.IsNullOrEmpty (recvResult.error))
 			{
-				Debug.LogWarning (recvResult.error);
+				UnityEngine.Debug.LogWarning (recvResult.error);
 				SenseixSession.SetSessionState(false);
 				if(recvResult.error.Equals(401))
 				{
@@ -447,7 +451,7 @@ namespace Senseix.Message
 				}
 				if (addMeProblem.PlayerId == "no current player")
 				{
-					Debug.LogWarning("I'm sending a problem to the server with no player ID.");
+					UnityEngine.Debug.LogWarning("I'm sending a problem to the server with no player ID.");
 				}
 				postProblem.AddProblem (addMeProblem);
 			}
@@ -543,7 +547,7 @@ namespace Senseix.Message
 			string[] fileNames = Directory.GetFiles (directoryPath);
 			foreach (string fileName in fileNames)
 			{
-				Debug.Log("Submitting cache");
+				UnityEngine.Debug.Log("Submitting cache");
 				byte[] bytes = System.IO.File.ReadAllBytes(fileName);
 				RequestHeader.Builder hdr_request = RequestHeader.ParseFrom(bytes).ToBuilder();
 				hdr_request.AuthToken = SenseixSession.GetAuthToken();
@@ -551,6 +555,22 @@ namespace Senseix.Message
 				NonblockingPostRequest(ref hdr_request, Constant.MessageType.ProblemPost, POST_PROBLEM_URL);
 				File.Delete(fileName);
 			}
+		}
+
+		static public void BugReport(string deviceID, string report)
+		{
+			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
+
+			Debug.DebugLogSubmitRequest.Builder debugLogSubmit = Debug.DebugLogSubmitRequest.CreateBuilder ();
+			debugLogSubmit.DebugLog = report;
+			debugLogSubmit.DeviceId = deviceID;
+
+			hdr_request.SetDebugLogSubmit (debugLogSubmit);
+			hdr_request.SetAuthToken (SenseixSession.GetAuthToken());
+			hdr_request.SetAccessToken (SenseixSession.GetAccessToken ());
+
+			UnityEngine.Debug.Log ("Submitting bug report.");
+			SyncronousPostRequest(ref hdr_request, Constant.MessageType.DebugLogSubmit, DEBUG_LOG_SUBMIT_URL);
 		}
 	}
 }

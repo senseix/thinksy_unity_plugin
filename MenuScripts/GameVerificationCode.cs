@@ -18,7 +18,13 @@ namespace Senseix
 		{
 			ResetCode ();
 		}
-		
+
+		public string GetCode()
+		{
+			ResetCode ();
+			return codeText.text;
+		}
+
 		// Update is called once per frame
 		void Update () {
 			

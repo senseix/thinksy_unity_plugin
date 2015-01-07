@@ -27,14 +27,14 @@ namespace Senseix.Message {
 
 			if (!reply.IsInitialized) 
 			{
-				Debug.Log ("Could not find a valid reply Message from server...");
+				UnityEngine.Debug.Log ("Could not find a valid reply Message from server...");
 				return false; 
 			}
 
-			Debug.Log (reply.Message);
+			UnityEngine.Debug.Log (reply.Message);
 			if (reply.Status == Constant.Status.FAILURE) 
 			{
-				Debug.Log (reply.Message);
+				UnityEngine.Debug.Log (reply.Message);
 				return false;
 			}
 	
@@ -46,27 +46,27 @@ namespace Senseix.Message {
 						//Debug.Log("save auth token.");
 						SenseixSession.SetAndSaveAuthToken(reply.DeviceRegistration.AuthToken);
 						SenseixSession.SetSessionState(true);
-						Debug.Log("Temporary account: " + reply.DeviceRegistration.IsTemporaryAccount);
+						UnityEngine.Debug.Log("Temporary account: " + reply.DeviceRegistration.IsTemporaryAccount);
 						SenseixSession.SetSignedIn(!reply.DeviceRegistration.IsTemporaryAccount);
 						SenseixSession.CheckProblemPostCacheSubmission();
 					} 
 					else 
 					{
 						SenseixSession.SetSessionState(false);
-						Debug.Log("Can't find key from result");
+						UnityEngine.Debug.Log("Can't find key from result");
 						return false;
 					}
 					break;
 
 				case Constant.MessageType.GameVerification:
 					SenseixSession.SetSessionState(true);
-					Debug.Log("I got a response from my game verification Message");
+					UnityEngine.Debug.Log("I got a response from my game verification Message");
 					break;
 				
 				case Constant.MessageType.RegisterParent:
 					if (reply.Status == Constant.Status.FAILURE) 
 					{
-						Debug.Log ("Register parent failed.");
+						UnityEngine.Debug.Log ("Register parent failed.");
 					}
 					if(reply.HasParentRegistration && reply.ParentRegistration.IsInitialized) 
 					{
@@ -75,7 +75,7 @@ namespace Senseix.Message {
 					else 
 					{	
 						SenseixSession.SetSessionState(false);
-						Debug.Log("Can't find key from result");
+						UnityEngine.Debug.Log("Can't find key from result");
 						return false;
 					}
 					break;
@@ -92,7 +92,7 @@ namespace Senseix.Message {
 					else 
 					{
 						SenseixSession.SetSessionState(false);
-						Debug.Log("Can't find key from result");
+						UnityEngine.Debug.Log("Can't find key from result");
 						return false;
 					}
 					break;
@@ -109,7 +109,7 @@ namespace Senseix.Message {
 					else 
 					{	
 						SenseixSession.SetSessionState(false);
-						Debug.Log("Can't find key from result");
+						UnityEngine.Debug.Log("Can't find key from result");
 						return false;
 					}
 					break;
@@ -132,16 +132,16 @@ namespace Senseix.Message {
 
 				case Constant.MessageType.ProblemPost:
 					SenseixSession.SetSessionState(true);
-					Debug.Log("I got a response from a Problem post Message");
+					UnityEngine.Debug.Log("I got a response from a Problem post Message");
 					break;
 				
 				case Constant.MessageType.ProblemGet:
-					Debug.Log("I got a response from a Problem get Message");
+					UnityEngine.Debug.Log("I got a response from a Problem get Message");
 					//Debug.Log("has message: " + reply.HasMessage);
 					//Debug.Log("message length: " + reply.Message.Length);
 					//Debug.Log("has problem get: " + reply.HasProblemGet);
 					if (reply.ProblemGet.ProblemCount != ProblemKeeper.PROBLEMS_PER_PULL)
-						Debug.LogWarning("I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + reply.ProblemGet.ProblemCount);
+						UnityEngine.Debug.LogWarning("I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + reply.ProblemGet.ProblemCount);
 					if(reply.HasProblemGet && reply.ProblemGet.IsInitialized) 
 					{
 						ProblemKeeper.ReplaceSeed(reply);
@@ -154,7 +154,7 @@ namespace Senseix.Message {
 
 				case Constant.MessageType.LeaderboardPage:
 //					Debug.Log ("I recieved a Leaderboard page response");
-					Debug.Log(reply.Page.PlayerList);
+					UnityEngine.Debug.Log(reply.Page.PlayerList);
 					SenseixSession.SetLeaderboardPlayers(reply.Page.PlayerList);
 					break;
 
@@ -171,6 +171,11 @@ namespace Senseix.Message {
 				case Senseix.Message.Constant.MessageType.EncouragementGet:
 					SenseixSession.SetSessionState(true);
 					//Debug.Log("I got a response from an encouragement get Message");
+					break;
+
+				case Senseix.Message.Constant.MessageType.DebugLogSubmit:
+					SenseixSession.SetSessionState(true);
+					//UnityEngine.Debug.Log("I got a response from a debug log submit message.");
 					break;
 
 				default:

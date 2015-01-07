@@ -33,64 +33,68 @@ namespace Senseix.Message {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           "Cg1NZXNzYWdlLnByb3RvEg9TZW5zZWl4Lk1lc3NhZ2UaDFBhcmVudC5wcm90" + 
           "bxoOQ29uc3RhbnQucHJvdG8aDFBsYXllci5wcm90bxoNUHJvYmxlbS5wcm90" + 
-          "bxoRTGVhZGVyYm9hcmQucHJvdG8iLwoMUGFzc3dvcmRBdXRoEg0KBWVtYWls" + 
-          "GAEgAigJEhAKCHBhc3N3b3JkGAIgAigJIu8JCg1SZXF1ZXN0SGVhZGVyEhQK" + 
-          "DGFjY2Vzc190b2tlbhgBIAEoCRISCgphdXRoX3Rva2VuGAIgASgJEjQKDXBh" + 
-          "c3N3b3JkX2F1dGgYAyABKAsyHS5TZW5zZWl4Lk1lc3NhZ2UuUGFzc3dvcmRB" + 
-          "dXRoEk4KE2RldmljZV9yZWdpc3RyYXRpb24YBCABKAsyMS5TZW5zZWl4Lk1l" + 
-          "c3NhZ2UuUGFyZW50LkRldmljZVJlZ2lzdHJhdGlvblJlcXVlc3QSTgoTcGFy" + 
-          "ZW50X3JlZ2lzdHJhdGlvbhgFIAEoCzIxLlNlbnNlaXguTWVzc2FnZS5QYXJl" + 
-          "bnQuUGFyZW50UmVnaXN0cmF0aW9uUmVxdWVzdBJFCg9wYXJlbnRfc2lnbl9v" + 
-          "dXQYBiABKAsyLC5TZW5zZWl4Lk1lc3NhZ2UuUGFyZW50LlBhcmVudFNpZ25P" + 
-          "dXRSZXF1ZXN0EkMKDnBhcmVudF9zaWduX2luGAcgASgLMisuU2Vuc2VpeC5N" + 
-          "ZXNzYWdlLlBhcmVudC5QYXJlbnRTaWduSW5SZXF1ZXN0Ej4KC3BhcmVudF9l" + 
-          "ZGl0GAggASgLMikuU2Vuc2VpeC5NZXNzYWdlLlBhcmVudC5QYXJlbnRFZGl0" + 
-          "UmVxdWVzdBJACgxwYXJlbnRfbWVyZ2UYCSABKAsyKi5TZW5zZWl4Lk1lc3Nh" + 
-          "Z2UuUGFyZW50LlBhcmVudE1lcmdlUmVxdWVzdBJCCg1wbGF5ZXJfY3JlYXRl" + 
-          "GAogASgLMisuU2Vuc2VpeC5NZXNzYWdlLlBsYXllci5QbGF5ZXJDcmVhdGVS" + 
-          "ZXF1ZXN0Ej4KC3BsYXllcl9saXN0GAsgASgLMikuU2Vuc2VpeC5NZXNzYWdl" + 
-          "LlBsYXllci5QbGF5ZXJMaXN0UmVxdWVzdBJmCiBwbGF5ZXJfcmVnaXN0ZXJf" + 
-          "d2l0aF9hcHBsaWNhdGlvbhgMIAEoCzI8LlNlbnNlaXguTWVzc2FnZS5QbGF5" + 
-          "ZXIuUGxheWVyUmVnaXN0ZXJXaXRoQXBwbGljYXRpb25SZXF1ZXN0EkEKDHBy" + 
-          "b2JsZW1fcG9zdBgNIAEoCzIrLlNlbnNlaXguTWVzc2FnZS5Qcm9ibGVtLlBy" + 
-          "b2JsZW1Qb3N0UmVxdWVzdBI/Cgtwcm9ibGVtX2dldBgOIAEoCzIqLlNlbnNl" + 
-          "aXguTWVzc2FnZS5Qcm9ibGVtLlByb2JsZW1HZXRSZXF1ZXN0EjYKBHBhZ2UY" + 
-          "DyABKAsyKC5TZW5zZWl4Lk1lc3NhZ2UuTGVhZGVyYm9hcmQuUGFnZVJlcXVl" + 
-          "c3QSSwoMcGxheWVyX3Njb3JlGBAgASgLMjUuU2Vuc2VpeC5NZXNzYWdlLkxl" + 
-          "YWRlcmJvYXJkLlVwZGF0ZVBsYXllclNjb3JlUmVxdWVzdBJDCgtwbGF5ZXJf" + 
-          "cmFuaxgRIAEoCzIuLlNlbnNlaXguTWVzc2FnZS5MZWFkZXJib2FyZC5QbGF5" + 
-          "ZXJSYW5rUmVxdWVzdBJKChFnYW1lX3ZlcmlmaWNhdGlvbhgSIAEoCzIvLlNl" + 
-          "bnNlaXguTWVzc2FnZS5QYXJlbnQuR2FtZVZlcmlmaWNhdGlvblJlcXVlc3QS" + 
-          "SgoRZW5jb3VyYWdlbWVudF9nZXQYEyABKAsyLy5TZW5zZWl4Lk1lc3NhZ2Uu" + 
-          "UGxheWVyLkVuY291cmFnZW1lbnRHZXRSZXF1ZXN0IuwJCg5SZXNwb25zZUhl" + 
-          "YWRlchI5CgZzdGF0dXMYASACKA4yIC5TZW5zZWl4Lk1lc3NhZ2UuQ29uc3Rh" + 
-          "bnQuU3RhdHVzOgdGQUlMVVJFEg8KB21lc3NhZ2UYAiACKAkSRgoPcGFyZW50" + 
-          "X3NpZ25fb3V0GAMgASgLMi0uU2Vuc2VpeC5NZXNzYWdlLlBhcmVudC5QYXJl" + 
-          "bnRTaWduT3V0UmVzcG9uc2USTwoTcGFyZW50X3JlZ2lzdHJhdGlvbhgEIAEo" + 
-          "CzIyLlNlbnNlaXguTWVzc2FnZS5QYXJlbnQuUGFyZW50UmVnaXN0cmF0aW9u" + 
-          "UmVzcG9uc2USTwoTZGV2aWNlX3JlZ2lzdHJhdGlvbhgFIAEoCzIyLlNlbnNl" + 
-          "aXguTWVzc2FnZS5QYXJlbnQuRGV2aWNlUmVnaXN0cmF0aW9uUmVzcG9uc2US" + 
-          "RAoOcGFyZW50X3NpZ25faW4YBiABKAsyLC5TZW5zZWl4Lk1lc3NhZ2UuUGFy" + 
-          "ZW50LlBhcmVudFNpZ25JblJlc3BvbnNlEj8KC3BsYXllcl9lZGl0GAcgASgL" + 
-          "MiouU2Vuc2VpeC5NZXNzYWdlLlBhcmVudC5QYXJlbnRFZGl0UmVzcG9uc2US" + 
-          "QQoMcGFyZW50X21lcmdlGAggASgLMisuU2Vuc2VpeC5NZXNzYWdlLlBhcmVu" + 
-          "dC5QYXJlbnRNZXJnZVJlc3BvbnNlEkMKDXBsYXllcl9jcmVhdGUYCSABKAsy" + 
-          "LC5TZW5zZWl4Lk1lc3NhZ2UuUGxheWVyLlBsYXllckNyZWF0ZVJlc3BvbnNl" + 
-          "Ej8KC3BsYXllcl9saXN0GAogASgLMiouU2Vuc2VpeC5NZXNzYWdlLlBsYXll" + 
-          "ci5QbGF5ZXJMaXN0UmVzcG9uc2USZwogcGxheWVyX3JlZ2lzdGVyX3dpdGhf" + 
-          "YXBwbGljYXRpb24YCyABKAsyPS5TZW5zZWl4Lk1lc3NhZ2UuUGxheWVyLlBs" + 
-          "YXllclJlZ2lzdGVyV2l0aEFwcGxpY2F0aW9uUmVzcG9uc2USQgoMcHJvYmxl" + 
-          "bV9wb3N0GAwgASgLMiwuU2Vuc2VpeC5NZXNzYWdlLlByb2JsZW0uUHJvYmxl" + 
-          "bVBvc3RSZXNwb25zZRJACgtwcm9ibGVtX2dldBgNIAEoCzIrLlNlbnNlaXgu" + 
-          "TWVzc2FnZS5Qcm9ibGVtLlByb2JsZW1HZXRSZXNwb25zZRI3CgRwYWdlGA4g" + 
-          "ASgLMikuU2Vuc2VpeC5NZXNzYWdlLkxlYWRlcmJvYXJkLlBhZ2VSZXNwb25z" + 
-          "ZRJMCgxwbGF5ZXJfc2NvcmUYDyABKAsyNi5TZW5zZWl4Lk1lc3NhZ2UuTGVh" + 
-          "ZGVyYm9hcmQuVXBkYXRlUGxheWVyU2NvcmVSZXNwb25zZRJECgtwbGF5ZXJf" + 
-          "cmFuaxgQIAEoCzIvLlNlbnNlaXguTWVzc2FnZS5MZWFkZXJib2FyZC5QbGF5" + 
-          "ZXJSYW5rUmVzcG9uc2USSwoRZ2FtZV92ZXJpZmljYXRpb24YESABKAsyMC5T" + 
-          "ZW5zZWl4Lk1lc3NhZ2UuUGFyZW50LkdhbWVWZXJpZmljYXRpb25SZXNwb25z" + 
-          "ZRJLChFlbmNvdXJhZ2VtZW50X2dldBgSIAEoCzIwLlNlbnNlaXguTWVzc2Fn" + 
-          "ZS5QbGF5ZXIuRW5jb3VyYWdlbWVudEdldFJlc3BvbnNl");
+          "bxoRTGVhZGVyYm9hcmQucHJvdG8aC0RlYnVnLnByb3RvIi8KDFBhc3N3b3Jk" + 
+          "QXV0aBINCgVlbWFpbBgBIAIoCRIQCghwYXNzd29yZBgCIAIoCSK3CgoNUmVx" + 
+          "dWVzdEhlYWRlchIUCgxhY2Nlc3NfdG9rZW4YASABKAkSEgoKYXV0aF90b2tl" + 
+          "bhgCIAEoCRI0Cg1wYXNzd29yZF9hdXRoGAMgASgLMh0uU2Vuc2VpeC5NZXNz" + 
+          "YWdlLlBhc3N3b3JkQXV0aBJOChNkZXZpY2VfcmVnaXN0cmF0aW9uGAQgASgL" + 
+          "MjEuU2Vuc2VpeC5NZXNzYWdlLlBhcmVudC5EZXZpY2VSZWdpc3RyYXRpb25S" + 
+          "ZXF1ZXN0Ek4KE3BhcmVudF9yZWdpc3RyYXRpb24YBSABKAsyMS5TZW5zZWl4" + 
+          "Lk1lc3NhZ2UuUGFyZW50LlBhcmVudFJlZ2lzdHJhdGlvblJlcXVlc3QSRQoP" + 
+          "cGFyZW50X3NpZ25fb3V0GAYgASgLMiwuU2Vuc2VpeC5NZXNzYWdlLlBhcmVu" + 
+          "dC5QYXJlbnRTaWduT3V0UmVxdWVzdBJDCg5wYXJlbnRfc2lnbl9pbhgHIAEo" + 
+          "CzIrLlNlbnNlaXguTWVzc2FnZS5QYXJlbnQuUGFyZW50U2lnbkluUmVxdWVz" + 
+          "dBI+CgtwYXJlbnRfZWRpdBgIIAEoCzIpLlNlbnNlaXguTWVzc2FnZS5QYXJl" + 
+          "bnQuUGFyZW50RWRpdFJlcXVlc3QSQAoMcGFyZW50X21lcmdlGAkgASgLMiou" + 
+          "U2Vuc2VpeC5NZXNzYWdlLlBhcmVudC5QYXJlbnRNZXJnZVJlcXVlc3QSQgoN" + 
+          "cGxheWVyX2NyZWF0ZRgKIAEoCzIrLlNlbnNlaXguTWVzc2FnZS5QbGF5ZXIu" + 
+          "UGxheWVyQ3JlYXRlUmVxdWVzdBI+CgtwbGF5ZXJfbGlzdBgLIAEoCzIpLlNl" + 
+          "bnNlaXguTWVzc2FnZS5QbGF5ZXIuUGxheWVyTGlzdFJlcXVlc3QSZgogcGxh" + 
+          "eWVyX3JlZ2lzdGVyX3dpdGhfYXBwbGljYXRpb24YDCABKAsyPC5TZW5zZWl4" + 
+          "Lk1lc3NhZ2UuUGxheWVyLlBsYXllclJlZ2lzdGVyV2l0aEFwcGxpY2F0aW9u" + 
+          "UmVxdWVzdBJBCgxwcm9ibGVtX3Bvc3QYDSABKAsyKy5TZW5zZWl4Lk1lc3Nh" + 
+          "Z2UuUHJvYmxlbS5Qcm9ibGVtUG9zdFJlcXVlc3QSPwoLcHJvYmxlbV9nZXQY" + 
+          "DiABKAsyKi5TZW5zZWl4Lk1lc3NhZ2UuUHJvYmxlbS5Qcm9ibGVtR2V0UmVx" + 
+          "dWVzdBI2CgRwYWdlGA8gASgLMiguU2Vuc2VpeC5NZXNzYWdlLkxlYWRlcmJv" + 
+          "YXJkLlBhZ2VSZXF1ZXN0EksKDHBsYXllcl9zY29yZRgQIAEoCzI1LlNlbnNl" + 
+          "aXguTWVzc2FnZS5MZWFkZXJib2FyZC5VcGRhdGVQbGF5ZXJTY29yZVJlcXVl" + 
+          "c3QSQwoLcGxheWVyX3JhbmsYESABKAsyLi5TZW5zZWl4Lk1lc3NhZ2UuTGVh" + 
+          "ZGVyYm9hcmQuUGxheWVyUmFua1JlcXVlc3QSSgoRZ2FtZV92ZXJpZmljYXRp" + 
+          "b24YEiABKAsyLy5TZW5zZWl4Lk1lc3NhZ2UuUGFyZW50LkdhbWVWZXJpZmlj" + 
+          "YXRpb25SZXF1ZXN0EkoKEWVuY291cmFnZW1lbnRfZ2V0GBMgASgLMi8uU2Vu" + 
+          "c2VpeC5NZXNzYWdlLlBsYXllci5FbmNvdXJhZ2VtZW50R2V0UmVxdWVzdBJG" + 
+          "ChBkZWJ1Z19sb2dfc3VibWl0GBQgASgLMiwuU2Vuc2VpeC5NZXNzYWdlLkRl" + 
+          "YnVnLkRlYnVnTG9nU3VibWl0UmVxdWVzdCK1CgoOUmVzcG9uc2VIZWFkZXIS" + 
+          "OQoGc3RhdHVzGAEgAigOMiAuU2Vuc2VpeC5NZXNzYWdlLkNvbnN0YW50LlN0" + 
+          "YXR1czoHRkFJTFVSRRIPCgdtZXNzYWdlGAIgAigJEkYKD3BhcmVudF9zaWdu" + 
+          "X291dBgDIAEoCzItLlNlbnNlaXguTWVzc2FnZS5QYXJlbnQuUGFyZW50U2ln" + 
+          "bk91dFJlc3BvbnNlEk8KE3BhcmVudF9yZWdpc3RyYXRpb24YBCABKAsyMi5T" + 
+          "ZW5zZWl4Lk1lc3NhZ2UuUGFyZW50LlBhcmVudFJlZ2lzdHJhdGlvblJlc3Bv" + 
+          "bnNlEk8KE2RldmljZV9yZWdpc3RyYXRpb24YBSABKAsyMi5TZW5zZWl4Lk1l" + 
+          "c3NhZ2UuUGFyZW50LkRldmljZVJlZ2lzdHJhdGlvblJlc3BvbnNlEkQKDnBh" + 
+          "cmVudF9zaWduX2luGAYgASgLMiwuU2Vuc2VpeC5NZXNzYWdlLlBhcmVudC5Q" + 
+          "YXJlbnRTaWduSW5SZXNwb25zZRI/CgtwbGF5ZXJfZWRpdBgHIAEoCzIqLlNl" + 
+          "bnNlaXguTWVzc2FnZS5QYXJlbnQuUGFyZW50RWRpdFJlc3BvbnNlEkEKDHBh" + 
+          "cmVudF9tZXJnZRgIIAEoCzIrLlNlbnNlaXguTWVzc2FnZS5QYXJlbnQuUGFy" + 
+          "ZW50TWVyZ2VSZXNwb25zZRJDCg1wbGF5ZXJfY3JlYXRlGAkgASgLMiwuU2Vu" + 
+          "c2VpeC5NZXNzYWdlLlBsYXllci5QbGF5ZXJDcmVhdGVSZXNwb25zZRI/Cgtw" + 
+          "bGF5ZXJfbGlzdBgKIAEoCzIqLlNlbnNlaXguTWVzc2FnZS5QbGF5ZXIuUGxh" + 
+          "eWVyTGlzdFJlc3BvbnNlEmcKIHBsYXllcl9yZWdpc3Rlcl93aXRoX2FwcGxp" + 
+          "Y2F0aW9uGAsgASgLMj0uU2Vuc2VpeC5NZXNzYWdlLlBsYXllci5QbGF5ZXJS" + 
+          "ZWdpc3RlcldpdGhBcHBsaWNhdGlvblJlc3BvbnNlEkIKDHByb2JsZW1fcG9z" + 
+          "dBgMIAEoCzIsLlNlbnNlaXguTWVzc2FnZS5Qcm9ibGVtLlByb2JsZW1Qb3N0" + 
+          "UmVzcG9uc2USQAoLcHJvYmxlbV9nZXQYDSABKAsyKy5TZW5zZWl4Lk1lc3Nh" + 
+          "Z2UuUHJvYmxlbS5Qcm9ibGVtR2V0UmVzcG9uc2USNwoEcGFnZRgOIAEoCzIp" + 
+          "LlNlbnNlaXguTWVzc2FnZS5MZWFkZXJib2FyZC5QYWdlUmVzcG9uc2USTAoM" + 
+          "cGxheWVyX3Njb3JlGA8gASgLMjYuU2Vuc2VpeC5NZXNzYWdlLkxlYWRlcmJv" + 
+          "YXJkLlVwZGF0ZVBsYXllclNjb3JlUmVzcG9uc2USRAoLcGxheWVyX3JhbmsY" + 
+          "ECABKAsyLy5TZW5zZWl4Lk1lc3NhZ2UuTGVhZGVyYm9hcmQuUGxheWVyUmFu" + 
+          "a1Jlc3BvbnNlEksKEWdhbWVfdmVyaWZpY2F0aW9uGBEgASgLMjAuU2Vuc2Vp" + 
+          "eC5NZXNzYWdlLlBhcmVudC5HYW1lVmVyaWZpY2F0aW9uUmVzcG9uc2USSwoR" + 
+          "ZW5jb3VyYWdlbWVudF9nZXQYEiABKAsyMC5TZW5zZWl4Lk1lc3NhZ2UuUGxh" + 
+          "eWVyLkVuY291cmFnZW1lbnRHZXRSZXNwb25zZRJHChBkZWJ1Z19sb2dfc3Vi" + 
+          "bWl0GBMgASgLMi0uU2Vuc2VpeC5NZXNzYWdlLkRlYnVnLkRlYnVnTG9nU3Vi" + 
+          "bWl0UmVzcG9uc2U=");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_Senseix_Message_PasswordAuth__Descriptor = Descriptor.MessageTypes[0];
@@ -100,11 +104,11 @@ namespace Senseix.Message {
         internal__static_Senseix_Message_RequestHeader__Descriptor = Descriptor.MessageTypes[1];
         internal__static_Senseix_Message_RequestHeader__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.RequestHeader, global::Senseix.Message.RequestHeader.Builder>(internal__static_Senseix_Message_RequestHeader__Descriptor,
-                new string[] { "AccessToken", "AuthToken", "PasswordAuth", "DeviceRegistration", "ParentRegistration", "ParentSignOut", "ParentSignIn", "ParentEdit", "ParentMerge", "PlayerCreate", "PlayerList", "PlayerRegisterWithApplication", "ProblemPost", "ProblemGet", "Page", "PlayerScore", "PlayerRank", "GameVerification", "EncouragementGet", });
+                new string[] { "AccessToken", "AuthToken", "PasswordAuth", "DeviceRegistration", "ParentRegistration", "ParentSignOut", "ParentSignIn", "ParentEdit", "ParentMerge", "PlayerCreate", "PlayerList", "PlayerRegisterWithApplication", "ProblemPost", "ProblemGet", "Page", "PlayerScore", "PlayerRank", "GameVerification", "EncouragementGet", "DebugLogSubmit", });
         internal__static_Senseix_Message_ResponseHeader__Descriptor = Descriptor.MessageTypes[2];
         internal__static_Senseix_Message_ResponseHeader__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.ResponseHeader, global::Senseix.Message.ResponseHeader.Builder>(internal__static_Senseix_Message_ResponseHeader__Descriptor,
-                new string[] { "Status", "Message", "ParentSignOut", "ParentRegistration", "DeviceRegistration", "ParentSignIn", "PlayerEdit", "ParentMerge", "PlayerCreate", "PlayerList", "PlayerRegisterWithApplication", "ProblemPost", "ProblemGet", "Page", "PlayerScore", "PlayerRank", "GameVerification", "EncouragementGet", });
+                new string[] { "Status", "Message", "ParentSignOut", "ParentRegistration", "DeviceRegistration", "ParentSignIn", "PlayerEdit", "ParentMerge", "PlayerCreate", "PlayerList", "PlayerRegisterWithApplication", "ProblemPost", "ProblemGet", "Page", "PlayerScore", "PlayerRank", "GameVerification", "EncouragementGet", "DebugLogSubmit", });
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
@@ -114,6 +118,7 @@ namespace Senseix.Message {
           global::Senseix.Message.Player.Proto.Player.Descriptor, 
           global::Senseix.Message.Problem.Problem.Descriptor, 
           global::Senseix.Message.Leaderboard.Leaderboard.Descriptor, 
+          global::Senseix.Message.Debug.Debug.Descriptor, 
           }, assigner);
     }
     #endregion
@@ -441,8 +446,8 @@ namespace Senseix.Message {
   public sealed partial class RequestHeader : pb::GeneratedMessage<RequestHeader, RequestHeader.Builder> {
     private RequestHeader() { }
     private static readonly RequestHeader defaultInstance = new RequestHeader().MakeReadOnly();
-    private static readonly string[] _requestHeaderFieldNames = new string[] { "access_token", "auth_token", "device_registration", "encouragement_get", "game_verification", "page", "parent_edit", "parent_merge", "parent_registration", "parent_sign_in", "parent_sign_out", "password_auth", "player_create", "player_list", "player_rank", "player_register_with_application", "player_score", "problem_get", "problem_post" };
-    private static readonly uint[] _requestHeaderFieldTags = new uint[] { 10, 18, 34, 154, 146, 122, 66, 74, 42, 58, 50, 26, 82, 90, 138, 98, 130, 114, 106 };
+    private static readonly string[] _requestHeaderFieldNames = new string[] { "access_token", "auth_token", "debug_log_submit", "device_registration", "encouragement_get", "game_verification", "page", "parent_edit", "parent_merge", "parent_registration", "parent_sign_in", "parent_sign_out", "password_auth", "player_create", "player_list", "player_rank", "player_register_with_application", "player_score", "problem_get", "problem_post" };
+    private static readonly uint[] _requestHeaderFieldTags = new uint[] { 10, 18, 162, 34, 154, 146, 122, 66, 74, 42, 58, 50, 26, 82, 90, 138, 98, 130, 114, 106 };
     public static RequestHeader DefaultInstance {
       get { return defaultInstance; }
     }
@@ -653,6 +658,16 @@ namespace Senseix.Message {
       get { return encouragementGet_ ?? global::Senseix.Message.Player.EncouragementGetRequest.DefaultInstance; }
     }
     
+    public const int DebugLogSubmitFieldNumber = 20;
+    private bool hasDebugLogSubmit;
+    private global::Senseix.Message.Debug.DebugLogSubmitRequest debugLogSubmit_;
+    public bool HasDebugLogSubmit {
+      get { return hasDebugLogSubmit; }
+    }
+    public global::Senseix.Message.Debug.DebugLogSubmitRequest DebugLogSubmit {
+      get { return debugLogSubmit_ ?? global::Senseix.Message.Debug.DebugLogSubmitRequest.DefaultInstance; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (HasPasswordAuth) {
@@ -697,6 +712,9 @@ namespace Senseix.Message {
         if (HasEncouragementGet) {
           if (!EncouragementGet.IsInitialized) return false;
         }
+        if (HasDebugLogSubmit) {
+          if (!DebugLogSubmit.IsInitialized) return false;
+        }
         return true;
       }
     }
@@ -711,55 +729,58 @@ namespace Senseix.Message {
         output.WriteString(2, field_names[1], AuthToken);
       }
       if (hasPasswordAuth) {
-        output.WriteMessage(3, field_names[11], PasswordAuth);
+        output.WriteMessage(3, field_names[12], PasswordAuth);
       }
       if (hasDeviceRegistration) {
-        output.WriteMessage(4, field_names[2], DeviceRegistration);
+        output.WriteMessage(4, field_names[3], DeviceRegistration);
       }
       if (hasParentRegistration) {
-        output.WriteMessage(5, field_names[8], ParentRegistration);
+        output.WriteMessage(5, field_names[9], ParentRegistration);
       }
       if (hasParentSignOut) {
-        output.WriteMessage(6, field_names[10], ParentSignOut);
+        output.WriteMessage(6, field_names[11], ParentSignOut);
       }
       if (hasParentSignIn) {
-        output.WriteMessage(7, field_names[9], ParentSignIn);
+        output.WriteMessage(7, field_names[10], ParentSignIn);
       }
       if (hasParentEdit) {
-        output.WriteMessage(8, field_names[6], ParentEdit);
+        output.WriteMessage(8, field_names[7], ParentEdit);
       }
       if (hasParentMerge) {
-        output.WriteMessage(9, field_names[7], ParentMerge);
+        output.WriteMessage(9, field_names[8], ParentMerge);
       }
       if (hasPlayerCreate) {
-        output.WriteMessage(10, field_names[12], PlayerCreate);
+        output.WriteMessage(10, field_names[13], PlayerCreate);
       }
       if (hasPlayerList) {
-        output.WriteMessage(11, field_names[13], PlayerList);
+        output.WriteMessage(11, field_names[14], PlayerList);
       }
       if (hasPlayerRegisterWithApplication) {
-        output.WriteMessage(12, field_names[15], PlayerRegisterWithApplication);
+        output.WriteMessage(12, field_names[16], PlayerRegisterWithApplication);
       }
       if (hasProblemPost) {
-        output.WriteMessage(13, field_names[18], ProblemPost);
+        output.WriteMessage(13, field_names[19], ProblemPost);
       }
       if (hasProblemGet) {
-        output.WriteMessage(14, field_names[17], ProblemGet);
+        output.WriteMessage(14, field_names[18], ProblemGet);
       }
       if (hasPage) {
-        output.WriteMessage(15, field_names[5], Page);
+        output.WriteMessage(15, field_names[6], Page);
       }
       if (hasPlayerScore) {
-        output.WriteMessage(16, field_names[16], PlayerScore);
+        output.WriteMessage(16, field_names[17], PlayerScore);
       }
       if (hasPlayerRank) {
-        output.WriteMessage(17, field_names[14], PlayerRank);
+        output.WriteMessage(17, field_names[15], PlayerRank);
       }
       if (hasGameVerification) {
-        output.WriteMessage(18, field_names[4], GameVerification);
+        output.WriteMessage(18, field_names[5], GameVerification);
       }
       if (hasEncouragementGet) {
-        output.WriteMessage(19, field_names[3], EncouragementGet);
+        output.WriteMessage(19, field_names[4], EncouragementGet);
+      }
+      if (hasDebugLogSubmit) {
+        output.WriteMessage(20, field_names[2], DebugLogSubmit);
       }
       UnknownFields.WriteTo(output);
     }
@@ -827,6 +848,9 @@ namespace Senseix.Message {
         }
         if (hasEncouragementGet) {
           size += pb::CodedOutputStream.ComputeMessageSize(19, EncouragementGet);
+        }
+        if (hasDebugLogSubmit) {
+          size += pb::CodedOutputStream.ComputeMessageSize(20, DebugLogSubmit);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -1008,6 +1032,9 @@ namespace Senseix.Message {
         }
         if (other.HasEncouragementGet) {
           MergeEncouragementGet(other.EncouragementGet);
+        }
+        if (other.HasDebugLogSubmit) {
+          MergeDebugLogSubmit(other.DebugLogSubmit);
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -1211,6 +1238,15 @@ namespace Senseix.Message {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               EncouragementGet = subBuilder.BuildPartial();
+              break;
+            }
+            case 162: {
+              global::Senseix.Message.Debug.DebugLogSubmitRequest.Builder subBuilder = global::Senseix.Message.Debug.DebugLogSubmitRequest.CreateBuilder();
+              if (result.hasDebugLogSubmit) {
+                subBuilder.MergeFrom(DebugLogSubmit);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              DebugLogSubmit = subBuilder.BuildPartial();
               break;
             }
           }
@@ -1944,6 +1980,46 @@ namespace Senseix.Message {
         result.encouragementGet_ = null;
         return this;
       }
+      
+      public bool HasDebugLogSubmit {
+       get { return result.hasDebugLogSubmit; }
+      }
+      public global::Senseix.Message.Debug.DebugLogSubmitRequest DebugLogSubmit {
+        get { return result.DebugLogSubmit; }
+        set { SetDebugLogSubmit(value); }
+      }
+      public Builder SetDebugLogSubmit(global::Senseix.Message.Debug.DebugLogSubmitRequest value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasDebugLogSubmit = true;
+        result.debugLogSubmit_ = value;
+        return this;
+      }
+      public Builder SetDebugLogSubmit(global::Senseix.Message.Debug.DebugLogSubmitRequest.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasDebugLogSubmit = true;
+        result.debugLogSubmit_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeDebugLogSubmit(global::Senseix.Message.Debug.DebugLogSubmitRequest value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasDebugLogSubmit &&
+            result.debugLogSubmit_ != global::Senseix.Message.Debug.DebugLogSubmitRequest.DefaultInstance) {
+            result.debugLogSubmit_ = global::Senseix.Message.Debug.DebugLogSubmitRequest.CreateBuilder(result.debugLogSubmit_).MergeFrom(value).BuildPartial();
+        } else {
+          result.debugLogSubmit_ = value;
+        }
+        result.hasDebugLogSubmit = true;
+        return this;
+      }
+      public Builder ClearDebugLogSubmit() {
+        PrepareBuilder();
+        result.hasDebugLogSubmit = false;
+        result.debugLogSubmit_ = null;
+        return this;
+      }
     }
     static RequestHeader() {
       object.ReferenceEquals(global::Senseix.Message.Message.Descriptor, null);
@@ -1954,8 +2030,8 @@ namespace Senseix.Message {
   public sealed partial class ResponseHeader : pb::GeneratedMessage<ResponseHeader, ResponseHeader.Builder> {
     private ResponseHeader() { }
     private static readonly ResponseHeader defaultInstance = new ResponseHeader().MakeReadOnly();
-    private static readonly string[] _responseHeaderFieldNames = new string[] { "device_registration", "encouragement_get", "game_verification", "message", "page", "parent_merge", "parent_registration", "parent_sign_in", "parent_sign_out", "player_create", "player_edit", "player_list", "player_rank", "player_register_with_application", "player_score", "problem_get", "problem_post", "status" };
-    private static readonly uint[] _responseHeaderFieldTags = new uint[] { 42, 146, 138, 18, 114, 66, 34, 50, 26, 74, 58, 82, 130, 90, 122, 106, 98, 8 };
+    private static readonly string[] _responseHeaderFieldNames = new string[] { "debug_log_submit", "device_registration", "encouragement_get", "game_verification", "message", "page", "parent_merge", "parent_registration", "parent_sign_in", "parent_sign_out", "player_create", "player_edit", "player_list", "player_rank", "player_register_with_application", "player_score", "problem_get", "problem_post", "status" };
+    private static readonly uint[] _responseHeaderFieldTags = new uint[] { 154, 42, 146, 138, 18, 114, 66, 34, 50, 26, 74, 58, 82, 130, 90, 122, 106, 98, 8 };
     public static ResponseHeader DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2156,6 +2232,16 @@ namespace Senseix.Message {
       get { return encouragementGet_ ?? global::Senseix.Message.Player.EncouragementGetResponse.DefaultInstance; }
     }
     
+    public const int DebugLogSubmitFieldNumber = 19;
+    private bool hasDebugLogSubmit;
+    private global::Senseix.Message.Debug.DebugLogSubmitResponse debugLogSubmit_;
+    public bool HasDebugLogSubmit {
+      get { return hasDebugLogSubmit; }
+    }
+    public global::Senseix.Message.Debug.DebugLogSubmitResponse DebugLogSubmit {
+      get { return debugLogSubmit_ ?? global::Senseix.Message.Debug.DebugLogSubmitResponse.DefaultInstance; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasStatus) return false;
@@ -2195,58 +2281,61 @@ namespace Senseix.Message {
       int size = SerializedSize;
       string[] field_names = _responseHeaderFieldNames;
       if (hasStatus) {
-        output.WriteEnum(1, field_names[17], (int) Status, Status);
+        output.WriteEnum(1, field_names[18], (int) Status, Status);
       }
       if (hasMessage) {
-        output.WriteString(2, field_names[3], Message);
+        output.WriteString(2, field_names[4], Message);
       }
       if (hasParentSignOut) {
-        output.WriteMessage(3, field_names[8], ParentSignOut);
+        output.WriteMessage(3, field_names[9], ParentSignOut);
       }
       if (hasParentRegistration) {
-        output.WriteMessage(4, field_names[6], ParentRegistration);
+        output.WriteMessage(4, field_names[7], ParentRegistration);
       }
       if (hasDeviceRegistration) {
-        output.WriteMessage(5, field_names[0], DeviceRegistration);
+        output.WriteMessage(5, field_names[1], DeviceRegistration);
       }
       if (hasParentSignIn) {
-        output.WriteMessage(6, field_names[7], ParentSignIn);
+        output.WriteMessage(6, field_names[8], ParentSignIn);
       }
       if (hasPlayerEdit) {
-        output.WriteMessage(7, field_names[10], PlayerEdit);
+        output.WriteMessage(7, field_names[11], PlayerEdit);
       }
       if (hasParentMerge) {
-        output.WriteMessage(8, field_names[5], ParentMerge);
+        output.WriteMessage(8, field_names[6], ParentMerge);
       }
       if (hasPlayerCreate) {
-        output.WriteMessage(9, field_names[9], PlayerCreate);
+        output.WriteMessage(9, field_names[10], PlayerCreate);
       }
       if (hasPlayerList) {
-        output.WriteMessage(10, field_names[11], PlayerList);
+        output.WriteMessage(10, field_names[12], PlayerList);
       }
       if (hasPlayerRegisterWithApplication) {
-        output.WriteMessage(11, field_names[13], PlayerRegisterWithApplication);
+        output.WriteMessage(11, field_names[14], PlayerRegisterWithApplication);
       }
       if (hasProblemPost) {
-        output.WriteMessage(12, field_names[16], ProblemPost);
+        output.WriteMessage(12, field_names[17], ProblemPost);
       }
       if (hasProblemGet) {
-        output.WriteMessage(13, field_names[15], ProblemGet);
+        output.WriteMessage(13, field_names[16], ProblemGet);
       }
       if (hasPage) {
-        output.WriteMessage(14, field_names[4], Page);
+        output.WriteMessage(14, field_names[5], Page);
       }
       if (hasPlayerScore) {
-        output.WriteMessage(15, field_names[14], PlayerScore);
+        output.WriteMessage(15, field_names[15], PlayerScore);
       }
       if (hasPlayerRank) {
-        output.WriteMessage(16, field_names[12], PlayerRank);
+        output.WriteMessage(16, field_names[13], PlayerRank);
       }
       if (hasGameVerification) {
-        output.WriteMessage(17, field_names[2], GameVerification);
+        output.WriteMessage(17, field_names[3], GameVerification);
       }
       if (hasEncouragementGet) {
-        output.WriteMessage(18, field_names[1], EncouragementGet);
+        output.WriteMessage(18, field_names[2], EncouragementGet);
+      }
+      if (hasDebugLogSubmit) {
+        output.WriteMessage(19, field_names[0], DebugLogSubmit);
       }
       UnknownFields.WriteTo(output);
     }
@@ -2311,6 +2400,9 @@ namespace Senseix.Message {
         }
         if (hasEncouragementGet) {
           size += pb::CodedOutputStream.ComputeMessageSize(18, EncouragementGet);
+        }
+        if (hasDebugLogSubmit) {
+          size += pb::CodedOutputStream.ComputeMessageSize(19, DebugLogSubmit);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -2489,6 +2581,9 @@ namespace Senseix.Message {
         }
         if (other.HasEncouragementGet) {
           MergeEncouragementGet(other.EncouragementGet);
+        }
+        if (other.HasDebugLogSubmit) {
+          MergeDebugLogSubmit(other.DebugLogSubmit);
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -2691,6 +2786,15 @@ namespace Senseix.Message {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               EncouragementGet = subBuilder.BuildPartial();
+              break;
+            }
+            case 154: {
+              global::Senseix.Message.Debug.DebugLogSubmitResponse.Builder subBuilder = global::Senseix.Message.Debug.DebugLogSubmitResponse.CreateBuilder();
+              if (result.hasDebugLogSubmit) {
+                subBuilder.MergeFrom(DebugLogSubmit);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              DebugLogSubmit = subBuilder.BuildPartial();
               break;
             }
           }
@@ -3381,6 +3485,46 @@ namespace Senseix.Message {
         PrepareBuilder();
         result.hasEncouragementGet = false;
         result.encouragementGet_ = null;
+        return this;
+      }
+      
+      public bool HasDebugLogSubmit {
+       get { return result.hasDebugLogSubmit; }
+      }
+      public global::Senseix.Message.Debug.DebugLogSubmitResponse DebugLogSubmit {
+        get { return result.DebugLogSubmit; }
+        set { SetDebugLogSubmit(value); }
+      }
+      public Builder SetDebugLogSubmit(global::Senseix.Message.Debug.DebugLogSubmitResponse value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasDebugLogSubmit = true;
+        result.debugLogSubmit_ = value;
+        return this;
+      }
+      public Builder SetDebugLogSubmit(global::Senseix.Message.Debug.DebugLogSubmitResponse.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasDebugLogSubmit = true;
+        result.debugLogSubmit_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeDebugLogSubmit(global::Senseix.Message.Debug.DebugLogSubmitResponse value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasDebugLogSubmit &&
+            result.debugLogSubmit_ != global::Senseix.Message.Debug.DebugLogSubmitResponse.DefaultInstance) {
+            result.debugLogSubmit_ = global::Senseix.Message.Debug.DebugLogSubmitResponse.CreateBuilder(result.debugLogSubmit_).MergeFrom(value).BuildPartial();
+        } else {
+          result.debugLogSubmit_ = value;
+        }
+        result.hasDebugLogSubmit = true;
+        return this;
+      }
+      public Builder ClearDebugLogSubmit() {
+        PrepareBuilder();
+        result.hasDebugLogSubmit = false;
+        result.debugLogSubmit_ = null;
         return this;
       }
     }

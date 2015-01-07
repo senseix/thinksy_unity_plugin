@@ -25,7 +25,7 @@ namespace Senseix.Message.Constant {
     
     static Constant() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "Cg5Db25zdGFudC5wcm90bxIYU2Vuc2VpeC5NZXNzYWdlLkNvbnN0YW50KsMC" + 
+          "Cg5Db25zdGFudC5wcm90bxIYU2Vuc2VpeC5NZXNzYWdlLkNvbnN0YW50KtcC" + 
           "CgtNZXNzYWdlVHlwZRISCg5SZWdpc3RlckRldmljZRABEhIKDlJlZ2lzdGVy" + 
           "UGFyZW50EAISEAoMU2lnbkluUGFyZW50EAMSEQoNU2lnbk91dFBhcmVudBAE" + 
           "Eg4KCkVkaXRQYXJlbnQQBRIPCgtNZXJnZVBhcmVudBAGEhAKDENyZWF0ZVBs" + 
@@ -33,8 +33,8 @@ namespace Senseix.Message.Constant {
           "cHBsaWNhdGlvbhAJEg8KC1Byb2JsZW1Qb3N0EAoSDgoKUHJvYmxlbUdldBAL" + 
           "EhMKD0xlYWRlcmJvYXJkUGFnZRAMEg8KC1BsYXllclNjb3JlEA0SDgoKUGxh" + 
           "eWVyUmFuaxAOEhQKEEdhbWVWZXJpZmljYXRpb24QDxIUChBFbmNvdXJhZ2Vt" + 
-          "ZW50R2V0EBAqNgoGU3RhdHVzEgsKB0ZBSUxVUkUQABILCgdTVUNDRVNTEAES" + 
-          "EgoOTUVSR0VfUkVRVUlSRUQQAg==");
+          "ZW50R2V0EBASEgoORGVidWdMb2dTdWJtaXQQESo2CgZTdGF0dXMSCwoHRkFJ" + 
+          "TFVSRRAAEgsKB1NVQ0NFU1MQARISCg5NRVJHRV9SRVFVSVJFRBAC");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         return null;
@@ -64,6 +64,7 @@ namespace Senseix.Message.Constant {
     PlayerRank = 14,
     GameVerification = 15,
     EncouragementGet = 16,
+    DebugLogSubmit = 17,
   }
   
   public enum Status {

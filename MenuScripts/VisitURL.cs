@@ -5,6 +5,7 @@ public class VisitURL : MonoBehaviour {
 
 	public bool visitEnrollDeviceURL;
 	public bool visitRegistrationURL;
+	public Senseix.GameVerificationCode codeSource;
 	public string otherURL;
 
 	private string targetURL;
@@ -14,9 +15,9 @@ public class VisitURL : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (visitEnrollDeviceURL)
-			targetURL = Senseix.Message.Request.ENROLL_GAME_URL;
+			targetURL = Senseix.Message.Request.ENROLL_GAME_URL + "?" + codeSource.GetCode();
 		else if (visitRegistrationURL)
-			targetURL = Senseix.Message.Request.WEBSITE_URL;
+			targetURL = Senseix.Message.Request.WEBSITE_URL + "?" + codeSource.GetCode();
 		else
 			targetURL = otherURL;
 	}

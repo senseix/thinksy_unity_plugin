@@ -29,11 +29,11 @@ namespace Senseix.Message.Atom {
       
       static Atom() {
         byte[] descriptorData = global::System.Convert.FromBase64String(
-            "CgpBdG9tLnByb3RvEhRTZW5zZWl4Lk1lc3NhZ2UuQXRvbRoOQ29uc3RhbnQu" + 
-            "cHJvdG8inAEKBEF0b20SDAoEdXVpZBgBIAIoCRIzCgR0eXBlGAIgAigOMh8u" + 
-            "U2Vuc2VpeC5NZXNzYWdlLkF0b20uQXRvbS5UeXBlOgRURVhUEgwKBGRhdGEY" + 
-            "AyACKAwSEAoIcmVxdWlyZWQYBCACKAgiMQoEVHlwZRIICgRURVhUEAASCQoF" + 
-            "SU1BR0UQARIJCgVBVURJTxACEgkKBVZJREVPEAM=");
+            "CgpBdG9tLnByb3RvEhRTZW5zZWl4Lk1lc3NhZ2UuQXRvbSKcAQoEQXRvbRIM" + 
+            "CgR1dWlkGAEgAigJEjMKBHR5cGUYAiACKA4yHy5TZW5zZWl4Lk1lc3NhZ2Uu" + 
+            "QXRvbS5BdG9tLlR5cGU6BFRFWFQSDAoEZGF0YRgDIAIoDBIQCghyZXF1aXJl" + 
+            "ZBgEIAIoCCIxCgRUeXBlEggKBFRFWFQQABIJCgVJTUFHRRABEgkKBUFVRElP" + 
+            "EAISCQoFVklERU8QAw==");
         pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
           descriptor = root;
           internal__static_Senseix_Message_Atom_Atom__Descriptor = Descriptor.MessageTypes[0];
@@ -44,7 +44,6 @@ namespace Senseix.Message.Atom {
         };
         pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
             new pbd::FileDescriptor[] {
-            global::Senseix.Message.Constant.Constant.Descriptor, 
             }, assigner);
       }
       #endregion
