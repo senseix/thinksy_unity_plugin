@@ -32,7 +32,7 @@ namespace Senseix
 
 			File.AppendAllText (logPath, writeString);
 
-			if (type == LogType.Warning || type == LogType.Exception || type == LogType.Error)
+			if (type == LogType.Exception || type == LogType.Error)
 			{
 				Senseix.SenseixSession.SubmitBugReport ("Automatic submission of non-routine unity log: ");
 			}
