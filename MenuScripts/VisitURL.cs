@@ -14,6 +14,11 @@ public class VisitURL : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		ResetURL();
+	}
+	
+	private void ResetURL()
+	{
 		if (visitEnrollDeviceURL)
 			targetURL = Senseix.Message.Request.ENROLL_GAME_URL + "?" + codeSource.GetCode();
 		else if (visitRegistrationURL)
@@ -24,6 +29,7 @@ public class VisitURL : MonoBehaviour {
 
 	public void GoToTargetURL()
 	{
+		ResetURL();
 		Debug.Log ("visiting " + targetURL);
 		Application.OpenURL (targetURL);
 	}
