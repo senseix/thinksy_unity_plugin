@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DisableOtherUI : MonoBehaviour {
 	
+	public bool pauseWhenMenuOpen = true;
 	private Canvas [] reenableWhenThisDisabled;
 
 	// Use this for initialization
@@ -19,11 +20,15 @@ public class DisableOtherUI : MonoBehaviour {
 	{
 		BuildDisabledList ();
 		SetOtherCanvasActive(false);
+		if (pauseWhenMenuOpen)
+			Time.timeScale = 0;
 	}
 
 	void OnDisable()
 	{
 		SetOtherCanvasActive(true);
+		if (pauseWhenMenuOpen)
+			Time.timeScale = 1;
 	}
 
 	private void BuildDisabledList()
