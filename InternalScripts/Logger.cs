@@ -10,7 +10,7 @@ namespace Senseix
 
 		void Start()
 		{
-			SenseixPlugin.ShowEmergencyWindow ("Testing");
+			//SenseixPlugin.ShowEmergencyWindow ("Testing");
 		}
 
 		void OnEnable() 

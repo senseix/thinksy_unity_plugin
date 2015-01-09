@@ -8,6 +8,7 @@ class SenseixPlugin : MonoBehaviour
 	public string gameAccessToken; //this is your developer access token obtained from 
 	//the Senseix website.
 	public bool offlineMode;
+	public bool useLeaderboard;
 	public GameObject emergencyWindow;
 	public GameObject displayWindow;
 	
@@ -285,5 +286,10 @@ class SenseixPlugin : MonoBehaviour
 	public static uint CountProblemsAnsweredCorrectlySoFar()
 	{
 		return Problem.CountProblemsAnsweredCorrectlySoFar();
+	}
+
+	public static bool UsesLeaderboard()
+	{
+		return singletonInstance.useLeaderboard;
 	}
 }
