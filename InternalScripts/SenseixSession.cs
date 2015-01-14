@@ -101,7 +101,7 @@ namespace Senseix
 		static public string GetCurrentPlayerID()
 		{
 			if (currentPlayer == null)
-				return "no current Player";
+				return "no current player";
 			return currentPlayer.PlayerId;
 		}
 		static public void SetToPlayerWithID(string newPlayerID)
@@ -116,21 +116,33 @@ namespace Senseix
 		}
 
 
-		public static bool InitializeSenseix (string newAccessToken) { 
+		public static bool InitializeSenseix (string newAccessToken) 
+		{ 
 			SetSessionState (true);
 
 			accessToken = newAccessToken; 
-			if (CheckAccessToken() == -1) {
+			if (CheckAccessToken() == -1) 
+			{
 				throw new Exception("The Senseix Token you have provided is not of a valid length, please register at developer.Senseix.com to create a valid key");
 			}
 
 			//Creates a temporary account based on device id
 			//returns an auth token. This is Syncronous.
+
 			RegisterDevice ();
-//			Debug.Log ("got past register device");
+
+			//Debug.Log ("got past register device");
 		  	ListPlayers ();
 			RegisterAllPlayers ();
-			//ProblemKeeper.CreateSeedFileIfNeeded ();
+			SenseixSession.CheckProblemPostCacheSubmission();
+			//SenseixPlugin.ShowEmergencyWindow ("testing");
+
+
+			Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), 0);
+			Message.Request.GetPlayerRank (GetCurrentPlayerID ());
+
+
+
 			return GetSessionState ();
 		}
 
@@ -148,6 +160,8 @@ namespace Senseix
 				RegisterPlayer(Player);
 			}
 			if (Players.Count > 0) SetCurrentPlayer (Players [0] as Message.Player.Player);
+			else
+				UnityEngine.Debug.LogWarning("There are no players.  Could be very bad.");
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)

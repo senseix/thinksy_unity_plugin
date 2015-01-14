@@ -10,7 +10,7 @@ namespace Senseix
 { 
 	static class ProblemKeeper 
 	{
-		public const int PROBLEMS_PER_PULL = 30;
+		public const int PROBLEMS_PER_PULL = 12;
 		private const float PULL_THRESHOLD = 0.25f;
 		private const float PUSH_THRESHOLD = 0.25f; 
 		//thresholds are when to pull push.  pull or push when
@@ -49,17 +49,17 @@ namespace Senseix
 				SenseixPlugin.ShowEmergencyWindow("The seed file is empty! (" + seedPath + ")");
 				throw new Exception ("The seed file is empty!");
 			}
-			Message.ResponseHeader reply = Message.ResponseHeader.ParseFrom (seedContents);
+			Message.Problem.ProblemGetResponse problemGet = Message.Problem.ProblemGetResponse.ParseFrom (seedContents);
 
-			for (int i = 0; i < reply.ProblemGet.ProblemList.Count; i++)
+			for (int i = 0; i < problemGet.ProblemList.Count; i++)
 			{
-				Message.Problem.ProblemData entry = reply.ProblemGet.ProblemList[i];
+				Message.Problem.ProblemData entry = problemGet.ProblemList[i];
 				Message.Problem.ProblemData.Builder problem =  entry.ToBuilder();
 				ProblemKeeper.AddProblemsToProblemQueue(problem);
 			}
 		}
 
-		static public void ReplaceSeed(Message.ResponseHeader reply)
+		static public void ReplaceSeed(Message.Problem.ProblemGetResponse reply)
 		{
 			Debug.Log ("Replacing seed file.");
 			MemoryStream stream = new MemoryStream ();
@@ -233,10 +233,11 @@ namespace Senseix
 
 		static private void CheckProblemPull()
 		{
+			Debug.Log ("get new problem count:　" + GetNewProblemCount ());
 			if (GetNewProblemCount() < PROBLEMS_PER_PULL*PULL_THRESHOLD || GetNewProblemCount() < 1) 
 			{
 				GetProblems ();
-				//Debug.Log ("pulling more Problems");
+				Debug.Log ("pulling more Problems");
 			}
 		}
 

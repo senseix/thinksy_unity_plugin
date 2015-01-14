@@ -11,10 +11,11 @@ namespace Senseix.Message
 
 	public struct PostRequestParameters
 	{
-		public RequestHeader.Builder hdr_request;
-		public Constant.MessageType msgType;
+		public MemoryStream requestMessageStream;
+		public ResponseHandlerDelegate responseHandler;
 		public string url;
 		public WWW recvResult;
+		public bool isGet;
 	}
 
 	public class Request : MonoBehaviour
@@ -22,10 +23,10 @@ namespace Senseix.Message
 		//API URLS
 		//api-staging.Senseix.com
         const string ENCRYPTED = "http://";
-		const string SERVER_URL = "api.senseix.com/";
+		const string SERVER_URL = "192.168.1.14:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
-		const string PARENT_HDR = GENERIC_HDR + "/parents/";
+		const string PARENT_HDR = GENERIC_HDR + "/devices/";
 		const string PLAYER_HDR = GENERIC_HDR + "/players/";
 		const string PROBLEM_HDR = GENERIC_HDR + "/problems/";
 		const string LEADERBOARD_HDR = GENERIC_HDR + "/applications/leaderboard/";
@@ -78,7 +79,7 @@ namespace Senseix.Message
 				{
 					try
 					{
-						HandleResult(parameters.recvResult, parameters.msgType);
+						HandleResult(parameters.recvResult, parameters.responseHandler);
 					}
 					catch (Google.ProtocolBuffers.InvalidProtocolBufferException)
 					{
@@ -99,65 +100,72 @@ namespace Senseix.Message
 		public static void SyncronousPostRequest(object parametersObject)
 		{
 			PostRequestParameters parameters = (PostRequestParameters)parametersObject;
-			SyncronousPostRequest (parameters.recvResult, ref parameters.hdr_request, parameters.msgType, parameters.url);
+			SyncronousPostRequest (parameters.recvResult, parameters.requestMessageStream, parameters.responseHandler, parameters.url);
 		}
 
-		public static WWW SetUpRecvResult(ref RequestHeader.Builder hdr_request, string url)
+		public static WWW SetUpRecvResult(MemoryStream requestMessageStream, string url, bool isGet)
 		{
 			byte[] bytes;
-			MemoryStream stream = new MemoryStream ();
 			Dictionary<string, string> mods = new Dictionary<string, string>();
+			mods.Add ("X-Auth-Token", SenseixSession.GetAuthToken ());
+			mods.Add ("X-Access-Token", SenseixSession.GetAccessToken());
 			mods.Add("Content-Type", "application/protobuf");
-			hdr_request.BuildPartial().WriteTo (stream);
-			bytes = stream.ToArray();
-			stream.Close();
-			WWW recvResult = new WWW (url, bytes, mods);
+			bytes = requestMessageStream.ToArray();
+			requestMessageStream.Close();
+			WWW recvResult;
+			if (!isGet)
+			{
+				//UnityEngine.Debug.Log("POST");
+				recvResult = new WWW (url, bytes, mods);
+			}
+			else
+			{
+				//UnityEngine.Debug.Log("GET");
+				recvResult = new WWW (url, null, mods);
+			}
+
 			return recvResult;
 		}
 
-		public static void SyncronousPostRequest(ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
+		public static void SyncronousPostRequest(MemoryStream requestMessageStream, ResponseHandlerDelegate responseHandler, string url, bool isGet)
 		{
-			WWW recvResult = SetUpRecvResult (ref hdr_request, url);
-			SyncronousPostRequest (recvResult, ref hdr_request, msgType, url);
+			WWW recvResult = SetUpRecvResult(requestMessageStream, url, isGet);
+			UnityEngine.Debug.Log ("set up recv result already");
+			SyncronousPostRequest (recvResult, requestMessageStream, responseHandler, url);
 		}
 
-		public static void SyncronousPostRequest(WWW recvResult, ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
+		public static void SyncronousPostRequest(WWW recvResult, MemoryStream requestMessageStream, ResponseHandlerDelegate responseHandler, string url)
 	    {
 //			Debug.Log ("Wait for Request:");
 			if (!SenseixSession.GetSessionState())
 			{
 				return;
 			}
+			UnityEngine.Debug.Log ("wait for request");
 			WaitForRequest (recvResult);
-			HandleResult (recvResult, msgType);
+			UnityEngine.Debug.Log ("handle result");
+			HandleResult (recvResult, responseHandler);
 		}
 
-		public static void HandleResult(WWW recvResult, Constant.MessageType msgType)
+		public static void HandleResult(WWW recvResult, ResponseHandlerDelegate resultHandler)
 		{
-			ResponseHeader reply = null;
-			byte[] replyBytes = new byte[0];
+			byte[] responseBytes = new byte[0];
 			if (NetworkErrorChecking(recvResult))
 			{
 				//happy
-				replyBytes = recvResult.bytes;
-				//Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
+				responseBytes = recvResult.bytes;
+				//UnityEngine.Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
 			}
 			else
 			{
 				UnityEngine.Debug.LogWarning ("A SenseiX message had an error.  " + 
 				                  "Most likely internet connectivity issues.");
 				SenseixSession.SetSessionState (false);
-			}
-			
-			if (replyBytes.Length == 0)
-			{
-				//Debug.Log("Bytes empty");
-				SenseixSession.SetSessionState (false);
 				return;
 			}
 
-			reply = ResponseHeader.ParseFrom (replyBytes);
-			Response.ParseResponse(msgType, ref reply); 
+			UnityEngine.Debug.Log ("parse response");
+			resultHandler(responseBytes);
 		}
 
 		static private void WaitForRequest(WWW recvResult)
@@ -201,13 +209,13 @@ namespace Senseix.Message
 			activeRequests.Add (parameters);
 		}
 
-		static public void NonblockingPostRequest(ref RequestHeader.Builder hdr_request, Constant.MessageType msgType, string url)
+		static public void NonblockingPostRequest(MemoryStream requestMessageStream, ResponseHandlerDelegate responseHandler, string url, bool isGet)
 		{
 			PostRequestParameters parameters = new PostRequestParameters ();
-			parameters.hdr_request = hdr_request;
-			parameters.msgType = msgType;
+			parameters.requestMessageStream = requestMessageStream;
+			parameters.responseHandler = responseHandler;
 			parameters.url = url;
-			parameters.recvResult = SetUpRecvResult (ref hdr_request, url);
+			parameters.recvResult = SetUpRecvResult (requestMessageStream, url, isGet);
 			NonblockingPostRequest (parameters);
 		}
 
@@ -218,16 +226,15 @@ namespace Senseix.Message
 		/// </summary>
 		static public void RegisterDevice(string deviceNameInformation)
 		{
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
-
 			Parent.DeviceRegistrationRequest.Builder newDevice = Parent.DeviceRegistrationRequest.CreateBuilder ();
 			newDevice.SetInformation (deviceNameInformation);
+			//UnityEngine.Debug.Log ("Device id:　" + SenseixSession.GetDeviceID ());				
 			newDevice.SetDeviceId (SenseixSession.GetDeviceID());
 
-			hdr_request.SetDeviceRegistration(newDevice);
+			MemoryStream requestMessageStream = new MemoryStream();
+			newDevice.BuildPartial ().WriteTo (requestMessageStream);
 			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterDevice, REGISTER_DEVICE_URL);
+			SyncronousPostRequest (requestMessageStream, Response.ParseRegisterDeviceResponse, REGISTER_DEVICE_URL, false);
 		}
 
 		/// <summary>
@@ -236,19 +243,18 @@ namespace Senseix.Message
 		/// </summary>
 		static public void VerifyGame(string verificationCode)
 		{
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
-
 			Parent.GameVerificationRequest.Builder newVerification = Parent.GameVerificationRequest.CreateBuilder ();
 			newVerification.SetVerificationToken (verificationCode);
 			newVerification.SetUdid (SenseixSession.GetDeviceID ());
 
-			hdr_request.SetGameVerification(newVerification);
+
+			MemoryStream requestMessageStream = new MemoryStream();
+			newVerification.BuildPartial ().WriteTo (requestMessageStream);
 			//Debug.Log ("going off to " + VERIFY_GAME_URL);
 			//Debug.Log (hdr_request.GameVerification.Udid);
 			//Debug.Log (hdr_request.GameVerification.VerificationToken);
 			//Debug.Log (hdr_request.AccessToken);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.GameVerification, VERIFY_GAME_URL);
+			SyncronousPostRequest (requestMessageStream, Response.ParseVerifyGameResponse, VERIFY_GAME_URL, false);
 		}
 		
 	     /// <summary>
@@ -257,6 +263,7 @@ namespace Senseix.Message
 	    /// </summary>
 		static public void RegisterParent (string email,string name,string password)
 		{
+			/*
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			Senseix.Message.Parent.ParentRegistrationRequest.Builder newParent = Parent.ParentRegistrationRequest.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
@@ -268,6 +275,7 @@ namespace Senseix.Message
 			hdr_request.SetParentRegistration(newParent);		
 
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterParent, REGISTER_PARENT_URL);
+			*/
 		}
 
 		/// <summary>
@@ -276,6 +284,7 @@ namespace Senseix.Message
 		/// </summary>
 		static public void SignInParent (string email, string password)
 		{
+			/*
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			Parent.ParentSignInRequest.Builder signInParent = Parent.ParentSignInRequest.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
@@ -285,6 +294,7 @@ namespace Senseix.Message
 			hdr_request.SetParentSignIn(signInParent);
 
 			SyncronousPostRequest (ref hdr_request,  Constant.MessageType.SignInParent, SIGN_IN_PARENT_URL);	
+			*/
 		}
 
 		
@@ -294,6 +304,7 @@ namespace Senseix.Message
 		/// </summary>
 		static public void SignOutParent()
 		{
+			/*
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
 			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			hdr_request.SetAuthToken(SenseixSession.GetAuthToken ());
@@ -304,6 +315,7 @@ namespace Senseix.Message
 
 			//Debug.Log ("sign out Parent going off to " + SIGN_OUT_PARENT_URL);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.SignOutParent, SIGN_OUT_PARENT_URL);
+			*/
 		}
 		   
 		/// <summary>
@@ -312,9 +324,7 @@ namespace Senseix.Message
 		/// </summary>
 		static public void ParentEditProfile (string email,string name,string password, string new_password, string confirmation_password)
 		{
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
-			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
+			/*
 			Parent.ParentEditRequest.Builder editParent = Parent.ParentEditRequest.CreateBuilder();
 			editParent.SetDeviceId(SenseixSession.GetDeviceID());
 			editParent.SetEmail(email);
@@ -323,6 +333,7 @@ namespace Senseix.Message
 			editParent.SetName(name);
 			hdr_request.SetParentEdit(editParent);      
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.EditParent, EDIT_PARENT_URL);
+			*/
 		}
 
 		/// <summary>
@@ -332,6 +343,7 @@ namespace Senseix.Message
 		/// </summary>
 		static public void ParentAccntResolution (string email, string password, Parent.ParentMergeRequest.Types.Decision decision, string Player_id, string name) 
 		{
+			/*
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixSession.GetAccessToken());
 			hdr_request.SetAccessToken (SenseixSession.GetDeviceID());
@@ -345,6 +357,7 @@ namespace Senseix.Message
 			hdr_request.SetParentMerge (mergeParent);
 
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.MergeParent, MERGE_PARENT_URL);
+			*/
 		}
 
 
@@ -354,6 +367,7 @@ namespace Senseix.Message
 		/// </summary>
 		static public void CreatePlayer (string name) 
 		{
+			/*
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
@@ -361,6 +375,7 @@ namespace Senseix.Message
 			createPlayer.SetName (name);
 			hdr_request.SetPlayerCreate (createPlayer);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.CreatePlayer, CREATE_PLAYER_URL);
+			*/
 		}
 
 		/// <summary>
@@ -369,14 +384,15 @@ namespace Senseix.Message
 		/// </summary>
 		static public void ListPlayers () 
 		{
-			//Debug.Log ("Auth Token: " + SenseixController.GetAuthToken ());
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
+			UnityEngine.Debug.Log ("Auth Token: " + SenseixSession.GetAuthToken());
+
 			Player.PlayerListRequest.Builder listPlayer = Player.PlayerListRequest.CreateBuilder ();
-			hdr_request.SetPlayerList (listPlayer);
-			//Debug.Log ("list Players request going off to " + LIST_Player_URL);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.ListPlayer, LIST_PLAYER_URL);
+
+
+			MemoryStream requestMessageStream = new MemoryStream();
+			listPlayer.BuildPartial ().WriteTo (requestMessageStream);
+			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
+			SyncronousPostRequest (requestMessageStream, Response.ParseListPlayerResponse, LIST_PLAYER_URL, true);
 		}
 		/// <summary>
 		/// We have an explicit call to register a Player with a game, this should be called each time a new Player
@@ -385,17 +401,18 @@ namespace Senseix.Message
 		/// </summary>
 		static public void RegisterPlayer (string Player_id) 
 		{
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
+
 			Player.PlayerRegisterWithApplicationRequest.Builder regPlayer = Player.PlayerRegisterWithApplicationRequest.CreateBuilder ();
 			regPlayer.SetPlayerId (Player_id);
-			hdr_request.SetPlayerRegisterWithApplication(regPlayer);
+
 //			Debug.Log(hdr_request.AccessToken);
 //			Debug.Log(hdr_request.AuthToken);
 //			Debug.Log(hdr_request.PlayerRegisterWithApplication.PlayerId);
 //			Debug.Log ("register Player going off to " + REGISTER_Player_WITH_GAME_URL);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterPlayerWithApplication, REGISTER_PLAYER_WITH_GAME_URL);
+			MemoryStream requestMessageStream = new MemoryStream();
+			regPlayer.BuildPartial ().WriteTo (requestMessageStream);
+			UnityEngine.Debug.Log ("register player going off to " + REGISTER_PLAYER_WITH_GAME_URL);
+			SyncronousPostRequest (requestMessageStream, Response.ParseRegisterPlayerResponse, REGISTER_PLAYER_WITH_GAME_URL, false);
 		}
 
 	
@@ -405,23 +422,28 @@ namespace Senseix.Message
 		/// </summary>
 		static public void GetProblems (string Player_id, UInt32 count) 
 		{
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
+
+			UnityEngine.Debug.Log ("get problems");
+
 			Problem.ProblemGetRequest.Builder getProblem = Problem.ProblemGetRequest.CreateBuilder ();
 			getProblem.SetProblemCount (count);
 			getProblem.SetPlayerId (Player_id);
-			hdr_request.SetProblemGet (getProblem);
+
 //			Debug.Log ("Get Problems request going off to " + GET_Problem_URL);
 //			Debug.Log (hdr_request.AuthToken);
 //			Debug.Log (hdr_request.AccessToken);
 //			Debug.Log (hdr_request.ProblemGet.ProblemCount);
 //			Debug.Log (hdr_request.ProblemGet.PlayerId);
-			NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemGet, GET_PROBLEM_URL);
-		}	
+			MemoryStream requestMessageStream = new MemoryStream();
+			getProblem.BuildPartial ().WriteTo (requestMessageStream);
+
+			NonblockingPostRequest (requestMessageStream, Response.ParseGetProblemResponse, GET_PROBLEM_URL, false);
+
+		}
 
 		static public void GetEncouragements (string Player_id) 
 		{
+			/*
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
 			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
@@ -429,6 +451,7 @@ namespace Senseix.Message
 			getEncouragements.SetPlayerId (Player_id);
 			hdr_request.SetEncouragementGet (getEncouragements);
 			NonblockingPostRequest (ref hdr_request, Constant.MessageType.EncouragementGet, GET_ENCOURAGEMENT_URL);
+			*/
 		}	
 
 		/// <summary>
@@ -438,45 +461,39 @@ namespace Senseix.Message
 		static public void PostProblems (string PlayerId, Queue problems) 
 		{
 			problems = new Queue (problems);
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
+
+
+
 			Problem.ProblemPostRequest.Builder postProblem = Problem.ProblemPostRequest.CreateBuilder ();
 
 			while (problems.Count > 0) {
 				Senseix.Message.Problem.ProblemPost.Builder addMeProblem = (Senseix.Message.Problem.ProblemPost.Builder)problems.Dequeue();
-				if (addMeProblem.PlayerId == "no current player")
-				{
-					addMeProblem.SetPlayerId(SenseixSession.GetCurrentPlayerID());
-				}
-				if (addMeProblem.PlayerId == "no current player")
-				{
-					UnityEngine.Debug.LogWarning("I'm sending a problem to the server with no player ID.");
-				}
+				SetPlayerForProblemIfNeeded(ref addMeProblem);
 				postProblem.AddProblem (addMeProblem);
 			}
-			hdr_request.SetProblemPost (postProblem);
+
+			MemoryStream requestMessageStream = new MemoryStream();
+			postProblem.BuildPartial ().WriteTo (requestMessageStream);
 				
 			//Debug.Log ("Post Problems request going off to " + POST_PROBLEM_URL);
 			if (SenseixSession.ShouldCacheProblemPosts())
 			{
 				PostRequestParameters queueParameters = new PostRequestParameters();
-				queueParameters.hdr_request = hdr_request;
-				queueParameters.msgType = Constant.MessageType.ProblemPost;
+				queueParameters.requestMessageStream = requestMessageStream;
+				queueParameters.responseHandler = Response.ParsePostProblemResponse;
 				queueParameters.url = POST_PROBLEM_URL;
 				WriteRequestToCache(queueParameters);
 			}
 			else
 			{
-				NonblockingPostRequest (ref hdr_request, Constant.MessageType.ProblemPost, POST_PROBLEM_URL);
+				NonblockingPostRequest (requestMessageStream, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false);
 			}
 		}	
 
 
 		private static void WriteRequestToCache(PostRequestParameters parameters)
 		{
-			MemoryStream stream = new MemoryStream ();
-			parameters.hdr_request.BuildPartial().WriteTo (stream);
+			MemoryStream stream = parameters.requestMessageStream;
 			byte[] bytes = stream.ToArray();
 			string directoryPath = Path.Combine (Application.persistentDataPath, "post_cache/");
 			//Debug.Log (fileCount);
@@ -493,6 +510,7 @@ namespace Senseix.Message
 		/// </summary>
 		static public void LeaderboardPage (UInt32 pageNumber = 1, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
 		{
+			/*
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			Leaderboard.PageRequest.Builder lbPage = Leaderboard.PageRequest.CreateBuilder ();
@@ -502,6 +520,7 @@ namespace Senseix.Message
 			hdr_request.SetPage (lbPage);
 //			Debug.Log ("Leaderboard page request going off to " + GET_Leaderboard_PAGE_URL);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.LeaderboardPage, GET_LEADERBOARD_PAGE_URL);
+			*/
 		}
 		/// <summary>
 		/// Pushes a Players score to the Leaderboard, this is dependent on the developer to take care of what
@@ -509,14 +528,16 @@ namespace Senseix.Message
 		/// </summary>
 		static public void UpdatePlayerScore (string PlayerId, UInt32 score)
 	    {
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
+
 			Leaderboard.UpdatePlayerScoreRequest.Builder lbScore = Leaderboard.UpdatePlayerScoreRequest.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			lbScore.SetPlayerId(PlayerId);
 			lbScore.SetPlayerScore (score);
 
-			hdr_request.SetPlayerScore(lbScore);
-			SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerScore, UPDATE_PLAYER_SCORE_URL);
+			MemoryStream requestMessageStream = new MemoryStream();
+			lbScore.BuildPartial ().WriteTo (requestMessageStream);
+
+			SyncronousPostRequest(requestMessageStream, Response.ParsePlayerScoreResponse, UPDATE_PLAYER_SCORE_URL, false);
+
 		}
 
 		/// <summary>
@@ -525,18 +546,18 @@ namespace Senseix.Message
 		/// </summary>
 		static public void GetPlayerRank ( string PlayerId, UInt32 surroundingUsers = 0, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
 		{
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
 	
 		    Leaderboard.PlayerRankRequest.Builder rank = Leaderboard.PlayerRankRequest.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
 			rank.SetCount (surroundingUsers);	
 			rank.SetPageSize (pageSize);
 			rank.SetPlayerId(SenseixSession.GetCurrentPlayerID());
 			rank.SetSortBy(sortBy);
 		
-			hdr_request.SetPlayerRank(rank);
-			SyncronousPostRequest(ref hdr_request, Constant.MessageType.PlayerRank, GET_PLAYER_RANK_URL);
-			
+			MemoryStream requestMessageStream = new MemoryStream();
+			rank.BuildPartial ().WriteTo (requestMessageStream);
+
+			SyncronousPostRequest(requestMessageStream, Response.ParsePlayerRankResponse, GET_PLAYER_RANK_URL, false);
+
 		}
 
 		static public void SubmitProblemPostCache()
@@ -549,28 +570,45 @@ namespace Senseix.Message
 			{
 				UnityEngine.Debug.Log("Submitting cache");
 				byte[] bytes = System.IO.File.ReadAllBytes(fileName);
-				RequestHeader.Builder hdr_request = RequestHeader.ParseFrom(bytes).ToBuilder();
-				hdr_request.AuthToken = SenseixSession.GetAuthToken();
-				hdr_request.AccessToken = SenseixSession.GetAccessToken();
-				NonblockingPostRequest(ref hdr_request, Constant.MessageType.ProblemPost, POST_PROBLEM_URL);
+				Problem.ProblemPostRequest.Builder problemPostRequest = Problem.ProblemPostRequest.ParseFrom(bytes).ToBuilder();
+				for (int i = 0; i < problemPostRequest.ProblemCount; i++)
+				{
+					Problem.ProblemPost.Builder problemPostBuilder = problemPostRequest.GetProblem(i).ToBuilder();
+					SetPlayerForProblemIfNeeded(ref problemPostBuilder);
+					problemPostRequest.SetProblem(i, problemPostBuilder);
+					UnityEngine.Debug.Log(problemPostBuilder.PlayerId);
+				}
+
+				MemoryStream requestMessageStream = new MemoryStream();
+				problemPostRequest.BuildPartial ().WriteTo (requestMessageStream);
+				NonblockingPostRequest(requestMessageStream, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false);
 				File.Delete(fileName);
 			}
 		}
 
 		static public void BugReport(string deviceID, string report)
 		{
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-
 			Debug.DebugLogSubmitRequest.Builder debugLogSubmit = Debug.DebugLogSubmitRequest.CreateBuilder ();
 			debugLogSubmit.DebugLog = report;
 			debugLogSubmit.DeviceId = deviceID;
 
-			hdr_request.SetDebugLogSubmit (debugLogSubmit);
-			hdr_request.SetAuthToken (SenseixSession.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken ());
+			MemoryStream requestMessageStream = new MemoryStream();
+			debugLogSubmit.BuildPartial ().WriteTo (requestMessageStream);
 
 			UnityEngine.Debug.Log ("Submitting bug report.");
-			SyncronousPostRequest(ref hdr_request, Constant.MessageType.DebugLogSubmit, DEBUG_LOG_SUBMIT_URL);
+			SyncronousPostRequest(requestMessageStream, Response.ParseReportBugResponse, DEBUG_LOG_SUBMIT_URL, false);
+		}
+
+		static private void SetPlayerForProblemIfNeeded(ref Senseix.Message.Problem.ProblemPost.Builder problemPostBuilder)
+		{
+			if (problemPostBuilder.PlayerId == "no current player")
+			{
+				problemPostBuilder.SetPlayerId(SenseixSession.GetCurrentPlayerID());
+			}
+			if (problemPostBuilder.PlayerId == "no current player")
+			{
+				UnityEngine.Debug.LogWarning("I'm sending a problem to the server with no player ID.");
+			}
 		}
 	}
 }
