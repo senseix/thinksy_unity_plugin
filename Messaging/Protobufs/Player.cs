@@ -20,10 +20,6 @@ namespace Senseix.Message.Player {
       #region Static variables
       internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_Player__Descriptor;
       internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.Player, global::Senseix.Message.Player.Player.Builder> internal__static_Senseix_Message_Player_Player__FieldAccessorTable;
-      internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_PlayerCreateRequest__Descriptor;
-      internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerCreateRequest, global::Senseix.Message.Player.PlayerCreateRequest.Builder> internal__static_Senseix_Message_Player_PlayerCreateRequest__FieldAccessorTable;
-      internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_PlayerCreateResponse__Descriptor;
-      internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerCreateResponse, global::Senseix.Message.Player.PlayerCreateResponse.Builder> internal__static_Senseix_Message_Player_PlayerCreateResponse__FieldAccessorTable;
       internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_PlayerListRequest__Descriptor;
       internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerListRequest, global::Senseix.Message.Player.PlayerListRequest.Builder> internal__static_Senseix_Message_Player_PlayerListRequest__FieldAccessorTable;
       internal static pbd::MessageDescriptor internal__static_Senseix_Message_Player_PlayerListResponse__Descriptor;
@@ -45,53 +41,42 @@ namespace Senseix.Message.Player {
       
       static Player() {
         byte[] descriptorData = global::System.Convert.FromBase64String(
-            "CgxQbGF5ZXIucHJvdG8SFlNlbnNlaXguTWVzc2FnZS5QbGF5ZXIaDkNvbnN0" + 
-            "YW50LnByb3RvGgpBdG9tLnByb3RvIikKBlBsYXllchIRCglwbGF5ZXJfaWQY" + 
-            "ASACKAkSDAoEbmFtZRgCIAIoCSIjChNQbGF5ZXJDcmVhdGVSZXF1ZXN0EgwK" + 
-            "BG5hbWUYASACKAkiKQoUUGxheWVyQ3JlYXRlUmVzcG9uc2USEQoJcGxheWVy" + 
-            "X2lkGAEgAigJIhMKEVBsYXllckxpc3RSZXF1ZXN0IkQKElBsYXllckxpc3RS" + 
-            "ZXNwb25zZRIuCgZwbGF5ZXIYASADKAsyHi5TZW5zZWl4Lk1lc3NhZ2UuUGxh" + 
-            "eWVyLlBsYXllciI5CiRQbGF5ZXJSZWdpc3RlcldpdGhBcHBsaWNhdGlvblJl" + 
-            "cXVlc3QSEQoJcGxheWVyX2lkGAEgAigJIicKJVBsYXllclJlZ2lzdGVyV2l0" + 
-            "aEFwcGxpY2F0aW9uUmVzcG9uc2UiLAoXRW5jb3VyYWdlbWVudEdldFJlcXVl" + 
-            "c3QSEQoJcGxheWVyX2lkGAEgAigJIkQKGEVuY291cmFnZW1lbnRHZXRSZXNw" + 
-            "b25zZRIoCgRhdG9tGAEgAygLMhouU2Vuc2VpeC5NZXNzYWdlLkF0b20uQXRv" + 
-            "bQ==");
+            "CgxQbGF5ZXIucHJvdG8SFlNlbnNlaXguTWVzc2FnZS5QbGF5ZXIaCkF0b20u" + 
+            "cHJvdG8iKQoGUGxheWVyEhEKCXBsYXllcl9pZBgBIAIoCRIMCgRuYW1lGAIg" + 
+            "AigJIhMKEVBsYXllckxpc3RSZXF1ZXN0IkQKElBsYXllckxpc3RSZXNwb25z" + 
+            "ZRIuCgZwbGF5ZXIYASADKAsyHi5TZW5zZWl4Lk1lc3NhZ2UuUGxheWVyLlBs" + 
+            "YXllciI5CiRQbGF5ZXJSZWdpc3RlcldpdGhBcHBsaWNhdGlvblJlcXVlc3QS" + 
+            "EQoJcGxheWVyX2lkGAEgAigJIicKJVBsYXllclJlZ2lzdGVyV2l0aEFwcGxp" + 
+            "Y2F0aW9uUmVzcG9uc2UiLAoXRW5jb3VyYWdlbWVudEdldFJlcXVlc3QSEQoJ" + 
+            "cGxheWVyX2lkGAEgAigJIkQKGEVuY291cmFnZW1lbnRHZXRSZXNwb25zZRIo" + 
+            "CgRhdG9tGAEgAygLMhouU2Vuc2VpeC5NZXNzYWdlLkF0b20uQXRvbQ==");
         pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
           descriptor = root;
           internal__static_Senseix_Message_Player_Player__Descriptor = Descriptor.MessageTypes[0];
           internal__static_Senseix_Message_Player_Player__FieldAccessorTable = 
               new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.Player, global::Senseix.Message.Player.Player.Builder>(internal__static_Senseix_Message_Player_Player__Descriptor,
                   new string[] { "PlayerId", "Name", });
-          internal__static_Senseix_Message_Player_PlayerCreateRequest__Descriptor = Descriptor.MessageTypes[1];
-          internal__static_Senseix_Message_Player_PlayerCreateRequest__FieldAccessorTable = 
-              new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerCreateRequest, global::Senseix.Message.Player.PlayerCreateRequest.Builder>(internal__static_Senseix_Message_Player_PlayerCreateRequest__Descriptor,
-                  new string[] { "Name", });
-          internal__static_Senseix_Message_Player_PlayerCreateResponse__Descriptor = Descriptor.MessageTypes[2];
-          internal__static_Senseix_Message_Player_PlayerCreateResponse__FieldAccessorTable = 
-              new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerCreateResponse, global::Senseix.Message.Player.PlayerCreateResponse.Builder>(internal__static_Senseix_Message_Player_PlayerCreateResponse__Descriptor,
-                  new string[] { "PlayerId", });
-          internal__static_Senseix_Message_Player_PlayerListRequest__Descriptor = Descriptor.MessageTypes[3];
+          internal__static_Senseix_Message_Player_PlayerListRequest__Descriptor = Descriptor.MessageTypes[1];
           internal__static_Senseix_Message_Player_PlayerListRequest__FieldAccessorTable = 
               new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerListRequest, global::Senseix.Message.Player.PlayerListRequest.Builder>(internal__static_Senseix_Message_Player_PlayerListRequest__Descriptor,
                   new string[] { });
-          internal__static_Senseix_Message_Player_PlayerListResponse__Descriptor = Descriptor.MessageTypes[4];
+          internal__static_Senseix_Message_Player_PlayerListResponse__Descriptor = Descriptor.MessageTypes[2];
           internal__static_Senseix_Message_Player_PlayerListResponse__FieldAccessorTable = 
               new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerListResponse, global::Senseix.Message.Player.PlayerListResponse.Builder>(internal__static_Senseix_Message_Player_PlayerListResponse__Descriptor,
                   new string[] { "Player", });
-          internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__Descriptor = Descriptor.MessageTypes[5];
+          internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__Descriptor = Descriptor.MessageTypes[3];
           internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__FieldAccessorTable = 
               new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerRegisterWithApplicationRequest, global::Senseix.Message.Player.PlayerRegisterWithApplicationRequest.Builder>(internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationRequest__Descriptor,
                   new string[] { "PlayerId", });
-          internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__Descriptor = Descriptor.MessageTypes[6];
+          internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__Descriptor = Descriptor.MessageTypes[4];
           internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__FieldAccessorTable = 
               new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.PlayerRegisterWithApplicationResponse, global::Senseix.Message.Player.PlayerRegisterWithApplicationResponse.Builder>(internal__static_Senseix_Message_Player_PlayerRegisterWithApplicationResponse__Descriptor,
                   new string[] { });
-          internal__static_Senseix_Message_Player_EncouragementGetRequest__Descriptor = Descriptor.MessageTypes[7];
+          internal__static_Senseix_Message_Player_EncouragementGetRequest__Descriptor = Descriptor.MessageTypes[5];
           internal__static_Senseix_Message_Player_EncouragementGetRequest__FieldAccessorTable = 
               new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.EncouragementGetRequest, global::Senseix.Message.Player.EncouragementGetRequest.Builder>(internal__static_Senseix_Message_Player_EncouragementGetRequest__Descriptor,
                   new string[] { "PlayerId", });
-          internal__static_Senseix_Message_Player_EncouragementGetResponse__Descriptor = Descriptor.MessageTypes[8];
+          internal__static_Senseix_Message_Player_EncouragementGetResponse__Descriptor = Descriptor.MessageTypes[6];
           internal__static_Senseix_Message_Player_EncouragementGetResponse__FieldAccessorTable = 
               new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Player.EncouragementGetResponse, global::Senseix.Message.Player.EncouragementGetResponse.Builder>(internal__static_Senseix_Message_Player_EncouragementGetResponse__Descriptor,
                   new string[] { "Atom", });
@@ -99,7 +84,6 @@ namespace Senseix.Message.Player {
         };
         pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
             new pbd::FileDescriptor[] {
-            global::Senseix.Message.Constant.Constant.Descriptor, 
             global::Senseix.Message.Atom.Proto.Atom.Descriptor, 
             }, assigner);
       }
@@ -421,550 +405,6 @@ namespace Senseix.Message.Player {
       }
     }
     static Player() {
-      object.ReferenceEquals(global::Senseix.Message.Player.Proto.Player.Descriptor, null);
-    }
-  }
-  
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-  public sealed partial class PlayerCreateRequest : pb::GeneratedMessage<PlayerCreateRequest, PlayerCreateRequest.Builder> {
-    private PlayerCreateRequest() { }
-    private static readonly PlayerCreateRequest defaultInstance = new PlayerCreateRequest().MakeReadOnly();
-    private static readonly string[] _playerCreateRequestFieldNames = new string[] { "name" };
-    private static readonly uint[] _playerCreateRequestFieldTags = new uint[] { 10 };
-    public static PlayerCreateRequest DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override PlayerCreateRequest DefaultInstanceForType {
-      get { return DefaultInstance; }
-    }
-    
-    protected override PlayerCreateRequest ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerCreateRequest__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<PlayerCreateRequest, PlayerCreateRequest.Builder> InternalFieldAccessors {
-      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerCreateRequest__FieldAccessorTable; }
-    }
-    
-    public const int NameFieldNumber = 1;
-    private bool hasName;
-    private string name_ = "";
-    public bool HasName {
-      get { return hasName; }
-    }
-    public string Name {
-      get { return name_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasName) return false;
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::ICodedOutputStream output) {
-      int size = SerializedSize;
-      string[] field_names = _playerCreateRequestFieldNames;
-      if (hasName) {
-        output.WriteString(1, field_names[0], Name);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (hasName) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, Name);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static PlayerCreateRequest ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static PlayerCreateRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static PlayerCreateRequest ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static PlayerCreateRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static PlayerCreateRequest ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static PlayerCreateRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static PlayerCreateRequest ParseDelimitedFrom(global::System.IO.Stream input) {
-      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
-    }
-    public static PlayerCreateRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
-    }
-    public static PlayerCreateRequest ParseFrom(pb::ICodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static PlayerCreateRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    private PlayerCreateRequest MakeReadOnly() {
-      return this;
-    }
-    
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(PlayerCreateRequest prototype) {
-      return new Builder(prototype);
-    }
-    
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    public sealed partial class Builder : pb::GeneratedBuilder<PlayerCreateRequest, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {
-        result = DefaultInstance;
-        resultIsReadOnly = true;
-      }
-      internal Builder(PlayerCreateRequest cloneFrom) {
-        result = cloneFrom;
-        resultIsReadOnly = true;
-      }
-      
-      private bool resultIsReadOnly;
-      private PlayerCreateRequest result;
-      
-      private PlayerCreateRequest PrepareBuilder() {
-        if (resultIsReadOnly) {
-          PlayerCreateRequest original = result;
-          result = new PlayerCreateRequest();
-          resultIsReadOnly = false;
-          MergeFrom(original);
-        }
-        return result;
-      }
-      
-      public override bool IsInitialized {
-        get { return result.IsInitialized; }
-      }
-      
-      protected override PlayerCreateRequest MessageBeingBuilt {
-        get { return PrepareBuilder(); }
-      }
-      
-      public override Builder Clear() {
-        result = DefaultInstance;
-        resultIsReadOnly = true;
-        return this;
-      }
-      
-      public override Builder Clone() {
-        if (resultIsReadOnly) {
-          return new Builder(result);
-        } else {
-          return new Builder().MergeFrom(result);
-        }
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::Senseix.Message.Player.PlayerCreateRequest.Descriptor; }
-      }
-      
-      public override PlayerCreateRequest DefaultInstanceForType {
-        get { return global::Senseix.Message.Player.PlayerCreateRequest.DefaultInstance; }
-      }
-      
-      public override PlayerCreateRequest BuildPartial() {
-        if (resultIsReadOnly) {
-          return result;
-        }
-        resultIsReadOnly = true;
-        return result.MakeReadOnly();
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is PlayerCreateRequest) {
-          return MergeFrom((PlayerCreateRequest) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(PlayerCreateRequest other) {
-        if (other == global::Senseix.Message.Player.PlayerCreateRequest.DefaultInstance) return this;
-        PrepareBuilder();
-        if (other.HasName) {
-          Name = other.Name;
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::ICodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        PrepareBuilder();
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        uint tag;
-        string field_name;
-        while (input.ReadTag(out tag, out field_name)) {
-          if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerCreateRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
-            if(field_ordinal >= 0)
-              tag = _playerCreateRequestFieldTags[field_ordinal];
-            else {
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-              continue;
-            }
-          }
-          switch (tag) {
-            case 0: {
-              throw pb::InvalidProtocolBufferException.InvalidTag();
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-              break;
-            }
-            case 10: {
-              result.hasName = input.ReadString(ref result.name_);
-              break;
-            }
-          }
-        }
-        
-        if (unknownFields != null) {
-          this.UnknownFields = unknownFields.Build();
-        }
-        return this;
-      }
-      
-      
-      public bool HasName {
-        get { return result.hasName; }
-      }
-      public string Name {
-        get { return result.Name; }
-        set { SetName(value); }
-      }
-      public Builder SetName(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        result.hasName = true;
-        result.name_ = value;
-        return this;
-      }
-      public Builder ClearName() {
-        PrepareBuilder();
-        result.hasName = false;
-        result.name_ = "";
-        return this;
-      }
-    }
-    static PlayerCreateRequest() {
-      object.ReferenceEquals(global::Senseix.Message.Player.Proto.Player.Descriptor, null);
-    }
-  }
-  
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-  public sealed partial class PlayerCreateResponse : pb::GeneratedMessage<PlayerCreateResponse, PlayerCreateResponse.Builder> {
-    private PlayerCreateResponse() { }
-    private static readonly PlayerCreateResponse defaultInstance = new PlayerCreateResponse().MakeReadOnly();
-    private static readonly string[] _playerCreateResponseFieldNames = new string[] { "player_id" };
-    private static readonly uint[] _playerCreateResponseFieldTags = new uint[] { 10 };
-    public static PlayerCreateResponse DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override PlayerCreateResponse DefaultInstanceForType {
-      get { return DefaultInstance; }
-    }
-    
-    protected override PlayerCreateResponse ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerCreateResponse__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<PlayerCreateResponse, PlayerCreateResponse.Builder> InternalFieldAccessors {
-      get { return global::Senseix.Message.Player.Proto.Player.internal__static_Senseix_Message_Player_PlayerCreateResponse__FieldAccessorTable; }
-    }
-    
-    public const int PlayerIdFieldNumber = 1;
-    private bool hasPlayerId;
-    private string playerId_ = "";
-    public bool HasPlayerId {
-      get { return hasPlayerId; }
-    }
-    public string PlayerId {
-      get { return playerId_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasPlayerId) return false;
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::ICodedOutputStream output) {
-      int size = SerializedSize;
-      string[] field_names = _playerCreateResponseFieldNames;
-      if (hasPlayerId) {
-        output.WriteString(1, field_names[0], PlayerId);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (hasPlayerId) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, PlayerId);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static PlayerCreateResponse ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static PlayerCreateResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static PlayerCreateResponse ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static PlayerCreateResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static PlayerCreateResponse ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static PlayerCreateResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static PlayerCreateResponse ParseDelimitedFrom(global::System.IO.Stream input) {
-      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
-    }
-    public static PlayerCreateResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
-    }
-    public static PlayerCreateResponse ParseFrom(pb::ICodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static PlayerCreateResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    private PlayerCreateResponse MakeReadOnly() {
-      return this;
-    }
-    
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(PlayerCreateResponse prototype) {
-      return new Builder(prototype);
-    }
-    
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    public sealed partial class Builder : pb::GeneratedBuilder<PlayerCreateResponse, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {
-        result = DefaultInstance;
-        resultIsReadOnly = true;
-      }
-      internal Builder(PlayerCreateResponse cloneFrom) {
-        result = cloneFrom;
-        resultIsReadOnly = true;
-      }
-      
-      private bool resultIsReadOnly;
-      private PlayerCreateResponse result;
-      
-      private PlayerCreateResponse PrepareBuilder() {
-        if (resultIsReadOnly) {
-          PlayerCreateResponse original = result;
-          result = new PlayerCreateResponse();
-          resultIsReadOnly = false;
-          MergeFrom(original);
-        }
-        return result;
-      }
-      
-      public override bool IsInitialized {
-        get { return result.IsInitialized; }
-      }
-      
-      protected override PlayerCreateResponse MessageBeingBuilt {
-        get { return PrepareBuilder(); }
-      }
-      
-      public override Builder Clear() {
-        result = DefaultInstance;
-        resultIsReadOnly = true;
-        return this;
-      }
-      
-      public override Builder Clone() {
-        if (resultIsReadOnly) {
-          return new Builder(result);
-        } else {
-          return new Builder().MergeFrom(result);
-        }
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::Senseix.Message.Player.PlayerCreateResponse.Descriptor; }
-      }
-      
-      public override PlayerCreateResponse DefaultInstanceForType {
-        get { return global::Senseix.Message.Player.PlayerCreateResponse.DefaultInstance; }
-      }
-      
-      public override PlayerCreateResponse BuildPartial() {
-        if (resultIsReadOnly) {
-          return result;
-        }
-        resultIsReadOnly = true;
-        return result.MakeReadOnly();
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is PlayerCreateResponse) {
-          return MergeFrom((PlayerCreateResponse) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(PlayerCreateResponse other) {
-        if (other == global::Senseix.Message.Player.PlayerCreateResponse.DefaultInstance) return this;
-        PrepareBuilder();
-        if (other.HasPlayerId) {
-          PlayerId = other.PlayerId;
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::ICodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        PrepareBuilder();
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        uint tag;
-        string field_name;
-        while (input.ReadTag(out tag, out field_name)) {
-          if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_playerCreateResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
-            if(field_ordinal >= 0)
-              tag = _playerCreateResponseFieldTags[field_ordinal];
-            else {
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-              continue;
-            }
-          }
-          switch (tag) {
-            case 0: {
-              throw pb::InvalidProtocolBufferException.InvalidTag();
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-              break;
-            }
-            case 10: {
-              result.hasPlayerId = input.ReadString(ref result.playerId_);
-              break;
-            }
-          }
-        }
-        
-        if (unknownFields != null) {
-          this.UnknownFields = unknownFields.Build();
-        }
-        return this;
-      }
-      
-      
-      public bool HasPlayerId {
-        get { return result.hasPlayerId; }
-      }
-      public string PlayerId {
-        get { return result.PlayerId; }
-        set { SetPlayerId(value); }
-      }
-      public Builder SetPlayerId(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        result.hasPlayerId = true;
-        result.playerId_ = value;
-        return this;
-      }
-      public Builder ClearPlayerId() {
-        PrepareBuilder();
-        result.hasPlayerId = false;
-        result.playerId_ = "";
-        return this;
-      }
-    }
-    static PlayerCreateResponse() {
       object.ReferenceEquals(global::Senseix.Message.Player.Proto.Player.Descriptor, null);
     }
   }

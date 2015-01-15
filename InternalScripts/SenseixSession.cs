@@ -8,8 +8,7 @@ using System.Threading;
 using System.ComponentModel;
 
 namespace Senseix 
-{ 
-
+{
 	static class SenseixSession 
 	{
 		private const int ACCESS_TOKEN_LENGTH = 64;
@@ -232,11 +231,6 @@ namespace Senseix
 		public static bool IsSignedIn()
 		{
 			return isSignedIn;
-		}
-
-		public static void SignOutParent()
-		{
-			Message.Request.SignOutParent ();
 		}
 
 		public static void PushProblems(Queue Problems)

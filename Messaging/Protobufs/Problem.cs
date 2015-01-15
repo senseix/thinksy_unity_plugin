@@ -47,30 +47,30 @@ namespace Senseix.Message.Problem {
     
     static Problem() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "Cg1Qcm9ibGVtLnByb3RvEhdTZW5zZWl4Lk1lc3NhZ2UuUHJvYmxlbRoOQ29u" + 
-          "c3RhbnQucHJvdG8aCkF0b20ucHJvdG8iJgoJRm9ybWF0dGVyEgwKBGh0bWwY" + 
-          "ASABKAkSCwoDY3NzGAIgASgJIncKCFF1ZXN0aW9uEigKBGF0b20YASADKAsy" + 
-          "Gi5TZW5zZWl4Lk1lc3NhZ2UuQXRvbS5BdG9tEjIKBmZvcm1hdBgCIAEoCzIi" + 
-          "LlNlbnNlaXguTWVzc2FnZS5Qcm9ibGVtLkZvcm1hdHRlchINCgVpbWFnZRgD" + 
-          "IAEoDCJmCgZBbnN3ZXISKAoEYXRvbRgBIAMoCzIaLlNlbnNlaXguTWVzc2Fn" + 
+          "Cg1Qcm9ibGVtLnByb3RvEhdTZW5zZWl4Lk1lc3NhZ2UuUHJvYmxlbRoKQXRv" + 
+          "bS5wcm90byImCglGb3JtYXR0ZXISDAoEaHRtbBgBIAEoCRILCgNjc3MYAiAB" + 
+          "KAkidwoIUXVlc3Rpb24SKAoEYXRvbRgBIAMoCzIaLlNlbnNlaXguTWVzc2Fn" + 
           "ZS5BdG9tLkF0b20SMgoGZm9ybWF0GAIgASgLMiIuU2Vuc2VpeC5NZXNzYWdl" + 
-          "LlByb2JsZW0uRm9ybWF0dGVyImoKCkRpc3RyYWN0b3ISKAoEYXRvbRgBIAMo" + 
-          "CzIaLlNlbnNlaXguTWVzc2FnZS5BdG9tLkF0b20SMgoGZm9ybWF0GAIgASgL" + 
-          "MiIuU2Vuc2VpeC5NZXNzYWdlLlByb2JsZW0uRm9ybWF0dGVyIroBCgtQcm9i" + 
-          "bGVtRGF0YRIMCgR1dWlkGAEgAigJEjMKCHF1ZXN0aW9uGAIgAigLMiEuU2Vu" + 
-          "c2VpeC5NZXNzYWdlLlByb2JsZW0uUXVlc3Rpb24SLwoGYW5zd2VyGAMgAigL" + 
-          "Mh8uU2Vuc2VpeC5NZXNzYWdlLlByb2JsZW0uQW5zd2VyEjcKCmRpc3RyYWN0" + 
-          "b3IYBCACKAsyIy5TZW5zZWl4Lk1lc3NhZ2UuUHJvYmxlbS5EaXN0cmFjdG9y" + 
-          "IiAKEEFuc3dlcklkZW50aWZpZXISDAoEdXVpZBgBIAMoCSKnAQoLUHJvYmxl" + 
-          "bVBvc3QSEQoJcGxheWVyX2lkGAEgAigJEhIKCnByb2JsZW1faWQYAiACKAkS" + 
-          "PQoKYW5zd2VyX2lkcxgDIAEoCzIpLlNlbnNlaXguTWVzc2FnZS5Qcm9ibGVt" + 
-          "LkFuc3dlcklkZW50aWZpZXISEAoIZHVyYXRpb24YBCABKAISDwoHc2tpcHBl" + 
-          "ZBgFIAEoCBIPCgdjb3JyZWN0GAYgASgIIksKElByb2JsZW1Qb3N0UmVxdWVz" + 
-          "dBI1Cgdwcm9ibGVtGAEgAygLMiQuU2Vuc2VpeC5NZXNzYWdlLlByb2JsZW0u" + 
-          "UHJvYmxlbVBvc3QiFQoTUHJvYmxlbVBvc3RSZXNwb25zZSI9ChFQcm9ibGVt" + 
-          "R2V0UmVxdWVzdBIRCglwbGF5ZXJfaWQYASACKAkSFQoNcHJvYmxlbV9jb3Vu" + 
-          "dBgCIAEoDSJLChJQcm9ibGVtR2V0UmVzcG9uc2USNQoHcHJvYmxlbRgBIAMo" + 
-          "CzIkLlNlbnNlaXguTWVzc2FnZS5Qcm9ibGVtLlByb2JsZW1EYXRh");
+          "LlByb2JsZW0uRm9ybWF0dGVyEg0KBWltYWdlGAMgASgMImYKBkFuc3dlchIo" + 
+          "CgRhdG9tGAEgAygLMhouU2Vuc2VpeC5NZXNzYWdlLkF0b20uQXRvbRIyCgZm" + 
+          "b3JtYXQYAiABKAsyIi5TZW5zZWl4Lk1lc3NhZ2UuUHJvYmxlbS5Gb3JtYXR0" + 
+          "ZXIiagoKRGlzdHJhY3RvchIoCgRhdG9tGAEgAygLMhouU2Vuc2VpeC5NZXNz" + 
+          "YWdlLkF0b20uQXRvbRIyCgZmb3JtYXQYAiABKAsyIi5TZW5zZWl4Lk1lc3Nh" + 
+          "Z2UuUHJvYmxlbS5Gb3JtYXR0ZXIiugEKC1Byb2JsZW1EYXRhEgwKBHV1aWQY" + 
+          "ASACKAkSMwoIcXVlc3Rpb24YAiACKAsyIS5TZW5zZWl4Lk1lc3NhZ2UuUHJv" + 
+          "YmxlbS5RdWVzdGlvbhIvCgZhbnN3ZXIYAyACKAsyHy5TZW5zZWl4Lk1lc3Nh" + 
+          "Z2UuUHJvYmxlbS5BbnN3ZXISNwoKZGlzdHJhY3RvchgEIAIoCzIjLlNlbnNl" + 
+          "aXguTWVzc2FnZS5Qcm9ibGVtLkRpc3RyYWN0b3IiIAoQQW5zd2VySWRlbnRp" + 
+          "ZmllchIMCgR1dWlkGAEgAygJIqcBCgtQcm9ibGVtUG9zdBIRCglwbGF5ZXJf" + 
+          "aWQYASACKAkSEgoKcHJvYmxlbV9pZBgCIAIoCRI9CgphbnN3ZXJfaWRzGAMg" + 
+          "ASgLMikuU2Vuc2VpeC5NZXNzYWdlLlByb2JsZW0uQW5zd2VySWRlbnRpZmll" + 
+          "chIQCghkdXJhdGlvbhgEIAEoAhIPCgdza2lwcGVkGAUgASgIEg8KB2NvcnJl" + 
+          "Y3QYBiABKAgiSwoSUHJvYmxlbVBvc3RSZXF1ZXN0EjUKB3Byb2JsZW0YASAD" + 
+          "KAsyJC5TZW5zZWl4Lk1lc3NhZ2UuUHJvYmxlbS5Qcm9ibGVtUG9zdCIVChNQ" + 
+          "cm9ibGVtUG9zdFJlc3BvbnNlIj0KEVByb2JsZW1HZXRSZXF1ZXN0EhEKCXBs" + 
+          "YXllcl9pZBgBIAIoCRIVCg1wcm9ibGVtX2NvdW50GAIgASgNIksKElByb2Js" + 
+          "ZW1HZXRSZXNwb25zZRI1Cgdwcm9ibGVtGAEgAygLMiQuU2Vuc2VpeC5NZXNz" + 
+          "YWdlLlByb2JsZW0uUHJvYmxlbURhdGE=");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_Senseix_Message_Problem_Formatter__Descriptor = Descriptor.MessageTypes[0];
@@ -121,7 +121,6 @@ namespace Senseix.Message.Problem {
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
           new pbd::FileDescriptor[] {
-          global::Senseix.Message.Constant.Constant.Descriptor, 
           global::Senseix.Message.Atom.Proto.Atom.Descriptor, 
           }, assigner);
     }

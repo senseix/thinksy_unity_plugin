@@ -104,8 +104,8 @@ namespace Senseix.Message {
 
 		static public bool ParseRegisterDeviceResponse(byte[] responseBytes)
 		{
-			Parent.DeviceRegistrationResponse registerDeviceResponse = 
-				Parent.DeviceRegistrationResponse.ParseFrom (responseBytes);
+			Device.DeviceRegistrationResponse registerDeviceResponse = 
+				Device.DeviceRegistrationResponse.ParseFrom (responseBytes);
 
 			if (registerDeviceResponse.IsInitialized) 
 			{	
@@ -172,8 +172,8 @@ namespace Senseix.Message {
 
 		static public bool ParseVerifyGameResponse(byte[] responseBytes)
 		{
-			Parent.GameVerificationResponse verifyGameResponse = 
-				Parent.GameVerificationResponse.ParseFrom (responseBytes);
+			Device.GameVerificationResponse verifyGameResponse = 
+				Device.GameVerificationResponse.ParseFrom (responseBytes);
 
 			SenseixSession.SetSessionState(true);
 			UnityEngine.Debug.Log("I got a response from my game verification Message");

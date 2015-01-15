@@ -31,7 +31,7 @@ namespace Senseix.Message.PlayerProfile {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           "ChNQbGF5ZXJQcm9maWxlLnByb3RvEh1TZW5zZWl4Lk1lc3NhZ2UuUGxheWVy" + 
           "UHJvZmlsZSI9ChFQbGF5ZXJQcm9maWxlRGF0YRIKCgJpZBgBIAIoCRIMCgRu" + 
-          "YW1lGAIgAigJEg4KBmF2YXRhchgDIAIoDCJkChhQbGF5ZXJQcm9maWxlR2V0" + 
+          "YW1lGAIgAigJEg4KBmF2YXRhchgDIAEoDCJkChhQbGF5ZXJQcm9maWxlR2V0" + 
           "UmVzcG9uc2USSAoOcGxheWVyUHJvZmlsZXMYASADKAsyMC5TZW5zZWl4Lk1l" + 
           "c3NhZ2UuUGxheWVyUHJvZmlsZS5QbGF5ZXJQcm9maWxlRGF0YQ==");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
@@ -114,7 +114,6 @@ namespace Senseix.Message.PlayerProfile {
       get {
         if (!hasId) return false;
         if (!hasName) return false;
-        if (!hasAvatar) return false;
         return true;
       }
     }

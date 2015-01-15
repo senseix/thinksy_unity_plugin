@@ -23,7 +23,7 @@ namespace Senseix.Message
 		//API URLS
 		//api-staging.Senseix.com
         const string ENCRYPTED = "http://";
-		const string SERVER_URL = "192.168.1.14:3000/";
+		const string SERVER_URL = "api.thinksylearn.com/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/devices/";
@@ -226,7 +226,7 @@ namespace Senseix.Message
 		/// </summary>
 		static public void RegisterDevice(string deviceNameInformation)
 		{
-			Parent.DeviceRegistrationRequest.Builder newDevice = Parent.DeviceRegistrationRequest.CreateBuilder ();
+			Device.DeviceRegistrationRequest.Builder newDevice = Device.DeviceRegistrationRequest.CreateBuilder ();
 			newDevice.SetInformation (deviceNameInformation);
 			//UnityEngine.Debug.Log ("Device id:　" + SenseixSession.GetDeviceID ());				
 			newDevice.SetDeviceId (SenseixSession.GetDeviceID());
@@ -243,7 +243,7 @@ namespace Senseix.Message
 		/// </summary>
 		static public void VerifyGame(string verificationCode)
 		{
-			Parent.GameVerificationRequest.Builder newVerification = Parent.GameVerificationRequest.CreateBuilder ();
+			Device.GameVerificationRequest.Builder newVerification = Device.GameVerificationRequest.CreateBuilder ();
 			newVerification.SetVerificationToken (verificationCode);
 			newVerification.SetUdid (SenseixSession.GetDeviceID ());
 
@@ -255,127 +255,6 @@ namespace Senseix.Message
 			//Debug.Log (hdr_request.GameVerification.VerificationToken);
 			//Debug.Log (hdr_request.AccessToken);
 			SyncronousPostRequest (requestMessageStream, Response.ParseVerifyGameResponse, VERIFY_GAME_URL, false);
-		}
-		
-	     /// <summary>
-	     /// Registers a Parent with the Senseix server and results in a auth_token for the current session.
-	    /// Name is an optional parameter for the server (it can be blank). 
-	    /// </summary>
-		static public void RegisterParent (string email,string name,string password)
-		{
-			/*
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			Senseix.Message.Parent.ParentRegistrationRequest.Builder newParent = Parent.ParentRegistrationRequest.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
-			newParent.SetDeviceId(SenseixSession.GetDeviceID());
-			newParent.SetEmail(email);
-			newParent.SetConfirmationPassword(password);
-			newParent.SetName(name);
-			newParent.SetPassword(password);
-			hdr_request.SetParentRegistration(newParent);		
-
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.RegisterParent, REGISTER_PARENT_URL);
-			*/
-		}
-
-		/// <summary>
-		/// Logs in a Parent given a password and email for that account. Sets the authentication token for the user
-		/// allowing for additional API calls such as pulling in additional Problems, Player management, etc.
-		/// </summary>
-		static public void SignInParent (string email, string password)
-		{
-			/*
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			Parent.ParentSignInRequest.Builder signInParent = Parent.ParentSignInRequest.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
-			signInParent.SetDeviceId(SenseixSession.GetDeviceID());
-			signInParent.SetEmail(email);
-			signInParent.SetPassword(password);
-			hdr_request.SetParentSignIn(signInParent);
-
-			SyncronousPostRequest (ref hdr_request,  Constant.MessageType.SignInParent, SIGN_IN_PARENT_URL);	
-			*/
-		}
-
-		
-		/// <summary>
-		/// Logs a user out of the Senseix platform. This will result in an action having to be taken by the user if they attempt to 
-		/// login with anoter account (each device is tied to a single account)	
-		/// </summary>
-		static public void SignOutParent()
-		{
-			/*
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
-			hdr_request.SetAuthToken(SenseixSession.GetAuthToken ());
-
-			Senseix.Message.Parent.ParentSignOutRequest.Builder ParentSignOutBuilder = Parent.ParentSignOutRequest.CreateBuilder ();
-			ParentSignOutBuilder.SetDeviceId (SenseixSession.GetDeviceID ());
-			hdr_request.SetParentSignOut(ParentSignOutBuilder);
-
-			//Debug.Log ("sign out Parent going off to " + SIGN_OUT_PARENT_URL);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.SignOutParent, SIGN_OUT_PARENT_URL);
-			*/
-		}
-		   
-		/// <summary>
-		/// Edit a users profile i.e. change password, name, email, etc. The current password is required to be re-entered
-		/// here for added security. 
-		/// </summary>
-		static public void ParentEditProfile (string email,string name,string password, string new_password, string confirmation_password)
-		{
-			/*
-			Parent.ParentEditRequest.Builder editParent = Parent.ParentEditRequest.CreateBuilder();
-			editParent.SetDeviceId(SenseixSession.GetDeviceID());
-			editParent.SetEmail(email);
-			editParent.SetPassword (password);
-			editParent.SetNewPassword(new_password);
-			editParent.SetName(name);
-			hdr_request.SetParentEdit(editParent);      
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.EditParent, EDIT_PARENT_URL);
-			*/
-		}
-
-		/// <summary>
-		/// This is a specialized function that is called when a Player has played on a device with a temporary account
-		/// and now has a real account, we give the Parent the option to either, create a new Player, merge the data with 
-		/// a Player they already have or just delete the current data.  
-		/// </summary>
-		static public void ParentAccntResolution (string email, string password, Parent.ParentMergeRequest.Types.Decision decision, string Player_id, string name) 
-		{
-			/*
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixSession.GetAccessToken());
-			hdr_request.SetAccessToken (SenseixSession.GetDeviceID());
-			Parent.ParentMergeRequest.Builder mergeParent = Parent.ParentMergeRequest.CreateBuilder();
-
-			mergeParent.SetNewPlayerName (name);
-			mergeParent.SetEmail (email);
-			mergeParent.SetPlayerId (Player_id);
-			mergeParent.SetPassword (password);
-			mergeParent.SetDecision (decision);
-			hdr_request.SetParentMerge (mergeParent);
-
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.MergeParent, MERGE_PARENT_URL);
-			*/
-		}
-
-
-		/// <summary>
-		/// Create a new Player for this Parent. This will return a Player_id for future calls
-		/// to the API. 
-		/// </summary>
-		static public void CreatePlayer (string name) 
-		{
-			/*
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
-			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
-			Player.PlayerCreateRequest.Builder createPlayer = Player.PlayerCreateRequest.CreateBuilder ();
-			createPlayer.SetName (name);
-			hdr_request.SetPlayerCreate (createPlayer);
-			SyncronousPostRequest (ref hdr_request, Constant.MessageType.CreatePlayer, CREATE_PLAYER_URL);
-			*/
 		}
 
 		/// <summary>
