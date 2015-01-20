@@ -26,7 +26,7 @@ namespace Senseix
 			ArrayList returnList = new ArrayList ();
 			if (currentPlayerList == null)
 			{
-				//Debug.Log("no current Player list.  maybe not connected.");
+				Debug.Log("no current Player list.  maybe not connected.");
 				return returnList;
 			}
 
@@ -91,10 +91,10 @@ namespace Senseix
 		{
 			if (authToken != null)
 				return authToken;
-			else
-				Debug.LogWarning("Something got the auth token, but there was no auth token available." +
-					"  It is possible that the register device message failed and/or we are sending a request" +
-					" without ever having registered.");
+			//else
+			//	Debug.LogWarning("Something got the auth token, but there was no auth token available." +
+			//		"  It is possible that the register device message failed and/or we are sending a request" +
+			//		" without ever having registered. (Normal in the case of the registration message.)");
 			return "you don't need to see my identification";
 		}
 		static public string GetCurrentPlayerID()

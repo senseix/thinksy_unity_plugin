@@ -233,11 +233,11 @@ namespace Senseix
 
 		static private void CheckProblemPull()
 		{
-			Debug.Log ("get new problem count:　" + GetNewProblemCount ());
+			//Debug.Log ("get new problem count:　" + GetNewProblemCount ());
 			if (GetNewProblemCount() < PROBLEMS_PER_PULL*PULL_THRESHOLD || GetNewProblemCount() < 1) 
 			{
 				GetProblems ();
-				Debug.Log ("pulling more Problems");
+				//Debug.Log ("pulling more Problems");
 			}
 		}
 

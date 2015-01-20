@@ -8,7 +8,6 @@ using System.Threading;
 
 namespace Senseix.Message 
 {
-
 	public struct PostRequestParameters
 	{
 		public MemoryStream requestMessageStream;
@@ -23,7 +22,7 @@ namespace Senseix.Message
 		//API URLS
 		//api-staging.Senseix.com
         const string ENCRYPTED = "http://";
-		const string SERVER_URL = "api.thinksylearn.com/";
+		const string SERVER_URL = "192.168.1.8:3000/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/devices/";
@@ -77,16 +76,7 @@ namespace Senseix.Message
 			{
 				if (parameters.recvResult.isDone)
 				{
-					try
-					{
-						HandleResult(parameters.recvResult, parameters.responseHandler);
-					}
-					catch (Google.ProtocolBuffers.InvalidProtocolBufferException)
-					{
-						UnityEngine.Debug.LogWarning ("A pending SenseiX request had a protobufs error" +
-						           " so I'm just going to get rid of it." + 
-						           "  What's one request, right?");
-					}
+					HandleResult(parameters.recvResult, parameters.responseHandler);
 					removeUsRequests.Add(parameters);
 				}
 			}
@@ -130,20 +120,19 @@ namespace Senseix.Message
 		public static void SyncronousPostRequest(MemoryStream requestMessageStream, ResponseHandlerDelegate responseHandler, string url, bool isGet)
 		{
 			WWW recvResult = SetUpRecvResult(requestMessageStream, url, isGet);
-			UnityEngine.Debug.Log ("set up recv result already");
+			//UnityEngine.Debug.Log ("set up recv result already");
 			SyncronousPostRequest (recvResult, requestMessageStream, responseHandler, url);
 		}
 
 		public static void SyncronousPostRequest(WWW recvResult, MemoryStream requestMessageStream, ResponseHandlerDelegate responseHandler, string url)
 	    {
-//			Debug.Log ("Wait for Request:");
+			//Debug.Log ("Wait for Request:");
 			if (!SenseixSession.GetSessionState())
 			{
 				return;
 			}
-			UnityEngine.Debug.Log ("wait for request");
 			WaitForRequest (recvResult);
-			UnityEngine.Debug.Log ("handle result");
+			//UnityEngine.Debug.Log ("handle result");
 			HandleResult (recvResult, responseHandler);
 		}
 
@@ -152,20 +141,26 @@ namespace Senseix.Message
 			byte[] responseBytes = new byte[0];
 			if (NetworkErrorChecking(recvResult))
 			{
-				//happy
 				responseBytes = recvResult.bytes;
 				//UnityEngine.Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
+				//UnityEngine.Debug.Log ("parse response");
+				try
+				{
+					resultHandler(responseBytes);
+				}
+				catch
+				{
+					Response.ParseServerErrorResponse(responseBytes);
+				}
 			}
 			else
 			{
 				UnityEngine.Debug.LogWarning ("A SenseiX message had an error.  " + 
 				                  "Most likely internet connectivity issues.");
 				SenseixSession.SetSessionState (false);
-				return;
 			}
 
-			UnityEngine.Debug.Log ("parse response");
-			resultHandler(responseBytes);
+			return;
 		}
 
 		static private void WaitForRequest(WWW recvResult)
@@ -263,7 +258,7 @@ namespace Senseix.Message
 		/// </summary>
 		static public void ListPlayers () 
 		{
-			UnityEngine.Debug.Log ("Auth Token: " + SenseixSession.GetAuthToken());
+			//UnityEngine.Debug.Log ("Auth Token: " + SenseixSession.GetAuthToken());
 
 			Player.PlayerListRequest.Builder listPlayer = Player.PlayerListRequest.CreateBuilder ();
 
@@ -290,8 +285,9 @@ namespace Senseix.Message
 //			Debug.Log ("register Player going off to " + REGISTER_Player_WITH_GAME_URL);
 			MemoryStream requestMessageStream = new MemoryStream();
 			regPlayer.BuildPartial ().WriteTo (requestMessageStream);
-			UnityEngine.Debug.Log ("register player going off to " + REGISTER_PLAYER_WITH_GAME_URL);
+			//UnityEngine.Debug.Log ("register player going off to " + REGISTER_PLAYER_WITH_GAME_URL);
 			SyncronousPostRequest (requestMessageStream, Response.ParseRegisterPlayerResponse, REGISTER_PLAYER_WITH_GAME_URL, false);
+
 		}
 
 	
@@ -302,7 +298,7 @@ namespace Senseix.Message
 		static public void GetProblems (string Player_id, UInt32 count) 
 		{
 
-			UnityEngine.Debug.Log ("get problems");
+			//UnityEngine.Debug.Log ("get problems");
 
 			Problem.ProblemGetRequest.Builder getProblem = Problem.ProblemGetRequest.CreateBuilder ();
 			getProblem.SetProblemCount (count);

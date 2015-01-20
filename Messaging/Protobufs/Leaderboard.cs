@@ -16,6 +16,8 @@ namespace Senseix.Message.Leaderboard {
     }
     #endregion
     #region Static variables
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_MemberData__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.MemberData, global::Senseix.Message.Leaderboard.MemberData.Builder> internal__static_Senseix_Message_Leaderboard_MemberData__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_PlayerData__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PlayerData, global::Senseix.Message.Leaderboard.PlayerData.Builder> internal__static_Senseix_Message_Leaderboard_PlayerData__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__Descriptor;
@@ -36,37 +38,42 @@ namespace Senseix.Message.Leaderboard {
     static Leaderboard() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           "ChFMZWFkZXJib2FyZC5wcm90bxIbU2Vuc2VpeC5NZXNzYWdlLkxlYWRlcmJv" + 
-          "YXJkIjcKClBsYXllckRhdGESDQoFc2NvcmUYASABKA0SDAoEcmFuaxgCIAEo" + 
-          "DRIMCgRuYW1lGAMgASgJIkMKGFVwZGF0ZVBsYXllclNjb3JlUmVxdWVzdBIR" + 
-          "CglwbGF5ZXJfaWQYASACKAkSFAoMcGxheWVyX3Njb3JlGAIgAigNImsKGVVw" + 
-          "ZGF0ZVBsYXllclNjb3JlUmVzcG9uc2USFQoNdG90YWxfbWVtYmVycxgBIAIo" + 
-          "DRI3CgZwbGF5ZXIYAiACKAsyJy5TZW5zZWl4Lk1lc3NhZ2UuTGVhZGVyYm9h" + 
-          "cmQuUGxheWVyRGF0YSKEAQoRUGxheWVyUmFua1JlcXVlc3QSEQoJcGxheWVy" + 
-          "X2lkGAEgAigJEg0KBWNvdW50GAIgASgNEhEKCXBhZ2Vfc2l6ZRgDIAEoDRI6" + 
-          "Cgdzb3J0X2J5GAQgASgOMiMuU2Vuc2VpeC5NZXNzYWdlLkxlYWRlcmJvYXJk" + 
-          "LlNvcnRCeToETk9ORSJkChJQbGF5ZXJSYW5rUmVzcG9uc2USFQoNdG90YWxf" + 
-          "bWVtYmVycxgBIAIoDRI3CgZwbGF5ZXIYAiADKAsyJy5TZW5zZWl4Lk1lc3Nh" + 
-          "Z2UuTGVhZGVyYm9hcmQuUGxheWVyRGF0YSonCgZTb3J0QnkSCAoEUkFOSxAB" + 
-          "EgkKBVNDT1JFEAISCAoETk9ORRAD");
+          "YXJkIiEKCk1lbWJlckRhdGESEwoLcGxheWVyX25hbWUYASACKAkiNwoKUGxh" + 
+          "eWVyRGF0YRINCgVzY29yZRgBIAEoDRIMCgRyYW5rGAIgASgNEgwKBG5hbWUY" + 
+          "AyABKAkiQwoYVXBkYXRlUGxheWVyU2NvcmVSZXF1ZXN0EhEKCXBsYXllcl9p" + 
+          "ZBgBIAIoCRIUCgxwbGF5ZXJfc2NvcmUYAiACKA0iawoZVXBkYXRlUGxheWVy" + 
+          "U2NvcmVSZXNwb25zZRIVCg10b3RhbF9tZW1iZXJzGAEgAigNEjcKBnBsYXll" + 
+          "chgCIAIoCzInLlNlbnNlaXguTWVzc2FnZS5MZWFkZXJib2FyZC5QbGF5ZXJE" + 
+          "YXRhIoQBChFQbGF5ZXJSYW5rUmVxdWVzdBIRCglwbGF5ZXJfaWQYASACKAkS" + 
+          "DQoFY291bnQYAiABKA0SEQoJcGFnZV9zaXplGAMgASgNEjoKB3NvcnRfYnkY" + 
+          "BCABKA4yIy5TZW5zZWl4Lk1lc3NhZ2UuTGVhZGVyYm9hcmQuU29ydEJ5OgRO" + 
+          "T05FImQKElBsYXllclJhbmtSZXNwb25zZRIVCg10b3RhbF9tZW1iZXJzGAEg" + 
+          "AigNEjcKBnBsYXllchgCIAMoCzInLlNlbnNlaXguTWVzc2FnZS5MZWFkZXJi" + 
+          "b2FyZC5QbGF5ZXJEYXRhKicKBlNvcnRCeRIICgRSQU5LEAESCQoFU0NPUkUQ" + 
+          "AhIICgROT05FEAM=");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
-        internal__static_Senseix_Message_Leaderboard_PlayerData__Descriptor = Descriptor.MessageTypes[0];
+        internal__static_Senseix_Message_Leaderboard_MemberData__Descriptor = Descriptor.MessageTypes[0];
+        internal__static_Senseix_Message_Leaderboard_MemberData__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.MemberData, global::Senseix.Message.Leaderboard.MemberData.Builder>(internal__static_Senseix_Message_Leaderboard_MemberData__Descriptor,
+                new string[] { "PlayerName", });
+        internal__static_Senseix_Message_Leaderboard_PlayerData__Descriptor = Descriptor.MessageTypes[1];
         internal__static_Senseix_Message_Leaderboard_PlayerData__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PlayerData, global::Senseix.Message.Leaderboard.PlayerData.Builder>(internal__static_Senseix_Message_Leaderboard_PlayerData__Descriptor,
                 new string[] { "Score", "Rank", "Name", });
-        internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__Descriptor = Descriptor.MessageTypes[1];
+        internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__Descriptor = Descriptor.MessageTypes[2];
         internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.UpdatePlayerScoreRequest, global::Senseix.Message.Leaderboard.UpdatePlayerScoreRequest.Builder>(internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreRequest__Descriptor,
                 new string[] { "PlayerId", "PlayerScore", });
-        internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__Descriptor = Descriptor.MessageTypes[3];
         internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.UpdatePlayerScoreResponse, global::Senseix.Message.Leaderboard.UpdatePlayerScoreResponse.Builder>(internal__static_Senseix_Message_Leaderboard_UpdatePlayerScoreResponse__Descriptor,
                 new string[] { "TotalMembers", "Player", });
-        internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__Descriptor = Descriptor.MessageTypes[3];
+        internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__Descriptor = Descriptor.MessageTypes[4];
         internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PlayerRankRequest, global::Senseix.Message.Leaderboard.PlayerRankRequest.Builder>(internal__static_Senseix_Message_Leaderboard_PlayerRankRequest__Descriptor,
                 new string[] { "PlayerId", "Count", "PageSize", "SortBy", });
-        internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__Descriptor = Descriptor.MessageTypes[4];
+        internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__Descriptor = Descriptor.MessageTypes[5];
         internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Leaderboard.PlayerRankResponse, global::Senseix.Message.Leaderboard.PlayerRankResponse.Builder>(internal__static_Senseix_Message_Leaderboard_PlayerRankResponse__Descriptor,
                 new string[] { "TotalMembers", "Player", });
@@ -89,6 +96,278 @@ namespace Senseix.Message.Leaderboard {
   #endregion
   
   #region Messages
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class MemberData : pb::GeneratedMessage<MemberData, MemberData.Builder> {
+    private MemberData() { }
+    private static readonly MemberData defaultInstance = new MemberData().MakeReadOnly();
+    private static readonly string[] _memberDataFieldNames = new string[] { "player_name" };
+    private static readonly uint[] _memberDataFieldTags = new uint[] { 10 };
+    public static MemberData DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override MemberData DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override MemberData ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_MemberData__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<MemberData, MemberData.Builder> InternalFieldAccessors {
+      get { return global::Senseix.Message.Leaderboard.Leaderboard.internal__static_Senseix_Message_Leaderboard_MemberData__FieldAccessorTable; }
+    }
+    
+    public const int PlayerNameFieldNumber = 1;
+    private bool hasPlayerName;
+    private string playerName_ = "";
+    public bool HasPlayerName {
+      get { return hasPlayerName; }
+    }
+    public string PlayerName {
+      get { return playerName_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasPlayerName) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _memberDataFieldNames;
+      if (hasPlayerName) {
+        output.WriteString(1, field_names[0], PlayerName);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasPlayerName) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, PlayerName);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static MemberData ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static MemberData ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static MemberData ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static MemberData ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static MemberData ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static MemberData ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static MemberData ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static MemberData ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static MemberData ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static MemberData ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private MemberData MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(MemberData prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<MemberData, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(MemberData cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private MemberData result;
+      
+      private MemberData PrepareBuilder() {
+        if (resultIsReadOnly) {
+          MemberData original = result;
+          result = new MemberData();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override MemberData MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::Senseix.Message.Leaderboard.MemberData.Descriptor; }
+      }
+      
+      public override MemberData DefaultInstanceForType {
+        get { return global::Senseix.Message.Leaderboard.MemberData.DefaultInstance; }
+      }
+      
+      public override MemberData BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is MemberData) {
+          return MergeFrom((MemberData) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(MemberData other) {
+        if (other == global::Senseix.Message.Leaderboard.MemberData.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasPlayerName) {
+          PlayerName = other.PlayerName;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_memberDataFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _memberDataFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasPlayerName = input.ReadString(ref result.playerName_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasPlayerName {
+        get { return result.hasPlayerName; }
+      }
+      public string PlayerName {
+        get { return result.PlayerName; }
+        set { SetPlayerName(value); }
+      }
+      public Builder SetPlayerName(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasPlayerName = true;
+        result.playerName_ = value;
+        return this;
+      }
+      public Builder ClearPlayerName() {
+        PrepareBuilder();
+        result.hasPlayerName = false;
+        result.playerName_ = "";
+        return this;
+      }
+    }
+    static MemberData() {
+      object.ReferenceEquals(global::Senseix.Message.Leaderboard.Leaderboard.Descriptor, null);
+    }
+  }
+  
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public sealed partial class PlayerData : pb::GeneratedMessage<PlayerData, PlayerData.Builder> {
     private PlayerData() { }

@@ -131,6 +131,8 @@ namespace Senseix.Message {
 
 			SenseixSession.SetSessionState(true);
 			UnityEngine.Debug.Log("I got a response from a list Player Message");
+			if (listPlayersResponse.PlayerCount == 0)
+				throw new Exception ("no players in player list");
 			SenseixSession.SetCurrentPlayerList(listPlayersResponse);
 
 			return true;
@@ -154,6 +156,11 @@ namespace Senseix.Message {
 			//Debug.Log("has problem get: " + reply.HasProblemGet);
 			if (getProblemResponse.ProblemCount != ProblemKeeper.PROBLEMS_PER_PULL)
 				UnityEngine.Debug.LogWarning("How wude.  I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + getProblemResponse.ProblemCount);
+			if (getProblemResponse.ProblemCount == 0)
+			{
+				throw new Exception ("no problems in problem response.");
+				return false;
+			}
 
 			ProblemKeeper.ReplaceSeed(getProblemResponse);
 
@@ -193,6 +200,9 @@ namespace Senseix.Message {
 
 		static public bool ParsePlayerScoreResponse(byte[] responseBytes)
 		{
+			Leaderboard.UpdatePlayerScoreResponse verifyGameResponse = 
+				Leaderboard.UpdatePlayerScoreResponse.ParseFrom (responseBytes);
+
 			SenseixSession.SetSessionState(true);
 			UnityEngine.Debug.Log("I got a response from a Player score Message");
 			return true;
@@ -200,9 +210,23 @@ namespace Senseix.Message {
 		
 		static public bool ParsePlayerRankResponse(byte[] responseBytes)
 		{
+			Leaderboard.PlayerRankResponse verifyGameResponse = 
+				Leaderboard.PlayerRankResponse.ParseFrom (responseBytes);
+
 			SenseixSession.SetSessionState(true);
 			UnityEngine.Debug.Log("I got a response from a Player rank Message");
 			return true;
+		}
+
+		static public bool ParseServerErrorResponse(byte[] responseBytes)
+		{
+			Debug.ServerErrorResponse serverErrorResponse = 
+				Debug.ServerErrorResponse.ParseFrom (responseBytes);
+
+			UnityEngine.Debug.LogError("I got a server error response.  Here is the message: " +
+			                      serverErrorResponse.Message);
+
+			return false;
 		}
 	}
 }
