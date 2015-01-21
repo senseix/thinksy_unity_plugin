@@ -15,8 +15,8 @@ class SenseixPlugin : MonoBehaviour
 	private static SenseixPlugin singletonInstance;
 	private static Problem mostRecentProblem;
 	
-	private const int reconnectRetryInterval = 9000;
-	private const int encouragementGetInterval = 9001;
+	private const int reconnectRetryInterval = 3000;
+	private const int encouragementGetInterval = 3001;
 
 	/// <summary>
 	/// Shows a window indicating that something horrible has happened.
@@ -53,6 +53,7 @@ class SenseixPlugin : MonoBehaviour
 		singletonInstance = this;
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
 		if (!offlineMode) Senseix.SenseixSession.InitializeSenseix (gameAccessToken);
+		NextProblem ();
 	}
 
 	void Update()

@@ -18,7 +18,10 @@ namespace sensei
 		
 		// Update is called once per frame
 		void Update () {
-			warningText.SetActive (!Senseix.SenseixSession.GetSessionState ());
+			bool indicateOffline = !Senseix.SenseixSession.GetSessionState ();
+			//if (indicateOffline)
+			//	Debug.Log ("Showing offline indicator");
+			warningText.SetActive (indicateOffline);
 		}
 	}
 }

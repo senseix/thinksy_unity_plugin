@@ -26,7 +26,7 @@ namespace Senseix
 			ArrayList returnList = new ArrayList ();
 			if (currentPlayerList == null)
 			{
-				Debug.Log("no current Player list.  maybe not connected.");
+				Debug.Log("No current Player list.  Maybe not connected.");
 				return returnList;
 			}
 
@@ -61,10 +61,12 @@ namespace Senseix
 
 		static public bool GetSessionState()
 		{
+			//Debug.Log ("returning inSession: " + inSession);
 			return inSession;
 		}
 		static public void SetSessionState(bool state)
 		{
+			//UnityEngine.Debug.Log ("Session state set to: " + state);
 			inSession = state;
 		}
 
@@ -160,7 +162,7 @@ namespace Senseix
 			}
 			if (Players.Count > 0) SetCurrentPlayer (Players [0] as Message.Player.Player);
 			else
-				UnityEngine.Debug.LogWarning("There are no players.  Could be very bad.");
+				UnityEngine.Debug.Log("There are no players.  Maybe never connected.");
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)

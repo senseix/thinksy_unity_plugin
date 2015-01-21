@@ -112,13 +112,13 @@ namespace Senseix.Message {
 				//Debug.Log("save auth token.");
 				SenseixSession.SetAndSaveAuthToken(registerDeviceResponse.AuthToken);
 				SenseixSession.SetSessionState(true);
-				UnityEngine.Debug.Log("Temporary account: " + registerDeviceResponse.IsTemporaryAccount);
+				Logger.BasicLog("Temporary account: " + registerDeviceResponse.IsTemporaryAccount);
 				SenseixSession.SetSignedIn(!registerDeviceResponse.IsTemporaryAccount);
 			}
 			else 
 			{
 				SenseixSession.SetSessionState(false);
-				UnityEngine.Debug.Log("Can't find key from result");
+				UnityEngine.Debug.LogWarning("Uninitialized register device response");
 				return false;
 			}
 			return true;
@@ -130,7 +130,7 @@ namespace Senseix.Message {
 				Player.PlayerListResponse.ParseFrom (responseBytes);
 
 			SenseixSession.SetSessionState(true);
-			UnityEngine.Debug.Log("I got a response from a list Player Message");
+			Logger.BasicLog("I got a response from a list Player Message");
 			if (listPlayersResponse.PlayerCount == 0)
 				throw new Exception ("no players in player list");
 			SenseixSession.SetCurrentPlayerList(listPlayersResponse);
@@ -143,7 +143,7 @@ namespace Senseix.Message {
 			Player.PlayerRegisterWithApplicationResponse registerPlayerResponse = 
 				Player.PlayerRegisterWithApplicationResponse.ParseFrom (responseBytes);
 			SenseixSession.SetSessionState(true);
-			UnityEngine.Debug.Log("I got a response from a register Player Message");
+			Logger.BasicLog("I got a response from a register Player Message");
 
 			return true;
 		}
@@ -155,7 +155,7 @@ namespace Senseix.Message {
 			//Debug.Log("message length: " + reply.Message.Length);
 			//Debug.Log("has problem get: " + reply.HasProblemGet);
 			if (getProblemResponse.ProblemCount != ProblemKeeper.PROBLEMS_PER_PULL)
-				UnityEngine.Debug.LogWarning("How wude.  I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + getProblemResponse.ProblemCount);
+				Logger.BasicLog("How wude.  I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + getProblemResponse.ProblemCount);
 			if (getProblemResponse.ProblemCount == 0)
 			{
 				throw new Exception ("no problems in problem response.");
@@ -173,7 +173,7 @@ namespace Senseix.Message {
 				Problem.ProblemPostResponse.ParseFrom (responseBytes);
 
 			SenseixSession.SetSessionState(true);
-			UnityEngine.Debug.Log("I got a response from a Problem post Message");
+			Logger.BasicLog("I got a response from a Problem post Message");
 			return true;
 		}
 
@@ -183,7 +183,7 @@ namespace Senseix.Message {
 				Device.GameVerificationResponse.ParseFrom (responseBytes);
 
 			SenseixSession.SetSessionState(true);
-			UnityEngine.Debug.Log("I got a response from my game verification Message");
+			Logger.BasicLog("I got a response from my game verification Message");
 			return true;
 		}
 
@@ -193,7 +193,7 @@ namespace Senseix.Message {
 				Debug.DebugLogSubmitResponse.ParseFrom (responseBytes);
 
 			SenseixSession.SetSessionState(true);
-			UnityEngine.Debug.Log("I got a response from a debug log submit message.");
+			Logger.BasicLog("I got a response from a debug log submit message.");
 			return true;
 		}
 
@@ -204,7 +204,7 @@ namespace Senseix.Message {
 				Leaderboard.UpdatePlayerScoreResponse.ParseFrom (responseBytes);
 
 			SenseixSession.SetSessionState(true);
-			UnityEngine.Debug.Log("I got a response from a Player score Message");
+			Logger.BasicLog("I got a response from a Player score Message");
 			return true;
 		}
 		
@@ -214,7 +214,7 @@ namespace Senseix.Message {
 				Leaderboard.PlayerRankResponse.ParseFrom (responseBytes);
 
 			SenseixSession.SetSessionState(true);
-			UnityEngine.Debug.Log("I got a response from a Player rank Message");
+			Logger.BasicLog("I got a response from a Player rank Message");
 			return true;
 		}
 

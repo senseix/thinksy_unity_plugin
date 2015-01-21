@@ -22,7 +22,7 @@ namespace Senseix.Message
 		//API URLS
 		//api-staging.Senseix.com
         const string ENCRYPTED = "http://";
-		const string SERVER_URL = "192.168.1.8:3000/";
+		const string SERVER_URL = "api.thinksylearn.com/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/devices/";
@@ -358,10 +358,12 @@ namespace Senseix.Message
 				queueParameters.responseHandler = Response.ParsePostProblemResponse;
 				queueParameters.url = POST_PROBLEM_URL;
 				WriteRequestToCache(queueParameters);
+				//UnityEngine.Debug.Log("Cache post");
 			}
 			else
 			{
 				NonblockingPostRequest (requestMessageStream, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false);
+				//UnityEngine.Debug.Log("Post post");
 			}
 		}	
 
@@ -443,7 +445,7 @@ namespace Senseix.Message
 			string[] fileNames = Directory.GetFiles (directoryPath);
 			foreach (string fileName in fileNames)
 			{
-				UnityEngine.Debug.Log("Submitting cache");
+				//UnityEngine.Debug.Log("Submitting cache");
 				byte[] bytes = System.IO.File.ReadAllBytes(fileName);
 				Problem.ProblemPostRequest.Builder problemPostRequest = Problem.ProblemPostRequest.ParseFrom(bytes).ToBuilder();
 				for (int i = 0; i < problemPostRequest.ProblemCount; i++)
@@ -451,7 +453,7 @@ namespace Senseix.Message
 					Problem.ProblemPost.Builder problemPostBuilder = problemPostRequest.GetProblem(i).ToBuilder();
 					SetPlayerForProblemIfNeeded(ref problemPostBuilder);
 					problemPostRequest.SetProblem(i, problemPostBuilder);
-					UnityEngine.Debug.Log(problemPostBuilder.PlayerId);
+					//UnityEngine.Debug.Log(problemPostBuilder.PlayerId);
 				}
 
 				MemoryStream requestMessageStream = new MemoryStream();
@@ -482,7 +484,7 @@ namespace Senseix.Message
 			}
 			if (problemPostBuilder.PlayerId == "no current player")
 			{
-				UnityEngine.Debug.LogWarning("I'm sending a problem to the server with no player ID.");
+				//UnityEngine.Debug.LogWarning("I'm sending a problem to the server with no player ID.");
 			}
 		}
 	}

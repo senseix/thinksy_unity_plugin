@@ -49,5 +49,12 @@ namespace Senseix
 			string currentLog = File.ReadAllText (logPath);
 			return currentLog;
 		}
+
+		public static void BasicLog(string extraLog)
+		{
+			Debug.Log (extraLog);
+			File.AppendAllText (GetLogPath (), System.Environment.NewLine + "---EXTRA EXTRA READ ALL ABOUT IT ---" + 
+								System.Environment.NewLine + extraLog + System.Environment.NewLine);
+		}
 	}
 }

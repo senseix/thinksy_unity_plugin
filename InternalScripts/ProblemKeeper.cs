@@ -61,7 +61,7 @@ namespace Senseix
 
 		static public void ReplaceSeed(Message.Problem.ProblemGetResponse reply)
 		{
-			Debug.Log ("Replacing seed file.");
+			Logger.BasicLog ("Replacing seed file.");
 			MemoryStream stream = new MemoryStream ();
 			reply.WriteTo (stream);
 			byte[] replacementBytes = stream.ToArray();
