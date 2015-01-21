@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -6,7 +6,7 @@ namespace Senseix
 {
 	public class QuestionDisplay : MonoBehaviour 
 	{
-		public static QuestionDisplay singletonInstance;
+		private static QuestionDisplay singletonInstance;
 
 		public UnityEngine.UI.RawImage promptDisplay;
 		public UnityEngine.UI.Text promptText;
@@ -41,7 +41,7 @@ namespace Senseix
 
 		private void UpdateQuestionText()
 		{
-			foreach (ProblemPart part in SenseixPlugin.GetMostRecentProblemQuestion())
+			foreach (ProblemPart part in ThinksyPlugin.GetMostRecentProblemQuestion())
 			{
 				if (part.IsString())
 					promptText.text = part.GetString();
@@ -51,13 +51,13 @@ namespace Senseix
 		private void UpdateQuestionImage()
 		{
 			if (promptDisplay != null)
-				promptDisplay.texture = SenseixPlugin.GetMostRecentProblemImage ();
+				promptDisplay.texture = ThinksyPlugin.GetMostRecentProblemImage ();
 		}
 
 		private void UpdateAnswersText ()
 		{
 			answersSoFarText.text = "";
-			foreach (ProblemPart part in SenseixPlugin.GetMostRecentGivenAnswer().GetAnswerParts())
+			foreach (ProblemPart part in ThinksyPlugin.GetMostRecentGivenAnswer().GetAnswerParts())
 			{
 				answersSoFarText.text += " " + part.GetString();
 			}

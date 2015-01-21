@@ -6,22 +6,26 @@ namespace sensei
 
 	public class ConnectionIndicator : MonoBehaviour {
 
-		public GameObject warningText;
+		public GameObject warningBox;
+		public UnityEngine.UI.Text warningText;
 
 		// Use this for initialization
-		void Start () {
-			if (SenseixPlugin.IsInOfflineMode())
+		void Start () 
+		{
+			if (ThinksyPlugin.IsInOfflineMode())
 			{
-				warningText.GetComponentInChildren<UnityEngine.UI.Text>().text = "Offline mode";
+				warningText.text = "Offline mode";
 			}
 		}
 		
 		// Update is called once per frame
 		void Update () {
+
+
 			bool indicateOffline = !Senseix.SenseixSession.GetSessionState ();
 			//if (indicateOffline)
 			//	Debug.Log ("Showing offline indicator");
-			warningText.SetActive (indicateOffline);
+			warningBox.SetActive (indicateOffline);
 		}
 	}
 }

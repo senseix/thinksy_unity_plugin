@@ -32,9 +32,9 @@ namespace Senseix.Message
 		const string DEBUG_HDR = GENERIC_HDR + "/debug/";
 
 		//External urls
-		public const string WEBSITE_URL = "http://parent.senseix.com/parents/sign_up";
+		public const string WEBSITE_URL = "http://parent.thinksylearn.com/parents/sign_up";
 		public const string DEVICES_WEBSITE_HDR = WEBSITE_URL + "/devices/";
-		public const string ENROLL_GAME_URL = "http://parent.senseix.com/devices/enroll";
+		public const string ENROLL_GAME_URL = "http://parent.thinksylearn.com/devices/enroll";
 
 		//Requests related to Parent management 
 		const string REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
