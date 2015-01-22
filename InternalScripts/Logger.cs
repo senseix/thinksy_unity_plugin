@@ -30,7 +30,7 @@ namespace Senseix
 			string writeString = "logString:\n" + logString + "\nstackTrace\n" 
 							+ stackTrace + "\ntype:\n" + type.ToString ();
 
-			File.AppendAllText (logPath, writeString);
+			LogText(writeString);
 
 			if (type == LogType.Exception || type == LogType.Error)
 			{
@@ -52,9 +52,16 @@ namespace Senseix
 
 		public static void BasicLog(string extraLog)
 		{
-			//Debug.Log (extraLog);
-			File.AppendAllText (GetLogPath (), System.Environment.NewLine + "---EXTRA EXTRA READ ALL ABOUT IT ---" + 
+			Debug.Log (extraLog);
+			LogText(System.Environment.NewLine + "---EXTRA EXTRA READ ALL ABOUT IT ---" + 
 								System.Environment.NewLine + extraLog + System.Environment.NewLine);
+		}
+
+		private static void LogText(string logString)
+		{
+			File.AppendAllText (GetLogPath(), logString);
+			if (new System.IO.FileInfo (GetLogPath ()).Length > 1000000)
+				File.Delete (GetLogPath ());
 		}
 	}
 }

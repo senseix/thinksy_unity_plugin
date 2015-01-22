@@ -21,7 +21,7 @@ namespace Senseix.Message
 	{
 		//API URLS
 		//api-staging.Senseix.com
-        const string ENCRYPTED = "http://";
+        const string ENCRYPTED = "https://";
 		const string SERVER_URL = "api.thinksylearn.com/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
@@ -32,9 +32,9 @@ namespace Senseix.Message
 		const string DEBUG_HDR = GENERIC_HDR + "/debug/";
 
 		//External urls
-		public const string WEBSITE_URL = "http://parent.thinksylearn.com/parents/sign_up";
+		public const string WEBSITE_URL = "https://parent.thinksylearn.com/parents/sign_up";
 		public const string DEVICES_WEBSITE_HDR = WEBSITE_URL + "/devices/";
-		public const string ENROLL_GAME_URL = "http://parent.thinksylearn.com/devices/enroll";
+		public const string ENROLL_GAME_URL = "https://parent.thinksylearn.com/devices/new";
 
 		//Requests related to Parent management 
 		const string REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
