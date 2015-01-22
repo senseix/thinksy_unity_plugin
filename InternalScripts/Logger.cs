@@ -7,6 +7,7 @@ namespace Senseix
 	public class Logger : MonoBehaviour 
 	{
 		private const string logFileName = "SenseiXLog.txt";
+		private const int deleteThreshhold = 1000000;
 
 		void Start()
 		{
@@ -52,7 +53,7 @@ namespace Senseix
 
 		public static void BasicLog(string extraLog)
 		{
-			Debug.Log (extraLog);
+			//Debug.Log (extraLog);
 			LogText(System.Environment.NewLine + "---EXTRA EXTRA READ ALL ABOUT IT ---" + 
 								System.Environment.NewLine + extraLog + System.Environment.NewLine);
 		}
@@ -60,7 +61,7 @@ namespace Senseix
 		private static void LogText(string logString)
 		{
 			File.AppendAllText (GetLogPath(), logString);
-			if (new System.IO.FileInfo (GetLogPath ()).Length > 1000000)
+			if (new System.IO.FileInfo (GetLogPath ()).Length > deleteThreshhold)
 				File.Delete (GetLogPath ());
 		}
 	}
