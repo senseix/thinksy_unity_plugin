@@ -19,7 +19,7 @@ public class VisitURL : MonoBehaviour {
 	
 	private void ResetURL()
 	{
-		string appendMe = "?ephemeral_token" + codeSource.GetCode ();
+		string appendMe = "?ephemeral_token=" + codeSource.GetCode ();
 
 		if (visitEnrollDeviceURL)
 			targetURL = Senseix.Message.Request.ENROLL_GAME_URL + appendMe;
