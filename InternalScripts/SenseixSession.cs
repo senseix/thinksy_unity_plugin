@@ -124,7 +124,7 @@ namespace Senseix
 			accessToken = newAccessToken; 
 			if (CheckAccessToken() == -1) 
 			{
-				throw new Exception("The Senseix Token you have provided is not of a valid length, please register at developer.Senseix.com to create a valid key");
+				throw new Exception("The Thinksy Token you have provided is not of a valid length, please register at https://developer.thinksylearn.com/ to create a valid key");
 			}
 
 			//Creates a temporary account based on device id
