@@ -185,8 +185,15 @@ namespace Senseix
 			problem.SetProblemId (answeredProblemData.Uuid);
 			problem.SetAnswerIds (givenAnswerIDs);
 			problem.SetPlayerId (SenseixSession.GetCurrentPlayerID ());
+			problem.SetAnsweredAtUnixTime (UnixTimeNow ());
 			AddAnsweredProblem (problem, answer);
 			return correct;
+		}
+
+		static private ulong UnixTimeNow()
+		{
+			var timeSpan = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0));
+			return (ulong)timeSpan.TotalSeconds;
 		}
 
 		static public bool CheckAnswer(Message.Problem.ProblemData.Builder answeredProblemData, Answer answer) 

@@ -61,16 +61,17 @@ namespace Senseix.Message.Problem {
           "YmxlbS5RdWVzdGlvbhIvCgZhbnN3ZXIYAyACKAsyHy5TZW5zZWl4Lk1lc3Nh" + 
           "Z2UuUHJvYmxlbS5BbnN3ZXISNwoKZGlzdHJhY3RvchgEIAIoCzIjLlNlbnNl" + 
           "aXguTWVzc2FnZS5Qcm9ibGVtLkRpc3RyYWN0b3IiIAoQQW5zd2VySWRlbnRp" + 
-          "ZmllchIMCgR1dWlkGAEgAygJIqcBCgtQcm9ibGVtUG9zdBIRCglwbGF5ZXJf" + 
+          "ZmllchIMCgR1dWlkGAEgAygJIsYBCgtQcm9ibGVtUG9zdBIRCglwbGF5ZXJf" + 
           "aWQYASACKAkSEgoKcHJvYmxlbV9pZBgCIAIoCRI9CgphbnN3ZXJfaWRzGAMg" + 
           "ASgLMikuU2Vuc2VpeC5NZXNzYWdlLlByb2JsZW0uQW5zd2VySWRlbnRpZmll" + 
           "chIQCghkdXJhdGlvbhgEIAEoAhIPCgdza2lwcGVkGAUgASgIEg8KB2NvcnJl" + 
-          "Y3QYBiABKAgiSwoSUHJvYmxlbVBvc3RSZXF1ZXN0EjUKB3Byb2JsZW0YASAD" + 
-          "KAsyJC5TZW5zZWl4Lk1lc3NhZ2UuUHJvYmxlbS5Qcm9ibGVtUG9zdCIVChNQ" + 
-          "cm9ibGVtUG9zdFJlc3BvbnNlIj0KEVByb2JsZW1HZXRSZXF1ZXN0EhEKCXBs" + 
-          "YXllcl9pZBgBIAIoCRIVCg1wcm9ibGVtX2NvdW50GAIgASgNIksKElByb2Js" + 
-          "ZW1HZXRSZXNwb25zZRI1Cgdwcm9ibGVtGAEgAygLMiQuU2Vuc2VpeC5NZXNz" + 
-          "YWdlLlByb2JsZW0uUHJvYmxlbURhdGE=");
+          "Y3QYBiABKAgSHQoVYW5zd2VyZWRfYXRfdW5peF90aW1lGAcgASgEIksKElBy" + 
+          "b2JsZW1Qb3N0UmVxdWVzdBI1Cgdwcm9ibGVtGAEgAygLMiQuU2Vuc2VpeC5N" + 
+          "ZXNzYWdlLlByb2JsZW0uUHJvYmxlbVBvc3QiFQoTUHJvYmxlbVBvc3RSZXNw" + 
+          "b25zZSI9ChFQcm9ibGVtR2V0UmVxdWVzdBIRCglwbGF5ZXJfaWQYASACKAkS" + 
+          "FQoNcHJvYmxlbV9jb3VudBgCIAEoDSJLChJQcm9ibGVtR2V0UmVzcG9uc2US" + 
+          "NQoHcHJvYmxlbRgBIAMoCzIkLlNlbnNlaXguTWVzc2FnZS5Qcm9ibGVtLlBy" + 
+          "b2JsZW1EYXRh");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_Senseix_Message_Problem_Formatter__Descriptor = Descriptor.MessageTypes[0];
@@ -100,7 +101,7 @@ namespace Senseix.Message.Problem {
         internal__static_Senseix_Message_Problem_ProblemPost__Descriptor = Descriptor.MessageTypes[6];
         internal__static_Senseix_Message_Problem_ProblemPost__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPost, global::Senseix.Message.Problem.ProblemPost.Builder>(internal__static_Senseix_Message_Problem_ProblemPost__Descriptor,
-                new string[] { "PlayerId", "ProblemId", "AnswerIds", "Duration", "Skipped", "Correct", });
+                new string[] { "PlayerId", "ProblemId", "AnswerIds", "Duration", "Skipped", "Correct", "AnsweredAtUnixTime", });
         internal__static_Senseix_Message_Problem_ProblemPostRequest__Descriptor = Descriptor.MessageTypes[7];
         internal__static_Senseix_Message_Problem_ProblemPostRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Problem.ProblemPostRequest, global::Senseix.Message.Problem.ProblemPostRequest.Builder>(internal__static_Senseix_Message_Problem_ProblemPostRequest__Descriptor,
@@ -2367,8 +2368,8 @@ namespace Senseix.Message.Problem {
   public sealed partial class ProblemPost : pb::GeneratedMessage<ProblemPost, ProblemPost.Builder> {
     private ProblemPost() { }
     private static readonly ProblemPost defaultInstance = new ProblemPost().MakeReadOnly();
-    private static readonly string[] _problemPostFieldNames = new string[] { "answer_ids", "correct", "duration", "player_id", "problem_id", "skipped" };
-    private static readonly uint[] _problemPostFieldTags = new uint[] { 26, 48, 37, 10, 18, 40 };
+    private static readonly string[] _problemPostFieldNames = new string[] { "answer_ids", "answered_at_unix_time", "correct", "duration", "player_id", "problem_id", "skipped" };
+    private static readonly uint[] _problemPostFieldTags = new uint[] { 26, 56, 48, 37, 10, 18, 40 };
     public static ProblemPost DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2449,6 +2450,17 @@ namespace Senseix.Message.Problem {
       get { return correct_; }
     }
     
+    public const int AnsweredAtUnixTimeFieldNumber = 7;
+    private bool hasAnsweredAtUnixTime;
+    private ulong answeredAtUnixTime_;
+    public bool HasAnsweredAtUnixTime {
+      get { return hasAnsweredAtUnixTime; }
+    }
+    [global::System.CLSCompliant(false)]
+    public ulong AnsweredAtUnixTime {
+      get { return answeredAtUnixTime_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasPlayerId) return false;
@@ -2461,22 +2473,25 @@ namespace Senseix.Message.Problem {
       int size = SerializedSize;
       string[] field_names = _problemPostFieldNames;
       if (hasPlayerId) {
-        output.WriteString(1, field_names[3], PlayerId);
+        output.WriteString(1, field_names[4], PlayerId);
       }
       if (hasProblemId) {
-        output.WriteString(2, field_names[4], ProblemId);
+        output.WriteString(2, field_names[5], ProblemId);
       }
       if (hasAnswerIds) {
         output.WriteMessage(3, field_names[0], AnswerIds);
       }
       if (hasDuration) {
-        output.WriteFloat(4, field_names[2], Duration);
+        output.WriteFloat(4, field_names[3], Duration);
       }
       if (hasSkipped) {
-        output.WriteBool(5, field_names[5], Skipped);
+        output.WriteBool(5, field_names[6], Skipped);
       }
       if (hasCorrect) {
-        output.WriteBool(6, field_names[1], Correct);
+        output.WriteBool(6, field_names[2], Correct);
+      }
+      if (hasAnsweredAtUnixTime) {
+        output.WriteUInt64(7, field_names[1], AnsweredAtUnixTime);
       }
       UnknownFields.WriteTo(output);
     }
@@ -2505,6 +2520,9 @@ namespace Senseix.Message.Problem {
         }
         if (hasCorrect) {
           size += pb::CodedOutputStream.ComputeBoolSize(6, Correct);
+        }
+        if (hasAnsweredAtUnixTime) {
+          size += pb::CodedOutputStream.ComputeUInt64Size(7, AnsweredAtUnixTime);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -2648,6 +2666,9 @@ namespace Senseix.Message.Problem {
         if (other.HasCorrect) {
           Correct = other.Correct;
         }
+        if (other.HasAnsweredAtUnixTime) {
+          AnsweredAtUnixTime = other.AnsweredAtUnixTime;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -2718,6 +2739,10 @@ namespace Senseix.Message.Problem {
             }
             case 48: {
               result.hasCorrect = input.ReadBool(ref result.correct_);
+              break;
+            }
+            case 56: {
+              result.hasAnsweredAtUnixTime = input.ReadUInt64(ref result.answeredAtUnixTime_);
               break;
             }
           }
@@ -2869,6 +2894,28 @@ namespace Senseix.Message.Problem {
         PrepareBuilder();
         result.hasCorrect = false;
         result.correct_ = false;
+        return this;
+      }
+      
+      public bool HasAnsweredAtUnixTime {
+        get { return result.hasAnsweredAtUnixTime; }
+      }
+      [global::System.CLSCompliant(false)]
+      public ulong AnsweredAtUnixTime {
+        get { return result.AnsweredAtUnixTime; }
+        set { SetAnsweredAtUnixTime(value); }
+      }
+      [global::System.CLSCompliant(false)]
+      public Builder SetAnsweredAtUnixTime(ulong value) {
+        PrepareBuilder();
+        result.hasAnsweredAtUnixTime = true;
+        result.answeredAtUnixTime_ = value;
+        return this;
+      }
+      public Builder ClearAnsweredAtUnixTime() {
+        PrepareBuilder();
+        result.hasAnsweredAtUnixTime = false;
+        result.answeredAtUnixTime_ = 0UL;
         return this;
       }
     }
