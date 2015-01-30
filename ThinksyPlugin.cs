@@ -53,10 +53,7 @@ class ThinksyPlugin : MonoBehaviour
 			Destroy(gameObject);
 		}
 		singletonInstance = this;
-	}
 
-	void Start()
-	{
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
 		if (!offlineMode) Senseix.SenseixSession.InitializeSenseix (gameAccessToken);
 		NextProblem ();
