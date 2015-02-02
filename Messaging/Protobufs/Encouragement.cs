@@ -20,6 +20,10 @@ namespace Senseix.Message.Encouragement {
     internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Encouragement.EncouragementData, global::Senseix.Message.Encouragement.EncouragementData.Builder> internal__static_Senseix_Message_Encouragement_EncouragementData__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_Senseix_Message_Encouragement_EncouragementCreateResponse__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Encouragement.EncouragementCreateResponse, global::Senseix.Message.Encouragement.EncouragementCreateResponse.Builder> internal__static_Senseix_Message_Encouragement_EncouragementCreateResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Encouragement_EncouragementGetRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Encouragement.EncouragementGetRequest, global::Senseix.Message.Encouragement.EncouragementGetRequest.Builder> internal__static_Senseix_Message_Encouragement_EncouragementGetRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_Senseix_Message_Encouragement_EncouragementGetResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Encouragement.EncouragementGetResponse, global::Senseix.Message.Encouragement.EncouragementGetResponse.Builder> internal__static_Senseix_Message_Encouragement_EncouragementGetResponse__FieldAccessorTable;
     #endregion
     #region Descriptor
     public static pbd::FileDescriptor Descriptor {
@@ -30,9 +34,15 @@ namespace Senseix.Message.Encouragement {
     static Encouragement() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           "ChNFbmNvdXJhZ2VtZW50LnByb3RvEh1TZW5zZWl4Lk1lc3NhZ2UuRW5jb3Vy" + 
-          "YWdlbWVudCJCChFFbmNvdXJhZ2VtZW50RGF0YRIMCgR0eXBlGAEgAigNEhEK" + 
-          "CXBsYXllcl9pZBgCIAIoCRIMCgRkYXRhGAMgASgJIh0KG0VuY291cmFnZW1l" + 
-          "bnRDcmVhdGVSZXNwb25zZQ==");
+          "YWdlbWVudCJ0ChFFbmNvdXJhZ2VtZW50RGF0YRI+CgR0eXBlGAEgAigOMjAu" + 
+          "U2Vuc2VpeC5NZXNzYWdlLkVuY291cmFnZW1lbnQuRW5jb3VyYWdlbWVudFR5" + 
+          "cGUSEQoJcGxheWVyX2lkGAIgAigJEgwKBGRhdGEYAyABKAkiHQobRW5jb3Vy" + 
+          "YWdlbWVudENyZWF0ZVJlc3BvbnNlIiwKF0VuY291cmFnZW1lbnRHZXRSZXF1" + 
+          "ZXN0EhEKCXBsYXllcl9pZBgBIAIoCSJnChhFbmNvdXJhZ2VtZW50R2V0UmVz" + 
+          "cG9uc2USSwoRZW5jb3VyYWdlbWVudERhdGEYASADKAsyMC5TZW5zZWl4Lk1l" + 
+          "c3NhZ2UuRW5jb3VyYWdlbWVudC5FbmNvdXJhZ2VtZW50RGF0YSo5ChFFbmNv" + 
+          "dXJhZ2VtZW50VHlwZRIJCgVIRUFSVBAAEgwKCFRIVU1CU1VQEAESCwoHTUVT" + 
+          "U0FHRRAC");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_Senseix_Message_Encouragement_EncouragementData__Descriptor = Descriptor.MessageTypes[0];
@@ -43,6 +53,14 @@ namespace Senseix.Message.Encouragement {
         internal__static_Senseix_Message_Encouragement_EncouragementCreateResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Encouragement.EncouragementCreateResponse, global::Senseix.Message.Encouragement.EncouragementCreateResponse.Builder>(internal__static_Senseix_Message_Encouragement_EncouragementCreateResponse__Descriptor,
                 new string[] { });
+        internal__static_Senseix_Message_Encouragement_EncouragementGetRequest__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_Senseix_Message_Encouragement_EncouragementGetRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Encouragement.EncouragementGetRequest, global::Senseix.Message.Encouragement.EncouragementGetRequest.Builder>(internal__static_Senseix_Message_Encouragement_EncouragementGetRequest__Descriptor,
+                new string[] { "PlayerId", });
+        internal__static_Senseix_Message_Encouragement_EncouragementGetResponse__Descriptor = Descriptor.MessageTypes[3];
+        internal__static_Senseix_Message_Encouragement_EncouragementGetResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::Senseix.Message.Encouragement.EncouragementGetResponse, global::Senseix.Message.Encouragement.EncouragementGetResponse.Builder>(internal__static_Senseix_Message_Encouragement_EncouragementGetResponse__Descriptor,
+                new string[] { "EncouragementData", });
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
@@ -52,6 +70,15 @@ namespace Senseix.Message.Encouragement {
     #endregion
     
   }
+  #region Enums
+  public enum EncouragementType {
+    HEART = 0,
+    THUMBSUP = 1,
+    MESSAGE = 2,
+  }
+  
+  #endregion
+  
   #region Messages
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public sealed partial class EncouragementData : pb::GeneratedMessage<EncouragementData, EncouragementData.Builder> {
@@ -81,12 +108,11 @@ namespace Senseix.Message.Encouragement {
     
     public const int TypeFieldNumber = 1;
     private bool hasType;
-    private uint type_;
+    private global::Senseix.Message.Encouragement.EncouragementType type_ = global::Senseix.Message.Encouragement.EncouragementType.HEART;
     public bool HasType {
       get { return hasType; }
     }
-    [global::System.CLSCompliant(false)]
-    public uint Type {
+    public global::Senseix.Message.Encouragement.EncouragementType Type {
       get { return type_; }
     }
     
@@ -122,7 +148,7 @@ namespace Senseix.Message.Encouragement {
       int size = SerializedSize;
       string[] field_names = _encouragementDataFieldNames;
       if (hasType) {
-        output.WriteUInt32(1, field_names[2], Type);
+        output.WriteEnum(1, field_names[2], (int) Type, Type);
       }
       if (hasPlayerId) {
         output.WriteString(2, field_names[1], PlayerId);
@@ -141,7 +167,7 @@ namespace Senseix.Message.Encouragement {
         
         size = 0;
         if (hasType) {
-          size += pb::CodedOutputStream.ComputeUInt32Size(1, Type);
+          size += pb::CodedOutputStream.ComputeEnumSize(1, (int) Type);
         }
         if (hasPlayerId) {
           size += pb::CodedOutputStream.ComputeStringSize(2, PlayerId);
@@ -326,7 +352,15 @@ namespace Senseix.Message.Encouragement {
               break;
             }
             case 8: {
-              result.hasType = input.ReadUInt32(ref result.type_);
+              object unknown;
+              if(input.ReadEnum(ref result.type_, out unknown)) {
+                result.hasType = true;
+              } else if(unknown is int) {
+                if (unknownFields == null) {
+                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+                }
+                unknownFields.MergeVarintField(1, (ulong)(int)unknown);
+              }
               break;
             }
             case 18: {
@@ -348,15 +382,13 @@ namespace Senseix.Message.Encouragement {
       
       
       public bool HasType {
-        get { return result.hasType; }
+       get { return result.hasType; }
       }
-      [global::System.CLSCompliant(false)]
-      public uint Type {
+      public global::Senseix.Message.Encouragement.EncouragementType Type {
         get { return result.Type; }
         set { SetType(value); }
       }
-      [global::System.CLSCompliant(false)]
-      public Builder SetType(uint value) {
+      public Builder SetType(global::Senseix.Message.Encouragement.EncouragementType value) {
         PrepareBuilder();
         result.hasType = true;
         result.type_ = value;
@@ -365,7 +397,7 @@ namespace Senseix.Message.Encouragement {
       public Builder ClearType() {
         PrepareBuilder();
         result.hasType = false;
-        result.type_ = 0;
+        result.type_ = global::Senseix.Message.Encouragement.EncouragementType.HEART;
         return this;
       }
       
@@ -639,6 +671,578 @@ namespace Senseix.Message.Encouragement {
       
     }
     static EncouragementCreateResponse() {
+      object.ReferenceEquals(global::Senseix.Message.Encouragement.Encouragement.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class EncouragementGetRequest : pb::GeneratedMessage<EncouragementGetRequest, EncouragementGetRequest.Builder> {
+    private EncouragementGetRequest() { }
+    private static readonly EncouragementGetRequest defaultInstance = new EncouragementGetRequest().MakeReadOnly();
+    private static readonly string[] _encouragementGetRequestFieldNames = new string[] { "player_id" };
+    private static readonly uint[] _encouragementGetRequestFieldTags = new uint[] { 10 };
+    public static EncouragementGetRequest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override EncouragementGetRequest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override EncouragementGetRequest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Senseix.Message.Encouragement.Encouragement.internal__static_Senseix_Message_Encouragement_EncouragementGetRequest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<EncouragementGetRequest, EncouragementGetRequest.Builder> InternalFieldAccessors {
+      get { return global::Senseix.Message.Encouragement.Encouragement.internal__static_Senseix_Message_Encouragement_EncouragementGetRequest__FieldAccessorTable; }
+    }
+    
+    public const int PlayerIdFieldNumber = 1;
+    private bool hasPlayerId;
+    private string playerId_ = "";
+    public bool HasPlayerId {
+      get { return hasPlayerId; }
+    }
+    public string PlayerId {
+      get { return playerId_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasPlayerId) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _encouragementGetRequestFieldNames;
+      if (hasPlayerId) {
+        output.WriteString(1, field_names[0], PlayerId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasPlayerId) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, PlayerId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static EncouragementGetRequest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static EncouragementGetRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static EncouragementGetRequest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static EncouragementGetRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static EncouragementGetRequest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static EncouragementGetRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static EncouragementGetRequest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static EncouragementGetRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static EncouragementGetRequest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static EncouragementGetRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private EncouragementGetRequest MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(EncouragementGetRequest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<EncouragementGetRequest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(EncouragementGetRequest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private EncouragementGetRequest result;
+      
+      private EncouragementGetRequest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          EncouragementGetRequest original = result;
+          result = new EncouragementGetRequest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override EncouragementGetRequest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::Senseix.Message.Encouragement.EncouragementGetRequest.Descriptor; }
+      }
+      
+      public override EncouragementGetRequest DefaultInstanceForType {
+        get { return global::Senseix.Message.Encouragement.EncouragementGetRequest.DefaultInstance; }
+      }
+      
+      public override EncouragementGetRequest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is EncouragementGetRequest) {
+          return MergeFrom((EncouragementGetRequest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(EncouragementGetRequest other) {
+        if (other == global::Senseix.Message.Encouragement.EncouragementGetRequest.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasPlayerId) {
+          PlayerId = other.PlayerId;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_encouragementGetRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _encouragementGetRequestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasPlayerId = input.ReadString(ref result.playerId_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasPlayerId {
+        get { return result.hasPlayerId; }
+      }
+      public string PlayerId {
+        get { return result.PlayerId; }
+        set { SetPlayerId(value); }
+      }
+      public Builder SetPlayerId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasPlayerId = true;
+        result.playerId_ = value;
+        return this;
+      }
+      public Builder ClearPlayerId() {
+        PrepareBuilder();
+        result.hasPlayerId = false;
+        result.playerId_ = "";
+        return this;
+      }
+    }
+    static EncouragementGetRequest() {
+      object.ReferenceEquals(global::Senseix.Message.Encouragement.Encouragement.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class EncouragementGetResponse : pb::GeneratedMessage<EncouragementGetResponse, EncouragementGetResponse.Builder> {
+    private EncouragementGetResponse() { }
+    private static readonly EncouragementGetResponse defaultInstance = new EncouragementGetResponse().MakeReadOnly();
+    private static readonly string[] _encouragementGetResponseFieldNames = new string[] { "encouragementData" };
+    private static readonly uint[] _encouragementGetResponseFieldTags = new uint[] { 10 };
+    public static EncouragementGetResponse DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override EncouragementGetResponse DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override EncouragementGetResponse ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Senseix.Message.Encouragement.Encouragement.internal__static_Senseix_Message_Encouragement_EncouragementGetResponse__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<EncouragementGetResponse, EncouragementGetResponse.Builder> InternalFieldAccessors {
+      get { return global::Senseix.Message.Encouragement.Encouragement.internal__static_Senseix_Message_Encouragement_EncouragementGetResponse__FieldAccessorTable; }
+    }
+    
+    public const int EncouragementDataFieldNumber = 1;
+    private pbc::PopsicleList<global::Senseix.Message.Encouragement.EncouragementData> encouragementData_ = new pbc::PopsicleList<global::Senseix.Message.Encouragement.EncouragementData>();
+    public scg::IList<global::Senseix.Message.Encouragement.EncouragementData> EncouragementDataList {
+      get { return encouragementData_; }
+    }
+    public int EncouragementDataCount {
+      get { return encouragementData_.Count; }
+    }
+    public global::Senseix.Message.Encouragement.EncouragementData GetEncouragementData(int index) {
+      return encouragementData_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        foreach (global::Senseix.Message.Encouragement.EncouragementData element in EncouragementDataList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _encouragementGetResponseFieldNames;
+      if (encouragementData_.Count > 0) {
+        output.WriteMessageArray(1, field_names[0], encouragementData_);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        foreach (global::Senseix.Message.Encouragement.EncouragementData element in EncouragementDataList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, element);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static EncouragementGetResponse ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static EncouragementGetResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static EncouragementGetResponse ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static EncouragementGetResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static EncouragementGetResponse ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static EncouragementGetResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static EncouragementGetResponse ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static EncouragementGetResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static EncouragementGetResponse ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static EncouragementGetResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private EncouragementGetResponse MakeReadOnly() {
+      encouragementData_.MakeReadOnly();
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(EncouragementGetResponse prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<EncouragementGetResponse, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(EncouragementGetResponse cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private EncouragementGetResponse result;
+      
+      private EncouragementGetResponse PrepareBuilder() {
+        if (resultIsReadOnly) {
+          EncouragementGetResponse original = result;
+          result = new EncouragementGetResponse();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override EncouragementGetResponse MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::Senseix.Message.Encouragement.EncouragementGetResponse.Descriptor; }
+      }
+      
+      public override EncouragementGetResponse DefaultInstanceForType {
+        get { return global::Senseix.Message.Encouragement.EncouragementGetResponse.DefaultInstance; }
+      }
+      
+      public override EncouragementGetResponse BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is EncouragementGetResponse) {
+          return MergeFrom((EncouragementGetResponse) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(EncouragementGetResponse other) {
+        if (other == global::Senseix.Message.Encouragement.EncouragementGetResponse.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.encouragementData_.Count != 0) {
+          result.encouragementData_.Add(other.encouragementData_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_encouragementGetResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _encouragementGetResponseFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              input.ReadMessageArray(tag, field_name, result.encouragementData_, global::Senseix.Message.Encouragement.EncouragementData.DefaultInstance, extensionRegistry);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public pbc::IPopsicleList<global::Senseix.Message.Encouragement.EncouragementData> EncouragementDataList {
+        get { return PrepareBuilder().encouragementData_; }
+      }
+      public int EncouragementDataCount {
+        get { return result.EncouragementDataCount; }
+      }
+      public global::Senseix.Message.Encouragement.EncouragementData GetEncouragementData(int index) {
+        return result.GetEncouragementData(index);
+      }
+      public Builder SetEncouragementData(int index, global::Senseix.Message.Encouragement.EncouragementData value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.encouragementData_[index] = value;
+        return this;
+      }
+      public Builder SetEncouragementData(int index, global::Senseix.Message.Encouragement.EncouragementData.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.encouragementData_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddEncouragementData(global::Senseix.Message.Encouragement.EncouragementData value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.encouragementData_.Add(value);
+        return this;
+      }
+      public Builder AddEncouragementData(global::Senseix.Message.Encouragement.EncouragementData.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.encouragementData_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeEncouragementData(scg::IEnumerable<global::Senseix.Message.Encouragement.EncouragementData> values) {
+        PrepareBuilder();
+        result.encouragementData_.Add(values);
+        return this;
+      }
+      public Builder ClearEncouragementData() {
+        PrepareBuilder();
+        result.encouragementData_.Clear();
+        return this;
+      }
+    }
+    static EncouragementGetResponse() {
       object.ReferenceEquals(global::Senseix.Message.Encouragement.Encouragement.Descriptor, null);
     }
   }

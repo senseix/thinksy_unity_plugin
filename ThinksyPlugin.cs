@@ -18,7 +18,7 @@ class ThinksyPlugin : MonoBehaviour
 	private static Problem mostRecentProblem;
 	
 	private const int reconnectRetryInterval = 3000;
-	private const int encouragementGetInterval = 3001;
+	private const int encouragementGetInterval = 801;
 
 	/// <summary>
 	/// Shows a window indicating that something horrible has happened.
@@ -68,7 +68,8 @@ class ThinksyPlugin : MonoBehaviour
 		}
 		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%encouragementGetInterval == 0 &&  Time.frameCount != 0)
 		{
-			//Senseix.SenseixSession.GetEncouragements();
+			Debug.Log("Getting encouragements...");
+			Senseix.SenseixSession.GetEncouragements();
 		}
 		Senseix.Message.Request.CheckResults ();
 	}

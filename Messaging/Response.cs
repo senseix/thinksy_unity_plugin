@@ -159,7 +159,6 @@ namespace Senseix.Message {
 			if (getProblemResponse.ProblemCount == 0)
 			{
 				throw new Exception ("no problems in problem response.");
-				return false;
 			}
 
 			ProblemKeeper.ReplaceSeed(getProblemResponse);
@@ -215,6 +214,16 @@ namespace Senseix.Message {
 
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a Player rank Message");
+			return true;
+		}
+
+		static public bool ParseGetEncouragementsResponse(byte[] responseBytes)
+		{
+			Encouragement.EncouragementGetResponse getEncouragementResponse = 
+				Encouragement.EncouragementGetResponse.ParseFrom (responseBytes);
+			
+			Logger.BasicLog ("I got an encouragement get response with " + getEncouragementResponse.EncouragementDataCount + " encouragements.");
+			
 			return true;
 		}
 

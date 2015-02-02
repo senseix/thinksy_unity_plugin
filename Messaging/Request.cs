@@ -318,15 +318,14 @@ namespace Senseix.Message
 
 		static public void GetEncouragements (string Player_id) 
 		{
-			/*
-			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
-			hdr_request.SetAuthToken(SenseixSession.GetAuthToken());
-			hdr_request.SetAccessToken (SenseixSession.GetAccessToken());
-			Player.EncouragementGetRequest.Builder getEncouragements = Player.EncouragementGetRequest.CreateBuilder ();
+
+			Encouragement.EncouragementGetRequest.Builder getEncouragements = Encouragement.EncouragementGetRequest.CreateBuilder ();
 			getEncouragements.SetPlayerId (Player_id);
-			hdr_request.SetEncouragementGet (getEncouragements);
-			NonblockingPostRequest (ref hdr_request, Constant.MessageType.EncouragementGet, GET_ENCOURAGEMENT_URL);
-			*/
+
+			MemoryStream requestMessageStream = new MemoryStream();
+			getEncouragements.BuildPartial ().WriteTo (requestMessageStream);
+			
+			NonblockingPostRequest (requestMessageStream, Response.ParseGetEncouragementsResponse, GET_ENCOURAGEMENT_URL, false);
 		}	
 
 		/// <summary>
