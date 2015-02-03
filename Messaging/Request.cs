@@ -142,14 +142,15 @@ namespace Senseix.Message
 			if (NetworkErrorChecking(recvResult))
 			{
 				responseBytes = recvResult.bytes;
-				//UnityEngine.Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
-				//UnityEngine.Debug.Log ("parse response");
+				UnityEngine.Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
+				UnityEngine.Debug.Log ("parse response");
 				try
 				{
 					resultHandler(responseBytes);
 				}
-				catch
+				catch (Exception e)
 				{
+					Logger.BasicLog("parsing a server message resulted in this error: " + e.Message);
 					Response.ParseServerErrorResponse(responseBytes);
 				}
 			}

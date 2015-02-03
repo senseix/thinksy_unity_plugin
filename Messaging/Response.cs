@@ -223,18 +223,29 @@ namespace Senseix.Message {
 				Encouragement.EncouragementGetResponse.ParseFrom (responseBytes);
 			
 			Logger.BasicLog ("I got an encouragement get response with " + getEncouragementResponse.EncouragementDataCount + " encouragements.");
-			
+
+			foreach (Encouragement.EncouragementData encouragementData in getEncouragementResponse.EncouragementDataList)
+			{
+				EncouragementDisplay.DisplayEncouragement(encouragementData);
+			}
+
 			return true;
 		}
 
 		static public bool ParseServerErrorResponse(byte[] responseBytes)
 		{
-			Debug.ServerErrorResponse serverErrorResponse = 
-				Debug.ServerErrorResponse.ParseFrom (responseBytes);
+			try
+			{
+				Debug.ServerErrorResponse serverErrorResponse = 
+					Debug.ServerErrorResponse.ParseFrom (responseBytes);
 
-			UnityEngine.Debug.LogError("I got a server error response.  Here is the message: " +
-			                      serverErrorResponse.Message);
-
+				UnityEngine.Debug.LogError("I got a server error response.  Here is the message: " +
+				                      serverErrorResponse.Message);
+			}
+			catch (Exception e)
+			{
+				UnityEngine.Debug.LogWarning("Error while parsing error.  Um.");
+			}
 			return false;
 		}
 	}
