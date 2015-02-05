@@ -9,9 +9,14 @@ namespace Senseix
 		{
 			base.Display (encouragementData);
 			if (encouragementData.HasData)
-				GetComponent<UnityEngine.UI.Text> ().text = encouragementData.Data;
+				GetComponent<UnityEngine.UI.Text> ().text += encouragementData.Data;
 			else
 				UnityEngine.Debug.LogWarning("We are trying to display a text encouragement, but it doesn't have data");
+		}
+
+		void OnDisable()
+		{
+			GetComponent<UnityEngine.UI.Text> ().text = "";
 		}
 	}
 }
