@@ -385,7 +385,7 @@ namespace Senseix.Message
 		/// Returns a page from the Leaderboard with the request parameters, by default 25 entries are 
 		/// are returned per page. 
 		/// </summary>
-		static public void LeaderboardPage (UInt32 pageNumber = 1, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
+		static public void LeaderboardPage (UInt32 pageNumber, Leaderboard.SortBy sortBy, UInt32 pageSize) 
 		{
 			/*
 			RequestHeader.Builder hdr_request = RequestHeader.CreateBuilder ();   
@@ -421,9 +421,12 @@ namespace Senseix.Message
 		/// Stores a Players rank and Players surrounding it based on the call preferences. 
 		/// By default we only return the Players rank and score. 	
 		/// </summary>
-		static public void GetPlayerRank ( string PlayerId, UInt32 surroundingUsers = 0, Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE , UInt32 pageSize = 25) 
+		static public void GetPlayerRank ( string PlayerId) 
 		{
-	
+			UInt32 surroundingUsers = 0;
+			Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE;
+			UInt32 pageSize = 25;
+
 		    Leaderboard.PlayerRankRequest.Builder rank = Leaderboard.PlayerRankRequest.CreateBuilder ();
 			rank.SetCount (surroundingUsers);	
 			rank.SetPageSize (pageSize);

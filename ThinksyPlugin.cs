@@ -5,8 +5,8 @@ using UnityEngine;
 
 class ThinksyPlugin : MonoBehaviour
 {	
-	public string gameAccessToken; //this is your developer access token obtained from 
-	//the Senseix website.
+	public string gameAccessToken; 	//this is your developer access token obtained from 
+									//the Senseix website.
 	public bool offlineMode;	//check this box from the unity GUI to enable offline mode, 
 								//useful for testing or offline development
 	public bool useLeaderboard; //check this box if you plan to use Thinksy leaderboard functionality
