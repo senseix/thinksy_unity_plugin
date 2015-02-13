@@ -16,7 +16,7 @@ namespace Senseix
 		
 		public static void DisplayEncouragement(Senseix.Message.Encouragement.EncouragementData encouragementData)
 		{
-			singletonInstance.encouragementsByType [(int)encouragementData.Type].Display (encouragementData);
+			singletonInstance.encouragementsByType [(int)encouragementData.type].Display (encouragementData);
 		}
 	}
 }

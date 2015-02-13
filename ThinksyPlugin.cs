@@ -107,7 +107,7 @@ class ThinksyPlugin : MonoBehaviour
 		{
 			SubmitMostRecentProblemAnswer();
 		}
-		Senseix.Message.Problem.ProblemData.Builder protobufsProblemBuilder = Senseix.SenseixSession.PullProblem ();
+		Senseix.Message.Problem.ProblemData protobufsProblemBuilder = Senseix.SenseixSession.PullProblem ();
 		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblemBuilder.Uuid);
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
 		Senseix.QuestionDisplay.Update ();

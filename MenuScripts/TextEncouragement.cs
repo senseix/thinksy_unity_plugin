@@ -8,8 +8,8 @@ namespace Senseix
 		public override void Display(Senseix.Message.Encouragement.EncouragementData encouragementData)
 		{
 			base.Display (encouragementData);
-			if (encouragementData.HasData)
-				GetComponent<UnityEngine.UI.Text> ().text += encouragementData.Data;
+			if (encouragementData.data != null)
+				GetComponent<UnityEngine.UI.Text> ().text += encouragementData.data;
 			else
 				UnityEngine.Debug.LogWarning("We are trying to display a text encouragement, but it doesn't have data");
 		}

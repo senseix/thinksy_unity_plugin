@@ -59,7 +59,7 @@ namespace Senseix
 		public void SetName()
 		{
 			Message.Player.Player newPlayer = availablePlayers [currentPlayerIndex] as Message.Player.Player;
-			string newName = newPlayer.Name;
+			string newName = newPlayer.name;
 			PlayerNameText.text = newName;
 		}
 

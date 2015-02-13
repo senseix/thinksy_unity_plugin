@@ -12,7 +12,7 @@ public class Answer
 	/// </summary>
 	public Answer(Senseix.Message.Problem.Answer protoAnswer)
 	{
-		foreach (Senseix.Message.Atom.Atom atom in protoAnswer.AtomList)
+		foreach (Senseix.Message.Atom.Atom atom in protoAnswer.atom)
 		{
 			answerParts.Add(new ProblemPart(atom));
 		}

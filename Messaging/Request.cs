@@ -10,7 +10,7 @@ namespace Senseix.Message
 {
 	public struct PostRequestParameters
 	{
-		public MemoryStream requestMessageStream;
+		public ProtoBuf.IExtensible serializableRequest;
 		public ResponseHandlerDelegate responseHandler;
 		public string url;
 		public WWW recvResult;
@@ -90,18 +90,41 @@ namespace Senseix.Message
 		public static void SyncronousPostRequest(object parametersObject)
 		{
 			PostRequestParameters parameters = (PostRequestParameters)parametersObject;
-			SyncronousPostRequest (parameters.recvResult, parameters.requestMessageStream, parameters.responseHandler, parameters.url);
+			SyncronousPostRequest (parameters.recvResult, parameters.serializableRequest, parameters.responseHandler, parameters.url);
 		}
 
-		public static WWW SetUpRecvResult(MemoryStream requestMessageStream, string url, bool isGet)
+		public static void SyncronousPostRequest(ProtoBuf.IExtensible serializableRequest, ResponseHandlerDelegate responseHandler, string url, bool isGet)
+		{
+			WWW recvResult = SetUpRecvResult(serializableRequest, url, isGet);
+			//UnityEngine.Debug.Log ("set up recv result already");
+			SyncronousPostRequest (recvResult, serializableRequest, responseHandler, url);
+		}
+		
+		public static void SyncronousPostRequest(WWW recvResult, ProtoBuf.IExtensible serializableRequest, ResponseHandlerDelegate responseHandler, string url)
+		{
+			//Debug.Log ("Wait for Request:");
+			if (!SenseixSession.GetSessionState())
+			{
+				return;
+			}
+			WaitForRequest (recvResult);
+			//UnityEngine.Debug.Log ("handle result");
+			HandleResult (recvResult, responseHandler);
+		}
+		
+		public static WWW SetUpRecvResult(ProtoBuf.IExtensible serializableRequest, string url, bool isGet)
 		{
 			byte[] bytes;
 			Dictionary<string, string> mods = new Dictionary<string, string>();
 			mods.Add ("X-Auth-Token", SenseixSession.GetAuthToken ());
 			mods.Add ("X-Access-Token", SenseixSession.GetAccessToken());
 			mods.Add("Content-Type", "application/protobuf");
+
+			MemoryStream requestMessageStream = new MemoryStream ();
+			ProtoBuf.Serializer.Serialize<ProtoBuf.IExtensible> (requestMessageStream, serializableRequest);
 			bytes = requestMessageStream.ToArray();
 			requestMessageStream.Close();
+
 			WWW recvResult;
 			if (!isGet)
 			{
@@ -117,24 +140,6 @@ namespace Senseix.Message
 			return recvResult;
 		}
 
-		public static void SyncronousPostRequest(MemoryStream requestMessageStream, ResponseHandlerDelegate responseHandler, string url, bool isGet)
-		{
-			WWW recvResult = SetUpRecvResult(requestMessageStream, url, isGet);
-			//UnityEngine.Debug.Log ("set up recv result already");
-			SyncronousPostRequest (recvResult, requestMessageStream, responseHandler, url);
-		}
-
-		public static void SyncronousPostRequest(WWW recvResult, MemoryStream requestMessageStream, ResponseHandlerDelegate responseHandler, string url)
-	    {
-			//Debug.Log ("Wait for Request:");
-			if (!SenseixSession.GetSessionState())
-			{
-				return;
-			}
-			WaitForRequest (recvResult);
-			//UnityEngine.Debug.Log ("handle result");
-			HandleResult (recvResult, responseHandler);
-		}
 
 		public static void HandleResult(WWW recvResult, ResponseHandlerDelegate resultHandler)
 		{
@@ -205,13 +210,13 @@ namespace Senseix.Message
 			activeRequests.Add (parameters);
 		}
 
-		static public void NonblockingPostRequest(MemoryStream requestMessageStream, ResponseHandlerDelegate responseHandler, string url, bool isGet)
+		static public void NonblockingPostRequest(ProtoBuf.IExtensible serializableRequest, ResponseHandlerDelegate responseHandler, string url, bool isGet)
 		{
 			PostRequestParameters parameters = new PostRequestParameters ();
-			parameters.requestMessageStream = requestMessageStream;
+			parameters.serializableRequest = serializableRequest;
 			parameters.responseHandler = responseHandler;
 			parameters.url = url;
-			parameters.recvResult = SetUpRecvResult (requestMessageStream, url, isGet);
+			parameters.recvResult = SetUpRecvResult (serializableRequest, url, isGet);
 			NonblockingPostRequest (parameters);
 		}
 
@@ -222,15 +227,15 @@ namespace Senseix.Message
 		/// </summary>
 		static public void RegisterDevice(string deviceNameInformation)
 		{
-			Device.DeviceRegistrationRequest.Builder newDevice = Device.DeviceRegistrationRequest.CreateBuilder ();
-			newDevice.SetInformation (deviceNameInformation);
+			Device.DeviceRegistrationRequest newDevice = new Device.DeviceRegistrationRequest();
+			newDevice.information = (deviceNameInformation);
 			//UnityEngine.Debug.Log ("Device id:　" + SenseixSession.GetDeviceID ());				
-			newDevice.SetDeviceId (SenseixSession.GetDeviceID());
+			newDevice.device_id =(SenseixSession.GetDeviceID());
 
 			MemoryStream requestMessageStream = new MemoryStream();
-			newDevice.BuildPartial ().WriteTo (requestMessageStream);
+			
 			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
-			SyncronousPostRequest (requestMessageStream, Response.ParseRegisterDeviceResponse, REGISTER_DEVICE_URL, false);
+			SyncronousPostRequest (newDevice, Response.ParseRegisterDeviceResponse, REGISTER_DEVICE_URL, false);
 		}
 
 		/// <summary>
@@ -239,18 +244,15 @@ namespace Senseix.Message
 		/// </summary>
 		static public void VerifyGame(string verificationCode)
 		{
-			Device.GameVerificationRequest.Builder newVerification = Device.GameVerificationRequest.CreateBuilder ();
-			newVerification.SetVerificationToken (verificationCode);
-			newVerification.SetUdid (SenseixSession.GetDeviceID ());
+			Device.GameVerificationRequest newVerification = new Device.GameVerificationRequest();
+			newVerification.verification_token = verificationCode;
+			newVerification.udid = (SenseixSession.GetDeviceID ());
 
-
-			MemoryStream requestMessageStream = new MemoryStream();
-			newVerification.BuildPartial ().WriteTo (requestMessageStream);
 			//Debug.Log ("going off to " + VERIFY_GAME_URL);
 			//Debug.Log (hdr_request.GameVerification.Udid);
 			//Debug.Log (hdr_request.GameVerification.VerificationToken);
 			//Debug.Log (hdr_request.AccessToken);
-			SyncronousPostRequest (requestMessageStream, Response.ParseVerifyGameResponse, VERIFY_GAME_URL, false);
+			SyncronousPostRequest (newVerification, Response.ParseVerifyGameResponse, VERIFY_GAME_URL, false);
 		}
 
 		/// <summary>
@@ -261,33 +263,29 @@ namespace Senseix.Message
 		{
 			//UnityEngine.Debug.Log ("Auth Token: " + SenseixSession.GetAuthToken());
 
-			Player.PlayerListRequest.Builder listPlayer = Player.PlayerListRequest.CreateBuilder ();
+			Player.PlayerListRequest listPlayer = new Player.PlayerListRequest();
 
-
-			MemoryStream requestMessageStream = new MemoryStream();
-			listPlayer.BuildPartial ().WriteTo (requestMessageStream);
 			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
-			SyncronousPostRequest (requestMessageStream, Response.ParseListPlayerResponse, LIST_PLAYER_URL, true);
+			SyncronousPostRequest (listPlayer, Response.ParseListPlayerResponse, LIST_PLAYER_URL, true);
 		}
 		/// <summary>
 		/// We have an explicit call to register a Player with a game, this should be called each time a new Player
 	    /// is selected from the drop downlist. It will add this game to a list of played games for the Player and 
 		/// add them to things like the games Leaderboard.
 		/// </summary>
-		static public void RegisterPlayer (string Player_id) 
+		static public void RegisterPlayer (string player_id) 
 		{
 
-			Player.PlayerRegisterWithApplicationRequest.Builder regPlayer = Player.PlayerRegisterWithApplicationRequest.CreateBuilder ();
-			regPlayer.SetPlayerId (Player_id);
+			Player.PlayerRegisterWithApplicationRequest regPlayer = new Player.PlayerRegisterWithApplicationRequest();
+			regPlayer.player_id = (player_id);
 
-//			Debug.Log(hdr_request.AccessToken);
-//			Debug.Log(hdr_request.AuthToken);
-//			Debug.Log(hdr_request.PlayerRegisterWithApplication.PlayerId);
-//			Debug.Log ("register Player going off to " + REGISTER_Player_WITH_GAME_URL);
-			MemoryStream requestMessageStream = new MemoryStream();
-			regPlayer.BuildPartial ().WriteTo (requestMessageStream);
+			//Debug.Log(hdr_request.AccessToken);
+			//Debug.Log(hdr_request.AuthToken);
+			//Debug.Log(hdr_request.PlayerRegisterWithApplication.PlayerId);
+			//Debug.Log ("register Player going off to " + REGISTER_Player_WITH_GAME_URL);
+
 			//UnityEngine.Debug.Log ("register player going off to " + REGISTER_PLAYER_WITH_GAME_URL);
-			SyncronousPostRequest (requestMessageStream, Response.ParseRegisterPlayerResponse, REGISTER_PLAYER_WITH_GAME_URL, false);
+			SyncronousPostRequest (regPlayer, Response.ParseRegisterPlayerResponse, REGISTER_PLAYER_WITH_GAME_URL, false);
 
 		}
 
@@ -296,37 +294,32 @@ namespace Senseix.Message
 		/// Return a list of Player names and Player_id's for a Parent, most likely to 
 		/// pick which Player should be playing the game at a given time.  
 		/// </summary>
-		static public void GetProblems (string Player_id, UInt32 count) 
+		static public void GetProblems (string player_id, UInt32 count) 
 		{
 
 			//UnityEngine.Debug.Log ("get problems");
 
-			Problem.ProblemGetRequest.Builder getProblem = Problem.ProblemGetRequest.CreateBuilder ();
-			getProblem.SetProblemCount (count);
-			getProblem.SetPlayerId (Player_id);
+			Problem.ProblemGetRequest getProblem = new Problem.ProblemGetRequest();
+			getProblem.problem_count = (count);
+			getProblem.player_id = (player_id);
 
 //			Debug.Log ("Get Problems request going off to " + GET_Problem_URL);
 //			Debug.Log (hdr_request.AuthToken);
 //			Debug.Log (hdr_request.AccessToken);
 //			Debug.Log (hdr_request.ProblemGet.ProblemCount);
 //			Debug.Log (hdr_request.ProblemGet.PlayerId);
-			MemoryStream requestMessageStream = new MemoryStream();
-			getProblem.BuildPartial ().WriteTo (requestMessageStream);
 
-			NonblockingPostRequest (requestMessageStream, Response.ParseGetProblemResponse, GET_PROBLEM_URL, false);
+			NonblockingPostRequest (getProblem, Response.ParseGetProblemResponse, GET_PROBLEM_URL, false);
 
 		}
 
-		static public void GetEncouragements (string Player_id) 
+		static public void GetEncouragements (string player_id) 
 		{
 
-			Encouragement.EncouragementGetRequest.Builder getEncouragements = Encouragement.EncouragementGetRequest.CreateBuilder ();
-			getEncouragements.SetPlayerId (Player_id);
-
-			MemoryStream requestMessageStream = new MemoryStream();
-			getEncouragements.BuildPartial ().WriteTo (requestMessageStream);
+			Encouragement.EncouragementGetRequest getEncouragements = new Encouragement.EncouragementGetRequest();
+			getEncouragements.player_id = (player_id);
 			
-			NonblockingPostRequest (requestMessageStream, Response.ParseGetEncouragementsResponse, GET_ENCOURAGEMENT_URL, false);
+			NonblockingPostRequest (getEncouragements, Response.ParseGetEncouragementsResponse, GET_ENCOURAGEMENT_URL, false);
 		}	
 
 		/// <summary>
@@ -339,22 +332,20 @@ namespace Senseix.Message
 
 
 
-			Problem.ProblemPostRequest.Builder postProblem = Problem.ProblemPostRequest.CreateBuilder ();
+			Problem.ProblemPostRequest postProblem = new Problem.ProblemPostRequest();
 
 			while (problems.Count > 0) {
-				Senseix.Message.Problem.ProblemPost.Builder addMeProblem = (Senseix.Message.Problem.ProblemPost.Builder)problems.Dequeue();
+				Senseix.Message.Problem.ProblemPost addMeProblem = (Senseix.Message.Problem.ProblemPost)problems.Dequeue();
 				SetPlayerForProblemIfNeeded(ref addMeProblem);
-				postProblem.AddProblem (addMeProblem);
+				postProblem.problem.Add (addMeProblem);
 			}
 
-			MemoryStream requestMessageStream = new MemoryStream();
-			postProblem.BuildPartial ().WriteTo (requestMessageStream);
 				
 			//Debug.Log ("Post Problems request going off to " + POST_PROBLEM_URL);
 			if (SenseixSession.ShouldCacheProblemPosts())
 			{
 				PostRequestParameters queueParameters = new PostRequestParameters();
-				queueParameters.requestMessageStream = requestMessageStream;
+				queueParameters.serializableRequest = postProblem;
 				queueParameters.responseHandler = Response.ParsePostProblemResponse;
 				queueParameters.url = POST_PROBLEM_URL;
 				WriteRequestToCache(queueParameters);
@@ -362,7 +353,7 @@ namespace Senseix.Message
 			}
 			else
 			{
-				NonblockingPostRequest (requestMessageStream, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false);
+				NonblockingPostRequest (postProblem, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false);
 				//UnityEngine.Debug.Log("Post post");
 			}
 		}	
@@ -370,7 +361,9 @@ namespace Senseix.Message
 
 		private static void WriteRequestToCache(PostRequestParameters parameters)
 		{
-			MemoryStream stream = parameters.requestMessageStream;
+			ProtoBuf.IExtensible serializableRequest = parameters.serializableRequest;
+			MemoryStream stream = new MemoryStream ();
+			ProtoBuf.Serializer.Serialize<ProtoBuf.IExtensible>(stream, serializableRequest);
 			byte[] bytes = stream.ToArray();
 			string directoryPath = Path.Combine (Application.persistentDataPath, "post_cache/");
 			//Debug.Log (fileCount);
@@ -403,17 +396,14 @@ namespace Senseix.Message
 		/// Pushes a Players score to the Leaderboard, this is dependent on the developer to take care of what
 	    /// "score" really means in their application.  
 		/// </summary>
-		static public void UpdatePlayerScore (string PlayerId, UInt32 score)
+		static public void UpdatePlayerScore (string playerId, UInt32 score)
 	    {
 
-			Leaderboard.UpdatePlayerScoreRequest.Builder lbScore = Leaderboard.UpdatePlayerScoreRequest.CreateBuilder ();
-			lbScore.SetPlayerId(PlayerId);
-			lbScore.SetPlayerScore (score);
+			Leaderboard.UpdatePlayerScoreRequest lbScore = new Leaderboard.UpdatePlayerScoreRequest();
+			lbScore.player_id = (playerId);
+			lbScore.player_score = (score);
 
-			MemoryStream requestMessageStream = new MemoryStream();
-			lbScore.BuildPartial ().WriteTo (requestMessageStream);
-
-			SyncronousPostRequest(requestMessageStream, Response.ParsePlayerScoreResponse, UPDATE_PLAYER_SCORE_URL, false);
+			SyncronousPostRequest(lbScore, Response.ParsePlayerScoreResponse, UPDATE_PLAYER_SCORE_URL, false);
 
 		}
 
@@ -427,16 +417,13 @@ namespace Senseix.Message
 			Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE;
 			UInt32 pageSize = 25;
 
-		    Leaderboard.PlayerRankRequest.Builder rank = Leaderboard.PlayerRankRequest.CreateBuilder ();
-			rank.SetCount (surroundingUsers);	
-			rank.SetPageSize (pageSize);
-			rank.SetPlayerId(SenseixSession.GetCurrentPlayerID());
-			rank.SetSortBy(sortBy);
-		
-			MemoryStream requestMessageStream = new MemoryStream();
-			rank.BuildPartial ().WriteTo (requestMessageStream);
+		    Leaderboard.PlayerRankRequest rank = new Leaderboard.PlayerRankRequest();
+			rank.count = (surroundingUsers);	
+			rank.page_size =(pageSize);
+			rank.player_id = (SenseixSession.GetCurrentPlayerID());
+			rank.sort_by = (sortBy);
 
-			SyncronousPostRequest(requestMessageStream, Response.ParsePlayerRankResponse, GET_PLAYER_RANK_URL, false);
+			SyncronousPostRequest(rank, Response.ParsePlayerRankResponse, GET_PLAYER_RANK_URL, false);
 
 		}
 
@@ -450,42 +437,38 @@ namespace Senseix.Message
 			{
 				//UnityEngine.Debug.Log("Submitting cache");
 				byte[] bytes = System.IO.File.ReadAllBytes(fileName);
-				Problem.ProblemPostRequest.Builder problemPostRequest = Problem.ProblemPostRequest.ParseFrom(bytes).ToBuilder();
-				for (int i = 0; i < problemPostRequest.ProblemCount; i++)
+				MemoryStream stream = new MemoryStream(bytes);
+				Problem.ProblemPostRequest problemPostRequest = ProtoBuf.Serializer.Deserialize<Problem.ProblemPostRequest>(stream);
+				for (int i = 0; i < problemPostRequest.problem.Count; i++)
 				{
-					Problem.ProblemPost.Builder problemPostBuilder = problemPostRequest.GetProblem(i).ToBuilder();
-					SetPlayerForProblemIfNeeded(ref problemPostBuilder);
-					problemPostRequest.SetProblem(i, problemPostBuilder);
+					Problem.ProblemPost problemPost = problemPostRequest.problem[i];
+					SetPlayerForProblemIfNeeded(ref problemPost);
+					problemPostRequest.problem[i] = (problemPost);
 					//UnityEngine.Debug.Log(problemPostBuilder.PlayerId);
 				}
 
-				MemoryStream requestMessageStream = new MemoryStream();
-				problemPostRequest.BuildPartial ().WriteTo (requestMessageStream);
-				NonblockingPostRequest(requestMessageStream, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false);
+				NonblockingPostRequest(problemPostRequest, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false);
 				File.Delete(fileName);
 			}
 		}
 
 		static public void BugReport(string deviceID, string report)
 		{
-			Debug.DebugLogSubmitRequest.Builder debugLogSubmit = Debug.DebugLogSubmitRequest.CreateBuilder ();
-			debugLogSubmit.DebugLog = report;
-			debugLogSubmit.DeviceId = deviceID;
-
-			MemoryStream requestMessageStream = new MemoryStream();
-			debugLogSubmit.BuildPartial ().WriteTo (requestMessageStream);
+			Debug.DebugLogSubmitRequest debugLogSubmit = new Debug.DebugLogSubmitRequest();
+			debugLogSubmit.debug_log = report;
+			debugLogSubmit.device_id = deviceID;
 
 			UnityEngine.Debug.Log ("Submitting bug report.");
-			SyncronousPostRequest(requestMessageStream, Response.ParseReportBugResponse, DEBUG_LOG_SUBMIT_URL, false);
+			SyncronousPostRequest(debugLogSubmit, Response.ParseReportBugResponse, DEBUG_LOG_SUBMIT_URL, false);
 		}
 
-		static private void SetPlayerForProblemIfNeeded(ref Senseix.Message.Problem.ProblemPost.Builder problemPostBuilder)
+		static private void SetPlayerForProblemIfNeeded(ref Senseix.Message.Problem.ProblemPost problemPostBuilder)
 		{
-			if (problemPostBuilder.PlayerId == "no current player")
+			if (problemPostBuilder.player_id == "no current player")
 			{
-				problemPostBuilder.SetPlayerId(SenseixSession.GetCurrentPlayerID());
+				problemPostBuilder.player_id = (SenseixSession.GetCurrentPlayerID());
 			}
-			if (problemPostBuilder.PlayerId == "no current player")
+			if (problemPostBuilder.player_id == "no current player")
 			{
 				//UnityEngine.Debug.LogWarning("I'm sending a problem to the server with no player ID.");
 			}

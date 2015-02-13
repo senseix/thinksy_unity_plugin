@@ -44,17 +44,18 @@ namespace Senseix
 		{
 			string seedPath = SeedFilePath();
 			byte [] seedContents = System.IO.File.ReadAllBytes (seedPath);
+			MemoryStream seedStream = new MemoryStream (seedContents);
 			if (seedContents.Length == 0)
 			{
 				ThinksyPlugin.ShowEmergencyWindow("The seed file is empty! (" + seedPath + ")");
 				throw new Exception ("The seed file is empty!");
 			}
-			Message.Problem.ProblemGetResponse problemGet = Message.Problem.ProblemGetResponse.ParseFrom (seedContents);
+			//Message.Problem.ProblemGetResponse problemGet = Message.Problem.ProblemGetResponse.ParseFrom (seedContents);
+			Message.Problem.ProblemGetResponse problemGet = ProtoBuf.Serializer.Deserialize<Message.Problem.ProblemGetResponse> (seedStream);
 
-			for (int i = 0; i < problemGet.ProblemList.Count; i++)
+			for (int i = 0; i < problemGet.problem.Count; i++)
 			{
-				Message.Problem.ProblemData entry = problemGet.ProblemList[i];
-				Message.Problem.ProblemData.Builder problem =  entry.ToBuilder();
+				Message.Problem.ProblemData problem = problemGet.problem[i];
 				ProblemKeeper.AddProblemsToProblemQueue(problem);
 			}
 		}
@@ -63,7 +64,9 @@ namespace Senseix
 		{
 			Logger.BasicLog ("Replacing seed file.");
 			MemoryStream stream = new MemoryStream ();
-			reply.WriteTo (stream);
+
+			ProtoBuf.Serializer.Serialize<Message.Problem.ProblemGetResponse> (stream, reply);
+
 			byte[] replacementBytes = stream.ToArray();
 			try
 			{
@@ -109,7 +112,7 @@ namespace Senseix
 		static public void AddProblemToSeed(Message.Problem.ProblemData ProblemData)
 		{
 			MemoryStream stream = new MemoryStream ();
-			ProblemData.WriteTo (stream);
+			ProtoBuf.Serializer.Serialize<Message.Problem.ProblemData> (stream, ProblemData);
 			byte[] appendMeBytes = stream.ToArray();
 			string appendMeString = "\n" + System.Text.Encoding.Default.GetString (appendMeBytes);
 			string seedPath = SeedFilePath();
@@ -140,9 +143,10 @@ namespace Senseix
 			return answeredProblems.Count;
 		}
 
-		public static void AddProblemsToProblemQueue (Message.Problem.ProblemData.Builder Problem) {
+		public static void AddProblemsToProblemQueue (Message.Problem.ProblemData problem) 
+		{
 			//Debug.Log ("Added a Problem to queue, queue length now " + newProblems.Count);
-			newProblems.Enqueue (Problem);
+			newProblems.Enqueue (problem);
 		}
 
 		//Request more Problems from the server
@@ -161,31 +165,31 @@ namespace Senseix
 			Message.Request.PostProblems (SenseixSession.GetCurrentPlayerID(), answeredProblems);
 		}
 
-		static public Senseix.Message.Problem.ProblemData.Builder GetProblem()
+		static public Senseix.Message.Problem.ProblemData GetProblem()
 		{
 			CheckProblemPull ();
 			if (newProblems.Count == 0)
 				ThinksyPlugin.ShowEmergencyWindow ("We ran out of problems.  That really shouldn't happen!");
-			return (Senseix.Message.Problem.ProblemData.Builder) newProblems.Dequeue ();
+			return (Senseix.Message.Problem.ProblemData) newProblems.Dequeue ();
 		}
 
-		static public bool SubmitAnswer(Message.Problem.ProblemData.Builder answeredProblemData, Answer answer, bool correct) 
+		static public bool SubmitAnswer(Message.Problem.ProblemData answeredProblemData, Answer answer, bool correct) 
 		{
-			Message.Problem.ProblemPost.Builder problem = Message.Problem.ProblemPost.CreateBuilder ();
-			problem.SetCorrect (correct);
+			Message.Problem.ProblemPost problem = new Message.Problem.ProblemPost();
+			problem.correct = correct;
 			
 			//set Problem's answers to given ones
 			string[] answerIDStrings = answer.GetAnswerIDs ();
-			Senseix.Message.Problem.AnswerIdentifier.Builder givenAnswerIDs = Senseix.Message.Problem.AnswerIdentifier.CreateBuilder ();
+			Senseix.Message.Problem.AnswerIdentifier givenAnswerIDs = new Senseix.Message.Problem.AnswerIdentifier();
 			foreach (string answerID in answerIDStrings)
 			{
-				givenAnswerIDs.AddUuid(answerID);
+				givenAnswerIDs.uuid.Add(answerID);
 			}
 			
-			problem.SetProblemId (answeredProblemData.Uuid);
-			problem.SetAnswerIds (givenAnswerIDs);
-			problem.SetPlayerId (SenseixSession.GetCurrentPlayerID ());
-			problem.SetAnsweredAtUnixTime (UnixTimeNow ());
+			problem.problem_id = answeredProblemData.uuid;
+			problem.answer_ids = givenAnswerIDs;
+			problem.player_id = SenseixSession.GetCurrentPlayerID ();
+			problem.answered_at_unix_time = UnixTimeNow ();
 			AddAnsweredProblem (problem, answer);
 			return correct;
 		}
@@ -196,32 +200,31 @@ namespace Senseix
 			return (ulong)(timeSpan.TotalSeconds);
 		}
 
-		static public bool CheckAnswer(Message.Problem.ProblemData.Builder answeredProblemData, Answer answer) 
+		static public bool CheckAnswer(Message.Problem.ProblemData answeredProblemData, Answer answer) 
 		{
 			bool correct = true;
-
 			//get correct answer IDs
-			Message.Problem.AnswerIdentifier.Builder correctIDListBuilder = Message.Problem.AnswerIdentifier.CreateBuilder ();
-			foreach(Senseix.Message.Atom.Atom atom in answeredProblemData.Answer.AtomList)
+			Message.Problem.AnswerIdentifier correctIDListBuilder = new Message.Problem.AnswerIdentifier ();
+			foreach(Senseix.Message.Atom.Atom atom in answeredProblemData.answer.atom)
 			{
-				correctIDListBuilder.AddUuid(atom.Uuid);
+				correctIDListBuilder.uuid.Add(atom.uuid);
 			}
 
 			//bail out if we have the wrong number of answers
 			string[] answerIDStrings = answer.GetAnswerIDs ();
-			if (answerIDStrings.Length != correctIDListBuilder.UuidCount)
+			if (answerIDStrings.Length != correctIDListBuilder.uuid.Count)
 				return false;
 			
 			//check given answers against correct answers
 			for (int i = 0; i < answerIDStrings.Length; i++)
 			{
-				correct = correct && (correctIDListBuilder.GetUuid(i) == (string)answerIDStrings[i]);
+				correct = correct && (correctIDListBuilder.uuid[i] == (string)answerIDStrings[i]);
 			}
 
 			return correct;
 		}
 
-		static private void AddAnsweredProblem(Message.Problem.ProblemPost.Builder ProblemBuilder, Answer answer)
+		static private void AddAnsweredProblem(Message.Problem.ProblemPost ProblemBuilder, Answer answer)
 		{
 			answeredProblems.Enqueue (ProblemBuilder);
 			CheckAnsweredProblemPush ();

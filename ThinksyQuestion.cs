@@ -16,7 +16,7 @@ public class Question
 	public Question(Senseix.Message.Problem.Question newQuestion)
 	{
 		question = newQuestion;
-		atomList = newQuestion.AtomList;
+		atomList = newQuestion.atom;
 	}
 	
 	/// <summary>
@@ -24,7 +24,7 @@ public class Question
 	/// </summary>
 	public string GetHTML()
 	{
-		string html64 = question.Format.Html;
+		string html64 = question.format.html;
 		byte[] htmlutf = System.Convert.FromBase64String (html64);
 		string html = ASCIIEncoding.ASCII.GetString (htmlutf);
 		return html;
@@ -37,7 +37,7 @@ public class Question
 	{
 		Texture2D returnImage = new Texture2D(0, 0);
 		//Debug.Log ("LENGTH OF THE IMAGE BYTES FIELD " + question.Image.Length);
-		byte[] imageBytes = question.Image.ToByteArray();//Senseix.SenseixController.DecodeServerBytes (question.Image);
+		byte[] imageBytes = question.image;//Senseix.SenseixController.DecodeServerBytes (question.Image);
 		//string base64 = question.Image.ToStringUtf8 ();
 		//byte[] imageBytes = System.Convert.FromBase64String (base64);
 		//Debug.Log ("BYTES AS HEX: " + System.BitConverter.ToString(imageBytes));

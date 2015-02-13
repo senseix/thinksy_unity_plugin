@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Problem 
 {
-	private Senseix.Message.Problem.ProblemData.Builder protobufsProblemBuilder;
+	private Senseix.Message.Problem.ProblemData protobufsProblemBuilder;
 	private Answer givenAnswer = new Answer();
 	private bool submitted = false;
 	private static uint problemsAnsweredCorrectly = 0;
@@ -23,7 +23,7 @@ public class Problem
 	/// Don't use this unless you know what you're doing- instead get a problem from
 	/// SenseixPlugin.NextProblem().
 	/// </summary>
-	public Problem(Senseix.Message.Problem.ProblemData.Builder newProtobufsProblemBuilder)
+	public Problem(Senseix.Message.Problem.ProblemData newProtobufsProblemBuilder)
 	{
 		protobufsProblemBuilder = newProtobufsProblemBuilder;
 	}
@@ -53,7 +53,7 @@ public class Problem
 	/// </summary>
 	public Answer GetCorrectAnswer()
 	{
-		return new Answer(protobufsProblemBuilder.Answer);
+		return new Answer(protobufsProblemBuilder.answer);
 	}
 	
 	/// <summary>
@@ -80,7 +80,7 @@ public class Problem
 	/// <param name="howManyDistractors">How many random distractors to return.</param>
 	public ProblemPart[] GetDistractors(int howManyDistractors)
 	{
-		int availableDistractors = protobufsProblemBuilder.Distractor.AtomCount;
+		int availableDistractors = protobufsProblemBuilder.distractor.atom.Count;
 		if (availableDistractors < howManyDistractors)
 		{
 			throw new Exception("There aren't enough distractors!  There are only "
@@ -90,7 +90,7 @@ public class Problem
 		ArrayList allDistractors = new ArrayList();
 		for (int i = 0; i < availableDistractors; i++)
 		{
-			Senseix.Message.Atom.Atom distractorAtom = protobufsProblemBuilder.Distractor.AtomList[i];
+			Senseix.Message.Atom.Atom distractorAtom = protobufsProblemBuilder.distractor.atom[i];
 			ProblemPart distractor = new ProblemPart(distractorAtom);
 			allDistractors.Add(distractor);
 		} //find all the distractors
@@ -133,7 +133,7 @@ public class Problem
 	/// </summary>
 	public Question GetQuestion()
 	{
-		return new Question(protobufsProblemBuilder.Question);
+		return new Question(protobufsProblemBuilder.question);
 	}
 	
 	/// <summary>

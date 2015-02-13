@@ -104,16 +104,17 @@ namespace Senseix.Message {
 
 		static public bool ParseRegisterDeviceResponse(byte[] responseBytes)
 		{
+			MemoryStream stream = new MemoryStream (responseBytes);
 			Device.DeviceRegistrationResponse registerDeviceResponse = 
-				Device.DeviceRegistrationResponse.ParseFrom (responseBytes);
+				ProtoBuf.Serializer.Deserialize<Device.DeviceRegistrationResponse> (stream);
 
-			if (registerDeviceResponse.IsInitialized) 
-			{	
+			if (registerDeviceResponse != null)
+			{
 				//Debug.Log("save auth token.");
-				SenseixSession.SetAndSaveAuthToken(registerDeviceResponse.AuthToken);
+				SenseixSession.SetAndSaveAuthToken(registerDeviceResponse.auth_token);
 				SenseixSession.SetSessionState(true);
-				Logger.BasicLog("Temporary account: " + registerDeviceResponse.IsTemporaryAccount);
-				SenseixSession.SetSignedIn(!registerDeviceResponse.IsTemporaryAccount);
+				Logger.BasicLog("Temporary account: " + registerDeviceResponse.is_temporary_account);
+				SenseixSession.SetSignedIn(!registerDeviceResponse.is_temporary_account);
 			}
 			else 
 			{
@@ -126,12 +127,12 @@ namespace Senseix.Message {
 
 		static public bool ParseListPlayerResponse(byte[] responseBytes)
 		{
-			Player.PlayerListResponse listPlayersResponse = 
-				Player.PlayerListResponse.ParseFrom (responseBytes);
+			MemoryStream stream = new MemoryStream (responseBytes);
+			Player.PlayerListResponse listPlayersResponse = ProtoBuf.Serializer.Deserialize<Player.PlayerListResponse>(stream);
 
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a list Player Message");
-			if (listPlayersResponse.PlayerCount == 0)
+			if (listPlayersResponse.player.Count == 0)
 				throw new Exception ("no players in player list");
 			SenseixSession.SetCurrentPlayerList(listPlayersResponse);
 
@@ -140,8 +141,8 @@ namespace Senseix.Message {
 
 		static public bool ParseRegisterPlayerResponse(byte[] responseBytes)
 		{
-			Player.PlayerRegisterWithApplicationResponse registerPlayerResponse = 
-				Player.PlayerRegisterWithApplicationResponse.ParseFrom (responseBytes);
+			MemoryStream stream = new MemoryStream (responseBytes);
+			Player.PlayerRegisterWithApplicationResponse registerPlayerResponse = ProtoBuf.Serializer.Deserialize<Player.PlayerRegisterWithApplicationResponse>(stream);
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a register Player Message");
 
@@ -149,14 +150,15 @@ namespace Senseix.Message {
 		}
 		static public bool ParseGetProblemResponse(byte[] responseBytes)
 		{
+			MemoryStream stream = new MemoryStream (responseBytes);
 			Problem.ProblemGetResponse getProblemResponse = 
-				Problem.ProblemGetResponse.ParseFrom (responseBytes);
+				ProtoBuf.Serializer.Deserialize<Problem.ProblemGetResponse>(stream);
 			//Debug.Log("has message: " + reply.HasMessage);
 			//Debug.Log("message length: " + reply.Message.Length);
 			//Debug.Log("has problem get: " + reply.HasProblemGet);
-			if (getProblemResponse.ProblemCount != ProblemKeeper.PROBLEMS_PER_PULL)
-				Logger.BasicLog("How wude.  I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + getProblemResponse.ProblemCount);
-			if (getProblemResponse.ProblemCount == 0)
+			if (getProblemResponse.problem.Count != ProblemKeeper.PROBLEMS_PER_PULL)
+				Logger.BasicLog("How wude.  I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + getProblemResponse.problem.Count);
+			if (getProblemResponse.problem.Count == 0)
 			{
 				throw new Exception ("no problems in problem response.");
 			}
@@ -168,8 +170,9 @@ namespace Senseix.Message {
 
 		static public bool ParsePostProblemResponse(byte[] responseBytes)
 		{
+			MemoryStream stream = new MemoryStream (responseBytes);
 			Problem.ProblemPostResponse postProblemResponse = 
-				Problem.ProblemPostResponse.ParseFrom (responseBytes);
+				ProtoBuf.Serializer.Deserialize<Problem.ProblemPostResponse>(stream);
 
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a Problem post Message");
@@ -178,8 +181,9 @@ namespace Senseix.Message {
 
 		static public bool ParseVerifyGameResponse(byte[] responseBytes)
 		{
+			MemoryStream stream = new MemoryStream (responseBytes);
 			Device.GameVerificationResponse verifyGameResponse = 
-				Device.GameVerificationResponse.ParseFrom (responseBytes);
+				ProtoBuf.Serializer.Deserialize<Device.GameVerificationResponse>(stream);
 
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from my game verification Message");
@@ -188,8 +192,9 @@ namespace Senseix.Message {
 
 		static public bool ParseReportBugResponse(byte[] responseBytes)
 		{
+			MemoryStream stream = new MemoryStream (responseBytes);
 			Debug.DebugLogSubmitResponse verifyGameResponse = 
-				Debug.DebugLogSubmitResponse.ParseFrom (responseBytes);
+				ProtoBuf.Serializer.Deserialize<Debug.DebugLogSubmitResponse>(stream);
 
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a debug log submit message.");
@@ -199,8 +204,9 @@ namespace Senseix.Message {
 
 		static public bool ParsePlayerScoreResponse(byte[] responseBytes)
 		{
+			MemoryStream stream = new MemoryStream (responseBytes);
 			Leaderboard.UpdatePlayerScoreResponse verifyGameResponse = 
-				Leaderboard.UpdatePlayerScoreResponse.ParseFrom (responseBytes);
+				ProtoBuf.Serializer.Deserialize<Leaderboard.UpdatePlayerScoreResponse>(stream);
 
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a Player score Message");
@@ -209,8 +215,9 @@ namespace Senseix.Message {
 		
 		static public bool ParsePlayerRankResponse(byte[] responseBytes)
 		{
+			MemoryStream stream = new MemoryStream (responseBytes);
 			Leaderboard.PlayerRankResponse verifyGameResponse = 
-				Leaderboard.PlayerRankResponse.ParseFrom (responseBytes);
+				ProtoBuf.Serializer.Deserialize<Leaderboard.PlayerRankResponse>(stream);
 
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a Player rank Message");
@@ -219,12 +226,13 @@ namespace Senseix.Message {
 
 		static public bool ParseGetEncouragementsResponse(byte[] responseBytes)
 		{
+			MemoryStream stream = new MemoryStream (responseBytes);
 			Encouragement.EncouragementGetResponse getEncouragementResponse = 
-				Encouragement.EncouragementGetResponse.ParseFrom (responseBytes);
+				ProtoBuf.Serializer.Deserialize<Encouragement.EncouragementGetResponse>(stream);
 			
-			Logger.BasicLog ("I got an encouragement get response with " + getEncouragementResponse.EncouragementDataCount + " encouragements.");
+			Logger.BasicLog ("I got an encouragement get response with " + getEncouragementResponse.encouragementData.Count + " encouragements.");
 
-			foreach (Encouragement.EncouragementData encouragementData in getEncouragementResponse.EncouragementDataList)
+			foreach (Encouragement.EncouragementData encouragementData in getEncouragementResponse.encouragementData)
 			{
 				EncouragementDisplay.DisplayEncouragement(encouragementData);
 			}
@@ -236,11 +244,12 @@ namespace Senseix.Message {
 		{
 			try
 			{
+				MemoryStream stream = new MemoryStream(responseBytes);
 				Debug.ServerErrorResponse serverErrorResponse = 
-					Debug.ServerErrorResponse.ParseFrom (responseBytes);
+					ProtoBuf.Serializer.Deserialize<Debug.ServerErrorResponse>(stream);
 
 				UnityEngine.Debug.LogError("I got a server error response.  Here is the message: " +
-				                      serverErrorResponse.Message);
+				                      serverErrorResponse.message);
 			}
 			catch (Exception e)
 			{

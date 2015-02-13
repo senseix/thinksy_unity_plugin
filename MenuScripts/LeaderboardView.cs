@@ -61,8 +61,8 @@ namespace Senseix
 			for (int i = 0; i < leaders.Count; i++)
 			{
 				thisText.text += (i + 1).ToString() + ". ";
-				thisText.text += leaders[i].Name + " Sensei - ";
-				thisText.text += leaders[i].Score.ToString() + " points";
+				thisText.text += leaders[i].name + " Sensei - ";
+				thisText.text += leaders[i].score.ToString() + " points";
 				thisText.text += "\n";
 			}
 		}
