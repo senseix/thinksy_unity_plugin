@@ -5,14 +5,18 @@ using UnityEngine;
 
 class ThinksyPlugin : MonoBehaviour
 {	
-	public string gameAccessToken; 	//this is your developer access token obtained from 
-									//the Senseix website.
-	public bool offlineMode;	//check this box from the unity GUI to enable offline mode, 
+	public string gameAccessToken = null; 	
+								//this is your developer access token obtained from 
+								//the Senseix website.
+	public bool offlineMode = false;	
+								//check this box from the unity GUI to enable offline mode, 
 								//useful for testing or offline development
-	public bool useLeaderboard; //check this box if you plan to use Thinksy leaderboard functionality
+	public bool useLeaderboard = false; 
+								//check this box if you plan to use Thinksy leaderboard functionality
 								//it will present a leaderboard button in the menu
-	public GameObject emergencyWindow;	//this game object will be activated in the hopefully unlikely
-										//scenario of problems in the thinksy plugin
+	public GameObject emergencyWindow = null;	
+								//this game object will be activated in the hopefully unlikely
+								//scenario of problems in the thinksy plugin
 	
 	private static ThinksyPlugin singletonInstance;
 	private static Problem mostRecentProblem;
@@ -55,6 +59,10 @@ class ThinksyPlugin : MonoBehaviour
 		singletonInstance = this;
 
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
+
+		if (gameAccessToken == null || gameAccessToken == "")
+			throw new Exception ("Please enter a game access token.");
+
 		if (!offlineMode) Senseix.SenseixSession.InitializeSenseix (gameAccessToken);
 		NextProblem ();
 	}

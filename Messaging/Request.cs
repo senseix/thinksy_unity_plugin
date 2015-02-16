@@ -231,8 +231,6 @@ namespace Senseix.Message
 			newDevice.information = (deviceNameInformation);
 			//UnityEngine.Debug.Log ("Device id:　" + SenseixSession.GetDeviceID ());				
 			newDevice.device_id =(SenseixSession.GetDeviceID());
-
-			MemoryStream requestMessageStream = new MemoryStream();
 			
 			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
 			SyncronousPostRequest (newDevice, Response.ParseRegisterDeviceResponse, REGISTER_DEVICE_URL, false);

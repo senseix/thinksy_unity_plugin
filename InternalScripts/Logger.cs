@@ -26,8 +26,6 @@ namespace Senseix
 
 		void HandleLog(string logString, string stackTrace, LogType type) 
 		{
-			string logPath = GetLogPath();
-
 			string writeString = "logString:\n" + logString + "\nstackTrace\n" 
 							+ stackTrace + "\ntype:\n" + type.ToString ();
 

@@ -143,6 +143,8 @@ namespace Senseix.Message {
 		{
 			MemoryStream stream = new MemoryStream (responseBytes);
 			Player.PlayerRegisterWithApplicationResponse registerPlayerResponse = ProtoBuf.Serializer.Deserialize<Player.PlayerRegisterWithApplicationResponse>(stream);
+			if (registerPlayerResponse == null)
+				throw new Exception ("Player response is null");
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a register Player Message");
 
@@ -174,6 +176,9 @@ namespace Senseix.Message {
 			Problem.ProblemPostResponse postProblemResponse = 
 				ProtoBuf.Serializer.Deserialize<Problem.ProblemPostResponse>(stream);
 
+			if (postProblemResponse == null)
+					throw new Exception ("Deserializing the response failed (resulted in null)");
+
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a Problem post Message");
 			return true;
@@ -185,6 +190,9 @@ namespace Senseix.Message {
 			Device.GameVerificationResponse verifyGameResponse = 
 				ProtoBuf.Serializer.Deserialize<Device.GameVerificationResponse>(stream);
 
+			if (verifyGameResponse == null)
+				throw new Exception ("Parsing the response failed (resulting in null)");
+
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from my game verification Message");
 			return true;
@@ -193,8 +201,11 @@ namespace Senseix.Message {
 		static public bool ParseReportBugResponse(byte[] responseBytes)
 		{
 			MemoryStream stream = new MemoryStream (responseBytes);
-			Debug.DebugLogSubmitResponse verifyGameResponse = 
+			Debug.DebugLogSubmitResponse bugReportResponse = 
 				ProtoBuf.Serializer.Deserialize<Debug.DebugLogSubmitResponse>(stream);
+
+			if (bugReportResponse == null)
+				throw new Exception ("Parsing the response failed (resulting in null)");
 
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a debug log submit message.");
@@ -205,8 +216,11 @@ namespace Senseix.Message {
 		static public bool ParsePlayerScoreResponse(byte[] responseBytes)
 		{
 			MemoryStream stream = new MemoryStream (responseBytes);
-			Leaderboard.UpdatePlayerScoreResponse verifyGameResponse = 
+			Leaderboard.UpdatePlayerScoreResponse playerScoreResponse = 
 				ProtoBuf.Serializer.Deserialize<Leaderboard.UpdatePlayerScoreResponse>(stream);
+
+			if (playerScoreResponse == null)
+				throw new Exception ("Parsing the response failed (resulting in null)");
 
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a Player score Message");
@@ -216,8 +230,11 @@ namespace Senseix.Message {
 		static public bool ParsePlayerRankResponse(byte[] responseBytes)
 		{
 			MemoryStream stream = new MemoryStream (responseBytes);
-			Leaderboard.PlayerRankResponse verifyGameResponse = 
+			Leaderboard.PlayerRankResponse playerRankResponse = 
 				ProtoBuf.Serializer.Deserialize<Leaderboard.PlayerRankResponse>(stream);
+
+			if (playerRankResponse == null)
+				throw new Exception ("Parsing the response failed (resulting in null)");
 
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a Player rank Message");
@@ -253,7 +270,7 @@ namespace Senseix.Message {
 			}
 			catch (Exception e)
 			{
-				UnityEngine.Debug.LogWarning("Error while parsing error.  Um.");
+				UnityEngine.Debug.LogWarning("Error while parsing error.  Um.  (" + e.Message + ")");
 			}
 			return false;
 		}
