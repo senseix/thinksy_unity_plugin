@@ -29,7 +29,7 @@ public class ProblemPart
 	/// </summary>
 	public string GetUniqueID()
 	{
-		return atom.Uuid;
+		return atom.uuid;
 	}
 	
 	/// <summary>
@@ -39,7 +39,7 @@ public class ProblemPart
 	/// <returns><c>true</c> if this instance is string; otherwise, <c>false</c>.</returns>
 	public bool IsString()
 	{
-		return atom.Type == Senseix.Message.Atom.Atom.Types.Type.TEXT;
+		return atom.type == Senseix.Message.Atom.Atom.Type.TEXT;
 	}
 	
 	/// <summary>
@@ -49,7 +49,7 @@ public class ProblemPart
 	/// <returns><c>true</c> if this instance is image; otherwise, <c>false</c>.</returns>
 	public bool IsImage()
 	{
-		return atom.Type == Senseix.Message.Atom.Atom.Types.Type.IMAGE;
+		return atom.type == Senseix.Message.Atom.Atom.Type.IMAGE;
 	}
 
 	/// <summary>
@@ -96,7 +96,7 @@ public class ProblemPart
 	{
 		if (!IsString())
 			throw new Exception ("This QuestionPart is not a string.  Be sure to check IsString before GetString.");
-		byte[] decodedBytes = atom.Data.ToByteArray ();//Senseix.SenseixController.DecodeServerBytes (atom.Data);
+		byte[] decodedBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
 		return Encoding.ASCII.GetString (decodedBytes);
 	}
 	
@@ -109,7 +109,7 @@ public class ProblemPart
 		if (!IsImage())
 			throw new Exception ("This QuestionPart is not an image.  Be sure to check IsImage before GetImage.");
 		Texture2D returnImage = new Texture2D(0, 0);
-		byte[] imageBytes = atom.Data.ToByteArray ();//Senseix.SenseixController.DecodeServerBytes (atom.Data);
+		byte[] imageBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
 		returnImage.LoadImage (imageBytes);
 		return returnImage;
 	}

@@ -17,9 +17,17 @@ namespace Senseix
 			singletonInstance = this;
 		}
 
+		void Start()
+		{
+			QuestionDisplay.Update ();
+		}
+
 		public static void Update()
 		{
-			singletonInstance.UpdateDisplay ();
+			if (singletonInstance != null)
+			{
+				singletonInstance.UpdateDisplay ();
+			}
 		}
 
 		public static void UpdateTextOnly()

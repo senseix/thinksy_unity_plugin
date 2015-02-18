@@ -30,9 +30,9 @@ namespace Senseix
 				return returnList;
 			}
 
-			for (int i = 0; i < currentPlayerList.PlayerCount; i++)
+			for (int i = 0; i < currentPlayerList.player.Count; i++)
 			{
-				returnList.Add(currentPlayerList.GetPlayer(i));
+				returnList.Add(currentPlayerList.player[i]);
 			}
 			return returnList;
 		}
@@ -103,13 +103,13 @@ namespace Senseix
 		{
 			if (currentPlayer == null)
 				return "no current player";
-			return currentPlayer.PlayerId;
+			return currentPlayer.player_id;
 		}
 		static public void SetToPlayerWithID(string newPlayerID)
 		{
 			foreach(Message.Player.Player Player in GetCurrentPlayerList())
 			{
-				if (Player.PlayerId == newPlayerID)
+				if (Player.player_id == newPlayerID)
 				{
 					SetCurrentPlayer(Player);
 				}
@@ -124,7 +124,9 @@ namespace Senseix
 			accessToken = newAccessToken; 
 			if (CheckAccessToken() == -1) 
 			{
-				throw new Exception("The Thinksy Token you have provided is not of a valid length, please register at https://developer.thinksylearn.com/ to create a valid key");
+				throw new Exception("The Thinksy Token you have provided is not of a valid length, please" +
+					"register at https://developer.thinksylearn.com/ to create a valid key.  Then, fill " +
+					"in the Game Access Token field of the ThinksyPlugin script on the Thinksy Prefab.");
 			}
 
 			//Creates a temporary account based on device id
@@ -174,7 +176,7 @@ namespace Senseix
 		{
 			foreach (Message.Leaderboard.PlayerData Player in PlayerList)
 			{
-				Debug.Log("Player " + Player.Name + " has score " + Player.Score);
+				Debug.Log("Player " + Player.name + " has score " + Player.score);
 			}
 			currentLeaderboard = PlayerList;
 		}
@@ -200,21 +202,21 @@ namespace Senseix
 
 		static private void RegisterPlayer(Message.Player.Player Player)
 		{
-			Message.Request.RegisterPlayer (Player.PlayerId);
+			Message.Request.RegisterPlayer (Player.player_id);
 		}
 
 
-		static public Senseix.Message.Problem.ProblemData.Builder PullProblem()
+		static public Senseix.Message.Problem.ProblemData PullProblem()
 		{
 			return ProblemKeeper.GetProblem ();
 		}
 
-		static public bool CheckAnswer(Message.Problem.ProblemData.Builder Problem, Answer answer)
+		static public bool CheckAnswer(Message.Problem.ProblemData Problem, Answer answer)
 		{
 			return ProblemKeeper.CheckAnswer(Problem, answer);
 		}
 
-		static public bool SubmitAnswer(Message.Problem.ProblemData.Builder Problem, Answer answer, bool correct)
+		static public bool SubmitAnswer(Message.Problem.ProblemData Problem, Answer answer, bool correct)
 		{
 			return ProblemKeeper.SubmitAnswer(Problem, answer, correct);
 		}

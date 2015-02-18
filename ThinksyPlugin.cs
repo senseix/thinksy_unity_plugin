@@ -5,20 +5,24 @@ using UnityEngine;
 
 class ThinksyPlugin : MonoBehaviour
 {	
-	public string gameAccessToken; //this is your developer access token obtained from 
-	//the Senseix website.
-	public bool offlineMode;	//check this box from the unity GUI to enable offline mode, 
+	public string gameAccessToken = null; 	
+								//this is your developer access token obtained from 
+								//the Senseix website.
+	public bool offlineMode = false;	
+								//check this box from the unity GUI to enable offline mode, 
 								//useful for testing or offline development
-	public bool useLeaderboard; //check this box if you plan to use Thinksy leaderboard functionality
+	public bool useLeaderboard = false; 
+								//check this box if you plan to use Thinksy leaderboard functionality
 								//it will present a leaderboard button in the menu
-	public GameObject emergencyWindow;	//this game object will be activated in the hopefully unlikely
-										//scenario of problems in the thinksy plugin
+	public GameObject emergencyWindow = null;	
+								//this game object will be activated in the hopefully unlikely
+								//scenario of problems in the thinksy plugin
 	
 	private static ThinksyPlugin singletonInstance;
 	private static Problem mostRecentProblem;
 	
 	private const int reconnectRetryInterval = 3000;
-	private const int encouragementGetInterval = 3001;
+	private const int encouragementGetInterval = 801;
 
 	/// <summary>
 	/// Shows a window indicating that something horrible has happened.
@@ -53,11 +57,12 @@ class ThinksyPlugin : MonoBehaviour
 			Destroy(gameObject);
 		}
 		singletonInstance = this;
-	}
 
-	void Start()
-	{
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
+
+		if (gameAccessToken == null || gameAccessToken == "")
+			throw new Exception ("Please enter a game access token.");
+
 		if (!offlineMode) Senseix.SenseixSession.InitializeSenseix (gameAccessToken);
 		NextProblem ();
 	}
@@ -71,7 +76,8 @@ class ThinksyPlugin : MonoBehaviour
 		}
 		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%encouragementGetInterval == 0 &&  Time.frameCount != 0)
 		{
-			//Senseix.SenseixSession.GetEncouragements();
+			Senseix.Logger.BasicLog("Getting encouragements...");
+			Senseix.SenseixSession.GetEncouragements();
 		}
 		Senseix.Message.Request.CheckResults ();
 	}
@@ -109,7 +115,7 @@ class ThinksyPlugin : MonoBehaviour
 		{
 			SubmitMostRecentProblemAnswer();
 		}
-		Senseix.Message.Problem.ProblemData.Builder protobufsProblemBuilder = Senseix.SenseixSession.PullProblem ();
+		Senseix.Message.Problem.ProblemData protobufsProblemBuilder = Senseix.SenseixSession.PullProblem ();
 		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblemBuilder.Uuid);
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
 		Senseix.QuestionDisplay.Update ();
