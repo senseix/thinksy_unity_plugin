@@ -121,7 +121,8 @@ namespace Senseix.Message
 			mods.Add("Content-Type", "application/protobuf");
 
 			MemoryStream requestMessageStream = new MemoryStream ();
-			ProtoBuf.Serializer.Serialize<ProtoBuf.IExtensible> (requestMessageStream, serializableRequest);
+			ThinksyProtosSerializer serializer = new ThinksyProtosSerializer ();
+			serializer.Serialize(requestMessageStream, serializableRequest);
 			bytes = requestMessageStream.ToArray();
 			requestMessageStream.Close();
 

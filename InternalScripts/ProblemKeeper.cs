@@ -196,8 +196,8 @@ namespace Senseix
 
 		static private ulong UnixTimeNow()
 		{
-			var timeSpan = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0));
-			return (ulong)(timeSpan.TotalSeconds);
+			TimeSpan unixTime = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0);
+			return (ulong)unixTime.TotalSeconds;
 		}
 
 		static public bool CheckAnswer(Message.Problem.ProblemData answeredProblemData, Answer answer) 

@@ -56,6 +56,7 @@ class ThinksyPlugin : MonoBehaviour
 			                  " from is redundant.  I'm going to delete myself.");
 			Destroy(gameObject);
 		}
+
 		singletonInstance = this;
 
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
