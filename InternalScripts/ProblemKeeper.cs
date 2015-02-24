@@ -51,7 +51,13 @@ namespace Senseix
 				throw new Exception ("The seed file is empty!");
 			}
 			//Message.Problem.ProblemGetResponse problemGet = Message.Problem.ProblemGetResponse.ParseFrom (seedContents);
-			Message.Problem.ProblemGetResponse problemGet = ProtoBuf.Serializer.Deserialize<Message.Problem.ProblemGetResponse> (seedStream);
+			//Message.Problem.ProblemGetResponse problemGet = ProtoBuf.Serializer.Deserialize<Message.Problem.ProblemGetResponse> (seedStream);
+
+			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
+			Message.Problem.ProblemGetResponse problemGet = 
+				customSerializer.Deserialize(seedStream, null, typeof(Message.Problem.ProblemGetResponse))
+					as Message.Problem.ProblemGetResponse;
+
 
 			for (int i = 0; i < problemGet.problem.Count; i++)
 			{
@@ -65,7 +71,8 @@ namespace Senseix
 			Logger.BasicLog ("Replacing seed file.");
 			MemoryStream stream = new MemoryStream ();
 
-			ProtoBuf.Serializer.Serialize<Message.Problem.ProblemGetResponse> (stream, reply);
+			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
+			customSerializer.Serialize (stream, reply);
 
 			byte[] replacementBytes = stream.ToArray();
 			try
@@ -112,7 +119,8 @@ namespace Senseix
 		static public void AddProblemToSeed(Message.Problem.ProblemData ProblemData)
 		{
 			MemoryStream stream = new MemoryStream ();
-			ProtoBuf.Serializer.Serialize<Message.Problem.ProblemData> (stream, ProblemData);
+			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
+			customSerializer.Serialize (stream, ProblemData);
 			byte[] appendMeBytes = stream.ToArray();
 			string appendMeString = "\n" + System.Text.Encoding.Default.GetString (appendMeBytes);
 			string seedPath = SeedFilePath();

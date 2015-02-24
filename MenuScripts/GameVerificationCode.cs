@@ -34,7 +34,7 @@ namespace Senseix
 		{
 			string verificationCode = GetRandomSixDigitHexNumber();
 			codeText.text = verificationCode;
-			SenseixSession.VerifyGame (verificationCode);
+			StartCoroutine(SenseixSession.VerifyGame (verificationCode));
 		}
 		
 		public string GetRandomSixDigitHexNumber()

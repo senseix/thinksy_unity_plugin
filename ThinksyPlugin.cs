@@ -30,7 +30,7 @@ class ThinksyPlugin : MonoBehaviour
 	/// </summary>
 	static public void ShowEmergencyWindow(string additionalMessage)
 	{
-		Senseix.SenseixSession.SubmitBugReport ("Emergency window being displayed: " + additionalMessage);
+		singletonInstance.StartCoroutine(Senseix.SenseixSession.SubmitBugReport ("Emergency window being displayed: " + additionalMessage));
 		singletonInstance.ShowThisEmergencyWindow (additionalMessage);
 	}
 
@@ -64,7 +64,10 @@ class ThinksyPlugin : MonoBehaviour
 		if (gameAccessToken == null || gameAccessToken == "")
 			throw new Exception ("Please enter a game access token.");
 
-		if (!offlineMode) Senseix.SenseixSession.InitializeSenseix (gameAccessToken);
+		if (!offlineMode)
+		{
+			StartCoroutine(Senseix.SenseixSession.InitializeSenseix (gameAccessToken));
+		}
 		NextProblem ();
 	}
 
@@ -73,7 +76,7 @@ class ThinksyPlugin : MonoBehaviour
 		if (!offlineMode && !Senseix.SenseixSession.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
 		{
 			Debug.Log ("Attempting to reconnect...");
-			Senseix.SenseixSession.InitializeSenseix(gameAccessToken);
+			StartCoroutine(Senseix.SenseixSession.InitializeSenseix(gameAccessToken));
 		}
 		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%encouragementGetInterval == 0 &&  Time.frameCount != 0)
 		{
@@ -90,7 +93,7 @@ class ThinksyPlugin : MonoBehaviour
 	/// </summary>
 	public void ReregisterDevice()
 	{
-		Senseix.SenseixSession.RegisterDevice ();
+		StartCoroutine(Senseix.SenseixSession.RegisterDevice ());
 	}
 	
 	/// <summary>
@@ -102,7 +105,7 @@ class ThinksyPlugin : MonoBehaviour
 	{
 		if (IsInOfflineMode ())
 			Debug.LogWarning ("We are currently in offline mode.");
-		Senseix.SenseixSession.UpdateCurrentPlayerScore (score);
+		singletonInstance.StartCoroutine(Senseix.SenseixSession.UpdateCurrentPlayerScore (score));
 	}
 	
 	/// <summary>

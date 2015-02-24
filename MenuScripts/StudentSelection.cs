@@ -65,7 +65,7 @@ namespace Senseix
 
 		public void PullAvailablePlayers()
 		{
-			SenseixSession.ListPlayers ();
+			StartCoroutine(SenseixSession.ListPlayers ());
 			availablePlayers = SenseixSession.GetCurrentPlayerList ();
 		}
 	}

@@ -22,7 +22,7 @@ namespace Senseix.Message
 		//API URLS
 		//api-staging.Senseix.com
         const string ENCRYPTED = "https://";
-		const string SERVER_URL = "api.thinksylearn.com/";
+		const string SERVER_URL = "api-staging.thinksylearn.com/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/devices/";
@@ -65,6 +65,17 @@ namespace Senseix.Message
 
 		public static ArrayList activeRequests = new ArrayList();
 
+		private static Request singletonInstance = null;
+		
+		private static Request GetSingletonInstance()
+		{
+			if (singletonInstance == null)
+			{
+				singletonInstance = FindObjectOfType<Request>();
+			}
+			return singletonInstance;
+		}
+
 		public static void CheckResults()
 		{
 			if (!SenseixSession.GetSessionState ())
@@ -87,28 +98,31 @@ namespace Senseix.Message
 			}
 		}
 
-		public static void SyncronousPostRequest(object parametersObject)
+		public static IEnumerator SyncronousPostRequest(object parametersObject)
 		{
 			PostRequestParameters parameters = (PostRequestParameters)parametersObject;
-			SyncronousPostRequest (parameters.recvResult, parameters.serializableRequest, parameters.responseHandler, parameters.url);
+			yield return GetSingletonInstance().StartCoroutine(
+				SyncronousPostRequest (parameters.recvResult, parameters.serializableRequest, parameters.responseHandler, parameters.url));
 		}
 
-		public static void SyncronousPostRequest(ProtoBuf.IExtensible serializableRequest, ResponseHandlerDelegate responseHandler, string url, bool isGet)
+		public static IEnumerator SyncronousPostRequest(ProtoBuf.IExtensible serializableRequest, ResponseHandlerDelegate responseHandler, string url, bool isGet)
 		{
+			UnityEngine.Debug.Log ("set up recv result");
 			WWW recvResult = SetUpRecvResult(serializableRequest, url, isGet);
-			//UnityEngine.Debug.Log ("set up recv result already");
-			SyncronousPostRequest (recvResult, serializableRequest, responseHandler, url);
+
+			yield return GetSingletonInstance().StartCoroutine(
+				SyncronousPostRequest (recvResult, serializableRequest, responseHandler, url));
 		}
 		
-		public static void SyncronousPostRequest(WWW recvResult, ProtoBuf.IExtensible serializableRequest, ResponseHandlerDelegate responseHandler, string url)
+		public static IEnumerator SyncronousPostRequest(WWW recvResult, ProtoBuf.IExtensible serializableRequest, ResponseHandlerDelegate responseHandler, string url)
 		{
-			//Debug.Log ("Wait for Request:");
 			if (!SenseixSession.GetSessionState())
 			{
-				return;
+				yield break;
 			}
-			WaitForRequest (recvResult);
-			//UnityEngine.Debug.Log ("handle result");
+			UnityEngine.Debug.Log ("wait for request");
+			yield return GetSingletonInstance().StartCoroutine(WaitForRequest (recvResult));
+			UnityEngine.Debug.Log ("handle result");
 			HandleResult (recvResult, responseHandler);
 		}
 		
@@ -122,6 +136,7 @@ namespace Senseix.Message
 
 			MemoryStream requestMessageStream = new MemoryStream ();
 			ThinksyProtosSerializer serializer = new ThinksyProtosSerializer ();
+			UnityEngine.Debug.Log ("Serializing request");
 			serializer.Serialize(requestMessageStream, serializableRequest);
 			bytes = requestMessageStream.ToArray();
 			requestMessageStream.Close();
@@ -166,16 +181,19 @@ namespace Senseix.Message
 				                  "Most likely internet connectivity issues.");
 				SenseixSession.SetSessionState (false);
 			}
-
 			return;
 		}
 
-		static private void WaitForRequest(WWW recvResult)
+		static private IEnumerator WaitForRequest(WWW recvResult)
 		{
+			UnityEngine.Debug.Log ("entering wait for request");
 			while(!recvResult.isDone && string.IsNullOrEmpty(recvResult.error))
 			{
-				//display dancing ninjas
+				ConnectionIndicator.SetWaitingIndication (true);
+				yield return null;
 			}
+			UnityEngine.Debug.Log ("exiting waiting for request");
+			ConnectionIndicator.SetWaitingIndication (false);
 		}
 
 		/// <summary>
@@ -208,7 +226,8 @@ namespace Senseix.Message
 
 		static public void NonblockingPostRequest(PostRequestParameters parameters)
 		{
-			activeRequests.Add (parameters);
+			if (SenseixSession.GetAuthToken () != "you don't need to see my identification")
+				activeRequests.Add (parameters);
 		}
 
 		static public void NonblockingPostRequest(ProtoBuf.IExtensible serializableRequest, ResponseHandlerDelegate responseHandler, string url, bool isGet)
@@ -226,22 +245,24 @@ namespace Senseix.Message
 		/// and the Player to begin playing without logging in. Once an account is registered
 		/// or created the temporary account is transitioned into a permanent one.  
 		/// </summary>
-		static public void RegisterDevice(string deviceNameInformation)
+		static public IEnumerator RegisterDevice(string deviceNameInformation)
 		{
+			UnityEngine.Debug.Log ("building request");
 			Device.DeviceRegistrationRequest newDevice = new Device.DeviceRegistrationRequest();
 			newDevice.information = (deviceNameInformation);
 			//UnityEngine.Debug.Log ("Device id:　" + SenseixSession.GetDeviceID ());				
 			newDevice.device_id =(SenseixSession.GetDeviceID());
 			
-			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
-			SyncronousPostRequest (newDevice, Response.ParseRegisterDeviceResponse, REGISTER_DEVICE_URL, false);
+			UnityEngine.Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
+			yield return GetSingletonInstance().StartCoroutine(
+				SyncronousPostRequest (newDevice, Response.ParseRegisterDeviceResponse, REGISTER_DEVICE_URL, false));
 		}
 
 		/// <summary>
 		/// Adds the temporary verification code to the server.  When the user enters the verificationCode
 		/// on the Senseix website now, it will be able to link this game with the user's account.
 		/// </summary>
-		static public void VerifyGame(string verificationCode)
+		static public IEnumerator VerifyGame(string verificationCode)
 		{
 			Device.GameVerificationRequest newVerification = new Device.GameVerificationRequest();
 			newVerification.verification_token = verificationCode;
@@ -251,30 +272,31 @@ namespace Senseix.Message
 			//Debug.Log (hdr_request.GameVerification.Udid);
 			//Debug.Log (hdr_request.GameVerification.VerificationToken);
 			//Debug.Log (hdr_request.AccessToken);
-			SyncronousPostRequest (newVerification, Response.ParseVerifyGameResponse, VERIFY_GAME_URL, false);
+			yield return GetSingletonInstance().StartCoroutine(
+				SyncronousPostRequest (newVerification, Response.ParseVerifyGameResponse, VERIFY_GAME_URL, false));
 		}
 
 		/// <summary>
 		/// Return a list of Player names and Player_id's for a Parent, most likely to 
 		/// pick which Player should be playing the game at a given time.  
 		/// </summary>
-		static public void ListPlayers () 
+		static public IEnumerator ListPlayers () 
 		{
 			//UnityEngine.Debug.Log ("Auth Token: " + SenseixSession.GetAuthToken());
 
 			Player.PlayerListRequest listPlayer = new Player.PlayerListRequest();
 
 			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
-			SyncronousPostRequest (listPlayer, Response.ParseListPlayerResponse, LIST_PLAYER_URL, true);
+			yield return GetSingletonInstance().StartCoroutine(
+				SyncronousPostRequest (listPlayer, Response.ParseListPlayerResponse, LIST_PLAYER_URL, true));
 		}
 		/// <summary>
 		/// We have an explicit call to register a Player with a game, this should be called each time a new Player
 	    /// is selected from the drop downlist. It will add this game to a list of played games for the Player and 
 		/// add them to things like the games Leaderboard.
 		/// </summary>
-		static public void RegisterPlayer (string player_id) 
+		static public IEnumerator RegisterPlayer (string player_id) 
 		{
-
 			Player.PlayerRegisterWithApplicationRequest regPlayer = new Player.PlayerRegisterWithApplicationRequest();
 			regPlayer.player_id = (player_id);
 
@@ -284,7 +306,8 @@ namespace Senseix.Message
 			//Debug.Log ("register Player going off to " + REGISTER_Player_WITH_GAME_URL);
 
 			//UnityEngine.Debug.Log ("register player going off to " + REGISTER_PLAYER_WITH_GAME_URL);
-			SyncronousPostRequest (regPlayer, Response.ParseRegisterPlayerResponse, REGISTER_PLAYER_WITH_GAME_URL, false);
+			yield return GetSingletonInstance().StartCoroutine(
+				SyncronousPostRequest (regPlayer, Response.ParseRegisterPlayerResponse, REGISTER_PLAYER_WITH_GAME_URL, false));
 
 		}
 
@@ -314,7 +337,6 @@ namespace Senseix.Message
 
 		static public void GetEncouragements (string player_id) 
 		{
-
 			Encouragement.EncouragementGetRequest getEncouragements = new Encouragement.EncouragementGetRequest();
 			getEncouragements.player_id = (player_id);
 			
@@ -362,7 +384,8 @@ namespace Senseix.Message
 		{
 			ProtoBuf.IExtensible serializableRequest = parameters.serializableRequest;
 			MemoryStream stream = new MemoryStream ();
-			ProtoBuf.Serializer.Serialize<ProtoBuf.IExtensible>(stream, serializableRequest);
+			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
+			customSerializer.Serialize (stream, serializableRequest);
 			byte[] bytes = stream.ToArray();
 			string directoryPath = Path.Combine (Application.persistentDataPath, "post_cache/");
 			//Debug.Log (fileCount);
@@ -395,14 +418,15 @@ namespace Senseix.Message
 		/// Pushes a Players score to the Leaderboard, this is dependent on the developer to take care of what
 	    /// "score" really means in their application.  
 		/// </summary>
-		static public void UpdatePlayerScore (string playerId, UInt32 score)
+		static public IEnumerator UpdatePlayerScore (string playerId, UInt32 score)
 	    {
 
 			Leaderboard.UpdatePlayerScoreRequest lbScore = new Leaderboard.UpdatePlayerScoreRequest();
 			lbScore.player_id = (playerId);
 			lbScore.player_score = (score);
 
-			SyncronousPostRequest(lbScore, Response.ParsePlayerScoreResponse, UPDATE_PLAYER_SCORE_URL, false);
+			yield return GetSingletonInstance().StartCoroutine(
+				SyncronousPostRequest(lbScore, Response.ParsePlayerScoreResponse, UPDATE_PLAYER_SCORE_URL, false));
 
 		}
 
@@ -410,7 +434,7 @@ namespace Senseix.Message
 		/// Stores a Players rank and Players surrounding it based on the call preferences. 
 		/// By default we only return the Players rank and score. 	
 		/// </summary>
-		static public void GetPlayerRank ( string PlayerId) 
+		static public IEnumerator GetPlayerRank ( string PlayerId) 
 		{
 			UInt32 surroundingUsers = 0;
 			Leaderboard.SortBy sortBy = Leaderboard.SortBy.NONE;
@@ -422,8 +446,8 @@ namespace Senseix.Message
 			rank.player_id = (SenseixSession.GetCurrentPlayerID());
 			rank.sort_by = (sortBy);
 
-			SyncronousPostRequest(rank, Response.ParsePlayerRankResponse, GET_PLAYER_RANK_URL, false);
-
+			yield return GetSingletonInstance().StartCoroutine(
+				SyncronousPostRequest(rank, Response.ParsePlayerRankResponse, GET_PLAYER_RANK_URL, false));
 		}
 
 		static public void SubmitProblemPostCache()
@@ -437,7 +461,10 @@ namespace Senseix.Message
 				//UnityEngine.Debug.Log("Submitting cache");
 				byte[] bytes = System.IO.File.ReadAllBytes(fileName);
 				MemoryStream stream = new MemoryStream(bytes);
-				Problem.ProblemPostRequest problemPostRequest = ProtoBuf.Serializer.Deserialize<Problem.ProblemPostRequest>(stream);
+				ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
+				Problem.ProblemPostRequest problemPostRequest = customSerializer.Deserialize (stream, 
+				                                                                              null, 
+				                                                                              typeof(Problem.ProblemPostRequest)) as Problem.ProblemPostRequest;
 				for (int i = 0; i < problemPostRequest.problem.Count; i++)
 				{
 					Problem.ProblemPost problemPost = problemPostRequest.problem[i];
@@ -451,14 +478,15 @@ namespace Senseix.Message
 			}
 		}
 
-		static public void BugReport(string deviceID, string report)
+		static public IEnumerator BugReport(string deviceID, string report)
 		{
 			Debug.DebugLogSubmitRequest debugLogSubmit = new Debug.DebugLogSubmitRequest();
 			debugLogSubmit.debug_log = report;
 			debugLogSubmit.device_id = deviceID;
 
 			UnityEngine.Debug.Log ("Submitting bug report.");
-			SyncronousPostRequest(debugLogSubmit, Response.ParseReportBugResponse, DEBUG_LOG_SUBMIT_URL, false);
+			yield return GetSingletonInstance().StartCoroutine(
+				SyncronousPostRequest(debugLogSubmit, Response.ParseReportBugResponse, DEBUG_LOG_SUBMIT_URL, false));
 		}
 
 		static private void SetPlayerForProblemIfNeeded(ref Senseix.Message.Problem.ProblemPost problemPostBuilder)
