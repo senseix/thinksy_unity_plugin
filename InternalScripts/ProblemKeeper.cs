@@ -11,7 +11,6 @@ namespace Senseix
 	static class ProblemKeeper 
 	{
 		public const int PROBLEMS_PER_PULL = 12;
-		private const float PULL_THRESHOLD = 0.25f;
 		private const float PUSH_THRESHOLD = 0.25f; 
 		//thresholds are when to pull push.  pull or push when
 		//number of answered or waiting Problems drops below
@@ -86,6 +85,9 @@ namespace Senseix
 			}
 			stream.Close ();
 			System.IO.File.WriteAllBytes (SeedFilePath(), replacementBytes);
+
+			ProblemKeeper.DrainProblems ();
+			ProblemKeeper.GetProblemsFromSeed ();
 		}
 
 		static public string PlayerSeedPath()
@@ -153,29 +155,24 @@ namespace Senseix
 
 		public static void AddProblemsToProblemQueue (Message.Problem.ProblemData problem) 
 		{
-			//Debug.Log ("Added a Problem to queue, queue length now " + newProblems.Count);
+			Debug.Log ("Added a Problem to queue, queue length now " + newProblems.Count);
 			newProblems.Enqueue (problem);
 		}
 
-		//Request more Problems from the server
-		//and add them to the end of our Problem queue
-		static public void GetProblems () 
-		{
-			if (SenseixSession.GetSessionState())
-			{
-				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), PROBLEMS_PER_PULL);
-			}
-			GetProblemsFromSeed();
-		}
 		static public void PushServerProblems () 
 		{ 
 			Debug.Log ("PUSH SERVER PROBLEMS");
-			Message.Request.PostProblems (SenseixSession.GetCurrentPlayerID(), answeredProblems);
+			Message.Request.GetSingletonInstance().StartCoroutine(
+				Message.Request.PostProblems (SenseixSession.GetCurrentPlayerID(), answeredProblems));
 		}
 
 		static public Senseix.Message.Problem.ProblemData GetProblem()
 		{
 			CheckProblemPull ();
+			if (newProblems.Count == 0)
+			{
+				GetProblemsFromSeed();
+			}
 			if (newProblems.Count == 0)
 				ThinksyPlugin.ShowEmergencyWindow ("We ran out of problems.  That really shouldn't happen!");
 			return (Senseix.Message.Problem.ProblemData) newProblems.Dequeue ();
@@ -252,19 +249,25 @@ namespace Senseix
 		static private void CheckProblemPull()
 		{
 			//Debug.Log ("get new problem count:　" + GetNewProblemCount ());
-			if (GetNewProblemCount() < PROBLEMS_PER_PULL*PULL_THRESHOLD || GetNewProblemCount() < 1) 
+			if (GetNewProblemCount() < 3)
 			{
-				GetProblems ();
+				if (SenseixSession.GetSessionState())
+				{
+					SenseixSession.GetProblems(PROBLEMS_PER_PULL);
+				}
 				//Debug.Log ("pulling more Problems");
 			}
 		}
 
 		static public void DrainProblems()
 		{
-			while(newProblems.Count > 2)//give it a little wiggle room...
+			int problemsDrained = 0;
+			while(newProblems.Count > 3)//don't give it a little wiggle room...
 			{
-				newProblems.Dequeue();	
+				newProblems.Dequeue();
+				problemsDrained++;
 			}
+			Logger.BasicLog (problemsDrained + " problems drained.");
 		}
     }
 }

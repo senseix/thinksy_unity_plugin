@@ -68,7 +68,7 @@ class ThinksyPlugin : MonoBehaviour
 		{
 			StartCoroutine(Senseix.SenseixSession.InitializeSenseix (gameAccessToken));
 		}
-		NextProblem ();
+
 	}
 
 	void Update()
@@ -81,9 +81,8 @@ class ThinksyPlugin : MonoBehaviour
 		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%encouragementGetInterval == 0 &&  Time.frameCount != 0)
 		{
 			Senseix.Logger.BasicLog("Getting encouragements...");
-			Senseix.SenseixSession.GetEncouragements();
+			//Senseix.SenseixSession.GetEncouragements();
 		}
-		Senseix.Message.Request.CheckResults ();
 	}
 	
 	/// <summary>
@@ -138,7 +137,8 @@ class ThinksyPlugin : MonoBehaviour
 	{
 		if (mostRecentProblem == null)
 		{
-			throw new Exception("There are not yet any Problems.  Please use SenseixPlugin.NextProblem()");
+			//throw new Exception("There are not yet any Problems.  Please use SenseixPlugin.NextProblem()");
+			NextProblem();
 		}
 		return mostRecentProblem;
 	}

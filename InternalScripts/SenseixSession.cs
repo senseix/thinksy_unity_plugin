@@ -159,6 +159,11 @@ namespace Senseix
 
 			yield return GetSingletonInstance().StartCoroutine(Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), 0));
 			yield return GetSingletonInstance().StartCoroutine(Message.Request.GetPlayerRank (GetCurrentPlayerID ()));
+
+			yield return Message.Request.GetSingletonInstance().StartCoroutine(
+				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), ProblemKeeper.PROBLEMS_PER_PULL));
+
+			ThinksyPlugin.GetMostRecentProblem();
 		}
 
 		static public IEnumerator ListPlayers()
@@ -252,12 +257,19 @@ namespace Senseix
 
 		public static void PushProblems(Queue Problems)
 		{
-			Message.Request.PostProblems(GetCurrentPlayerID(), Problems);
+			GetSingletonInstance().StartCoroutine(
+				Message.Request.PostProblems(GetCurrentPlayerID(), Problems));
 		}
 
 		public static void GetEncouragements()
 		{
-			Message.Request.GetEncouragements (GetCurrentPlayerID ());
+			GetSingletonInstance().StartCoroutine(Message.Request.GetEncouragements (GetCurrentPlayerID ()));
+		}
+
+		public static void GetProblems(uint numberOfProblems)
+		{
+			Message.Request.GetSingletonInstance().StartCoroutine(
+				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), numberOfProblems));
 		}
 
 		//public static byte[] DecodeServerBytes(Google.ProtocolBuffers.ByteString serverBytes)
@@ -271,7 +283,7 @@ namespace Senseix
 		{
 			//Debug.Log ("Should cache: " + ShouldCacheProblemPosts ());
 			if (!ShouldCacheProblemPosts ())
-				Message.Request.SubmitProblemPostCache ();
+				GetSingletonInstance().StartCoroutine(Message.Request.SubmitProblemPostCache ());
 		}
 
 		static public bool ShouldCacheProblemPosts()
