@@ -102,12 +102,24 @@ namespace Senseix
 		
 		static public string SeedFilePath()
 		{
+			string[] files = Directory.GetFiles (Application.persistentDataPath, "*" + SEED_FILE_EXTENSION);
+
+			foreach (string filename in files)
+			{ //test overrides everything
+				if (filename.Contains("test"))
+				{
+					return filename;
+				}
+			}
+
+			//next priority is player specific
 			string playerSeedPath = PlayerSeedPath ();
 			if (File.Exists(playerSeedPath))
 			{
 				return playerSeedPath;
 			}
-			string[] files = Directory.GetFiles (Application.persistentDataPath, "*" + SEED_FILE_EXTENSION);
+
+			//then failsafe or anything else
 			if (files.Length == 0)
 			{
 				ThinksyPlugin.ShowEmergencyWindow("No seed files found in " + Application.persistentDataPath);
