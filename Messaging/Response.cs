@@ -72,7 +72,7 @@ namespace Senseix.Message {
 				throw new Exception ("no problems in problem response.");
 			}
 
-			ProblemKeeper.ReplaceSeed(getProblemResponse);
+			ProblemKeeper.ReplaceQueue(getProblemResponse);
 
 			return true;
 		}

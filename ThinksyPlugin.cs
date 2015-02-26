@@ -81,7 +81,7 @@ class ThinksyPlugin : MonoBehaviour
 		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%encouragementGetInterval == 0 &&  Time.frameCount != 0)
 		{
 			Senseix.Logger.BasicLog("Getting encouragements...");
-			//Senseix.SenseixSession.GetEncouragements();
+			Senseix.SenseixSession.GetEncouragements();
 		}
 	}
 	

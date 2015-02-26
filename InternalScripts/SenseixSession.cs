@@ -130,7 +130,7 @@ namespace Senseix
 
 		public static IEnumerator InitializeSenseix (string newAccessToken) 
 		{ 
-			Debug.Log ("initializing");
+			//Debug.Log ("initializing");
 
 			SetSessionState (true);
 
@@ -144,16 +144,16 @@ namespace Senseix
 
 			//Creates a temporary account based on device id
 			//returns an auth token. This is Syncronous.
-			Debug.Log("registering device");
+			//Debug.Log("registering device");
 			yield return GetSingletonInstance().StartCoroutine(RegisterDevice ());
 
-			Debug.Log ("listing players");
+			//Debug.Log ("listing players");
 		  	yield return GetSingletonInstance().StartCoroutine(ListPlayers ());
 
-			Debug.Log("register all players");
+			//Debug.Log("register all players");
 			yield return GetSingletonInstance().StartCoroutine(RegisterAllPlayers ());
 
-			Debug.Log("submit cache");
+			//Debug.Log("submit cache");
 			SenseixSession.CheckProblemPostCacheSubmission();
 			//SenseixPlugin.ShowEmergencyWindow ("testing");
 
@@ -209,7 +209,7 @@ namespace Senseix
 
 		static public IEnumerator RegisterDevice()
 		{
-			Debug.Log ("register device session");
+			//Debug.Log ("register device session");
 			yield return GetSingletonInstance().StartCoroutine(Message.Request.RegisterDevice(SystemInfo.deviceName));
 		}
 		

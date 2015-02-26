@@ -65,14 +65,20 @@ namespace Senseix
 			}
 		}
 
-		static public void ReplaceSeed(Message.Problem.ProblemGetResponse reply)
+		static public void ReplaceQueue(Message.Problem.ProblemGetResponse reply)
+		{
+			ProblemKeeper.ReplaceSeed (reply);
+			ProblemKeeper.DrainProblems ();
+			ProblemKeeper.GetProblemsFromSeed ();
+		}
+
+		static private void ReplaceSeed(Message.Problem.ProblemGetResponse reply)
 		{
 			Logger.BasicLog ("Replacing seed file.");
 			MemoryStream stream = new MemoryStream ();
-
 			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
 			customSerializer.Serialize (stream, reply);
-
+			
 			byte[] replacementBytes = stream.ToArray();
 			try
 			{
@@ -85,9 +91,6 @@ namespace Senseix
 			}
 			stream.Close ();
 			System.IO.File.WriteAllBytes (SeedFilePath(), replacementBytes);
-
-			ProblemKeeper.DrainProblems ();
-			ProblemKeeper.GetProblemsFromSeed ();
 		}
 
 		static public string PlayerSeedPath()
@@ -155,13 +158,13 @@ namespace Senseix
 
 		public static void AddProblemsToProblemQueue (Message.Problem.ProblemData problem) 
 		{
-			Debug.Log ("Added a Problem to queue, queue length now " + newProblems.Count);
+			//Debug.Log ("Added a Problem to queue, queue length now " + newProblems.Count);
 			newProblems.Enqueue (problem);
 		}
 
 		static public void PushServerProblems () 
 		{ 
-			Debug.Log ("PUSH SERVER PROBLEMS");
+			//Debug.Log ("PUSH SERVER PROBLEMS");
 			Message.Request.GetSingletonInstance().StartCoroutine(
 				Message.Request.PostProblems (SenseixSession.GetCurrentPlayerID(), answeredProblems));
 		}

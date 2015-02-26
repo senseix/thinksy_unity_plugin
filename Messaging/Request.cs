@@ -22,7 +22,7 @@ namespace Senseix.Message
 		//API URLS
 		//api-staging.Senseix.com
         const string ENCRYPTED = "https://";
-		const string SERVER_URL = "api-staging.thinksylearn.com/";
+		const string SERVER_URL = "api.thinksylearn.com/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/devices/";
@@ -83,7 +83,7 @@ namespace Senseix.Message
 
 		public static IEnumerator CoroutinePostRequest(ProtoBuf.IExtensible serializableRequest, ResponseHandlerDelegate responseHandler, string url, bool isGet)
 		{
-			UnityEngine.Debug.Log ("set up recv result");
+			//UnityEngine.Debug.Log ("set up recv result");
 			WWW recvResult = SetUpRecvResult(serializableRequest, url, isGet);
 
 			yield return GetSingletonInstance().StartCoroutine(
@@ -96,9 +96,9 @@ namespace Senseix.Message
 			{
 				yield break;
 			}
-			UnityEngine.Debug.Log ("wait for request");
+			//UnityEngine.Debug.Log ("wait for request");
 			yield return GetSingletonInstance().StartCoroutine(WaitForRequest (recvResult));
-			UnityEngine.Debug.Log ("handle result");
+			//UnityEngine.Debug.Log ("handle result");
 			HandleResult (recvResult, responseHandler);
 		}
 		
@@ -112,7 +112,7 @@ namespace Senseix.Message
 
 			MemoryStream requestMessageStream = new MemoryStream ();
 			ThinksyProtosSerializer serializer = new ThinksyProtosSerializer ();
-			UnityEngine.Debug.Log ("Serializing request");
+			//UnityEngine.Debug.Log ("Serializing request");
 			serializer.Serialize(requestMessageStream, serializableRequest);
 			bytes = requestMessageStream.ToArray();
 			requestMessageStream.Close();
@@ -162,13 +162,13 @@ namespace Senseix.Message
 
 		static private IEnumerator WaitForRequest(WWW recvResult)
 		{
-			UnityEngine.Debug.Log ("entering wait for request");
+			//UnityEngine.Debug.Log ("entering wait for request");
 			while(!recvResult.isDone && string.IsNullOrEmpty(recvResult.error))
 			{
 				ConnectionIndicator.SetWaitingIndication (true);
 				yield return null;
 			}
-			UnityEngine.Debug.Log ("exiting waiting for request");
+			//UnityEngine.Debug.Log ("exiting waiting for request");
 			ConnectionIndicator.SetWaitingIndication (false);
 		}
 
@@ -207,13 +207,13 @@ namespace Senseix.Message
 		/// </summary>
 		static public IEnumerator RegisterDevice(string deviceNameInformation)
 		{
-			UnityEngine.Debug.Log ("building request");
+			//UnityEngine.Debug.Log ("building request");
 			Device.DeviceRegistrationRequest newDevice = new Device.DeviceRegistrationRequest();
 			newDevice.information = (deviceNameInformation);
 			//UnityEngine.Debug.Log ("Device id:　" + SenseixSession.GetDeviceID ());				
 			newDevice.device_id =(SenseixSession.GetDeviceID());
 			
-			UnityEngine.Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
+			//UnityEngine.Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest (newDevice, Response.ParseRegisterDeviceResponse, REGISTER_DEVICE_URL, false));
 		}
@@ -285,7 +285,7 @@ namespace Senseix.Message
 			getProblem.problem_count = (count);
 			getProblem.player_id = (player_id);
 
-			UnityEngine.Debug.Log ("Get Problems request going off to " + GET_PROBLEM_URL);
+			//UnityEngine.Debug.Log ("Get Problems request going off to " + GET_PROBLEM_URL);
 //			Debug.Log (hdr_request.AuthToken);
 //			Debug.Log (hdr_request.AccessToken);
 //			Debug.Log (hdr_request.ProblemGet.ProblemCount);
@@ -337,7 +337,7 @@ namespace Senseix.Message
 			}
 			else
 			{
-				UnityEngine.Debug.Log ("Post Problems request going off to " + POST_PROBLEM_URL);
+				//UnityEngine.Debug.Log ("Post Problems request going off to " + POST_PROBLEM_URL);
 				yield return GetSingletonInstance().StartCoroutine(
 					CoroutinePostRequest (postProblem, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false));
 				//UnityEngine.Debug.Log("Post post");
@@ -375,7 +375,7 @@ namespace Senseix.Message
 			lbPage.SetSortBy (sortBy);
 			lbPage.SetPageSize (pageSize);
 			hdr_request.SetPage (lbPage);
-//			Debug.Log ("Leaderboard page request going off to " + GET_Leaderboard_PAGE_URL);
+			//Debug.Log ("Leaderboard page request going off to " + GET_Leaderboard_PAGE_URL);
 			SyncronousPostRequest (ref hdr_request, Constant.MessageType.LeaderboardPage, GET_LEADERBOARD_PAGE_URL);
 			*/
 		}
