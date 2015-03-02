@@ -11,7 +11,7 @@ namespace Senseix
 
 		// Use this for initialization
 		void Start () {
-			ResetCode ();
+			//ResetCode ();
 		}
 
 		void OnEnable()

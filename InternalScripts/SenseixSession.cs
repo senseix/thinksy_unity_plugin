@@ -58,10 +58,10 @@ namespace Senseix
 			currentPlayer = newPlayer;
 		}
 
-		static public IEnumerator SelectPlayer(Senseix.Message.Player.Player selectedPlayer)
+		static public void SelectPlayer(Senseix.Message.Player.Player selectedPlayer)
 		{
 			SetCurrentPlayer (selectedPlayer);
-			yield return GetSingletonInstance().StartCoroutine(RegisterPlayer (selectedPlayer));
+			GetSingletonInstance().StartCoroutine(RegisterPlayer (selectedPlayer));
 			//ProblemKeeper.CreateSeedFileIfNeeded ();
 		}
 
@@ -210,7 +210,7 @@ namespace Senseix
 		static public IEnumerator RegisterDevice()
 		{
 			//Debug.Log ("register device session");
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.RegisterDevice(SystemInfo.deviceName));
+			yield return GetSingletonInstance().StartCoroutine(Message.Request.RegisterDevice());
 		}
 		
 		static public IEnumerator VerifyGame(string verificationCode)

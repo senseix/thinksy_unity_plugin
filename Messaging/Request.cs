@@ -205,8 +205,10 @@ namespace Senseix.Message
 		/// and the Player to begin playing without logging in. Once an account is registered
 		/// or created the temporary account is transitioned into a permanent one.  
 		/// </summary>
-		static public IEnumerator RegisterDevice(string deviceNameInformation)
+		static public IEnumerator RegisterDevice()
 		{
+			string deviceNameInformation = SystemInfo.deviceName;
+
 			//UnityEngine.Debug.Log ("building request");
 			Device.DeviceRegistrationRequest newDevice = new Device.DeviceRegistrationRequest();
 			newDevice.information = (deviceNameInformation);
