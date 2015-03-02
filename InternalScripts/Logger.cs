@@ -33,7 +33,7 @@ namespace Senseix
 
 			if (type == LogType.Exception || type == LogType.Error)
 			{
-				Senseix.SenseixSession.SubmitBugReport ("Automatic submission of non-routine unity log: ");
+				StartCoroutine(Senseix.SenseixSession.SubmitBugReport ("Automatic submission of non-routine unity log: "));
 			}
 		}
 
@@ -52,7 +52,7 @@ namespace Senseix
 		public static void BasicLog(string extraLog)
 		{
 			//Debug.Log (extraLog);
-			LogText(System.Environment.NewLine + "---EXTRA EXTRA READ ALL ABOUT IT ---" + 
+			LogText(System.Environment.NewLine + "--- BASIC LOG ---" + 
 								System.Environment.NewLine + extraLog + System.Environment.NewLine);
 		}
 

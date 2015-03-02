@@ -11,7 +11,6 @@ namespace Senseix
 	static class ProblemKeeper 
 	{
 		public const int PROBLEMS_PER_PULL = 12;
-		private const float PULL_THRESHOLD = 0.25f;
 		private const float PUSH_THRESHOLD = 0.25f; 
 		//thresholds are when to pull push.  pull or push when
 		//number of answered or waiting Problems drops below
@@ -51,7 +50,13 @@ namespace Senseix
 				throw new Exception ("The seed file is empty!");
 			}
 			//Message.Problem.ProblemGetResponse problemGet = Message.Problem.ProblemGetResponse.ParseFrom (seedContents);
-			Message.Problem.ProblemGetResponse problemGet = ProtoBuf.Serializer.Deserialize<Message.Problem.ProblemGetResponse> (seedStream);
+			//Message.Problem.ProblemGetResponse problemGet = ProtoBuf.Serializer.Deserialize<Message.Problem.ProblemGetResponse> (seedStream);
+
+			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
+			Message.Problem.ProblemGetResponse problemGet = 
+				customSerializer.Deserialize(seedStream, null, typeof(Message.Problem.ProblemGetResponse))
+					as Message.Problem.ProblemGetResponse;
+
 
 			for (int i = 0; i < problemGet.problem.Count; i++)
 			{
@@ -60,13 +65,20 @@ namespace Senseix
 			}
 		}
 
-		static public void ReplaceSeed(Message.Problem.ProblemGetResponse reply)
+		static public void ReplaceQueue(Message.Problem.ProblemGetResponse reply)
+		{
+			ProblemKeeper.ReplaceSeed (reply);
+			ProblemKeeper.DrainProblems ();
+			ProblemKeeper.GetProblemsFromSeed ();
+		}
+
+		static private void ReplaceSeed(Message.Problem.ProblemGetResponse reply)
 		{
 			Logger.BasicLog ("Replacing seed file.");
 			MemoryStream stream = new MemoryStream ();
-
-			ProtoBuf.Serializer.Serialize<Message.Problem.ProblemGetResponse> (stream, reply);
-
+			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
+			customSerializer.Serialize (stream, reply);
+			
 			byte[] replacementBytes = stream.ToArray();
 			try
 			{
@@ -90,12 +102,24 @@ namespace Senseix
 		
 		static public string SeedFilePath()
 		{
+			string[] files = Directory.GetFiles (Application.persistentDataPath, "*" + SEED_FILE_EXTENSION);
+
+			foreach (string filename in files)
+			{ //test overrides everything
+				if (filename.Contains("test"))
+				{
+					return filename;
+				}
+			}
+
+			//next priority is player specific
 			string playerSeedPath = PlayerSeedPath ();
 			if (File.Exists(playerSeedPath))
 			{
 				return playerSeedPath;
 			}
-			string[] files = Directory.GetFiles (Application.persistentDataPath, "*" + SEED_FILE_EXTENSION);
+
+			//then failsafe or anything else
 			if (files.Length == 0)
 			{
 				ThinksyPlugin.ShowEmergencyWindow("No seed files found in " + Application.persistentDataPath);
@@ -112,7 +136,8 @@ namespace Senseix
 		static public void AddProblemToSeed(Message.Problem.ProblemData ProblemData)
 		{
 			MemoryStream stream = new MemoryStream ();
-			ProtoBuf.Serializer.Serialize<Message.Problem.ProblemData> (stream, ProblemData);
+			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
+			customSerializer.Serialize (stream, ProblemData);
 			byte[] appendMeBytes = stream.ToArray();
 			string appendMeString = "\n" + System.Text.Encoding.Default.GetString (appendMeBytes);
 			string seedPath = SeedFilePath();
@@ -149,25 +174,20 @@ namespace Senseix
 			newProblems.Enqueue (problem);
 		}
 
-		//Request more Problems from the server
-		//and add them to the end of our Problem queue
-		static public void GetProblems () 
-		{
-			if (SenseixSession.GetSessionState())
-			{
-				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), PROBLEMS_PER_PULL);
-			}
-			GetProblemsFromSeed();
-		}
 		static public void PushServerProblems () 
 		{ 
-			Debug.Log ("PUSH SERVER PROBLEMS");
-			Message.Request.PostProblems (SenseixSession.GetCurrentPlayerID(), answeredProblems);
+			//Debug.Log ("PUSH SERVER PROBLEMS");
+			Message.Request.GetSingletonInstance().StartCoroutine(
+				Message.Request.PostProblems (SenseixSession.GetCurrentPlayerID(), answeredProblems));
 		}
 
 		static public Senseix.Message.Problem.ProblemData GetProblem()
 		{
 			CheckProblemPull ();
+			if (newProblems.Count == 0)
+			{
+				GetProblemsFromSeed();
+			}
 			if (newProblems.Count == 0)
 				ThinksyPlugin.ShowEmergencyWindow ("We ran out of problems.  That really shouldn't happen!");
 			return (Senseix.Message.Problem.ProblemData) newProblems.Dequeue ();
@@ -196,8 +216,8 @@ namespace Senseix
 
 		static private ulong UnixTimeNow()
 		{
-			var timeSpan = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0));
-			return (ulong)(timeSpan.TotalSeconds);
+			TimeSpan unixTime = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0);
+			return (ulong)unixTime.TotalSeconds;
 		}
 
 		static public bool CheckAnswer(Message.Problem.ProblemData answeredProblemData, Answer answer) 
@@ -244,19 +264,25 @@ namespace Senseix
 		static private void CheckProblemPull()
 		{
 			//Debug.Log ("get new problem count:　" + GetNewProblemCount ());
-			if (GetNewProblemCount() < PROBLEMS_PER_PULL*PULL_THRESHOLD || GetNewProblemCount() < 1) 
+			if (GetNewProblemCount() < 3)
 			{
-				GetProblems ();
+				if (SenseixSession.GetSessionState())
+				{
+					SenseixSession.GetProblems(PROBLEMS_PER_PULL);
+				}
 				//Debug.Log ("pulling more Problems");
 			}
 		}
 
 		static public void DrainProblems()
 		{
-			while(newProblems.Count > 2)//give it a little wiggle room...
+			int problemsDrained = 0;
+			while(newProblems.Count > 3)//don't give it a little wiggle room...
 			{
-				newProblems.Dequeue();	
+				newProblems.Dequeue();
+				problemsDrained++;
 			}
+			Logger.BasicLog (problemsDrained + " problems drained.");
 		}
     }
 }

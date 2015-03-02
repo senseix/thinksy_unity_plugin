@@ -51,6 +51,7 @@ namespace Senseix
 		{
 			foreach (ProblemPart part in ThinksyPlugin.GetMostRecentProblemQuestion())
 			{
+				Debug.Log("found a problem part in question");
 				if (part.IsString())
 					promptText.text = part.GetString();
 			}

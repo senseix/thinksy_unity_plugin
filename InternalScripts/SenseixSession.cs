@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace Senseix 
 {
-	static class SenseixSession 
+	class SenseixSession : MonoBehaviour
 	{
 		private const int ACCESS_TOKEN_LENGTH = 64;
 
@@ -20,6 +20,17 @@ namespace Senseix
 		private static IList<Message.Leaderboard.PlayerData> currentLeaderboard;
 		private static Message.Player.PlayerListResponse currentPlayerList;
 		private static Message.Player.Player currentPlayer;
+
+		private static SenseixSession singletonInstance = null;
+
+		private static SenseixSession GetSingletonInstance()
+		{
+			if (singletonInstance == null)
+			{
+				singletonInstance = FindObjectOfType<SenseixSession>();
+			}
+			return singletonInstance;
+		}
 
 		static public ArrayList GetCurrentPlayerList()
 		{
@@ -50,7 +61,7 @@ namespace Senseix
 		static public void SelectPlayer(Senseix.Message.Player.Player selectedPlayer)
 		{
 			SetCurrentPlayer (selectedPlayer);
-			RegisterPlayer (selectedPlayer);
+			GetSingletonInstance().StartCoroutine(RegisterPlayer (selectedPlayer));
 			//ProblemKeeper.CreateSeedFileIfNeeded ();
 		}
 
@@ -117,8 +128,10 @@ namespace Senseix
 		}
 
 
-		public static bool InitializeSenseix (string newAccessToken) 
+		public static IEnumerator InitializeSenseix (string newAccessToken) 
 		{ 
+			//Debug.Log ("initializing");
+
 			SetSessionState (true);
 
 			accessToken = newAccessToken; 
@@ -131,36 +144,40 @@ namespace Senseix
 
 			//Creates a temporary account based on device id
 			//returns an auth token. This is Syncronous.
+			//Debug.Log("registering device");
+			yield return GetSingletonInstance().StartCoroutine(RegisterDevice ());
 
-			RegisterDevice ();
+			//Debug.Log ("listing players");
+		  	yield return GetSingletonInstance().StartCoroutine(ListPlayers ());
 
-			//Debug.Log ("got past register device");
-		  	ListPlayers ();
-			RegisterAllPlayers ();
+			//Debug.Log("register all players");
+			yield return GetSingletonInstance().StartCoroutine(RegisterAllPlayers ());
+
+			//Debug.Log("submit cache");
 			SenseixSession.CheckProblemPostCacheSubmission();
 			//SenseixPlugin.ShowEmergencyWindow ("testing");
 
+			yield return GetSingletonInstance().StartCoroutine(Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), 0));
+			yield return GetSingletonInstance().StartCoroutine(Message.Request.GetPlayerRank (GetCurrentPlayerID ()));
 
-			Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), 0);
-			Message.Request.GetPlayerRank (GetCurrentPlayerID ());
+			yield return Message.Request.GetSingletonInstance().StartCoroutine(
+				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), ProblemKeeper.PROBLEMS_PER_PULL));
 
-
-
-			return GetSessionState ();
+			ThinksyPlugin.GetMostRecentProblem();
 		}
 
-		static public void ListPlayers()
+		static public IEnumerator ListPlayers()
 		{
-			Message.Request.ListPlayers ();
+			yield return GetSingletonInstance().StartCoroutine(Message.Request.ListPlayers ());
 		}
 
 		//this assumes that there is at least one Player always.
-		static public void RegisterAllPlayers()
+		static public IEnumerator RegisterAllPlayers()
 		{
 			ArrayList Players = GetCurrentPlayerList ();
 			foreach (Message.Player.Player Player in Players)
 			{
-				RegisterPlayer(Player);
+				yield return GetSingletonInstance().StartCoroutine(RegisterPlayer(Player));
 			}
 			if (Players.Count > 0) SetCurrentPlayer (Players [0] as Message.Player.Player);
 			else
@@ -190,19 +207,20 @@ namespace Senseix
 			return currentLeaderboard;
 		}
 
-		static public void RegisterDevice()
+		static public IEnumerator RegisterDevice()
 		{
-			Message.Request.RegisterDevice(SystemInfo.deviceName);
+			//Debug.Log ("register device session");
+			yield return GetSingletonInstance().StartCoroutine(Message.Request.RegisterDevice());
 		}
 		
-		static public void VerifyGame(string verificationCode)
+		static public IEnumerator VerifyGame(string verificationCode)
 		{
-			Message.Request.VerifyGame (verificationCode);
+			yield return GetSingletonInstance().StartCoroutine(Message.Request.VerifyGame (verificationCode));
 		}
 
-		static private void RegisterPlayer(Message.Player.Player Player)
+		static private IEnumerator RegisterPlayer(Message.Player.Player Player)
 		{
-			Message.Request.RegisterPlayer (Player.player_id);
+			yield return GetSingletonInstance().StartCoroutine(Message.Request.RegisterPlayer (Player.player_id));
 		}
 
 
@@ -222,9 +240,9 @@ namespace Senseix
 		}
 	
 
-		public static void UpdateCurrentPlayerScore (UInt32 score)
+		public static IEnumerator UpdateCurrentPlayerScore(UInt32 score)
 		{
-			Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), score);
+			yield return GetSingletonInstance().StartCoroutine(Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), score));
 		}
 
 		public static void SetSignedIn(bool newIsSignedIn)
@@ -239,12 +257,19 @@ namespace Senseix
 
 		public static void PushProblems(Queue Problems)
 		{
-			Message.Request.PostProblems(GetCurrentPlayerID(), Problems);
+			GetSingletonInstance().StartCoroutine(
+				Message.Request.PostProblems(GetCurrentPlayerID(), Problems));
 		}
 
 		public static void GetEncouragements()
 		{
-			Message.Request.GetEncouragements (GetCurrentPlayerID ());
+			GetSingletonInstance().StartCoroutine(Message.Request.GetEncouragements (GetCurrentPlayerID ()));
+		}
+
+		public static void GetProblems(uint numberOfProblems)
+		{
+			Message.Request.GetSingletonInstance().StartCoroutine(
+				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), numberOfProblems));
 		}
 
 		//public static byte[] DecodeServerBytes(Google.ProtocolBuffers.ByteString serverBytes)
@@ -258,7 +283,7 @@ namespace Senseix
 		{
 			//Debug.Log ("Should cache: " + ShouldCacheProblemPosts ());
 			if (!ShouldCacheProblemPosts ())
-				Message.Request.SubmitProblemPostCache ();
+				GetSingletonInstance().StartCoroutine(Message.Request.SubmitProblemPostCache ());
 		}
 
 		static public bool ShouldCacheProblemPosts()
@@ -266,13 +291,13 @@ namespace Senseix
 			return !SenseixSession.GetSessionState ();
 		}
 
-		static public void SubmitBugReport(string additionalMessage)
+		static public IEnumerator SubmitBugReport(string additionalMessage)
 		{
 			string debugText = Logger.GetCurrentLog ();
 			string message = additionalMessage + Environment.NewLine + " --- " 
 				+ Environment.NewLine + debugText + Environment.NewLine;
 
-			Message.Request.BugReport (GetDeviceID(), message);
+			yield return GetSingletonInstance().StartCoroutine(Message.Request.BugReport (GetDeviceID(), message));
 		}
 	}
 }

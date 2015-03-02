@@ -11,7 +11,7 @@ namespace Senseix
 
 		// Use this for initialization
 		void Start () {
-			ResetCode ();
+			//ResetCode ();
 		}
 
 		void OnEnable()
@@ -34,7 +34,7 @@ namespace Senseix
 		{
 			string verificationCode = GetRandomSixDigitHexNumber();
 			codeText.text = verificationCode;
-			SenseixSession.VerifyGame (verificationCode);
+			StartCoroutine(SenseixSession.VerifyGame (verificationCode));
 		}
 		
 		public string GetRandomSixDigitHexNumber()

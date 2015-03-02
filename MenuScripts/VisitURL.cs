@@ -14,7 +14,7 @@ public class VisitURL : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ResetURL();
+		//ResetURL();
 	}
 	
 	private void ResetURL()
