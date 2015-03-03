@@ -7,7 +7,8 @@ namespace Senseix
 	public class StudentSelection : MonoBehaviour 
 	{
 
-		public Text PlayerNameText;
+		public Text playerNameText;
+		public RawImage playerFace;
 
 		private ArrayList availablePlayers;
 		private int currentPlayerIndex = 0;
@@ -15,7 +16,7 @@ namespace Senseix
 		// Use this for initialization
 		void Start () 
 		{
-		
+			SetFace ();
 		}
 		
 		// Update is called once per frame
@@ -49,6 +50,7 @@ namespace Senseix
 								currentPlayerIndex = availablePlayers.Count + currentPlayerIndex;
 			SenseixSession.SelectPlayer (GetCurrentPlayer ());
 			SetName ();
+			SetFace ();
 		}
 
 		public Senseix.Message.Player.Player GetCurrentPlayer()
@@ -56,11 +58,16 @@ namespace Senseix
 			return availablePlayers [currentPlayerIndex] as Senseix.Message.Player.Player;
 		}
 
-		public void SetName()
+		private void SetName()
 		{
 			Message.Player.Player newPlayer = availablePlayers [currentPlayerIndex] as Message.Player.Player;
 			string newName = newPlayer.name;
-			PlayerNameText.text = newName;
+			playerNameText.text = newName;
+		}
+
+		private void SetFace()
+		{
+			playerFace.texture = Resources.Load<Texture2D>(Senseix.SenseixSession.GetCurrentAvatarPath ());
 		}
 
 		public void PullAvailablePlayers()

@@ -61,13 +61,29 @@ namespace Senseix
 		static public void SelectPlayer(Senseix.Message.Player.Player selectedPlayer)
 		{
 			SetCurrentPlayer (selectedPlayer);
+			AvatarFace.UpdateButtonFaces ();
 			GetSingletonInstance().StartCoroutine(RegisterPlayer (selectedPlayer));
-			//ProblemKeeper.CreateSeedFileIfNeeded ();
 		}
 
 		static public Message.Player.Player GetCurrentPlayer()
 		{
 			return currentPlayer;
+		}
+
+		static public string GetCurrentAvatarPath()
+		{
+			string folderPath = "Avatars/";
+
+			if (GetCurrentPlayer () == null)
+				return "";
+
+			string fileName = GetCurrentPlayer().avatar_file_name;
+			//Debug.Log (fileName);
+
+			if (fileName == "")
+				return "";
+
+			return Path.Combine (folderPath, fileName);
 		}
 
 		static public bool GetSessionState()
@@ -116,17 +132,6 @@ namespace Senseix
 				return "no current player";
 			return currentPlayer.player_id;
 		}
-		static public void SetToPlayerWithID(string newPlayerID)
-		{
-			foreach(Message.Player.Player Player in GetCurrentPlayerList())
-			{
-				if (Player.player_id == newPlayerID)
-				{
-					SetCurrentPlayer(Player);
-				}
-			}
-		}
-
 
 		public static IEnumerator InitializeSenseix (string newAccessToken) 
 		{ 
@@ -179,7 +184,7 @@ namespace Senseix
 			{
 				yield return GetSingletonInstance().StartCoroutine(RegisterPlayer(Player));
 			}
-			if (Players.Count > 0) SetCurrentPlayer (Players [0] as Message.Player.Player);
+			if (Players.Count > 0) SelectPlayer (Players [0] as Message.Player.Player);
 			else
 				UnityEngine.Debug.Log("There are no players.  Maybe never connected.");
 		}

@@ -20,9 +20,9 @@ namespace Senseix.Message
 	public class Request : MonoBehaviour
 	{
 		//API URLS
-		//api-staging.Senseix.com
-        const string ENCRYPTED = "https://";
-		const string SERVER_URL = "api.thinksylearn.com/";
+        const string ENCRYPTED = "http://";
+		const string SERVER_URL = "192.168.1.21:3000/";
+		//const string SERVER_URL = "api-staging.thinksylearn.com/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/devices/";
