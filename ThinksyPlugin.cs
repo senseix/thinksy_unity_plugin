@@ -84,15 +84,18 @@ class ThinksyPlugin : MonoBehaviour
 			Senseix.SenseixSession.GetEncouragements();
 		}
 	}
-	
+
 	/// <summary>
-	/// Registers the device with the Senseix server, allows a temporary account to be created
-	/// and the Player to begin playing without logging in. Once an account is registered
-	/// or created the temporary account is transitioned into a permanent one.  
+	/// Resends all the server communication involved in initializing the game.
+	/// Primarily a debugging tool.
 	/// </summary>
-	public void ReregisterDevice()
+	public void Reinitialize()
 	{
-		StartCoroutine(Senseix.SenseixSession.RegisterDevice ());
+		//Debug.Log ("Reinitializing");
+		if (!offlineMode)
+		{
+			StartCoroutine(Senseix.SenseixSession.InitializeSenseix (gameAccessToken));
+		}
 	}
 	
 	/// <summary>

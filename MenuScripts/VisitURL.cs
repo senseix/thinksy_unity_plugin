@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class VisitURL : MonoBehaviour {
-
+public class VisitURL : MonoBehaviour 
+{
 	public bool visitEnrollDeviceURL;
 	public bool visitRegistrationURL;
 	public Senseix.GameVerificationCode codeSource;
@@ -13,7 +13,8 @@ public class VisitURL : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		//ResetURL();
 	}
 	
@@ -37,7 +38,8 @@ public class VisitURL : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 }

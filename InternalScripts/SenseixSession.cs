@@ -179,14 +179,19 @@ namespace Senseix
 		//this assumes that there is at least one Player always.
 		static public IEnumerator RegisterAllPlayers()
 		{
-			ArrayList Players = GetCurrentPlayerList ();
-			foreach (Message.Player.Player Player in Players)
+			ArrayList players = GetCurrentPlayerList ();
+			foreach (Message.Player.Player Player in players)
 			{
 				yield return GetSingletonInstance().StartCoroutine(RegisterPlayer(Player));
 			}
-			if (Players.Count > 0) SelectPlayer (Players [0] as Message.Player.Player);
-			else
+			if (players.Count <= 0)
+			{
 				UnityEngine.Debug.Log("There are no players.  Maybe never connected.");
+			}
+			else if (GetCurrentPlayer() == null)
+			{
+				SelectPlayer(players[0] as Message.Player.Player);
+			}
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)

@@ -20,9 +20,10 @@ namespace Senseix.Message
 	public class Request : MonoBehaviour
 	{
 		//API URLS
-        const string ENCRYPTED = "http://";
-		const string SERVER_URL = "192.168.1.21:3000/";
-		//const string SERVER_URL = "api-staging.thinksylearn.com/";
+        const string ENCRYPTED = "https://";
+		//const string SERVER_URL = "192.168.1.21:3000/";
+		//const string SERVER_URL = "api.thinksylearn.com/";
+		const string SERVER_URL = "api-staging.thinksylearn.com/";
 		const string API_VERSION = "v1";
 		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
 		const string PARENT_HDR = GENERIC_HDR + "/devices/";
@@ -248,7 +249,7 @@ namespace Senseix.Message
 
 			Player.PlayerListRequest listPlayer = new Player.PlayerListRequest();
 
-			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
+			//UnityEngine.Debug.Log ("list players");
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest (listPlayer, Response.ParseListPlayerResponse, LIST_PLAYER_URL, true));
 		}

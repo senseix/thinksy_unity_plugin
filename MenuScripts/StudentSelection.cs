@@ -19,10 +19,15 @@ namespace Senseix
 			SetFace ();
 		}
 		
-		// Update is called once per frame
-		void Update () 
+		public static void UpdateStudentSelection()
 		{
-		
+			StudentSelection[] allStudentSelections = FindObjectsOfType<StudentSelection> ();
+			foreach (StudentSelection studentSelection in allStudentSelections)
+			{
+				studentSelection.OnEnable();
+				studentSelection.SetName();
+				studentSelection.SetFace();
+			}
 		}
 
 		void OnEnable()
@@ -43,11 +48,12 @@ namespace Senseix
 
 		public void SetStudent(int studentIndex)
 		{
-			if (availablePlayers.Count == 0)
+			if (availablePlayers.Count <= 0)
 				return;
+
 			currentPlayerIndex = studentIndex % availablePlayers.Count;
 			if (currentPlayerIndex < 0)
-								currentPlayerIndex = availablePlayers.Count + currentPlayerIndex;
+				currentPlayerIndex = availablePlayers.Count + currentPlayerIndex;
 			SenseixSession.SelectPlayer (GetCurrentPlayer ());
 			SetName ();
 			SetFace ();
@@ -67,12 +73,12 @@ namespace Senseix
 
 		private void SetFace()
 		{
-			playerFace.texture = Resources.Load<Texture2D>(Senseix.SenseixSession.GetCurrentAvatarPath ());
+			//playerFace.texture = Resources.Load<Texture2D>(Senseix.SenseixSession.GetCurrentAvatarPath ());
+			AvatarFace.UpdateButtonFaces ();
 		}
 
 		public void PullAvailablePlayers()
 		{
-			StartCoroutine(SenseixSession.ListPlayers ());
 			availablePlayers = SenseixSession.GetCurrentPlayerList ();
 		}
 	}

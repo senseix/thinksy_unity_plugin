@@ -43,6 +43,7 @@ namespace Senseix.Message {
 			if (listPlayersResponse.player.Count == 0)
 				throw new Exception ("no players in player list");
 			SenseixSession.SetCurrentPlayerList(listPlayersResponse);
+			StudentSelection.UpdateStudentSelection ();
 
 			return true;
 		}
