@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using System.IO;
-namespace Senseix.Message {
+namespace Senseix.Message 
+{
 	public delegate bool ResponseHandlerDelegate(byte[] responseBytes);
 
 	static public class Response
 	{
-
 		static public bool ParseRegisterDeviceResponse(byte[] responseBytes)
 		{
 			Device.DeviceRegistrationResponse registerDeviceResponse = 

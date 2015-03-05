@@ -124,7 +124,7 @@ class ThinksyPlugin : MonoBehaviour
 		Senseix.Message.Problem.ProblemData protobufsProblemBuilder = Senseix.SenseixSession.PullProblem ();
 		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblemBuilder.Uuid);
 		mostRecentProblem = new Problem (protobufsProblemBuilder);
-		Senseix.QuestionDisplay.Update ();
+		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 		return mostRecentProblem;
 	}
 
@@ -311,5 +311,33 @@ class ThinksyPlugin : MonoBehaviour
 	public static bool UsesLeaderboard()
 	{
 		return singletonInstance.useLeaderboard;
+	}
+
+	/// <summary>
+	/// A category is a group of Thinksy questions which are formatted the same way.
+	/// 
+	/// This gets the name of the current category.  This string is mostly meaningless,
+	/// but can be compared with other strings and looked up on the Thinksy
+	/// website for information about the category.
+	/// 
+	/// This is the same as GetMostRecentProblem ().GetCategoryName ();
+	/// </summary>
+	/// <returns>The current category name.</returns>
+	public static string GetCurrentCategoryName()
+	{
+		return GetMostRecentProblem ().GetCategoryName ();
+	}
+
+	/// <summary>
+	/// A category is a group of Thinksy questions which are formatted the same way.
+	/// 
+	/// Gets the current category number.  Higher number means more advanced categories.
+	/// 
+	/// This is the same as GetMostRecentProblem().GetCategoryNumber ();
+	/// </summary>
+	/// <returns>The current category number.</returns>
+	public static uint GetCurrentCategoryNumber()
+	{
+		return GetMostRecentProblem().GetCategoryNumber ();
 	}
 }
