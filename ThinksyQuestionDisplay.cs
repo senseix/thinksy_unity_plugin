@@ -8,13 +8,12 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 	public UnityEngine.UI.Text promptText;
 	public UnityEngine.UI.Text answersSoFarText;
 	public AdvancementAnimationPlayer advacementAnimation;
-
-	private static ArrayList instances = new ArrayList();
+	
 	private static uint displayedCategoryNumber;
 
 	void Awake()
 	{
-		instances.Add(this);
+
 	}
 
 	void Start()
@@ -29,6 +28,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 
 	public static void DisplayCurrentQuestion()
 	{
+		ThinksyQuestionDisplay[] instances = FindObjectsOfType<ThinksyQuestionDisplay> ();
 		foreach (ThinksyQuestionDisplay questionDisplay in instances)
 		{
 			questionDisplay.InstanceDisplayCurrentQuestion ();
@@ -45,6 +45,11 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 		DisplayImage (problemToDisplay.GetQuestionImage ());
 		DisplayProblemText (problemToDisplay);
 
+		DisplayAdvancementFanfareIfNeeded (problemToDisplay);
+	}
+
+	private void DisplayAdvancementFanfareIfNeeded(Problem problemToDisplay)
+	{
 		//Debug.Log ("new: " + problemToDisplay.GetCategoryNumber () + " old: " + displayedCategoryNumber);
 		if (problemToDisplay.GetCategoryNumber() > displayedCategoryNumber)
 		{
@@ -63,7 +68,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 	{
 		foreach (ProblemPart part in questionToDisplay)
 		{
-			Debug.Log("found a problem part in question");
+			//Debug.Log("found a problem part in question");
 			if (part.IsString())
 				promptText.text = part.GetString();
 		}
