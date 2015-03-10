@@ -23,7 +23,9 @@ public class VisitURL : MonoBehaviour
 		string appendMe = "?ephemeral_token=" + codeSource.GetCode ();
 
 		if (visitEnrollDeviceURL)
-			targetURL = Senseix.Message.Request.ENROLL_GAME_URL + appendMe;
+		{
+			targetURL = Senseix.Message.Request.GetEnrollGameURL() + appendMe;
+		}
 		else if (visitRegistrationURL)
 			targetURL = Senseix.Message.Request.WEBSITE_URL + appendMe;
 		else

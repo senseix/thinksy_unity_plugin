@@ -20,6 +20,7 @@ namespace Senseix
 		private static IList<Message.Leaderboard.PlayerData> currentLeaderboard;
 		private static Message.Player.PlayerListResponse currentPlayerList;
 		private static Message.Player.Player currentPlayer;
+		private static string recruitmentEmail;
 
 		private static SenseixSession singletonInstance = null;
 
@@ -308,6 +309,16 @@ namespace Senseix
 				+ Environment.NewLine + debugText + Environment.NewLine;
 
 			yield return GetSingletonInstance().StartCoroutine(Message.Request.BugReport (GetDeviceID(), message));
+		}
+
+		public void SetRecruitmentEmail(String newRecruitmentEmail)
+		{
+			recruitmentEmail = newRecruitmentEmail;
+		}
+
+		public void SendRecruitmentRequest()
+		{
+			StartCoroutine (Message.Request.SendParentEmail (recruitmentEmail));
 		}
 	}
 }

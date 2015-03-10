@@ -24,19 +24,29 @@ class ThinksyPlugin : MonoBehaviour
 	private const int reconnectRetryInterval = 3000;
 	private const int encouragementGetInterval = 801;
 
+	static private ThinksyPlugin GetSingletonInstance()
+	{
+		if (singletonInstance == null)
+		{
+			throw new Exception("Please drag the Thinksy prefab located in " +
+				"thinsy_unity_plugin/prefabs into your object heierarchy");
+		}
+		return singletonInstance;
+	}
+
 	/// <summary>
 	/// Shows a window indicating that something horrible has happened.
 	/// Use this if something horrible happens.
 	/// </summary>
 	static public void ShowEmergencyWindow(string additionalMessage)
 	{
-		singletonInstance.StartCoroutine(Senseix.SenseixSession.SubmitBugReport ("Emergency window being displayed: " + additionalMessage));
-		singletonInstance.ShowThisEmergencyWindow (additionalMessage);
+		GetSingletonInstance().StartCoroutine(Senseix.SenseixSession.SubmitBugReport ("Emergency window being displayed: " + additionalMessage));
+		GetSingletonInstance().ShowThisEmergencyWindow (additionalMessage);
 	}
 
 	static public bool IsInOfflineMode()
 	{
-		return singletonInstance.offlineMode;
+		return GetSingletonInstance().offlineMode;
 	}
 
 	private void ShowThisEmergencyWindow(string additionalMessage)
@@ -85,6 +95,11 @@ class ThinksyPlugin : MonoBehaviour
 		}
 	}
 
+	public static void StaticReinitialize()
+	{
+		GetSingletonInstance().Reinitialize ();
+	}
+
 	/// <summary>
 	/// Resends all the server communication involved in initializing the game.
 	/// Primarily a debugging tool.
@@ -107,7 +122,7 @@ class ThinksyPlugin : MonoBehaviour
 	{
 		if (IsInOfflineMode ())
 			Debug.LogWarning ("We are currently in offline mode.");
-		singletonInstance.StartCoroutine(Senseix.SenseixSession.UpdateCurrentPlayerScore (score));
+		GetSingletonInstance().StartCoroutine(Senseix.SenseixSession.UpdateCurrentPlayerScore (score));
 	}
 	
 	/// <summary>
@@ -121,9 +136,9 @@ class ThinksyPlugin : MonoBehaviour
 		{
 			SubmitMostRecentProblemAnswer();
 		}
-		Senseix.Message.Problem.ProblemData protobufsProblemBuilder = Senseix.SenseixSession.PullProblem ();
-		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblemBuilder.Uuid);
-		mostRecentProblem = new Problem (protobufsProblemBuilder);
+		Senseix.Message.Problem.ProblemData protobufsProblem = Senseix.SenseixSession.PullProblem ();
+		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
+		mostRecentProblem = new Problem (protobufsProblem);
 		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 		return mostRecentProblem;
 	}
@@ -310,7 +325,7 @@ class ThinksyPlugin : MonoBehaviour
 
 	public static bool UsesLeaderboard()
 	{
-		return singletonInstance.useLeaderboard;
+		return GetSingletonInstance().useLeaderboard;
 	}
 
 	/// <summary>
@@ -339,5 +354,10 @@ class ThinksyPlugin : MonoBehaviour
 	public static uint GetCurrentCategoryNumber()
 	{
 		return GetMostRecentProblem().GetCategoryNumber ();
+	}
+
+	public static void SetAccessToken(string newAccessToken)
+	{
+		GetSingletonInstance().gameAccessToken = newAccessToken;
 	}
 }

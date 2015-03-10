@@ -7,13 +7,6 @@ namespace Senseix
 	{
 		public UnityEngine.UI.RawImage overrideButtonFace;
 
-		private Texture defaultAvatarImage;
-
-		void Awake()
-		{
-			defaultAvatarImage = overrideButtonFace.texture;
-		}
-
 		void OnEnable()
 		{
 			InstanceUpdateButtonFace ();
@@ -30,10 +23,7 @@ namespace Senseix
 
 		private	void InstanceUpdateButtonFace()
 		{
-			if (!SenseixSession.IsSignedIn())
-			{
-				overrideButtonFace.texture = defaultAvatarImage;
-			}
+
 			string avatarPath = Senseix.SenseixSession.GetCurrentAvatarPath ();
 			//Debug.Log (avatarPath);
 			if (avatarPath != "")
