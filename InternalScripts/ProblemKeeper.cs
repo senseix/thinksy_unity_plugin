@@ -174,13 +174,6 @@ namespace Senseix
 			newProblems.Enqueue (problem);
 		}
 
-		static public void PushServerProblems () 
-		{ 
-			//Debug.Log ("PUSH SERVER PROBLEMS");
-			Message.Request.GetSingletonInstance().StartCoroutine(
-				Message.Request.PostProblems (SenseixSession.GetCurrentPlayerID(), answeredProblems));
-		}
-
 		static public Senseix.Message.Problem.ProblemData GetProblem()
 		{
 			CheckProblemPull ();

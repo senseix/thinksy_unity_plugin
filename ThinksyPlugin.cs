@@ -22,7 +22,7 @@ class ThinksyPlugin : MonoBehaviour
 	private static Problem mostRecentProblem;
 	
 	private const int reconnectRetryInterval = 3000;
-	private const int encouragementGetInterval = 801;
+	private const int encouragementGetInterval = 1401;
 
 	static private ThinksyPlugin GetSingletonInstance()
 	{
@@ -137,7 +137,7 @@ class ThinksyPlugin : MonoBehaviour
 			SubmitMostRecentProblemAnswer();
 		}
 		Senseix.Message.Problem.ProblemData protobufsProblem = Senseix.SenseixSession.PullProblem ();
-		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
+		Debug.Log ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
 		mostRecentProblem = new Problem (protobufsProblem);
 		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 		return mostRecentProblem;

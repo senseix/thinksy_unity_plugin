@@ -21,11 +21,6 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 	}
 
-	//~ThinksyQuestionDisplay()
-	//{
-	//	instances.Remove (this);
-	//}
-
 	public static void DisplayCurrentQuestion()
 	{
 		ThinksyQuestionDisplay[] instances = FindObjectsOfType<ThinksyQuestionDisplay> ();
@@ -35,16 +30,16 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 		}
 	}
 
-	public void InstanceDisplayCurrentQuestion()
+	private void InstanceDisplayCurrentQuestion()
 	{
 		DisplayProblem (ThinksyPlugin.GetMostRecentProblem());
 	}
 
-	public void DisplayProblem(Problem problemToDisplay)
+	private void DisplayProblem(Problem problemToDisplay)
 	{
 		DisplayImage (problemToDisplay.GetQuestionImage ());
 		DisplayProblemText (problemToDisplay);
-
+		//Debug.Log ("html: " + problemToDisplay.GetQuestionHTML ());
 		DisplayAdvancementFanfareIfNeeded (problemToDisplay);
 	}
 
@@ -58,7 +53,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 		displayedCategoryNumber = problemToDisplay.GetCategoryNumber ();
 	}
 
-	public void DisplayProblemText(Problem problemToDisplay)
+	private void DisplayProblemText(Problem problemToDisplay)
 	{
 		DisplayQuestionText (problemToDisplay.GetQuestion());
 		DisplayAnswersText (problemToDisplay.GetGivenAnswer());

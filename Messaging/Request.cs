@@ -322,7 +322,6 @@ namespace Senseix.Message
 
 			while (problems.Count > 0) {
 				Senseix.Message.Problem.ProblemPost addMeProblem = (Senseix.Message.Problem.ProblemPost)problems.Dequeue();
-				SetPlayerForProblemIfNeeded(ref addMeProblem);
 				postProblem.problem.Add (addMeProblem);
 			}
 
@@ -339,6 +338,12 @@ namespace Senseix.Message
 			else
 			{
 				//UnityEngine.Debug.Log ("Post Problems request going off to " + POST_PROBLEM_URL);
+				for (int i = 0; i < postProblem.problem.Count; i++)
+				{
+					Senseix.Message.Problem.ProblemPost problemPost = postProblem.problem[i];
+					SetPlayerForProblemIfNeeded(ref problemPost);
+					postProblem.problem[i] = problemPost;
+				}
 				yield return GetSingletonInstance().StartCoroutine(
 					CoroutinePostRequest (postProblem, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false));
 				//UnityEngine.Debug.Log("Post post");
@@ -475,7 +480,7 @@ namespace Senseix.Message
 			}
 			if (problemPostBuilder.player_id == "no current player")
 			{
-				//UnityEngine.Debug.LogWarning("I'm sending a problem to the server with no player ID.");
+				UnityEngine.Debug.LogWarning("I'm sending a problem to the server with no player ID.");
 			}
 		}
 
