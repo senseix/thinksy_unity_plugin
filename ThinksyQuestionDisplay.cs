@@ -55,6 +55,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 
 	private void DisplayProblemText(Problem problemToDisplay)
 	{
+		promptText.text = "";
 		DisplayQuestionText (problemToDisplay.GetQuestion());
 		DisplayAnswersText (problemToDisplay.GetGivenAnswer());
 	}
@@ -63,9 +64,11 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 	{
 		foreach (ProblemPart part in questionToDisplay)
 		{
-			//Debug.Log("found a problem part in question");
 			if (part.IsString())
-				promptText.text = part.GetString();
+			{
+				//Debug.Log(part.GetString());
+				promptText.text += part.GetString();
+			}
 		}
 	}
 

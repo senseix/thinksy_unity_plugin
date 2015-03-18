@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 
+//A problem part represents a small piece of data
+//used to construct questions and answers.
+
 public class ProblemPart
 {
 	Senseix.Message.Atom.Atom atom;
@@ -70,6 +73,20 @@ public class ProblemPart
 			return false;
 		}
 		return true;
+	}
+
+	/// <summary>
+	/// Determines whether this instance is multiple choice letter.
+	/// </summary>
+	/// <returns><c>true</c> if this instance is multiple choice letter; otherwise, <c>false</c>.</returns>
+	public bool IsMultipleChoiceLetter()
+	{
+		if (!IsString ())
+			return false;
+		return (GetString() == "A:" ||
+		        GetString() == "B:" ||
+		        GetString() == "C:" ||
+		        GetString() == "D:" );
 	}
 
 	private int UnsafeGetInteger()

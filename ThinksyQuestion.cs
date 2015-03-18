@@ -27,6 +27,7 @@ public class Question
 		string html64 = question.format.html;
 		byte[] htmlutf = System.Convert.FromBase64String (html64);
 		string html = ASCIIEncoding.ASCII.GetString (htmlutf);
+		Debug.Log (html.Length);
 		return html;
 	}
 	

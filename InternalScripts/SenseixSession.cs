@@ -14,8 +14,9 @@ namespace Senseix
 		private const int ACCESS_TOKEN_LENGTH = 64;
 
 		private static bool inSession = false;
-		private static volatile string accessToken = "";
 		private static bool isSignedIn = false;
+		private static bool isInitializing = false;
+		private static volatile string accessToken = "";
 		private static string authToken; 
 		private static IList<Message.Leaderboard.PlayerData> currentLeaderboard;
 		private static Message.Player.PlayerListResponse currentPlayerList;
@@ -138,6 +139,13 @@ namespace Senseix
 		{ 
 			//Debug.Log ("initializing");
 
+			if (isInitializing)
+			{
+				Logger.BasicLog("already initializing");
+				yield break;
+			}
+			isInitializing = true;
+
 			SetSessionState (true);
 
 			accessToken = newAccessToken; 
@@ -170,6 +178,7 @@ namespace Senseix
 				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), ProblemKeeper.PROBLEMS_PER_PULL));
 
 			ThinksyPlugin.GetMostRecentProblem();
+			isInitializing = false;
 		}
 
 		static public IEnumerator ListPlayers()

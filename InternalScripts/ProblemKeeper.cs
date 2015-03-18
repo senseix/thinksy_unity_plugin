@@ -217,21 +217,25 @@ namespace Senseix
 		{
 			bool correct = true;
 			//get correct answer IDs
-			Message.Problem.AnswerIdentifier correctIDListBuilder = new Message.Problem.AnswerIdentifier ();
+			Message.Problem.AnswerIdentifier correctIDList = new Message.Problem.AnswerIdentifier ();
 			foreach(Senseix.Message.Atom.Atom atom in answeredProblemData.answer.atom)
 			{
-				correctIDListBuilder.uuid.Add(atom.uuid);
+				correctIDList.uuid.Add(atom.uuid);
 			}
 
 			//bail out if we have the wrong number of answers
-			string[] answerIDStrings = answer.GetAnswerIDs ();
-			if (answerIDStrings.Length != correctIDListBuilder.uuid.Count)
+			List<string> answerIDStrings = new List<string>(answer.GetAnswerIDs ());
+			if (answerIDStrings.Count != correctIDList.uuid.Count)
 				return false;
-			
+
+			//sort the lists to eliminate order discrepencies
+			correctIDList.uuid.Sort ();
+			answerIDStrings.Sort ();
+
 			//check given answers against correct answers
-			for (int i = 0; i < answerIDStrings.Length; i++)
+			for (int i = 0; i < answerIDStrings.Count; i++)
 			{
-				correct = correct && (correctIDListBuilder.uuid[i] == (string)answerIDStrings[i]);
+				correct = correct && (correctIDList.uuid[i] == (string)answerIDStrings[i]);
 			}
 
 			return correct;
@@ -270,7 +274,7 @@ namespace Senseix
 		static public void DrainProblems()
 		{
 			int problemsDrained = 0;
-			while(newProblems.Count > 3)//don't give it a little wiggle room...
+			while(newProblems.Count > 0)//don't give it a little wiggle room...
 			{
 				newProblems.Dequeue();
 				problemsDrained++;

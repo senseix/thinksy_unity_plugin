@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 class ThinksyPlugin : MonoBehaviour
-{	
+{
 	public string gameAccessToken = null; 	
 								//this is your developer access token obtained from 
 								//the Senseix website.
@@ -32,6 +32,11 @@ class ThinksyPlugin : MonoBehaviour
 				"thinsy_unity_plugin/prefabs into your object heierarchy");
 		}
 		return singletonInstance;
+	}
+
+	void OnApplicationFocus(bool isFocused)
+	{
+		if (isFocused) StaticReinitialize ();
 	}
 
 	/// <summary>
@@ -137,7 +142,7 @@ class ThinksyPlugin : MonoBehaviour
 			SubmitMostRecentProblemAnswer();
 		}
 		Senseix.Message.Problem.ProblemData protobufsProblem = Senseix.SenseixSession.PullProblem ();
-		Debug.Log ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
+		Senseix.Logger.BasicLog ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
 		mostRecentProblem = new Problem (protobufsProblem);
 		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 		return mostRecentProblem;
