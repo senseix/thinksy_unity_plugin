@@ -130,4 +130,13 @@ public class ProblemPart
 		returnImage.LoadImage (imageBytes);
 		return returnImage;
 	}
+
+	/// <summary>
+	/// For an image atom, this returns the number of times the image should be repeated.
+	/// Useful only for image atoms.
+	/// </summary>
+	public int TimesRepeated()
+	{
+		return atom.repeated;
+	}
 }

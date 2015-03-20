@@ -15,6 +15,6 @@ public class AdvancementAnimationPlayer : MonoBehaviour {
 
 	public void PlayAnimation()
 	{
-		gameObject.particleSystem.Play ();
+		gameObject.GetComponent<ParticleSystem>().Play ();
 	}
 }

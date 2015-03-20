@@ -72,4 +72,21 @@ public class Question
 			throw new Exception("Question part index out of range");
 		}
 	}
+
+	public int GetQuestionPartCount()
+	{
+		return atomList.Count;
+	}
+
+	public int GetMultipleChoiceLetterCount()
+	{
+		int multipleChoiceCount = 0;
+		foreach (ProblemPart questionPart in this)
+		{
+			if (questionPart.IsMultipleChoiceLetter())
+				multipleChoiceCount++;
+		}
+		
+		return multipleChoiceCount;
+	}
 }

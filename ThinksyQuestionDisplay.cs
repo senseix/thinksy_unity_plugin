@@ -4,11 +4,10 @@ using System.Collections;
 
 public class ThinksyQuestionDisplay : MonoBehaviour 
 {
-	public UnityEngine.UI.RawImage promptDisplay;
-	public UnityEngine.UI.Text promptText;
-	public UnityEngine.UI.Text answersSoFarText;
+	public GameObject richTextArea;
 	public AdvancementAnimationPlayer advacementAnimation;
-	
+
+	private GameObject[] richTextAreas = new GameObject[0];
 	private static uint displayedCategoryNumber;
 
 	void Awake()
@@ -37,9 +36,8 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 
 	private void DisplayProblem(Problem problemToDisplay)
 	{
-		DisplayImage (problemToDisplay.GetQuestionImage ());
-		DisplayProblemText (problemToDisplay);
-		//Debug.Log ("html: " + problemToDisplay.GetQuestionHTML ());
+		ClearRichTextAreas ();
+		PopulateRichTextAreas (problemToDisplay);
 		DisplayAdvancementFanfareIfNeeded (problemToDisplay);
 	}
 
@@ -53,37 +51,71 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 		displayedCategoryNumber = problemToDisplay.GetCategoryNumber ();
 	}
 
-	private void DisplayProblemText(Problem problemToDisplay)
+	private void ClearRichTextAreas()
 	{
-		promptText.text = "";
-		DisplayQuestionText (problemToDisplay.GetQuestion());
-		DisplayAnswersText (problemToDisplay.GetGivenAnswer());
+		foreach(GameObject textArea in richTextAreas)
+		{
+			Destroy(textArea);
+		}
+		richTextAreas = new GameObject[0];
 	}
 
-	private void DisplayQuestionText(Question questionToDisplay)
+	private void PopulateRichTextAreas(Problem problemToDisplay)
 	{
-		foreach (ProblemPart part in questionToDisplay)
+		Question question = problemToDisplay.GetQuestion ();
+		int textAreaCount = question.GetQuestionPartCount ();
+
+		float ySpacePerArea = 1f / (float)(textAreaCount - question.GetMultipleChoiceLetterCount());
+
+		int row = 0;
+		bool previousAreaWasMultipleChoice = false;
+
+		if (textAreaCount == 0)
+			return;//throw new UnityException ("I got a problem with no question atoms.");
+
+		for (int i = 0; i < textAreaCount; i++)
 		{
-			if (part.IsString())
+			GameObject newArea = Instantiate(richTextArea) as GameObject;
+			ProblemPart problemPart = problemToDisplay.GetQuestion().GetQuestionPart(i);
+
+			if (newArea.GetComponent<RectTransform>() == null || newArea.GetComponent<Text>() == null)
+				throw new UnityException("richTextArea must have a rect transform and Text");
+
+			if (problemPart.IsString())
 			{
-				//Debug.Log(part.GetString());
-				promptText.text += part.GetString();
+				newArea.GetComponent<Text>().text += problemPart.GetString();
+			}
+
+			if (problemPart.IsImage())
+			{
+				//display repeated number of images.  write this.
+				newArea.GetComponent<Text>().text += problemPart.TimesRepeated(); //this is not it
+			}
+
+			float indentedX = 0f;
+			if (previousAreaWasMultipleChoice)
+				indentedX = 0.1f;
+
+			newArea.GetComponent<RectTransform>().SetParent(gameObject.transform);
+			newArea.GetComponent<RectTransform>().anchorMin = new Vector2(indentedX,
+			                                                             row * ySpacePerArea);
+			newArea.GetComponent<RectTransform>().anchorMax = new Vector2(1,
+			                                                             (row + 1) * ySpacePerArea);
+			newArea.GetComponent<RectTransform>().offsetMin = new Vector2(0f, 0f);
+			newArea.GetComponent<RectTransform>().offsetMax = new Vector2(0f, 0f);
+			newArea.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+
+			richTextAreas[i] = newArea;
+
+			if (!problemPart.IsMultipleChoiceLetter())
+			{
+				row++;
+				previousAreaWasMultipleChoice = false;
+			}
+			else
+			{
+				previousAreaWasMultipleChoice = true;
 			}
 		}
-	}
-
-	private void DisplayAnswersText (Answer answerToDisplay)
-	{
-		answersSoFarText.text = "";
-		foreach (ProblemPart part in answerToDisplay.GetAnswerParts())
-		{
-			answersSoFarText.text += " " + part.GetString();
-		}
-	}
-
-	private void DisplayImage(Texture2D imageToDisplay)
-	{
-		if (promptDisplay != null)
-			promptDisplay.texture = imageToDisplay;
 	}
 }
