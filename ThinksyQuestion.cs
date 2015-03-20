@@ -73,11 +73,23 @@ public class Question
 		}
 	}
 
+	/// <summary>
+	/// Gets the question part count.  You may want to know this
+	/// in order to calculate how much space to display each
+	/// question part in.
+	/// </summary>
+	/// <returns>The question part count.</returns>
 	public int GetQuestionPartCount()
 	{
 		return atomList.Count;
 	}
 
+	/// <summary>
+	/// Gets the number of problem parts which are multiple choice.
+	/// You may want to know this in order to calculate how much space
+	/// to give each problem part, single multiple choice letters hardly
+	/// take up space.
+	/// </summary>
 	public int GetMultipleChoiceLetterCount()
 	{
 		int multipleChoiceCount = 0;

@@ -20,6 +20,9 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 	}
 
+	/// <summary>
+	/// Displays ThinksyPlugin.GetMostRecentProblem() on ALL Question displays.
+	/// </summary>
 	public static void DisplayCurrentQuestion()
 	{
 		ThinksyQuestionDisplay[] instances = FindObjectsOfType<ThinksyQuestionDisplay> ();
@@ -34,7 +37,11 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 		DisplayProblem (ThinksyPlugin.GetMostRecentProblem());
 	}
 
-	private void DisplayProblem(Problem problemToDisplay)
+	/// <summary>
+	/// Displays the problem on this question display only.
+	/// </summary>
+	/// <param name="problemToDisplay">Problem to display.</param>
+	public void DisplayProblem(Problem problemToDisplay)
 	{
 		ClearRichTextAreas ();
 		PopulateRichTextAreas (problemToDisplay);
