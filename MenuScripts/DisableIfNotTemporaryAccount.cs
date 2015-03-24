@@ -3,20 +3,25 @@ using System.Collections;
 
 public class DisableIfNotTemporaryAccount : MonoBehaviour {
 
+	private string originalText = "";
+
 	void OnEnable()
 	{
 		if (Senseix.SenseixSession.IsSignedIn ())
 		{
 			GetComponent<UnityEngine.UI.Button>().interactable = false;
-			UnityEngine.UI.Text text = GetComponentInChildren<UnityEngine.UI.Text>();
-			if (text.text[text.text.Length-1] != '✓')
-				text.text += "✓";
+			UnityEngine.UI.Text buttonPrompt = GetComponentInChildren<UnityEngine.UI.Text>();
+			if (buttonPrompt.text[buttonPrompt.text.Length-1] != '>')
+			{
+				originalText = buttonPrompt.text;
+				buttonPrompt.text += "<color=green>✓</color>";
+			}
 		}
 		else
 		{
 			GetComponent<UnityEngine.UI.Button>().interactable = true;
-			UnityEngine.UI.Text text = GetComponentInChildren<UnityEngine.UI.Text>();
-			text.text = text.text.Trim('✓');
+			UnityEngine.UI.Text buttonPrompt = GetComponentInChildren<UnityEngine.UI.Text>();
+			if (originalText != "") buttonPrompt.text = originalText;
 		}
 	}
 

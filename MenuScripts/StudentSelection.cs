@@ -8,7 +8,6 @@ namespace Senseix
 	{
 
 		public Text playerNameText;
-		public RawImage playerFace;
 
 		private ArrayList availablePlayers;
 		private int currentPlayerIndex = 0;
@@ -73,7 +72,6 @@ namespace Senseix
 
 		private void SetFace()
 		{
-			//playerFace.texture = Resources.Load<Texture2D>(Senseix.SenseixSession.GetCurrentAvatarPath ());
 			AvatarFace.UpdateButtonFaces ();
 		}
 

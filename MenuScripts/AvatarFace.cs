@@ -5,7 +5,7 @@ namespace Senseix
 {
 	public class AvatarFace : MonoBehaviour 
 	{
-		public UnityEngine.UI.RawImage overrideButtonFace;
+		public UnityEngine.UI.Image overrideButtonFace;
 
 		void OnEnable()
 		{
@@ -25,10 +25,9 @@ namespace Senseix
 		{
 
 			string avatarPath = Senseix.SenseixSession.GetCurrentAvatarPath ();
-			//Debug.Log (avatarPath);
 			if (avatarPath != "")
 			{
-				overrideButtonFace.texture = Resources.Load<Texture2D>(avatarPath);
+				ReplaceAvatar(avatarPath);
 			}
 		}
 
@@ -37,13 +36,24 @@ namespace Senseix
 			string avatarPath = Senseix.SenseixSession.GetCurrentAvatarPath ();
 			if (avatarPath != "")
 			{
-				overrideButtonFace.texture = Resources.Load<Texture2D>(avatarPath+"_o");
+				ReplaceAvatar(avatarPath+"_o");
 			}
 		}
 
 		public void MouseExit()
 		{
 			InstanceUpdateButtonFace ();
+		}
+
+		private void ReplaceAvatar(string avatarPath)
+		{
+			Debug.Log (avatarPath);
+			Texture2D newImage = Resources.Load<Texture2D> (avatarPath);
+			Debug.Log (newImage == null);
+			Sprite newSprite = Sprite.Create(newImage, 
+			                                 new Rect(0f, 0f, newImage.width, newImage.height),
+			                                 new Vector2(0.5f, 0.5f));
+			overrideButtonFace.sprite = newSprite;
 		}
 	}
 }
