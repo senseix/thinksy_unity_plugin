@@ -47,9 +47,9 @@ namespace Senseix
 
 		private void ReplaceAvatar(string avatarPath)
 		{
-			Debug.Log (avatarPath);
+			//Debug.Log (avatarPath);
 			Texture2D newImage = Resources.Load<Texture2D> (avatarPath);
-			Debug.Log (newImage == null);
+			//Debug.Log (newImage == null);
 			Sprite newSprite = Sprite.Create(newImage, 
 			                                 new Rect(0f, 0f, newImage.width, newImage.height),
 			                                 new Vector2(0.5f, 0.5f));

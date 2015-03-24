@@ -82,11 +82,13 @@ public class ProblemPart
 	public bool IsMultipleChoiceLetter()
 	{
 		if (!IsString ())
+		{
 			return false;
-		return (GetString() == "A:" ||
-		        GetString() == "B:" ||
-		        GetString() == "C:" ||
-		        GetString() == "D:" );
+		}
+		return (GetString() == "A: " ||
+		        GetString() == "B: " ||
+		        GetString() == "C: " ||
+		        GetString() == "D: " );
 	}
 
 	private int UnsafeGetInteger()
@@ -137,6 +139,9 @@ public class ProblemPart
 	/// </summary>
 	public int TimesRepeated()
 	{
+		//Debug.Log (atom.repeated);
+		if (atom.repeated == 0)
+			return 1;
 		return atom.repeated;
 	}
 }

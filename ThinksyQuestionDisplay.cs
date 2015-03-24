@@ -5,7 +5,9 @@ using System.Collections;
 public class ThinksyQuestionDisplay : MonoBehaviour 
 {
 	public GameObject richTextArea;
+	public GameObject imageArea;
 	public AdvancementAnimationPlayer advacementAnimation;
+	public float indentMultipleChoices = 0.2f;
 
 	private GameObject[] richTextAreas = new GameObject[0];
 	private static uint displayedCategoryNumber;
@@ -71,21 +73,25 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 	{
 		Question question = problemToDisplay.GetQuestion ();
 		int textAreaCount = question.GetQuestionPartCount ();
-
 		float ySpacePerArea = 1f / (float)(textAreaCount - question.GetMultipleChoiceLetterCount());
 
 		int row = 0;
 		bool previousAreaWasMultipleChoice = false;
 
 		if (textAreaCount == 0)
+		{
+			Debug.LogWarning("I got a problem with no question atoms.");
 			return;//throw new UnityException ("I got a problem with no question atoms.");
+		}
+		richTextAreas = new GameObject[textAreaCount];
 
 		for (int i = 0; i < textAreaCount; i++)
 		{
 			GameObject newArea = Instantiate(richTextArea) as GameObject;
 			ProblemPart problemPart = problemToDisplay.GetQuestion().GetQuestionPart(i);
 
-			if (newArea.GetComponent<RectTransform>() == null || newArea.GetComponent<Text>() == null)
+			if (newArea.GetComponent<RectTransform>() == null || 
+			    newArea.GetComponent<Text>() == null )
 				throw new UnityException("richTextArea must have a rect transform and Text");
 
 			if (problemPart.IsString())
@@ -93,24 +99,42 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 				newArea.GetComponent<Text>().text += problemPart.GetString();
 			}
 
-			if (problemPart.IsImage())
-			{
-				//display repeated number of images.  write this.
-				newArea.GetComponent<Text>().text += problemPart.TimesRepeated(); //this is not it
-			}
-
 			float indentedX = 0f;
 			if (previousAreaWasMultipleChoice)
-				indentedX = 0.1f;
+				indentedX = indentMultipleChoices;
 
 			newArea.GetComponent<RectTransform>().SetParent(gameObject.transform);
 			newArea.GetComponent<RectTransform>().anchorMin = new Vector2(indentedX,
-			                                                             row * ySpacePerArea);
+			                                                             1 - (row + 1) * ySpacePerArea);
 			newArea.GetComponent<RectTransform>().anchorMax = new Vector2(1,
-			                                                             (row + 1) * ySpacePerArea);
+			                                                              1 - row * ySpacePerArea);
 			newArea.GetComponent<RectTransform>().offsetMin = new Vector2(0f, 0f);
 			newArea.GetComponent<RectTransform>().offsetMax = new Vector2(0f, 0f);
 			newArea.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+
+			if (problemPart.IsImage())
+			{
+				float xSpacePerImage = 1/problemPart.TimesRepeated();
+				for (int j = 0; j < problemPart.TimesRepeated(); j++)
+				{
+					GameObject newImage = Instantiate(imageArea) as GameObject;
+					newImage.GetComponent<RectTransform>().SetParent(newArea.transform);
+					newImage.GetComponent<RectTransform>().anchorMin = new Vector2(j * xSpacePerImage,
+					                                                              0);
+					newImage.GetComponent<RectTransform>().anchorMax = new Vector2((j + 1) * xSpacePerImage,
+					                                                              1);
+					newImage.GetComponent<RectTransform>().offsetMin = new Vector2(0f, 0f);
+					newImage.GetComponent<RectTransform>().offsetMax = new Vector2(0f, 0f);
+					newImage.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+
+					Texture2D partImage = problemPart.GetImage();
+					//Debug.Log (newImage == null);
+					Sprite newSprite = Sprite.Create(partImage, 
+					                                 new Rect(0f, 0f, partImage.width, partImage.height),
+					                                 new Vector2(0.5f, 0.5f));
+					newImage.GetComponent<Image>().sprite = newSprite;
+				}
+			}
 
 			richTextAreas[i] = newArea;
 
