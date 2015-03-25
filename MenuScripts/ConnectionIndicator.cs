@@ -24,7 +24,7 @@ namespace Senseix
 		void Start () 
 		{
 			singletonInstance = this;
-			if (ThinksyPlugin.IsInOfflineMode())
+			if (ThinksyPlugin.IsInTestingMode())
 			{
 				warningText.text = "Offline mode";
 			}

@@ -133,13 +133,19 @@ public class ProblemPart
 		return returnImage;
 	}
 
+	public string GetImageFilename()
+	{
+		if (atom.filename == "")
+			return "dog";
+		return atom.filename;
+	}
+
 	/// <summary>
 	/// For an image atom, this returns the number of times the image should be repeated.
 	/// Useful only for image atoms.
 	/// </summary>
 	public int TimesRepeated()
 	{
-		//Debug.Log (atom.repeated);
 		if (atom.repeated == 0)
 			return 1;
 		return atom.repeated;

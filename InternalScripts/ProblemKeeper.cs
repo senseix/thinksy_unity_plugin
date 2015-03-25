@@ -281,5 +281,16 @@ namespace Senseix
 			}
 			Logger.BasicLog (problemsDrained + " problems drained.");
 		}
+
+		static public void DeleteAllSeeds()
+		{
+			string[] files = Directory.GetFiles (Application.persistentDataPath, "*" + SEED_FILE_EXTENSION);
+			
+			foreach (string filename in files)
+			{
+				string filepath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+				System.IO.File.Delete(filepath);
+			}
+		}
     }
 }

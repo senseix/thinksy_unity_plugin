@@ -8,7 +8,7 @@ class ThinksyPlugin : MonoBehaviour
 	public string gameAccessToken = null; 	
 								//this is your developer access token obtained from 
 								//the Senseix website.
-	public bool offlineMode = false;	
+	public bool testingMode = false;	
 								//check this box from the unity GUI to enable offline mode, 
 								//useful for testing or offline development
 	public bool useLeaderboard = false; 
@@ -49,9 +49,9 @@ class ThinksyPlugin : MonoBehaviour
 		GetSingletonInstance().ShowThisEmergencyWindow (additionalMessage);
 	}
 
-	static public bool IsInOfflineMode()
+	static public bool IsInTestingMode()
 	{
-		return GetSingletonInstance().offlineMode;
+		return GetSingletonInstance().testingMode;
 	}
 
 	private void ShowThisEmergencyWindow(string additionalMessage)
@@ -74,12 +74,16 @@ class ThinksyPlugin : MonoBehaviour
 
 		singletonInstance = this;
 
+		if (testingMode)
+		{
+			Senseix.ProblemKeeper.DeleteAllSeeds();
+		}
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
 
 		if (gameAccessToken == null || gameAccessToken == "")
 			throw new Exception ("Please enter a game access token.");
 
-		if (!offlineMode)
+		if (!testingMode)
 		{
 			StartCoroutine(Senseix.SenseixSession.InitializeSenseix (gameAccessToken));
 		}
@@ -88,7 +92,7 @@ class ThinksyPlugin : MonoBehaviour
 
 	void Update()
 	{
-		if (!offlineMode && !Senseix.SenseixSession.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
+		if (!testingMode && !Senseix.SenseixSession.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
 		{
 			Debug.Log ("Attempting to reconnect...");
 			StartCoroutine(Senseix.SenseixSession.InitializeSenseix(gameAccessToken));
@@ -112,7 +116,7 @@ class ThinksyPlugin : MonoBehaviour
 	public void Reinitialize()
 	{
 		//Debug.Log ("Reinitializing");
-		if (!offlineMode)
+		if (!testingMode)
 		{
 			StartCoroutine(Senseix.SenseixSession.InitializeSenseix (gameAccessToken));
 		}
@@ -125,7 +129,7 @@ class ThinksyPlugin : MonoBehaviour
 	/// </summary>
 	public static void UpdateCurrentPlayerScore (UInt32 score)
 	{
-		if (IsInOfflineMode ())
+		if (IsInTestingMode ())
 			Debug.LogWarning ("We are currently in offline mode.");
 		GetSingletonInstance().StartCoroutine(Senseix.SenseixSession.UpdateCurrentPlayerScore (score));
 	}
@@ -143,6 +147,7 @@ class ThinksyPlugin : MonoBehaviour
 		}
 		Senseix.Message.Problem.ProblemData protobufsProblem = Senseix.SenseixSession.PullProblem ();
 		Senseix.Logger.BasicLog ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
+		Debug.Log ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
 		mostRecentProblem = new Problem (protobufsProblem);
 		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 		return mostRecentProblem;

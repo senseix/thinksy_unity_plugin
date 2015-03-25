@@ -4,10 +4,12 @@ using System.Collections;
 
 public class ThinksyQuestionDisplay : MonoBehaviour 
 {
-	public GameObject richTextArea;
-	public GameObject imageArea;
-	public AdvancementAnimationPlayer advacementAnimation;
+	public GameObject questionText;
+	public GameObject questionImage;
+	public Transform questionParent;
+	[Range(0f, 1f)]
 	public float indentMultipleChoices = 0.2f;
+	public int imagesPerRow = 10;
 
 	private GameObject[] richTextAreas = new GameObject[0];
 	private static uint displayedCategoryNumber;
@@ -47,15 +49,15 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 	{
 		ClearRichTextAreas ();
 		PopulateRichTextAreas (problemToDisplay);
-		DisplayAdvancementFanfareIfNeeded (problemToDisplay);
+		InvokeCategoryAdvancementIfNeeded (problemToDisplay);
 	}
 
-	private void DisplayAdvancementFanfareIfNeeded(Problem problemToDisplay)
+	private void InvokeCategoryAdvancementIfNeeded(Problem problemToDisplay)
 	{
 		//Debug.Log ("new: " + problemToDisplay.GetCategoryNumber () + " old: " + displayedCategoryNumber);
 		if (problemToDisplay.GetCategoryNumber() > displayedCategoryNumber)
 		{
-			advacementAnimation.PlayAnimation();
+			ThinksyEvents.InvokeCategoryAdvancement();
 		}
 		displayedCategoryNumber = problemToDisplay.GetCategoryNumber ();
 	}
@@ -74,6 +76,9 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 		Question question = problemToDisplay.GetQuestion ();
 		int textAreaCount = question.GetQuestionPartCount ();
 		float ySpacePerArea = 1f / (float)(textAreaCount - question.GetMultipleChoiceLetterCount());
+		float xSpacePerImage = (float)1/Mathf.Clamp((float)question.GetMaximumQuestionPartRepeated(), 1, imagesPerRow);
+		float ySpacePerImage = (float)1 / Mathf.Ceil((float)question.GetMaximumQuestionPartRepeated() 
+		                                             / (float)imagesPerRow);
 
 		int row = 0;
 		bool previousAreaWasMultipleChoice = false;
@@ -87,7 +92,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 
 		for (int i = 0; i < textAreaCount; i++)
 		{
-			GameObject newArea = Instantiate(richTextArea) as GameObject;
+			GameObject newArea = Instantiate(questionText) as GameObject;
 			ProblemPart problemPart = problemToDisplay.GetQuestion().GetQuestionPart(i);
 
 			if (newArea.GetComponent<RectTransform>() == null || 
@@ -103,36 +108,31 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 			if (previousAreaWasMultipleChoice)
 				indentedX = indentMultipleChoices;
 
-			newArea.GetComponent<RectTransform>().SetParent(gameObject.transform);
-			newArea.GetComponent<RectTransform>().anchorMin = new Vector2(indentedX,
-			                                                             1 - (row + 1) * ySpacePerArea);
-			newArea.GetComponent<RectTransform>().anchorMax = new Vector2(1,
-			                                                              1 - row * ySpacePerArea);
-			newArea.GetComponent<RectTransform>().offsetMin = new Vector2(0f, 0f);
-			newArea.GetComponent<RectTransform>().offsetMax = new Vector2(0f, 0f);
-			newArea.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+			newArea.GetComponent<RectTransform>().SetParent(questionParent);
+			PositionRectTransform(newArea.GetComponent<RectTransform>(),
+			                      indentedX,
+			                      1 - (row + 1) * ySpacePerArea,
+			                      1,
+			                      1 - row * ySpacePerArea);
 
 			if (problemPart.IsImage())
 			{
-				float xSpacePerImage = 1/problemPart.TimesRepeated();
 				for (int j = 0; j < problemPart.TimesRepeated(); j++)
 				{
-					GameObject newImage = Instantiate(imageArea) as GameObject;
+					GameObject newImage = Instantiate(questionImage) as GameObject;
 					newImage.GetComponent<RectTransform>().SetParent(newArea.transform);
-					newImage.GetComponent<RectTransform>().anchorMin = new Vector2(j * xSpacePerImage,
-					                                                              0);
-					newImage.GetComponent<RectTransform>().anchorMax = new Vector2((j + 1) * xSpacePerImage,
-					                                                              1);
-					newImage.GetComponent<RectTransform>().offsetMin = new Vector2(0f, 0f);
-					newImage.GetComponent<RectTransform>().offsetMax = new Vector2(0f, 0f);
-					newImage.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+					int imageColumn = j % imagesPerRow;
+					int imageRow = Mathf.FloorToInt((float)j / (float)imagesPerRow);
+					PositionRectTransform(newImage.GetComponent<RectTransform>(),
+					                      (imageColumn * xSpacePerImage),
+					                      1 - (imageRow + 1) * ySpacePerImage,
+					                      ((imageColumn + 1) * xSpacePerImage),
+					                      1 - imageRow * ySpacePerImage);
 
-					Texture2D partImage = problemPart.GetImage();
-					//Debug.Log (newImage == null);
-					Sprite newSprite = Sprite.Create(partImage, 
-					                                 new Rect(0f, 0f, partImage.width, partImage.height),
-					                                 new Vector2(0.5f, 0.5f));
-					newImage.GetComponent<Image>().sprite = newSprite;
+					string filename = problemPart.GetImageFilename();
+					string filepath = System.IO.Path.Combine("countables/", filename);//problemPart.GetImageFilename());
+
+					newImage.GetComponent<Image>().sprite = Resources.Load<Sprite>(filepath);
 				}
 			}
 
@@ -148,5 +148,16 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 				previousAreaWasMultipleChoice = true;
 			}
 		}
+	}
+
+	private void PositionRectTransform(RectTransform positionMe, float minX, float minY, float maxX, float maxY)
+	{
+		positionMe.anchorMin = new Vector2(minX,
+		                                   minY);
+		positionMe.anchorMax = new Vector2(maxX,
+		                                   maxY);
+		positionMe.offsetMin = new Vector2(0f, 0f);
+		positionMe.offsetMax = new Vector2(0f, 0f);
+		positionMe.localScale = new Vector3(1f, 1f, 1f);
 	}
 }

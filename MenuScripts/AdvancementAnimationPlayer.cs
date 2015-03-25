@@ -3,14 +3,14 @@ using System.Collections;
 
 public class AdvancementAnimationPlayer : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	void OnEnable()
+	{
+		ThinksyEvents.OnAdvanceCategory += PlayAnimation;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void OnDisable()
+	{
+		ThinksyEvents.OnAdvanceCategory -= PlayAnimation;
 	}
 
 	public void PlayAnimation()
