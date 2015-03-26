@@ -147,7 +147,7 @@ class ThinksyPlugin : MonoBehaviour
 		}
 		Senseix.Message.Problem.ProblemData protobufsProblem = Senseix.SenseixSession.PullProblem ();
 		Senseix.Logger.BasicLog ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
-		Debug.Log ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
+		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
 		mostRecentProblem = new Problem (protobufsProblem);
 		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 		return mostRecentProblem;

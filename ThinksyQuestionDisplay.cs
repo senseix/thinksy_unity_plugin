@@ -7,8 +7,10 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 	public GameObject questionText;
 	public GameObject questionImage;
 	public Transform questionParent;
-	[Range(0f, 1f)]
-	public float indentMultipleChoices = 0.2f;
+	[Range(0f, 0.5f)]
+	public float indentMultipleChoices = 0.15f;
+	[Range(0f, 0.03f)]
+	public float spaceImageAreas = 0.01f;
 	public int imagesPerRow = 10;
 
 	private GameObject[] richTextAreas = new GameObject[0];
@@ -16,7 +18,8 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 
 	void Awake()
 	{
-
+		if (imagesPerRow <= 0)
+			Debug.LogWarning ("imagesPerRow should not be zero or negative");
 	}
 
 	void Start()
@@ -117,6 +120,11 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 
 			if (problemPart.IsImage())
 			{
+				//squish this a little bit to provide space between image groups
+				newArea.GetComponent<RectTransform>().anchorMin += new Vector2(0f, spaceImageAreas);
+				newArea.GetComponent<RectTransform>().anchorMax -= new Vector2(0f, spaceImageAreas);
+
+
 				for (int j = 0; j < problemPart.TimesRepeated(); j++)
 				{
 					GameObject newImage = Instantiate(questionImage) as GameObject;
