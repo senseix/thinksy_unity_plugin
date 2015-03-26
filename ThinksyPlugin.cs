@@ -304,6 +304,16 @@ class ThinksyPlugin : MonoBehaviour
 	{
 		return GetMostRecentProblem ().GetCorrectAnswer ();
 	}
+
+	/// <summary>
+	/// Sets the current given answer.  
+	/// The same as GetMostRecentProblem().SetGivenAnswer(givenAnswer)
+	/// </summary>
+	/// <param name="givenAnswer">Given answer.</param>
+	public static void SetCurrentGivenAnswer(Answer givenAnswer)
+	{
+		GetMostRecentProblem ().SetGivenAnswer (givenAnswer);
+	}
 	
 	/// <summary>
 	/// Gets the most recent problem HTML.
