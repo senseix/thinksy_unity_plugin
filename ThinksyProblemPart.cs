@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 
+//A problem part represents a small piece of data
+//used to construct questions and answers.
+
 public class ProblemPart
 {
 	Senseix.Message.Atom.Atom atom;
@@ -72,6 +75,22 @@ public class ProblemPart
 		return true;
 	}
 
+	/// <summary>
+	/// Determines whether this instance is multiple choice letter.
+	/// </summary>
+	/// <returns><c>true</c> if this instance is multiple choice letter; otherwise, <c>false</c>.</returns>
+	public bool IsMultipleChoiceLetter()
+	{
+		if (!IsString ())
+		{
+			return false;
+		}
+		return (GetString() == "A: " ||
+		        GetString() == "B: " ||
+		        GetString() == "C: " ||
+		        GetString() == "D: " );
+	}
+
 	private int UnsafeGetInteger()
 	{
 		return Convert.ToInt32(GetString());
@@ -112,5 +131,23 @@ public class ProblemPart
 		byte[] imageBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
 		returnImage.LoadImage (imageBytes);
 		return returnImage;
+	}
+
+	public string GetImageFilename()
+	{
+		if (atom.filename == "")
+			return "dog";
+		return atom.filename;
+	}
+
+	/// <summary>
+	/// For an image atom, this returns the number of times the image should be repeated.
+	/// Useful only for image atoms.
+	/// </summary>
+	public int TimesRepeated()
+	{
+		if (atom.repeated == 0)
+			return 1;
+		return atom.repeated;
 	}
 }

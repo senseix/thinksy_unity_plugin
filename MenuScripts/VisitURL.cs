@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class VisitURL : MonoBehaviour {
-
+public class VisitURL : MonoBehaviour 
+{
 	public bool visitEnrollDeviceURL;
 	public bool visitRegistrationURL;
 	public Senseix.GameVerificationCode codeSource;
@@ -13,7 +13,8 @@ public class VisitURL : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		//ResetURL();
 	}
 	
@@ -22,7 +23,9 @@ public class VisitURL : MonoBehaviour {
 		string appendMe = "?ephemeral_token=" + codeSource.GetCode ();
 
 		if (visitEnrollDeviceURL)
-			targetURL = Senseix.Message.Request.ENROLL_GAME_URL + appendMe;
+		{
+			targetURL = Senseix.Message.Request.GetEnrollGameURL() + appendMe;
+		}
 		else if (visitRegistrationURL)
 			targetURL = Senseix.Message.Request.WEBSITE_URL + appendMe;
 		else
@@ -37,7 +40,8 @@ public class VisitURL : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 }

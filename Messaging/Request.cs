@@ -20,50 +20,50 @@ namespace Senseix.Message
 	public class Request : MonoBehaviour
 	{
 		//API URLS
-		//api-staging.Senseix.com
-        const string ENCRYPTED = "https://";
-		const string SERVER_URL = "api.thinksylearn.com/";
-		const string API_VERSION = "v1";
-		const string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
-		const string PARENT_HDR = GENERIC_HDR + "/devices/";
-		const string PLAYER_HDR = GENERIC_HDR + "/players/";
-		const string PROBLEM_HDR = GENERIC_HDR + "/problems/";
-		const string LEADERBOARD_HDR = GENERIC_HDR + "/applications/leaderboard/";
-		const string DEBUG_HDR = GENERIC_HDR + "/debug/";
+		//static string ENCRYPTED = "http://";
+        static string ENCRYPTED = "https://";
+		//static string SERVER_URL = "192.168.1.4:3000/";
+		static string SERVER_URL = "api.thinksylearn.com/";
+		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
+		static string API_VERSION = "v1";
+		static string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
+		static string PARENT_HDR = GENERIC_HDR + "/devices/";
+		static string PLAYER_HDR = GENERIC_HDR + "/players/";
+		static string PROBLEM_HDR = GENERIC_HDR + "/problems/";
+		static string LEADERBOARD_HDR = GENERIC_HDR + "/applications/leaderboard/";
+		static string DEBUG_HDR = GENERIC_HDR + "/debug/";
+
+		//Requests related to Parent management 
+		static string REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
+		static string VERIFY_GAME_URL = PARENT_HDR + "game_verification";
+		static string SEND_PARENT_EMAIL_URL = PARENT_HDR + "send_parent_email";
+
+		//Requests related to Player management
+		static string LIST_PLAYER_URL = PLAYER_HDR + "list_players";
+		static string REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";
+		static string GET_ENCOURAGEMENT_URL = PLAYER_HDR + "get_encouragements";
+
+		//Requests related to Problems
+		static string GET_PROBLEM_URL = PROBLEM_HDR + "index";
+		static string POST_PROBLEM_URL = PROBLEM_HDR + "update";
+
+		//Requests related to Leaderboards
+		//static string GET_LEADERBOARD_PAGE_URL = LEADERBOARD_HDR + "page";
+		static string GET_PLAYER_RANK_URL = LEADERBOARD_HDR + "player";
+		static string UPDATE_PLAYER_SCORE_URL = LEADERBOARD_HDR + "update_player_score";
+
+		//Requests related to Debugging
+		static string DEBUG_LOG_SUBMIT_URL = DEBUG_HDR + "debug_log_submit";
 
 		//External urls
 		public const string WEBSITE_URL = "https://parent.thinksylearn.com/parents/sign_up";
 		public const string DEVICES_WEBSITE_HDR = WEBSITE_URL + "/devices/";
-		public const string ENROLL_GAME_URL = "https://parent.thinksylearn.com/devices/new";
-
-		//Requests related to Parent management 
-		const string REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
-		const string VERIFY_GAME_URL = PARENT_HDR + "game_verification";
-		const string REGISTER_PARENT_URL = PARENT_HDR + "register";
-		const string EDIT_PARENT_URL = PARENT_HDR + "edit";
-		const string SIGN_IN_PARENT_URL = PARENT_HDR + "sign_in";
-		const string SIGN_OUT_PARENT_URL = PARENT_HDR + "sign_out";
-		const string MERGE_PARENT_URL = PARENT_HDR + "merge";
-
-		//Requests related to Player management
-		const string CREATE_PLAYER_URL = PLAYER_HDR + "create";
-		const string LIST_PLAYER_URL = PLAYER_HDR + "list_players";
-		const string REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";
-		const string GET_ENCOURAGEMENT_URL = PLAYER_HDR + "get_encouragements";
-
-		//Requests related to Problems
-		const string GET_PROBLEM_URL = PROBLEM_HDR + "index";
-		const string POST_PROBLEM_URL = PROBLEM_HDR + "update";
-
-		//Requests related to Leaderboards
-		const string GET_LEADERBOARD_PAGE_URL = LEADERBOARD_HDR + "page";
-		const string GET_PLAYER_RANK_URL = LEADERBOARD_HDR + "player";
-		const string UPDATE_PLAYER_SCORE_URL = LEADERBOARD_HDR + "update_player_score";
-
-		//Requests related to Debugging
-		const string DEBUG_LOG_SUBMIT_URL = DEBUG_HDR + "debug_log_submit";
+		public const string ENROLL_GAME_URL = "https://parent.thinksylearn.com/devices/link_game";
+		public const string ENROLL_GAME_STAGING_URL = "https://parent-staging.thinksylearn.com/devices/link_game";
 
 		private static Request singletonInstance = null;
+		private static int secretStagingCounter = 1;
+		private static bool secretStagingMode = false;
 		
 		public static Request GetSingletonInstance()
 		{
@@ -215,7 +215,7 @@ namespace Senseix.Message
 			//UnityEngine.Debug.Log ("Device id:　" + SenseixSession.GetDeviceID ());				
 			newDevice.device_id =(SenseixSession.GetDeviceID());
 			
-			//UnityEngine.Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
+			Logger.BasicLog("register device going off to " + REGISTER_DEVICE_URL);
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest (newDevice, Response.ParseRegisterDeviceResponse, REGISTER_DEVICE_URL, false));
 		}
@@ -248,7 +248,7 @@ namespace Senseix.Message
 
 			Player.PlayerListRequest listPlayer = new Player.PlayerListRequest();
 
-			//Debug.Log ("register device going off to " + REGISTER_DEVICE_URL);
+			//UnityEngine.Debug.Log ("list players");
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest (listPlayer, Response.ParseListPlayerResponse, LIST_PLAYER_URL, true));
 		}
@@ -323,7 +323,6 @@ namespace Senseix.Message
 
 			while (problems.Count > 0) {
 				Senseix.Message.Problem.ProblemPost addMeProblem = (Senseix.Message.Problem.ProblemPost)problems.Dequeue();
-				SetPlayerForProblemIfNeeded(ref addMeProblem);
 				postProblem.problem.Add (addMeProblem);
 			}
 
@@ -340,6 +339,12 @@ namespace Senseix.Message
 			else
 			{
 				//UnityEngine.Debug.Log ("Post Problems request going off to " + POST_PROBLEM_URL);
+				for (int i = 0; i < postProblem.problem.Count; i++)
+				{
+					Senseix.Message.Problem.ProblemPost problemPost = postProblem.problem[i];
+					SetPlayerForProblemIfNeeded(ref problemPost);
+					postProblem.problem[i] = problemPost;
+				}
 				yield return GetSingletonInstance().StartCoroutine(
 					CoroutinePostRequest (postProblem, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false));
 				//UnityEngine.Debug.Log("Post post");
@@ -446,6 +451,17 @@ namespace Senseix.Message
 			}
 		}
 
+		static public IEnumerator SendParentEmail(string recruitmentEmail)
+		{
+			UnityEngine.Debug.Log ("Sending recruitment email to " + recruitmentEmail);
+
+			Device.SendParentEmailRequest sendEmail = new Device.SendParentEmailRequest ();
+			sendEmail.email = recruitmentEmail;
+
+			yield return GetSingletonInstance().StartCoroutine(
+				CoroutinePostRequest(sendEmail, Response.ParseSendParentEmailResponse, SEND_PARENT_EMAIL_URL, false));
+		}
+
 		static public IEnumerator BugReport(string deviceID, string report)
 		{
 			Debug.DebugLogSubmitRequest debugLogSubmit = new Debug.DebugLogSubmitRequest();
@@ -465,8 +481,73 @@ namespace Senseix.Message
 			}
 			if (problemPostBuilder.player_id == "no current player")
 			{
-				//UnityEngine.Debug.LogWarning("I'm sending a problem to the server with no player ID.");
+				UnityEngine.Debug.LogWarning("I'm sending a problem to the server with no player ID.");
 			}
+		}
+
+		public void SecretStagingSwap(int tapOrder)
+		{
+			if (tapOrder != secretStagingCounter)
+			{
+				secretStagingCounter = 1;
+			}
+			else
+			{
+				secretStagingCounter++;
+			}
+			UnityEngine.Debug.Log(secretStagingCounter);
+			if (secretStagingCounter != 5)
+				return;
+			secretStagingCounter = 1;
+			UnityEngine.Debug.Log ("Super secret staging strike!");
+			Handheld.Vibrate ();
+			SERVER_URL = STAGING_SERVER_URL;
+			//API URLS
+			GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
+			PARENT_HDR = GENERIC_HDR + "/devices/";
+			PLAYER_HDR = GENERIC_HDR + "/players/";
+			PROBLEM_HDR = GENERIC_HDR + "/problems/";
+			LEADERBOARD_HDR = GENERIC_HDR + "/applications/leaderboard/";
+			DEBUG_HDR = GENERIC_HDR + "/debug/";
+			
+			//Requests related to Parent management 
+			REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
+			VERIFY_GAME_URL = PARENT_HDR + "game_verification";
+			
+			//Requests related to Player management
+			LIST_PLAYER_URL = PLAYER_HDR + "list_players";
+			REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";
+			GET_ENCOURAGEMENT_URL = PLAYER_HDR + "get_encouragements";
+			
+			//Requests related to Problems
+			GET_PROBLEM_URL = PROBLEM_HDR + "index";
+			POST_PROBLEM_URL = PROBLEM_HDR + "update";
+			
+			//Requests related to Leaderboards
+			//GET_LEADERBOARD_PAGE_URL = LEADERBOARD_HDR + "page";
+			GET_PLAYER_RANK_URL = LEADERBOARD_HDR + "player";
+			UPDATE_PLAYER_SCORE_URL = LEADERBOARD_HDR + "update_player_score";
+			
+			//Requests related to Debugging
+			DEBUG_LOG_SUBMIT_URL = DEBUG_HDR + "debug_log_submit";
+
+			SenseixSession.SetAndSaveAuthToken ("");
+			SenseixSession.SetCurrentPlayerList (null);
+			ThinksyPlugin.SetAccessToken("95df4f0f98585ef3679e774878080b7d57e8bb0b5cf9190f866628a4dc497e73");
+			secretStagingMode = true;
+			ThinksyPlugin.StaticReinitialize ();
+		}
+
+		public static bool IsInSecretStagingMode()
+		{
+			return secretStagingMode;
+		}
+
+		public static string GetEnrollGameURL()
+		{
+			if (IsInSecretStagingMode ())
+								return ENROLL_GAME_STAGING_URL;
+			return ENROLL_GAME_URL;
 		}
 	}
 }

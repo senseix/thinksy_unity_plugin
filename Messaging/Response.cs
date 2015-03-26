@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using System.IO;
-namespace Senseix.Message {
+namespace Senseix.Message 
+{
 	public delegate bool ResponseHandlerDelegate(byte[] responseBytes);
 
 	static public class Response
 	{
-
 		static public bool ParseRegisterDeviceResponse(byte[] responseBytes)
 		{
 			Device.DeviceRegistrationResponse registerDeviceResponse = 
@@ -43,6 +43,7 @@ namespace Senseix.Message {
 			if (listPlayersResponse.player.Count == 0)
 				throw new Exception ("no players in player list");
 			SenseixSession.SetCurrentPlayerList(listPlayersResponse);
+			StudentSelection.UpdateStudentSelection ();
 
 			return true;
 		}
@@ -71,6 +72,7 @@ namespace Senseix.Message {
 			{
 				throw new Exception ("no problems in problem response.");
 			}
+
 
 			ProblemKeeper.ReplaceQueue(getProblemResponse);
 
@@ -148,12 +150,26 @@ namespace Senseix.Message {
 			Encouragement.EncouragementGetResponse getEncouragementResponse = 
 				Deserialize (responseBytes, typeof(Encouragement.EncouragementGetResponse)) as Encouragement.EncouragementGetResponse;
 			
-			Logger.BasicLog ("I got an encouragement get response with " + getEncouragementResponse.encouragementData.Count + " encouragements.");
+			Logger.BasicLog ("I got an encouragement get response with " + getEncouragementResponse.encouragement_data.Count + " encouragements.");
 
-			foreach (Encouragement.EncouragementData encouragementData in getEncouragementResponse.encouragementData)
+			foreach (Encouragement.EncouragementData encouragementData in getEncouragementResponse.encouragement_data)
 			{
 				EncouragementDisplay.DisplayEncouragement(encouragementData);
 			}
+
+			return true;
+		}
+
+		static public bool ParseSendParentEmailResponse(byte[] responseBytes)
+		{
+			Device.SendParentEmailResponse sendEmailResponse =
+				Deserialize (responseBytes, typeof(Device.SendParentEmailResponse)) as Device.SendParentEmailResponse;
+
+			if (sendEmailResponse == null)
+				throw new Exception ("Parsing the response failed (resulting in null)");
+			
+			SenseixSession.SetSessionState(true);
+			Logger.BasicLog("I got a response from a send parent email message");
 
 			return true;
 		}

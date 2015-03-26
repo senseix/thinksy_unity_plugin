@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 class ThinksyPlugin : MonoBehaviour
-{	
+{
 	public string gameAccessToken = null; 	
 								//this is your developer access token obtained from 
 								//the Senseix website.
-	public bool offlineMode = false;	
+	public bool testingMode = false;	
 								//check this box from the unity GUI to enable offline mode, 
 								//useful for testing or offline development
 	public bool useLeaderboard = false; 
@@ -22,7 +22,22 @@ class ThinksyPlugin : MonoBehaviour
 	private static Problem mostRecentProblem;
 	
 	private const int reconnectRetryInterval = 3000;
-	private const int encouragementGetInterval = 801;
+	private const int encouragementGetInterval = 1401;
+
+	static private ThinksyPlugin GetSingletonInstance()
+	{
+		if (singletonInstance == null)
+		{
+			throw new Exception("Please drag the Thinksy prefab located in " +
+				"thinsy_unity_plugin/prefabs into your object heierarchy");
+		}
+		return singletonInstance;
+	}
+
+	void OnApplicationFocus(bool isFocused)
+	{
+		if (isFocused) StaticReinitialize ();
+	}
 
 	/// <summary>
 	/// Shows a window indicating that something horrible has happened.
@@ -30,13 +45,13 @@ class ThinksyPlugin : MonoBehaviour
 	/// </summary>
 	static public void ShowEmergencyWindow(string additionalMessage)
 	{
-		singletonInstance.StartCoroutine(Senseix.SenseixSession.SubmitBugReport ("Emergency window being displayed: " + additionalMessage));
-		singletonInstance.ShowThisEmergencyWindow (additionalMessage);
+		GetSingletonInstance().StartCoroutine(Senseix.SenseixSession.SubmitBugReport ("Emergency window being displayed: " + additionalMessage));
+		GetSingletonInstance().ShowThisEmergencyWindow (additionalMessage);
 	}
 
-	static public bool IsInOfflineMode()
+	static public bool IsInTestingMode()
 	{
-		return singletonInstance.offlineMode;
+		return GetSingletonInstance().testingMode;
 	}
 
 	private void ShowThisEmergencyWindow(string additionalMessage)
@@ -59,12 +74,16 @@ class ThinksyPlugin : MonoBehaviour
 
 		singletonInstance = this;
 
+		if (testingMode)
+		{
+			Senseix.ProblemKeeper.DeleteAllSeeds();
+		}
 		Senseix.ProblemKeeper.CopyFailsafeOver ();
 
 		if (gameAccessToken == null || gameAccessToken == "")
 			throw new Exception ("Please enter a game access token.");
 
-		if (!offlineMode)
+		if (!testingMode)
 		{
 			StartCoroutine(Senseix.SenseixSession.InitializeSenseix (gameAccessToken));
 		}
@@ -73,7 +92,7 @@ class ThinksyPlugin : MonoBehaviour
 
 	void Update()
 	{
-		if (!offlineMode && !Senseix.SenseixSession.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
+		if (!testingMode && !Senseix.SenseixSession.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
 		{
 			Debug.Log ("Attempting to reconnect...");
 			StartCoroutine(Senseix.SenseixSession.InitializeSenseix(gameAccessToken));
@@ -84,15 +103,23 @@ class ThinksyPlugin : MonoBehaviour
 			Senseix.SenseixSession.GetEncouragements();
 		}
 	}
-	
-	/// <summary>
-	/// Registers the device with the Senseix server, allows a temporary account to be created
-	/// and the Player to begin playing without logging in. Once an account is registered
-	/// or created the temporary account is transitioned into a permanent one.  
-	/// </summary>
-	public void ReregisterDevice()
+
+	public static void StaticReinitialize()
 	{
-		StartCoroutine(Senseix.SenseixSession.RegisterDevice ());
+		GetSingletonInstance().Reinitialize ();
+	}
+
+	/// <summary>
+	/// Resends all the server communication involved in initializing the game.
+	/// Primarily a debugging tool.
+	/// </summary>
+	public void Reinitialize()
+	{
+		//Debug.Log ("Reinitializing");
+		if (!testingMode)
+		{
+			StartCoroutine(Senseix.SenseixSession.InitializeSenseix (gameAccessToken));
+		}
 	}
 	
 	/// <summary>
@@ -102,9 +129,9 @@ class ThinksyPlugin : MonoBehaviour
 	/// </summary>
 	public static void UpdateCurrentPlayerScore (UInt32 score)
 	{
-		if (IsInOfflineMode ())
+		if (IsInTestingMode ())
 			Debug.LogWarning ("We are currently in offline mode.");
-		singletonInstance.StartCoroutine(Senseix.SenseixSession.UpdateCurrentPlayerScore (score));
+		GetSingletonInstance().StartCoroutine(Senseix.SenseixSession.UpdateCurrentPlayerScore (score));
 	}
 	
 	/// <summary>
@@ -118,10 +145,11 @@ class ThinksyPlugin : MonoBehaviour
 		{
 			SubmitMostRecentProblemAnswer();
 		}
-		Senseix.Message.Problem.ProblemData protobufsProblemBuilder = Senseix.SenseixSession.PullProblem ();
-		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblemBuilder.Uuid);
-		mostRecentProblem = new Problem (protobufsProblemBuilder);
-		Senseix.QuestionDisplay.Update ();
+		Senseix.Message.Problem.ProblemData protobufsProblem = Senseix.SenseixSession.PullProblem ();
+		Senseix.Logger.BasicLog ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
+		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
+		mostRecentProblem = new Problem (protobufsProblem);
+		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 		return mostRecentProblem;
 	}
 
@@ -276,6 +304,16 @@ class ThinksyPlugin : MonoBehaviour
 	{
 		return GetMostRecentProblem ().GetCorrectAnswer ();
 	}
+
+	/// <summary>
+	/// Sets the current given answer.  
+	/// The same as GetMostRecentProblem().SetGivenAnswer(givenAnswer)
+	/// </summary>
+	/// <param name="givenAnswer">Given answer.</param>
+	public static void SetCurrentGivenAnswer(Answer givenAnswer)
+	{
+		GetMostRecentProblem ().SetGivenAnswer (givenAnswer);
+	}
 	
 	/// <summary>
 	/// Gets the most recent problem HTML.
@@ -307,6 +345,39 @@ class ThinksyPlugin : MonoBehaviour
 
 	public static bool UsesLeaderboard()
 	{
-		return singletonInstance.useLeaderboard;
+		return GetSingletonInstance().useLeaderboard;
+	}
+
+	/// <summary>
+	/// A category is a group of Thinksy questions which are formatted the same way.
+	/// 
+	/// This gets the name of the current category.  This string is mostly meaningless,
+	/// but can be compared with other strings and looked up on the Thinksy
+	/// website for information about the category.
+	/// 
+	/// This is the same as GetMostRecentProblem ().GetCategoryName ();
+	/// </summary>
+	/// <returns>The current category name.</returns>
+	public static string GetCurrentCategoryName()
+	{
+		return GetMostRecentProblem ().GetCategoryName ();
+	}
+
+	/// <summary>
+	/// A category is a group of Thinksy questions which are formatted the same way.
+	/// 
+	/// Gets the current category number.  Higher number means more advanced categories.
+	/// 
+	/// This is the same as GetMostRecentProblem().GetCategoryNumber ();
+	/// </summary>
+	/// <returns>The current category number.</returns>
+	public static uint GetCurrentCategoryNumber()
+	{
+		return GetMostRecentProblem().GetCategoryNumber ();
+	}
+
+	public static void SetAccessToken(string newAccessToken)
+	{
+		GetSingletonInstance().gameAccessToken = newAccessToken;
 	}
 }

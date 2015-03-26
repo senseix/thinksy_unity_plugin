@@ -24,7 +24,7 @@ namespace Senseix
 		void Start () 
 		{
 			singletonInstance = this;
-			if (ThinksyPlugin.IsInOfflineMode())
+			if (ThinksyPlugin.IsInTestingMode())
 			{
 				warningText.text = "Offline mode";
 			}
@@ -35,6 +35,7 @@ namespace Senseix
 			bool indicateOffline = !Senseix.SenseixSession.GetSessionState ();
 			//if (indicateOffline)
 			//	Debug.Log ("Showing offline indicator");
+			warningText.text = "Not connected";
 			warningBox.SetActive (indicateOffline);
 		}
 

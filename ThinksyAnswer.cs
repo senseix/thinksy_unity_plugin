@@ -33,7 +33,7 @@ public class Answer
 	public void AddAnswerPart(ProblemPart part)
 	{
 		answerParts.Add(part);
-		Senseix.QuestionDisplay.Update ();
+		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 	}
 	
 	/// <summary>
@@ -52,7 +52,7 @@ public class Answer
 	public void RemoveMostRecentAnswerPart()
 	{
 		answerParts.RemoveAt (answerParts.Count - 1);
-		Senseix.QuestionDisplay.Update ();
+		ThinksyQuestionDisplay.DisplayCurrentQuestion ();
 	}
 	
 	/// <summary>

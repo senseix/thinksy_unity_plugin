@@ -7,7 +7,7 @@ namespace Senseix
 	public class StudentSelection : MonoBehaviour 
 	{
 
-		public Text PlayerNameText;
+		public Text playerNameText;
 
 		private ArrayList availablePlayers;
 		private int currentPlayerIndex = 0;
@@ -15,13 +15,18 @@ namespace Senseix
 		// Use this for initialization
 		void Start () 
 		{
-		
+			SetFace ();
 		}
 		
-		// Update is called once per frame
-		void Update () 
+		public static void UpdateStudentSelection()
 		{
-		
+			StudentSelection[] allStudentSelections = FindObjectsOfType<StudentSelection> ();
+			foreach (StudentSelection studentSelection in allStudentSelections)
+			{
+				studentSelection.OnEnable();
+				studentSelection.SetName();
+				studentSelection.SetFace();
+			}
 		}
 
 		void OnEnable()
@@ -42,13 +47,15 @@ namespace Senseix
 
 		public void SetStudent(int studentIndex)
 		{
-			if (availablePlayers.Count == 0)
+			if (availablePlayers.Count <= 0)
 				return;
+
 			currentPlayerIndex = studentIndex % availablePlayers.Count;
 			if (currentPlayerIndex < 0)
-								currentPlayerIndex = availablePlayers.Count + currentPlayerIndex;
+				currentPlayerIndex = availablePlayers.Count + currentPlayerIndex;
 			SenseixSession.SelectPlayer (GetCurrentPlayer ());
 			SetName ();
+			SetFace ();
 		}
 
 		public Senseix.Message.Player.Player GetCurrentPlayer()
@@ -56,16 +63,20 @@ namespace Senseix
 			return availablePlayers [currentPlayerIndex] as Senseix.Message.Player.Player;
 		}
 
-		public void SetName()
+		private void SetName()
 		{
 			Message.Player.Player newPlayer = availablePlayers [currentPlayerIndex] as Message.Player.Player;
 			string newName = newPlayer.name;
-			PlayerNameText.text = newName;
+			playerNameText.text = newName;
+		}
+
+		private void SetFace()
+		{
+			AvatarFace.UpdateButtonFaces ();
 		}
 
 		public void PullAvailablePlayers()
 		{
-			StartCoroutine(SenseixSession.ListPlayers ());
 			availablePlayers = SenseixSession.GetCurrentPlayerList ();
 		}
 	}

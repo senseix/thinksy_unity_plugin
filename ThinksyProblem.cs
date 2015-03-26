@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Problem 
 {
-	private Senseix.Message.Problem.ProblemData protobufsProblemBuilder;
+	private Senseix.Message.Problem.ProblemData protobufsProblemData;
 	private Answer givenAnswer = new Answer();
 	private bool submitted = false;
 	private static uint problemsAnsweredCorrectly = 0;
@@ -25,11 +25,11 @@ public class Problem
 	/// </summary>
 	public Problem(Senseix.Message.Problem.ProblemData newProtobufsProblemBuilder)
 	{
-		protobufsProblemBuilder = newProtobufsProblemBuilder;
+		protobufsProblemData = newProtobufsProblemBuilder;
 	}
 	
-	~Problem()
-	{
+	//~Problem()
+	//{
 		//if (!submitted)
 		//{
 		//	Debug.Log("A problem which had never been submitted died.  That is sad. :( " +
@@ -37,7 +37,7 @@ public class Problem
 		//	          "using more than one problem at a time,\n and not submitting every " +
 		//	          "problem you use.  For best results, remember to use Problem.SubmitAnswer()");
 		//}
-	}
+	//}
 	
 	/// <summary>
 	/// Sets the given answer.  This will then be reflected in CheckAnswer().
@@ -53,7 +53,7 @@ public class Problem
 	/// </summary>
 	public Answer GetCorrectAnswer()
 	{
-		return new Answer(protobufsProblemBuilder.answer);
+		return new Answer(protobufsProblemData.answer);
 	}
 	
 	/// <summary>
@@ -80,7 +80,7 @@ public class Problem
 	/// <param name="howManyDistractors">How many random distractors to return.</param>
 	public ProblemPart[] GetDistractors(int howManyDistractors)
 	{
-		int availableDistractors = protobufsProblemBuilder.distractor.atom.Count;
+		int availableDistractors = protobufsProblemData.distractor.atom.Count;
 		if (availableDistractors < howManyDistractors)
 		{
 			throw new Exception("There aren't enough distractors!  There are only "
@@ -90,7 +90,7 @@ public class Problem
 		ArrayList allDistractors = new ArrayList();
 		for (int i = 0; i < availableDistractors; i++)
 		{
-			Senseix.Message.Atom.Atom distractorAtom = protobufsProblemBuilder.distractor.atom[i];
+			Senseix.Message.Atom.Atom distractorAtom = protobufsProblemData.distractor.atom[i];
 			ProblemPart distractor = new ProblemPart(distractorAtom);
 			allDistractors.Add(distractor);
 		} //find all the distractors
@@ -133,7 +133,7 @@ public class Problem
 	/// </summary>
 	public Question GetQuestion()
 	{
-		return new Question(protobufsProblemBuilder.question);
+		return new Question(protobufsProblemData.question);
 	}
 	
 	/// <summary>
@@ -159,7 +159,7 @@ public class Problem
 	/// </summary>
 	public bool CheckAnswer(Answer answer)
 	{
-		return Senseix.SenseixSession.CheckAnswer (protobufsProblemBuilder, answer);
+		return Senseix.SenseixSession.CheckAnswer (protobufsProblemData, answer);
 	}
 	
 	/// <summary>
@@ -169,8 +169,8 @@ public class Problem
 	/// <returns>Whether or not the answer is correct</returns>
 	public bool SubmitAnswer()
 	{
-		bool correct = Senseix.SenseixSession.CheckAnswer (protobufsProblemBuilder, GetGivenAnswer());
-		Senseix.SenseixSession.SubmitAnswer (protobufsProblemBuilder, GetGivenAnswer(), correct);
+		bool correct = Senseix.SenseixSession.CheckAnswer (protobufsProblemData, GetGivenAnswer());
+		Senseix.SenseixSession.SubmitAnswer (protobufsProblemData, GetGivenAnswer(), correct);
 		submitted = true;
 		if (correct)
 			problemsAnsweredCorrectly++;
@@ -221,6 +221,28 @@ public class Problem
 	public Texture2D GetQuestionImage()
 	{
 		return GetQuestion ().GetImage ();
+	}
+
+	/// <summary>
+	/// A category is a group of Thinksy questions which are formatted the same way.
+	/// 
+	/// Gets the name of the category.  This string is mostly meaningless,
+	/// but can be compared with other strings and looked up on the Thinksy
+	/// website for information about the category.
+	/// </summary>
+	/// <returns>The category name.</returns>
+	public string GetCategoryName()
+	{
+		return protobufsProblemData.category_name;
+	}
+
+	/// <summary>
+	/// Gets the category number.  Higher number means more advanced categories.
+	/// </summary>
+	/// <returns>The category number.</returns>
+	public uint GetCategoryNumber()
+	{
+		return protobufsProblemData.category_number;
 	}
 
 	public bool HasBeenSubmitted()

@@ -14,12 +14,14 @@ namespace Senseix
 		private const int ACCESS_TOKEN_LENGTH = 64;
 
 		private static bool inSession = false;
-		private static volatile string accessToken = "";
 		private static bool isSignedIn = false;
+		private static bool isInitializing = false;
+		private static volatile string accessToken = "";
 		private static string authToken; 
 		private static IList<Message.Leaderboard.PlayerData> currentLeaderboard;
 		private static Message.Player.PlayerListResponse currentPlayerList;
 		private static Message.Player.Player currentPlayer;
+		private static string recruitmentEmail;
 
 		private static SenseixSession singletonInstance = null;
 
@@ -37,7 +39,7 @@ namespace Senseix
 			ArrayList returnList = new ArrayList ();
 			if (currentPlayerList == null)
 			{
-				Debug.Log("No current Player list.  Maybe not connected.");
+				Debug.Log("No current player list.  Maybe not connected.");
 				return returnList;
 			}
 
@@ -61,13 +63,29 @@ namespace Senseix
 		static public void SelectPlayer(Senseix.Message.Player.Player selectedPlayer)
 		{
 			SetCurrentPlayer (selectedPlayer);
+			AvatarFace.UpdateButtonFaces ();
 			GetSingletonInstance().StartCoroutine(RegisterPlayer (selectedPlayer));
-			//ProblemKeeper.CreateSeedFileIfNeeded ();
 		}
 
 		static public Message.Player.Player GetCurrentPlayer()
 		{
 			return currentPlayer;
+		}
+
+		static public string GetCurrentAvatarPath()
+		{
+			string folderPath = "Avatars/";
+
+			if (GetCurrentPlayer () == null)
+				return "";
+
+			string fileName = GetCurrentPlayer().avatar_file_name;
+			//Debug.Log (fileName);
+
+			if (fileName == "")
+				return "";
+
+			return Path.Combine (folderPath, fileName);
 		}
 
 		static public bool GetSessionState()
@@ -116,21 +134,17 @@ namespace Senseix
 				return "no current player";
 			return currentPlayer.player_id;
 		}
-		static public void SetToPlayerWithID(string newPlayerID)
-		{
-			foreach(Message.Player.Player Player in GetCurrentPlayerList())
-			{
-				if (Player.player_id == newPlayerID)
-				{
-					SetCurrentPlayer(Player);
-				}
-			}
-		}
-
 
 		public static IEnumerator InitializeSenseix (string newAccessToken) 
 		{ 
 			//Debug.Log ("initializing");
+
+			if (isInitializing)
+			{
+				Logger.BasicLog("already initializing");
+				yield break;
+			}
+			isInitializing = true;
 
 			SetSessionState (true);
 
@@ -138,8 +152,9 @@ namespace Senseix
 			if (CheckAccessToken() == -1) 
 			{
 				throw new Exception("The Thinksy Token you have provided is not of a valid length, please" +
-					"register at https://developer.thinksylearn.com/ to create a valid key.  Then, fill " +
-					"in the Game Access Token field of the ThinksyPlugin script on the Thinksy Prefab.");
+					" register at https://developer.thinksylearn.com/ to create a valid key.  Then, fill " +
+					"in the Game Access Token field of the ThinksyPlugin script on the Thinksy Prefab." +
+					"  You can also test offline by checking the testing mode boolean on the Thinksy Prefab.");
 			}
 
 			//Creates a temporary account based on device id
@@ -164,6 +179,7 @@ namespace Senseix
 				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), ProblemKeeper.PROBLEMS_PER_PULL));
 
 			ThinksyPlugin.GetMostRecentProblem();
+			isInitializing = false;
 		}
 
 		static public IEnumerator ListPlayers()
@@ -174,14 +190,19 @@ namespace Senseix
 		//this assumes that there is at least one Player always.
 		static public IEnumerator RegisterAllPlayers()
 		{
-			ArrayList Players = GetCurrentPlayerList ();
-			foreach (Message.Player.Player Player in Players)
+			ArrayList players = GetCurrentPlayerList ();
+			foreach (Message.Player.Player Player in players)
 			{
 				yield return GetSingletonInstance().StartCoroutine(RegisterPlayer(Player));
 			}
-			if (Players.Count > 0) SetCurrentPlayer (Players [0] as Message.Player.Player);
-			else
+			if (players.Count <= 0)
+			{
 				UnityEngine.Debug.Log("There are no players.  Maybe never connected.");
+			}
+			else if (GetCurrentPlayer() == null)
+			{
+				SelectPlayer(players[0] as Message.Player.Player);
+			}
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)
@@ -298,6 +319,16 @@ namespace Senseix
 				+ Environment.NewLine + debugText + Environment.NewLine;
 
 			yield return GetSingletonInstance().StartCoroutine(Message.Request.BugReport (GetDeviceID(), message));
+		}
+
+		public void SetRecruitmentEmail(String newRecruitmentEmail)
+		{
+			recruitmentEmail = newRecruitmentEmail;
+		}
+
+		public void SendRecruitmentRequest()
+		{
+			StartCoroutine (Message.Request.SendParentEmail (recruitmentEmail));
 		}
 	}
 }

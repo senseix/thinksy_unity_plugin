@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class DisableLeaderboard : MonoBehaviour {
+namespace Senseix
+{
+	public class DisableLeaderboard : MonoBehaviour {
 
-	void OnEnable()
-	{
-		if (!ThinksyPlugin.UsesLeaderboard ())
-			gameObject.SetActive (false);
+		void OnEnable()
+		{
+			if (!ThinksyPlugin.UsesLeaderboard ())
+				gameObject.SetActive (false);
+		}
 	}
 }

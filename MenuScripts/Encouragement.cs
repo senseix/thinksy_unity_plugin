@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Encouragement : MonoBehaviour {
+namespace Senseix
+{
 
-	public abstract void Display(Senseix.Message.Encouragement.EncouragementData encouragementData);
+	public abstract class Encouragement : MonoBehaviour 
+	{
+		public abstract void Display(Senseix.Message.Encouragement.EncouragementData encouragementData);
+	}
+
 }
