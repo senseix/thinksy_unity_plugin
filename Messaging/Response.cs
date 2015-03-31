@@ -154,7 +154,12 @@ namespace Senseix.Message
 
 			foreach (Encouragement.EncouragementData encouragementData in getEncouragementResponse.encouragement_data)
 			{
-				EncouragementDisplay.DisplayEncouragement(encouragementData);
+				ProblemPart[] encouragementParts = new ProblemPart[encouragementData.encouragement_atoms.Count];
+				for (int i = 0; i < encouragementParts.Length; i++)
+				{
+					encouragementParts[i] = new ProblemPart(encouragementData.encouragement_atoms[i]);
+				}
+				ThinksyEvents.InvokeEncouragementReceived(encouragementParts);
 			}
 
 			return true;

@@ -5,18 +5,19 @@ namespace Senseix
 {
 	public class EncouragementDisplay : MonoBehaviour 
 	{
-		public Encouragement[] encouragementsByType;
-
-		static private EncouragementDisplay singletonInstance;
-
-		void Awake ()
+		void OnEnable()
 		{
-			singletonInstance = this;
+			ThinksyEvents.onEncouragementReceived += EncouragementReceived;
 		}
-		
-		public static void DisplayEncouragement(Senseix.Message.Encouragement.EncouragementData encouragementData)
+
+		void OnDisable()
 		{
-			singletonInstance.encouragementsByType [(int)encouragementData.type].Display (encouragementData);
+			ThinksyEvents.onEncouragementReceived -= EncouragementReceived;
+		}
+
+		private void EncouragementReceived(ProblemPart[] encouragmentParts)
+		{
+			Debug.Log ("I received an encouragement with " + encouragmentParts.Length + " parts");
 		}
 	}
 }

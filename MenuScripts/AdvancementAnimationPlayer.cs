@@ -1,16 +1,16 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class AdvancementAnimationPlayer : MonoBehaviour {
 
 	void OnEnable()
 	{
-		ThinksyEvents.OnAdvanceCategory += PlayAnimation;
+		ThinksyEvents.onAdvanceCategory += PlayAnimation;
 	}
 
 	void OnDisable()
 	{
-		ThinksyEvents.OnAdvanceCategory -= PlayAnimation;
+		ThinksyEvents.onAdvanceCategory -= PlayAnimation;
 	}
 
 	public void PlayAnimation()
