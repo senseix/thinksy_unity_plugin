@@ -137,7 +137,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 					                      ((imageColumn + 1) * xSpacePerImage),
 					                      1 - imageRow * ySpacePerImage);
 
-					newImage.GetComponent<Image>().sprite = problemPart.GetSprite("Countables");
+					newImage.GetComponent<Image>().sprite = problemPart.GetSprite();
 				}
 			}
 

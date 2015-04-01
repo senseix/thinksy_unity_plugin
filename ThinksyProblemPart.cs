@@ -119,10 +119,7 @@ public class ProblemPart
 		return Encoding.ASCII.GetString (decodedBytes);
 	}
 	
-	/// <summary>
-	/// If this is represented by an image, this gets the image.
-	/// You probably want to check IsImage before calling this.
-	/// </summary>
+
 	//public Texture2D GetImage()
 	//{
 		//if (!IsImage())
@@ -134,29 +131,44 @@ public class ProblemPart
 	//}
 	//IMAGES ARE NOT BEING SENT FROM THE SERVER- TO SAVE BANDWIDTH
 
-	public string GetImageFilename()
+	private string GetImageFilename()
 	{
 		if (atom.filename == "")
 			return "dog";
 		return atom.filename;
 	}
 
-	public string GetImageFilepath(string folderName)
+	private string GetImageFilepath()
 	{
 		string filename = GetImageFilename();
-		string filepath = System.IO.Path.Combine(folderName + "/", filename);
+		string filepath = System.IO.Path.Combine("ProblemParts/", filename);
 		return filepath;
 	}
 
-	public Sprite GetSprite(string folderName)
+	/// <summary>
+	/// If this is represented by an image, this gets the
+	/// sprite which contains the image.  You should check
+	/// IsImage before calling this.
+	/// </summary>
+	public Sprite GetSprite()
 	{
-		Sprite sprite = Resources.Load<Sprite> (GetImageFilepath(folderName));
+		string filepath = GetImageFilepath ();
+		Sprite sprite = Resources.Load<Sprite> (filepath);
 		return sprite;
 	}
 
 	/// <summary>
-	/// For an image atom, this returns the number of times the image should be repeated.
-	/// Useful only for image atoms.
+	/// If this is represented by an image, this gets the image.
+	/// You probably want to check IsImage before calling this.
+	/// </summary>
+	public Texture2D GetImage()
+	{
+		return GetSprite ().texture;
+	}
+
+	/// <summary>
+	/// For an image problem part, this returns the number of times the image should be repeated.
+	/// Useful only for image problem part.
 	/// </summary>
 	public int TimesRepeated()
 	{
