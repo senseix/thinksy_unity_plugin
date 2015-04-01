@@ -123,21 +123,35 @@ public class ProblemPart
 	/// If this is represented by an image, this gets the image.
 	/// You probably want to check IsImage before calling this.
 	/// </summary>
-	public Texture2D GetImage()
-	{
-		if (!IsImage())
-			throw new Exception ("This QuestionPart is not an image.  Be sure to check IsImage before GetImage.");
-		Texture2D returnImage = new Texture2D(0, 0);
-		byte[] imageBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
-		returnImage.LoadImage (imageBytes);
-		return returnImage;
-	}
+	//public Texture2D GetImage()
+	//{
+		//if (!IsImage())
+			//throw new Exception ("This QuestionPart is not an image.  Be sure to check IsImage before GetImage.");
+		//Texture2D returnImage = new Texture2D(0, 0);
+		//byte[] imageBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
+		//returnImage.LoadImage (imageBytes);
+		//return returnImage;
+	//}
+	//IMAGES ARE NOT BEING SENT FROM THE SERVER- TO SAVE BANDWIDTH
 
 	public string GetImageFilename()
 	{
 		if (atom.filename == "")
 			return "dog";
 		return atom.filename;
+	}
+
+	public string GetImageFilepath(string folderName)
+	{
+		string filename = GetImageFilename();
+		string filepath = System.IO.Path.Combine(folderName + "/", filename);
+		return filepath;
+	}
+
+	public Sprite GetSprite(string folderName)
+	{
+		Sprite sprite = Resources.Load<Sprite> (GetImageFilepath(folderName));
+		return sprite;
 	}
 
 	/// <summary>
