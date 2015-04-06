@@ -13,17 +13,49 @@ public class ProblemPart
 	
 	/// <summary>
 	/// You can get problem parts from questions, answers, and distractors.
-	/// If you want to create them yourself, that is great!
-	/// Please e-mail SenseiX telling us about your game, and we can add
-	/// features that allow you to do what you are trying to do.
 	/// 
-	/// Including possibly the game-side creation of problem parts.
-	/// 
-	/// But you can't do that yet, unless you really know what you're doing.
+	/// You COULD also use the other ProblemPart constructors...!
+	/// ...New territory !
 	/// </summary>
 	public ProblemPart (Senseix.Message.Atom.Atom newAtom)
 	{
 		atom = newAtom;
+	}
+
+	/// <summary>
+	/// This will build a text ProblemPart.  Hot tip: numbers are actually text
+	/// ProblemParts.  If the text happens to be numbers, it will be treated
+	/// as such.
+	/// </summary>
+	public ProblemPart (string textContent)
+	{
+		Senseix.Message.Atom.Atom newAtom = new Senseix.Message.Atom.Atom ();
+
+		//forced my hand
+		newAtom.uuid = "Developer-side generated problem part";
+		newAtom.required = false;
+
+		//text
+		newAtom.type = Senseix.Message.Atom.Atom.Type.TEXT;
+		newAtom.data = Encoding.ASCII.GetBytes (textContent);
+	}
+
+	/// <summary>
+	/// This will build an image ProblemPart.  The filename references only
+	/// Sprites from resources.
+	/// </summary>
+	public ProblemPart (string filename, bool isPretty)
+	{
+		Senseix.Message.Atom.Atom newAtom = new Senseix.Message.Atom.Atom ();
+		
+		//forced my hand
+		newAtom.uuid = "Developer-side generated problem part";
+		newAtom.required = false;
+		newAtom.data = new byte[0];
+		
+		//text
+		newAtom.type = Senseix.Message.Atom.Atom.Type.IMAGE;
+		newAtom.filename = filename;
 	}
 	
 	/// <summary>
@@ -116,9 +148,9 @@ public class ProblemPart
 		if (!IsString())
 			throw new Exception ("This QuestionPart is not a string.  Be sure to check IsString before GetString.");
 		byte[] decodedBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
+		//Debug.Log ("Length of data byte string of text atom: " + decodedBytes.Length);
 		return Encoding.ASCII.GetString (decodedBytes);
 	}
-	
 
 	//public Texture2D GetImage()
 	//{
@@ -153,6 +185,7 @@ public class ProblemPart
 	public Sprite GetSprite()
 	{
 		string filepath = GetImageFilepath ();
+		Debug.Log (filepath);
 		Sprite sprite = Resources.Load<Sprite> (filepath);
 		return sprite;
 	}

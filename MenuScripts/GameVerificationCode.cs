@@ -10,7 +10,8 @@ namespace Senseix
 		public Text codeText;
 
 		// Use this for initialization
-		void Start () {
+		void Start () 
+		{
 			//ResetCode ();
 		}
 
@@ -21,12 +22,13 @@ namespace Senseix
 
 		public string GetCode()
 		{
-			ResetCode ();
+			//ResetCode ();
 			return codeText.text;
 		}
 
 		// Update is called once per frame
-		void Update () {
+		void Update () 
+		{
 			
 		}
 
