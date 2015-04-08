@@ -7,7 +7,7 @@ namespace Senseix
 	public class Logger : MonoBehaviour 
 	{
 		private const string logFileName = "SenseiXLog.txt";
-		private const int deleteThreshhold = 1000000;
+		private const int deleteThreshhold = 1000;
 
 		void Start()
 		{

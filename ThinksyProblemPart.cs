@@ -185,7 +185,7 @@ public class ProblemPart
 	public Sprite GetSprite()
 	{
 		string filepath = GetImageFilepath ();
-		Debug.Log (filepath);
+		//Debug.Log (filepath);
 		Sprite sprite = Resources.Load<Sprite> (filepath);
 		return sprite;
 	}

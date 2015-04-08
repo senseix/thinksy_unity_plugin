@@ -42,6 +42,7 @@ namespace Senseix.Message
 		static string LIST_PLAYER_URL = PLAYER_HDR + "list_players";
 		static string REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";
 		static string GET_ENCOURAGEMENT_URL = PLAYER_HDR + "get_encouragements";
+		static string LIST_ITEMS_URL = PLAYER_HDR + "list_items";
 
 		//Requests related to Problems
 		static string GET_PROBLEM_URL = PROBLEM_HDR + "index";
@@ -344,6 +345,7 @@ namespace Senseix.Message
 					Senseix.Message.Problem.ProblemPost problemPost = postProblem.problem[i];
 					SetPlayerForProblemIfNeeded(ref problemPost);
 					postProblem.problem[i] = problemPost;
+					//UnityEngine.Debug.Log(postProblem.problem[0].correct);
 				}
 				yield return GetSingletonInstance().StartCoroutine(
 					CoroutinePostRequest (postProblem, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false));
@@ -397,6 +399,8 @@ namespace Senseix.Message
 			lbScore.player_id = (playerId);
 			lbScore.player_score = (score);
 
+			//UnityEngine.Debug.Log ("update player score");
+
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest(lbScore, Response.ParsePlayerScoreResponse, UPDATE_PLAYER_SCORE_URL, false));
 
@@ -417,6 +421,8 @@ namespace Senseix.Message
 			rank.page_size =(pageSize);
 			rank.player_id = (SenseixSession.GetCurrentPlayerID());
 			rank.sort_by = (sortBy);
+
+			//UnityEngine.Debug.Log ("get player rank");
 
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest(rank, Response.ParsePlayerRankResponse, GET_PLAYER_RANK_URL, false));
