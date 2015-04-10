@@ -22,7 +22,7 @@ namespace Senseix.Message
 		//API URLS
 		//static string ENCRYPTED = "http://";
         static string ENCRYPTED = "https://";
-		//static string SERVER_URL = "192.168.1.4:3000/";
+		//static string SERVER_URL = "192.168.1.4:4000/";
 		static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
@@ -154,7 +154,7 @@ namespace Senseix.Message
 			}
 			else
 			{
-				UnityEngine.Debug.LogWarning ("A SenseiX message had an error.  " + 
+				UnityEngine.Debug.LogWarning ("A SenseiX message (Handler: " + resultHandler.Method.Name + ") had an error.  " + 
 				                  "Most likely internet connectivity issues.");
 				SenseixSession.SetSessionState (false);
 			}
@@ -404,6 +404,17 @@ namespace Senseix.Message
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest(lbScore, Response.ParsePlayerScoreResponse, UPDATE_PLAYER_SCORE_URL, false));
 
+		}
+
+		static public IEnumerator ListPlayerItems(string playerId)
+		{
+			
+			Player.ListPlayerItemsRequest listItemsRequest = new Player.ListPlayerItemsRequest ();
+
+			listItemsRequest.player_id = playerId;
+			
+			yield return GetSingletonInstance().StartCoroutine(
+				CoroutinePostRequest(listItemsRequest, Response.ParseListItemsResponse, LIST_ITEMS_URL, false));
 		}
 
 		/// <summary>

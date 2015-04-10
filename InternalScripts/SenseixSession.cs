@@ -330,5 +330,11 @@ namespace Senseix
 		{
 			StartCoroutine (Message.Request.SendParentEmail (recruitmentEmail));
 		}
+
+		public static void ListCurrentPlayerItems()
+		{
+			Message.Request.GetSingletonInstance().StartCoroutine (
+				Message.Request.ListPlayerItems(GetCurrentPlayerID()));
+		}
 	}
 }

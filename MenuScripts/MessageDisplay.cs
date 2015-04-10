@@ -3,26 +3,22 @@ using System.Collections;
 
 public class MessageDisplay : MonoBehaviour
 {
-
+	
 	public float scrollSpeed = 10f;
-	public float width = 700f;
 	
 	public bool displayImmediately = true; // uncheck this to manually controll when encouragements are displayed
-
+	
 	private float startOffset;
 	private bool showingOff = false;
 	private Queue messagesToShowOff = new Queue ();
-
-	void Start()
-	{
-		startOffset = gameObject.GetComponent<RectTransform> ().offsetMin.x;
-	}
-
+	
 	void OnEnable()
 	{
 		ThinksyEvents.onEncouragementReceived += EnqueueMessages;
+		gameObject.GetComponent<RectTransform> ().offsetMin = new Vector2(Screen.width, 0f);
+		startOffset = gameObject.GetComponent<RectTransform> ().offsetMin.x;
 	}
-
+	
 	void Update()
 	{
 		if (displayImmediately)
@@ -35,7 +31,7 @@ public class MessageDisplay : MonoBehaviour
 	{
 		ThinksyEvents.onEncouragementReceived -= EnqueueMessages;
 	}
-
+	
 	private void EnqueueMessages(ProblemPart[] possibleMessages)
 	{
 		Debug.Log ("I received " + possibleMessages.Length + " possible messages.");
@@ -48,11 +44,12 @@ public class MessageDisplay : MonoBehaviour
 		}
 		Debug.Log ("Queue length now " + CountMessagesWaiting ().ToString ());
 	}
-
+	
 	private IEnumerator DoScroll()
 	{
 		showingOff = true;
 		RectTransform rectTransform = gameObject.GetComponent<RectTransform> ();
+		float width = Screen.width;
 		rectTransform.offsetMin = new Vector2 (startOffset, 0);
 		rectTransform.offsetMax = new Vector2 (startOffset + width, 0);
 		while (rectTransform.offsetMax.x > -startOffset)
@@ -65,7 +62,7 @@ public class MessageDisplay : MonoBehaviour
 		}
 		showingOff = false;
 	}
-
+	
 	public void DisplayNextEmoticon()
 	{
 		if (messagesToShowOff.Count == 0 || showingOff)

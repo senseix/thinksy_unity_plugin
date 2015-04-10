@@ -165,6 +165,28 @@ namespace Senseix.Message
 			return true;
 		}
 
+		static public bool ParseListItemsResponse(byte[] responseBytes)
+		{
+			Player.ListPlayerItemsResponse listItemsResponse = 
+				Deserialize (responseBytes, typeof(Player.ListPlayerItemsResponse)) as Player.ListPlayerItemsResponse;
+			
+			Logger.BasicLog ("I got an items list response with " + listItemsResponse.item_atoms.Count + " items");
+			foreach(Message.Atom.Atom atom in listItemsResponse.item_atoms)
+			{
+				UnityEngine.Debug.Log(atom.filename);
+			}
+
+			ProblemPart[] items = new ProblemPart[listItemsResponse.item_atoms.Count];
+			for (int i = 0; i < listItemsResponse.item_atoms.Count; i++)
+			{
+				items[i] = new ProblemPart(listItemsResponse.item_atoms[i]);
+			}
+
+			ItemsDisplay.SetItemsToDisplay (items);
+
+			return true;
+		}
+
 		static public bool ParseSendParentEmailResponse(byte[] responseBytes)
 		{
 			Device.SendParentEmailResponse sendEmailResponse =
@@ -185,7 +207,7 @@ namespace Senseix.Message
 			{
 				Debug.ServerErrorResponse serverErrorResponse = 
 					Deserialize(responseBytes, typeof(Debug.ServerErrorResponse)) as Debug.ServerErrorResponse;
-
+			
 				UnityEngine.Debug.LogError("I got a server error response.  Here is the message: " +
 				                      serverErrorResponse.message);
 			}
@@ -204,4 +226,3 @@ namespace Senseix.Message
 		}
 	}
 }
-
