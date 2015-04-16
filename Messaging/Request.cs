@@ -412,7 +412,8 @@ namespace Senseix.Message
 			Player.ListPlayerItemsRequest listItemsRequest = new Player.ListPlayerItemsRequest ();
 
 			listItemsRequest.player_id = playerId;
-			
+
+			UnityEngine.Debug.Log ("List items going off to " + LIST_ITEMS_URL);
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest(listItemsRequest, Response.ParseListItemsResponse, LIST_ITEMS_URL, false));
 		}
@@ -535,6 +536,7 @@ namespace Senseix.Message
 			LIST_PLAYER_URL = PLAYER_HDR + "list_players";
 			REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";
 			GET_ENCOURAGEMENT_URL = PLAYER_HDR + "get_encouragements";
+			LIST_ITEMS_URL = PLAYER_HDR + "list_items";
 			
 			//Requests related to Problems
 			GET_PROBLEM_URL = PROBLEM_HDR + "index";

@@ -9,6 +9,7 @@ public class ItemsDisplay : MonoBehaviour
 
 	private int currentPageNumber;
 	private Sprite[] itemSpritesToDisplay = new Sprite[0];
+	private Sprite defaultSprite;
 
 	private static ItemsDisplay singletonInstance;
 
@@ -17,6 +18,11 @@ public class ItemsDisplay : MonoBehaviour
 		if (singletonInstance == null)
 			singletonInstance = FindObjectOfType<ItemsDisplay>();
 		return singletonInstance;
+	}
+
+	void Start()
+	{
+		defaultSprite = currentItemImage.sprite;
 	}
 
 	public void NextItem()
@@ -54,6 +60,12 @@ public class ItemsDisplay : MonoBehaviour
 
 	void OnEnable()
 	{
+		GetNewItemList ();
+	}
+
+	public void GetNewItemList()
+	{
+		currentItemImage.sprite = defaultSprite;
 		Senseix.SenseixSession.ListCurrentPlayerItems();
 	}
 
@@ -69,6 +81,7 @@ public class ItemsDisplay : MonoBehaviour
 		{
 			itemSpritesToDisplay[i] = items[i].GetSprite();
 		}
+		currentPageNumber = 0;
 		UpdateDisplay ();
 	}
 }
