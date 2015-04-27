@@ -14,7 +14,7 @@ public class Answer
 	{
 		foreach (Senseix.Message.Atom.Atom atom in protoAnswer.atom)
 		{
-			answerParts.Add(new ProblemPart(atom));
+			answerParts.Add(ProblemPart.CreateProblemPart(atom));
 		}
 	}
 	

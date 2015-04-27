@@ -157,7 +157,7 @@ namespace Senseix.Message
 				ProblemPart[] encouragementParts = new ProblemPart[encouragementData.encouragement_atoms.Count];
 				for (int i = 0; i < encouragementParts.Length; i++)
 				{
-					encouragementParts[i] = new ProblemPart(encouragementData.encouragement_atoms[i]);
+					encouragementParts[i] = ProblemPart.CreateProblemPart(encouragementData.encouragement_atoms[i]);
 				}
 				ThinksyEvents.InvokeEncouragementReceived(encouragementParts);
 			}
@@ -179,7 +179,7 @@ namespace Senseix.Message
 			ProblemPart[] items = new ProblemPart[listItemsResponse.item_atoms.Count];
 			for (int i = 0; i < listItemsResponse.item_atoms.Count; i++)
 			{
-				items[i] = new ProblemPart(listItemsResponse.item_atoms[i]);
+				items[i] = ProblemPart.CreateProblemPart(listItemsResponse.item_atoms[i]);
 			}
 
 			ItemsDisplay.SetItemsToDisplay (items);

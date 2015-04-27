@@ -102,7 +102,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 			    newArea.GetComponent<Text>() == null )
 				throw new UnityException("richTextArea must have a rect transform and Text");
 
-			if (problemPart.IsString())
+			if (problemPart.HasString())
 			{
 				newArea.GetComponent<Text>().text += problemPart.GetString();
 			}
@@ -118,7 +118,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 			                      1,
 			                      1 - row * ySpacePerArea);
 
-			if (problemPart.IsImage())
+			if (problemPart.HasSprite())
 			{
 				//squish this a little bit to provide space between image groups
 				newArea.GetComponent<RectTransform>().anchorMin += new Vector2(0f, spaceImageAreas);

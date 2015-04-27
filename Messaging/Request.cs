@@ -22,7 +22,7 @@ namespace Senseix.Message
 		//API URLS
 		//static string ENCRYPTED = "http://";
         static string ENCRYPTED = "https://";
-		//static string SERVER_URL = "192.168.1.4:4000/";
+		//static string SERVER_URL = "192.168.1.20:3000/";
 		static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
@@ -531,7 +531,8 @@ namespace Senseix.Message
 			//Requests related to Parent management 
 			REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
 			VERIFY_GAME_URL = PARENT_HDR + "game_verification";
-			
+			SEND_PARENT_EMAIL_URL = PARENT_HDR + "send_parent_email";
+
 			//Requests related to Player management
 			LIST_PLAYER_URL = PLAYER_HDR + "list_players";
 			REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";

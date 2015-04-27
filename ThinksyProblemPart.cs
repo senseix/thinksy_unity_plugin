@@ -7,17 +7,34 @@ using System.Text;
 //A problem part represents a small piece of data
 //used to construct questions and answers.
 
-public class ProblemPart
+public abstract class ProblemPart
 {
 	Senseix.Message.Atom.Atom atom;
-	
-	/// <summary>
-	/// You can get problem parts from questions, answers, and distractors.
-	/// 
-	/// You COULD also use the other ProblemPart constructors...!
-	/// ...New territory !
-	/// </summary>
-	public ProblemPart (Senseix.Message.Atom.Atom newAtom)
+
+	public static ProblemPart CreateProblemPart(Senseix.Message.Atom.Atom newAtom)
+	{
+		ProblemPart newProblemPart = new TextProblemPart(newAtom);
+
+		bool actuallyConstructed = false;
+		if (newAtom.type == Senseix.Message.Atom.Atom.Type.IMAGE)
+		{
+			newProblemPart = new ImageProblemPart(newAtom);
+			actuallyConstructed = true;
+		}
+		if (newAtom.type == Senseix.Message.Atom.Atom.Type.TEXT)
+		{
+			newProblemPart = new TextProblemPart(newAtom);
+			actuallyConstructed = true;
+		}
+		if (!actuallyConstructed)
+		{
+			throw new Exception("I encountered an atom of an unimplemented type.");
+		}
+
+		return newProblemPart;
+	}
+
+	public ProblemPart(Senseix.Message.Atom.Atom newAtom)
 	{
 		atom = newAtom;
 	}
@@ -66,45 +83,20 @@ public class ProblemPart
 	{
 		return atom.uuid;
 	}
-	
-	/// <summary>
-	/// If this problem part is represented using a string, this will return true.
-	/// Otherwise, this will return false.
-	/// </summary>
-	/// <returns><c>true</c> if this instance is string; otherwise, <c>false</c>.</returns>
-	public bool IsString()
+
+	public virtual bool HasString()
 	{
-		return atom.type == Senseix.Message.Atom.Atom.Type.TEXT;
-	}
-	
-	/// <summary>
-	/// If this problem part is represented using an image, this will return true.
-	/// Otherwise, this will return false.
-	/// </summary>
-	/// <returns><c>true</c> if this instance is image; otherwise, <c>false</c>.</returns>
-	public bool IsImage()
-	{
-		return atom.type == Senseix.Message.Atom.Atom.Type.IMAGE;
+		return false;
 	}
 
-	/// <summary>
-	/// If this problem can be represented as an integer, this will return true.
-	/// Otherwise, this will return false.
-	/// </summary>
-	/// <returns><c>true</c> if this instance is integer; otherwise, <c>false</c>.</returns>
-	public bool IsInteger()
+	public virtual bool HasInteger()
 	{
-		if (!IsString ())
-			return false;
-		try
-		{
-			UnsafeGetInteger();
-		}
-		catch
-		{
-			return false;
-		}
-		return true;
+		return false;
+	}
+
+	public virtual bool HasSprite()
+	{
+		return false;
 	}
 
 	/// <summary>
@@ -113,7 +105,7 @@ public class ProblemPart
 	/// <returns><c>true</c> if this instance is multiple choice letter; otherwise, <c>false</c>.</returns>
 	public bool IsMultipleChoiceLetter()
 	{
-		if (!IsString ())
+		if (!HasString ())
 		{
 			return false;
 		}
@@ -122,91 +114,32 @@ public class ProblemPart
 		        GetString() == "C: " ||
 		        GetString() == "D: " );
 	}
-
-	private int UnsafeGetInteger()
-	{
-		return Convert.ToInt32(GetString());
-	}
-
-	/// <summary>
-	/// If this is represented by an integer, gets the integer.
-	/// You probably want to check IsInteger before calling this.
-	/// </summary>
-	public int GetInteger()
-	{
-		if (!IsInteger())
-			throw new Exception ("This QuestionPart is not an integer.  Be sure to check IsInteger before GetInteger.");
-		return UnsafeGetInteger ();
-	}
 	
-	/// <summary>
-	/// If this is represented by a string, this gets the string.
-	/// You probably want to check IsString before calling this.
-	/// </summary>
-	public string GetString()
+	public virtual int GetInteger()
 	{
-		if (!IsString())
-			throw new Exception ("This QuestionPart is not a string.  Be sure to check IsString before GetString.");
-		byte[] decodedBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
-		//Debug.Log ("Length of data byte string of text atom: " + decodedBytes.Length);
-		return Encoding.ASCII.GetString (decodedBytes);
+		throw new Exception ("There is no way to represent this problem part as an integer.");
 	}
 
-	//public Texture2D GetImage()
-	//{
-		//if (!IsImage())
-			//throw new Exception ("This QuestionPart is not an image.  Be sure to check IsImage before GetImage.");
-		//Texture2D returnImage = new Texture2D(0, 0);
-		//byte[] imageBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
-		//returnImage.LoadImage (imageBytes);
-		//return returnImage;
-	//}
-	//IMAGES ARE NOT BEING SENT FROM THE SERVER- TO SAVE BANDWIDTH
-
-	private string GetImageFilename()
+	public virtual string GetString()
 	{
-		if (atom.filename == "")
-			return "dog";
-		return atom.filename;
+		throw new Exception ("There is no way to represent this problem part as a string");
 	}
 
-	private string GetImageFilepath()
+	public virtual Sprite GetSprite()
 	{
-		string filename = GetImageFilename();
-		string filepath = System.IO.Path.Combine("ProblemParts/", filename);
-		return filepath;
+		throw new Exception ("There is no way to represent this problem part with a sprite");
 	}
 
-	/// <summary>
-	/// If this is represented by an image, this gets the
-	/// sprite which contains the image.  You should check
-	/// IsImage before calling this.
-	/// </summary>
-	public Sprite GetSprite()
-	{
-		string filepath = GetImageFilepath ();
-		//Debug.Log (filepath);
-		Sprite sprite = Resources.Load<Sprite> (filepath);
-		return sprite;
-	}
 
-	/// <summary>
-	/// If this is represented by an image, this gets the image.
-	/// You probably want to check IsImage before calling this.
-	/// </summary>
-	public Texture2D GetImage()
-	{
-		return GetSprite ().texture;
-	}
-
-	/// <summary>
-	/// For an image problem part, this returns the number of times the image should be repeated.
-	/// Useful only for image problem part.
-	/// </summary>
 	public int TimesRepeated()
 	{
 		if (atom.repeated == 0)
 			return 1;
 		return atom.repeated;
+	}
+
+	public Senseix.Message.Atom.Atom GetAtom()
+	{
+		return atom;
 	}
 }

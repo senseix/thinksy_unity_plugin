@@ -37,7 +37,7 @@ public class MessageDisplay : MonoBehaviour
 		Debug.Log ("I received " + possibleMessages.Length + " possible messages.");
 		foreach(ProblemPart possibleMessage in possibleMessages)
 		{
-			if (possibleMessage.IsString())
+			if (possibleMessage.HasString())
 			{
 				messagesToShowOff.Enqueue (possibleMessage.GetString());
 			}

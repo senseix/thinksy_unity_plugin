@@ -25,7 +25,7 @@ public class EmoticonDisplay : MonoBehaviour
 		Debug.Log ("I received " + possibleEmoticons.Length + " possible emoticons.");
 		foreach(ProblemPart possibleEmoticon in possibleEmoticons)
 		{
-			if (possibleEmoticon.IsImage())
+			if (possibleEmoticon.HasSprite())
 			{
 				spritesToShowOff.Enqueue (possibleEmoticon.GetSprite());
 			}

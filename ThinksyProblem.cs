@@ -91,7 +91,7 @@ public class Problem
 		for (int i = 0; i < availableDistractors; i++)
 		{
 			Senseix.Message.Atom.Atom distractorAtom = protobufsProblemData.distractor.atom[i];
-			ProblemPart distractor = new ProblemPart(distractorAtom);
+			ProblemPart distractor = ProblemPart.CreateProblemPart(distractorAtom);
 			allDistractors.Add(distractor);
 		} //find all the distractors
 		
@@ -196,7 +196,7 @@ public class Problem
 	{
 		return GetGivenAnswer ().GetAnswerIDs ();
 	}
-	
+
 	/// <summary>
 	/// Returns the number of answers which have been given so far.
 	/// </summary>
@@ -249,4 +249,5 @@ public class Problem
 	{
 		return submitted;
 	}
+	
 }
