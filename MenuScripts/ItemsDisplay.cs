@@ -20,6 +20,11 @@ public class ItemsDisplay : MonoBehaviour
 		return singletonInstance;
 	}
 
+	void Awake()
+	{
+		singletonInstance = this;
+	}
+
 	void Start()
 	{
 		defaultSprite = currentItemImage.sprite;
@@ -65,6 +70,7 @@ public class ItemsDisplay : MonoBehaviour
 
 	public void GetNewItemList()
 	{
+		Awake ();
 		currentItemImage.sprite = defaultSprite;
 		Senseix.SenseixSession.ListCurrentPlayerItems();
 	}

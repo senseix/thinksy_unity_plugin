@@ -142,15 +142,15 @@ namespace Senseix.Message
 				responseBytes = recvResult.bytes;
 				//UnityEngine.Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
 				//UnityEngine.Debug.Log ("parse response");
-				try
-				{
+//				try
+//				{
 					resultHandler(responseBytes);
-				}
-				catch (Exception e)
-				{
-					Logger.BasicLog("parsing a server message resulted in this error: " + e.Message);
-					Response.ParseServerErrorResponse(responseBytes);
-				}
+//				}
+//				catch (Exception e)
+//				{
+//					Logger.BasicLog("parsing a server message resulted in this error: " + e.Message);
+//					Response.ParseServerErrorResponse(responseBytes);
+//				}
 			}
 			else
 			{
@@ -413,7 +413,7 @@ namespace Senseix.Message
 
 			listItemsRequest.player_id = playerId;
 
-			UnityEngine.Debug.Log ("List items going off to " + LIST_ITEMS_URL);
+			//UnityEngine.Debug.Log ("List items going off to " + LIST_ITEMS_URL);
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest(listItemsRequest, Response.ParseListItemsResponse, LIST_ITEMS_URL, false));
 		}

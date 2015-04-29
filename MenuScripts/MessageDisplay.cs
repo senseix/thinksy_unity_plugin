@@ -3,7 +3,6 @@ using System.Collections;
 
 public class MessageDisplay : MonoBehaviour
 {
-	
 	public float scrollSpeed = 10f;
 	
 	public bool displayImmediately = true; // uncheck this to manually controll when encouragements are displayed

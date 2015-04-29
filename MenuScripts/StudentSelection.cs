@@ -56,6 +56,7 @@ namespace Senseix
 			SenseixSession.SelectPlayer (GetCurrentPlayer ());
 			SetName ();
 			SetFace ();
+			ThinksyPlugin.NextProblem ();
 		}
 
 		public Senseix.Message.Player.Player GetCurrentPlayer()

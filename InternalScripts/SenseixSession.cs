@@ -58,6 +58,7 @@ namespace Senseix
 		static private void SetCurrentPlayer(Message.Player.Player newPlayer)
 		{
 			currentPlayer = newPlayer;
+			ProblemKeeper.DrainProblems ();
 		}
 
 		static public void SelectPlayer(Senseix.Message.Player.Player selectedPlayer)
