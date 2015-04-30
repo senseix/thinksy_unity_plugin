@@ -23,6 +23,4 @@ public class TextProblemPart : ProblemPart
 	{
 		return true;
 	}
-
 }
-
