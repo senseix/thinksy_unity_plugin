@@ -130,7 +130,6 @@ public abstract class ProblemPart
 		throw new Exception ("There is no way to represent this problem part with a sprite");
 	}
 
-
 	public int TimesRepeated()
 	{
 		if (atom.repeated == 0)

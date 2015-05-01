@@ -7,6 +7,7 @@ public class Problem
 {
 	private Senseix.Message.Problem.ProblemData protobufsProblemData;
 	private Answer givenAnswer = new Answer();
+	private LearningAction learningAction;
 	private bool submitted = false;
 	private static uint problemsAnsweredCorrectly = 0;
 
@@ -71,7 +72,17 @@ public class Problem
 		ProblemPart nextCorrectAnswer = GetCorrectAnswer ().GetAnswerPart (answersGivenSoFar);
 		return nextCorrectAnswer;
 	}
-	
+
+	/// <summary>
+	/// Counts the number of distractors available for this problem.
+	/// </summary>
+	/// <returns>The number of distractors available for this problem.</returns>
+	public int CountDistractors()
+	{
+		int availableDistractors = protobufsProblemData.distractor.atom.Count;
+		return availableDistractors;
+	}
+
 	/// <summary>
 	/// Gets distractors.
 	/// These are wrong answers which can be presented as options to the player.
@@ -249,5 +260,22 @@ public class Problem
 	{
 		return submitted;
 	}
-	
+
+	public LearningAction GetLearningAction()
+	{
+		return learningAction;
+	}
+
+	public bool HasCountLearningAction()
+	{
+		return learningAction.IsCountLearningAction ();
+	}
+
+	public CountAction GetCountLearningAction()
+	{
+		if (!HasCountLearningAction())
+			throw new Exception("There is no count learning action associated with this problem.  " +
+				"Consider checking HasCountLearningAction() before calling GetCountLearningAction()");
+		return (CountAction)learningAction;
+	}
 }
