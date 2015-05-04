@@ -24,10 +24,10 @@ public class VisitURL : MonoBehaviour
 
 		if (visitEnrollDeviceURL)
 		{
-			targetURL = Senseix.Message.Request.GetEnrollGameURL() + appendMe;
+			targetURL = Senseix.Message_v2.Request.GetEnrollGameURL() + appendMe;
 		}
 		else if (visitRegistrationURL)
-			targetURL = Senseix.Message.Request.WEBSITE_URL + appendMe;
+			targetURL = Senseix.Message_v2.Request.WEBSITE_URL + appendMe;
 		else
 			targetURL = otherURL;
 	}

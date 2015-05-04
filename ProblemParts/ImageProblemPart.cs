@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ImageProblemPart : ProblemPart
 {
-	public ImageProblemPart (Senseix.Message.Atom.Atom atom) : base(atom)
+	public ImageProblemPart (Senseix.Message_v2.Atom.Atom atom) : base(atom)
 	{
 		
 	}
@@ -28,10 +28,10 @@ public class ImageProblemPart : ProblemPart
 
 	private string GetImageFilename()
 	{
-		Senseix.Message.Atom.Atom atom = GetAtom ();
-		if (atom.filename == "")
+		Senseix.Message_v2.Atom.Atom atom = GetAtom ();
+		if (atom.image_atom.filename == "")
 			return "dog";
-		return atom.filename;
+		return atom.image_atom.filename;
 	}
 
 

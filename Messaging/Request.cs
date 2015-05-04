@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 using System.Threading;
 
-namespace Senseix.Message 
+namespace Senseix.Message_v2 
 {
 	public struct PostRequestParameters
 	{
@@ -324,7 +324,7 @@ namespace Senseix.Message
 			Problem.ProblemPostRequest postProblem = new Problem.ProblemPostRequest();
 
 			while (problems.Count > 0) {
-				Senseix.Message.Problem.ProblemPost addMeProblem = (Senseix.Message.Problem.ProblemPost)problems.Dequeue();
+				Senseix.Message_v2.Problem.ProblemPost addMeProblem = (Senseix.Message_v2.Problem.ProblemPost)problems.Dequeue();
 				postProblem.problem.Add (addMeProblem);
 			}
 
@@ -343,7 +343,7 @@ namespace Senseix.Message
 				//UnityEngine.Debug.Log ("Post Problems request going off to " + POST_PROBLEM_URL);
 				for (int i = 0; i < postProblem.problem.Count; i++)
 				{
-					Senseix.Message.Problem.ProblemPost problemPost = postProblem.problem[i];
+					Senseix.Message_v2.Problem.ProblemPost problemPost = postProblem.problem[i];
 					SetPlayerForProblemIfNeeded(ref problemPost);
 					postProblem.problem[i] = problemPost;
 					//UnityEngine.Debug.Log(postProblem.problem[0].correct);
@@ -492,7 +492,7 @@ namespace Senseix.Message
 				CoroutinePostRequest(debugLogSubmit, Response.ParseReportBugResponse, DEBUG_LOG_SUBMIT_URL, false));
 		}
 
-		static private void SetPlayerForProblemIfNeeded(ref Senseix.Message.Problem.ProblemPost problemPostBuilder)
+		static private void SetPlayerForProblemIfNeeded(ref Senseix.Message_v2.Problem.ProblemPost problemPostBuilder)
 		{
 			if (problemPostBuilder.player_id == "no current player")
 			{

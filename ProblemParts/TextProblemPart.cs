@@ -3,7 +3,7 @@ using System.Text;
 
 public class TextProblemPart : ProblemPart
 {
-	public TextProblemPart (Senseix.Message.Atom.Atom atom) : base(atom)
+	public TextProblemPart (Senseix.Message_v2.Atom.Atom atom) : base(atom)
 	{
 
 	}
@@ -14,9 +14,7 @@ public class TextProblemPart : ProblemPart
 	/// </summary>
 	public override string GetString()
 	{
-		byte[] decodedBytes = GetAtom().data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
-		//Debug.Log ("Length of data byte string of text atom: " + decodedBytes.Length);
-		return Encoding.ASCII.GetString (decodedBytes);
+		return GetAtom().text_atom.text;
 	}
 
 	public override bool HasString()

@@ -18,9 +18,9 @@ namespace Senseix
 		private static bool isInitializing = false;
 		private static volatile string accessToken = "";
 		private static string authToken; 
-		private static IList<Message.Leaderboard.PlayerData> currentLeaderboard;
-		private static Message.Player.PlayerListResponse currentPlayerList;
-		private static Message.Player.Player currentPlayer;
+		private static IList<Message_v2.Leaderboard.PlayerData> currentLeaderboard;
+		private static Message_v2.Player.PlayerListResponse currentPlayerList;
+		private static Message_v2.Player.Player currentPlayer;
 		private static string recruitmentEmail;
 
 		private static SenseixSession singletonInstance = null;
@@ -50,25 +50,25 @@ namespace Senseix
 			return returnList;
 		}
 
-		static public void SetCurrentPlayerList(Message.Player.PlayerListResponse newPlayerList)
+		static public void SetCurrentPlayerList(Message_v2.Player.PlayerListResponse newPlayerList)
 		{
 			currentPlayerList = newPlayerList;
 		}
 
-		static private void SetCurrentPlayer(Message.Player.Player newPlayer)
+		static private void SetCurrentPlayer(Message_v2.Player.Player newPlayer)
 		{
 			currentPlayer = newPlayer;
 			ProblemKeeper.DrainProblems ();
 		}
 
-		static public void SelectPlayer(Senseix.Message.Player.Player selectedPlayer)
+		static public void SelectPlayer(Senseix.Message_v2.Player.Player selectedPlayer)
 		{
 			SetCurrentPlayer (selectedPlayer);
 			AvatarFace.UpdateButtonFaces ();
 			GetSingletonInstance().StartCoroutine(RegisterPlayer (selectedPlayer));
 		}
 
-		static public Message.Player.Player GetCurrentPlayer()
+		static public Message_v2.Player.Player GetCurrentPlayer()
 		{
 			return currentPlayer;
 		}
@@ -179,11 +179,11 @@ namespace Senseix
 			SenseixSession.CheckProblemPostCacheSubmission();
 			//SenseixPlugin.ShowEmergencyWindow ("testing");
 
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), 0));
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.GetPlayerRank (GetCurrentPlayerID ()));
+			yield return GetSingletonInstance().StartCoroutine(Message_v2.Request.UpdatePlayerScore (GetCurrentPlayerID(), 0));
+			yield return GetSingletonInstance().StartCoroutine(Message_v2.Request.GetPlayerRank (GetCurrentPlayerID ()));
 
-			yield return Message.Request.GetSingletonInstance().StartCoroutine(
-				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), ProblemKeeper.PROBLEMS_PER_PULL));
+			yield return Message_v2.Request.GetSingletonInstance().StartCoroutine(
+				Message_v2.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), ProblemKeeper.PROBLEMS_PER_PULL));
 
 			ThinksyPlugin.GetMostRecentProblem();
 			isInitializing = false;
@@ -191,13 +191,13 @@ namespace Senseix
 
 		static public IEnumerator ListPlayers()
 		{
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.ListPlayers ());
+			yield return GetSingletonInstance().StartCoroutine(Message_v2.Request.ListPlayers ());
 		}
 
 		static public IEnumerator RegisterAllPlayers()
 		{
 			ArrayList players = GetCurrentPlayerList ();
-			foreach (Message.Player.Player Player in players)
+			foreach (Message_v2.Player.Player Player in players)
 			{
 				yield return GetSingletonInstance().StartCoroutine(RegisterPlayer(Player));
 			}
@@ -207,29 +207,29 @@ namespace Senseix
 			}
 			else if (GetCurrentPlayer() == null)
 			{
-				SelectPlayer(players[0] as Message.Player.Player);
+				SelectPlayer(players[0] as Message_v2.Player.Player);
 			}
 		}
 
 		static public void PullLeaderboard(uint pageNumber, uint pageSize)
 		{
-			Message.Request.LeaderboardPage (pageNumber, Senseix.Message.Leaderboard.SortBy.NONE, pageSize);
+			Message_v2.Request.LeaderboardPage (pageNumber, Senseix.Message_v2.Leaderboard.SortBy.NONE, pageSize);
 		}
 
-		static public void SetLeaderboardPlayers(IList<Message.Leaderboard.PlayerData> PlayerList)
+		static public void SetLeaderboardPlayers(IList<Message_v2.Leaderboard.PlayerData> PlayerList)
 		{
-			foreach (Message.Leaderboard.PlayerData Player in PlayerList)
+			foreach (Message_v2.Leaderboard.PlayerData Player in PlayerList)
 			{
 				Debug.Log("Player " + Player.name + " has score " + Player.score);
 			}
 			currentLeaderboard = PlayerList;
 		}
 
-		static public IList<Message.Leaderboard.PlayerData> GetCurrentLeaderboard()
+		static public IList<Message_v2.Leaderboard.PlayerData> GetCurrentLeaderboard()
 		{
 			if (currentLeaderboard == null)
 			{
-				return new Message.Leaderboard.PlayerData[0];
+				return new Message_v2.Leaderboard.PlayerData[0];
 			}
 			return currentLeaderboard;
 		}
@@ -237,31 +237,31 @@ namespace Senseix
 		static public IEnumerator RegisterDevice()
 		{
 			//Debug.Log ("register device session");
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.RegisterDevice());
+			yield return GetSingletonInstance().StartCoroutine(Message_v2.Request.RegisterDevice());
 		}
 		
 		static public IEnumerator VerifyGame(string verificationCode)
 		{
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.VerifyGame (verificationCode));
+			yield return GetSingletonInstance().StartCoroutine(Message_v2.Request.VerifyGame (verificationCode));
 		}
 
-		static private IEnumerator RegisterPlayer(Message.Player.Player Player)
+		static private IEnumerator RegisterPlayer(Message_v2.Player.Player Player)
 		{
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.RegisterPlayer (Player.player_id));
+			yield return GetSingletonInstance().StartCoroutine(Message_v2.Request.RegisterPlayer (Player.player_id));
 		}
 
 
-		static public Senseix.Message.Problem.ProblemData PullProblem()
+		static public Senseix.Message_v2.Problem.ProblemData PullProblem()
 		{
 			return ProblemKeeper.GetProblem ();
 		}
 
-		static public bool CheckAnswer(Message.Problem.ProblemData Problem, Answer answer)
+		static public bool CheckAnswer(Message_v2.Problem.ProblemData Problem, Answer answer)
 		{
 			return ProblemKeeper.CheckAnswer(Problem, answer);
 		}
 
-		static public bool SubmitAnswer(Message.Problem.ProblemData Problem, Answer answer, bool correct)
+		static public bool SubmitAnswer(Message_v2.Problem.ProblemData Problem, Answer answer, bool correct)
 		{
 			return ProblemKeeper.SubmitAnswer(Problem, answer, correct);
 		}
@@ -269,7 +269,7 @@ namespace Senseix
 
 		public static IEnumerator UpdateCurrentPlayerScore(UInt32 score)
 		{
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), score));
+			yield return GetSingletonInstance().StartCoroutine(Message_v2.Request.UpdatePlayerScore (GetCurrentPlayerID(), score));
 		}
 
 		public static void SetSignedIn(bool newIsSignedIn)
@@ -285,18 +285,18 @@ namespace Senseix
 		public static void PushProblems(Queue Problems)
 		{
 			GetSingletonInstance().StartCoroutine(
-				Message.Request.PostProblems(GetCurrentPlayerID(), Problems));
+				Message_v2.Request.PostProblems(GetCurrentPlayerID(), Problems));
 		}
 
 		public static void GetEncouragements()
 		{
-			GetSingletonInstance().StartCoroutine(Message.Request.GetEncouragements (GetCurrentPlayerID ()));
+			GetSingletonInstance().StartCoroutine(Message_v2.Request.GetEncouragements (GetCurrentPlayerID ()));
 		}
 
 		public static void GetProblems(uint numberOfProblems)
 		{
-			Message.Request.GetSingletonInstance().StartCoroutine(
-				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), numberOfProblems));
+			Message_v2.Request.GetSingletonInstance().StartCoroutine(
+				Message_v2.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), numberOfProblems));
 		}
 
 		//public static byte[] DecodeServerBytes(Google.ProtocolBuffers.ByteString serverBytes)
@@ -310,7 +310,7 @@ namespace Senseix
 		{
 			//Debug.Log ("Should cache: " + ShouldCacheProblemPosts ());
 			if (!ShouldCacheProblemPosts ())
-				GetSingletonInstance().StartCoroutine(Message.Request.SubmitProblemPostCache ());
+				GetSingletonInstance().StartCoroutine(Message_v2.Request.SubmitProblemPostCache ());
 		}
 
 		static public bool ShouldCacheProblemPosts()
@@ -324,7 +324,7 @@ namespace Senseix
 			string message = additionalMessage + Environment.NewLine + " --- " 
 				+ Environment.NewLine + debugText + Environment.NewLine;
 
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.BugReport (GetDeviceID(), message));
+			yield return GetSingletonInstance().StartCoroutine(Message_v2.Request.BugReport (GetDeviceID(), message));
 		}
 
 		public void SetRecruitmentEmail(String newRecruitmentEmail)
@@ -334,13 +334,13 @@ namespace Senseix
 
 		public void SendRecruitmentRequest()
 		{
-			StartCoroutine (Message.Request.SendParentEmail (recruitmentEmail));
+			StartCoroutine (Message_v2.Request.SendParentEmail (recruitmentEmail));
 		}
 
 		public static void ListCurrentPlayerItems()
 		{
-			Message.Request.GetSingletonInstance().StartCoroutine (
-				Message.Request.ListPlayerItems(GetCurrentPlayerID()));
+			Message_v2.Request.GetSingletonInstance().StartCoroutine (
+				Message_v2.Request.ListPlayerItems(GetCurrentPlayerID()));
 		}
 	}
 }

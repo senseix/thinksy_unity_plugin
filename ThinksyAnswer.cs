@@ -10,9 +10,9 @@ public class Answer
 	/// <summary>
 	/// Don't use this unless you know what you're doing.  Instead, use the other constructors.
 	/// </summary>
-	public Answer(Senseix.Message.Problem.Answer protoAnswer)
+	public Answer(Senseix.Message_v2.Problem.Answer protoAnswer)
 	{
-		foreach (Senseix.Message.Atom.Atom atom in protoAnswer.atom)
+		foreach (Senseix.Message_v2.Atom.Atom atom in protoAnswer.answers)
 		{
 			answerParts.Add(ProblemPart.CreateProblemPart(atom));
 		}

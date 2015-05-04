@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using System.IO;
-namespace Senseix.Message 
+namespace Senseix.Message_v2
 {
 	public delegate bool ResponseHandlerDelegate(byte[] responseBytes);
 
@@ -66,9 +66,9 @@ namespace Senseix.Message
 			//Debug.Log("has message: " + reply.HasMessage);
 			//Debug.Log("message length: " + reply.Message.Length);
 			//Debug.Log("has problem get: " + reply.HasProblemGet);
-			if (getProblemResponse.problem.Count != ProblemKeeper.PROBLEMS_PER_PULL)
-				Logger.BasicLog("How wude.  I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + getProblemResponse.problem.Count);
-			if (getProblemResponse.problem.Count == 0)
+			if (getProblemResponse.problems.Count != ProblemKeeper.PROBLEMS_PER_PULL)
+				Logger.BasicLog("How wude.  I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + getProblemResponse.problems.Count);
+			if (getProblemResponse.problems.Count == 0)
 			{
 				throw new Exception ("no problems in problem response.");
 			}

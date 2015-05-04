@@ -59,14 +59,14 @@ namespace Senseix
 			ThinksyPlugin.NextProblem ();
 		}
 
-		public Senseix.Message.Player.Player GetCurrentPlayer()
+		public Senseix.Message_v2.Player.Player GetCurrentPlayer()
 		{
-			return availablePlayers [currentPlayerIndex] as Senseix.Message.Player.Player;
+			return availablePlayers [currentPlayerIndex] as Senseix.Message_v2.Player.Player;
 		}
 
 		private void SetName()
 		{
-			Message.Player.Player newPlayer = availablePlayers [currentPlayerIndex] as Message.Player.Player;
+			Message_v2.Player.Player newPlayer = availablePlayers [currentPlayerIndex] as Message_v2.Player.Player;
 			string newName = newPlayer.name;
 			playerNameText.text = newName;
 		}

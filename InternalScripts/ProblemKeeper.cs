@@ -53,26 +53,26 @@ namespace Senseix
 			//Message.Problem.ProblemGetResponse problemGet = ProtoBuf.Serializer.Deserialize<Message.Problem.ProblemGetResponse> (seedStream);
 
 			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
-			Message.Problem.ProblemGetResponse problemGet = 
-				customSerializer.Deserialize(seedStream, null, typeof(Message.Problem.ProblemGetResponse))
-					as Message.Problem.ProblemGetResponse;
+			Message_v2.Problem.ProblemGetResponse problemGet = 
+				customSerializer.Deserialize(seedStream, null, typeof(Message_v2.Problem.ProblemGetResponse))
+					as Message_v2.Problem.ProblemGetResponse;
 
 
-			for (int i = 0; i < problemGet.problem.Count; i++)
+			for (int i = 0; i < problemGet.problems.Count; i++)
 			{
-				Message.Problem.ProblemData problem = problemGet.problem[i];
+				Message_v2.Problem.ProblemData problem = problemGet.problems[i];
 				ProblemKeeper.AddProblemsToProblemQueue(problem);
 			}
 		}
 
-		static public void ReplaceQueue(Message.Problem.ProblemGetResponse reply)
+		static public void ReplaceQueue(Message_v2.Problem.ProblemGetResponse reply)
 		{
 			ProblemKeeper.ReplaceSeed (reply);
 			ProblemKeeper.DrainProblems ();
 			ProblemKeeper.GetProblemsFromSeed ();
 		}
 
-		static private void ReplaceSeed(Message.Problem.ProblemGetResponse reply)
+		static private void ReplaceSeed(Message_v2.Problem.ProblemGetResponse reply)
 		{
 			Logger.BasicLog ("Replacing seed file.");
 			MemoryStream stream = new MemoryStream ();
@@ -133,7 +133,7 @@ namespace Senseix
 			System.IO.File.AppendAllText (filePath, content);
 		}
 	
-		static public void AddProblemToSeed(Message.Problem.ProblemData ProblemData)
+		static public void AddProblemToSeed(Message_v2.Problem.ProblemData ProblemData)
 		{
 			MemoryStream stream = new MemoryStream ();
 			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
@@ -168,13 +168,13 @@ namespace Senseix
 			return answeredProblems.Count;
 		}
 
-		public static void AddProblemsToProblemQueue (Message.Problem.ProblemData problem) 
+		public static void AddProblemsToProblemQueue (Message_v2.Problem.ProblemData problem) 
 		{
 			//Debug.Log ("Added a Problem to queue, queue length now " + newProblems.Count);
 			newProblems.Enqueue (problem);
 		}
 
-		static public Senseix.Message.Problem.ProblemData GetProblem()
+		static public Senseix.Message_v2.Problem.ProblemData GetProblem()
 		{
 			CheckProblemPull ();
 			if (newProblems.Count == 0)
@@ -183,17 +183,17 @@ namespace Senseix
 			}
 			if (newProblems.Count == 0)
 				ThinksyPlugin.ShowEmergencyWindow ("We ran out of problems.  That really shouldn't happen!");
-			return (Senseix.Message.Problem.ProblemData) newProblems.Dequeue ();
+			return (Senseix.Message_v2.Problem.ProblemData) newProblems.Dequeue ();
 		}
 
-		static public bool SubmitAnswer(Message.Problem.ProblemData answeredProblemData, Answer answer, bool correct) 
+		static public bool SubmitAnswer(Message_v2.Problem.ProblemData answeredProblemData, Answer answer, bool correct) 
 		{
-			Message.Problem.ProblemPost problem = new Message.Problem.ProblemPost();
+			Message_v2.Problem.ProblemPost problem = new Message_v2.Problem.ProblemPost();
 			problem.correct = correct;
 			
 			//set Problem's answers to given ones
 			string[] answerIDStrings = answer.GetAnswerIDs ();
-			Senseix.Message.Problem.AnswerIdentifier givenAnswerIDs = new Senseix.Message.Problem.AnswerIdentifier();
+			Senseix.Message_v2.Problem.AnswerIdentifier givenAnswerIDs = new Senseix.Message_v2.Problem.AnswerIdentifier();
 			foreach (string answerID in answerIDStrings)
 			{
 				givenAnswerIDs.uuid.Add(answerID);
@@ -213,12 +213,12 @@ namespace Senseix
 			return (ulong)unixTime.TotalSeconds;
 		}
 
-		static public bool CheckAnswer(Message.Problem.ProblemData answeredProblemData, Answer answer) 
+		static public bool CheckAnswer(Message_v2.Problem.ProblemData answeredProblemData, Answer answer) 
 		{
 			bool correct = true;
 			//get correct answer IDs
-			Message.Problem.AnswerIdentifier correctIDList = new Message.Problem.AnswerIdentifier ();
-			foreach(Senseix.Message.Atom.Atom atom in answeredProblemData.answer.atom)
+			Message_v2.Problem.AnswerIdentifier correctIDList = new Message_v2.Problem.AnswerIdentifier ();
+			foreach(Senseix.Message_v2.Atom.Atom atom in answeredProblemData.answer.answers)
 			{
 				correctIDList.uuid.Add(atom.uuid);
 			}
@@ -241,7 +241,7 @@ namespace Senseix
 			return correct;
 		}
 
-		static private void AddAnsweredProblem(Message.Problem.ProblemPost ProblemBuilder, Answer answer)
+		static private void AddAnsweredProblem(Message_v2.Problem.ProblemPost ProblemBuilder, Answer answer)
 		{
 			answeredProblems.Enqueue (ProblemBuilder);
 			CheckAnsweredProblemPush ();
