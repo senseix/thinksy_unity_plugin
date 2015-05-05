@@ -22,7 +22,7 @@ namespace Senseix.Message
 		//API URLS
 		//static string ENCRYPTED = "http://";
         static string ENCRYPTED = "https://";
-		//static string SERVER_URL = "192.168.1.4:3000/";
+		//static string SERVER_URL = "192.168.1.4:4000/";
 		static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
@@ -42,6 +42,7 @@ namespace Senseix.Message
 		static string LIST_PLAYER_URL = PLAYER_HDR + "list_players";
 		static string REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";
 		static string GET_ENCOURAGEMENT_URL = PLAYER_HDR + "get_encouragements";
+		static string LIST_ITEMS_URL = PLAYER_HDR + "list_items";
 
 		//Requests related to Problems
 		static string GET_PROBLEM_URL = PROBLEM_HDR + "index";
@@ -153,7 +154,7 @@ namespace Senseix.Message
 			}
 			else
 			{
-				UnityEngine.Debug.LogWarning ("A SenseiX message had an error.  " + 
+				UnityEngine.Debug.LogWarning ("A SenseiX message (Handler: " + resultHandler.Method.Name + ") had an error.  " + 
 				                  "Most likely internet connectivity issues.");
 				SenseixSession.SetSessionState (false);
 			}
@@ -344,6 +345,7 @@ namespace Senseix.Message
 					Senseix.Message.Problem.ProblemPost problemPost = postProblem.problem[i];
 					SetPlayerForProblemIfNeeded(ref problemPost);
 					postProblem.problem[i] = problemPost;
+					//UnityEngine.Debug.Log(postProblem.problem[0].correct);
 				}
 				yield return GetSingletonInstance().StartCoroutine(
 					CoroutinePostRequest (postProblem, Response.ParsePostProblemResponse, POST_PROBLEM_URL, false));
@@ -397,9 +399,23 @@ namespace Senseix.Message
 			lbScore.player_id = (playerId);
 			lbScore.player_score = (score);
 
+			//UnityEngine.Debug.Log ("update player score");
+
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest(lbScore, Response.ParsePlayerScoreResponse, UPDATE_PLAYER_SCORE_URL, false));
 
+		}
+
+		static public IEnumerator ListPlayerItems(string playerId)
+		{
+			
+			Player.ListPlayerItemsRequest listItemsRequest = new Player.ListPlayerItemsRequest ();
+
+			listItemsRequest.player_id = playerId;
+
+			UnityEngine.Debug.Log ("List items going off to " + LIST_ITEMS_URL);
+			yield return GetSingletonInstance().StartCoroutine(
+				CoroutinePostRequest(listItemsRequest, Response.ParseListItemsResponse, LIST_ITEMS_URL, false));
 		}
 
 		/// <summary>
@@ -417,6 +433,8 @@ namespace Senseix.Message
 			rank.page_size =(pageSize);
 			rank.player_id = (SenseixSession.GetCurrentPlayerID());
 			rank.sort_by = (sortBy);
+
+			//UnityEngine.Debug.Log ("get player rank");
 
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest(rank, Response.ParsePlayerRankResponse, GET_PLAYER_RANK_URL, false));
@@ -518,6 +536,7 @@ namespace Senseix.Message
 			LIST_PLAYER_URL = PLAYER_HDR + "list_players";
 			REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";
 			GET_ENCOURAGEMENT_URL = PLAYER_HDR + "get_encouragements";
+			LIST_ITEMS_URL = PLAYER_HDR + "list_items";
 			
 			//Requests related to Problems
 			GET_PROBLEM_URL = PROBLEM_HDR + "index";

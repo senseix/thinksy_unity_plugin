@@ -13,17 +13,49 @@ public class ProblemPart
 	
 	/// <summary>
 	/// You can get problem parts from questions, answers, and distractors.
-	/// If you want to create them yourself, that is great!
-	/// Please e-mail SenseiX telling us about your game, and we can add
-	/// features that allow you to do what you are trying to do.
 	/// 
-	/// Including possibly the game-side creation of problem parts.
-	/// 
-	/// But you can't do that yet, unless you really know what you're doing.
+	/// You COULD also use the other ProblemPart constructors...!
+	/// ...New territory !
 	/// </summary>
 	public ProblemPart (Senseix.Message.Atom.Atom newAtom)
 	{
 		atom = newAtom;
+	}
+
+	/// <summary>
+	/// This will build a text ProblemPart.  Hot tip: numbers are actually text
+	/// ProblemParts.  If the text happens to be numbers, it will be treated
+	/// as such.
+	/// </summary>
+	public ProblemPart (string textContent)
+	{
+		Senseix.Message.Atom.Atom newAtom = new Senseix.Message.Atom.Atom ();
+
+		//forced my hand
+		newAtom.uuid = "Developer-side generated problem part";
+		newAtom.required = false;
+
+		//text
+		newAtom.type = Senseix.Message.Atom.Atom.Type.TEXT;
+		newAtom.data = Encoding.ASCII.GetBytes (textContent);
+	}
+
+	/// <summary>
+	/// This will build an image ProblemPart.  The filename references only
+	/// Sprites from resources.
+	/// </summary>
+	public ProblemPart (string filename, bool isPretty)
+	{
+		Senseix.Message.Atom.Atom newAtom = new Senseix.Message.Atom.Atom ();
+		
+		//forced my hand
+		newAtom.uuid = "Developer-side generated problem part";
+		newAtom.required = false;
+		newAtom.data = new byte[0];
+		
+		//text
+		newAtom.type = Senseix.Message.Atom.Atom.Type.IMAGE;
+		newAtom.filename = filename;
 	}
 	
 	/// <summary>
@@ -116,33 +148,60 @@ public class ProblemPart
 		if (!IsString())
 			throw new Exception ("This QuestionPart is not a string.  Be sure to check IsString before GetString.");
 		byte[] decodedBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
+		//Debug.Log ("Length of data byte string of text atom: " + decodedBytes.Length);
 		return Encoding.ASCII.GetString (decodedBytes);
 	}
-	
-	/// <summary>
-	/// If this is represented by an image, this gets the image.
-	/// You probably want to check IsImage before calling this.
-	/// </summary>
-	public Texture2D GetImage()
-	{
-		if (!IsImage())
-			throw new Exception ("This QuestionPart is not an image.  Be sure to check IsImage before GetImage.");
-		Texture2D returnImage = new Texture2D(0, 0);
-		byte[] imageBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
-		returnImage.LoadImage (imageBytes);
-		return returnImage;
-	}
 
-	public string GetImageFilename()
+	//public Texture2D GetImage()
+	//{
+		//if (!IsImage())
+			//throw new Exception ("This QuestionPart is not an image.  Be sure to check IsImage before GetImage.");
+		//Texture2D returnImage = new Texture2D(0, 0);
+		//byte[] imageBytes = atom.data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
+		//returnImage.LoadImage (imageBytes);
+		//return returnImage;
+	//}
+	//IMAGES ARE NOT BEING SENT FROM THE SERVER- TO SAVE BANDWIDTH
+
+	private string GetImageFilename()
 	{
 		if (atom.filename == "")
 			return "dog";
 		return atom.filename;
 	}
 
+	private string GetImageFilepath()
+	{
+		string filename = GetImageFilename();
+		string filepath = System.IO.Path.Combine("ProblemParts/", filename);
+		return filepath;
+	}
+
 	/// <summary>
-	/// For an image atom, this returns the number of times the image should be repeated.
-	/// Useful only for image atoms.
+	/// If this is represented by an image, this gets the
+	/// sprite which contains the image.  You should check
+	/// IsImage before calling this.
+	/// </summary>
+	public Sprite GetSprite()
+	{
+		string filepath = GetImageFilepath ();
+		//Debug.Log (filepath);
+		Sprite sprite = Resources.Load<Sprite> (filepath);
+		return sprite;
+	}
+
+	/// <summary>
+	/// If this is represented by an image, this gets the image.
+	/// You probably want to check IsImage before calling this.
+	/// </summary>
+	public Texture2D GetImage()
+	{
+		return GetSprite ().texture;
+	}
+
+	/// <summary>
+	/// For an image problem part, this returns the number of times the image should be repeated.
+	/// Useful only for image problem part.
 	/// </summary>
 	public int TimesRepeated()
 	{

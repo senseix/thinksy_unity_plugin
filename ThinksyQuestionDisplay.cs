@@ -137,10 +137,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 					                      ((imageColumn + 1) * xSpacePerImage),
 					                      1 - imageRow * ySpacePerImage);
 
-					string filename = problemPart.GetImageFilename();
-					string filepath = System.IO.Path.Combine("countables/", filename);//problemPart.GetImageFilename());
-
-					newImage.GetComponent<Image>().sprite = Resources.Load<Sprite>(filepath);
+					newImage.GetComponent<Image>().sprite = problemPart.GetSprite();
 				}
 			}
 
