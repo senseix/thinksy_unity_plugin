@@ -6,14 +6,14 @@ using System.Text;
 
 public class Question
 {
-	private Senseix.Message_v2.Problem.Question question;
-	private IList<Senseix.Message_v2.Atom.Atom> atomList;
+	private Senseix.Message.Problem.Question question;
+	private IList<Senseix.Message.Atom.Atom> atomList;
 	
 	/// <summary>
 	/// Don't use this constructor unless you know what you're doing.  You can get the question from a
 	/// server-generated problem instead.  Take a look at Problem.GetQuestion().
 	/// </summary>
-	public Question(Senseix.Message_v2.Problem.Question newQuestion)
+	public Question(Senseix.Message.Problem.Question newQuestion)
 	{
 		question = newQuestion;
 		atomList = newQuestion.atom;
@@ -49,7 +49,7 @@ public class Question
 	
 	public System.Collections.IEnumerator GetEnumerator()
 	{
-		foreach(Senseix.Message_v2.Atom.Atom atom in atomList)
+		foreach(Senseix.Message.Atom.Atom atom in atomList)
 		{
 			yield return ProblemPart.CreateProblemPart(atom);
 		}

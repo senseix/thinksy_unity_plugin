@@ -144,7 +144,7 @@ class ThinksyPlugin : MonoBehaviour
 		{
 			ThinksyPlugin.GetMostRecentProblem ().SubmitAnswer ();
 		}
-		Senseix.Message_v2.Problem.ProblemData protobufsProblem = Senseix.SenseixSession.PullProblem ();
+		Senseix.Message.Problem.ProblemData protobufsProblem = Senseix.SenseixSession.PullProblem ();
 		Senseix.Logger.BasicLog ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
 		//Debug.Log ("Next problem!  Problem ID: " + protobufsProblem.uuid + " Category: " + protobufsProblem.category_name);
 		mostRecentProblem = new Problem (protobufsProblem);

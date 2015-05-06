@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Problem 
 {
-	private Senseix.Message_v2.Problem.ProblemData protobufsProblemData;
+	private Senseix.Message.Problem.ProblemData protobufsProblemData;
 	private Answer givenAnswer = new Answer();
 	private LearningAction learningAction;
 	private bool submitted = false;
@@ -24,7 +24,7 @@ public class Problem
 	/// Don't use this unless you know what you're doing- instead get a problem from
 	/// SenseixPlugin.NextProblem().
 	/// </summary>
-	public Problem(Senseix.Message_v2.Problem.ProblemData newProtobufsProblemBuilder)
+	public Problem(Senseix.Message.Problem.ProblemData newProtobufsProblemBuilder)
 	{
 		protobufsProblemData = newProtobufsProblemBuilder;
 	}
@@ -79,7 +79,7 @@ public class Problem
 	/// <returns>The number of distractors available for this problem.</returns>
 	public int CountDistractors()
 	{
-		int availableDistractors = protobufsProblemData.distractor.distractors.Count;
+		int availableDistractors = protobufsProblemData.distractor.atom.Count;
 		return availableDistractors;
 	}
 
@@ -91,7 +91,7 @@ public class Problem
 	/// <param name="howManyDistractors">How many random distractors to return.</param>
 	public ProblemPart[] GetDistractors(int howManyDistractors)
 	{
-		int availableDistractors = protobufsProblemData.distractor.distractors.Count;
+		int availableDistractors = protobufsProblemData.distractor.atom.Count;
 		if (availableDistractors < howManyDistractors)
 		{
 			throw new Exception("There aren't enough distractors!  There are only "
@@ -101,7 +101,7 @@ public class Problem
 		ArrayList allDistractors = new ArrayList();
 		for (int i = 0; i < availableDistractors; i++)
 		{
-			Senseix.Message_v2.Atom.Atom distractorAtom = protobufsProblemData.distractor.distractors[i];
+			Senseix.Message.Atom.Atom distractorAtom = protobufsProblemData.distractor.atom[i];
 			ProblemPart distractor = ProblemPart.CreateProblemPart(distractorAtom);
 			allDistractors.Add(distractor);
 		} //find all the distractors

@@ -54,7 +54,7 @@ namespace Senseix
 		public void Refresh()
 		{
 			SenseixSession.PullLeaderboard (currentPage, (uint)PlayersPerPage);
-			IList<Message_v2.Leaderboard.PlayerData> leaders = SenseixSession.GetCurrentLeaderboard ();
+			IList<Message.Leaderboard.PlayerData> leaders = SenseixSession.GetCurrentLeaderboard ();
 
 			Text thisText = gameObject.GetComponent<Text> ();
 			thisText.text = "";

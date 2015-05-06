@@ -9,30 +9,22 @@ using System.Text;
 
 public abstract class ProblemPart
 {
-	Senseix.Message_v2.Atom.Atom atom;
+	Senseix.Message.Atom.Atom atom;
 
-	public static ProblemPart CreateProblemPart(Senseix.Message_v2.Atom.Atom newAtom)
+	public static ProblemPart CreateProblemPart(Senseix.Message.Atom.Atom newAtom)
 	{
 		ProblemPart newProblemPart = new TextProblemPart(newAtom);
 
 		bool actuallyConstructed = false;
-		if (newAtom.image_atom != null)
+		if (newAtom.type == Senseix.Message.Atom.Atom.Type.IMAGE)
 		{
 			newProblemPart = new ImageProblemPart(newAtom);
 			actuallyConstructed = true;
 		}
-		if (newAtom.text_atom != null)
+		if (newAtom.type == Senseix.Message.Atom.Atom.Type.TEXT)
 		{
 			newProblemPart = new TextProblemPart(newAtom);
 			actuallyConstructed = true;
-		}
-		if (newAtom.number_atom != null)
-		{
-			newProblemPart = new NumberProblemPart(newAtom);
-		}
-		if (newAtom.equation_atom != null)
-		{
-			newProblemPart = new EquationProblemPart(newAtom);
 		}
 		if (!actuallyConstructed)
 		{
@@ -42,11 +34,47 @@ public abstract class ProblemPart
 		return newProblemPart;
 	}
 
-	public ProblemPart(Senseix.Message_v2.Atom.Atom newAtom)
+	public ProblemPart(Senseix.Message.Atom.Atom newAtom)
 	{
 		atom = newAtom;
 	}
 
+	/// <summary>
+	/// This will build a text ProblemPart.  Hot tip: numbers are actually text
+	/// ProblemParts.  If the text happens to be numbers, it will be treated
+	/// as such.
+	/// </summary>
+	public ProblemPart (string textContent)
+	{
+		Senseix.Message.Atom.Atom newAtom = new Senseix.Message.Atom.Atom ();
+
+		//forced my hand
+		newAtom.uuid = "Developer-side generated problem part";
+		newAtom.required = false;
+
+		//text
+		newAtom.type = Senseix.Message.Atom.Atom.Type.TEXT;
+		newAtom.data = Encoding.ASCII.GetBytes (textContent);
+	}
+
+	/// <summary>
+	/// This will build an image ProblemPart.  The filename references only
+	/// Sprites from resources.
+	/// </summary>
+	public ProblemPart (string filename, bool isPretty)
+	{
+		Senseix.Message.Atom.Atom newAtom = new Senseix.Message.Atom.Atom ();
+		
+		//forced my hand
+		newAtom.uuid = "Developer-side generated problem part";
+		newAtom.required = false;
+		newAtom.data = new byte[0];
+		
+		//text
+		newAtom.type = Senseix.Message.Atom.Atom.Type.IMAGE;
+		newAtom.filename = filename;
+	}
+	
 	/// <summary>
 	/// This is a uuid for this problem part.  But, most likely, from your perspective,
 	/// it's just a meaningless string.
@@ -109,7 +137,7 @@ public abstract class ProblemPart
 		return atom.repeated;
 	}
 
-	public Senseix.Message_v2.Atom.Atom GetAtom()
+	public Senseix.Message.Atom.Atom GetAtom()
 	{
 		return atom;
 	}
