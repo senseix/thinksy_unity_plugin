@@ -20,10 +20,10 @@ namespace Senseix.Message
 	public class Request : MonoBehaviour
 	{
 		//API URLS
-		//static string ENCRYPTED = "http://";
-        static string ENCRYPTED = "https://";
-		//static string SERVER_URL = "192.168.1.20:3000/";
-		static string SERVER_URL = "api.thinksylearn.com/";
+		static string ENCRYPTED = "http://";
+        //static string ENCRYPTED = "https://";
+		static string SERVER_URL = "192.168.1.21:3000/";
+		//static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
 		static string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
@@ -289,7 +289,7 @@ namespace Senseix.Message
 			getProblem.problem_count = (count);
 			getProblem.player_id = (player_id);
 
-			//UnityEngine.Debug.Log ("Get Problems request going off to " + GET_PROBLEM_URL);
+			UnityEngine.Debug.Log ("Get Problems request going off to " + GET_PROBLEM_URL);
 //			Debug.Log (hdr_request.AuthToken);
 //			Debug.Log (hdr_request.AccessToken);
 //			Debug.Log (hdr_request.ProblemGet.ProblemCount);

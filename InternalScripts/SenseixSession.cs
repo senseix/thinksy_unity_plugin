@@ -282,12 +282,6 @@ namespace Senseix
 			return isSignedIn;
 		}
 
-		public static void PushProblems(Queue Problems)
-		{
-			GetSingletonInstance().StartCoroutine(
-				Message.Request.PostProblems(GetCurrentPlayerID(), Problems));
-		}
-
 		public static void GetEncouragements()
 		{
 			GetSingletonInstance().StartCoroutine(Message.Request.GetEncouragements (GetCurrentPlayerID ()));
@@ -341,6 +335,13 @@ namespace Senseix
 		{
 			Message.Request.GetSingletonInstance().StartCoroutine (
 				Message.Request.ListPlayerItems(GetCurrentPlayerID()));
+		}
+
+		public static void Heartbeat()
+		{
+			Logger.BasicLog ("thump thump");
+			Senseix.SenseixSession.GetEncouragements();
+			ProblemKeeper.PushAllProblems ();
 		}
 	}
 }

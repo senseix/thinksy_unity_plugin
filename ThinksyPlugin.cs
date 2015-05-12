@@ -22,7 +22,7 @@ class ThinksyPlugin : MonoBehaviour
 	private static Problem mostRecentProblem;
 	
 	private const int reconnectRetryInterval = 3000;
-	private const int encouragementGetInterval = 1401;
+	private static uint heartbeatInterval = 1401;
 
 	static private ThinksyPlugin GetSingletonInstance()
 	{
@@ -96,11 +96,18 @@ class ThinksyPlugin : MonoBehaviour
 			Debug.Log ("Attempting to reconnect...");
 			StartCoroutine(Senseix.SenseixSession.InitializeSenseix(gameAccessToken));
 		}
-		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%encouragementGetInterval == 0 &&  Time.frameCount != 0)
+		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%heartbeatInterval == 0 &&  Time.frameCount != 0)
 		{
 			Senseix.Logger.BasicLog("Getting encouragements...");
-			Senseix.SenseixSession.GetEncouragements();
+			Senseix.SenseixSession.Heartbeat();
 		}
+	}
+
+	public static void NewHeartbeatTiming(uint newTiming)
+	{
+		if (newTiming < 100)
+			return;
+		heartbeatInterval = newTiming;
 	}
 
 	public static void StaticReinitialize()

@@ -21,9 +21,11 @@ public class CountAction : LearningAction
 		return stepCount;
 	}
 
-	public CountAction () : base()
+	public CountAction (Senseix.Message.Problem.CountAction countActionProto) : base()
 	{
-
+		countFrom = countActionProto.count_from;
+		countBy = countActionProto.count_by;
+		stepCount = countActionProto.number_of_steps;
 	}
 
 	public override bool IsCountLearningAction()
