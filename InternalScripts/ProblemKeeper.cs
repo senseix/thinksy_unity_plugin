@@ -275,10 +275,15 @@ namespace Senseix
 			{
 				if (SenseixSession.GetSessionState())
 				{
-					SenseixSession.GetProblems(PROBLEMS_PER_PULL);
+					PullNewProblems();
 				}
 				//Debug.Log ("pulling more Problems");
 			}
+		}
+
+		static public void PullNewProblems()
+		{
+			SenseixSession.GetProblems (PROBLEMS_PER_PULL);
 		}
 
 		static public void DrainProblems()

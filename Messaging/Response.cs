@@ -162,7 +162,9 @@ namespace Senseix.Message
 				ThinksyEvents.InvokeEncouragementReceived(encouragementParts);
 			}
 
-			ThinksyPlugin.NewHeartbeatTiming (getEncouragementResponse.frames_per_hearatbeat);
+			ThinksyPlugin.NewHeartbeatTiming (getEncouragementResponse.frames_per_hearbeat);
+			if (getEncouragementResponse.force_pull)
+				ProblemKeeper.PullNewProblems ();
 
 			return true;
 		}
