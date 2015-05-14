@@ -554,7 +554,8 @@ namespace Senseix.Message
 
 			SenseixSession.SetAndSaveAuthToken ("");
 			SenseixSession.SetCurrentPlayerList (null);
-			ThinksyPlugin.SetAccessToken("95df4f0f98585ef3679e774878080b7d57e8bb0b5cf9190f866628a4dc497e73");
+			//ThinksyPlugin.SetAccessToken("95df4f0f98585ef3679e774878080b7d57e8bb0b5cf9190f866628a4dc497e73");
+			//use same token from production
 			secretStagingMode = true;
 			ThinksyPlugin.StaticReinitialize ();
 		}
