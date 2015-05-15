@@ -71,7 +71,17 @@ public class Problem
 		ProblemPart nextCorrectAnswer = GetCorrectAnswer ().GetAnswerPart (answersGivenSoFar);
 		return nextCorrectAnswer;
 	}
-	
+
+	/// <summary>
+	/// Counts the number of distractors available for this problem.
+	/// </summary>
+	/// <returns>The number of distractors available for this problem.</returns>
+	public int CountDistractors()
+	{
+		int availableDistractors = protobufsProblemData.distractor.distractors.Count;
+		return availableDistractors;
+	}
+
 	/// <summary>
 	/// Gets distractors.
 	/// These are wrong answers which can be presented as options to the player.
@@ -80,7 +90,7 @@ public class Problem
 	/// <param name="howManyDistractors">How many random distractors to return.</param>
 	public ProblemPart[] GetDistractors(int howManyDistractors)
 	{
-		int availableDistractors = protobufsProblemData.distractor.atom.Count;
+		int availableDistractors = protobufsProblemData.distractor.distractors.Count;
 		if (availableDistractors < howManyDistractors)
 		{
 			throw new Exception("There aren't enough distractors!  There are only "
@@ -90,8 +100,8 @@ public class Problem
 		ArrayList allDistractors = new ArrayList();
 		for (int i = 0; i < availableDistractors; i++)
 		{
-			Senseix.Message.Atom.Atom distractorAtom = protobufsProblemData.distractor.atom[i];
-			ProblemPart distractor = new ProblemPart(distractorAtom);
+			Senseix.Message.Atom.Atom distractorAtom = protobufsProblemData.distractor.distractors[i];
+			ProblemPart distractor = ProblemPart.CreateProblemPart(distractorAtom);
 			allDistractors.Add(distractor);
 		} //find all the distractors
 		
@@ -134,6 +144,19 @@ public class Problem
 	public Question GetQuestion()
 	{
 		return new Question(protobufsProblemData.question);
+	}
+
+	/// <summary>
+	/// Returns the learning action associated with this problems.  Learning actions are
+	/// representations of actions the player can complete successfully or unsuccessfully.
+	/// There are five types (sub-classes) of learning actions.  The type of a learning action
+	/// can be determined via learningAction.GetActionType()
+	/// </summary>
+	public LearningAction GetLearningAction()
+	{
+		if (protobufsProblemData.learningAction == null)
+			throw new Exception ("This problem does not have a learning action :( ");
+		return LearningAction.CreateLearningAction(protobufsProblemData.learningAction);
 	}
 	
 	/// <summary>
@@ -196,7 +219,7 @@ public class Problem
 	{
 		return GetGivenAnswer ().GetAnswerIDs ();
 	}
-	
+
 	/// <summary>
 	/// Returns the number of answers which have been given so far.
 	/// </summary>

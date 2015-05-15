@@ -58,6 +58,7 @@ namespace Senseix
 		static private void SetCurrentPlayer(Message.Player.Player newPlayer)
 		{
 			currentPlayer = newPlayer;
+			ProblemKeeper.DrainProblems ();
 		}
 
 		static public void SelectPlayer(Senseix.Message.Player.Player selectedPlayer)
@@ -93,6 +94,7 @@ namespace Senseix
 			//Debug.Log ("returning inSession: " + inSession);
 			return inSession;
 		}
+
 		static public void SetSessionState(bool state)
 		{
 			//UnityEngine.Debug.Log ("Session state set to: " + state);
@@ -104,20 +106,24 @@ namespace Senseix
 			authToken = newAuthToken;
 			//Debug.Log ("auth token: " + authToken);
 		}
+
 		static private int CheckAccessToken()
 		{
 			if (accessToken.Length != ACCESS_TOKEN_LENGTH)
 				return -1;
 			return 0;
 		}
+
 		static public string GetAccessToken()
 		{
 			return accessToken;
 		}
+
 		static public string GetDeviceID()
 		{
 			return SystemInfo.deviceUniqueIdentifier;
 		}
+
 		static public string GetAuthToken()
 		{
 			if (authToken != null)
@@ -128,6 +134,7 @@ namespace Senseix
 			//		" without ever having registered. (Normal in the case of the registration message.)");
 			return "you don't need to see my identification";
 		}
+
 		static public string GetCurrentPlayerID()
 		{
 			if (currentPlayer == null)
@@ -187,7 +194,6 @@ namespace Senseix
 			yield return GetSingletonInstance().StartCoroutine(Message.Request.ListPlayers ());
 		}
 
-		//this assumes that there is at least one Player always.
 		static public IEnumerator RegisterAllPlayers()
 		{
 			ArrayList players = GetCurrentPlayerList ();
@@ -276,12 +282,6 @@ namespace Senseix
 			return isSignedIn;
 		}
 
-		public static void PushProblems(Queue Problems)
-		{
-			GetSingletonInstance().StartCoroutine(
-				Message.Request.PostProblems(GetCurrentPlayerID(), Problems));
-		}
-
 		public static void GetEncouragements()
 		{
 			GetSingletonInstance().StartCoroutine(Message.Request.GetEncouragements (GetCurrentPlayerID ()));
@@ -335,6 +335,13 @@ namespace Senseix
 		{
 			Message.Request.GetSingletonInstance().StartCoroutine (
 				Message.Request.ListPlayerItems(GetCurrentPlayerID()));
+		}
+
+		public static void Heartbeat()
+		{
+			Logger.BasicLog ("thump thump");
+			Senseix.SenseixSession.GetEncouragements();
+			ProblemKeeper.PushAllProblems ();
 		}
 	}
 }

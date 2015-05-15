@@ -58,9 +58,9 @@ namespace Senseix
 					as Message.Problem.ProblemGetResponse;
 
 
-			for (int i = 0; i < problemGet.problem.Count; i++)
+			for (int i = 0; i < problemGet.problems.Count; i++)
 			{
-				Message.Problem.ProblemData problem = problemGet.problem[i];
+				Message.Problem.ProblemData problem = problemGet.problems[i];
 				ProblemKeeper.AddProblemsToProblemQueue(problem);
 			}
 		}
@@ -218,7 +218,7 @@ namespace Senseix
 			bool correct = true;
 			//get correct answer IDs
 			Message.Problem.AnswerIdentifier correctIDList = new Message.Problem.AnswerIdentifier ();
-			foreach(Senseix.Message.Atom.Atom atom in answeredProblemData.answer.atom)
+			foreach(Senseix.Message.Atom.Atom atom in answeredProblemData.answer.answers)
 			{
 				correctIDList.uuid.Add(atom.uuid);
 			}
@@ -253,9 +253,19 @@ namespace Senseix
 			//Debug.Log ("Answered problems count: " + answeredProblems.Count);
 			if (answeredProblems.Count > PROBLEMS_PER_PULL*PUSH_THRESHOLD)
 			{
-					SenseixSession.PushProblems(answeredProblems);
-					answeredProblems.Clear ();
+				PushAllProblems();
 			}
+		}
+
+
+		public static void PushAllProblems()
+		{
+			if (answeredProblems.Count == 0)
+				return;
+			Logger.BasicLog ("Pushing current queue of " + answeredProblems.Count + " problems.");
+			Senseix.Message.Request.GetSingletonInstance().StartCoroutine(
+				Message.Request.PostProblems(Senseix.SenseixSession.GetCurrentPlayerID(), answeredProblems));
+			answeredProblems.Clear ();
 		}
 
 		static private void CheckProblemPull()
@@ -265,10 +275,15 @@ namespace Senseix
 			{
 				if (SenseixSession.GetSessionState())
 				{
-					SenseixSession.GetProblems(PROBLEMS_PER_PULL);
+					PullNewProblems();
 				}
 				//Debug.Log ("pulling more Problems");
 			}
+		}
+
+		static public void PullNewProblems()
+		{
+			SenseixSession.GetProblems (PROBLEMS_PER_PULL);
 		}
 
 		static public void DrainProblems()

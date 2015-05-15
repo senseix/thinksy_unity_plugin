@@ -51,7 +51,7 @@ public class Question
 	{
 		foreach(Senseix.Message.Atom.Atom atom in atomList)
 		{
-			yield return new ProblemPart(atom);
+			yield return ProblemPart.CreateProblemPart(atom);
 		}
 	}
 	
@@ -65,7 +65,7 @@ public class Question
 	{
 		try 
 		{
-			return new ProblemPart(atomList[index]);
+			return ProblemPart.CreateProblemPart(atomList[index]);
 		}
 		catch
 		{

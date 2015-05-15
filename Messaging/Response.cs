@@ -66,9 +66,9 @@ namespace Senseix.Message
 			//Debug.Log("has message: " + reply.HasMessage);
 			//Debug.Log("message length: " + reply.Message.Length);
 			//Debug.Log("has problem get: " + reply.HasProblemGet);
-			if (getProblemResponse.problem.Count != ProblemKeeper.PROBLEMS_PER_PULL)
-				Logger.BasicLog("How wude.  I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + getProblemResponse.problem.Count);
-			if (getProblemResponse.problem.Count == 0)
+			if (getProblemResponse.problems.Count != ProblemKeeper.PROBLEMS_PER_PULL)
+				Logger.BasicLog("How wude.  I asked for " + ProblemKeeper.PROBLEMS_PER_PULL + " problems, but I only got " + getProblemResponse.problems.Count);
+			if (getProblemResponse.problems.Count == 0)
 			{
 				throw new Exception ("no problems in problem response.");
 			}
@@ -157,10 +157,14 @@ namespace Senseix.Message
 				ProblemPart[] encouragementParts = new ProblemPart[encouragementData.encouragement_atoms.Count];
 				for (int i = 0; i < encouragementParts.Length; i++)
 				{
-					encouragementParts[i] = new ProblemPart(encouragementData.encouragement_atoms[i]);
+					encouragementParts[i] = ProblemPart.CreateProblemPart(encouragementData.encouragement_atoms[i]);
 				}
 				ThinksyEvents.InvokeEncouragementReceived(encouragementParts);
 			}
+
+			ThinksyPlugin.NewHeartbeatTiming (getEncouragementResponse.frames_per_hearbeat);
+			if (getEncouragementResponse.force_pull)
+				ProblemKeeper.PullNewProblems ();
 
 			return true;
 		}
@@ -171,15 +175,16 @@ namespace Senseix.Message
 				Deserialize (responseBytes, typeof(Player.ListPlayerItemsResponse)) as Player.ListPlayerItemsResponse;
 			
 			Logger.BasicLog ("I got an items list response with " + listItemsResponse.item_atoms.Count + " items");
-			foreach(Message.Atom.Atom atom in listItemsResponse.item_atoms)
-			{
-				UnityEngine.Debug.Log(atom.filename);
-			}
+
+			//foreach(Message.Atom.Atom atom in listItemsResponse.item_atoms)
+			//{
+				//UnityEngine.Debug.Log(atom.filename);
+			//}
 
 			ProblemPart[] items = new ProblemPart[listItemsResponse.item_atoms.Count];
 			for (int i = 0; i < listItemsResponse.item_atoms.Count; i++)
 			{
-				items[i] = new ProblemPart(listItemsResponse.item_atoms[i]);
+				items[i] = ProblemPart.CreateProblemPart(listItemsResponse.item_atoms[i]);
 			}
 
 			ItemsDisplay.SetItemsToDisplay (items);

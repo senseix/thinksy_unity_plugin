@@ -22,7 +22,7 @@ namespace Senseix.Message
 		//API URLS
 		//static string ENCRYPTED = "http://";
         static string ENCRYPTED = "https://";
-		//static string SERVER_URL = "192.168.1.4:4000/";
+		//static string SERVER_URL = "192.168.1.23:3000/";
 		static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
@@ -149,6 +149,7 @@ namespace Senseix.Message
 				catch (Exception e)
 				{
 					Logger.BasicLog("parsing a server message resulted in this error: " + e.Message);
+					UnityEngine.Debug.LogWarning("parsing a server message resulted in this error: " + e.Message);
 					Response.ParseServerErrorResponse(responseBytes);
 				}
 			}
@@ -289,10 +290,6 @@ namespace Senseix.Message
 			getProblem.player_id = (player_id);
 
 			//UnityEngine.Debug.Log ("Get Problems request going off to " + GET_PROBLEM_URL);
-//			Debug.Log (hdr_request.AuthToken);
-//			Debug.Log (hdr_request.AccessToken);
-//			Debug.Log (hdr_request.ProblemGet.ProblemCount);
-//			Debug.Log (hdr_request.ProblemGet.PlayerId);
 
 			if (SenseixSession.GetAuthToken () == "you don't need to see my identification")
 				yield break;
@@ -413,7 +410,7 @@ namespace Senseix.Message
 
 			listItemsRequest.player_id = playerId;
 
-			UnityEngine.Debug.Log ("List items going off to " + LIST_ITEMS_URL);
+			//UnityEngine.Debug.Log ("List items going off to " + LIST_ITEMS_URL);
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest(listItemsRequest, Response.ParseListItemsResponse, LIST_ITEMS_URL, false));
 		}
@@ -531,7 +528,8 @@ namespace Senseix.Message
 			//Requests related to Parent management 
 			REGISTER_DEVICE_URL = PARENT_HDR + "create_device";
 			VERIFY_GAME_URL = PARENT_HDR + "game_verification";
-			
+			SEND_PARENT_EMAIL_URL = PARENT_HDR + "send_parent_email";
+
 			//Requests related to Player management
 			LIST_PLAYER_URL = PLAYER_HDR + "list_players";
 			REGISTER_PLAYER_WITH_GAME_URL = PLAYER_HDR + "register_player_with_game";
@@ -552,7 +550,8 @@ namespace Senseix.Message
 
 			SenseixSession.SetAndSaveAuthToken ("");
 			SenseixSession.SetCurrentPlayerList (null);
-			ThinksyPlugin.SetAccessToken("95df4f0f98585ef3679e774878080b7d57e8bb0b5cf9190f866628a4dc497e73");
+			//ThinksyPlugin.SetAccessToken("95df4f0f98585ef3679e774878080b7d57e8bb0b5cf9190f866628a4dc497e73");
+			//use same token from production
 			secretStagingMode = true;
 			ThinksyPlugin.StaticReinitialize ();
 		}

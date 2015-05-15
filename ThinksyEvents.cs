@@ -23,7 +23,8 @@ public class ThinksyEvents : MonoBehaviour
 	/// </summary>
 	public static void InvokeCategoryAdvancement()
 	{
-		onAdvanceCategory ();
+		if (onAdvanceCategory != null)
+			onAdvanceCategory ();
 	}
 
 	/// <summary>

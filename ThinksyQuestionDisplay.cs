@@ -4,8 +4,8 @@ using System.Collections;
 
 public class ThinksyQuestionDisplay : MonoBehaviour 
 {
-	public GameObject questionText;
-	public GameObject questionImage;
+	public GameObject questionTextPrefab;
+	public GameObject questionImagePrefab;
 	public Transform questionParent;
 	[Range(0f, 0.5f)]
 	public float indentMultipleChoices = 0.15f;
@@ -95,14 +95,14 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 
 		for (int i = 0; i < textAreaCount; i++)
 		{
-			GameObject newArea = Instantiate(questionText) as GameObject;
+			GameObject newArea = Instantiate(questionTextPrefab) as GameObject;
 			ProblemPart problemPart = problemToDisplay.GetQuestion().GetQuestionPart(i);
 
 			if (newArea.GetComponent<RectTransform>() == null || 
 			    newArea.GetComponent<Text>() == null )
 				throw new UnityException("richTextArea must have a rect transform and Text");
 
-			if (problemPart.IsString())
+			if (problemPart.HasString())
 			{
 				newArea.GetComponent<Text>().text += problemPart.GetString();
 			}
@@ -118,7 +118,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 			                      1,
 			                      1 - row * ySpacePerArea);
 
-			if (problemPart.IsImage())
+			if (problemPart.HasSprite())
 			{
 				//squish this a little bit to provide space between image groups
 				newArea.GetComponent<RectTransform>().anchorMin += new Vector2(0f, spaceImageAreas);
@@ -127,7 +127,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 
 				for (int j = 0; j < problemPart.TimesRepeated(); j++)
 				{
-					GameObject newImage = Instantiate(questionImage) as GameObject;
+					GameObject newImage = Instantiate(questionImagePrefab) as GameObject;
 					newImage.GetComponent<RectTransform>().SetParent(newArea.transform);
 					int imageColumn = j % imagesPerRow;
 					int imageRow = Mathf.FloorToInt((float)j / (float)imagesPerRow);

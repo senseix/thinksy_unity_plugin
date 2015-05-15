@@ -3,7 +3,6 @@ using System.Collections;
 
 public class MessageDisplay : MonoBehaviour
 {
-	
 	public float scrollSpeed = 10f;
 	
 	public bool displayImmediately = true; // uncheck this to manually controll when encouragements are displayed
@@ -37,7 +36,7 @@ public class MessageDisplay : MonoBehaviour
 		Debug.Log ("I received " + possibleMessages.Length + " possible messages.");
 		foreach(ProblemPart possibleMessage in possibleMessages)
 		{
-			if (possibleMessage.IsString())
+			if (possibleMessage.HasString())
 			{
 				messagesToShowOff.Enqueue (possibleMessage.GetString());
 			}

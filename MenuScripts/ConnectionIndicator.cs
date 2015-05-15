@@ -7,7 +7,10 @@ namespace Senseix
 	public class ConnectionIndicator : MonoBehaviour {
 
 		public GameObject warningBox;
-		public UnityEngine.UI.Text warningText;
+		public UnityEngine.UI.Image warningImage;
+
+		public Sprite offlineSprite;
+		public Sprite communicatingSprite;
 
 		private static ConnectionIndicator singletonInstance;
 
@@ -26,7 +29,8 @@ namespace Senseix
 			singletonInstance = this;
 			if (ThinksyPlugin.IsInTestingMode())
 			{
-				warningText.text = "Offline mode";
+				warningImage.sprite = offlineSprite;
+				//warningText.text = "Offline mode";
 			}
 		}
 		
@@ -35,7 +39,8 @@ namespace Senseix
 			bool indicateOffline = !Senseix.SenseixSession.GetSessionState ();
 			//if (indicateOffline)
 			//	Debug.Log ("Showing offline indicator");
-			warningText.text = "Not connected";
+			warningImage.sprite = offlineSprite;
+			//warningText.text = "Not connected";
 			warningBox.SetActive (indicateOffline);
 		}
 
@@ -46,7 +51,8 @@ namespace Senseix
 
 		private void InstanceSetWaitingIndication(bool show)
 		{
-			warningText.text = "Communicating...";
+			warningImage.sprite = communicatingSprite;
+			//warningText.text = "Communicating...";
 			warningBox.SetActive (show);
 		}
 	}
