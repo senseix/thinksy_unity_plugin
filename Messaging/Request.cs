@@ -289,11 +289,7 @@ namespace Senseix.Message
 			getProblem.problem_count = (count);
 			getProblem.player_id = (player_id);
 
-			UnityEngine.Debug.Log ("Get Problems request going off to " + GET_PROBLEM_URL);
-//			Debug.Log (hdr_request.AuthToken);
-//			Debug.Log (hdr_request.AccessToken);
-//			Debug.Log (hdr_request.ProblemGet.ProblemCount);
-//			Debug.Log (hdr_request.ProblemGet.PlayerId);
+			//UnityEngine.Debug.Log ("Get Problems request going off to " + GET_PROBLEM_URL);
 
 			if (SenseixSession.GetAuthToken () == "you don't need to see my identification")
 				yield break;
