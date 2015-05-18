@@ -16,7 +16,7 @@ public class TextProblemPart : ProblemPart
 	{
 		byte[] decodedBytes = GetAtom().data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
 		//Debug.Log ("Length of data byte string of text atom: " + decodedBytes.Length);
-		return Encoding.ASCII.GetString (decodedBytes);
+		return Encoding.UTF8.GetString (decodedBytes);
 	}
 
 	public override bool HasString()
