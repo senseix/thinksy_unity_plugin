@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 using System.Threading;
 
-namespace Senseix.Message 
+namespace Senseix.Message
 {
 	public struct PostRequestParameters
 	{
@@ -289,7 +289,7 @@ namespace Senseix.Message
 			getProblem.problem_count = (count);
 			getProblem.player_id = (player_id);
 
-			//UnityEngine.Debug.Log ("Get Problems request going off to " + GET_PROBLEM_URL);
+			Logger.BasicLog("Get Problems request going off to " + GET_PROBLEM_URL);
 
 			if (SenseixSession.GetAuthToken () == "you don't need to see my identification")
 				yield break;

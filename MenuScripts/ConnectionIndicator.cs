@@ -35,7 +35,8 @@ namespace Senseix
 		}
 		
 		// Update is called once per frame
-		void Update () {
+		void Update () 
+		{
 			bool indicateOffline = !Senseix.SenseixSession.GetSessionState ();
 			//if (indicateOffline)
 			//	Debug.Log ("Showing offline indicator");

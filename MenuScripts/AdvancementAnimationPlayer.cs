@@ -3,6 +3,9 @@ using System.Collections;
 
 public class AdvancementAnimationPlayer : MonoBehaviour {
 
+	public ParticleSystem particleSystemToPlay;
+	//public Animator animatorToPlay;
+
 	void OnEnable()
 	{
 		ThinksyEvents.onAdvanceCategory += PlayAnimation;
@@ -15,6 +18,7 @@ public class AdvancementAnimationPlayer : MonoBehaviour {
 
 	public void PlayAnimation()
 	{
-		gameObject.GetComponent<ParticleSystem>().Play ();
+		particleSystemToPlay.Play ();
+		//animatorToPlay.Play (0);
 	}
 }
