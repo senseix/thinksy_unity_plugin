@@ -365,6 +365,7 @@ namespace Senseix.Message
 			string fileCount = (Directory.GetFiles (directoryPath).Length + 1).ToString ();
 			string filePath = Path.Combine (directoryPath, fileCount + ProblemKeeper.SEED_FILE_EXTENSION);
 			System.IO.File.WriteAllBytes (filePath, bytes);
+			UnityEngine.iOS.Device.SetNoBackupFlag (filePath);
 		}
 
 		/// <summary>
