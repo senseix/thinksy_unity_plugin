@@ -244,7 +244,7 @@ namespace Senseix.Message
 		/// Return a list of Player names and Player_id's for a Parent, most likely to 
 		/// pick which Player should be playing the game at a given time.  
 		/// </summary>
-		static public IEnumerator ListPlayers () 
+		static public IEnumerator ListPlayers ()
 		{
 			//UnityEngine.Debug.Log ("Auth Token: " + SenseixSession.GetAuthToken());
 

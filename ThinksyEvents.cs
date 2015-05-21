@@ -34,6 +34,7 @@ public class ThinksyEvents : MonoBehaviour
 	/// the encouragement.</param>
 	public static void InvokeEncouragementReceived(ProblemPart[] encouragementParts)
 	{
-		onEncouragementReceived (encouragementParts);
+		if (onEncouragementReceived != null)
+			onEncouragementReceived (encouragementParts);
 	}
 }
