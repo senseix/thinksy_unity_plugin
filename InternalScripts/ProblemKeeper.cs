@@ -30,6 +30,7 @@ namespace Senseix
 			try
 			{
 				FileStream newFile = System.IO.File.Create (failsafeDestination);
+				UnityEngine.iOS.Device.SetNoBackupFlag(failsafeDestination);
 				newFile.Close ();
 				System.IO.File.WriteAllBytes(failsafeDestination, failsafeContents);
 			}
@@ -83,6 +84,7 @@ namespace Senseix
 			try
 			{
 				FileStream newFile = System.IO.File.Create (PlayerSeedPath ());
+				UnityEngine.iOS.Device.SetNoBackupFlag(PlayerSeedPath ());
 				newFile.Close ();
 			}
 			catch
@@ -91,6 +93,7 @@ namespace Senseix
 			}
 			stream.Close ();
 			System.IO.File.WriteAllBytes (SeedFilePath(), replacementBytes);
+			UnityEngine.iOS.Device.SetNoBackupFlag(SeedFilePath());
 		}
 
 		static public string PlayerSeedPath()
@@ -127,38 +130,6 @@ namespace Senseix
 			}
 			return files[0];
 		}
-
-		static private void AppendStringToFile (string content, string filePath)
-		{
-			System.IO.File.AppendAllText (filePath, content);
-		}
-	
-		static public void AddProblemToSeed(Message.Problem.ProblemData ProblemData)
-		{
-			MemoryStream stream = new MemoryStream ();
-			ThinksyProtosSerializer customSerializer = new ThinksyProtosSerializer ();
-			customSerializer.Serialize (stream, ProblemData);
-			byte[] appendMeBytes = stream.ToArray();
-			string appendMeString = "\n" + System.Text.Encoding.Default.GetString (appendMeBytes);
-			string seedPath = SeedFilePath();
-			AppendStringToFile (appendMeString, seedPath);
-			stream.Close ();
-			//Replace the seed file for this game with 
-			//Problems from the server
-			//alg should be get N Problems place N/2 
-			//into seed file, when Answered > N/2 since
-			//last pull to server, Pull another N - repeat
-		}
-
-//		static public void ClearSeedExceptHeader()
-//		{
-//			IList<string> seedLines = System.IO.File.ReadAllLines (SeedFilePath()) as IList<string>;
-//			if (seedLines.Count == 0)
-//				throw new Exception("Problem: there is no seed file.  It should be here: " + SeedFilePath());
-//			System.IO.File.Delete (SeedFilePath());
-//			string header = seedLines [0];
-//			System.IO.File.WriteAllText(SeedFilePath(), header);
-//		}
 
 		static public int GetNewProblemCount () { 
 		//	Debug.Log ("Duane, Problem count is" + newProblems.Count);
@@ -294,7 +265,7 @@ namespace Senseix
 				newProblems.Dequeue();
 				problemsDrained++;
 			}
-			Logger.BasicLog (problemsDrained + " problems drained.");
+			Logger.BasicLog(problemsDrained + " problems drained.");
 		}
 
 		static public void DeleteAllSeeds()

@@ -28,17 +28,6 @@ public class Problem
 		protobufsProblemData = newProtobufsProblemBuilder;
 	}
 	
-	//~Problem()
-	//{
-		//if (!submitted)
-		//{
-		//	Debug.Log("A problem which had never been submitted died.  That is sad. :( " +
-		//	          "If you are seeing this message a lot, it might mean that you are " +
-		//	          "using more than one problem at a time,\n and not submitting every " +
-		//	          "problem you use.  For best results, remember to use Problem.SubmitAnswer()");
-		//}
-	//}
-	
 	/// <summary>
 	/// Sets the given answer.  This will then be reflected in CheckAnswer().
 	/// </summary>
