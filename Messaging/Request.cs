@@ -20,10 +20,10 @@ namespace Senseix.Message
 	public class Request : MonoBehaviour
 	{
 		//API URLS
-		//static string ENCRYPTED = "http://";
-        static string ENCRYPTED = "https://";
-		//static string SERVER_URL = "192.168.1.23:3000/";
-		static string SERVER_URL = "api.thinksylearn.com/";
+		static string ENCRYPTED = "http://";
+        //static string ENCRYPTED = "https://";
+		static string SERVER_URL = "192.168.1.21:3000/";
+		//static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
 		static string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
@@ -46,6 +46,7 @@ namespace Senseix.Message
 
 		//Requests related to Problems
 		static string GET_PROBLEM_URL = PROBLEM_HDR + "index";
+		static string SPECIFIED_GET_PROBLEM_URL = PROBLEM_HDR + "specified_index";
 		static string POST_PROBLEM_URL = PROBLEM_HDR + "update";
 
 		//Requests related to Leaderboards
@@ -240,10 +241,6 @@ namespace Senseix.Message
 				CoroutinePostRequest (newVerification, Response.ParseVerifyGameResponse, VERIFY_GAME_URL, false));
 		}
 
-		/// <summary>
-		/// Return a list of Player names and Player_id's for a Parent, most likely to 
-		/// pick which Player should be playing the game at a given time.  
-		/// </summary>
 		static public IEnumerator ListPlayers ()
 		{
 			//UnityEngine.Debug.Log ("Auth Token: " + SenseixSession.GetAuthToken());
@@ -254,10 +251,11 @@ namespace Senseix.Message
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest (listPlayer, Response.ParseListPlayerResponse, LIST_PLAYER_URL, true));
 		}
+
 		/// <summary>
-		/// We have an explicit call to register a Player with a game, this should be called each time a new Player
-	    /// is selected from the drop downlist. It will add this game to a list of played games for the Player and 
-		/// add them to things like the games Leaderboard.
+		/// This should be called each time a new Player is selected.
+		/// It will add this game to a list of played games for the Player and 
+		/// add them to things like the game's Leaderboard.
 		/// </summary>
 		static public IEnumerator RegisterPlayer (string player_id) 
 		{
@@ -276,10 +274,7 @@ namespace Senseix.Message
 		}
 
 	
-		/// <summary>
-		/// Return a list of Player names and Player_id's for a Parent, most likely to 
-		/// pick which Player should be playing the game at a given time.  
-		/// </summary>
+
 		static public IEnumerator GetProblems (string player_id, UInt32 count) 
 		{
 
@@ -296,6 +291,26 @@ namespace Senseix.Message
 			yield return GetSingletonInstance().StartCoroutine(
 				CoroutinePostRequest (getProblem, Response.ParseGetProblemResponse, GET_PROBLEM_URL, false));
 
+		}
+
+		static public IEnumerator GetSpecifiedProblems (string player_id, LearningAction specifyingLearningAction, UInt32 count) 
+		{
+			
+			//UnityEngine.Debug.Log ("get problems");
+			
+			Problem.SpecifiedProblemGetRequest getProblem = new Problem.SpecifiedProblemGetRequest();
+			getProblem.problem_count = (count);
+			getProblem.player_id = (player_id);
+			getProblem.specifyingLearningAction = specifyingLearningAction.GetProto ();
+			
+			Logger.BasicLog("Specified Get Problems request going off to " + GET_PROBLEM_URL);
+			
+			if (SenseixSession.GetAuthToken () == "you don't need to see my identification")
+				yield break;
+
+			yield return GetSingletonInstance().StartCoroutine(
+				CoroutinePostRequest (getProblem, Response.ParseGetProblemResponse, GET_PROBLEM_URL, false));
+			
 		}
 
 		static public IEnumerator GetEncouragements (string player_id) 
@@ -539,6 +554,7 @@ namespace Senseix.Message
 			
 			//Requests related to Problems
 			GET_PROBLEM_URL = PROBLEM_HDR + "index";
+			SPECIFIED_GET_PROBLEM_URL = PROBLEM_HDR + "specified_index";
 			POST_PROBLEM_URL = PROBLEM_HDR + "update";
 			
 			//Requests related to Leaderboards

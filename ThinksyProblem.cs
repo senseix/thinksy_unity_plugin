@@ -145,7 +145,7 @@ public class Problem
 	{
 		if (protobufsProblemData.learningAction == null)
 			throw new Exception ("This problem does not have a learning action :( ");
-		return LearningAction.CreateLearningAction(protobufsProblemData.learningAction);
+		return new LearningAction(protobufsProblemData.learningAction);
 	}
 	
 	/// <summary>
