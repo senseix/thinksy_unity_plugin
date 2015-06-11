@@ -20,10 +20,10 @@ namespace Senseix.Message
 	public class Request : MonoBehaviour
 	{
 		//API URLS
-		static string ENCRYPTED = "http://";
-        //static string ENCRYPTED = "https://";
-		static string SERVER_URL = "192.168.1.21:3000/";
-		//static string SERVER_URL = "api.thinksylearn.com/";
+		//static string ENCRYPTED = "http://";
+        static string ENCRYPTED = "https://";
+		//static string SERVER_URL = "192.168.1.21:3000/";
+		static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
 		static string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
@@ -58,8 +58,6 @@ namespace Senseix.Message
 		static string DEBUG_LOG_SUBMIT_URL = DEBUG_HDR + "debug_log_submit";
 
 		//External urls
-		public const string WEBSITE_URL = "https://parent.thinksylearn.com/parents/sign_up";
-		public const string DEVICES_WEBSITE_HDR = WEBSITE_URL + "/devices/";
 		public const string ENROLL_GAME_URL = "https://parent.thinksylearn.com/devices/link_game";
 		public const string ENROLL_GAME_STAGING_URL = "https://parent-staging.thinksylearn.com/devices/link_game";
 
@@ -380,7 +378,7 @@ namespace Senseix.Message
 			string fileCount = (Directory.GetFiles (directoryPath).Length + 1).ToString ();
 			string filePath = Path.Combine (directoryPath, fileCount + ProblemKeeper.SEED_FILE_EXTENSION);
 			System.IO.File.WriteAllBytes (filePath, bytes);
-			UnityEngine.iOS.Device.SetNoBackupFlag (filePath);
+			SenseixSession.DoFileFlagging(filePath);
 		}
 
 		/// <summary>
@@ -531,7 +529,8 @@ namespace Senseix.Message
 				return;
 			secretStagingCounter = 1;
 			UnityEngine.Debug.Log ("Super secret staging strike!");
-			Handheld.Vibrate ();
+			//Handheld.Vibrate ();
+			StagingStrike.Boom ();
 			SERVER_URL = STAGING_SERVER_URL;
 			//API URLS
 			GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;

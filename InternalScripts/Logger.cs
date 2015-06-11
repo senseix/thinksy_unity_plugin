@@ -61,7 +61,7 @@ namespace Senseix
 			File.AppendAllText (GetLogPath(), logString);
 			if (new System.IO.FileInfo (GetLogPath ()).Length > deleteThreshhold)
 				File.Delete (GetLogPath ());
-			UnityEngine.iOS.Device.SetNoBackupFlag (GetLogPath ());
+			SenseixSession.DoFileFlagging (GetLogPath ());
 		}
 	}
 }

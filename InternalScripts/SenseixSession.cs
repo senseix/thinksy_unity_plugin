@@ -344,6 +344,9 @@ namespace Senseix
 			ProblemKeeper.PushAllProblems ();
 		}
 
-
+		public static void DoFileFlagging(string filePath)
+		{
+			UnityEngine.iOS.Device.SetNoBackupFlag(filePath);
+		}
 	}
 }
