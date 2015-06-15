@@ -346,7 +346,9 @@ namespace Senseix
 
 		public static void DoFileFlagging(string filePath)
 		{
+#if UNITY_IOS
 			UnityEngine.iOS.Device.SetNoBackupFlag(filePath);
+#endif
 		}
 	}
 }
