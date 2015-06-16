@@ -147,15 +147,25 @@ namespace Senseix.Message
 				}
 				catch (Exception e)
 				{
-					Logger.BasicLog("parsing a server message resulted in this error: " + e.Message);
-					UnityEngine.Debug.LogWarning("parsing a server message resulted in this error: " + e.Message);
+					string logString = "parsing a server message resulted in this error: " + e.Message;
+					Logger.BasicLog(logString);
+					UnityEngine.Debug.LogWarning(logString);
+					if (secretStagingMode)
+					{
+						ThinksyPlugin.ShowEmergencyWindow(logString);
+					}
 					Response.ParseServerErrorResponse(responseBytes);
 				}
 			}
 			else
 			{
-				UnityEngine.Debug.LogWarning ("A SenseiX message (Handler: " + resultHandler.Method.Name + ") had an error.  " + 
-				                  "Most likely internet connectivity issues.");
+				string logString = "A SenseiX message (Handler: " + resultHandler.Method.Name + ") had an error.  " + 
+					"Most likely internet connectivity issues.";
+				UnityEngine.Debug.LogWarning (logString);
+				if (secretStagingMode)
+				{
+					ThinksyPlugin.ShowEmergencyWindow(logString);
+				}
 				SenseixSession.SetSessionState (false);
 			}
 			return;
@@ -182,6 +192,10 @@ namespace Senseix.Message
 			if (!string.IsNullOrEmpty (recvResult.error))
 			{
 				UnityEngine.Debug.LogWarning (recvResult.error);
+				if (secretStagingMode)
+				{
+					ThinksyPlugin.ShowEmergencyWindow (recvResult.error);
+				}
 				SenseixSession.SetSessionState(false);
 				if(recvResult.error.Equals(401))
 				{

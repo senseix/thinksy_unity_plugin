@@ -44,6 +44,7 @@ namespace Senseix
 
 		public static string GetCurrentLog()
 		{
+			Debug.Log ("get current log");
 			string logPath = GetLogPath();
 			string currentLog = File.ReadAllText (logPath);
 			return currentLog;
