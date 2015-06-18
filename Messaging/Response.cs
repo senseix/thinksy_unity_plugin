@@ -213,12 +213,22 @@ namespace Senseix.Message
 				Debug.ServerErrorResponse serverErrorResponse = 
 					Deserialize(responseBytes, typeof(Debug.ServerErrorResponse)) as Debug.ServerErrorResponse;
 			
-				UnityEngine.Debug.LogError("I got a server error response.  Here is the message: " +
-				                      serverErrorResponse.message);
+				string logString = "I got a server error response.  Here is the message: " +
+					serverErrorResponse.message;
+				if (Request.IsInSecretStagingMode())
+				{
+					ThinksyPlugin.ShowEmergencyWindow (logString);
+				}
+				UnityEngine.Debug.LogError(logString);
 			}
 			catch (Exception e)
 			{
-				UnityEngine.Debug.LogWarning("Error while parsing error.  Um.  (" + e.Message + ")");
+				string logString = "Error while parsing error.  Um.  (" + e.Message + ")";
+				UnityEngine.Debug.LogWarning(logString);
+				if (Request.IsInSecretStagingMode())
+				{
+					ThinksyPlugin.ShowEmergencyWindow (logString);
+				}
 			}
 			return false;
 		}

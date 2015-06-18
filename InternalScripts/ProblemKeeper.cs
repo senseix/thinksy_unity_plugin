@@ -30,7 +30,7 @@ namespace Senseix
 			try
 			{
 				FileStream newFile = System.IO.File.Create (failsafeDestination);
-				UnityEngine.iOS.Device.SetNoBackupFlag(failsafeDestination);
+				SenseixSession.DoFileFlagging(failsafeDestination);
 				newFile.Close ();
 				System.IO.File.WriteAllBytes(failsafeDestination, failsafeContents);
 			}
@@ -84,7 +84,7 @@ namespace Senseix
 			try
 			{
 				FileStream newFile = System.IO.File.Create (PlayerSeedPath ());
-				UnityEngine.iOS.Device.SetNoBackupFlag(PlayerSeedPath ());
+				SenseixSession.DoFileFlagging(PlayerSeedPath());
 				newFile.Close ();
 			}
 			catch
@@ -93,7 +93,7 @@ namespace Senseix
 			}
 			stream.Close ();
 			System.IO.File.WriteAllBytes (SeedFilePath(), replacementBytes);
-			UnityEngine.iOS.Device.SetNoBackupFlag(SeedFilePath());
+			SenseixSession.DoFileFlagging (SeedFilePath ());
 		}
 
 		static public string PlayerSeedPath()
