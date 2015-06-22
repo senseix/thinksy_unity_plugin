@@ -73,11 +73,32 @@ namespace Senseix.Message
 				throw new Exception ("no problems in problem response.");
 			}
 
-
 			ProblemKeeper.ReplaceQueue(getProblemResponse);
 
 			return true;
 		}
+
+		static public bool ParseGetSpecifiedProblemResponse(byte[] responseBytes)
+		{
+			Problem.SpecifiedProblemGetResponse getProblemResponse = 
+				Deserialize (responseBytes, typeof(Problem.SpecifiedProblemGetResponse)) as Problem.SpecifiedProblemGetResponse;
+
+			if (getProblemResponse.problems.Count == 0)
+			{
+				throw new Exception ("no problems in problem response.");
+			}
+			
+			global::Problem[] problems = new global::Problem[getProblemResponse.problems.Count];
+
+			for (int i = 0; i < getProblemResponse.problems.Count; i++)
+			{
+				Senseix.Message.Problem.ProblemData problemData = getProblemResponse.problems[i];
+				problems[i] = new global::Problem(problemData);
+			}
+			
+			return true;
+		}
+
 
 		static public bool ParsePostProblemResponse(byte[] responseBytes)
 		{
@@ -162,7 +183,7 @@ namespace Senseix.Message
 				ThinksyEvents.InvokeEncouragementReceived(encouragementParts);
 			}
 
-			ThinksyPlugin.NewHeartbeatTiming (getEncouragementResponse.frames_per_hearbeat);
+			ThinksyPlugin.NewHeartbeatTiming (getEncouragementResponse.frames_per_heartbeat);
 			if (getEncouragementResponse.force_pull)
 				ProblemKeeper.PullNewProblems ();
 

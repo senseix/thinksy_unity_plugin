@@ -26,6 +26,11 @@ public abstract class ProblemPart
 			newProblemPart = new TextProblemPart(newAtom);
 			actuallyConstructed = true;
 		}
+		if (newAtom.type == Senseix.Message.Atom.Atom.Type.NUMBER)
+		{
+			newProblemPart = new NumberProblemPart(newAtom);
+			actuallyConstructed = true;
+		}
 		if (!actuallyConstructed)
 		{
 			throw new Exception("I encountered an atom of an unimplemented type.");

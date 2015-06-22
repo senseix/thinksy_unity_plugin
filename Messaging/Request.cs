@@ -22,7 +22,8 @@ namespace Senseix.Message
 		//API URLS
 		//static string ENCRYPTED = "http://";
         static string ENCRYPTED = "https://";
-		//static string SERVER_URL = "192.168.1.21:3000/";
+		//static string SERVER_URL = "192.168.1.2:3000/";
+		//static string SERVER_URL = "api-erudite.thinksylearn.com/";
 		static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
@@ -150,10 +151,6 @@ namespace Senseix.Message
 					string logString = "parsing a server message resulted in this error: " + e.Message;
 					Logger.BasicLog(logString);
 					UnityEngine.Debug.LogWarning(logString);
-					if (secretStagingMode)
-					{
-						ThinksyPlugin.ShowEmergencyWindow(logString);
-					}
 					Response.ParseServerErrorResponse(responseBytes);
 				}
 			}
@@ -227,7 +224,7 @@ namespace Senseix.Message
 			//UnityEngine.Debug.Log ("building request");
 			Device.DeviceRegistrationRequest newDevice = new Device.DeviceRegistrationRequest();
 			newDevice.information = (deviceNameInformation);
-			//UnityEngine.Debug.Log ("Device id:　" + SenseixSession.GetDeviceID ());				
+			//UnityEngine.Debug.Log ("Device id:　" + SenseixSession.GetDeviceID ());
 			newDevice.device_id =(SenseixSession.GetDeviceID());
 			
 			Logger.BasicLog("register device going off to " + REGISTER_DEVICE_URL);
@@ -305,15 +302,14 @@ namespace Senseix.Message
 
 		}
 
-		static public IEnumerator GetSpecifiedProblems (string player_id, LearningAction specifyingLearningAction, UInt32 count) 
+		static public IEnumerator GetSpecifiedProblems (string player_id, LearningAction specifyingLearningAction, UInt32 count)
 		{
-			
 			//UnityEngine.Debug.Log ("get problems");
 			
 			Problem.SpecifiedProblemGetRequest getProblem = new Problem.SpecifiedProblemGetRequest();
 			getProblem.problem_count = (count);
 			getProblem.player_id = (player_id);
-			getProblem.specifyingLearningAction = specifyingLearningAction.GetProto ();
+			getProblem.specifying_learning_action = specifyingLearningAction.GetProto ();
 			
 			Logger.BasicLog("Specified Get Problems request going off to " + GET_PROBLEM_URL);
 			
@@ -321,8 +317,7 @@ namespace Senseix.Message
 				yield break;
 
 			yield return GetSingletonInstance().StartCoroutine(
-				CoroutinePostRequest (getProblem, Response.ParseGetProblemResponse, GET_PROBLEM_URL, false));
-			
+				CoroutinePostRequest (getProblem, Response.ParseGetSpecifiedProblemResponse, GET_PROBLEM_URL, false));	
 		}
 
 		static public IEnumerator GetEncouragements (string player_id) 

@@ -143,9 +143,9 @@ public class Problem
 	/// </summary>
 	public LearningAction GetLearningAction()
 	{
-		if (protobufsProblemData.learningAction == null)
+		if (protobufsProblemData.learning_action == null)
 			throw new Exception ("This problem does not have a learning action :( ");
-		return new LearningAction(protobufsProblemData.learningAction);
+		return new LearningAction(protobufsProblemData.learning_action);
 	}
 	
 	/// <summary>

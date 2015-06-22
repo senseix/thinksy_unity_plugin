@@ -17,6 +17,25 @@ public class ThinksyEvents : MonoBehaviour
 	/// </summary>
 	public static event EncouragementReceived onEncouragementReceived;
 
+	public delegate void SpecifiedProblemsReceived (Problem[] problems);
+	/// <summary>
+	/// Occurs when the server responds to a get specified problems request.
+	/// The problems will meet the specifications given when you sent the
+	/// specified problems request.
+	/// </summary>
+	public static event SpecifiedProblemsReceived onSpecifiedProblemsReceived;
+
+	/// <summary>
+	/// Invokes the specified problems received event.  This is invoked by a 
+	/// Thinksy-internal specified problem response handler.
+	/// </summary>
+	/// <param name="problems">Problems.</param>
+	public static void InvokeSpecifiedProblemsReceived(Problem[] problems)
+	{
+		if (onSpecifiedProblemsReceived != null)
+			onSpecifiedProblemsReceived (problems);
+	}
+
 	/// <summary>
 	/// Invokes the OnAdvaceCategory event.  ThinksyQuestionDisplay calls this
 	/// whenever it displays a problem from a new, higher category.
