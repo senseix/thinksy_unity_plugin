@@ -2,7 +2,6 @@ using System;
 
 public class LearningAction
 {
-
 	private Senseix.Message.Problem.LearningAction learningActionProto;
 
 	public LearningAction(Senseix.Message.Problem.LearningAction newLearningActionProto)
@@ -14,5 +13,4 @@ public class LearningAction
 	{
 		return new Senseix.Message.Problem.LearningAction ();
 	}
-
 }

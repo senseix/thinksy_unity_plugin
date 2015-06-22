@@ -16,7 +16,7 @@ public class Question
 	public Question(Senseix.Message.Problem.Question newQuestion)
 	{
 		question = newQuestion;
-		atomList = newQuestion.atom;
+		atomList = newQuestion.atoms;
 	}
 	
 	/// <summary>
