@@ -22,9 +22,9 @@ namespace Senseix.Message
 		//API URLS
 		//static string ENCRYPTED = "http://";
         static string ENCRYPTED = "https://";
-		//static string SERVER_URL = "192.168.1.2:3000/";
-		//static string SERVER_URL = "api-erudite.thinksylearn.com/";
-		static string SERVER_URL = "api.thinksylearn.com/";
+		//static string SERVER_URL = "192.168.1.8:3000/";
+		static string SERVER_URL = "api-erudite.thinksylearn.com/";
+		//static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
 		static string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
@@ -60,6 +60,7 @@ namespace Senseix.Message
 
 		//External urls
 		public const string ENROLL_GAME_URL = "https://parent.thinksylearn.com/devices/link_game";
+		//public const string ENROLL_GAME_URL = "https://parent-erudite.thinksylearn.com/devices/link_game";
 		public const string ENROLL_GAME_STAGING_URL = "https://parent-staging.thinksylearn.com/devices/link_game";
 
 		private static Request singletonInstance = null;
@@ -142,16 +143,25 @@ namespace Senseix.Message
 				responseBytes = recvResult.bytes;
 				//UnityEngine.Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
 				//UnityEngine.Debug.Log ("parse response");
+
+				if (responseBytes.Length == 0)
+				{
+					Logger.BasicLog("I got an empty server response.  This is normal for certain responses.");
+					return;
+				}
+
+				bool isAnError = true;
 				try
 				{
-					resultHandler(responseBytes);
+					isAnError = Response.ParseServerErrorResponse(responseBytes);
 				}
-				catch (Exception e)
+				catch
 				{
-					string logString = "parsing a server message resulted in this error: " + e.Message;
-					Logger.BasicLog(logString);
-					UnityEngine.Debug.LogWarning(logString);
-					Response.ParseServerErrorResponse(responseBytes);
+					HandleNonerrorResponse(responseBytes, resultHandler);
+				}
+				if (!isAnError)
+				{
+					HandleNonerrorResponse(responseBytes, resultHandler);
 				}
 			}
 			else
@@ -168,6 +178,19 @@ namespace Senseix.Message
 			return;
 		}
 
+		static private void HandleNonerrorResponse(byte[] responseBytes, ResponseHandlerDelegate resultHandler)
+		{
+			try
+			{
+				resultHandler(responseBytes);
+			}
+			catch (Exception e)
+			{
+				string logString = "parsing a non-error server message resulted in this error: " + e.Message;
+				UnityEngine.Debug.LogException(new Exception(logString));
+			}
+		}
+		
 		static private IEnumerator WaitForRequest(WWW recvResult)
 		{
 			//UnityEngine.Debug.Log ("entering wait for request");

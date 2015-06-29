@@ -197,8 +197,8 @@ namespace Senseix
 			SenseixSession.CheckProblemPostCacheSubmission();
 			//SenseixPlugin.ShowEmergencyWindow ("testing");
 
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), 0));
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.GetPlayerRank (GetCurrentPlayerID ()));
+			//yield return GetSingletonInstance().StartCoroutine(Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), 0));
+			//yield return GetSingletonInstance().StartCoroutine(Message.Request.GetPlayerRank (GetCurrentPlayerID ()));
 
 			yield return Message.Request.GetSingletonInstance().StartCoroutine(
 				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), ProblemKeeper.PROBLEMS_PER_PULL));

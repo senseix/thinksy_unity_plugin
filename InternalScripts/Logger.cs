@@ -52,7 +52,7 @@ namespace Senseix
 
 		public static void BasicLog(string extraLog)
 		{
-			//Debug.Log (extraLog);
+			Debug.Log (extraLog);
 			LogText(System.Environment.NewLine + "--- BASIC LOG ---" + 
 								System.Environment.NewLine + extraLog + System.Environment.NewLine);
 		}

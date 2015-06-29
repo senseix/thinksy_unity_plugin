@@ -52,10 +52,13 @@ namespace Senseix.Message
 		{
 			Player.PlayerRegisterWithApplicationResponse registerPlayerResponse = 
 				Deserialize (responseBytes, typeof(Player.PlayerRegisterWithApplicationResponse)) as Player.PlayerRegisterWithApplicationResponse;
+
 			if (registerPlayerResponse == null)
 				throw new Exception ("Player response is null");
+
 			SenseixSession.SetSessionState(true);
 			Logger.BasicLog("I got a response from a register Player Message");
+			UnityEngine.Debug.Log("register player response");
 
 			return true;
 		}
@@ -85,7 +88,7 @@ namespace Senseix.Message
 
 			if (getProblemResponse.problems.Count == 0)
 			{
-				throw new Exception ("no problems in problem response.");
+				throw new Exception ("no problems in specified problem response.");
 			}
 			
 			global::Problem[] problems = new global::Problem[getProblemResponse.problems.Count];
@@ -95,6 +98,8 @@ namespace Senseix.Message
 				Senseix.Message.Problem.ProblemData problemData = getProblemResponse.problems[i];
 				problems[i] = new global::Problem(problemData);
 			}
+
+			ThinksyEvents.InvokeSpecifiedProblemsReceived (problems);
 			
 			return true;
 		}
@@ -229,29 +234,24 @@ namespace Senseix.Message
 
 		static public bool ParseServerErrorResponse(byte[] responseBytes)
 		{
-			try
+			Debug.ServerErrorResponse serverErrorResponse = 
+				Deserialize(responseBytes, typeof(Debug.ServerErrorResponse)) as Debug.ServerErrorResponse;
+		
+			if (serverErrorResponse.message.Length == 0)
 			{
-				Debug.ServerErrorResponse serverErrorResponse = 
-					Deserialize(responseBytes, typeof(Debug.ServerErrorResponse)) as Debug.ServerErrorResponse;
-			
-				string logString = "I got a server error response.  Here is the message: " +
-					serverErrorResponse.message;
-				if (Request.IsInSecretStagingMode())
-				{
-					ThinksyPlugin.ShowEmergencyWindow (logString);
-				}
-				UnityEngine.Debug.LogError(logString);
+				return false;
 			}
-			catch (Exception e)
+
+			string logString = "I got a server error response.  Here is the message: " +
+				serverErrorResponse.message;
+
+			if (Request.IsInSecretStagingMode())
 			{
-				string logString = "Error while parsing error.  Um.  (" + e.Message + ")";
-				UnityEngine.Debug.LogWarning(logString);
-				if (Request.IsInSecretStagingMode())
-				{
-					ThinksyPlugin.ShowEmergencyWindow (logString);
-				}
+				ThinksyPlugin.ShowEmergencyWindow (logString);
 			}
-			return false;
+
+			UnityEngine.Debug.LogError(logString);
+			return true;
 		}
 
 		static private object Deserialize(byte[] responseBytes, Type typeToDeserialize)
