@@ -39,6 +39,30 @@ public abstract class ProblemPart
 		return newProblemPart;
 	}
 
+	public static ProblemPart CreateProblemPart(int number)
+	{
+		Senseix.Message.Atom.Atom atom = new Senseix.Message.Atom.Atom ();
+		atom.data = BitConverter.GetBytes (404);
+		atom.type = Senseix.Message.Atom.Atom.Type.NUMBER;
+		atom.numberValue = number;
+		atom.description = "unity-side generated number";
+		atom.uuid = "unity-side generated number";
+		atom.required = false;
+		return CreateProblemPart (atom);
+	}
+
+	public static ProblemPart CreateProblemPart(string text)
+	{
+		Senseix.Message.Atom.Atom atom = new Senseix.Message.Atom.Atom ();
+		atom.data = BitConverter.GetBytes (404);
+		atom.type = Senseix.Message.Atom.Atom.Type.TEXT;
+		atom.text = text;
+		atom.description = "unity-side generated text";
+		atom.uuid = "unity-side generated text";
+		atom.required = false;
+		return CreateProblemPart (atom);
+	}
+
 	public ProblemPart(Senseix.Message.Atom.Atom newAtom)
 	{
 		atom = newAtom;
