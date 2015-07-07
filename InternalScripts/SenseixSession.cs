@@ -120,27 +120,27 @@ namespace Senseix
 		}
 
 		static public string GetDeviceID()
-		{
-			#if UNITY_WEBGL
-			string webGLGuidPath = System.IO.Path.Combine (Application.persistentDataPath, "unity_plugin_udid");
-			Guid guid = Guid.NewGuid ();
+		{			
+#if UNITY_WEBGL
+			string uuid = "undefined";
+			//UnityEngine.Debug.Log("Duane, entering into the while loop");
+			string webGLGuidPath = "external_udid";  
+			//UnityEngine.Debug.Log("Reading from " + webGLGuidPath);
 			if (System.IO.File.Exists(webGLGuidPath))
 			{
-				byte[] readGuidBytes = System.IO.File.ReadAllBytes(webGLGuidPath);
-				guid = new Guid(readGuidBytes);
-			}
-			else
+				uuid = System.IO.File.ReadAllText(webGLGuidPath);
+				//  	UnityEngine.Debug.Log("uuid is : " + uuid);
+			} 
+			else  
 			{
-				byte[] writeGuidBytes = guid.ToByteArray();
-				System.IO.File.WriteAllBytes(webGLGuidPath, writeGuidBytes); 
+				UnityEngine.Debug.Log("Still waiting for a identifier from the webserver.");
 			}
-			string guid_str = guid.ToString();
-			Debug.Log (guid_str);
-			Application.ExternalCall ("setUdid", guid_str);
-			return guid_str;
-			#endif
-			return SystemInfo.deviceUniqueIdentifier;
+			return uuid.TrimEnd( '\r', '\n' );
+#endif
+			return SystemInfo.deviceUniqueIdentifier;	
 		}
+		
+
 
 		static public string GetAuthToken()
 		{
@@ -170,6 +170,8 @@ namespace Senseix
 				yield break;
 			}
 			isInitializing = true;
+
+			yield return GetSingletonInstance().StartCoroutine(WaitForWebGLInitializing());
 
 			SetSessionState (true);
 
@@ -367,6 +369,22 @@ namespace Senseix
 #if UNITY_IOS
 			UnityEngine.iOS.Device.SetNoBackupFlag(filePath);
 #endif
+		}
+
+		static private IEnumerator WaitForWebGLInitializing()
+		{
+#if UNITY_WEBGL
+			Application.ExternalCall("setUdid", "undefined");
+			string uuid = "undefined";
+			uuid = GetDeviceID();
+			while (uuid == "undefined") 
+			{
+				//UnityEngine.Debug.Log("Waiting for loop to initialize");
+				yield return new WaitForSeconds(1);
+				uuid = GetDeviceID ();
+			}
+#endif
+			yield return null;
 		}
 	}
 }

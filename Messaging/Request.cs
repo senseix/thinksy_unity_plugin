@@ -334,7 +334,7 @@ namespace Senseix.Message
 			getProblem.player_id = (player_id);
 			getProblem.specifying_learning_action = specifyingLearningAction.GetProto ();
 			
-			Logger.BasicLog("Specified Get Problems request going off to " + GET_PROBLEM_URL);
+			Logger.BasicLog("Specified Get Problems request going off to " + SPECIFIED_GET_PROBLEM_URL);
 			
 			if (SenseixSession.GetAuthToken () == "you don't need to see my identification")
 				yield break;
