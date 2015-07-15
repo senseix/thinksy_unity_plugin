@@ -14,7 +14,9 @@ public class TextProblemPart : ProblemPart
 	/// </summary>
 	public override string GetString()
 	{
-		return GetAtom().text;
+		if (!GetAtom().text.Equals(""))
+			return GetAtom().text;
+		else return Encoding.UTF8.GetString (GetAtom().data);
 	}
 
 	public override bool HasString()
