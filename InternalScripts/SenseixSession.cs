@@ -31,6 +31,11 @@ namespace Senseix
 			{
 				singletonInstance = FindObjectOfType<SenseixSession>();
 			}
+			if (singletonInstance == null)
+			{
+				throw new Exception("There is no SenseixSession.cs in scene.  Please ensure" +
+					" the Thinksy prefab is enabled.");
+			}
 			return singletonInstance;
 		}
 

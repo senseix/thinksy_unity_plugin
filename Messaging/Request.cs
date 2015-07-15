@@ -73,6 +73,11 @@ namespace Senseix.Message
 			{
 				singletonInstance = FindObjectOfType<Request>();
 			}
+			if (singletonInstance == null)
+			{
+				throw new UnityException("There is no enabled Request.cs in scene.  There needs to be a " +
+					"Request.cs for unity to communicate with its server using coroutines.");
+			}
 			return singletonInstance;
 		}
 
