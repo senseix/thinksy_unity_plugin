@@ -24,7 +24,6 @@ namespace Senseix.Message
         static string ENCRYPTED = "https://";
 		//static string SERVER_URL = "192.168.1.8:3000/";
 		static string SERVER_URL = "api.thinksylearn.com/";
-		//static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
 		static string GENERIC_HDR = ENCRYPTED + SERVER_URL + API_VERSION;
@@ -60,7 +59,6 @@ namespace Senseix.Message
 
 		//External urls
 		public const string ENROLL_GAME_URL = "https://parent.thinksylearn.com/devices/link_game";
-		//public const string ENROLL_GAME_URL = "https://parent-erudite.thinksylearn.com/devices/link_game";
 		public const string ENROLL_GAME_STAGING_URL = "https://parent-staging.thinksylearn.com/devices/link_game";
 
 		private static Request singletonInstance = null;
