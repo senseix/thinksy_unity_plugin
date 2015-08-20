@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Senseix
 {
-	public class AvatarFace : MonoBehaviour 
+	public class AvatarFace : MonoBehaviour
 	{
 		public UnityEngine.UI.Image overrideButtonFace;
 

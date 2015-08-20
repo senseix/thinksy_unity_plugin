@@ -169,36 +169,7 @@ namespace Senseix
 		{ 
 			//Debug.Log ("initializing");
 
-			if (isInitializing)
-			{
-				Logger.BasicLog("already initializing");
-				yield break;
-			}
-			isInitializing = true;
-
-			yield return GetSingletonInstance().StartCoroutine(WaitForWebGLInitializing());
-
-			SetSessionState (true);
-
-			accessToken = newAccessToken; 
-			if (CheckAccessToken() == -1) 
-			{
-				throw new Exception("The Thinksy Token you have provided is not of a valid length, please" +
-					" register at https://developer.thinksylearn.com/ to create a valid key.  Then, fill " +
-					"in the Game Access Token field of the ThinksyPlugin script on the Thinksy Prefab." +
-					"  You can also test offline by checking the testing mode boolean on the Thinksy Prefab.");
-			}
-
-			//Creates a temporary account based on device id
-			//returns an auth token. This is Syncronous.
-			//Debug.Log("registering device");
-			yield return GetSingletonInstance().StartCoroutine(RegisterDevice ());
-
-			//Debug.Log ("listing players");
-		  	yield return GetSingletonInstance().StartCoroutine(ListPlayers ());
-
-			//Debug.Log("register all players");
-			yield return GetSingletonInstance().StartCoroutine(RegisterAllPlayers ());
+			yield return GetSingletonInstance ().StartCoroutine (LimitedInitializeSenseix (newAccessToken));
 
 			//Debug.Log("submit cache");
 			SenseixSession.CheckProblemPostCacheSubmission();
@@ -211,6 +182,47 @@ namespace Senseix
 				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), ProblemKeeper.PROBLEMS_PER_PULL));
 
 			ThinksyPlugin.GetMostRecentProblem();
+			EndInitialize ();
+		}
+
+		public static IEnumerator LimitedInitializeSenseix (string newAccessToken) 
+		{ 
+			if (isInitializing)
+			{
+				Logger.BasicLog("already initializing");
+				yield break;
+			}
+			isInitializing = true;
+			
+			yield return GetSingletonInstance().StartCoroutine(WaitForWebGLInitializing());
+			
+			SetSessionState (true);
+			
+			accessToken = newAccessToken; 
+			if (CheckAccessToken() == -1) 
+			{
+				throw new Exception("The Thinksy Token you have provided is not of a valid length, please" +
+				                    " register at https://developer.thinksylearn.com/ to create a valid key.  Then, fill " +
+				                    "in the Game Access Token field of the ThinksyPlugin script on the Thinksy Prefab." +
+				                    "  You can also test offline by checking the testing mode boolean on the Thinksy Prefab.");
+			}
+			
+			//Creates a temporary account based on device id
+			//returns an auth token. This is Syncronous.
+			//Debug.Log("registering device");
+			yield return GetSingletonInstance().StartCoroutine(RegisterDevice ());
+			
+			//Debug.Log ("listing players");
+			yield return GetSingletonInstance().StartCoroutine(ListPlayers ());
+			
+			//Debug.Log("register all players");
+			yield return GetSingletonInstance().StartCoroutine(RegisterAllPlayers ());
+
+			EndInitialize ();
+		}
+
+		static private void EndInitialize()
+		{
 			isInitializing = false;
 		}
 

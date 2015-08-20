@@ -24,7 +24,7 @@ namespace Senseix
 			if (singletonInstance == null)
 			{
 				if (!warningThrown)
-					Debug.LogWarning("There is no ConnectionIndicator enabled in scene.");
+					Logger.BasicLog("There is no ConnectionIndicator enabled in scene.");
 				warningThrown = true;
 			}
 			return singletonInstance;
