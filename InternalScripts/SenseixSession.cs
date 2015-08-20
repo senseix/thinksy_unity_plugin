@@ -31,6 +31,11 @@ namespace Senseix
 			{
 				singletonInstance = FindObjectOfType<SenseixSession>();
 			}
+			if (singletonInstance == null)
+			{
+				throw new Exception("There is no SenseixSession.cs in scene.  Please ensure" +
+					" the Thinksy prefab is enabled.");
+			}
 			return singletonInstance;
 		}
 
@@ -120,27 +125,27 @@ namespace Senseix
 		}
 
 		static public string GetDeviceID()
-		{
-			#if UNITY_WEBGL
-			string webGLGuidPath = System.IO.Path.Combine (Application.persistentDataPath, "unity_plugin_udid");
-			Guid guid = Guid.NewGuid ();
+		{			
+#if UNITY_WEBGL
+			string uuid = "undefined";
+			//UnityEngine.Debug.Log("Duane, entering into the while loop");
+			string webGLGuidPath = "external_udid";  
+			//UnityEngine.Debug.Log("Reading from " + webGLGuidPath);
 			if (System.IO.File.Exists(webGLGuidPath))
 			{
-				byte[] readGuidBytes = System.IO.File.ReadAllBytes(webGLGuidPath);
-				guid = new Guid(readGuidBytes);
-			}
-			else
+				uuid = System.IO.File.ReadAllText(webGLGuidPath);
+				//  	UnityEngine.Debug.Log("uuid is : " + uuid);
+			} 
+			else  
 			{
-				byte[] writeGuidBytes = guid.ToByteArray();
-				System.IO.File.WriteAllBytes(webGLGuidPath, writeGuidBytes); 
+				UnityEngine.Debug.Log("Still waiting for a identifier from the webserver.");
 			}
-			string guid_str = guid.ToString();
-			Debug.Log (guid_str);
-			Application.ExternalCall ("setUdid", guid_str);
-			return guid_str;
-			#endif
-			return SystemInfo.deviceUniqueIdentifier;
+			return uuid.TrimEnd( '\r', '\n' );
+#endif
+			return SystemInfo.deviceUniqueIdentifier;	
 		}
+		
+
 
 		static public string GetAuthToken()
 		{
@@ -164,46 +169,60 @@ namespace Senseix
 		{ 
 			//Debug.Log ("initializing");
 
+			yield return GetSingletonInstance ().StartCoroutine (LimitedInitializeSenseix (newAccessToken));
+
+			//Debug.Log("submit cache");
+			SenseixSession.CheckProblemPostCacheSubmission();
+			//SenseixPlugin.ShowEmergencyWindow ("testing");
+
+			//yield return GetSingletonInstance().StartCoroutine(Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), 0));
+			//yield return GetSingletonInstance().StartCoroutine(Message.Request.GetPlayerRank (GetCurrentPlayerID ()));
+
+			yield return Message.Request.GetSingletonInstance().StartCoroutine(
+				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), ProblemKeeper.PROBLEMS_PER_PULL));
+
+			ThinksyPlugin.GetMostRecentProblem();
+			EndInitialize ();
+		}
+
+		public static IEnumerator LimitedInitializeSenseix (string newAccessToken) 
+		{ 
 			if (isInitializing)
 			{
 				Logger.BasicLog("already initializing");
 				yield break;
 			}
 			isInitializing = true;
-
+			
+			yield return GetSingletonInstance().StartCoroutine(WaitForWebGLInitializing());
+			
 			SetSessionState (true);
-
+			
 			accessToken = newAccessToken; 
 			if (CheckAccessToken() == -1) 
 			{
 				throw new Exception("The Thinksy Token you have provided is not of a valid length, please" +
-					" register at https://developer.thinksylearn.com/ to create a valid key.  Then, fill " +
-					"in the Game Access Token field of the ThinksyPlugin script on the Thinksy Prefab." +
-					"  You can also test offline by checking the testing mode boolean on the Thinksy Prefab.");
+				                    " register at https://developer.thinksylearn.com/ to create a valid key.  Then, fill " +
+				                    "in the Game Access Token field of the ThinksyPlugin script on the Thinksy Prefab." +
+				                    "  You can also test offline by checking the testing mode boolean on the Thinksy Prefab.");
 			}
-
+			
 			//Creates a temporary account based on device id
 			//returns an auth token. This is Syncronous.
 			//Debug.Log("registering device");
 			yield return GetSingletonInstance().StartCoroutine(RegisterDevice ());
-
+			
 			//Debug.Log ("listing players");
-		  	yield return GetSingletonInstance().StartCoroutine(ListPlayers ());
-
+			yield return GetSingletonInstance().StartCoroutine(ListPlayers ());
+			
 			//Debug.Log("register all players");
 			yield return GetSingletonInstance().StartCoroutine(RegisterAllPlayers ());
 
-			//Debug.Log("submit cache");
-			SenseixSession.CheckProblemPostCacheSubmission();
-			//SenseixPlugin.ShowEmergencyWindow ("testing");
+			EndInitialize ();
+		}
 
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.UpdatePlayerScore (GetCurrentPlayerID(), 0));
-			yield return GetSingletonInstance().StartCoroutine(Message.Request.GetPlayerRank (GetCurrentPlayerID ()));
-
-			yield return Message.Request.GetSingletonInstance().StartCoroutine(
-				Message.Request.GetProblems (SenseixSession.GetCurrentPlayerID(), ProblemKeeper.PROBLEMS_PER_PULL));
-
-			ThinksyPlugin.GetMostRecentProblem();
+		static private void EndInitialize()
+		{
 			isInitializing = false;
 		}
 
@@ -367,6 +386,22 @@ namespace Senseix
 #if UNITY_IOS
 			UnityEngine.iOS.Device.SetNoBackupFlag(filePath);
 #endif
+		}
+
+		static private IEnumerator WaitForWebGLInitializing()
+		{
+#if UNITY_WEBGL
+			Application.ExternalCall("setUdid", "undefined");
+			string uuid = "undefined";
+			uuid = GetDeviceID();
+			while (uuid == "undefined") 
+			{
+				//UnityEngine.Debug.Log("Waiting for loop to initialize");
+				yield return new WaitForSeconds(1);
+				uuid = GetDeviceID ();
+			}
+#endif
+			yield return null;
 		}
 	}
 }

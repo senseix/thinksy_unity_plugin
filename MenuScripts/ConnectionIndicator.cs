@@ -13,12 +13,19 @@ namespace Senseix
 		public Sprite communicatingSprite;
 
 		private static ConnectionIndicator singletonInstance;
+		private static bool warningThrown = false;
 
 		private static ConnectionIndicator GetSingletonInstance()
 		{
 			if (singletonInstance == null)
 			{
 				singletonInstance = FindObjectOfType<ConnectionIndicator>();
+			}
+			if (singletonInstance == null)
+			{
+				if (!warningThrown)
+					Logger.BasicLog("There is no ConnectionIndicator enabled in scene.");
+				warningThrown = true;
 			}
 			return singletonInstance;
 		}
@@ -47,7 +54,8 @@ namespace Senseix
 
 		public static void SetWaitingIndication(bool show)
 		{
-			GetSingletonInstance().InstanceSetWaitingIndication (show);
+			if (GetSingletonInstance() != null)
+				GetSingletonInstance().InstanceSetWaitingIndication (show);
 		}
 
 		private void InstanceSetWaitingIndication(bool show)

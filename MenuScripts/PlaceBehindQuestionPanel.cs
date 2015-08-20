@@ -7,10 +7,13 @@ public class PlaceBehindQuestionPanel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.transform.position = 
-			Camera.main.ScreenToWorldPoint(new Vector3(questionPanel.transform.position.x, 
-			                                           questionPanel.transform.position.y, 
-			                                           10));
+		if (Camera.main != null)
+		{
+			this.transform.position = 
+				Camera.main.ScreenToWorldPoint(new Vector3(questionPanel.transform.position.x,
+				                                           questionPanel.transform.position.y, 
+				                                           10));
+		}
 	}
 	
 	// Update is called once per frame

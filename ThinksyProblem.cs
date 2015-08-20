@@ -122,7 +122,7 @@ public class Problem
 	{
 		if (givenAnswer == null)
 		{
-			throw new Exception("No answers have yet been given.  Use Problem.SetGivenAnswer(someString)");
+			givenAnswer = new Answer();
 		}
 		return givenAnswer;
 	}
@@ -153,7 +153,7 @@ public class Problem
 	/// </summary>
 	public void AddGivenAnswerPart(ProblemPart newGivenAnswerPart)
 	{
-		givenAnswer.AddAnswerPart(newGivenAnswerPart);
+		GetGivenAnswer().AddAnswerPart(newGivenAnswerPart);
 	}
 	
 	/// <summary>

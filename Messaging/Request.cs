@@ -22,8 +22,7 @@ namespace Senseix.Message
 		//API URLS
 		//static string ENCRYPTED = "http://";
         static string ENCRYPTED = "https://";
-		//static string SERVER_URL = "192.168.1.2:3000/";
-		//static string SERVER_URL = "api-erudite.thinksylearn.com/";
+		//static string SERVER_URL = "192.168.1.9:3000/";
 		static string SERVER_URL = "api.thinksylearn.com/";
 		static string STAGING_SERVER_URL = "api-staging.thinksylearn.com/";
 		static string API_VERSION = "v1";
@@ -71,6 +70,11 @@ namespace Senseix.Message
 			if (singletonInstance == null)
 			{
 				singletonInstance = FindObjectOfType<Request>();
+			}
+			if (singletonInstance == null)
+			{
+				throw new UnityException("There is no enabled Request.cs in scene.  There needs to be a " +
+					"Request.cs for unity to communicate with its server using coroutines.");
 			}
 			return singletonInstance;
 		}
@@ -142,16 +146,25 @@ namespace Senseix.Message
 				responseBytes = recvResult.bytes;
 				//UnityEngine.Debug.Log ("Recv result is " + recvResult.bytes.Length + " bytes long");
 				//UnityEngine.Debug.Log ("parse response");
+
+				if (responseBytes.Length == 0)
+				{
+					Logger.BasicLog("I got an empty server response.  This is normal for certain responses.");
+					return;
+				}
+
+				bool isAnError = true;
 				try
 				{
-					resultHandler(responseBytes);
+					isAnError = Response.ParseServerErrorResponse(responseBytes);
 				}
-				catch (Exception e)
+				catch
 				{
-					string logString = "parsing a server message resulted in this error: " + e.Message;
-					Logger.BasicLog(logString);
-					UnityEngine.Debug.LogWarning(logString);
-					Response.ParseServerErrorResponse(responseBytes);
+					HandleNonerrorResponse(responseBytes, resultHandler);
+				}
+				if (!isAnError)
+				{
+					HandleNonerrorResponse(responseBytes, resultHandler);
 				}
 			}
 			else
@@ -168,6 +181,19 @@ namespace Senseix.Message
 			return;
 		}
 
+		static private void HandleNonerrorResponse(byte[] responseBytes, ResponseHandlerDelegate resultHandler)
+		{
+			try
+			{
+				resultHandler(responseBytes);
+			}
+			catch (Exception e)
+			{
+				string logString = "parsing a non-error server message resulted in this error: " + e.Message;
+				UnityEngine.Debug.LogException(new Exception(logString));
+			}
+		}
+		
 		static private IEnumerator WaitForRequest(WWW recvResult)
 		{
 			//UnityEngine.Debug.Log ("entering wait for request");
@@ -311,7 +337,7 @@ namespace Senseix.Message
 			getProblem.player_id = (player_id);
 			getProblem.specifying_learning_action = specifyingLearningAction.GetProto ();
 			
-			Logger.BasicLog("Specified Get Problems request going off to " + GET_PROBLEM_URL);
+			Logger.BasicLog("Specified Get Problems request going off to " + SPECIFIED_GET_PROBLEM_URL);
 			
 			if (SenseixSession.GetAuthToken () == "you don't need to see my identification")
 				yield break;

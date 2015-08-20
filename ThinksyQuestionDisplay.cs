@@ -88,7 +88,7 @@ public class ThinksyQuestionDisplay : MonoBehaviour
 
 		if (textAreaCount == 0)
 		{
-			Debug.LogWarning("I got a problem with no question atoms.");
+			Senseix.Logger.BasicLog("I got a problem with no question atoms.");
 			return;//throw new UnityException ("I got a problem with no question atoms.");
 		}
 		richTextAreas = new GameObject[textAreaCount];

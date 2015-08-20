@@ -14,9 +14,9 @@ public class TextProblemPart : ProblemPart
 	/// </summary>
 	public override string GetString()
 	{
-		byte[] decodedBytes = GetAtom().data;//Senseix.SenseixController.DecodeServerBytes (atom.Data);
-		//Debug.Log ("Length of data byte string of text atom: " + decodedBytes.Length);
-		return Encoding.UTF8.GetString (decodedBytes);
+		if (!GetAtom().text.Equals(""))
+			return GetAtom().text;
+		else return Encoding.UTF8.GetString (GetAtom().data);
 	}
 
 	public override bool HasString()
