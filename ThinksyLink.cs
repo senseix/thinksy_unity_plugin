@@ -5,14 +5,13 @@ using UnityEngine;
 
 class ThinksyLink : MonoBehaviour
 {
-	public string gameAccessToken = null; 	
-								//this is your developer access token obtained from 
+	public string gameAccessToken = null;
+								//this is your developer access token obtained from
 								//the Senseix website.
 
 	private static ThinksyLink singletonInstance;
-	
+
 	private const int reconnectRetryInterval = 3000;
-	private static uint heartbeatInterval = 1401;
 
 	static private ThinksyLink GetSingletonInstance()
 	{
@@ -44,20 +43,9 @@ class ThinksyLink : MonoBehaviour
 		if (!Senseix.SenseixSession.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
 		{
 			Debug.Log ("Attempting to reconnect...");
-			StartCoroutine(Senseix.SenseixSession.InitializeSenseix(gameAccessToken));
+			Reinitialize();
 		}
-		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%heartbeatInterval == 0 &&  Time.frameCount != 0)
-		{
-			Senseix.Logger.BasicLog("Getting encouragements...");
-			Senseix.SenseixSession.Heartbeat();
-		}
-	}
-
-	public static void NewHeartbeatTiming(uint newTiming)
-	{
-		if (newTiming < 100)
-			return;
-		heartbeatInterval = newTiming;
+		Heart.Beat (gameAccessToken);
 	}
 
 	public static void StaticReinitialize()

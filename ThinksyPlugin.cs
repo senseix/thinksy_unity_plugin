@@ -11,18 +11,14 @@ class ThinksyPlugin : MonoBehaviour
 	public bool testingMode = false;	
 								//check this box from the unity GUI to enable offline mode, 
 								//useful for testing or offline development
-	public bool useLeaderboard = false; 
-								//check this box if you plan to use Thinksy leaderboard functionality
-								//it will present a leaderboard button in the menu
 	public GameObject emergencyWindow = null;	
 								//this game object will be activated in the hopefully unlikely
 								//scenario of problems in the thinksy plugin
 	
 	private static ThinksyPlugin singletonInstance;
 	private static Problem mostRecentProblem;
-	
+
 	private const int reconnectRetryInterval = 3000;
-	private static uint heartbeatInterval = 1401;
 
 	static private ThinksyPlugin GetSingletonInstance()
 	{
@@ -85,23 +81,12 @@ class ThinksyPlugin : MonoBehaviour
 
 	void Update()
 	{
-		if (!testingMode && !Senseix.SenseixSession.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
+		if (!Senseix.SenseixSession.GetSessionState() && Time.frameCount%reconnectRetryInterval == 0)
 		{
 			Debug.Log ("Attempting to reconnect...");
-			StartCoroutine(Senseix.SenseixSession.InitializeSenseix(gameAccessToken));
+			Reinitialize();
 		}
-		if (Senseix.SenseixSession.GetSessionState() && Time.frameCount%heartbeatInterval == 0 &&  Time.frameCount != 0)
-		{
-			Senseix.Logger.BasicLog("Getting encouragements...");
-			Senseix.SenseixSession.Heartbeat();
-		}
-	}
-
-	public static void NewHeartbeatTiming(uint newTiming)
-	{
-		if (newTiming < 100)
-			return;
-		heartbeatInterval = newTiming;
+		Heart.Beat (gameAccessToken);
 	}
 
 	public static void StaticReinitialize()
@@ -190,11 +175,6 @@ class ThinksyPlugin : MonoBehaviour
 		return Problem.CountProblemsAnsweredCorrectlySoFar();
 	}
 
-	public static bool UsesLeaderboard()
-	{
-		return GetSingletonInstance().useLeaderboard;
-	}
-	
 	public static void SetAccessToken(string newAccessToken)
 	{
 		GetSingletonInstance().gameAccessToken = newAccessToken;

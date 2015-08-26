@@ -188,7 +188,7 @@ namespace Senseix.Message
 				ThinksyEvents.InvokeEncouragementReceived(encouragementParts);
 			}
 
-			ThinksyPlugin.NewHeartbeatTiming (getEncouragementResponse.frames_per_heartbeat);
+			Heart.NewHeartbeatTiming (getEncouragementResponse.frames_per_heartbeat);
 			if (getEncouragementResponse.force_pull)
 				ProblemKeeper.PullNewProblems ();
 

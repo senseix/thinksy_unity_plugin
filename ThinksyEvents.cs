@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ThinksyEvents : MonoBehaviour 
+public static class ThinksyEvents
 {
 	public delegate void CategoryAdvancement();
 	/// <summary>

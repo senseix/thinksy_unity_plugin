@@ -25,7 +25,7 @@ namespace Senseix
 
 		private static SenseixSession singletonInstance = null;
 
-		private static SenseixSession GetSingletonInstance()
+		public static SenseixSession GetSingletonInstance()
 		{
 			if (singletonInstance == null)
 			{
