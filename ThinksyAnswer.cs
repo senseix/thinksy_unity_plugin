@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Answer
 {
-	ArrayList answerParts = new ArrayList();
+	private ArrayList answerParts = new ArrayList();
 	
 	/// <summary>
-	/// Don't use this unless you know what you're doing.  Instead, use the other constructors.
+	/// Build an answer from a message received from the Thinksy server.  For internal use within the Thinksy plugin.
 	/// </summary>
 	public Answer(Senseix.Message.Problem.Answer protoAnswer)
 	{
@@ -56,8 +56,7 @@ public class Answer
 	}
 	
 	/// <summary>
-	/// Unless you know how to use them, this will return a bunch of nonsensical strings.
-	/// Use this if you want a bunch of uuids.
+	/// Returns a UUID for each answer part.
 	/// </summary>
 	public string[] GetAnswerIDs()
 	{
